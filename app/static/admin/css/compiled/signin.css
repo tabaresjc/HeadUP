@@ -43,7 +43,7 @@
 .login-wrapper .box input[type="password"] {
   font-size: 15px;
   height: 40px;
-  margin-bottom: 18px;
+  margin-bottom: 10px;
   border-color: #b2bfc7;
   padding-left: 12px;
 }
@@ -55,6 +55,9 @@
   font-size: 15px;
   letter-spacing: 0px;
   font-style: italic;
+}
+.login-wrapper .form-group {
+  text-align: left;
 }
 .login-wrapper .box input:-ms-input-placeholder {
   color: #9ba8b6;

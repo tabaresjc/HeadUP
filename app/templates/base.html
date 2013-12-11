@@ -10,7 +10,6 @@
     {% else %}
     <title>Pigeon</title>
     {% endif %}
-
     
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width">
@@ -39,7 +38,7 @@
         <div class="widewrapper masthead">
             <div class="container">
                 <a href="/static/blog/index.html" id="logo">
-                    <img src="/static/blog/img/tales-logo.png" alt="Tales Blog">
+                    <img src="/static/blog/img/tales-logo.png" alt="Pigeon Blog">
                 </a>
 
                 <div id="mobile-nav-toggle" class="pull-right">
@@ -105,12 +104,19 @@
     <div class="widewrapper main">
         <div class="container">
             <div class="row">
-                <div class="col-md-8 blog-main">
+                <div class="col-md-8 blog-main" style="min-height:400px;">
+                    {% with messages = get_flashed_messages() %}
+                    {% if messages %}
+                    <div class="alert alert-success">
+                        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>                        
+                        {% for message in messages %}
+                        <p>{{ message }}</p>
+                        {% endfor %}                        
+                    </div>
+                    {% endif %}
+                    {% endwith %}                    
+
                     {% block main %}{% endblock %}
-                    <br/>
-                    <br/>
-                    <br/>
-                    <br/>
                 </div>
                 <aside class="col-md-4 blog-aside">
                     {% for widget in widgets %}
@@ -154,14 +160,13 @@
         </div>
         <div class="widewrapper copyright">
             <div class="container">
-                @2013 Pistachio Inc
+                @2013 Pigeon Inc
             </div>
         </div>
     </footer>
 
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
     <script src="/static/blog/js/vendor/jquery/jquery-1.9.1.min.js"></script>
-    <script src="/static/blog/js/main.js"></script>
     <script src="/static/blog/js/vendor/bootstrap/bootstrap.min.js"></script>
     <script src="/static/blog/js/vendor/modernizr/modernizr.js"></script>
 </body>
