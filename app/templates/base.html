@@ -6,9 +6,9 @@
 <head>
     <meta charset="utf-8">
     {% if title %}
-    <title>{{title}} - Pistachio</title>
+    <title>{{title}} | Pigeon</title>
     {% else %}
-    <title>Pistachio</title>
+    <title>Pigeon</title>
     {% endif %}
 
     
@@ -26,11 +26,11 @@
     <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,600|PT+Serif:400,400italic' rel='stylesheet' type='text/css'>
 
     <!-- Styles -->
-    <link rel="stylesheet" href="/static/blog/css/styles-bluegreen.css" id="theme-styles">
+    <link rel="stylesheet" href="/static/blog/css/styles-bluered.css" id="theme-styles">
 
     <!--[if lt IE 9]>
         <link rel="stylesheet" href="css/ie8.css">        
-        <script src="js/vendor/google/html5-3.6-respond-1.1.0.min.js"></script>
+        <script src="/static/blog/js/vendor/google/html5-3.6-respond-1.1.0.min.js"></script>
     <![endif]-->
 
 </head>
@@ -80,13 +80,15 @@
         <div class="widewrapper subheader">
             <div class="container">
                 <div class="tales-breadcrumb">
-                    <a href="#">Tales</a>
+                    <a href="/">Home</a>
+                    <!--
                     <span class="separator">&#x2F;</span>
                     <a href="#">Starter</a>
                     <span class="separator">&#x2F;</span>
                     <a href="#">Starter Page</a>
+                    -->
                 </div>
-
+                <!--
                 <div class="tales-searchbox">
                     <form action="#" method="get" accept-charset="utf-8">
                         <button class="searchbutton" type="submit">
@@ -95,6 +97,7 @@
                         <input class="searchfield" id="searchbox" type="text" placeholder="Search">
                     </form>
                 </div>
+                -->
             </div>
         </div>
     </header>
@@ -103,22 +106,27 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-8 blog-main">
-                    {{ content }}
+                    {% block main %}{% endblock %}
+                    <br/>
+                    <br/>
+                    <br/>
+                    <br/>
                 </div>
                 <aside class="col-md-4 blog-aside">
+                    {% for widget in widgets %}
                     <div class="aside-widget">
                         <header>
-                            <h3>A simple widget</h3>
+                            <h3>{{widget.title}}</h3>
                         </header>
                         <div class="body">
-                            that says hi!
+                            {{widget.body}}
                         </div>
-                    </div>
+                    </div>                    
+                    {% endfor %}
                 </aside>
             </div>
         </div>
     </div>
-
     <footer>
         <div class="widewrapper footer">
             <div class="container">
@@ -126,57 +134,34 @@
                     <div class="col-md-4 footer-widget">
                         <h3> <i class="icon-cog"></i>Statistics</h3>
 
-                        <span>Even we sometimes loose track of how many articles we actually have here.  This one helps:</span>
-
                         <div class="stats">
                             <div class="line">
-                                <span class="counter">27</span>
+                                <span class="counter">0</span>
                                 <span class="caption">Articles</span>
                             </div>
                             <div class="line">
-                                <span class="counter">208</span>
+                                <span class="counter">0</span>
                                 <span class="caption">Comments</span>
                             </div>
                             <div class="line">
-                                <span class="counter">2</span>
+                                <span class="counter">0</span>
                                 <span class="caption">Authors</span>
                             </div>                    
                         </div>
-                    </div>
-
-                    <div class="col-md-4 footer-widget">
-                        <h3> <i class="icon-star"></i>Hall of Fame</h3>
-                        <ul class="tales-list">
-                            <li><a href="index.html">Why we Need to Encrypt All Communication</a></li>
-                            <li><a href="#">Selling is a Function of Design. Not Vice-Versa.</a></li>
-                            <li><a href="#">It’s Hard To Come Up With Dummy Titles</a></li>
-                            <li><a href="#">Why the Internet is Full of Cats</a></li>
-                            <li><a href="#">Last Made-Up Headline, I Swear!</a></li>
-                        </ul>
-                    </div>
-
-                    <div class="col-md-4 footer-widget">
-                        <h3> <i class="icon-cog"></i>Contact Me</h3>
-
-                        <span>I'm happy to hear from my readers. Thoughts, feedback, critique - all welcome! Drop me a line:</span>
-                        
-                        <span class="email">
-                            <a href="#">jimmy@notanactualemail.com</a>, PGP key 0x5AK0BEA1
-                        </span>
                     </div>
                 </div>
             </div>
         </div>
         <div class="widewrapper copyright">
             <div class="container">
-                Tales Theme, Designed and Developed by <a href="http://hackerthemes.com">Hackerthemes</a>, Copyright 2013
+                @2013 Pistachio Inc
             </div>
         </div>
     </footer>
 
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
     <script src="/static/blog/js/vendor/jquery/jquery-1.9.1.min.js"></script>
-    <script src="/static/blog/js/main.js" type="text/javascript"></script>
+    <script src="/static/blog/js/main.js"></script>
     <script src="/static/blog/js/vendor/bootstrap/bootstrap.min.js"></script>
     <script src="/static/blog/js/vendor/modernizr/modernizr.js"></script>
 </body>
