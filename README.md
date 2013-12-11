@@ -1,5 +1,5 @@
-Python Blog
-===========
+Pigeon: A Python Blog
+=====================
 
 A Simple Blog application built Flask Framework
 

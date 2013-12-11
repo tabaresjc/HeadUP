@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html>
+<head>
+    {% if title %}
+    <title>{{title}} | Pigeon</title>
+    {% else %}
+    <title>Pigeon</title>
+    {% endif %}
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="description" content="{{ description if description }}">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	
+    <!-- bootstrap -->
+    <link href="/static/admin/css/bootstrap/bootstrap.css" rel="stylesheet" />
+    <link href="/static/admin/css/bootstrap/bootstrap-overrides.css" type="text/css" rel="stylesheet" />
+
+    <!-- libraries -->
+    <link href="/static/admin/css/lib/jquery-ui-1.10.2.custom.css" rel="stylesheet" type="text/css" />
+    <link href="/static/admin/css/lib/font-awesome.css" type="text/css" rel="stylesheet" />
+
+    <!-- global styles -->
+    <link rel="stylesheet" type="text/css" href="/static/admin/css/compiled/layout.css">
+    <link rel="stylesheet" type="text/css" href="/static/admin/css/compiled/elements.css">
+    <link rel="stylesheet" type="text/css" href="/static/admin/css/compiled/icons.css">
+
+    <!-- this page specific styles -->
+    <link rel="stylesheet" href="/static/admin/css/compiled/index.css" type="text/css" media="screen" />
+
+    <!-- open sans font -->
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
+
+    <!-- lato font -->
+    <link href='http://fonts.googleapis.com/css?family=Lato:300,400,700,900,300italic,400italic,700italic,900italic' rel='stylesheet' type='text/css'>
+
+    <!--[if lt IE 9]>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+</head>
+<body>
+    <!-- navbar -->
+    <header class="navbar navbar-inverse" role="banner">
+        <div class="navbar-header">
+            <button class="navbar-toggle" type="button" data-toggle="collapse" id="menu-toggler">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/"><img src="/static/admin/img/logo.png"></a>
+        </div>
+        <ul class="nav navbar-nav pull-right hidden-xs">            
+            <li class="dropdown">
+                <a href="#" class="dropdown-toggle hidden-xs hidden-sm" data-toggle="dropdown">
+                    Your account
+                    <b class="caret"></b>
+                </a>
+                <ul class="dropdown-menu">
+                    <li><a href="personal-info.html">Personal info</a></li>
+                    <li><a href="#">Account settings</a></li>
+                    <li><a href="#">Billing</a></li>
+                    <li><a href="#">Export your data</a></li>
+                    <li><a href="#">Send feedback</a></li>
+                </ul>
+            </li>
+            <li class="settings hidden-xs hidden-sm">
+                <a href="/logout" role="button">
+                    <i class="icon-signout"></i>
+                </a>
+            </li>
+        </ul>
+    </header>
+    <!-- end navbar -->
+
+    <!-- sidebar -->
+    <div id="sidebar-nav">
+        <ul id="dashboard-menu">
+            <li class="active">
+                <div class="pointer">
+                    <div class="arrow"></div>
+                    <div class="arrow_border"></div>
+                </div>
+                <a href="/dashboard/">
+                    <i class="icon-home"></i>
+                    <span>Dashboard</span>
+                </a>
+            </li>
+        </ul>
+    </div>
+    <!-- end sidebar -->
+
+
+	<!-- main container -->
+    <div class="content">
+
+        <!-- upper main stats -->
+        <div id="main-stats">
+            <div class="row stats-row">
+                <div class="col-md-3 col-sm-3 stat">
+                    <div class="data">
+                        <span class="number">2457</span>
+                        visits
+                    </div>
+                    <span class="date">Today</span>
+                </div>
+                <div class="col-md-3 col-sm-3 stat">
+                    <div class="data">
+                        <span class="number">3240</span>
+                        users
+                    </div>
+                    <span class="date">February 2013</span>
+                </div>
+                <div class="col-md-3 col-sm-3 stat">
+                    <div class="data">
+                        <span class="number">322</span>
+                        orders
+                    </div>
+                    <span class="date">This week</span>
+                </div>
+                <div class="col-md-3 col-sm-3 stat last">
+                    <div class="data">
+                        <span class="number">$2,340</span>
+                        sales
+                    </div>
+                    <span class="date">last 30 days</span>
+                </div>
+            </div>
+        </div>
+        <!-- end upper main stats -->
+
+        <div id="pad-wrapper">
+
+            
+            <div class="row">
+                <div class="col-md-12">
+                    {% with messages = get_flashed_messages() %}
+                    {% if messages %}
+                    <div class="alert alert-success">
+                        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>                        
+                        {% for message in messages %}
+                        <p>{{ message }}</p>
+                        {% endfor %}                        
+                    </div>
+                    {% endif %}
+                    {% endwith %}                    
+
+                    {% block main %}{% endblock %}
+                </div>
+            </div>
+            
+
+
+        </div>
+    </div>
+    <!-- scripts -->
+    <script src="http://code.jquery.com/jquery-latest.js"></script>
+    <script src="/static/admin/js/bootstrap.min.js"></script>
+    <script src="/static/admin/js/jquery-ui-1.10.2.custom.min.js"></script>
+    <script src="/static/admin/js/theme.js"></script>
+</body>
+</html>

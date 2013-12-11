@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html class="login-bg">
+<head>
+    {% if title %}
+    <title>{{title}} | Pigeon</title>
+    {% else %}
+    <title>Pigeon</title>
+    {% endif %}
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="description" content="{{ description if description }}">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+	
+    <!-- bootstrap -->
+    <link href="/static/admin/css/bootstrap/bootstrap.css" rel="stylesheet">
+    <link href="/static/admin/css/bootstrap/bootstrap-responsive.css" rel="stylesheet">
+    <link href="/static/admin/css/bootstrap/bootstrap-overrides.css" type="text/css" rel="stylesheet">
+
+    <!-- global styles -->
+    <link rel="stylesheet" type="text/css" href="/static/admin/css/compiled/layout.css">
+    <link rel="stylesheet" type="text/css" href="/static/admin/css/compiled/elements.css">
+    <link rel="stylesheet" type="text/css" href="/static/admin/css/compiled/icons.css">
+
+    <!-- libraries -->
+    <link rel="stylesheet" type="text/css" href="css/lib/font-awesome.css">
+    
+    <!-- this page specific styles -->
+    <link rel="stylesheet" href="/static/admin/css/compiled/signup.css" type="text/css" media="screen" />
+
+    <!-- open sans font -->
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
+
+    <!--[if lt IE 9]>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+</head>
+<body>
+    <div class="header">
+        <a href="/">
+            <img src="/static/admin/img/logo.png" class="logo" />
+        </a>
+    </div>
+    <div class="login-wrapper">
+        <div class="box">
+            <div class="content-wrap">
+                <h6>Sign Up</h6>
+                <input class="form-control" type="text" placeholder="E-mail address">
+                <input class="form-control" type="password" placeholder="Password">
+                <input class="form-control" type="password" placeholder="Confirm Password">
+                <div class="action">
+                    <a class="btn-glow primary signup" href="/login">Sign up</a>
+                </div>                
+            </div>
+        </div>
+
+        <div class="already">
+            <p>Already have an account?</p>
+            <a href="/login">Sign in</a>
+        </div>
+    </div>
+
+	<!-- scripts -->
+    <script src="http://code.jquery.com/jquery-latest.js"></script>
+    <script src="/static/admin/js/bootstrap.min.js"></script>
+    <script src="/static/admin/js/theme.js"></script>
+</body>
+</html>

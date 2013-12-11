@@ -1,14 +1,14 @@
 <!DOCTYPE html>
 <html class="login-bg" style="background-image:url('/static/admin/img/bgs/9.jpg')">
 <head>
-	{% if title %}
+    {% if title %}
     <title>{{title}} | Pigeon</title>
     {% else %}
     <title>Pigeon</title>
     {% endif %}
-
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="{{ description if description }}">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 	
     <!-- bootstrap -->
     <link href="/static/admin/css/bootstrap/bootstrap.css" rel="stylesheet">
@@ -33,11 +33,8 @@
     <![endif]-->
 </head>
 <body>
-
-
-
     <div class="login-wrapper">
-        <a href="index.html">
+        <a href="/">
             <img class="logo" src="/static/admin/img/logo-white.png">
         </a>
 
@@ -47,28 +44,24 @@
                 
                 <form action="/login" method="post" name="login">
                     {{form.hidden_tag()}}
-                    <div class="form-group {{ 'has-error' if form.errors.openid }}">
-                        {{form.openid(class="form-control",placeholder="Please enter your OpenID")}}
-                        {% for error in form.errors.openid %}
+                    <div class="form-group {{ 'has-error' if form.errors.email }}">
+                        {{form.email(class="form-control",placeholder="E-mail address")}}
+                        {% for error in form.errors.email %}
                         <span class="label label-danger">{{error}}</span>
                         {% endfor %}
                     </div>
+                    <div class="form-group {{ 'has-error' if form.errors.password }}">
+                        {{form.password(class="form-control",placeholder="Password")}}
+                        {% for error in form.errors.password %}
+                        <span class="label label-danger">{{error}}</span>
+                        {% endfor %}
+                    </div>                    
                     <div class="remember">
                         {{form.remember_me}}
                         <label for="remember_me">Remember me</label>
                     </div>                    
                     <input type="submit" value="Sign In" class="btn-glow primary login">
                 </form>
-                <!--
-                <input class="form-control" type="text" placeholder="E-mail address">
-                <input class="form-control" type="password" placeholder="Your password">
-                <a href="#" class="forgot">Forgot password?</a>
-                <div class="remember">
-                    <input id="remember-me" type="checkbox">
-                    <label for="remember-me">Remember me</label>
-                </div>
-                <a class="btn-glow primary login" href="index.html">Log in</a>
-                -->
             </div>
         </div>
 
@@ -82,7 +75,5 @@
     <script src="http://code.jquery.com/jquery-latest.js"></script>
     <script src="/static/admin/js/bootstrap.min.js"></script>
     <script src="/static/admin/js/theme.js"></script>
-
-
 </body>
 </html>

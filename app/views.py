@@ -14,7 +14,18 @@ def login():
     form = LoginForm()
     if form.validate_on_submit():
         flash('Succesfully logged in')
-        return redirect('/index')    
+        return redirect('/dashboard')    
     return render_template('signin.html', 
         title = 'Sign In',
         form = form)    
+
+@app.route('/signup', methods = ['GET', 'POST'])
+def signup():
+    return render_template('signup.html', 
+        title = 'Sign Up')   
+
+@app.route('/dashboard')
+def dashboard():
+    return render_template("dashboard.html",
+        title = 'Dashboard',
+        content = 'Administration Site')       
