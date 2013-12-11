@@ -1,0 +1,727 @@
+/* Elements that are used througout Tales, such as Searchboxes, Blog elements, Widgets, etc. etc. */
+
+.tales-breadcrumb {
+    color:@breadcrumb-link;
+    float:left;
+    margin-top:19px;
+
+    a {
+        color:@breadcrumb-link;
+
+        &:hover, &:focus {
+            text-decoration: none;
+        }
+    }
+    .separator {
+        margin: 0 10px 0 10px;
+    }
+}
+
+/* The searchbox in the subheader on top of the site */
+.tales-searchbox {
+    float:right;
+    display:inline-block;
+    min-width: 210px;
+    margin-bottom:16px;
+    margin-top:16px;
+
+    form {
+        margin:0;
+    }
+
+    [class^="icon-"], [class*=" icon-"] {
+        color:@searchbox-text;
+        font-size:19px;
+    }
+
+    .searchbutton, .searchfield {
+        color:@searchbox-text;
+        background-color: @searchbox-background;
+    }
+
+    .searchbutton {
+        display:inline-block;
+        border:none;
+        line-height: 20px;
+        padding:4px 5px 4px 15px;
+        height:31px;
+        vertical-align: middle;
+        .border-left-radius(15px);
+
+        a:hover, a:focus {
+            text-decoration: none;
+        }
+    }
+
+    .searchfield {
+        border:none;
+        height:22px;
+        line-height:22px;
+        .box-sizing(content-box);
+        padding:5px 6px 4px 6px;
+        vertical-align: middle;
+        display:inline-block;
+        margin-bottom:0;
+        width:160px;
+        font-size:16px;
+        .border-right-radius(15px);
+        .border-left-radius(0px);
+        margin-left: -4px;
+        outline: none;
+         
+        .input-placeholder(@searchbox-text);
+
+        &:focus{
+            .box-shadow(none);
+        }
+     }
+}
+
+/* The list with special bullet points, used both on blog widgets as well as in the footer (both styled here) */
+.tales-list {
+    list-style:none;
+
+    li {
+        line-height:23px;
+        margin-bottom:14px;
+
+        a {
+            &:hover, &:focus {
+                color:@link-secondary;
+            }
+        }
+    }
+    
+    li:before { 
+        content: "";
+        border-color: transparent transparent transparent @tales-list-bulletpoint;
+        border-style: solid;
+        border-width: 3px 8px;
+        display: block;
+        width:8px;
+        left: -20px;
+        top: 15px;
+        position: relative;
+    }    
+
+    .footer & {
+        margin-top:-6px;
+        padding-left:23px;
+        li {
+            margin-bottom:5px;
+
+            a {
+                color:@footer-text;
+                padding-bottom:5px;
+            }
+
+            &:before { 
+                left: -21px;
+                border-color: transparent transparent transparent @footer-text;
+            }
+        }
+    }
+}
+
+/* Footer widgets */
+.footer-widget {
+    margin-top:25px;
+    margin-bottom:50px;
+
+    line-height:23px;
+
+    h3 {
+        // font-weight:600;
+        margin-bottom:20px;
+
+        [class^="icon-"],
+        [class*=" icon-"] {
+            font-size:21px;
+            margin-right:11px;
+
+        }
+    }
+
+    .stats {
+        margin-top:23px;
+        .line {
+            font-size:18px;
+            margin-top:10px;
+            .counter {
+                font-weight:600;
+                float:left;
+                display:block;
+            }
+            .caption {
+                color:@stats-caption;
+                margin-left:56px;
+                display:block;
+            }
+        }
+    }
+
+    .email {
+        display:block;
+        margin-top:10px;
+    }
+}
+
+/* Blog styles */
+.blog-main, .blog-aside {
+    position:relative;
+    //Vertical seperator (also see below)
+    &:before {
+        border-left:1px solid @vertical-separator;
+        height:100%;
+        content: "";
+        position: absolute;
+        top: 0;
+        width: 1px;
+        @media @smaller {
+            display:none;
+        }
+    }
+}
+
+.blog-main {
+    padding-top:36px;
+    padding-bottom:20px;
+
+    //Vertical seperator (also see above and below)
+    &:before {
+        right:-16px;
+        // @media @medium {right:-22px;}
+        @media @small {display:none;}
+    }
+}
+
+.blog-aside {
+    padding-top:125px;
+    @media @smaller {padding-top:50px;}
+
+    //Vertical seperator (also see above)
+    &:before {
+        left:15px;
+        // @media @medium {left:0px;}
+        @media @small {display:none;}
+    }
+}
+
+/* Blog aside widgets */
+.aside-widget {
+    margin-bottom:100px;
+
+    header {
+        #gradient > .vertical(@widget-gradient-start, @widget-gradient-end);
+        border:1px @vertical-separator solid;
+                
+        h3 {
+            font-size:24px;
+            padding:10px 20px 3px 20px;
+            margin-top:0;
+            color:@widget-header-text;
+        }
+    }
+    .body {
+        margin-top:30px;
+        padding-left:20px;
+    }
+
+    a {
+        color:@widget-link;
+    }
+}
+/* The tags widget */
+.tags {
+    list-style:none;
+    margin:0;
+    padding-left:0;
+    li {
+        float:left;
+        a {
+            padding:10px 15px;
+            margin-right:16px;
+            margin-bottom:17px;
+            display:inline-block;
+            background:@tags-background;
+            .border-radius(5px);
+
+            &:focus, &:hover {
+                background-color: @tags-background-hover;
+            }
+        }
+    }
+}
+
+/* The blog main page boxes */
+.blog-teaser {
+    background-color:@blog-teaser-background;
+    .border-radius(10px);
+    .box-shadow(0px 1px 5px @blog-teaser-shadow);
+    margin-bottom:40px;
+
+    @media @small {
+        display:block;
+        float:none;
+        width:95%;
+    }
+
+    header {
+        padding-top:20px;
+        padding-right:45px;
+        padding-left:45px;
+        text-align: center;
+
+        img {
+            margin-bottom:20px;
+            .border-radius(200px);
+        }
+
+        h3 {
+            color:@blog-teaser-title;
+            margin-top:0;
+            font-size:28px;
+            margin-bottom:10px;
+
+            a, a:focus, a:hover {
+                color:@blog-teaser-title;
+            }
+        }
+        .meta {
+            color:@blog-teaser-meta;
+        }
+        hr {
+            border-top-color:@blog-teaser-separator;
+            border-bottom:none;
+        }
+    }
+    .body {
+        padding-right:45px;
+        padding-left:45px;
+        margin-bottom:10px;
+        color:@blog-teaser-text;
+    }
+
+    .btn {
+        float:right;
+        margin-right: 45px;
+        margin-bottom:18px;
+
+    }
+}
+/* Blog main page paging */
+.paging {
+    margin-bottom:20px;
+    text-align:right;
+
+    a {
+        &:hover, &:focus {
+            color:@link-secondary;
+        }
+    }
+    i {
+        font-size:16px;
+    }
+    a, span {
+        margin-left:10px;
+    }
+    .newer i {
+        margin-right:5px;
+    }
+    .older i  {
+        margin-left:5px;
+    }
+}
+/* ... aand the main blog article */
+.blog-post {
+    margin-bottom:90px;
+
+    header {
+        h1 {
+            font-family: 'PT Serif', serif;
+            margin-bottom:22px;
+        }
+
+        .lead-image {
+            position:relative;
+
+            .meta {
+                padding-left:30px;
+                padding-bottom:10px;
+                position:absolute;
+                bottom:15px;
+                background-color: @blog-meta-background-legacy;
+                background-color: @blog-meta-background;
+                color:@blog-meta-text;
+
+                a { 
+                    color:@blog-meta-text;
+                }
+
+                @media @small-and-smaller {
+                    position:relative;
+                    bottom:0;
+                }
+
+                .author, .date, .comments {
+                    float:left;
+                    margin:10px 55px 0 0;
+
+                    .data {
+                        line-height:30px;
+                    }
+
+                    @media @medium {
+                        margin-right:20px;
+                    }
+                    @media @small {
+
+                    }
+
+                    i {
+                        font-size:30px;
+                        float:left;
+                        margin-right:10px;
+                    }
+                }
+
+
+            }
+        }
+    }
+
+    .body {
+        margin-top:20px;
+        @media @large {padding-right:30px;}
+        p {
+            margin-bottom:20px;
+        }
+    }    
+}
+
+/* The round social icons including the animations */
+.social-icons {
+    text-align:center;
+}
+
+.social-icon {
+    position:relative;
+    margin-bottom:90px;
+    display:inline-block;
+    width:135px;
+    height:135px;
+    margin-left:70px;
+    border-radius:200px;
+
+    .inner-circle {
+        position:absolute;
+        top:11px;
+        left:11px;
+        display:block;
+        height:113px;
+        width:113px;
+        border-radius:200px;
+        .transition(all 0.5s ease-in);
+    }
+
+    &:hover {
+        .inner-circle {
+            top:0;
+            left:0;
+            width:135px;
+            height:135px;            
+         }
+    }    
+
+    i {
+        color:@social-icon;
+        font-size:70px;
+        position:absolute;
+        top:36px;
+        left:37px;
+        
+        &.icon-facebook {
+            left:50px;
+        }
+
+        &.icon-github-alt {
+            top:32px;
+        }
+    }
+
+
+    &:first-child {
+        margin-left:0;
+    }
+    
+    @media @medium {
+        .span6 & {margin-left:15px;}
+    }
+
+    @media @small {
+        margin-left:40px;
+        .span6 & {margin-left:-8px;}
+        width:122px;
+        height:122px;
+        
+        .inner-circle {
+            position:absolute;
+            top:11px;
+            left:11px;
+            display:block;
+            height:100px;
+            width:100px;        
+        }
+
+        &:hover {
+            .inner-circle {
+                width:122px;
+                height:122px;            
+             }
+        }    
+
+        i {
+            font-size:50px;
+            top:36px;
+            left:37px;
+            
+            &.icon-facebook {
+                left:50px;
+            }
+
+        }
+    }
+
+    @media @smaller {
+        margin-left:10px;
+        width:81px;
+        height:81px;
+        margin-bottom:40px;
+        
+        .inner-circle {
+            position:absolute;
+            top:8px;
+            left:8px;
+            display:block;
+            height:65px;
+            width:65px;
+        }
+
+        &:hover {
+            .inner-circle {
+                // no need for hover effects on touch devices
+                height:65px;
+                width:65px;
+                top:8px;
+                left:8px;                
+             }
+        }    
+
+        i {
+            font-size:35px;
+            top:25px;
+            left:25px;
+            
+            &.icon-facebook {
+                left:32px;
+            }
+            &.icon-github-alt {
+                top:22px;
+            }            
+        }
+    }
+
+    &.color-one {
+        background-color: @social-icon-one-outer-background;
+        .inner-circle {
+            background-color: @social-icon-one-inner-background;
+        }
+    }
+
+    &.color-two {
+        background-color: @social-icon-two-outer-background;
+        .inner-circle {
+            background-color: @social-icon-two-inner-background;
+        }
+    }
+
+    &.color-three {
+        background-color: @social-icon-three-outer-background;
+        .inner-circle {
+            background-color: @social-icon-three-inner-background;
+        }
+    }
+}
+
+/* Comments on blog detail page */
+aside.comments, aside.create-comment {
+    margin-bottom:100px;
+    hr {
+        width:515px;
+        @media @small {width:415px;}
+        @media @smaller {width:100%;}
+        
+        margin-left:auto;
+        margin-right:auto;
+        border-top-color:@blog-comments-seeparator;
+        margin-bottom:130px;
+    }
+    h2 {
+        text-align: center;
+        i {
+            font-size:36px;
+        }
+        font-weight:normal;
+        margin-bottom:130px;
+    }    
+}
+
+aside.comments {
+    .comment {
+        margin:130px 0 0 0;
+        
+        &.reply {
+            margin-left:100px;
+        }
+
+        header {
+            img {
+                float:left;
+                border-radius:100px;
+            }
+
+            .meta {
+                margin-left:100px;
+                font-size:14px;
+
+                h3 {
+                    margin:10px 0 0 0;
+                    line-height:27px;
+                    a {
+                        color:@link-primary;
+                    }                
+                }
+
+                a {
+                    color:@link-secondary;
+                }
+            }
+        }
+        .body {
+            margin-top:10px;
+            margin-left:100px;
+        }
+    }
+}
+
+/* Add commment form */
+.create-comment, 
+.contact-form {
+
+    input, textarea {
+        margin-top:15px;
+    }
+
+    .btn {
+        margin:15px 0 0 30px;
+        float:right;
+    }
+}
+
+.content, .about {
+    padding-top:36px;
+    padding-bottom:80px;
+}
+
+/* About me page */
+.about {
+    hr {
+        margin-top:75px;
+    }
+}
+
+.about-portrait {
+    float:right;
+    margin-top:20px;
+    margin-left:70px;
+    .border-radius(180px);
+    @media @smaller {
+        float:none;
+        margin:40px auto;
+    }
+}
+
+.about-button {
+    margin-top:30px;
+}
+
+/* The various styles that are used in the about me text chunk */
+.about-bold {
+    font-weight:bold;
+}
+
+.about-italic {
+    font-style: italic;
+}
+
+.about-large, .about-medium, .about-small {
+    font-family: 'PT Serif', serif;
+    line-height:60px;
+    @media @smaller {
+        display:block;
+    }
+}
+
+.about-large {
+    font-size:40px;
+}
+
+.about-medium{
+    font-size: 36px;
+}
+
+.about-small {
+    font-size: 30px;
+}
+
+/* The centered blocks under about me, used for "Social" and "Contact" */
+.tales-superblock {
+    margin-bottom:80px;
+    h2 {
+        font-size:40px;
+        text-align: center;
+        margin-bottom:80px;
+    }
+}
+
+/* The image credits page */
+.credits {
+    @media @smaller {
+        text-align: center;
+        img {
+            margin-left:auto;
+            margin-right:auto;
+        }
+    }
+    .image {
+        margin-top:60px;
+    }
+    .details {
+        margin-top:60px;
+        @media @small {
+            margin-top:45px;
+        }
+        @media @smaller {
+            margin-top:10px;
+        }
+        margin-bottom:75px;
+        
+    }
+    img {
+        // text-align:center;
+        .border-radius(200px);
+    }
+    .bold {
+        font-weight:bold;
+    }
+}

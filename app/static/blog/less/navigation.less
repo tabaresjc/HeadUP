@@ -1,0 +1,238 @@
+/* Styles for the navigation, both mobile and desktop */
+
+
+/* Desktop version of the navigation */
+.tales-nav {
+    .nav-pills {
+        margin-top:10px;
+        margin-bottom:0;
+        font-size:16px;
+        
+        > li {
+            margin-left:10px;
+            > a {
+                color:@navigation-link;
+                padding:11px 16px;
+                line-height:14px;
+
+                &:hover, &:focus {
+                    background-color: @navigation-active-background;
+                }
+            }
+            &.dropdown.open.active {
+                > a:hover, > a:focus {            
+                    background-color: @navigation-active-background;
+                }
+            }
+        }
+
+        .open {
+            .dropdown-toggle {
+                background-color: @navigation-active-background;
+            }
+        }
+        > .active {
+            > a {
+                background-color: @navigation-active-background;
+
+                &:hover, &:focus {
+                    background-color: @navigation-active-background;
+                }
+            }
+        }
+
+        .dropdown-menu{
+            font-size:16px;
+            border-radius:6px;
+        }
+    }
+
+    .caret {
+        border-color:@navigation-link transparent transparent transparent !important;
+        display:none; // Comment this if you want carets in the desktop nav as well.
+    }
+
+    .dropdown {
+        .caret {
+            margin-left:7px;
+        }
+    }
+
+
+    .dropdown-menu {
+        background-color: @navigation-dropdown-background;
+        border-color:transparent; /*IE 8 Legacy */
+        border: 1px solid @navigation-dropdown-border;
+        .box-shadow(0 5px 10px @navigation-dropdown-shadow);
+        margin: 2px 0 0;
+        min-width: 160px;
+        padding: 5px 0;
+
+        > li {
+            > a {
+                color: @navigation-dropdown-link;
+                line-height: 30px;
+                white-space: nowrap;
+
+                &:hover, &:focus {
+                    background-color: @navigation-dropdown-hover-legacy; // IE8 doesn't support rgba() etc.
+                    background-color: @navigation-dropdown-hover;
+                    background-image: none;
+                    color: @navigation-dropdown-link;
+                    filter: none;
+                }
+            }
+        }
+    }    
+
+    .navbar-collapse {
+        box-shadow:none;
+    }
+
+    .navbar-nav > li > .dropdown-menu {
+        margin-top:2px;
+    }
+}
+
+/* The button that expands the navigation in mobile-mode */
+#mobile-nav-toggle {
+    display:none;
+    margin-top:10px;
+
+    @media @smaller {
+        display:block;
+    }
+
+    a:hover, a:focus {
+        text-decoration: none;
+    }
+
+    [class^="icon-"],
+    [class*=" icon-"] {
+        color:@masthead-text;
+    }
+}
+
+/* Mobile version of the navigation */
+
+
+@media @smaller {
+
+    .masthead {
+        padding-bottom:0px;
+    }
+
+    .tales-nav {
+        box-shadow:none;
+        background-color: @mobilenav-background; 
+        float:left !important;
+        width:100%;
+       
+        margin-top:30px;
+        margin-bottom:20px;
+
+        .border-radius(6px);
+ 
+        .nav-pills {
+            > li {
+                margin-left:0;
+                float:none;                
+                > a {
+                    // border-top:@mobilenav-line 1px solid;
+                    margin-left: 40px;
+                    margin-right: 40px;                    
+                }
+
+                a {
+                    font-weight: normal;
+                    font-size:20px;
+                    line-height:30px;
+                    padding-left: 10px;
+                    padding-right: 10px;
+                    .border-radius(0px);
+                }
+
+                &:first-child {
+                    > a {
+                        border-top:none;
+                    }
+                }
+
+                > a:hover, > a:focus {
+                    background:transparent;
+                }
+
+                &.dropdown.open.active {
+                    > a:hover, > a:focus {
+                        background:transparent;
+                    }                    
+                }
+            }
+
+            .active {
+                > a, > a:hover, > a:focus {
+                    background:transparent;
+                }
+            }
+
+            .open .dropdown-toggle {
+                background-color: transparent;
+                border-color:@mobilenav-line;
+                padding-bottom:7px;
+            }
+
+            .dropdown-toggle  {   
+                .caret {
+                    float: right;
+                    margin-top: 14px;
+                }
+
+            }
+            .dropdown-menu {
+                background-color: @mobilenav-active-background;
+            }
+
+            .dropdown {
+                &.open {
+                    background-color: @mobilenav-active-background;
+                    .dropdown-toggle {
+                        
+                    }
+                }
+            }
+        }
+
+        .caret {
+            border-color:@mobilenav-link transparent transparent transparent !important;
+            border-width:6px;
+            display:block;
+        }
+
+        .dropdown-menu {
+            margin-top:0;
+            padding-top: 0;
+            .box-shadow(none);
+            border:none;
+
+            > li {
+                margin-left:35px;
+                > a {
+                    padding-top:9px;
+                    padding-bottom: 9px !important;
+                    font-size:18px;
+                    line-height: 27px;
+                    &:hover, &:focus {
+                        background-color: transparent;
+                    }
+                }
+            }
+        }         
+
+        .navbar-nav .open .dropdown-menu > li > a {
+            padding-top: 9px;
+            padding-bottom: 9px;
+            line-height: 27px;
+        }
+
+    }
+}

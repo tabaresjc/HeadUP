@@ -1,0 +1,115 @@
+/*!
+ *  Tales v2.0
+ *
+ *  Copyright 2013 Wildmind Alexander Rechsteiner
+ *  http://hackerthemes.com
+ *
+ */
+
+
+.box-shadow(@shadow) {
+  -webkit-box-shadow: @shadow;
+     -moz-box-shadow: @shadow;
+          box-shadow: @shadow;
+}
+
+.border-bottom-right-radius(@radius) {
+  -webkit-border-bottom-right-radius: @radius;
+      -moz-border-radius-bottomright: @radius;
+          border-bottom-right-radius: @radius;
+}
+
+.border-bottom-left-radius(@radius) {
+  -webkit-border-bottom-left-radius: @radius;
+      -moz-border-radius-bottomleft: @radius;
+          border-bottom-left-radius: @radius;
+}
+
+@dark:#262626;
+@scheme-border:#1e1e1e;
+@bright:#e9e9e9;
+
+.settings-panel {
+    position:fixed;
+    top:0;
+    left:0px;
+    width:285px;
+    min-height:100%;
+    background-color: @dark;
+    z-index:1000;
+    display:none;
+    padding:70px 15px 0 15px;
+    color:@bright;
+    .box-shadow(0px 0px 10px #000); 
+
+    .title {
+        font-size:20px;
+        font-weight: 600;
+    }
+
+    .subscribe {
+        margin-top:40px;
+        .description {
+            margin-top:20px;
+            font-size:14px;
+        }
+
+        .email {
+            margin-top:15px;
+            box-shadow:none;
+            border-color:none;
+        }
+
+        .btn {
+            float:right;
+            margin-top:10px;
+        }
+    }
+
+
+    .theme {
+        margin-top:20px;
+        width:256px;
+        .name {
+            margin-bottom:5px;
+            margin-left:3px;
+        }   
+        .colors {
+            display:block;
+            height:56px;
+            border:3px solid @scheme-border;
+            div {
+                width:50px;
+                height:50px;
+                float:left;
+            }
+        }
+    }
+}
+
+.settings-toggle {
+    z-index:1001;
+    position:fixed;
+    top:0;
+    left:10px;
+    width:40px;
+    height: 35px;
+    .border-bottom-right-radius(10px);
+    .border-bottom-left-radius(10px);
+    background-color: #37424c;
+
+    &.toggled {
+        background-color: @bright;
+        
+        a {
+            color:@dark;
+        }
+    }
+
+    a {
+        margin-top:4px;
+        display:block;
+        margin-left:10px;
+        color:white;
+    }
+}

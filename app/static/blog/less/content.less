@@ -1,0 +1,47 @@
+/* General Content styles such as links, body text, or headings */
+body {
+    font-size:16px;
+    line-height: 27px;
+    font-family: @font-family;
+    color: @text;
+    background-color: @background;
+}
+
+a {
+    color:@link-primary;
+    &:hover, &:focus {
+        text-decoration: none;
+        color:@link-primary-hover;
+    }
+}
+
+h1 {
+    font-size:45px;
+    line-height:60px;
+    font-weight:normal;
+    font-family: 'PT Serif', serif;    
+}
+
+h2 {
+    font-size:30px;
+    line-height:40px;
+    font-family: @font-family;
+}
+
+h3 {
+    font-size:21px;
+    line-height:30px;
+    font-weight:normal;
+    font-family: @font-family;
+}
+
+hr {
+    border-top-color:@blog-comments-seeparator;
+}
+
+/* Font Awesome Icons */
+
+[class^="icon-"],
+[class*=" icon-"] {
+  font-size: 24px;
+}

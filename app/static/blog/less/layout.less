@@ -1,0 +1,58 @@
+/* Layout styles that deal with the overall page structure */
+
+/* Masthead is the upper part of the header, containing logo and navigation*/
+.masthead {
+    padding-top:55px;
+    padding-bottom:55px;
+
+    #logo {
+        float:left;
+        display:block;
+    } 
+}
+
+/* Widewrappers that span the whole width of the page */
+.widewrapper {
+    background-color: @background;
+    
+    &.main {
+        .box-shadow(inset 1px 3px 1px -2px @background-shadow);    
+    }
+
+    &.masthead {
+        background-color:@masthead-background;
+        color:@masthead-text;
+    }
+    
+    &.subheader {
+        background-color:@subheader-background;
+        color:@subheader-text; //Breadcrumb is separately defined in elements.less
+        font-size:16px;
+        min-height: 63px
+    }
+
+    &.footer {
+        background-color:@footer-background;
+        color:@footer-text;
+
+        font-size:14px;
+
+        a {
+            color:@footer-link;
+        }
+        h1, h2, h3, h4, h5 {
+            color:@footer-heading;
+        }
+    }
+
+    &.copyright {
+        background-color:@copyright-background;
+        color:@copyright-text;
+        a {
+            color:@copyright-text;
+        }
+        padding-top:15px;
+        padding-bottom:15px;
+    }
+
+}
