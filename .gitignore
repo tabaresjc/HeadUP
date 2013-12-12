@@ -12,6 +12,7 @@ develop-eggs/
 dist/
 eggs/
 lib/
+!app/static/admin/lib/
 lib64/
 parts/
 sdist/
