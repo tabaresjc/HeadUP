@@ -1,6 +1,11 @@
 from flask import render_template, flash, redirect
 from app import app
-from forms import LoginForm
+import datetime
+from forms import LoginForm, SignUpForm
+from app import database, store
+from storm.locals import *
+
+from models import User
 
 @app.route('/')
 @app.route('/index')
@@ -21,8 +26,22 @@ def login():
 
 @app.route('/signup', methods = ['GET', 'POST'])
 def signup():
+    form = SignUpForm()
+    if form.validate_on_submit():
+        user = User()
+        
+        user.email = form.email.data
+        user.role = 2
+        user.created_at = datetime.datetime.now()
+        user.modified_at = datetime.datetime.now()
+        store.add(user)
+        store.commit()
+        flash('Succesfully added new user')
+        return redirect('/index')
+        
     return render_template('signup.html', 
-        title = 'Sign Up')   
+        title = 'Sign Up',
+        form = form)   
 
 @app.route('/dashboard')
 def dashboard():

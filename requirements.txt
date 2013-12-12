@@ -8,4 +8,6 @@ argparse==1.2.1
 distribute==0.6.24
 gunicorn==18.0
 itsdangerous==0.23
+psycopg2==2.5.1
+storm==0.20
 wsgiref==0.1.2

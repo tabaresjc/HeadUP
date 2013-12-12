@@ -43,12 +43,25 @@
         <div class="box">
             <div class="content-wrap">
                 <h6>Sign Up</h6>
-                <input class="form-control" type="text" placeholder="E-mail address">
-                <input class="form-control" type="password" placeholder="Password">
-                <input class="form-control" type="password" placeholder="Confirm Password">
-                <div class="action">
-                    <a class="btn-glow primary signup" href="/login">Sign up</a>
-                </div>                
+                <form action="/signup" method="post" name="login">
+                    {{form.hidden_tag()}}
+                    <div class="form-group {{ 'has-error' if form.errors.email }}">
+                        {{form.email(class="form-control",placeholder="E-mail address")}}
+                        {% for error in form.errors.email %}
+                        <span class="label label-danger">{{error}}</span>
+                        {% endfor %}
+                    </div>
+                    <div class="form-group {{ 'has-error' if form.errors.password }}">
+                        {{form.password(class="form-control",placeholder="Password")}}
+                        {% for error in form.errors.password %}
+                        <span class="label label-danger">{{error}}</span>
+                        {% endfor %}
+                    </div>
+                    <div class="form-group">
+                        {{form.confirm_password(class="form-control",placeholder="Confirm Password")}}
+                    </div>                 
+                    <input type="submit" value="Sign In" class="btn-glow primary login">
+                </form>
             </div>
         </div>
 

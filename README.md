@@ -9,6 +9,7 @@ Requeriments
 * Python 2.7.X
 * Flask Framework (With Jinja2)
 * Flask-WTF
+* Storm ORM (version 0.20)
 
 
 About Flask Framework
