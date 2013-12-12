@@ -1,11 +1,22 @@
-from flask import render_template, flash, redirect
-from app import app
-import datetime
-from forms import LoginForm, SignUpForm
-from app import database, store
-from storm.locals import *
+from flask import render_template, flash, redirect, session, url_for, request, g, jsonify
+from flask.ext.login import login_user, logout_user, current_user, login_required
 
+from app import app
+
+from forms import LoginForm, SignUpForm
+from app import database, store, login_manager
+from storm.locals import *
 from models import User
+import datetime
+
+@login_manager.user_loader
+def load_user(userid):
+    return app.store.find(User, User.id == user.id).one() 
+
+@login_manager.unauthorized_handler
+def unauthorized():
+    flash(u'Unauthorized access, please login', 'error')
+    return redirect('/login')
 
 @app.route('/')
 @app.route('/index')
@@ -44,6 +55,7 @@ def signup():
         form = form)   
 
 @app.route('/dashboard')
+@login_required
 def dashboard():
     return render_template("dashboard.html",
         title = 'Dashboard',

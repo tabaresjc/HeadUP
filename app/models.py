@@ -44,4 +44,17 @@ class User(Storm):
     created_at = DateTime(default_factory = lambda: datetime.datetime(1970, 1, 1))
     modified_at = DateTime(default_factory = lambda: datetime.datetime(1970, 1, 1))
      
- 
+    def is_authenticated(self):
+      return True
+
+    def is_active(self):
+      return True
+
+    def is_anonymous(self):
+      return False
+
+    def get_id(self):
+      return unicode(self.id)
+
+    def avatar(self, size):
+      return 'http://www.gravatar.com/avatar/' + md5(self.email).hexdigest() + '?d=mm&s=' + str(size)

@@ -15,6 +15,10 @@
   right: 0;
   text-align: center;
 }
+.login-wrapper .message_container {
+  margin: 0px 20px 10px 20px;
+  text-align: left;
+}
 .login-wrapper .logo {
   margin-bottom: 45px;
   position: relative;

@@ -132,16 +132,16 @@
             
             <div class="row">
                 <div class="col-md-12">
-                    {% with messages = get_flashed_messages() %}
+                    {% with messages = get_flashed_messages(with_categories=true) %}
                     {% if messages %}
-                    <div class="alert alert-success">
-                        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>                        
-                        {% for message in messages %}
+                    {% for category, message in messages %}                    
+                    <div class="alert alert-{{ 'danger' if category else 'success' }}">
+                        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
                         <p>{{ message }}</p>
-                        {% endfor %}                        
-                    </div>
+                    </div>                    
+                    {% endfor %}
                     {% endif %}
-                    {% endwith %}                    
+                    {% endwith %}                 
 
                     {% block main %}{% endblock %}
                 </div>
