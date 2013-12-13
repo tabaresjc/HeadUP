@@ -27,11 +27,10 @@ body {
   position: absolute;
   left: 0;
   right: 0;
-  text-align: center;
+  
 }
 .login-wrapper .message_container {
   margin: 0px 20px 10px 20px;
-  text-align: left;
 }
 .login-wrapper .logo {
   margin-bottom: 45px;
@@ -113,6 +112,7 @@ body {
   top: 30px;
   border-radius: 0px 0px 7px 7px;
   padding: 15px 0px;
+  text-align: center;
 }
 .login-wrapper .box .signup {
   text-transform: uppercase;
@@ -163,4 +163,7 @@ body {
   .login-wrapper .box {
     width: 90%;
   }
+  .login-wrapper .box .action {
+    margin: 0px -26px;
+  }  
 }

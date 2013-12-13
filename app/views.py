@@ -8,15 +8,20 @@ from app import database, store, login_manager
 from storm.locals import *
 from models import User
 import datetime
+import sys, traceback
 
 @login_manager.user_loader
 def load_user(userid):
-    return app.store.find(User, User.id == user.id).one() 
+    return store.find(User, User.id == int(userid)).one() 
 
 @login_manager.unauthorized_handler
 def unauthorized():
-    flash(u'Unauthorized access, please login', 'error')
-    return redirect('/login')
+    flash(u'You need to sign in or sign up before continuing.', 'error')
+    return redirect(url_for('login'))
+
+@app.before_request
+def before_request():
+    g.user = current_user
 
 @app.route('/')
 @app.route('/index')
@@ -27,28 +32,65 @@ def index():
 
 @app.route('/login', methods = ['GET', 'POST'])
 def login():
+    if g.user is not None and g.user.is_authenticated():
+        flash('You are already signed in.')
+        return redirect(url_for('index'))    
     form = LoginForm()
     if form.validate_on_submit():
-        flash('Succesfully logged in')
-        return redirect('/dashboard')    
+        try:
+            user = store.find(User, User.email == form.email.data).one() 
+            if (user is not None) and (user.check_password(form.password.data)): 
+                login_user(user)
+                
+                # Update the User's info
+                user.last_seen = datetime.datetime.now()
+                
+                store.commit()
+
+                flash('Signed in successfully.')
+            else:
+                raise Exception('User not found or invalid password')
+            return redirect(url_for('dashboard'))
+        except:
+            flash('Invalid email or password', 'error')
+
     return render_template('signin.html', 
         title = 'Sign In',
         form = form)    
 
+@app.route('/logout')
+def logout():
+    logout_user()
+    flash('Signed out successfully.')
+    return redirect(url_for('index'))    
+
 @app.route('/signup', methods = ['GET', 'POST'])
 def signup():
+    if g.user is not None and g.user.is_authenticated():
+        flash('You are already signed in.')
+        return redirect(url_for('index'))        
     form = SignUpForm()
     if form.validate_on_submit():
-        user = User()
-        
-        user.email = form.email.data
-        user.role = 2
-        user.created_at = datetime.datetime.now()
-        user.modified_at = datetime.datetime.now()
-        store.add(user)
-        store.commit()
-        flash('Succesfully added new user')
-        return redirect('/index')
+        try:
+            ## Create user from the form
+            user = User()
+            user.email = form.email.data
+            user.set_password(form.password.data)
+            user.nickname = form.nickname.data
+            user.role = 2
+            user.created_at = datetime.datetime.now()
+            user.modified_at = datetime.datetime.now()
+            user.last_seen = datetime.datetime.now()
+            ## Store in database
+            store.add(user)
+            store.commit()
+            ## Login User
+            login_user(user)
+            flash('Welcome! You have signed up successfully.')
+            return redirect(url_for('index'))
+        except:
+            flash('Error, Please try a different email or nickname', 'error')
+
         
     return render_template('signup.html', 
         title = 'Sign Up',

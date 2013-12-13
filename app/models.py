@@ -1,58 +1,43 @@
 from hashlib import md5
+from werkzeug.security import generate_password_hash, check_password_hash
 from app import database, store
 from storm.locals import *
 import datetime
 
 """
-Prototype of the table users
--- DROP TABLE users;
-
-CREATE TABLE users
-(
-  id serial NOT NULL,
-  email character varying(120) NOT NULL,
-  nickname character varying(64),
-  role smallint NOT NULL DEFAULT 1,
-  last_seen timestamp without time zone,
-  created_at timestamp without time zone,
-  modified_at timestamp without time zone,
-  CONSTRAINT user_id_pk PRIMARY KEY (id )
-)
-WITH (
-  OIDS=FALSE
-);
-ALTER TABLE users
-  OWNER TO postgres;
-
--- Index: users_email_index
-
--- DROP INDEX users_email_index;
-
-CREATE INDEX users_email_index
-  ON users
-  USING btree
-  (email COLLATE pg_catalog."default" );
+Class Users
 """
 class User(Storm):
     __storm_table__ = "users"
     __storm_primary__ = "id"
     id = Int()
     email = Unicode(default=u'')
-    nickname = Unicode(default=u'')
+    password = Unicode(default=u'')
+    nickname = Unicode(default=u'')    
     role = Int()
     last_seen = DateTime(default_factory = lambda: datetime.datetime(1970, 1, 1))
     created_at = DateTime(default_factory = lambda: datetime.datetime(1970, 1, 1))
     modified_at = DateTime(default_factory = lambda: datetime.datetime(1970, 1, 1))
-     
+
+    def set_password(self, password):
+      self.password = unicode(generate_password_hash(password))
+
+    def check_password(self, password):
+      return check_password_hash(self.password, password)
+    
+    # Required by Flask-login extension
     def is_authenticated(self):
       return True
 
+    # Required by Flask-login extension
     def is_active(self):
       return True
 
+    # Required by Flask-login extension
     def is_anonymous(self):
       return False
 
+    # Required by Flask-login extension
     def get_id(self):
       return unicode(self.id)
 

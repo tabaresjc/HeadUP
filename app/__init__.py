@@ -1,8 +1,11 @@
 import os
 from flask import Flask
-from storm.locals import *
 from flask.ext.login import LoginManager
+from storm.locals import *
+
 from config import STORM_DATABASE_URI
+
+from storm.locals import *
 
 app = Flask(__name__)
 

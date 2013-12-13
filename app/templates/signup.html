@@ -44,7 +44,7 @@
         {% if messages %}
         <div class="message_container">
         {% for category, message in messages %}                    
-            <div class="alert alert-{{ 'danger' if category else 'success' }}">
+            <div class="alert alert-{{ 'danger' if category == 'error' else 'success' }}">
                 <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
                 <p>{{ message }}</p>
             </div>                    
@@ -55,7 +55,7 @@
         <div class="box">
             <div class="content-wrap">
                 <h6>Sign Up</h6>
-                <form action="/signup" method="post" name="login">
+                <form action="{{ url_for('signup') }}" method="post" name="signup" autocomplete="off">
                     {{form.hidden_tag()}}
                     <div class="form-group {{ 'has-error' if form.errors.email }}" >
                         {{form.email(class="form-control",placeholder="E-mail address")}}
@@ -63,6 +63,12 @@
                         <span class="label label-danger">{{error}}</span>
                         {% endfor %}
                     </div>
+                    <div class="form-group {{ 'has-error' if form.errors.nickname }}" >
+                        {{form.nickname(class="form-control",placeholder="Nickname")}}
+                        {% for error in form.errors.nickname %}
+                        <span class="label label-danger">{{error}}</span>
+                        {% endfor %}
+                    </div>                    
                     <div class="form-group {{ 'has-error' if form.errors.password }}">
                         {{form.password(class="form-control",placeholder="Password")}}
                         {% for error in form.errors.password %}
@@ -71,8 +77,10 @@
                     </div>
                     <div class="form-group">
                         {{form.confirm_password(class="form-control",placeholder="Confirm Password")}}
-                    </div>                 
-                    <input type="submit" value="Sign In" class="btn-glow primary login">
+                    </div>
+                    <div class="action">
+                        <input type="submit" value="Sign Up" class="btn-glow primary login btn-lg">
+                    </div>
                 </form>
             </div>
         </div>
