@@ -23,7 +23,7 @@
                 </ul>
             </li>
             <li class="settings hidden-xs hidden-sm">
-                <form role="button" method=post action="/logout" id="logout_form">
+                <form role="button" method=post action="{{url_for('users.logout')}}" id="logout_form">
                     {{ g.logoutForm.csrf_token }}
                 </form>
                 <a href="javascript:void(0);" role="button" onclick="document.getElementById('logout_form').submit();" title="Sign Out">

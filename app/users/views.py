@@ -21,7 +21,7 @@ def unauthorized():
     flash(u'You need to sign in or sign up before continuing.', 'error')
     return redirect(url_for('login'))
 
-@app.route('/login', methods = ['GET', 'POST'])
+@mod.route('/login', methods = ['GET', 'POST'])
 def login():
     if g.user is not None and g.user.is_authenticated():
         flash('You are already signed in.')
@@ -49,7 +49,7 @@ def login():
         title = 'Sign In',
         form = form)    
 
-@app.route('/logout', methods = ['POST', 'DELETE'])
+@mod.route('/logout', methods = ['POST', 'DELETE'])
 @login_required
 def logout():
     form = Form()
@@ -61,7 +61,7 @@ def logout():
 
     return redirect(url_for('index'))
 
-@app.route('/signup', methods = ['GET', 'POST'])
+@mod.route('/signup', methods = ['GET', 'POST'])
 def signup():
     if g.user is not None and g.user.is_authenticated():
         flash('You are already signed in.')

@@ -19,17 +19,17 @@
                                 <a href="{{url_for('dashboard')}}">Dashboard</a>
                             </li>                            
                             <li>
-                                <form role="form" method=post action="{{url_for('logout')}}">
+                                <form role="form" method=post action="{{url_for('users.logout')}}">
                                     {{ g.logoutForm.csrf_token }}
                                     <button type="submit" class="btn btn-danger">Sign Out</button>
                                 </form>
                             </li>                                
                             {% else %}
                             <li>
-                                <a href="{{url_for('login')}}">Login</a>
+                                <a href="{{url_for('users.login')}}">Login</a>
                             </li>
                             <li>
-                                <a href="{{url_for('signup')}}">Signup</a>
+                                <a href="{{url_for('users.signup')}}">Signup</a>
                             </li>                                   
                             {% endif %}                            
                      

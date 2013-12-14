@@ -35,7 +35,7 @@
             <div class="content-wrap">
                 <h6>Log in</h6>
                 
-                <form action="{{url_for('login')}}" method="post" name="login" autocomplete="off">
+                <form action="{{url_for('users.login')}}" method="post" name="login" autocomplete="off">
                     {{form.hidden_tag()}}
                     <div class="form-group {{ 'has-error' if form.errors.email }}">
                         {{form.email(class="form-control",placeholder="E-mail address")}}
@@ -60,7 +60,7 @@
 
         <div class="no-account">
             <p>Don't have an account?</p>
-            <a href="/signup">Sign up</a>
+            <a href="{{url_for('users.signup')}}">Sign up</a>
         </div>
     </div>
 
