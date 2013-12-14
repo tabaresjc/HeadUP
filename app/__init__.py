@@ -14,7 +14,7 @@ app.config.from_object('config')
 database = create_database(STORM_DATABASE_URI)
 store = Store(database)
 
-# Load the session manager
+# Load the session controller
 login_manager = LoginManager()
 login_manager.init_app(app)
 

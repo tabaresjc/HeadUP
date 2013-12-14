@@ -1,12 +1,11 @@
 from flask import Blueprint, render_template, flash, redirect, session, url_for, request, g, jsonify
 from flask.ext.login import login_user, logout_user, current_user, login_required
 from flask.ext.wtf import Form
-from app import app
+from app import app, login_manager
 
 from forms import LoginForm, SignUpForm
-from app import database, store, login_manager
-from storm.locals import *
 from models import User
+
 import datetime
 import sys, traceback
 
@@ -14,7 +13,7 @@ mod = Blueprint('users', __name__)
 
 @login_manager.user_loader
 def load_user(userid):
-    return store.find(User, User.id == int(userid)).one() 
+    return User.get_by_id(userid)
 
 @login_manager.unauthorized_handler
 def unauthorized():
@@ -29,21 +28,20 @@ def login():
     form = LoginForm()
     if form.validate_on_submit():
         try:
-            user = store.find(User, User.email == form.email.data).one() 
+            user = User.find_by_email(form.email.data)
             if (user is not None) and (user.check_password(form.password.data)): 
                 login_user(user)
                 
                 # Update the User's info
                 user.last_seen = datetime.datetime.now()
                 
-                store.commit()
-
+                user.save()
                 flash('Signed in successfully.')
                 return redirect(url_for('dashboard'))
             else:
                 raise Exception('User not found or invalid password')
         except:
-            flash('Invalid email or password', 'error')
+            raise
 
     return render_template('admin/signin.html', 
         title = 'Sign In',
@@ -70,17 +68,14 @@ def signup():
     if form.validate_on_submit():
         try:
             ## Create user from the form
-            user = User()
-            user.email = form.email.data
+            user = User.create()
+
+            form.populate_obj(user)
             user.set_password(form.password.data)
-            user.nickname = form.nickname.data
-            user.role = 2
-            user.created_at = datetime.datetime.now()
-            user.modified_at = datetime.datetime.now()
             user.last_seen = datetime.datetime.now()
+            
             ## Store in database
-            store.add(user)
-            store.commit()
+            user.save()
             ## Login User
             login_user(user)
             flash('Welcome! You have signed up successfully.')
@@ -93,3 +88,8 @@ def signup():
         title = 'Sign Up',
         form = form)   
 
+@mod.route('/createtable')
+def createtable():
+    #User.create_table()
+    flash(User.exist_table())
+    return redirect(url_for('index')) 
