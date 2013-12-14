@@ -25,7 +25,6 @@ def before_request():
     g.logoutForm = Form()
 
 @app.route('/')
-@app.route('/index')
 def index():
     return render_template("blog/index.html",
         title = 'Home',
@@ -59,7 +58,8 @@ def login():
         title = 'Sign In',
         form = form)    
 
-@app.route('/logout', methods = ['POST'])
+@app.route('/logout', methods = ['POST', 'DELETE'])
+@login_required
 def logout():
     form = Form()
     if form.validate_on_submit():
