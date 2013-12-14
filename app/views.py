@@ -1,6 +1,6 @@
 from flask import render_template, flash, redirect, session, url_for, request, g, jsonify
 from flask.ext.login import login_user, logout_user, current_user, login_required
-
+from flask.ext.wtf import Form
 from app import app
 
 from forms import LoginForm, SignUpForm
@@ -22,11 +22,12 @@ def unauthorized():
 @app.before_request
 def before_request():
     g.user = current_user
+    g.logoutForm = Form()
 
 @app.route('/')
 @app.route('/index')
 def index():
-    return render_template("index.html",
+    return render_template("blog/index.html",
         title = 'Home',
         content = 'Hello world!')    
 
@@ -48,21 +49,26 @@ def login():
                 store.commit()
 
                 flash('Signed in successfully.')
+                return redirect(url_for('dashboard'))
             else:
                 raise Exception('User not found or invalid password')
-            return redirect(url_for('dashboard'))
         except:
             flash('Invalid email or password', 'error')
 
-    return render_template('signin.html', 
+    return render_template('admin/signin.html', 
         title = 'Sign In',
         form = form)    
 
-@app.route('/logout')
+@app.route('/logout', methods = ['POST'])
 def logout():
-    logout_user()
-    flash('Signed out successfully.')
-    return redirect(url_for('index'))    
+    form = Form()
+    if form.validate_on_submit():
+        logout_user()
+        flash('Signed out successfully.')
+    else:
+        flash('Invalid Action', 'error')
+
+    return redirect(url_for('index'))
 
 @app.route('/signup', methods = ['GET', 'POST'])
 def signup():
@@ -92,13 +98,13 @@ def signup():
             flash('Error, Please try a different email or nickname', 'error')
 
         
-    return render_template('signup.html', 
+    return render_template('admin/signup.html', 
         title = 'Sign Up',
         form = form)   
 
 @app.route('/dashboard')
 @login_required
 def dashboard():
-    return render_template("dashboard.html",
+    return render_template("admin/dashboard.html",
         title = 'Dashboard',
         content = 'Administration Site')       

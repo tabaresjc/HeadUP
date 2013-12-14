@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+<head>    
+    {% include 'shared/meta.html' %}
+
+    <!-- Bootstrap styles -->
+    <link rel="stylesheet" href="/static/blog/css/vendor/bootstrap/bootstrap.css">
+    <link rel="stylesheet" href="/static/blog/css/vendor/bootstrap/bootstrap-theme.css">
+
+    <!-- Font-Awesome -->
+    <link rel="stylesheet" href="/static/blog/css/vendor/font-awesome/font-awesome.css">
+
+    <!-- Google Webfonts -->
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,600|PT+Serif:400,400italic' rel='stylesheet' type='text/css'>
+
+    <!-- Styles -->
+    <link rel="stylesheet" href="/static/blog/css/styles-bluered.css" id="theme-styles">
+
+    <!--[if lt IE 9]>
+        <link rel="stylesheet" href="css/ie8.css">        
+        <script src="/static/blog/js/vendor/google/html5-3.6-respond-1.1.0.min.js"></script>
+    <![endif]-->
+</head>
+<body>
+    <!-- header -->
+    {% include 'blog/layout/header.html' %}
+    <!-- end header -->
+
+    <div class="widewrapper main">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-8 blog-main" style="min-height:400px;">
+                    {% include 'shared/message.html' %}
+                    {% block main %}{% endblock %}
+                </div>
+                <aside class="col-md-4 blog-aside">
+                    {% for widget in widgets %}
+                    <div class="aside-widget">
+                        <header>
+                            <h3>{{widget.title}}</h3>
+                        </header>
+                        <div class="body">
+                            {{widget.body}}
+                        </div>
+                    </div>                    
+                    {% endfor %}
+                </aside>
+            </div>
+        </div>
+    </div>
+
+    <!-- footer -->
+    {% include 'blog/layout/footer.html' %}
+    <!-- end footer -->    
+
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    <script src="/static/blog/js/vendor/jquery/jquery-1.9.1.min.js"></script>
+    <script src="/static/blog/js/vendor/bootstrap/bootstrap.min.js"></script>
+    <script src="/static/blog/js/vendor/modernizr/modernizr.js"></script>
+</body>
+</html>

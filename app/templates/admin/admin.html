@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+    {% include 'shared/meta.html' %}
+	
+    <!-- bootstrap -->
+    <link href="/static/admin/css/bootstrap/bootstrap.css" rel="stylesheet" />
+    <link href="/static/admin/css/bootstrap/bootstrap-overrides.css" type="text/css" rel="stylesheet" />
+
+    <!-- libraries -->
+    <link href="/static/admin/css/lib/jquery-ui-1.10.2.custom.css" rel="stylesheet" type="text/css" />
+    <link href="/static/admin/css/lib/font-awesome.css" type="text/css" rel="stylesheet" />
+
+    <!-- global styles -->
+    <link rel="stylesheet" type="text/css" href="/static/admin/css/compiled/layout.css">
+    <link rel="stylesheet" type="text/css" href="/static/admin/css/compiled/elements.css">
+    <link rel="stylesheet" type="text/css" href="/static/admin/css/compiled/icons.css">
+
+    <!-- this page specific styles -->
+    {% block custom_css %}{% endblock %}
+
+    <!-- open sans font -->
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
+
+    <!-- lato font -->
+    <link href='http://fonts.googleapis.com/css?family=Lato:300,400,700,900,300italic,400italic,700italic,900italic' rel='stylesheet' type='text/css'>
+
+    <!--[if lt IE 9]>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+</head>
+<body>
+    <!-- navbar -->
+    {% include 'admin/layout/navbar.html' %}
+    <!-- end navbar -->
+
+    <!-- sidebar -->
+    {% include 'admin/layout/sidebar.html' %}
+    <!-- end sidebar -->
+
+	<!-- container -->
+    <div class="content">
+        <div id="pad-wrapper">            
+            <div class="row">
+                <div class="col-md-12">
+                    {% include 'shared/message.html' %}
+                    {% block main %}{% endblock %}
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- end container -->
+
+    <!-- scripts -->
+    <script src="http://code.jquery.com/jquery-latest.js"></script>
+    <script src="/static/admin/js/bootstrap.min.js"></script>
+    <script src="/static/admin/js/jquery-ui-1.10.2.custom.min.js"></script>
+    <script src="/static/admin/js/theme.js"></script>
+    {% block custom_js %}{% endblock %}
+    <!-- end scripts -->
+</body>
+</html>
