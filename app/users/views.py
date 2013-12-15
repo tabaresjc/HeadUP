@@ -41,7 +41,7 @@ def login():
             else:
                 raise Exception('User not found or invalid password')
         except:
-            raise
+            flash('Invalid email or password', 'error')
 
     return render_template('admin/signin.html', 
         title = 'Sign In',

@@ -32,23 +32,25 @@ class User(UserMixin, CRUDMixin, Storm):
     
     @staticmethod
     def create_table():
-      store.execute("CREATE TABLE users "
-                    "(id SERIAL PRIMARY KEY,\
-                      email VARCHAR(255) UNIQUE NOT NULL,\
-                      nickname VARCHAR(64) UNIQUE NOT NULL,\
-                      password VARCHAR(255),\
-                      role SMALLINT,\
-                      last_seen TIMESTAMP,\
-                      created_at TIMESTAMP,\
-                      modified_at TIMESTAMP);", noresult=True)
-      store.execute("CREATE INDEX users_email_idx ON users USING btree (email);", noresult=True)
-      store.execute("CREATE INDEX users_nickname_idx ON users USING btree (nickname);", noresult=True)
+      store.execute("CREATE TABLE users (" \
+                    "  id int(11) NOT NULL AUTO_INCREMENT," \
+                    "  email varchar(255) NOT NULL," \
+                    "  password varchar(255) NOT NULL," \
+                    "  nickname varchar(45) NOT NULL," \
+                    "  role smallint(6) DEFAULT NULL," \
+                    "  last_seen datetime DEFAULT NULL," \
+                    "  created_at datetime DEFAULT NULL," \
+                    "  modified_at datetime DEFAULT NULL," \
+                    "  PRIMARY KEY (id)," \
+                    "  UNIQUE KEY email_UNIQUE (email)," \
+                    "  UNIQUE KEY nickname_UNIQUE (nickname)" \
+                    ") ENGINE=InnoDB DEFAULT CHARSET=utf8;", noresult=True)
       store.commit()
       return True
 
     @staticmethod
     def exist_table():
-      result = store.execute("SELECT EXISTS(SELECT 1 FROM information_schema.tables WHERE table_name='users');").get_one()
-      return result[0]
+      result = store.execute("SELECT count(*) FROM information_schema.tables WHERE table_name = 'users'").get_one()
+      return result[0] > 0
 
 
