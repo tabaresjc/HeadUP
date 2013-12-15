@@ -1,4 +1,5 @@
 Flask==0.10.1
+Flask-Bcrypt==0.5.2
 Flask-Login==0.2.7
 Flask-WTF==0.9.3
 Jinja2==2.7.1
@@ -10,5 +11,6 @@ distribute==0.6.24
 gunicorn==18.0
 itsdangerous==0.23
 psycopg2==2.5.1
+py-bcrypt==0.4
 storm==0.20
 wsgiref==0.1.2
