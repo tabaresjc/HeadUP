@@ -18,6 +18,17 @@ store = Store(database)
 login_manager = LoginManager()
 login_manager.init_app(app)
 
+# register the users module blueprint
+from app.users.views import mod as usersModule
+app.register_blueprint(usersModule, url_prefix='/users')
+
+# add our view as the login view to finish configuring the LoginManager
+login_manager.login_view = "users.login"
+
+# check databases
+if not users.models.User.exist_table():
+	users.models.User.create_table()
+
 #----------------------------------------
 # controllers
 #----------------------------------------
@@ -38,10 +49,3 @@ def dashboard():
     return render_template("admin/dashboard.html",
         title = 'Dashboard',
         content = 'Administration Site')
-
-#register the users module blueprint
-from app.users.views import mod as usersModule
-app.register_blueprint(usersModule, url_prefix='/users')
-
-#add our view as the login view to finish configuring the LoginManager
-login_manager.login_view = "users.login"

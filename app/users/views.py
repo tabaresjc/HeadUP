@@ -88,8 +88,4 @@ def signup():
         title = 'Sign Up',
         form = form)   
 
-@mod.route('/createtable')
-def createtable():
-    #User.create_table()
-    flash(User.exist_table())
-    return redirect(url_for('index')) 
+

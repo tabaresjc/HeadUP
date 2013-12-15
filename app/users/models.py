@@ -32,23 +32,23 @@ class User(UserMixin, CRUDMixin, Storm):
     
     @staticmethod
     def create_table():
-      store.execute("CREATE TABLE currency "
+      store.execute("CREATE TABLE users "
                     "(id SERIAL PRIMARY KEY,\
-                      email VARCHAR(255) UNIQUE,\
-                      nickname VARCHAR(255),\
+                      email VARCHAR(255) UNIQUE NOT NULL,\
+                      nickname VARCHAR(64) UNIQUE NOT NULL,\
                       password VARCHAR(255),\
                       role SMALLINT,\
                       last_seen TIMESTAMP,\
                       created_at TIMESTAMP,\
                       modified_at TIMESTAMP);", noresult=True)
-      store.execute("CREATE INDEX currency_email_idx ON currency USING btree (email);", noresult=True)
-      store.execute("CREATE INDEX currency_nickname_idx ON currency USING btree (nickname);", noresult=True)
+      store.execute("CREATE INDEX users_email_idx ON users USING btree (email);", noresult=True)
+      store.execute("CREATE INDEX users_nickname_idx ON users USING btree (nickname);", noresult=True)
       store.commit()
       return True
 
     @staticmethod
     def exist_table():
-      result = store.execute("SELECT EXISTS(SELECT 1 FROM information_schema.tables  WHERE table_catalog='pigeondb' AND table_schema='public' AND table_name='currency');").get_one()
+      result = store.execute("SELECT EXISTS(SELECT 1 FROM information_schema.tables WHERE table_name='users');").get_one()
       return result[0]
 
 
