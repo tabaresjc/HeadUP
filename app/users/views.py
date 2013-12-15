@@ -5,9 +5,7 @@ from app import app, login_manager
 
 from forms import LoginForm, SignUpForm
 from models import User
-
 import datetime
-import sys, traceback
 
 mod = Blueprint('users', __name__)
 
@@ -18,7 +16,7 @@ def load_user(userid):
 @login_manager.unauthorized_handler
 def unauthorized():
     flash(u'You need to sign in or sign up before continuing.', 'error')
-    return redirect(url_for('login'))
+    return redirect(url_for('users.login'))
 
 @mod.route('/login', methods = ['GET', 'POST'])
 def login():

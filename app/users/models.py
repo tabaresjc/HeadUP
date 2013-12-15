@@ -2,10 +2,10 @@ from flask.ext.login import UserMixin
 from werkzeug.security import generate_password_hash, check_password_hash
 from app import database, store
 from app.mixins import CRUDMixin
+from app.posts.models import Post
 from storm.locals import *
 from hashlib import md5
 import datetime
-
 
 class User(UserMixin, CRUDMixin, Storm):
     __storm_table__ = "users"    
@@ -16,7 +16,8 @@ class User(UserMixin, CRUDMixin, Storm):
     last_seen = DateTime(default_factory = lambda: datetime.datetime(1970, 1, 1))
     created_at = DateTime(default_factory = lambda: datetime.datetime(1970, 1, 1))
     modified_at = DateTime(default_factory = lambda: datetime.datetime(1970, 1, 1))
-
+    
+    
     def set_password(self, password):
       self.password = unicode(generate_password_hash(password))
 
@@ -54,3 +55,4 @@ class User(UserMixin, CRUDMixin, Storm):
       result = store.execute("SELECT EXISTS(SELECT 1 FROM information_schema.tables WHERE table_name='users');").get_one()
       return result[0]
 
+User.posts = ReferenceSet(User.id, 'Post.user_id', order_by = Desc('Post.id'))

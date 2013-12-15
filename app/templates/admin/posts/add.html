@@ -1,0 +1,15 @@
+{% extends "admin/admin.html" %}
+{% block custom_css %}
+    <link rel="stylesheet" href="/static/admin/css/compiled/index.css" type="text/css" media="screen" />
+{% endblock %}
+{% block main %}
+		<div class="row">
+		    <div class="col-md-8 col-md-offset-2">
+		    	<div class="well">
+                    <!-- form -->
+                    {% include 'admin/posts/form_add.html' %}
+                    <!-- end form -->
+		    	</div>
+		    </div>
+		</div>
+{% endblock %}

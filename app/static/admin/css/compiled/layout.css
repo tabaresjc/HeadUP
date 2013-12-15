@@ -506,6 +506,10 @@ input.search {
   transition: width .2s;
 }
 
+.panel-heading .panel-title{
+  color: #FFFFFF;
+}
+
 /* responsive */
 @media (max-width: 768px) {
   #pad-wrapper {

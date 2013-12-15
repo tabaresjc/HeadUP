@@ -3,6 +3,7 @@ from flask.ext.login import LoginManager, current_user, login_required
 from flask.ext.wtf import Form
 from storm.locals import *
 from config import STORM_DATABASE_URI
+from ago import human
 import os
 
 app = Flask(__name__)
@@ -18,7 +19,7 @@ store = Store(database)
 login_manager = LoginManager()
 login_manager.init_app(app)
 
-# register the users module blueprint
+# register the user module blueprint
 from app.users.views import mod as usersModule
 app.register_blueprint(usersModule, url_prefix='/users')
 
@@ -29,6 +30,25 @@ login_manager.login_view = "users.login"
 if not users.models.User.exist_table():
 	users.models.User.create_table()
 
+# register the post module blueprint
+from app.posts.views import mod as postsModule
+app.register_blueprint(postsModule, url_prefix='/posts')
+
+# check databases
+if not posts.models.Post.exist_table():
+	posts.models.Post.create_table()
+
+#----------------------------------------
+# filters
+#----------------------------------------
+def datetimeformat(value, format='%a, %d %b %Y %H:%M:%S'):
+    return value.strftime(format)
+
+def humanformat(value):
+    return human(value, precision=1)
+
+app.jinja_env.filters['datetimeformat'] = datetimeformat
+app.jinja_env.filters['humanformat'] = humanformat
 #----------------------------------------
 # controllers
 #----------------------------------------

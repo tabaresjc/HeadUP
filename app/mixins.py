@@ -19,7 +19,9 @@ class CRUDMixin(object):
     def create(cls, **kwargs):
         instance = cls(**kwargs)
         if hasattr(instance,'created_at'):
-            setattr(instance, 'created_at', datetime.datetime.now())        
+            setattr(instance, 'created_at', datetime.datetime.now())
+        if hasattr(instance,'modified_at'):
+            setattr(instance, 'modified_at', datetime.datetime.now())            
         return instance
 
     def update(self, commit=True, **kwargs):

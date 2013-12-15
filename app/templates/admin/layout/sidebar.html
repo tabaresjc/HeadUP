@@ -12,6 +12,17 @@
                        
             </li>
             <li>
+                <a class="dropdown-toggle" href="javascript:void(0);">
+                    <i class="icon-edit"></i>
+                    <span>Posts</span>
+                    <i class="icon-chevron-down"></i>
+                </a>
+                <ul class="submenu">
+                    <li><a href="{{ url_for('posts.index') }}">Post List</a></li>
+                    <li><a href="{{ url_for('posts.create') }}">Add Post</a></li>
+                </ul>                                         
+            </li>
+            <li>
                 <a href="javascript:void(0);" onclick="document.getElementById('logout_form').submit();" title="Sign Out">
                     <i class="icon-signout"></i>
                     <span>Sign Out</span>
