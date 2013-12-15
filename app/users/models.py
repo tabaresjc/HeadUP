@@ -26,6 +26,9 @@ class User(UserMixin, CRUDMixin, Storm):
     def avatar(self, size):
       return 'http://www.gravatar.com/avatar/' + md5(self.email).hexdigest() + '?d=mm&s=' + str(size)
 
+    def __repr__(self): # pragma: no cover
+        return '<User %r>' % (self.nickname)    
+
     @staticmethod
     def find_by_email(email):
       return store.find(User, User.email == email).one() 
