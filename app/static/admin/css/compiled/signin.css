@@ -10,7 +10,7 @@
 
 .login-wrapper {
   position: absolute;
-  top: 90px;
+  top: 40px;
   left: 0;
   right: 0;
   text-align: center;
@@ -20,7 +20,7 @@
   text-align: left;
 }
 .login-wrapper .logo {
-  margin-bottom: 45px;
+  margin-bottom: 20px;
   position: relative;
   left: -2px;
 }
