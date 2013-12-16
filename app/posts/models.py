@@ -5,7 +5,7 @@ from app.mixins import CRUDMixin
 from storm.locals import *
 import datetime
 
-class Post(UserMixin, CRUDMixin, Storm):
+class Post(CRUDMixin, Storm):
     __storm_table__ = "posts"    
     title = Unicode(default=u'')
     body = Unicode(default=u'')
@@ -33,3 +33,8 @@ class Post(UserMixin, CRUDMixin, Storm):
     def exist_table():
       result = store.execute("SELECT EXISTS(SELECT 1 FROM information_schema.tables WHERE table_name='posts');").get_one()
       return result[0]
+
+    @staticmethod
+    def get_user_posts(user_id = 1, limit = 10, page = 1):
+      result = store.find(Post, Post.user_id == user_id)
+      return result.order_by(Desc(Post.id)).config(limit=limit, offset=(page-1)*limit)

@@ -1,6 +1,7 @@
 from app import store
 from storm.locals import *
 import datetime
+from flask.ext.paginate import Pagination
 
 class CRUDMixin(object):
     __storm_primary__ = "id"
@@ -8,10 +9,8 @@ class CRUDMixin(object):
 
     @classmethod
     def get_by_id(cls, id):
-        if any(
-            (isinstance(id, basestring) and id.isdigit(),
-             isinstance(id, (int, float))),
-        ):
+        if any((isinstance(id, basestring) and id.isdigit(),
+             isinstance(id, (int, float))),):
             return store.find(cls, cls.id == int(id)).one() 
         return None
 
@@ -37,6 +36,17 @@ class CRUDMixin(object):
             store.commit()
         return self
 
-    def delete(self, commit=True):
-        store.find(cls, id == self.id).remove()
+    @classmethod
+    def delete(cls, id, commit=True):
+        store.find(cls, cls.id == int(id)).remove()
         return commit and store.commit()
+
+    @classmethod
+    def pagination(cls, limit = 10, page = 1, orderby = 'id', desc = True):
+        result = store.find(cls)
+        count = result.count()
+        if desc:
+            records = result.order_by(Desc(orderby)).config(limit=limit, offset=(page-1)*limit)
+        else:
+            records = result.order_by(orderby).config(limit=limit, offset=(page-1)*limit)
+        return records, count

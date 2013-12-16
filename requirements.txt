@@ -6,11 +6,12 @@ Jinja2==2.7.1
 MarkupSafe==0.18
 WTForms==1.0.5
 Werkzeug==0.9.4
+ago==0.0.5
 argparse==1.2.1
 gunicorn==18.0
 itsdangerous==0.23
 psycopg2==2.5.1
 py-bcrypt==0.4
 ./libs/storm-0.20.tar.bz2
+./libs/flask-paginate-0.1.6/
 wsgiref==0.1.2
-ago==0.0.5

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html class="login-bg" style="background-image:url('/static/admin/img/bgs/9.jpg')">
+<html lang="en" class="login-bg" style="background-image:url('/static/admin/img/bgs/9.jpg')">
 <head>
     {% include 'shared/meta.html' %}
 	
@@ -24,6 +24,7 @@
     <!--[if lt IE 9]>
       <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
     <![endif]-->
+    <meta name="csrf-token" content="{{ csrf_token() }}">
 </head>
 <body>
     <div class="login-wrapper">
@@ -68,5 +69,6 @@
     <script src="http://code.jquery.com/jquery-latest.js"></script>
     <script src="/static/admin/js/bootstrap.min.js"></script>
     <script src="/static/admin/js/theme.js"></script>
+    <script src="/static/js/jquery_ujs.js"></script>
 </body>
 </html>

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
     {% include 'shared/meta.html' %}
 	
@@ -28,6 +28,8 @@
     <!--[if lt IE 9]>
       <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
     <![endif]-->
+
+    <meta name="csrf-token" content="{{ csrf_token() }}">
 </head>
 <body>
     <!-- navbar -->
@@ -56,6 +58,7 @@
     <script src="/static/admin/js/bootstrap.min.js"></script>
     <script src="/static/admin/js/jquery-ui-1.10.2.custom.min.js"></script>
     <script src="/static/admin/js/theme.js"></script>
+    <script src="/static/js/jquery_ujs.js"></script>
     {% block custom_js %}{% endblock %}
     <!-- end scripts -->
 </body>

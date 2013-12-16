@@ -1,0 +1,14 @@
+{% extends "admin/admin.html" %}
+{% block custom_css %}
+    <link rel="stylesheet" href="/static/admin/css/compiled/index.css" type="text/css" media="screen" />
+{% endblock %}
+{% block main %}
+		<div class="row">
+		    <div class="col-md-9">
+		    	{% include 'admin/posts/_post_item.html' %}
+		    </div>
+		    <div class="col-md-3">
+
+		    </div>		    
+		</div>
+{% endblock %}

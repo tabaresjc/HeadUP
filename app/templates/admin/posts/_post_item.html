@@ -1,0 +1,26 @@
+				<div class="panel panel-primary">
+					<div class="panel-heading">
+						<a href="{{ url_for('posts.show', id=post.id) }}">
+							<h3 class="panel-title">{{ post.title }}</h3>
+						</a>
+					</div>
+					<div class="panel-body">
+						{{ post.body }}
+					</div>
+					<div class="panel-footer">
+						<div>
+							{% if post.user_id == current_user.id %}
+							
+								<a data-confirm="This will remove {{ post.title }}?" data-method="post" href="{{ url_for('posts.destroy', id=post.id) }}">
+									<i class="icon-trash"></i>
+								</a>
+
+							{% endif %}
+							
+							<div class="pull-right">
+								Posted <strong>{{ post.created_at | humanformat }}</strong>
+							</div>
+						</div>
+						
+					</div>						
+				</div>

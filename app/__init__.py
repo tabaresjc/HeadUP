@@ -1,6 +1,8 @@
 from flask import Flask, render_template, flash, redirect, session, url_for, request, g, jsonify
 from flask.ext.login import LoginManager, current_user, login_required
 from flask.ext.wtf import Form
+from flask.ext.paginate import Pagination
+from flask_wtf.csrf import CsrfProtect
 from storm.locals import *
 from config import STORM_DATABASE_URI
 from ago import human
@@ -10,6 +12,9 @@ app = Flask(__name__)
 
 # Load the app's configuration
 app.config.from_object('config')
+
+# Load the CSRF Protection
+CsrfProtect(app)
 
 # Database Configuration
 database = create_database(STORM_DATABASE_URI)
@@ -32,6 +37,7 @@ if not users.models.User.exist_table():
 
 # register the post module blueprint
 from app.posts.views import mod as postsModule
+from app.posts.models import Post
 app.register_blueprint(postsModule, url_prefix='/posts')
 
 # check databases
@@ -55,13 +61,25 @@ app.jinja_env.filters['humanformat'] = humanformat
 @app.before_request
 def before_request():
     g.user = current_user
-    g.logoutForm = Form()
+    if g.user.is_authenticated():
+        g.logoutForm = Form()
 
-@app.route('/')
-def index():
+@app.route('/', defaults={'page': 1})
+@app.route('/page/<int:page>')
+def index(page=1):
+    limit = 5
+    posts, count = Post.pagination(limit=limit,page=page)
+    pagination = Pagination(page=page, 
+        per_page= limit, 
+        total= count, 
+        record_name= 'posts', 
+        alignment = 'right', 
+        bs_version= 3)
     return render_template("blog/index.html",
         title = 'Home',
-        content = 'Home Page')
+        content = 'Home Page',
+        posts = posts,
+        pagination = pagination)
 
 @app.route('/dashboard')
 @login_required
