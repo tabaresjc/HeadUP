@@ -8,8 +8,7 @@
                 <a href="{{ url_for('dashboard') }}">
                     <i class="icon-home"></i>
                     <span>Dashboard</span>
-                </a>
-                       
+                </a>                      
             </li>
             <li>
                 <a class="dropdown-toggle" href="javascript:void(0);">
@@ -18,15 +17,15 @@
                     <i class="icon-chevron-down"></i>
                 </a>
                 <ul class="submenu">
-                    <li><a href="{{ url_for('posts.index') }}">Post List</a></li>
-                    <li><a href="{{ url_for('posts.create') }}">Add Post</a></li>
+                    <li><a href="{{ url_for('PostsView:index') }}">Post List</a></li>
+                    <li><a href="{{ url_for('PostsView:post_0') }}">New Post</a></li>
                 </ul>                                         
             </li>
             <li>
-                <a href="javascript:void(0);" onclick="document.getElementById('logout_form').submit();" title="Sign Out">
+                <a href="{{ url_for('users.logout') }}" data-method="post" >
                     <i class="icon-signout"></i>
                     <span>Sign Out</span>
-                </a>                
+                </a>
             </li>
         </ul>
     </div>

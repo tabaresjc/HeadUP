@@ -1,5 +1,6 @@
 Flask==0.10.1
 Flask-Bcrypt==0.5.2
+Flask-Classy==0.6.8
 Flask-Login==0.2.7
 Flask-WTF==0.9.3
 Jinja2==2.7.1
@@ -12,6 +13,6 @@ gunicorn==18.0
 itsdangerous==0.23
 psycopg2==2.5.1
 py-bcrypt==0.4
+wsgiref==0.1.2
 ./libs/storm-0.20.tar.bz2
 ./libs/flask-paginate-0.1.6/
-wsgiref==0.1.2

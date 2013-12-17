@@ -1,0 +1,10 @@
+{% from "shared/_bootstrap_forms.html" import render_inline_field %}
+<form action="{{url_for('PostsView:put_0', id=post.id)}}" method="POST" name="posts" autocomplete="off">
+    {{form.hidden_tag()}}
+    {{ render_inline_field(form.title, class="form-control",placeholder="Insert title") }}
+    {{ render_inline_field(form.body, class="form-control",placeholder="Compose new post...", rows="20") }}
+    <div class="actions">
+    	<input type="submit" value="Save" class="btn btn-large btn-primary pull-right">
+        <div class="clearfix"></div>
+    </div>
+</form>

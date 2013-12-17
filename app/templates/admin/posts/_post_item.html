@@ -1,26 +1,36 @@
-				<div class="panel panel-primary">
-					<div class="panel-heading">
-						<a href="{{ url_for('posts.show', id=post.id) }}">
-							<h3 class="panel-title">{{ post.title }}</h3>
-						</a>
-					</div>
-					<div class="panel-body">
-						{{ post.body }}
-					</div>
-					<div class="panel-footer">
-						<div>
-							{% if post.user_id == current_user.id %}
-							
-								<a data-confirm="This will remove {{ post.title }}?" data-method="post" href="{{ url_for('posts.destroy', id=post.id) }}">
-									<i class="icon-trash"></i>
-								</a>
-
-							{% endif %}
-							
-							<div class="pull-right">
-								Posted <strong>{{ post.created_at | humanformat }}</strong>
-							</div>
-						</div>
-						
-					</div>						
-				</div>
+<div class="panel panel-primary">
+	<div class="panel-heading">
+		<div class="row">
+		    <div class="col-md-9">
+				<a href="{{ url_for('PostsView:get', id=post.id) }}">
+					<h3 class="panel-title">{{ post.title }}</h3>
+				</a>
+		    </div>
+		    <div class="col-md-3">
+				{% if post.user_id == current_user.id %}
+				<a class="btn btn-success pull-right" href="{{ url_for('PostsView:put_0', id=post.id) }}">
+					<i class="icon-edit"></i>
+				</a>
+				{% endif %}
+		    </div>
+		    <div class="clearfix"></div>
+	    </div>
+	</div>
+	<div class="panel-body">
+		{{ post.body|safe }}
+	</div>
+	<div class="panel-footer">
+		<div>
+			{% if post.user_id == current_user.id %}			
+				<a href="{{ url_for('PostsView:delete_0', id=post.id) }}" data-method="post" rel="nofollow" data-confirm="This will remove {{ post.title }}?">
+					<i class="icon-trash"></i>
+				</a>
+			{% endif %}
+			
+			<div class="pull-right">
+				Posted <strong>{{ post.created_at | humanformat }}</strong>
+			</div>
+		</div>
+		<div class="clearfix"></div>
+	</div>						
+</div>

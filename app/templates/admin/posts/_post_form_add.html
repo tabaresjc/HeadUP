@@ -1,14 +1,10 @@
-                    <form action="{{url_for('posts.create')}}" method="post" name="posts" autocomplete="off">
-                        {{form.hidden_tag()}}
-                        <div class="form-group">
-                            {{form.title(class="form-control",placeholder="Insert title")}}
-                        </div>
-                        <div class="form-group">
-                            {{form.body(class="form-control",placeholder="Compose new post...")}}
-                        </div>
-                        <div class="actions">
-                        	<input type="submit" value="Create" class="btn btn-large btn-primary pull-right">
-                            <div class="clearfix"></div>
-                        </div>
-
-                    </form>
+{% from "shared/_bootstrap_forms.html" import render_inline_field %}
+<form action="{{url_for('PostsView:post_1')}}" method="post" name="posts" autocomplete="off">
+    {{form.hidden_tag()}}
+    {{ render_inline_field(form.title, class="form-control",placeholder="Insert title") }}
+    {{ render_inline_field(form.body, class="form-control",placeholder="Compose new post...", rows="10") }}
+    <div class="actions">
+    	<input type="submit" value="Create" class="btn btn-large btn-primary pull-right">
+        <div class="clearfix"></div>
+    </div>
+</form>

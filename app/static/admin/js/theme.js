@@ -79,9 +79,11 @@ $(function () {
       $(this).removeClass("menu");
     }
   });
+  /*
   $menu.click(function(e) {
     e.stopPropagation();
   });
+  */
   $("#menu-toggler").click(function (e) {
     e.stopPropagation();
     $("body").toggleClass("menu");

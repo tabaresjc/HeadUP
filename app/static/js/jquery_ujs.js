@@ -137,6 +137,10 @@
           },
           success: function(data, status, xhr) {
             element.trigger('ajax:success', [data, status, xhr]);
+            if (data.redirect_to) {
+                // data.redirect contains the string URL to redirect to
+                window.location.href = data.redirect_to;
+            }
           },
           complete: function(xhr, status) {
             element.trigger('ajax:complete', [xhr, status]);

@@ -5,22 +5,7 @@
 		    	{{ pagination.links|safe }}
 		    	<div class="clearfix"></div>		    	
 		    	{% for post in posts %}
-				<div class="panel panel-primary">
-					<div class="panel-heading">
-						<h3 class="panel-title">{{ post.title }}</h3>
-					</div>
-					<div class="panel-body">
-						{{ post.body }}
-					</div>
-					<div class="panel-footer">
-						<div>
-							<div class="pull-right">
-								Posted <strong>{{ post.created_at | humanformat }}</strong>
-							</div>
-						</div>
-						<div class="clearfix"></div>						
-					</div>						
-				</div>
+				{% include 'admin/posts/_post_item.html' %}
 				{% endfor %}
 		    	{{ pagination.links|safe }}
 		    	<div class="clearfix"></div>				
