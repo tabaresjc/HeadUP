@@ -63,8 +63,8 @@ $(function () {
   $("#dashboard-menu .dropdown-toggle").click(function (e) {
     e.preventDefault();
     var $item = $(this).parent();
-    $item.toggleClass("active");
-    if ($item.hasClass("active")) {
+    $item.toggleClass("current");
+    if ($item.hasClass("current")) {
       $item.find(".submenu").slideDown("fast");
     } else {
       $item.find(".submenu").slideUp("fast");

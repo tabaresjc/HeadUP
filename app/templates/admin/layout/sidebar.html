@@ -1,28 +1,59 @@
+{% set navigation_bar = {
+    'home': {
+        'name': 'Dashboard',
+        'url': 'dashboard',
+        'icon': 'icon-home',
+        'pattern': 'dashboard',
+    },
+    'posts': {
+        'name': 'Posts',
+        'url': 'PostsView:index',
+        'icon': 'icon-edit',
+        'pattern': 'PostsView',
+        'sub-menu': {
+            'index': {
+                'name': 'Post List',
+                'url': 'PostsView:index',
+            },
+            'new': {
+                'name': 'New Post',
+                'url': 'PostsView:post_0',
+            }
+        }       
+    }
+} -%}
+
     <div id="sidebar-nav">
         <ul id="dashboard-menu">
-            <li class="active">
+            {% for k, v in navigation_bar.iteritems() %}
+            <li>
+                {% if request.endpoint.startswith(v['pattern'])  %}
                 <div class="pointer">
                     <div class="arrow"></div>
                     <div class="arrow_border"></div>
                 </div>
-                <a href="{{ url_for('dashboard') }}">
-                    <i class="icon-home"></i>
-                    <span>Dashboard</span>
-                </a>                      
-            </li>
-            <li>
+                {% endif %}                
+                {% if 'sub-menu' in v  %}
                 <a class="dropdown-toggle" href="javascript:void(0);">
-                    <i class="icon-edit"></i>
-                    <span>Posts</span>
+                    <i class="{{ v['icon'] }}"></i>
+                    <span>{{ v['name'] }}</span>
                     <i class="icon-chevron-down"></i>
                 </a>
                 <ul class="submenu">
-                    <li><a href="{{ url_for('PostsView:index') }}">Post List</a></li>
-                    <li><a href="{{ url_for('PostsView:post_0') }}">New Post</a></li>
-                </ul>                                         
+                    {% for km, vm in v['sub-menu'].iteritems() %}
+                    <li><a href="{{ url_for(vm['url']) }}">{{vm['name']}}</a></li>
+                    {% endfor %}
+                </ul>
+                {% else %}
+                <a href="{{ url_for(v['url']) }}" >
+                    <i class="{{ v['icon'] }}"></i>
+                    <span>{{ v['name'] }}</span>
+                </a>
+                {% endif %}              
             </li>
+            {% endfor %}            
             <li>
-                <a href="{{ url_for('users.logout') }}" data-method="post" >
+                <a href="{{ url_for('sessions.logout') }}" data-method="post" >
                     <i class="icon-signout"></i>
                     <span>Sign Out</span>
                 </a>

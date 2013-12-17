@@ -23,7 +23,7 @@ store = Store(database)
 login_manager = LoginManager()
 login_manager.init_app(app)
 # add our view as the login view to finish configuring the LoginManager
-login_manager.login_view = "users.login"
+login_manager.login_view = "sessions.login"
 
 #----------------------------------------
 # controllers
@@ -31,15 +31,19 @@ login_manager.login_view = "users.login"
 import blog.views
 import admin.views
 
-# register the user module blueprint
-from app.users.views import mod as usersModule
-app.register_blueprint(usersModule, url_prefix='/users')
+# register the sessions module blueprint
+from app.sessions.views import mod as sessionsModule
+app.register_blueprint(sessionsModule, url_prefix='/members')
+
+# register the User module 
+from app.users.views import UsersView
+UsersView.register(app)
 
 # check databases
 if not users.models.User.exist_table():
 	users.models.User.create_table()
 
-# register the post module blueprint
+# register the post module
 from app.posts.views import PostsView
 PostsView.register(app)
 

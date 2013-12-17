@@ -19,16 +19,16 @@
                                 <a href="{{url_for('dashboard')}}">Dashboard</a>
                             </li>                            
                             <li>
-                                <a href="{{ url_for('users.logout') }}" data-method="post" role="button" title="Sign Out" class="btn btn-danger">
+                                <a href="{{ url_for('sessions.logout') }}" data-method="post" role="button" title="Sign Out" class="btn btn-danger">
                                     Sign Out
                                 </a>
                             </li>                                
                             {% else %}
                             <li>
-                                <a href="{{url_for('users.login')}}">Sign In</a>
+                                <a href="{{url_for('sessions.login')}}">Sign In</a>
                             </li>
                             <li>
-                                <a href="{{url_for('users.signup')}}">Sign Up</a>
+                                <a href="{{url_for('sessions.signup')}}">Sign Up</a>
                             </li>                                   
                             {% endif %}                            
                      

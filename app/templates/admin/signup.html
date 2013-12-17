@@ -40,7 +40,7 @@
             <div class="content-wrap">
                 <h6>Sign Up</h6>
                 {% from "shared/_bootstrap_forms.html" import render_inline_field %}
-                <form action="{{ url_for('users.signup') }}" method="post" name="signup" autocomplete="off">
+                <form action="{{ url_for('sessions.signup') }}" method="post" name="signup" autocomplete="off">
                     {{form.hidden_tag()}}
                     {{ render_inline_field(form.email, class="form-control",placeholder="E-mail address") }}
                     {{ render_inline_field(form.nickname, class="form-control",placeholder="Nickname") }}
@@ -55,7 +55,7 @@
 
         <div class="already">
             <p>Already have an account?</p>
-            <a href="{{ url_for('users.login') }}">Sign in</a>
+            <a href="{{ url_for('sessions.login') }}">Sign in</a>
         </div>
     </div>
 

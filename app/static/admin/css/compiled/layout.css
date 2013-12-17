@@ -369,7 +369,7 @@ input.search {
   width: initial;
   height: initial;
 }
-#sidebar-nav #dashboard-menu > li.active .dropdown-toggle {
+#sidebar-nav #dashboard-menu > li.current .dropdown-toggle {
   border-bottom: 0px;
   box-shadow: none;
 }
