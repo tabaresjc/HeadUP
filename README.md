@@ -10,6 +10,7 @@ Requeriments
 * Flask Framework (With Jinja2)
 * Flask-WTF
 * Storm ORM (version 0.20)
+* Flask-Classy
 
 
 About Flask Framework
