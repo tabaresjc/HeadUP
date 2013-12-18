@@ -36,7 +36,7 @@
             <div class="content-wrap">
                 <h6>Log in</h6>
                 {% from "shared/_bootstrap_forms.html" import render_inline_field %}
-                <form action="{{url_for('sessions.login')}}" method="post" name="login" autocomplete="off">
+                <form action="{{url_for('sessions.login')}}" method="post" name="login">
                     {{form.hidden_tag()}}
                     {{ render_inline_field(form.email, class="form-control",placeholder="E-mail address") }}
                     {{ render_inline_field(form.password, class="form-control",placeholder="Password") }}

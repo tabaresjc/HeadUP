@@ -73,17 +73,15 @@ $(function () {
 
 
   // mobile side-menu slide toggler
-  var $menu = $("#sidebar-nav");
+  var $menu = $("#sidebar-nav li.element");
   $("body").click(function () {
     if ($(this).hasClass("menu")) {
       $(this).removeClass("menu");
     }
   });
-  /*
   $menu.click(function(e) {
     e.stopPropagation();
   });
-  */
   $("#menu-toggler").click(function (e) {
     e.stopPropagation();
     $("body").toggleClass("menu");

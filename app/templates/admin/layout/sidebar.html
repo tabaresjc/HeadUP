@@ -7,7 +7,7 @@
     },
     'posts': {
         'name': 'Posts',
-        'url': 'PostsView:index',
+        'url': '',
         'icon': 'icon-edit',
         'pattern': 'PostsView',
         'sub-menu': {
@@ -20,43 +20,54 @@
                 'url': 'PostsView:post_0',
             }
         }       
-    }
+    },
+    'users': {
+        'name': 'Users',
+        'url': '',
+        'icon': 'icon-user',
+        'pattern': 'UsersView',
+        'sub-menu': {
+            'index': {
+                'name': 'User List',
+                'url': 'UsersView:index',
+            }
+        }       
+    }    
 } -%}
-
-    <div id="sidebar-nav">
-        <ul id="dashboard-menu">
-            {% for k, v in navigation_bar.iteritems() %}
-            <li>
-                {% if request.endpoint.startswith(v['pattern'])  %}
-                <div class="pointer">
-                    <div class="arrow"></div>
-                    <div class="arrow_border"></div>
-                </div>
-                {% endif %}                
-                {% if 'sub-menu' in v  %}
-                <a class="dropdown-toggle" href="javascript:void(0);">
-                    <i class="{{ v['icon'] }}"></i>
-                    <span>{{ v['name'] }}</span>
-                    <i class="icon-chevron-down"></i>
-                </a>
-                <ul class="submenu">
-                    {% for km, vm in v['sub-menu'].iteritems() %}
-                    <li><a href="{{ url_for(vm['url']) }}">{{vm['name']}}</a></li>
-                    {% endfor %}
-                </ul>
-                {% else %}
-                <a href="{{ url_for(v['url']) }}" >
-                    <i class="{{ v['icon'] }}"></i>
-                    <span>{{ v['name'] }}</span>
-                </a>
-                {% endif %}              
-            </li>
-            {% endfor %}            
-            <li>
-                <a href="{{ url_for('sessions.logout') }}" data-method="post" >
-                    <i class="icon-signout"></i>
-                    <span>Sign Out</span>
-                </a>
-            </li>
-        </ul>
-    </div>
+<div id="sidebar-nav">
+    <ul id="dashboard-menu">
+        {% for k, v in navigation_bar.iteritems() %}
+        <li class="element">
+            {% if request.endpoint.startswith(v['pattern'])  %}
+            <div class="pointer">
+                <div class="arrow"></div>
+                <div class="arrow_border"></div>
+            </div>
+            {% endif %}
+            {% if 'sub-menu' in v  %}
+            <a class="dropdown-toggle" href="javascript:void(0);">
+                <i class="{{ v['icon'] }}"></i>
+                <span>{{ v['name'] }}</span>
+                <i class="icon-chevron-down"></i>
+            </a>
+            <ul class="submenu">
+                {% for km, vm in v['sub-menu'].iteritems() %}
+                <li><a href="{{ url_for(vm['url']) }}">{{vm['name']}}</a></li>
+                {% endfor %}
+            </ul>
+            {% else %}
+            <a href="{{ url_for(v['url']) }}" >
+                <i class="{{ v['icon'] }}"></i>
+                <span>{{ v['name'] }}</span>
+            </a>
+            {% endif %}
+        </li>
+        {% endfor %}
+        <li>
+            <a href="{{ url_for('sessions.logout') }}" data-method="post" >
+                <i class="icon-signout"></i>
+                <span>Sign Out</span>
+            </a>
+        </li>
+    </ul>
+</div>

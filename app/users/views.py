@@ -13,7 +13,13 @@ class UsersView(FlaskView):
     decorators = [login_required]
 
     def index(self):
-        return "ok"
+    	page = 1
+    	users = []
+    	pagination = []
+        return render_template('admin/users/index.html', 
+            title = 'Posts: User %s' % page,
+            users = users,
+            pagination = pagination)
 
 
 

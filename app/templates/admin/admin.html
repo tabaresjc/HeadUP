@@ -2,20 +2,21 @@
 <html lang="en">
 <head>
     {% include 'shared/meta.html' %}
-	
+	<base href="/" />
     <!-- bootstrap -->
-    <link href="/static/admin/css/bootstrap/bootstrap.css" rel="stylesheet" />
-    <link href="/static/admin/css/bootstrap/bootstrap-overrides.css" type="text/css" rel="stylesheet" />
+    <link href="static/admin/css/bootstrap/bootstrap.css" rel="stylesheet" />
+    <link href="static/admin/css/bootstrap/bootstrap-overrides.css" type="text/css" rel="stylesheet" />
 
     <!-- libraries -->
-    <link href="/static/admin/css/lib/jquery-ui-1.10.2.custom.css" rel="stylesheet" type="text/css" />
-    <link href="/static/admin/css/lib/font-awesome.css" type="text/css" rel="stylesheet" />
+    <link href="static/admin/css/lib/jquery-ui-1.10.2.custom.css" rel="stylesheet" type="text/css" />
+    <link href="static/admin/css/lib/font-awesome.css" type="text/css" rel="stylesheet" />
 
     <!-- global styles -->
-    <link rel="stylesheet" type="text/css" href="/static/admin/css/compiled/layout.css">
-    <link rel="stylesheet" type="text/css" href="/static/admin/css/compiled/elements.css">
-    <link rel="stylesheet" type="text/css" href="/static/admin/css/compiled/icons.css">
+    <link rel="stylesheet" type="text/css" href="static/admin/css/compiled/layout.css">
+    <link rel="stylesheet" type="text/css" href="static/admin/css/compiled/elements.css">
+    <link rel="stylesheet" type="text/css" href="static/admin/css/compiled/icons.css">
 
+    <link rel="stylesheet" type="text/css" href="static/admin/css/compiled/skins/dark.css" />
     <!-- this page specific styles -->
     {% block custom_css %}{% endblock %}
 
@@ -42,23 +43,34 @@
 
 	<!-- container -->
     <div class="content">
-        <div id="pad-wrapper">            
-            <div class="row">
-                <div class="col-md-12">
-                    {% include 'shared/message.html' %}
-                    {% block main %}{% endblock %}
+        <div id="pad-wrapper">
+            {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="message_container">
+                        {% for category, message in messages %}                    
+                            <div class="alert alert-{{ 'danger' if category == 'error' else 'success' }}">
+                                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                                <p>{{ message }}</p>
+                            </div>                    
+                        {% endfor %}
+                        </div>                                
+                    </div>
                 </div>
-            </div>
+            {% endif %}
+            {% endwith %}   
+            {% block main %}{% endblock %}
         </div>
     </div>
     <!-- end container -->
 
     <!-- scripts -->
     <script src="http://code.jquery.com/jquery-latest.js"></script>
-    <script src="/static/admin/js/bootstrap.min.js"></script>
-    <script src="/static/admin/js/jquery-ui-1.10.2.custom.min.js"></script>
-    <script src="/static/admin/js/theme.js"></script>
-    <script src="/static/js/jquery_ujs.js"></script>
+    <script src="static/admin/js/bootstrap.min.js"></script>
+    <script src="static/admin/js/jquery-ui-1.10.2.custom.min.js"></script>
+    <script src="static/admin/js/theme.js"></script>
+    <script src="static/js/jquery_ujs.js"></script>
     {% block custom_js %}{% endblock %}
     <!-- end scripts -->
 </body>
