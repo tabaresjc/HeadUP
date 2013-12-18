@@ -28,12 +28,9 @@ class PostsView(FlaskView):
             alignment = 'right', 
             bs_version=3)
 
-        posts = Post.get_user_posts(user_id=current_user.id, 
-            limit=limit, 
-            page=page)
-
+        posts = current_user.get_user_posts(page=page, limit=limit)
         return render_template('admin/posts/index.html', 
-            title = 'Posts: Page %s' % page,
+            title = 'Posts | Page %s' % page,
             form = form,
             posts = posts,
             pagination = pagination)
@@ -58,7 +55,7 @@ class PostsView(FlaskView):
                 try:
                     post = Post.create()
                     form.populate_obj(post)
-                    current_user.posts.add(post)
+                    post.user = current_user
                     post.save()
 
                     flash('Post succesfully created')

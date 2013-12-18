@@ -507,7 +507,7 @@ input.search {
 }
 
 .panel-heading .panel-title{
-  color: #FFFFFF;
+  color: #FFFFFF !important;
 }
 
 /* responsive */

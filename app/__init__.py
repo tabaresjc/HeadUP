@@ -2,7 +2,7 @@ from flask import Flask, render_template, flash, redirect, session, url_for, req
 from flask.ext.login import LoginManager
 from flask.ext.classy import FlaskView
 from flask_wtf.csrf import CsrfProtect
-from storm.locals import create_database, Store
+from storm.locals import create_database, Store, ReferenceSet, Reference, Desc
 from config import STORM_DATABASE_URI
 from ago import human
 import os
@@ -39,17 +39,33 @@ app.register_blueprint(sessionsModule, url_prefix='/members')
 from app.users.views import UsersView
 UsersView.register(app)
 
-# check databases
-if not users.models.User.exist_table():
-	users.models.User.create_table()
-
 # register the post module
 from app.posts.views import PostsView
 PostsView.register(app)
 
-# check databases
-if not posts.models.Post.exist_table():
-	posts.models.Post.create_table()
+
+#----------------------------------------
+# Check Databases
+#----------------------------------------
+from app.users.models import User
+from app.posts.models import Post
+
+def init_db():
+	# Posts
+	if not Post.exist_table():
+		Post.create_table()
+
+	# Users
+	if not User.exist_table():
+		User.create_table()
+
+	# UserPosts
+	# if not UserPosts.exist_table():
+	# 	UserPosts.create_table()
+	#User.posts = ReferenceSet(User.id, UserPosts.user_id, UserPosts.post_id, Post.id)
+	User.posts = ReferenceSet(User.id, Post.user_id, order_by = Desc(Post.id))	
+
+init_db()
 
 #----------------------------------------
 # filters
@@ -60,6 +76,19 @@ def datetimeformat(value, format='%a, %d %b %Y %H:%M:%S'):
 def humanformat(value):
     return human(value, precision=1)
 
+def user_role(value):
+    if value==1:
+    	return 'Admin'
+    else:
+    	return 'Writer'
+
+def is_administrator(value):
+    if value==1:
+    	return True
+    else:
+    	return False
+
 app.jinja_env.filters['datetimeformat'] = datetimeformat
 app.jinja_env.filters['humanformat'] = humanformat
-
+app.jinja_env.filters['user_role'] = user_role
+app.jinja_env.filters['administrator'] = is_administrator

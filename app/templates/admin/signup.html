@@ -21,11 +21,9 @@
 
     <!-- open sans font -->
     <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
-
     <!--[if lt IE 9]>
       <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
     <![endif]-->
-
     <meta name="csrf-token" content="{{ csrf_token() }}">
 </head>
 <body>
@@ -42,7 +40,8 @@
                 {% from "shared/_bootstrap_forms.html" import render_inline_field %}
                 <form action="{{ url_for('sessions.signup') }}" method="post" name="signup" autocomplete="off">
                     {{form.hidden_tag()}}
-                    {{ render_inline_field(form.email, class="form-control",placeholder="E-mail address") }}
+                    {{ render_inline_field(form.email, class="form-control",placeholder="E-mail") }}
+                    {{ render_inline_field(form.name, class="form-control",placeholder="Name") }}
                     {{ render_inline_field(form.nickname, class="form-control",placeholder="Nickname") }}
                     {{ render_inline_field(form.password, class="form-control",placeholder="Password") }}
                     {{ render_inline_field(form.confirm_password, class="form-control",placeholder="Confirm Password") }}
@@ -60,7 +59,7 @@
     </div>
 
 	<!-- scripts -->
-    <script src="http://code.jquery.com/jquery-latest.js"></script>
+    <script src="//code.jquery.com/jquery-latest.js"></script>
     <script src="/static/admin/js/bootstrap.min.js"></script>
     <script src="/static/admin/js/theme.js"></script>
     <script src="/static/js/jquery_ujs.js"></script>

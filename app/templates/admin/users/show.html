@@ -1,0 +1,59 @@
+{% set container_class = 'user-profile' %}
+{% extends "admin/admin.html" %}
+{% block custom_css %}
+    <link rel="stylesheet" href="/static/admin/css/compiled/user-profile.css" type="text/css" media="screen" />
+{% endblock %}
+{% block main %}
+<!-- header -->
+<div class="row header">
+    <div class="col-md-8">
+        <img src="{{ user.avatar(74) }}" class="avatar img-circle">
+        <h3 class="name">{{ user.name }}</h3>
+        <span class="area">{{user.email}}</span>
+    </div>
+    {% if g.user.is_authenticated() and g.user.id == user.id %}
+    <a class="btn-flat icon pull-right delete-user" title="Delete user" href="{{ url_for('UsersView:delete_0',id=user.id) }}" data-method="post" data-confirm="This will remove {{ user.name }}, Are you sure?">
+        <i class="icon-trash"></i>
+    </a>
+    {% endif %}
+     <a class="btn-flat icon large pull-right edit" href="{{ url_for('UsersView:put_0',id=user.id) }}">
+        Edit
+    </a>
+</div>
+
+<div class="row">
+    <!-- bio, new note & orders column -->
+    <div class="col-md-12 bio">
+        <div>
+            <!-- recent orders table -->
+            <div class="panel panel-primary">
+            	<!-- Default panel contents -->
+            	<div class="panel-heading">
+            		<h4 class="panel-title">Recent posts</h4>
+            	</div>
+            	<!-- Table -->
+            	<table class="table">
+            		<thead>
+            			<tr>
+            				<th class="col-md-2">Posted at</th>
+            				<th class="col-md-2">Updated at</th>
+            				<th>Title</th>
+            			</tr>
+            		</thead>
+            		<tbody>
+                    <!-- row -->
+                    	{% set user_posts_id = user.get_user_posts(limit=5).first().id %}
+	                    {% for post in user.get_user_posts(limit=5) %}
+	                    <tr class="{{'first' if post.user.id == user_posts_id}}">
+	                        <td>{{post.created_at|datetimeformat(format='%a, %d %b %Y')}}</td>
+	                        <td>{{post.modified_at|datetimeformat(format='%a, %d %b %Y')}}</td>
+	                        <td>{{post.title}}</td>
+	                    </tr>
+	                    {% endfor %}
+            		</tbody>
+            	</table>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

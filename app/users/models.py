@@ -2,21 +2,21 @@ from flask.ext.login import UserMixin
 from werkzeug.security import generate_password_hash, check_password_hash
 from app import database, store
 from app.mixins import CRUDMixin
-from app.posts.models import Post
+
 from storm.locals import *
 from hashlib import md5
 import datetime
 
-class User(UserMixin, CRUDMixin, Storm):
+class User(UserMixin, CRUDMixin):
     __storm_table__ = "users"    
     email = Unicode(default=u'')
     password = Unicode(default=u'')
+    name = Unicode(default=u'')    
     nickname = Unicode(default=u'')    
     role = Int(default=2)
     last_seen = DateTime(default_factory = lambda: datetime.datetime(1970, 1, 1))
     created_at = DateTime(default_factory = lambda: datetime.datetime(1970, 1, 1))
-    modified_at = DateTime(default_factory = lambda: datetime.datetime(1970, 1, 1))
-    
+    modified_at = DateTime(default_factory = lambda: datetime.datetime(1970, 1, 1))    
     
     def set_password(self, password):
       self.password = unicode(generate_password_hash(password))
@@ -28,17 +28,21 @@ class User(UserMixin, CRUDMixin, Storm):
       return 'http://www.gravatar.com/avatar/' + md5(self.email).hexdigest() + '?d=mm&s=' + str(size)
 
     def __repr__(self): # pragma: no cover
-        return '<User %r>' % (self.nickname)    
+        return '<User %s %r>' % (self.id, self.name)
 
+    def get_user_posts(self, limit = 10, page = 1):      
+      return self.posts.find().config(offset=(page-1)*limit, limit=limit)
+    
     @staticmethod
     def find_by_email(email):
       return store.find(User, User.email == email).one() 
-    
+   
     @staticmethod
     def create_table():
       store.execute("CREATE TABLE users "
                     "(id SERIAL PRIMARY KEY,\
                       email VARCHAR(255) UNIQUE NOT NULL,\
+                      name VARCHAR(64) UNIQUE NOT NULL,\
                       nickname VARCHAR(64) UNIQUE NOT NULL,\
                       password VARCHAR(255),\
                       role SMALLINT,\
@@ -51,8 +55,8 @@ class User(UserMixin, CRUDMixin, Storm):
       return True
 
     @staticmethod
-    def exist_table():
+    def exist_table():      
       result = store.execute("SELECT EXISTS(SELECT 1 FROM information_schema.tables WHERE table_name='users');").get_one()
       return result[0]
 
-User.posts = ReferenceSet(User.id, 'Post.user_id', order_by = Desc('Post.id'))
+

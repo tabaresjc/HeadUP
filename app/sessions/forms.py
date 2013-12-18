@@ -9,6 +9,7 @@ class LoginForm(Form):
 
 class SignUpForm(Form):
 	email = TextField('Email', [ validators.Required() ])
+	name = TextField('Name', [ validators.Required() ])
 	nickname = TextField('Nickname', [ validators.Required() ])
 	password = PasswordField('Password', [ 
 		validators.Required(), 

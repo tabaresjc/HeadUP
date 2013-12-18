@@ -279,20 +279,20 @@ textarea::-webkit-input-placeholder {
 
 /* TABLES*/
 
-.table thead{
+.nt .table thead{
 	border-top:1px solid #dee3ea;
 }
-.table-hover tbody tr:hover > td,
-.table-hover tbody tr:hover > th {
+.nt .table-hover tbody tr:hover > td,
+.nt .table-hover tbody tr:hover > th {
   background-color: #f5fafc;
 }
-.table th.sortable {
+.nt .table th.sortable {
 	cursor: pointer;
 }
-.table th.sortable:hover {
+.nt .table th.sortable:hover {
 	text-decoration: underline;
 }
-.table thead th{
+.nt .table thead th{
 	font-weight: bold;
 	position: relative;
 	padding-bottom: 20px !important;
@@ -302,20 +302,20 @@ textarea::-webkit-input-placeholder {
 	vertical-align: top !important;
 	border-bottom: 0px !important;
 }
-.table td{
+.nt .table td{
 	color: #526273;
 	border-top-color: #edf2f7 !important;
 	vertical-align: middle !important;
 }
-.table th.align-right,
-.table td.align-right {
+.nt .table th.align-right,
+.nt .table td.align-right {
 	text-align: right;
 	padding-right: 10px !important;
 }
-table tr.first td{
+.nt table tr.first td{
 	border-top: 0 none;
 }
-table th span.line{
+.nt table th span.line{
 	position: absolute;
 	top: 0;
 	left: -8px;
