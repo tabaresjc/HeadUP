@@ -1,19 +1,24 @@
 from flask.ext.login import UserMixin
 from werkzeug.security import generate_password_hash, check_password_hash
-from app import database, store
+from app import app, database, store
 from app.mixins import CRUDMixin
 
 from storm.locals import *
 from hashlib import md5
 import datetime
 
+ROLE_WRITER = 2
+ROLE_ADMIN = 1
+
 class User(UserMixin, CRUDMixin):
     __storm_table__ = "users"    
     email = Unicode(default=u'')
-    password = Unicode(default=u'')
     name = Unicode(default=u'')    
     nickname = Unicode(default=u'')    
-    role = Int(default=2)
+    password = Unicode(default=u'')
+    role = Int(default=ROLE_WRITER)
+    address = Unicode(default=u'')
+    phone = Unicode(default=u'')
     last_seen = DateTime(default_factory = lambda: datetime.datetime(1970, 1, 1))
     created_at = DateTime(default_factory = lambda: datetime.datetime(1970, 1, 1))
     modified_at = DateTime(default_factory = lambda: datetime.datetime(1970, 1, 1))    
@@ -46,6 +51,8 @@ class User(UserMixin, CRUDMixin):
                       nickname VARCHAR(64) UNIQUE NOT NULL,\
                       password VARCHAR(255),\
                       role SMALLINT,\
+                      address VARCHAR(255),\
+                      phone VARCHAR(64),\
                       last_seen TIMESTAMP,\
                       created_at TIMESTAMP,\
                       modified_at TIMESTAMP);", noresult=True)

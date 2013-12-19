@@ -53,14 +53,18 @@
                     <td>{{ user.posts.count() }}</td>
                     <td>{{ user.role|user_role }}</td>
                     <td>
+                        {% if current_user.role is administrator or current_user.id == user.id %}
                         <div class="btn-group">
                             <a class="btn btn-primary" href="{{ url_for('UsersView:put_0', id=user.id) }}" title="Change user's settings">
                                 <i class="glyphicon glyphicon-pencil"></i>
                             </a>
+                            {% if current_user.id == user.id %}
                             <a class="btn btn-danger" data-confirm="This will remove {{user.name}}, Are you sure?" data-method="post" href="{{ url_for('UsersView:delete_0', id=user.id) }}"title="Remove this user">
                                 <i class="glyphicon glyphicon-trash"></i>
                             </a>
-                        </div>          
+                            {% endif %}
+                        </div>
+                        {% endif %}
                     </td>
 
                 </tr>               

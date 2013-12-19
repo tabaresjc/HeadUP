@@ -1,4 +1,4 @@
-from flask import Blueprint, render_template, flash, redirect, session, url_for, request, g, jsonify
+from flask import Blueprint, render_template, flash, redirect, session, url_for, request, g, jsonify, abort
 from flask.ext.login import login_user, logout_user, current_user, login_required
 from flask.ext.classy import FlaskView, route
 from flask.ext.wtf import Form
@@ -6,6 +6,7 @@ from app import app, login_manager
 from flask.ext.paginate import Pagination
 from storm.locals import *
 from models import User
+from forms import UserForm, EditUserForm, NewUserForm
 from app.posts.models import Post
 import datetime
 
@@ -46,14 +47,88 @@ class UsersView(FlaskView):
     @route('/', methods = ['POST'])
     @route('/new', methods = ['GET'])    
     def post(self):
-        return "New ok"
+        
+        if request.method == 'POST':
+            form = NewUserForm()
+            if form.validate_on_submit():
+                try:
+                    user = User.create()
+
+                    if form.role.data != u'None':
+                        user.role = int(form.role.data)
+                    del form.role
+                    form.populate_obj(user)
+                    user.set_password(form.password.data)
+                    user.save()
+
+                    flash('User was succesfully saved')
+                    return redirect(url_for('UsersView:get',id=user.id))                     
+                except:
+                    flash('Error while creating the user', 'error')
+                    raise                    
+            else:
+                flash('Invalid submission, please check the messages below', 'error')
+        else:
+            form = NewUserForm()
+
+        return render_template('admin/users/add.html', 
+            title = 'Create new user',
+            form = form,
+            user = [])
 
     @route('/<int:id>', methods = ['PUT'])
     @route('/edit/<int:id>', methods = ['GET', 'POST'])
     def put(self, id):
-        return "Edit ok"
+        user = User.get_by_id(id)
+        if user is None:
+            flash('The user was not found', 'error')
+            return redirect(url_for('UsersView:index'))
+        
+        if request.method in ['POST','PUT']:
+            form = UserForm()
+            if form.validate_on_submit():
+                try:
+                    if form.role.data != u'None':
+                        user.role = int(form.role.data)
+                    del form.role
+                    if form.password.data:
+                        user.set_password(form.password.data)
+                    del form.password
+                    form.populate_obj(user)
+                    user.save()
+
+                    flash('User was succesfully saved')
+                    if request.method == 'POST':
+                        return redirect(url_for('UsersView:get',id=user.id))                        
+                except:
+                    flash('Error while updating the user', 'error')
+            else:
+                flash('Invalid submission, please check the messages below', 'error')
+            
+            if request.method == 'PUT':
+                return jsonify(redirect_to=url_for('UsersView:index'))
+        else:
+            form = EditUserForm(user)
+        return render_template('admin/users/edit.html', 
+            title = 'Edit User\'s Profile | %s' % user.name,
+            form = form,
+            user = user)
 
     @route('/<int:id>', methods = ['DELETE'])
     @route('/remove/<int:id>', methods = ['POST'])
     def delete(self,id):
-        return "Delete ok"
+        if current_user.id == id:
+            abort(404)
+        user = User.get_by_id(id)
+        try:
+            if user is None:
+                raise Exception('User not found')
+            name  = user.name
+            #User.delete(user.id)
+            flash('The user "%s" was removed' % name)
+        except:
+            flash('Error while removing the user', 'error')
+
+        if request.method == 'POST':
+            return redirect(url_for('UsersView:index'))               
+        return jsonify(redirect_to=url_for('UsersView:index'))

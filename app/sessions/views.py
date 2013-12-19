@@ -1,5 +1,5 @@
 from flask import Blueprint, render_template, flash, redirect, session, url_for, request, g, jsonify
-from flask.ext.login import login_user, logout_user, current_user, login_required
+from flask.ext.login import login_user, logout_user, current_user, login_required, user_logged_in, user_logged_out
 from flask.ext.classy import FlaskView, route
 from flask.ext.wtf import Form
 from app import app, login_manager
@@ -16,6 +16,7 @@ def load_user(userid):
 
 @login_manager.unauthorized_handler
 def unauthorized():
+    session['redirect_to'] = request.url
     flash(u'You need to sign in or sign up before continuing.', 'error')
     return redirect(url_for('sessions.login'))
 
@@ -23,7 +24,8 @@ def unauthorized():
 def login():
     if g.user is not None and g.user.is_authenticated():
         flash('You are already signed in.')
-        return redirect(url_for('index'))    
+        return redirect(url_for('index'))
+
     form = LoginForm()
     if form.validate_on_submit():
         try:
@@ -32,11 +34,14 @@ def login():
                 login_user(user)
                 
                 # Update the User's info
-                user.last_seen = datetime.datetime.now()
-                
+                user.last_seen = datetime.datetime.now()                
                 user.save()
+                redirect_to = url_for('dashboard')
+                if 'redirect_to' in session:
+                    redirect_to = session['redirect_to']
+                    session.pop('redirect_to', None)
                 flash('Signed in successfully.')
-                return redirect(url_for('dashboard'))
+                return redirect(redirect_to)
             else:
                 raise Exception('User not found or invalid password')
         except:
@@ -52,6 +57,9 @@ def logout():
     form = Form()
     if form.validate_on_submit():
         logout_user()
+        if 'redirect_to' in session:
+            redirect_to = session['redirect_to']
+            session.pop('redirect_to', None)
         flash('Signed out successfully.')
     else:
         flash('Invalid Action', 'error')

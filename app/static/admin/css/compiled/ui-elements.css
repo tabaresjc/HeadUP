@@ -150,7 +150,8 @@
   float: right;
   margin-right: 30px;
 }
-.pop-dialog .settings .items .item .icon-reorder {
+.pop-dialog .settings .items .item .icon-reorder,
+.pop-dialog .settings .items .item  .icon-formatted {
   color: #d9e4ee;
   font-size: 18px;
   margin-right: 13px;

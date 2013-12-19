@@ -73,13 +73,16 @@ class PostsView(FlaskView):
     def put(self, id):
         post = Post.get_by_id(id)
 
+        if post is None:
+            flash('The post was not found', 'error')
+            return redirect(url_for('UsersView:index'))
+
         if request.method in ['POST','PUT']:
             form = PostForm()
             if form.validate_on_submit():
                 try:
                     form.populate_obj(post)                    
                     post.save()
-
                     flash('Post was succesfully saved')
                     if request.method == 'POST':
                         return redirect(url_for('PostsView:index'))                        

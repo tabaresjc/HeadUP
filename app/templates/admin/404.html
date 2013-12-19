@@ -1,0 +1,6 @@
+{% set title = 'File Not Found' %}
+{% extends "admin/error_base.html" %}
+{% block main %}
+	<h1>File Not Found</h1>
+	<a href="{{url_for('index')}}">Back</a>
+{% endblock %}

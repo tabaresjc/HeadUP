@@ -1,12 +1,19 @@
-    {% with messages = get_flashed_messages(with_categories=true) %}
-    {% if messages %}
-    <div class="message_container">
-    {% for category, message in messages %}                    
-        <div class="alert alert-{{ 'danger' if category == 'error' else 'success' }}">
-            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-            <p>{{ message }}</p>
-        </div>                    
-    {% endfor %}
-    </div>
-    {% endif %}
-    {% endwith %}
+{% with messages = get_flashed_messages(with_categories=true) %}
+{% if messages %}
+<div class="message_container">
+{% for category, message in messages %}                    
+    <div class="alert alert-{{ 'danger' if category == 'error' else 'success' }}">
+        {% if category == 'error' %}
+        <i class="glyphicon glyphicon-remove-sign"></i>
+        {% elif category == 'info' %}
+        <i class="glyphicon glyphicon-info-sign"></i>
+        {% else %}
+        <i class="glyphicon glyphicon-ok-sign"></i>            
+        {% endif %}
+        {{ message }}
+        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+    </div>                    
+{% endfor %}
+</div>
+{% endif %}
+{% endwith %}

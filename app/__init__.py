@@ -1,6 +1,7 @@
 from flask import Flask, render_template, flash, redirect, session, url_for, request, g, jsonify
 from flask.ext.login import LoginManager
 from flask.ext.classy import FlaskView
+from flask.ext.principal import Principal
 from flask_wtf.csrf import CsrfProtect
 from storm.locals import create_database, Store, ReferenceSet, Reference, Desc
 from config import STORM_DATABASE_URI
@@ -50,7 +51,7 @@ PostsView.register(app)
 from app.users.models import User
 from app.posts.models import Post
 
-def init_db():
+def create_db():
 	# Posts
 	if not Post.exist_table():
 		Post.create_table()
@@ -62,10 +63,23 @@ def init_db():
 	# UserPosts
 	# if not UserPosts.exist_table():
 	# 	UserPosts.create_table()
-	#User.posts = ReferenceSet(User.id, UserPosts.user_id, UserPosts.post_id, Post.id)
-	User.posts = ReferenceSet(User.id, Post.user_id, order_by = Desc(Post.id))	
 
-init_db()
+def init_db():
+	user = User.create()
+	user.name = u'Juan Tabares'
+	user.nickname = u'jctt'
+	user.set_password(u'admin123456')
+	user.role = 1
+	user.email = u'juan.ctt@live.com'
+	user.save()
+
+
+if os.environ.get('HEROKU') is not None:
+	create_db()
+	init_db()
+
+# User.posts = ReferenceSet(User.id, UserPosts.user_id, UserPosts.post_id, Post.id)
+User.posts = ReferenceSet(User.id, Post.user_id, order_by = Desc(Post.id))	
 
 #----------------------------------------
 # filters
@@ -77,13 +91,13 @@ def humanformat(value):
     return human(value, precision=1)
 
 def user_role(value):
-    if value==1:
+    if value is users.models.ROLE_ADMIN:
     	return 'Admin'
     else:
     	return 'Writer'
 
 def is_administrator(value):
-    if value==1:
+    if value is users.models.ROLE_ADMIN:
     	return True
     else:
     	return False
@@ -91,4 +105,4 @@ def is_administrator(value):
 app.jinja_env.filters['datetimeformat'] = datetimeformat
 app.jinja_env.filters['humanformat'] = humanformat
 app.jinja_env.filters['user_role'] = user_role
-app.jinja_env.filters['administrator'] = is_administrator
+app.jinja_env.tests['administrator'] = is_administrator
