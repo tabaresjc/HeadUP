@@ -12,7 +12,8 @@
 				<a href="{{ url_for('UsersView:get',id=current_user.id) }}">
 					<img alt="{{ current_user.name }}" class="img-thumbnail" src="{{ current_user.avatar(144) }}">
 				</a>
-				<div>{{ current_user.email }}</div>
+				<div>Email: {{ current_user.email }}</div>
+				<div>Last login: {{ current_user.last_seen|datetimeformat }}</div>
 			</div>
 			<div class="panel-footer">
 				<div class="div btn-group">

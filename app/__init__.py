@@ -70,9 +70,6 @@ def create_db():
 		User.create_table()
 		init_db()
 
-	# UserPosts
-	# if not UserPosts.exist_table():
-	# 	UserPosts.create_table()
 
 create_db()
 

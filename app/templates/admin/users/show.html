@@ -13,7 +13,7 @@
     </div>
     <div class="col-md-3">     
         {% if current_user.is_authenticated() and current_user.role is administrator and current_user.id != user.id %}
-        <a class="btn btn-danger pull-right" title="Delete user" href="{{ url_for('UsersView:delete_0',id=user.id) }}" data-method="post" data-confirm="This will remove {{ user.name }}, Are you sure?">
+        <a class="btn btn-danger pull-right" title="Delete user" href="{{ url_for('UsersView:delete_0',id=user.id) }}" data-method="post" data-confirm="This will remove '{{ user.name }}', Are you sure?">
             <i class="icon-trash"></i>
             <span>Remove</span>
         </a>

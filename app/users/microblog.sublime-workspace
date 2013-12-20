@@ -4,6 +4,14 @@
 		"selected_items":
 		[
 			[
+				"ad",
+				"Administration"
+			],
+			[
+				"pag",
+				"pagination"
+			],
+			[
 				"fff",
 				"FFFFFF"
 			],
@@ -44,10 +52,10 @@
 	"buffers":
 	[
 		{
-			"file": "views.py",
+			"file": "/home/pythonuser/Documents/projects/microblog/app/templates/admin/dashboard.html",
 			"settings":
 			{
-				"buffer_size": 4869,
+				"buffer_size": 1979,
 				"line_ending": "Unix"
 			}
 		}
@@ -80,30 +88,47 @@
 	},
 	"file_history":
 	[
+		"/home/pythonuser/Documents/projects/microblog/app/users/views.py",
+		"/home/pythonuser/Documents/projects/microblog/gitcommit.log",
+		"/home/pythonuser/Documents/projects/microblog/requirements.txt",
+		"/home/pythonuser/Documents/projects/microblog/app/blog/views.py",
+		"/home/pythonuser/Documents/projects/microblog/app/__init__.py",
+		"/home/pythonuser/Documents/projects/microblog/app/posts/views.py",
+		"/home/pythonuser/Documents/projects/microblog/app/templates/admin/posts/_sidebar.html",
+		"/home/pythonuser/Documents/projects/microblog/app/posts/models.py",
+		"/home/pythonuser/Documents/projects/microblog/app/admin/views.py",
+		"/home/pythonuser/Documents/projects/microblog/app/mixins.py",
+		"/home/pythonuser/Documents/projects/microblog/app/templates/admin/dashboard.html",
+		"/home/pythonuser/Documents/projects/microblog/app/users/models.py",
+		"/home/pythonuser/Documents/projects/microblog/app/posts/forms.py",
+		"/home/pythonuser/Documents/projects/microblog/app/templates/admin/users/_sidebar.html",
+		"/home/pythonuser/Documents/projects/microblog/app/templates/admin/users/show.html",
+		"/home/pythonuser/Documents/projects/microblog/app/templates/admin/posts/edit.html",
+		"/home/pythonuser/Documents/projects/microblog/app/templates/admin/posts/_post_form_edit.html",
+		"/home/pythonuser/Documents/projects/microblog/app/users/forms.py",
+		"/home/pythonuser/Documents/projects/microblog/app/templates/admin/posts/_post_item.html",
+		"/home/pythonuser/Documents/projects/microblog/app/templates/admin/posts/show.html",
+		"/home/pythonuser/Documents/projects/microblog/app/templates/admin/posts/add.html",
+		"/home/pythonuser/Documents/projects/microblog/app/templates/admin/admin.html",
+		"/home/pythonuser/Documents/projects/microblog/app/templates/admin/posts/index.html",
+		"/home/pythonuser/Documents/projects/microblog/app/templates/admin/users/add.html",
+		"/home/pythonuser/Documents/projects/microblog/app/templates/admin/users/index.html",
+		"/home/pythonuser/Documents/projects/microblog/app/templates/admin/users/edit.html",
+		"/home/pythonuser/Documents/projects/microblog/app/templates/admin/error_base.html",
+		"/home/pythonuser/Documents/projects/microblog/app/templates/admin/403.html",
+		"/home/pythonuser/Documents/projects/microblog/app/templates/admin/401.html",
+		"/home/pythonuser/Documents/projects/microblog/app/templates/admin/404.html",
 		"/home/pythonuser/Documents/projects/microblog/app/users/microblog.sublime-project",
 		"/home/pythonuser/Documents/projects/microblog/.gitignore",
-		"/home/pythonuser/Documents/projects/microblog/gitcommit.log",
-		"/home/pythonuser/Documents/projects/microblog/app/templates/admin/error_base.html",
-		"/home/pythonuser/Documents/projects/microblog/app/users/views.py",
 		"/home/pythonuser/Documents/projects/microblog/app/templates/admin/500.html",
-		"/home/pythonuser/Documents/projects/microblog/app/templates/admin/404.html",
 		"/home/pythonuser/Documents/projects/microblog/app/static/admin/css/bootstrap/bootstrap-overrides.css",
 		"/home/pythonuser/Documents/projects/microblog/app/templates/admin/signin.html",
 		"/home/pythonuser/Documents/projects/microblog/app/templates/admin/signup.html",
 		"/home/pythonuser/Documents/projects/microblog/app/static/admin/css/compiled/signin.css",
 		"/home/pythonuser/Documents/projects/microblog/app/static/admin/css/compiled/signup.css",
-		"/home/pythonuser/Documents/projects/microblog/app/posts/views.py",
-		"/home/pythonuser/Documents/projects/microblog/app/templates/admin/posts/add.html",
-		"/home/pythonuser/Documents/projects/microblog/app/templates/admin/posts/index.html",
-		"/home/pythonuser/Documents/projects/microblog/app/__init__.py",
-		"/home/pythonuser/Documents/projects/microblog/requirements.txt",
-		"/home/pythonuser/Documents/projects/microblog/app/users/models.py",
 		"/home/pythonuser/Documents/projects/microblog/app/templates/admin/layout/sidebar.html",
 		"/home/pythonuser/Documents/projects/microblog/app/static/admin/css/compiled/layout.css",
 		"/home/pythonuser/Documents/projects/microblog/app/templates/admin/posts/form_add.html",
-		"/home/pythonuser/Documents/projects/microblog/app/mixins.py",
-		"/home/pythonuser/Documents/projects/microblog/app/posts/forms.py",
-		"/home/pythonuser/Documents/projects/microblog/app/posts/models.py",
 		"/home/pythonuser/.config/sublime-text-2/Packages/Default/Preferences.sublime-settings",
 		"/home/pythonuser/Documents/projects/microblog/config.py",
 		"/home/pythonuser/Documents/projects/microblog/app/templates/admin/layout/navbar.html",
@@ -112,8 +137,6 @@
 		"/home/pythonuser/Documents/projects/microblog/app/views.py",
 		"/home/pythonuser/Documents/projects/microblog/app/users/__init__.py",
 		"/home/pythonuser/Documents/projects/microblog/app/templates/blog/base.html",
-		"/home/pythonuser/Documents/projects/microblog/app/templates/admin/admin.html",
-		"/home/pythonuser/Documents/projects/microblog/app/templates/admin/dashboard.html",
 		"/home/pythonuser/Documents/projects/microblog/app/templates/shared/meta.html",
 		"/home/pythonuser/Documents/projects/microblog/app/templates/admin/layout/meta.html",
 		"/home/pythonuser/Documents/projects/microblog/app/templates/blog/signin.html",
@@ -164,6 +187,8 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			" % error,",
+			"PostEdit",
 			"traceback",
 			"sys",
 			"mysql",
@@ -182,6 +207,7 @@
 		"regex": false,
 		"replace_history":
 		[
+			"",
 			"href=\"/static/admin/",
 			"/static/admin/",
 			"href=\"/static/blog/",
@@ -197,33 +223,31 @@
 	"groups":
 	[
 		{
-			"selected": 0,
 			"sheets":
 			[
 				{
 					"buffer": 0,
-					"file": "views.py",
+					"file": "/home/pythonuser/Documents/projects/microblog/app/templates/admin/dashboard.html",
 					"settings":
 					{
-						"buffer_size": 4869,
+						"buffer_size": 1979,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								4376,
-								4376
+								556,
+								383
 							]
 						],
 						"settings":
 						{
-							"syntax": "Packages/Python/Python.tmLanguage",
-							"tab_size": 4,
-							"translate_tabs_to_spaces": true
+							"syntax": "Packages/HTML/HTML.tmLanguage",
+							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
-						"translation.y": 1940.0,
+						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"
