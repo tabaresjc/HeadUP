@@ -1,9 +1,71 @@
 {% extends "admin/admin.html" %}
 {% block custom_css %}
-    <link rel="stylesheet" href="static/admin/css/compiled/index.css" type="text/css" media="screen" />
+    <link rel="stylesheet" href="/static/admin/css/compiled/index.css" type="text/css"/>
 {% endblock %}
+
 {% block main %}
-<p>
-	{{content}}
-</p>
+<div class="row">
+	<div class="col-md-3">
+		<div class="div panel panel-primary">
+			<div class="div panel-heading">{{ current_user.name }}</div>
+			<div class="div panel-body" style="text-align:center;">
+				<a href="{{ url_for('UsersView:get',id=current_user.id) }}">
+					<img alt="{{ current_user.name }}" class="img-thumbnail" src="{{ current_user.avatar(144) }}">
+				</a>
+				<div>{{ current_user.email }}</div>
+			</div>
+			<div class="panel-footer">
+				<div class="div btn-group">
+					<a class="btn btn-success" href="{{ url_for('UsersView:get',id=current_user.id) }}" title="View user's profile">
+						<i class="glyphicon glyphicon-user"></i>
+					</a>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="col-md-9">
+    	{{ pagination.info|safe }}
+    	{{ pagination.links|safe }}
+    	<div class="clearfix"></div>
+		{% for post in posts %}
+		{% include 'admin/posts/_post_item.html' %}
+		{% endfor %}
+		{{ pagination.links|safe }}
+	</div>	
+</div>
+{% endblock %}
+
+{% block stats %}
+<div id="main-stats">
+	<div class="row stats-row">
+		<div class="col-md-3 col-sm-3 stat">
+			<div class="data">
+				<span class="number">{{current_user.posts.count()}}</span>
+				Posts
+			</div>
+			<span class="date"></span>
+		</div>
+		<div class="col-md-3 col-sm-3 stat">
+			<div class="data">
+				<span class="number">0</span>
+				Comments
+			</div>
+			<span class="date"></span>
+		</div>
+		<div class="col-md-3 col-sm-3 stat">
+			<div class="data">
+				<span class="number">0</span>
+				Reply
+			</div>
+			<span class="date"></span>
+		</div>
+		<div class="col-md-3 col-sm-3 stat">
+			<div class="data">
+				<span class="number">0</span>
+				Visits
+			</div>
+			<span class="date"></span>
+		</div>
+	</div>
+</div>
 {% endblock %}

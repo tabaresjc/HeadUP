@@ -46,16 +46,16 @@ class UsersView(FlaskView):
 
     @route('/', methods = ['POST'])
     @route('/new', methods = ['GET'])    
-    def post(self):
-        
+    def post(self):        
         if request.method == 'POST':
             form = NewUserForm()
             if form.validate_on_submit():
                 try:
                     user = User.create()
-
-                    if form.role.data != u'None':
+                    # Set Permissions
+                    if current_user.is_admin():
                         user.role = int(form.role.data)
+
                     del form.role
                     form.populate_obj(user)
                     user.set_password(form.password.data)
@@ -79,6 +79,9 @@ class UsersView(FlaskView):
     @route('/<int:id>', methods = ['PUT'])
     @route('/edit/<int:id>', methods = ['GET', 'POST'])
     def put(self, id):
+        if not current_user.is_admin() and current_user.id != id:
+            abort(401)
+
         user = User.get_by_id(id)
         if user is None:
             flash('The user was not found', 'error')
@@ -117,8 +120,11 @@ class UsersView(FlaskView):
     @route('/<int:id>', methods = ['DELETE'])
     @route('/remove/<int:id>', methods = ['POST'])
     def delete(self,id):
-        if current_user.id == id:
-            abort(404)
+        if not current_user.is_admin() and current_user.id != id:
+            abort(401)
+        if User.count() <= 1:
+            abort(403)
+
         user = User.get_by_id(id)
         try:
             if user is None:

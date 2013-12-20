@@ -1,4 +1,5 @@
 from flask.ext.login import UserMixin
+from flask.ext.login import current_user
 from app import app, database, store
 from app.mixins import CRUDMixin
 from storm.locals import *
@@ -15,7 +16,10 @@ class Post(CRUDMixin):
     user = Reference(user_id, User.id)
 
     def __repr__(self): # pragma: no cover
-        return '<Post %r>' % (self.title)
+      return '<Post %r>' % (self.title)
+
+    def is_mine(self):
+      return current_user.is_authenticated() and self.user.id == current_user.id
 
     @staticmethod
     def create_table():

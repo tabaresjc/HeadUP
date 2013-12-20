@@ -36,7 +36,7 @@
                         <span class="line"></span>Role
                     </th>                    
                     <th>
-                        <span class="line"></span>Actions
+                        <span class="line"></span>
                     </th>
                 </tr>
             </thead>
@@ -53,12 +53,12 @@
                     <td>{{ user.posts.count() }}</td>
                     <td>{{ user.role|user_role }}</td>
                     <td>
-                        {% if current_user.role is administrator or current_user.id == user.id %}
+                        {% if current_user.id == user.id or current_user.is_admin() %}
                         <div class="btn-group">
                             <a class="btn btn-primary" href="{{ url_for('UsersView:put_0', id=user.id) }}" title="Change user's settings">
                                 <i class="glyphicon glyphicon-pencil"></i>
                             </a>
-                            {% if current_user.id == user.id %}
+                            {% if current_user.id != user.id %}
                             <a class="btn btn-danger" data-confirm="This will remove {{user.name}}, Are you sure?" data-method="post" href="{{ url_for('UsersView:delete_0', id=user.id) }}"title="Remove this user">
                                 <i class="glyphicon glyphicon-trash"></i>
                             </a>

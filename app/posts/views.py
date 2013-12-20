@@ -1,4 +1,4 @@
-from flask import render_template, flash, redirect, session, url_for, request, g, jsonify
+from flask import render_template, flash, redirect, session, url_for, request, g, jsonify, abort
 from flask.ext.login import current_user, login_required
 from flask.ext.classy import FlaskView, route
 from flask.ext.wtf import Form
@@ -6,7 +6,7 @@ from flask.ext.paginate import Pagination
 from app import app, login_manager
 from models import Post
 
-from forms import PostForm, PostEditForm
+from forms import PostForm, EditPostForm, NewPostForm
 import datetime
 
 class PostsView(FlaskView):
@@ -72,20 +72,24 @@ class PostsView(FlaskView):
     @route('/edit/<int:id>', methods = ['GET', 'POST'])
     def put(self, id):
         post = Post.get_by_id(id)
-
         if post is None:
             flash('The post was not found', 'error')
             return redirect(url_for('UsersView:index'))
+        if not current_user.is_admin() and  not post.is_mine():
+            abort(401)
 
         if request.method in ['POST','PUT']:
-            form = PostForm()
+            form = EditPostForm()
             if form.validate_on_submit():
                 try:
                     form.populate_obj(post)                    
                     post.save()
                     flash('Post was succesfully saved')
                     if request.method == 'POST':
-                        return redirect(url_for('PostsView:index'))                        
+                        if form.remain.data:
+                            return redirect(url_for('PostsView:get', id=post.id))
+                        else:
+                            return redirect(url_for('PostsView:index'))                            
                 except:
                     flash('Error while updating the post', 'error')
             else:
@@ -94,7 +98,7 @@ class PostsView(FlaskView):
             if request.method == 'PUT':
                 return jsonify(redirect_to=url_for('PostsView:index'))
         else:
-            form = PostEditForm(post)
+            form = NewPostForm(post)
         return render_template('admin/posts/edit.html', 
             title = 'Edit Post: %s' % post.title,
             form = form,
@@ -104,7 +108,8 @@ class PostsView(FlaskView):
     @route('/remove/<int:id>', methods = ['POST'])
     def delete(self,id):
         post = Post.get_by_id(id)
-
+        if not current_user.is_admin() and not post.is_mine():
+            abort(401)
         try:
             if post is None:
                 raise Exception('Post not found')

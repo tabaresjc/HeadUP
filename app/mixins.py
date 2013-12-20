@@ -42,6 +42,10 @@ class CRUDMixin(object):
         return commit and store.commit()
 
     @classmethod
+    def count(cls):
+        return store.find(cls).count()
+
+    @classmethod
     def pagination(cls, limit = 10, page = 1, orderby = 'id', desc = True):
         result = store.find(cls)
         count = result.count()

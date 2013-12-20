@@ -22,7 +22,7 @@
 	<div class="panel-footer">
 		<div>
 			{% if post.user_id == current_user.id %}			
-				<a href="{{ url_for('PostsView:delete_0', id=post.id) }}" data-method="post" rel="nofollow" data-confirm="This will remove {{ post.title }}?">
+				<a href="{{ url_for('PostsView:delete_0', id=post.id) }}" data-method="post" rel="nofollow" data-confirm="This will remove '{{ post.title }}'?">
 					<i class="icon-trash"></i>
 				</a>
 			{% endif %}

@@ -1,0 +1,49 @@
+<div class="pop-dialog full">
+    <div class="body">
+        <div class="settings">
+            <div class="items">
+                <div class="item">
+                    <h5>Go to</h5>
+                </div>
+                <div class="item">
+                    <i class="icon-reorder"></i>
+                    <a href="{{ url_for('PostsView:index') }}">Posts List</a>
+                </div>
+                {% if request.endpoint.startswith('PostsView:put') %}
+                    <div class="item">
+                        <i class="icon-eye-open icon-formatted"></i>
+                        <a href="{{ url_for('PostsView:get', id = post.id) }}">Show Post</a>
+                    </div>
+                    {% if post.is_mine() or current_user.is_admin() %}
+                    <div class="item">
+                        <i class="icon-trash icon-formatted"></i>
+                        <a href="{{ url_for('PostsView:delete_0', id = post.id) }}" data-method="post" data-confirm="This will remove '{{ post.title }}'?">Delete Post</a>
+                    </div>
+                    {% endif %}
+                    <div class="item">
+                        <i class="icon-plus icon-formatted"></i>
+                        <a href="{{ url_for('PostsView:post_0') }}">New Post</a>
+                    </div>                
+                {% endif %}
+
+                {% if request.endpoint.startswith('PostsView:get') %}
+
+                    {% if post.is_mine() or current_user.is_admin() %}
+                    <div class="item">
+                        <i class="icon-edit icon-formatted"></i>
+                        <a href="{{ url_for('PostsView:put_0', id = post.id) }}">Edit Post</a>
+                    </div>                            
+                    <div class="item">
+                        <i class="icon-trash icon-formatted"></i>
+                        <a href="{{ url_for('PostsView:delete_0', id = post.id) }}" data-method="post" data-confirm="This will remove '{{ post.title }}'?">Delete Post</a>
+                    </div>
+                    {% endif %}
+                    <div class="item">
+                        <i class="icon-plus icon-formatted"></i>
+                        <a href="{{ url_for('PostsView:post_0') }}">New Post</a>
+                    </div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</div>

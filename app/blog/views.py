@@ -9,13 +9,21 @@ from app.posts.models import Post
 def before_request():
     g.user = current_user
 
+@app.errorhandler(401)
+def internal_error(error):
+    return render_template('admin/401.html' % error, title= 'Error %s' % error), 401
+
+@app.errorhandler(403)
+def internal_error(error):
+    return render_template('admin/403.html' % error, title= 'Error %s' % error), 403
+
 @app.errorhandler(404)
 def internal_error(error):
-    return render_template('admin/404.html'), 404
+    return render_template('admin/404.html' % error, title= 'Error %s' % error), 404
 
 @app.errorhandler(500)
 def internal_error(error):
-    return render_template('admin/500.html'), 500    
+    return render_template('admin/500.html' % error, title= 'Error %s' % error), 500
 
 @app.route('/', defaults={'page': 1})
 @app.route('/page/<int:page>')
@@ -30,7 +38,7 @@ def index(page=1):
         bs_version= 3)
     return render_template("blog/index.html",
         title = 'Home',
-        content = 'Home Page',
         posts = posts,
         pagination = pagination)
+
 

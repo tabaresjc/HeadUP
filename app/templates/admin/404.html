@@ -1,6 +1,13 @@
-{% set title = 'File Not Found' %}
+{% set title = title|default('File Not Found') %}
 {% extends "admin/error_base.html" %}
 {% block main %}
-	<h1>File Not Found</h1>
-	<a href="{{url_for('index')}}">Back</a>
+	<div class="alert alert-danger" style="text-align:center;">
+	  <div style="text-align: center;font-size: 12em;">
+	  	<i class="glyphicon glyphicon-remove-sign"></i>
+	  	<span>404</span>
+	  </div>
+	  <h1>{{ title }}</h1>
+	  <br/>
+	  <p>Well... The page you are looking for can't be found!</p>
+	</div>
 {% endblock %}

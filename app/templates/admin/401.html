@@ -1,13 +1,13 @@
-{% set title = title|default('An unexpected error has occurred') %}
+{% set title = title|default('401 Unauthorized') %}
 {% extends "admin/error_base.html" %}
 {% block main %}
 	<div class="alert alert-danger" style="text-align:center;">
 	  <div style="text-align: center;font-size: 12em;">
 	  	<i class="glyphicon glyphicon-remove-sign"></i>
-	  	<span>500</span>
+	  	<span>401</span>
 	  </div>
 	  <h1>{{ title }}</h1>
 	  <br/>
-	  <p>The administrator has been notified. Sorry for the inconvenience!</p>
+	  <p>Ackward... Apparently you are not authorized to perform this action.</p>
 	</div>
 {% endblock %}

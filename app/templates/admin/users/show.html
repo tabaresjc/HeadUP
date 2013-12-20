@@ -22,10 +22,17 @@
 </div>
 <div class="row header">
     <div class="col-md-12">
-         <a class="btn btn-primary pull-right" href="{{ url_for('UsersView:put_0',id=user.id) }}">
-            <i class="glyphicon glyphicon-pencil"></i>
-            <span>Edit</span>
-        </a>
+        <div class="div pull-right">
+            <a class="btn btn-success" href="{{ url_for('UsersView:index') }}">
+                <i class="glyphicon glyphicon-th-list"></i>
+                <span>User List</span>
+            </a>            
+            <a class="btn btn-primary" href="{{ url_for('UsersView:put_0',id=user.id) }}">
+                <i class="glyphicon glyphicon-pencil"></i>
+                <span>Edit</span>
+            </a>
+        </div>
+
     </div>
 </div>
 <div class="row">

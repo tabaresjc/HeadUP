@@ -1,11 +1,10 @@
 <!DOCTYPE html>
-<html lang="en" class="login-bg">
+<html>
 <head>
     {% include 'shared/meta.html' %}
-	
+    
     <!-- bootstrap -->
     <link href="/static/bootstrap/css/bootstrap.css" rel="stylesheet" />
-    <link href="/static/admin/css/bootstrap/bootstrap-responsive.css" rel="stylesheet">
     <link href="/static/admin/css/bootstrap/bootstrap-overrides.css" type="text/css" rel="stylesheet">
 
     <!-- global styles -->
@@ -17,35 +16,91 @@
     <link rel="stylesheet" type="text/css" href="css/lib/font-awesome.css">
     
     <!-- this page specific styles -->
-    <link rel="stylesheet" href="/static/admin/css/compiled/signup.css" type="text/css" media="screen" />
-
+    <link rel="stylesheet" href="css/compiled/personal-info.css" type="text/css" media="screen" />
+    <link rel="stylesheet" href="/static/admin/css/compiled/ui-elements.css" type="text/css" media="screen">
     <!-- open sans font -->
-    <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
+
     <!--[if lt IE 9]>
       <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
     <![endif]-->
-    <meta name="csrf-token" content="{{ csrf_token() }}">
 </head>
 <body>
-    <div class="header">
-        <a href="{{url_for('index')}}">
-            <img src="/static/logo.png" class="logo" />
-        </a>
-    </div>
-    {% if get_flashed_messages() %}
-    <div class="row">        
-        <div class="col-md-12">
-            {% include 'shared/message.html' %}    
+
+    <!-- navbar -->
+    <header class="navbar navbar-inverse" role="banner" style="text-align:center;height:70px;padding-top:10px">
+        <a class="navbar-brand" href="{{ url_for('index') }}" style="float:none;"><img src="/static/logo.png" ></a>     
+    </header>
+    <!-- end navbar -->
+
+    <!-- main container .wide-content is used for this layout without sidebar :)  -->
+    <div class="content wide-content">
+        <div class="settings-wrapper" id="pad-wrapper">
+            <div class="row">
+                <!-- avatar column -->
+                <div class="col-md-6">
+                    {% block main %}{% endblock %}
+                </div>
+
+                <!-- edit form column -->
+                <div class="col-md-4 col-md-offset-1">
+                    {% include 'shared/message.html' %}
+                    <p>Did you try searching? Enter a keyword(s) in the search field. Or, try one of the links below.</p>
+
+                    <input class="search" type="text" placeholder="Search input..">
+                    <br/><br/>
+                    <div class="pop-dialog full">
+                        <div class="body">
+                            <div class="settings">
+                                <div class="items">
+                                    <div class="item">
+                                        <h3 href="{{ url_for('UsersView:index') }}">Blog</h3>
+                                    </div>                                    
+                                    <div class="item">
+                                        <i class="icon-reorder"></i>
+                                        <a href="{{ url_for('UsersView:index') }}">Home Page</a>
+                                    </div>
+                                    <div class="item">
+                                        <i class="icon-reorder"></i>
+                                        <a href="#">Archives</a>
+                                    </div>                                    
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <br/><br/>
+                    {% if current_user.is_authenticated() %}
+                    <div class="pop-dialog full">
+                        <div class="body">
+                            <div class="settings">
+                                <div class="items">
+                                    <div class="item">
+                                        <h3 href="{{ url_for('dashboard') }}">Dashboard</h3>
+                                    </div>                                    
+                                    <div class="item">
+                                        <i class="icon-reorder"></i>
+                                        <a href="{{ url_for('PostsView:index') }}">Posts</a>
+                                    </div>
+                                    <div class="item">
+                                        <i class="icon-reorder"></i>
+                                        <a href="{{ url_for('PostsView:post_0') }}">New Post</a>
+                                    </div>
+                                    <div class="item">
+                                        <i class="icon-reorder"></i>
+                                        <a href="{{ url_for('UsersView:get', id = current_user.id) }}">Profile</a>
+                                    </div>                                    
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    {% endif %}
+                </div>
+            </div>            
         </div>
     </div>
-    {% endif %}
-    <div class="login-wrapper">
-        <div class="box" style="width:80%; padding:20px;">        
-            {% block main %}{% endblock %}
-        </div>        
-        
-    </div>
-	<!-- scripts -->
+    <!-- end main container -->
+
+    <!-- scripts -->
     <script src="//code.jquery.com/jquery-latest.js"></script>
     <script src="/static/bootstrap/js/bootstrap.min.js"></script>
     <script src="/static/admin/js/theme.js"></script>

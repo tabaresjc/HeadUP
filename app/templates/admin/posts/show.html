@@ -1,13 +1,16 @@
 {% extends "admin/admin.html" %}
 {% block custom_css %}
     <link rel="stylesheet" href="/static/admin/css/compiled/index.css" type="text/css" media="screen" />
+    <link rel="stylesheet" href="/static/admin/css/compiled/ui-elements.css" type="text/css" media="screen">
 {% endblock %}
 {% block main %}
-		<div class="row">
-		    <div class="col-md-9">
-		    	{% include 'admin/posts/_post_item.html' %}
-		    </div>
-		    <div class="col-md-3">
-		    </div>		    
-		</div>
+	<div class="row">
+	    <div class="col-md-9">
+	    	<h3>{{ title }}</h3>
+	    	{% include 'admin/posts/_post_item.html' %}
+	    </div>
+	    <div class="col-md-3">
+	    	{% include 'admin/posts/_sidebar.html' %}
+	    </div>		    
+	</div>
 {% endblock %}

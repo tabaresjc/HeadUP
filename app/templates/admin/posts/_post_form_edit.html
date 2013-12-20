@@ -3,6 +3,12 @@
     {{form.hidden_tag()}}
     {{ render_inline_field(form.title, class="form-control",placeholder="Insert title") }}
     {{ render_inline_field(form.body, class="form-control",placeholder="Compose new post...", rows="20") }}
+	<div class="checkbox">
+		<label>
+		{{ render_inline_field(form.remain) }} See the post after submit
+		</label>
+	</div>    
+    
     <div class="actions">
     	<input type="submit" value="Save" class="btn btn-large btn-primary pull-right">
         <div class="clearfix"></div>

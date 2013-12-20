@@ -29,6 +29,9 @@ class User(UserMixin, CRUDMixin):
     def check_password(self, password):
       return check_password_hash(self.password, password)
 
+    def is_admin(self):
+      return self.role == int(ROLE_ADMIN)
+
     def avatar(self, size):
       return 'http://www.gravatar.com/avatar/' + md5(self.email).hexdigest() + '?d=mm&s=' + str(size)
 
