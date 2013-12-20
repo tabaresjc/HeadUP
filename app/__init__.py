@@ -51,19 +51,6 @@ PostsView.register(app)
 from app.users.models import User
 from app.posts.models import Post
 
-def create_db():
-	# Posts
-	if not Post.exist_table():
-		Post.create_table()
-
-	# Users
-	if not User.exist_table():
-		User.create_table()
-
-	# UserPosts
-	# if not UserPosts.exist_table():
-	# 	UserPosts.create_table()
-
 def init_db():
 	user = User.create()
 	user.name = u'Juan Tabares'
@@ -73,10 +60,22 @@ def init_db():
 	user.email = u'juan.ctt@live.com'
 	user.save()
 
+def create_db():
+	# Posts
+	if not Post.exist_table():
+		Post.create_table()
 
-if os.environ.get('HEROKU') is not None:
-	create_db()
-	init_db()
+	# Users
+	if not User.exist_table():
+		User.create_table()
+		init_db()
+
+	# UserPosts
+	# if not UserPosts.exist_table():
+	# 	UserPosts.create_table()
+
+create_db()
+
 
 # User.posts = ReferenceSet(User.id, UserPosts.user_id, UserPosts.post_id, Post.id)
 User.posts = ReferenceSet(User.id, Post.user_id, order_by = Desc(Post.id))	

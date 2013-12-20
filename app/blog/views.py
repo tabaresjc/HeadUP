@@ -11,19 +11,19 @@ def before_request():
 
 @app.errorhandler(401)
 def internal_error(error):
-    return render_template('admin/401.html' % error, title= 'Error %s' % error), 401
+    return render_template('admin/401.html', title= 'Error %s' % error), 401
 
 @app.errorhandler(403)
 def internal_error(error):
-    return render_template('admin/403.html' % error, title= 'Error %s' % error), 403
+    return render_template('admin/403.html', title= 'Error %s' % error), 403
 
 @app.errorhandler(404)
 def internal_error(error):
-    return render_template('admin/404.html' % error, title= 'Error %s' % error), 404
+    return render_template('admin/404.html', title= 'Error %s' % error), 404
 
 @app.errorhandler(500)
 def internal_error(error):
-    return render_template('admin/500.html' % error, title= 'Error %s' % error), 500
+    return render_template('admin/500.html', title= 'Error %s' % error), 500
 
 @app.route('/', defaults={'page': 1})
 @app.route('/page/<int:page>')
