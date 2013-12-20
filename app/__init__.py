@@ -7,6 +7,7 @@ from storm.locals import create_database, Store, ReferenceSet, Reference, Desc
 from config import STORM_DATABASE_URI
 from ago import human
 import os
+import datetime
 
 app = Flask(__name__)
 
@@ -58,7 +59,16 @@ def init_db():
 	user.set_password(u'admin123456')
 	user.role = 1
 	user.email = u'juan.ctt@live.com'
+	user.last_seen = datetime.datetime.now()
 	user.save()
+
+	user1 = User.create()
+	user1.name = u'Mrs. Arnaldo Wyman'
+	user1.nickname = u'arnaldo'
+	user1.set_password(u'admin123456')
+	user1.email = u'example-2@railstutorial.org'
+	user1.last_seen = datetime.datetime.now()
+	user1.save()
 
 def create_db():
 	# Posts

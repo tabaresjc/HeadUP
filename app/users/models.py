@@ -20,6 +20,7 @@ class User(UserMixin, CRUDMixin):
     address = Unicode(default=u'')
     phone = Unicode(default=u'')
     last_seen = DateTime(default_factory = lambda: datetime.datetime(1970, 1, 1))
+    last_login = DateTime(default_factory = lambda: datetime.datetime(1970, 1, 1))
     created_at = DateTime(default_factory = lambda: datetime.datetime(1970, 1, 1))
     modified_at = DateTime(default_factory = lambda: datetime.datetime(1970, 1, 1))    
     
@@ -57,6 +58,7 @@ class User(UserMixin, CRUDMixin):
                       address VARCHAR(255),\
                       phone VARCHAR(64),\
                       last_seen TIMESTAMP,\
+                      last_login TIMESTAMP,\
                       created_at TIMESTAMP,\
                       modified_at TIMESTAMP);", noresult=True)
       store.execute("CREATE INDEX users_email_idx ON users USING btree (email);", noresult=True)

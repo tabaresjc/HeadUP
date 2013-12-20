@@ -14,15 +14,29 @@
                 <nav class="pull-right tales-nav">
                     <div class="collapse navbar-collapse">
                         <ul class="nav nav-pills navbar-nav">
-                            {% if g.user.is_authenticated() %}
-                            <li>
-                                <a href="{{url_for('dashboard')}}">Dashboard</a>
-                            </li>                            
-                            <li>
-                                <a href="{{ url_for('sessions.logout') }}" data-method="post" role="button" title="Sign Out" class="btn btn-danger">
-                                    Sign Out
+                            {% if current_user.is_authenticated() %}
+
+                            <li class="dropdown active">
+                                <a class="dropdown-toggle"
+                                   data-toggle="dropdown"
+                                   href="javascript:void(0);">
+                                    Hi, {{current_user.name}} 
+                                    <b class="caret"></b>
                                 </a>
-                            </li>                                
+                                <ul class="dropdown-menu">
+                                    <li>
+                                        <a href="{{url_for('dashboard')}}">Dashboard</a>
+                                    </li>
+                                    <li>
+                                        <a href="{{url_for('UsersView:get',id=current_user.id)}}">Profile</a>
+                                    </li>                                    
+                                    <li>
+                                        <a href="{{ url_for('sessions.logout') }}" data-method="post" role="button" title="Sign Out">
+                                            Sign Out
+                                        </a>
+                                    </li> 
+                                </ul>
+                            </li>
                             {% else %}
                             <li>
                                 <a href="{{url_for('sessions.login')}}">Sign In</a>
@@ -43,23 +57,11 @@
             <div class="container">
                 <div class="tales-breadcrumb">
                     <a href="{{url_for('index')}}">Home</a>
-                    <!--
+                    {% if post %}
                     <span class="separator">&#x2F;</span>
-                    <a href="#">Starter</a>
-                    <span class="separator">&#x2F;</span>
-                    <a href="#">Starter Page</a>
-                    -->
+                    <a href="{{ url_for('PostsView:get',id=post.id) }}">{{post.title}}</a>                    
+                    {% endif %}
                 </div>
-                <!--
-                <div class="tales-searchbox">
-                    <form action="#" method="get" accept-charset="utf-8">
-                        <button class="searchbutton" type="submit">
-                            <i class="icon-search"></i>
-                        </button>
-                        <input class="searchfield" id="searchbox" type="text" placeholder="Search">
-                    </form>
-                </div>
-                -->
             </div>
         </div>
     </header>

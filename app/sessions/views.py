@@ -34,7 +34,8 @@ def login():
                 login_user(user)
                 
                 # Update the User's info
-                user.last_seen = datetime.datetime.now()                
+                user.last_login = user.last_seen
+                user.last_seen = datetime.datetime.now()
                 user.save()
                 redirect_to = url_for('dashboard')
                 if 'redirect_to' in session:
@@ -80,7 +81,7 @@ def signup():
             form.populate_obj(user)
             user.set_password(form.password.data)
             user.last_seen = datetime.datetime.now()
-            
+            user.last_login = datetime.datetime.now()
             ## Store in database
             user.save()
             ## Login User
