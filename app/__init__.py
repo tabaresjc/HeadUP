@@ -41,11 +41,13 @@ app.register_blueprint(sessionsModule, url_prefix='/members')
 from app.users.views import UsersView
 UsersView.register(app)
 
-# register the post module
+# register the Post module
 from app.posts.views import PostsView
 PostsView.register(app)
 
-
+# register the Comment module
+from app.comments.views import CommentsView
+CommentsView.register(app)
 #----------------------------------------
 # Check Databases
 #----------------------------------------

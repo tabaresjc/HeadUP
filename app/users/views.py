@@ -4,7 +4,6 @@ from flask.ext.classy import FlaskView, route
 from flask.ext.wtf import Form
 from app import app, login_manager
 from flask.ext.paginate import Pagination
-from storm.locals import *
 from models import User
 from forms import UserForm, EditUserForm, NewUserForm
 from app.posts.models import Post

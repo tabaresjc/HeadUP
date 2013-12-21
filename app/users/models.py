@@ -11,7 +11,7 @@ ROLE_WRITER = 2
 ROLE_ADMIN = 1
 
 class User(UserMixin, CRUDMixin):
-    __storm_table__ = "users"    
+    __storm_table__ = "users"
     email = Unicode(default=u'')
     name = Unicode(default=u'')    
     nickname = Unicode(default=u'')    
