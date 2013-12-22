@@ -1,7 +1,8 @@
 {% from "shared/_bootstrap_forms.html" import render_inline_field %}
-<form action="{{url_for('PostsView:post_1')}}" method="post" name="posts" autocomplete="off">
+<form action="{{url_for('PostsView:post_1')}}" method="post" name="AddPost" autocomplete="off">
     {{form.hidden_tag()}}
     {{ render_inline_field(form.title, class="form-control",placeholder="Insert title") }}
+    {{ render_inline_field(form.image_url, class="form-control",placeholder="Insert URL of Featured Image") }}
     {{ render_inline_field(form.body, class="form-control",placeholder="Compose new post...", rows="10") }}
     <div class="actions">
     	<input type="submit" value="Create" class="btn btn-large btn-primary pull-right">

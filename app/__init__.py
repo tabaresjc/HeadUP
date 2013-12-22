@@ -53,6 +53,7 @@ CommentsView.register(app)
 #----------------------------------------
 from app.users.models import User
 from app.posts.models import Post
+from app.comments.models import Comment
 
 def init_db():
 	user = User.create()
@@ -77,18 +78,32 @@ def create_db():
 	if not Post.exist_table():
 		Post.create_table()
 
+	# Comments
+	if not Comment.exist_table():
+		Comment.create_table()
+
 	# Users
 	if not User.exist_table():
 		User.create_table()
 		init_db()
 
 
-create_db()
+def create_posts():
+	user = User.get_by_id(1)
+	for i in range(1, 50):
+		print 'creating post # %s' %i
+		post = Post.create()
+		post.title = unicode('Title %s' % i)
+		post.body = unicode('Body %s' % i)
+		post.user = user
+		post.save()
 
+create_db()
 
 # User.posts = ReferenceSet(User.id, UserPosts.user_id, UserPosts.post_id, Post.id)
 User.posts = ReferenceSet(User.id, Post.user_id, order_by = Desc(Post.id))	
-
+Post.comments = ReferenceSet(Post.id, Comment.post_id, order_by = Comment.id)
+User.comments = ReferenceSet(User.id, Comment.user_id, order_by = Desc(Comment.id))	
 #----------------------------------------
 # filters
 #----------------------------------------

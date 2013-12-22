@@ -586,9 +586,9 @@ hr {
 }
 .blog-teaser header img {
   margin-bottom: 20px;
-  -webkit-border-radius: 200px;
-  -moz-border-radius: 200px;
-  border-radius: 200px;
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+  border-radius: 10px;
 }
 .blog-teaser header h3 {
   color: #2c3e50;
@@ -879,7 +879,7 @@ aside.create-comment h2 i {
   font-size: 36px;
 }
 aside.comments .comment {
-  margin: 130px 0 0 0;
+  margin: 50px 0 0 0;
 }
 aside.comments .comment.reply {
   margin-left: 100px;

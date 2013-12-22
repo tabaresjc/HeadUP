@@ -5,8 +5,8 @@ from flask.ext.wtf import Form
 from flask.ext.paginate import Pagination
 from app import app, login_manager
 from models import Post
-
 from forms import PostForm, EditPostForm, NewPostForm
+
 import datetime
 
 class PostsView(FlaskView):
@@ -63,7 +63,7 @@ class PostsView(FlaskView):
                 except:
                     flash('Error while creating the post', 'error')
             else:
-                flash('Error while creating the post', 'error')
+                flash('Invalid submission, please check the message below', 'error')
         return render_template('admin/posts/add.html', 
             title = 'Create Post',
             form = form)
@@ -122,3 +122,4 @@ class PostsView(FlaskView):
         if request.method == 'POST':
             return redirect(url_for('PostsView:index'))               
         return jsonify(redirect_to=url_for('PostsView:index'))
+

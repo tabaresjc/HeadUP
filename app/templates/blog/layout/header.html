@@ -59,7 +59,7 @@
                     <a href="{{url_for('index')}}">Home</a>
                     {% if post %}
                     <span class="separator">&#x2F;</span>
-                    <a href="{{ url_for('PostsView:get',id=post.id) }}">{{post.title}}</a>                    
+                    <a href="{{ url_for('show_post',id=post.id) }}">{{post.title}}</a>                    
                     {% endif %}
                 </div>
             </div>

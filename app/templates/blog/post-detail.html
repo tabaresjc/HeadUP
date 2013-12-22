@@ -3,8 +3,10 @@
 <article class="blog-post">
     <header>
         <h1>{{post.title}}</h1>
-        <div class="lead-image">
-        	<img src="http://a57.foxnews.com/global.fncstatic.com/static/managed/img/fn2/feeds/Space.com/660/371/mars-one-lander-2018-mission-concept.jpg?ve=1&amp;tl=1" alt="mars-one-lander-2018-mission-concept" class="img-responsive" width="740px">
+        <div class="lead-image" style="min-height:110px;">
+            {% if post.image_url %}
+            <img src="{{post.image_url}}" class="img-responsive" width="100%">
+            {% endif %}
             <div class="meta clearfix">
   
                 <div class="author">
@@ -17,7 +19,7 @@
                 </div>
                 <div class="comments">
                     <i class="icon-comments"></i>
-                    <span class="data"><a href="#comments">0 Comments</a></span>
+                    <span class="data"><a href="#comments">{{post.comments.count()}} Comments</a></span>
                 </div>                                
             </div>
         </div>
@@ -27,102 +29,57 @@
     </div>
 </article>
 
-<aside class="social-icons clearfix">
-    <a href="#" class="social-icon color-one">
-            <div class="inner-circle" ></div>
-            <i class="icon-twitter"></i>
-    </a>
-    <a href="#" class="social-icon color-two">
-            <div class="inner-circle" ></div>
-            <i class="icon-google-plus"></i>
-    </a>
-    <a href="#" class="social-icon color-three">
-            <div class="inner-circle" ></div>
-            <i class="icon-facebook"></i>
-    </a>
-</aside>
 <aside class="comments" id="comments">
     <hr>
-    <h2><i class="icon-comments"></i> 24 Comments</h2>
-    <article class="comment">
+    <h2><i class="icon-comments"></i> {{post.comments.count()}} Comments</h2>    
+    {% for comment in post.comments %}
+    <article id="comment_{{comment.id}}" class="comment well">
         <header class="clearfix">
-            <img src="/static/blog/img/avatar.png" alt="A Smart Guy" class="avatar">
+            <img src="{{ comment.user.avatar(76) }}" alt="User: {{ comment.user.name }}" class="avatar">
             <div class="meta">
-                <h3><a href="#">Willy Wonka</a></h3>
+                <h3>{{ comment.user.name }}</h3>
                 <span class="date">
-                    27 July 2013
+                    {{ comment.created_at | datetimeformat('%d %B %y, %H:%m')}}
                 </span>
                 <span class="separator">
                     -
                 </span>
-                
                 <a href="#create-comment" class="reply-link">Reply</a>                
             </div>
         </header>
          <div class="body">
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut  liquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident.
+            {{ comment.body | safe }}
         </div>
     </article>
-
-    <article class="comment reply">
-        <header class="clearfix">
-            <img src="/static/blog/img/avatar.png" alt="A Smart Guy" class="avatar">
-            <div class="meta">
-                <h3><a href="#">Willy Wonka</a></h3>
-                <span class="date">
-                    27 July 2013
-                </span>
-                <span class="separator">
-                    -
-                </span>
-                
-                <a href="#create-comment" class="reply-link">Reply</a>                
+    {% endfor %}
+</aside>
+<aside class="create-comment" id="create-comment">
+    {% if form %}
+    {% from "shared/_bootstrap_forms.html" import render_inline_field %}
+    <hr>
+    <h2><i class="icon-heart"></i> Add Comment</h2>    
+    <div class="well">
+        <form action="{{url_for('show_post',id=post.id)}}" method="post" name="AddComment" autocomplete="off">
+            {{form.hidden_tag()}}
+            <div class="row">
+                <div class="col-md-2">
+                    <img src="{{ current_user.avatar(76) }}" alt="User: {{ current_user.name }}" class="img-circle">
+                </div>
+                <div class="col-md-10">
+                      <h3>{{current_user.name}}</h3>
+                </div>
             </div>
-        </header>
-         <div class="body">
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut  liquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident.
-        </div>
-    </article>
-
-    <article class="comment ">
-        <header class="clearfix">
-            <img src="/static/blog/img/avatar.png" alt="A Smart Guy" class="avatar">
-            <div class="meta">
-                <h3><a href="#">Willy Wonka</a></h3>
-                <span class="date">
-                    27 July 2013
-                </span>
-                <span class="separator">
-                    -
-                </span>
-                
-                <a href="#create-comment" class="reply-link">Reply</a>                
+            {{ render_inline_field(form.body, class="form-control",placeholder="Your thoughts...", rows="5") }}
+            <div class="buttons clearfix">
+                <button class="btn btn-xlarge btn-tales-two">Cancel</button>
+                <button type="submit" class="btn btn-xlarge btn-tales-one">Submit</button>
             </div>
-        </header>
-         <div class="body">
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut  liquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident.
-        </div>
-    </article>
-
-    <article class="comment">
-        <header class="clearfix">
-            <img src="/static/blog/img/avatar.png" alt="A Smart Guy" class="avatar">
-            <div class="meta">
-                <h3><a href="#">Willy Wonka</a></h3>
-                <span class="date">
-                    27 July 2013
-                </span>
-                <span class="separator">
-                    -
-                </span>
-                
-                <a href="#create-comment" class="reply-link">Reply</a>                
-            </div>
-        </header>
-         <div class="body">
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut  liquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident.
-        </div>
-    </article>        
+        </form>
+    </div>
+    {% else %}
+    <hr>
+    <h2><i class="glyphicon glyphicon-lock"></i> Comments closed</h2>        
+    {% endif %}
 </aside>
 
 {% endblock %}

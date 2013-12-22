@@ -4,6 +4,8 @@ from flask.ext.wtf import Form
 from flask.ext.paginate import Pagination
 from app import app, login_manager
 from app.posts.models import Post
+from app.comments.models import Comment
+from app.comments.forms import CommentForm
 
 @app.before_request
 def before_request():
@@ -41,13 +43,42 @@ def index(page=1):
         posts = posts,
         pagination = pagination)
 
-@app.route('/post/<int:id>')
+@app.route('/post/<int:id>', methods = ['GET','POST'])
 def show_post(id):
-    post = Post.get_by_id(id)
+    try:
+        post = Post.get_by_id(id)
+    except:
+        post = None
+
     if post is None:
         abort(404)
+
+    if request.method == 'POST':
+        if not current_user.is_authenticated():
+            abort(401)
+        form = CommentForm()
+        if form.validate_on_submit():
+            try:
+                comment = Comment.create()
+                form.populate_obj(comment)
+                comment.user = current_user
+                comment.post = post
+                comment.save()
+                flash('Comment succesfully created')
+                return redirect('%s#comment_%s' % (url_for('show_post', id=post.id),comment.id) )
+            except:
+                flash('Error while posting the new comment, please retry later', 'error')
+        else:
+            flash('Invalid submission, please check the message below', 'error')
+    else:
+        # Hides the form when the user is not authenticated
+        # Limit the number of comments per post
+        if not current_user.is_authenticated() or post.comments.count() > 50: 
+            form = None
+        else:
+            form = CommentForm()
+
     return render_template("blog/post-detail.html",
         title = 'Post | %s' % post.title,
-        post = post)
-
-
+        post = post,
+        form = form)

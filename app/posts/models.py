@@ -11,6 +11,7 @@ class Post(CRUDMixin):
     title = Unicode(default=u'')
     body = Unicode(default=u'')
     user_id = Int()
+    image_url = Unicode(default=u'')
     created_at = DateTime(default_factory = lambda: datetime.datetime(1970, 1, 1))
     modified_at = DateTime(default_factory = lambda: datetime.datetime(1970, 1, 1))
     user = Reference(user_id, User.id)
@@ -27,6 +28,7 @@ class Post(CRUDMixin):
                     "(id SERIAL PRIMARY KEY,\
                       title VARCHAR(128) NOT NULL,\
                       body TEXT,\
+                      image_url VARCHAR(255),\
                       user_id INTEGER,\
                       created_at TIMESTAMP,\
                       modified_at TIMESTAMP);", noresult=True)

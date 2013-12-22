@@ -41,7 +41,10 @@ class User(UserMixin, CRUDMixin):
 
     def get_user_posts(self, limit = 10, page = 1):      
       return self.posts.find().config(offset=(page-1)*limit, limit=limit)
-    
+
+    def get_user_comments(self, limit = 10, page = 1):      
+      return self.comments.find().config(offset=(page-1)*limit, limit=limit)
+
     @staticmethod
     def find_by_email(email):
       return store.find(User, User.email == email).one() 

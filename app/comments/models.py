@@ -2,28 +2,32 @@ from flask.ext.login import UserMixin
 from app import app, database, store
 from app.mixins import CRUDMixin
 from storm.locals import *
+from app.users.models import User
+from app.posts.models import Post
 import datetime
 
 
 class Comment(CRUDMixin):
-	__storm_table__ = "comments"
+    __storm_table__ = "comments"
+    body = Unicode(default=u'')
     user_id = Int()
     post_id = Int()
-    body = Unicode(default=u'')
     created_at = DateTime(default_factory = lambda: datetime.datetime(1970, 1, 1))
     modified_at = DateTime(default_factory = lambda: datetime.datetime(1970, 1, 1))   
-    
+    user = Reference(user_id, User.id)
+    post = Reference(post_id, Post.id)
+
     @staticmethod
     def create_table():
       store.execute("CREATE TABLE comments "
                     "(id SERIAL PRIMARY KEY,\
+                      body VARCHAR(512),\
                       user_id INTEGER,\
                       post_id INTEGER,\
-                      body VARCHAR(512),\
                       created_at TIMESTAMP,\
                       modified_at TIMESTAMP);", noresult=True)
-      store.execute("CREATE INDEX users_email_idx ON users USING btree (email);", noresult=True)
-      store.execute("CREATE INDEX users_nickname_idx ON users USING btree (nickname);", noresult=True)
+      store.execute("CREATE INDEX comments_users_idx ON comments USING btree (user_id);", noresult=True)
+      store.execute("CREATE INDEX comments_posts_idx ON comments USING btree (post_id);", noresult=True)
       store.commit()
       return True
 
