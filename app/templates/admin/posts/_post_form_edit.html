@@ -3,7 +3,7 @@
     {{form.hidden_tag()}}
     {{ render_inline_field(form.title, class="form-control",placeholder="Insert title") }}
     {{ render_inline_field(form.image_url, class="form-control",placeholder="Insert URL of Featured Image") }}
-    {{ render_inline_field(form.body, class="form-control",placeholder="Compose new post...", rows="20") }}
+    {{ render_inline_field(form.body, class="ckeditor",placeholder="Compose new post...", rows="20") }}
 	<div class="checkbox">
 		<label>
 		{{ render_inline_field(form.remain) }} See the post after submit

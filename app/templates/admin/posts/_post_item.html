@@ -28,7 +28,11 @@
 		<div class="row">
 
 		    <div class="col-md-12">
-		    {{post.body|htmltruncate(500)|safe}}
+		    {% if request.endpoint.startswith('PostsView:get') %}
+		    	{{post.body|safe}}
+		    {% else %}
+		    	{{post.body|htmltruncate(500)|safe}}
+		    {% endif %}
 		    </div>
 	    </div>
 	</div>
