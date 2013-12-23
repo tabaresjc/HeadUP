@@ -22,7 +22,7 @@
                     {% if not user.is_current() and current_user.is_admin() %}
                     <div class="item">
                         <i class="icon-trash icon-formatted"></i>
-                        <a href="{{ url_for('UsersView:delete_0', id = user.id) }}" data-method="post" data-confirm="This will remove'{{ user.name }}', Are you sure?">Delete User</a>
+                        <a href="{{ url_for('UsersView:delete_0', id = user.id) }}" data-method="post" data-confirm="This will remove '{{ user.name }}', Are you sure?">Delete User</a>
                     </div>
                     {% endif %}
                     <div class="item">

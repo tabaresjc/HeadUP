@@ -9,7 +9,7 @@
                 <hr>
             </header>
             <div class="body">
-                {{post.body|safe}}
+                {{post.body|htmltruncate(500)|safe}}
             </div>
             <div class="clearfix">
                 <a href="{{ url_for('show_post', id=post.id) }}" class="btn btn-tales-one">Read more</a>

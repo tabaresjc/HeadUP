@@ -6,6 +6,7 @@ from flask_wtf.csrf import CsrfProtect
 from storm.locals import create_database, Store, ReferenceSet, Reference, Desc
 from config import STORM_DATABASE_URI
 from ago import human
+from utilities import truncate
 import os
 import datetime
 
@@ -102,8 +103,13 @@ def get_stat(value):
     else:
         return 0
 
+def htmltruncate(value,target_len = 200, ellipsis='...'):
+    return truncate(value,target_len,ellipsis)
+
 app.jinja_env.filters['datetimeformat'] = datetimeformat
 app.jinja_env.filters['humanformat'] = humanformat
 app.jinja_env.filters['user_role'] = user_role
-app.jinja_env.tests['administrator'] = is_administrator
 app.jinja_env.filters['get_stat'] = get_stat
+app.jinja_env.filters['htmltruncate'] = htmltruncate
+
+app.jinja_env.tests['administrator'] = is_administrator
