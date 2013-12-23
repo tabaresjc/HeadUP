@@ -39,7 +39,7 @@
                     {% block main %}{% endblock %}
                 </div>
                 <aside class="col-md-4 blog-aside">
-                    {% if current_user.is_authenticated  %}
+                    {% if current_user.is_authenticated()  %}
                     <div class="aside-widget">
                         <header>
                             <h3>Actions</h3>
