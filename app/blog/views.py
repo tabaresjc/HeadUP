@@ -3,13 +3,17 @@ from flask.ext.login import login_user, logout_user, current_user, login_require
 from flask.ext.wtf import Form
 from flask.ext.paginate import Pagination
 from app import app, login_manager
+from app.users.models import User
 from app.posts.models import Post
 from app.comments.models import Comment
 from app.comments.forms import CommentForm
 
-# @app.before_request
-# def before_request():
-#     g.user = current_user
+@app.before_request
+def before_request():
+    if request.endpoint in ['index','show_post']:
+        g.user_count = User.count()
+        g.post_count = Post.count()
+        g.comment_count = Comment.count()
 
 @app.errorhandler(401)
 def internal_error(error):

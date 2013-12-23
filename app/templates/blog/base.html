@@ -39,20 +39,22 @@
                     {% block main %}{% endblock %}
                 </div>
                 <aside class="col-md-4 blog-aside">
-                    {% if post and current_user.is_authenticated and post.is_mine() %}
+                    {% if current_user.is_authenticated  %}
                     <div class="aside-widget">
                         <header>
                             <h3>Actions</h3>
                         </header>
                         <div class="body">                            
-                            <ul class="tales-list">                                
+                            <ul class="tales-list">
+                                {% if post and post.is_mine()%}                               
                                 <li><a href="{{ url_for('PostsView:put_0',id=post.id) }}">Edit Post</a></li>
                                 <li><a href="{{ url_for('PostsView:delete_0', id = post.id) }}" data-method="post" data-confirm="This will remove '{{ post.title }}', Are you sure?">Delete User</a></li>
+                                {% endif %}
                                 <li><a href="{{ url_for('PostsView:post_0') }}">New Post</a></li>
                             </ul>
                         </div>
                     </div>
-                    {% endif %}                         
+                    {% endif %}
                     <div class="aside-widget">
                         <header>
                             <h3>Recent Posts</h3>

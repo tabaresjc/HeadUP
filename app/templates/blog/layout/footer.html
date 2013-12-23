@@ -4,18 +4,17 @@
                 <div class="row">
                     <div class="col-md-4 footer-widget">
                         <h3> <i class="icon-cog"></i>Statistics</h3>
-
                         <div class="stats">
                             <div class="line">
-                                <span class="counter">{{1|get_stat}}</span>
+                                <span class="counter">{{g.user_count}}</span>
                                 <span class="caption">Authors</span>
                             </div>
                             <div class="line">
-                                <span class="counter">{{2|get_stat}}</span>
+                                <span class="counter">{{g.post_count}}</span>
                                 <span class="caption">Posts</span>
                             </div>
                             <div class="line">
-                                <span class="counter">{{3|get_stat}}</span>
+                                <span class="counter">{{g.comment_count}}</span>
                                 <span class="caption">Comments</span>
                             </div>                    
                         </div>
@@ -25,7 +24,9 @@
         </div>
         <div class="widewrapper copyright">
             <div class="container">
-                @2013 Pigeon Inc
+                @2013 Pigeon Inc - Articles and Images from <a href="http://www.space.com/" target="_blank"><strong>Space and NASA News</strong></a>
+
+
             </div>
         </div>
     </footer>

@@ -39,31 +39,17 @@
 {% block stats %}
 <div id="main-stats">
 	<div class="row stats-row">
-		<div class="col-md-3 col-sm-3 stat">
+		<div class="col-md-6 col-sm-6 stat">
 			<div class="data">
 				<span class="number">{{current_user.posts.count()}}</span>
 				Posts
 			</div>
 			<span class="date"></span>
 		</div>
-		<div class="col-md-3 col-sm-3 stat">
+		<div class="col-md-6 col-sm-6 stat">
 			<div class="data">
 				<span class="number">{{current_user.comments.count()}}</span>
 				Comments
-			</div>
-			<span class="date"></span>
-		</div>
-		<div class="col-md-3 col-sm-3 stat">
-			<div class="data">
-				<span class="number">0</span>
-				Reply
-			</div>
-			<span class="date"></span>
-		</div>
-		<div class="col-md-3 col-sm-3 stat">
-			<div class="data">
-				<span class="number">0</span>
-				Visits
 			</div>
 			<span class="date"></span>
 		</div>

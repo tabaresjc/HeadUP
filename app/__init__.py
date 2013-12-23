@@ -86,15 +86,12 @@ def is_administrator(value):
     else:
     	return False
 
+def htmltruncate(value,target_len = 200, ellipsis='...'):
+    return truncate(value,target_len,ellipsis)
+
 # Get stats and values for the widgets of the blog
 def get_stat(value):
-    if value == 1:
-        return User.count()
-    elif value == 2:
-        return Post.count()
-    elif value == 3:
-        return Comment.count()
-    elif value == 4:
+    if value == 4:
         last_post, count = Post.pagination()
         return last_post
     elif value == 5:
@@ -103,13 +100,11 @@ def get_stat(value):
     else:
         return 0
 
-def htmltruncate(value,target_len = 200, ellipsis='...'):
-    return truncate(value,target_len,ellipsis)
-
 app.jinja_env.filters['datetimeformat'] = datetimeformat
 app.jinja_env.filters['humanformat'] = humanformat
 app.jinja_env.filters['user_role'] = user_role
-app.jinja_env.filters['get_stat'] = get_stat
 app.jinja_env.filters['htmltruncate'] = htmltruncate
+app.jinja_env.filters['get_stat'] = get_stat
+
 
 app.jinja_env.tests['administrator'] = is_administrator
