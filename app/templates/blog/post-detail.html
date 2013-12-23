@@ -33,7 +33,7 @@
     <hr>
     <h2><i class="icon-comments"></i> {{post.comments.count()}} Comments</h2>    
     {% for comment in post.comments %}
-    <article id="comment_{{comment.id}}" class="comment well">
+    <article id="comment_{{comment.id}}" class="comment">
         <header class="clearfix">
             <img src="{{ comment.user.avatar(76) }}" alt="User: {{ comment.user.name }}" class="avatar">
             <div class="meta">
@@ -41,10 +41,10 @@
                 <span class="date">
                     {{ comment.created_at | datetimeformat('%d %B %y, %H:%m')}}
                 </span>
-                <span class="separator">
+                <!-- <span class="separator">
                     -
                 </span>
-                <a href="#create-comment" class="reply-link">Reply</a>                
+                <a href="#create-comment" class="reply-link">Reply</a> -->                
             </div>
         </header>
          <div class="body">
@@ -76,9 +76,17 @@
             </div>
         </form>
     </div>
+    {% elif post.comments.count() > 50 %}
+    <hr>
+    <h3><i class="glyphicon glyphicon-lock"></i> Comments closed</h3>
     {% else %}
     <hr>
-    <h2><i class="glyphicon glyphicon-lock"></i> Comments closed</h2>        
+    <div style="text-align:center;">
+        <h3><i class="glyphicon glyphicon-log-in"></i> To comment please sign in</h3>
+        <a href="{{ url_for('sessions.login_comment', id=post.id) }}" class="btn btn-lg btn-primary" style="float:none;">
+            Sign in
+        </a>
+    </div>
     {% endif %}
 </aside>
 

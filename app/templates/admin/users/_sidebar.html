@@ -19,7 +19,7 @@
                         <i class="icon-eye-open icon-formatted"></i>
                         <a href="{{ url_for('UsersView:get', id = user.id) }}">Show User</a>
                     </div>
-                    {% if current_user.is_admin() and user.id != current_user.id %}             
+                    {% if not user.is_current() and current_user.is_admin() %}
                     <div class="item">
                         <i class="icon-trash icon-formatted"></i>
                         <a href="{{ url_for('UsersView:delete_0', id = user.id) }}" data-method="post" data-confirm="This will remove'{{ user.name }}', Are you sure?">Delete User</a>

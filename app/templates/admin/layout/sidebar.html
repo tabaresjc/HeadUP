@@ -1,84 +1,84 @@
-{% set navigation_bar = {
-    'home': {
-        'name': 'Dashboard',
-        'url': 'dashboard',
-        'icon': 'icon-home',
-        'pattern': 'dashboard',
-        'index': '0'
-    },
-    'posts': {
-        'name': 'Posts',
-        'url': '',
-        'icon': 'icon-edit',
-        'pattern': 'PostsView',
-        'index': '1',
-        'sub-menu': {
-            'index': {
-                'name': 'Post List',
-                'url': 'PostsView:index',
-                'index': '0'
-            },
-            'new': {
-                'name': 'New Post',
-                'url': 'PostsView:post_0',
-                'index': '1'
-            }
-        }       
-    },
-    'users': {
-        'name': 'Users',
-        'url': '',
-        'icon': 'icon-user',
-        'pattern': 'UsersView',
-        'index': '2',
-        'sub-menu': {
-            'index': {
-                'name': 'User List',
-                'url': 'UsersView:index',
-                'index': '0'
-            },
-            'new': {
-                'name': 'New User',
-                'url': 'UsersView:post_0',
-                'index': '1'
-            }            
-        }       
-    }    
-} -%}
-<div id="sidebar-nav">
-    <ul id="dashboard-menu">
-        {% for item in navigation_bar|sort(attribute='index', reverse=True) %}        
-        <li class="element">
-            {% if request.endpoint.startswith(navigation_bar[item]['pattern'])  %}
-            <div class="pointer">
-                <div class="arrow"></div>
-                <div class="arrow_border"></div>
-            </div>
-            {% endif %}
-            {% if 'sub-menu' in navigation_bar[item]  %}
-            <a class="dropdown-toggle" href="javascript:void(0);">
-                <i class="{{ navigation_bar[item]['icon'] }}"></i>
-                <span>{{ navigation_bar[item]['name'] }}</span>
-                <i class="icon-chevron-down"></i>
-            </a>
-            <ul class="submenu">
-                {% for si in navigation_bar[item]['sub-menu']|sort(attribute='index', reverse=True) %}
-                <li><a href="{{ url_for(navigation_bar[item]['sub-menu'][si]['url']) }}">{{navigation_bar[item]['sub-menu'][si]['name']}}</a></li>
-                {% endfor %}
-            </ul>
-            {% else %}
-            <a href="{{ url_for(navigation_bar[item]['url']) }}" >
-                <i class="{{ navigation_bar[item]['icon'] }}"></i>
-                <span>{{ navigation_bar[item]['name'] }}</span>
-            </a>
-            {% endif %}
-        </li>
-        {% endfor %}
-        <li>
-            <a href="{{ url_for('sessions.logout') }}" data-method="post" >
-                <i class="icon-signout"></i>
-                <span>Sign Out</span>
-            </a>
-        </li>
-    </ul>
-</div>
+    {% set navigation_bar = {
+        'home': {
+            'name': 'Dashboard',
+            'url': 'dashboard',
+            'icon': 'icon-home',
+            'pattern': 'dashboard',
+            'index': '0'
+        },
+        'posts': {
+            'name': 'Posts',
+            'url': '',
+            'icon': 'icon-edit',
+            'pattern': 'PostsView',
+            'index': '1',
+            'sub-menu': {
+                'index': {
+                    'name': 'Post List',
+                    'url': 'PostsView:index',
+                    'index': '0'
+                },
+                'new': {
+                    'name': 'New Post',
+                    'url': 'PostsView:post_0',
+                    'index': '1'
+                }
+            }       
+        },
+        'users': {
+            'name': 'Users',
+            'url': '',
+            'icon': 'icon-user',
+            'pattern': 'UsersView',
+            'index': '2',
+            'sub-menu': {
+                'index': {
+                    'name': 'User List',
+                    'url': 'UsersView:index',
+                    'index': '0'
+                },
+                'new': {
+                    'name': 'New User',
+                    'url': 'UsersView:post_0',
+                    'index': '1'
+                }            
+            }       
+        }    
+    } -%}
+    <div id="sidebar-nav">
+        <ul id="dashboard-menu">
+            {% for item in navigation_bar|sort(attribute='index', reverse=True) %}        
+            <li class="element">
+                {% if request.endpoint.startswith(navigation_bar[item]['pattern'])  %}
+                <div class="pointer">
+                    <div class="arrow"></div>
+                    <div class="arrow_border"></div>
+                </div>
+                {% endif %}
+                {% if 'sub-menu' in navigation_bar[item]  %}
+                <a class="dropdown-toggle" href="javascript:void(0);">
+                    <i class="{{ navigation_bar[item]['icon'] }}"></i>
+                    <span>{{ navigation_bar[item]['name'] }}</span>
+                    <i class="icon-chevron-down"></i>
+                </a>
+                <ul class="submenu">
+                    {% for si in navigation_bar[item]['sub-menu']|sort(attribute='index', reverse=True) %}
+                    <li><a href="{{ url_for(navigation_bar[item]['sub-menu'][si]['url']) }}">{{navigation_bar[item]['sub-menu'][si]['name']}}</a></li>
+                    {% endfor %}
+                </ul>
+                {% else %}
+                <a href="{{ url_for(navigation_bar[item]['url']) }}" >
+                    <i class="{{ navigation_bar[item]['icon'] }}"></i>
+                    <span>{{ navigation_bar[item]['name'] }}</span>
+                </a>
+                {% endif %}
+            </li>
+            {% endfor %}
+            <li>
+                <a href="{{ url_for('sessions.logout') }}" data-method="post" >
+                    <i class="icon-signout"></i>
+                    <span>Sign Out</span>
+                </a>
+            </li>
+        </ul>
+    </div>

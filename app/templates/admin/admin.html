@@ -36,16 +36,15 @@
     {% set container_class = container_class|default('') %}
     {% set show_banner = show_banner|default(True) %}
 
+    {% if current_user.is_authenticated() %}
     <!-- navbar -->
     {% include 'admin/layout/navbar.html' %}
     <!-- end navbar -->
-
     <!-- sidebar -->
     {% if show_banner %} {% include 'admin/layout/sidebar.html' %} {% endif %}
     <!-- end sidebar -->
-
+    {% endif %}
 	<!-- container -->
-
     <div class="content {{ content_class }}">
         {% block stats %}{% endblock %}
         <div id="pad-wrapper" class="{{container_class}}">

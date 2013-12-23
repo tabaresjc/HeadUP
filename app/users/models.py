@@ -1,4 +1,4 @@
-from flask.ext.login import UserMixin
+from flask.ext.login import UserMixin, current_user
 from werkzeug.security import generate_password_hash, check_password_hash
 from app import app, database, store
 from app.mixins import CRUDMixin
@@ -32,6 +32,9 @@ class User(UserMixin, CRUDMixin):
 
     def is_admin(self):
       return self.role == int(ROLE_ADMIN)
+
+    def is_current(self):
+      return self.id == current_user.id
 
     def avatar(self, size):
       return 'http://www.gravatar.com/avatar/' + md5(self.email).hexdigest() + '?d=mm&s=' + str(size)

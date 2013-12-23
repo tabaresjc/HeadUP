@@ -8,13 +8,11 @@
             </button>
             <a class="navbar-brand" href="{{ url_for('index') }}"><strong>Pigeon</strong> Blog</a>
         </div>
-        <ul class="nav navbar-nav pull-right hidden-xs">
-            {% if g.user.is_authenticated() %}
-
+        <ul class="nav navbar-nav pull-right hidden-xs">            
             <li>
-                <a href="javascript:void(0);" class="hidden-xs hidden-sm">Welcome, {{g.user.name}} </a>
-            </li>            
-            {% endif %}
+                <a href="javascript:void(0);" class="hidden-xs hidden-sm">Welcome, {{current_user.name}} </a>
+            </li>
+            
             <li class="dropdown">
                 <a href="javascript:void(0);" class="dropdown-toggle hidden-xs hidden-sm" data-toggle="dropdown">
                     Your account
@@ -23,6 +21,8 @@
                 <ul class="dropdown-menu">
                     <li><a href="{{ url_for('PostsView:index') }}">Posts</a></li>
                     <li><a href="{{ url_for('PostsView:post_0') }}">Add new Post</a></li>
+                    <li class="divider"></li>
+                    <li><a href="{{ url_for('UsersView:get', id=current_user.id) }}">Profile</a></li>
                 </ul>
             </li>
             <li class="settings hidden-xs hidden-sm">

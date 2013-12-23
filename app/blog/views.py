@@ -7,9 +7,9 @@ from app.posts.models import Post
 from app.comments.models import Comment
 from app.comments.forms import CommentForm
 
-@app.before_request
-def before_request():
-    g.user = current_user
+# @app.before_request
+# def before_request():
+#     g.user = current_user
 
 @app.errorhandler(401)
 def internal_error(error):

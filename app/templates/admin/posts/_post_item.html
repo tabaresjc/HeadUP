@@ -17,7 +17,20 @@
 	    </div>
 	</div>
 	<div class="panel-body">
-		{{ post.body|safe }}	
+		{% if post.image_url %}
+		<div class="row">
+		    <div class="col-md-12">
+		    	<img src="{{post.image_url}}" class="img-responsive img-rounded" width="100%">
+		    	<br/>
+		    </div>
+	    </div>
+	    {% endif %}
+		<div class="row">
+
+		    <div class="col-md-12">
+		    {{ post.body|safe }}
+		    </div>
+	    </div>
 	</div>
 	<div class="panel-footer">
 		<div>

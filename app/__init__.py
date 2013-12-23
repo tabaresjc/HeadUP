@@ -54,56 +54,16 @@ CommentsView.register(app)
 from app.users.models import User
 from app.posts.models import Post
 from app.comments.models import Comment
+from app.db_init import DbInit
 
-def init_db():
-	user = User.create()
-	user.name = u'Juan Tabares'
-	user.nickname = u'jctt'
-	user.set_password(u'admin123456')
-	user.role = 1
-	user.email = u'juan.ctt@live.com'
-	user.last_seen = datetime.datetime.now()
-	user.save()
-
-	user1 = User.create()
-	user1.name = u'Mrs. Arnaldo Wyman'
-	user1.nickname = u'arnaldo'
-	user1.set_password(u'admin123456')
-	user1.email = u'example-2@railstutorial.org'
-	user1.last_seen = datetime.datetime.now()
-	user1.save()
-
-def create_db():
-	# Posts
-	if not Post.exist_table():
-		Post.create_table()
-
-	# Comments
-	if not Comment.exist_table():
-		Comment.create_table()
-
-	# Users
-	if not User.exist_table():
-		User.create_table()
-		init_db()
-
-
-def create_posts():
-	user = User.get_by_id(1)
-	for i in range(1, 50):
-		print 'creating post # %s' %i
-		post = Post.create()
-		post.title = unicode('Title %s' % i)
-		post.body = unicode('Body %s' % i)
-		post.user = user
-		post.save()
-
-create_db()
+DbInit.create_db()
 
 # User.posts = ReferenceSet(User.id, UserPosts.user_id, UserPosts.post_id, Post.id)
 User.posts = ReferenceSet(User.id, Post.user_id, order_by = Desc(Post.id))	
 Post.comments = ReferenceSet(Post.id, Comment.post_id, order_by = Comment.id)
-User.comments = ReferenceSet(User.id, Comment.user_id, order_by = Desc(Comment.id))	
+User.comments = ReferenceSet(User.id, Comment.user_id, order_by = Desc(Comment.id))
+Comment.replies = ReferenceSet(Comment.id, Comment.comment_id, order_by = Comment.id)
+
 #----------------------------------------
 # filters
 #----------------------------------------
@@ -125,7 +85,25 @@ def is_administrator(value):
     else:
     	return False
 
+# Get stats and values for the widgets of the blog
+def get_stat(value):
+    if value == 1:
+        return User.count()
+    elif value == 2:
+        return Post.count()
+    elif value == 3:
+        return Comment.count()
+    elif value == 4:
+        last_post, count = Post.pagination()
+        return last_post
+    elif value == 5:
+        last_comments, count = Comment.pagination()
+        return last_comments        
+    else:
+        return 0
+
 app.jinja_env.filters['datetimeformat'] = datetimeformat
 app.jinja_env.filters['humanformat'] = humanformat
 app.jinja_env.filters['user_role'] = user_role
 app.jinja_env.tests['administrator'] = is_administrator
+app.jinja_env.filters['get_stat'] = get_stat

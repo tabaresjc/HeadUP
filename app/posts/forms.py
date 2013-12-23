@@ -18,5 +18,6 @@ class NewPostForm(EditPostForm):
 		Form.__init__(self, *args, **kwargs)
 		self.title.data = post.title
 		self.body.data = post.body
+		self.image_url.data = post.image_url
 
 

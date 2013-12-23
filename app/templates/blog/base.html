@@ -38,7 +38,21 @@
                     {% include 'shared/message.html' %}
                     {% block main %}{% endblock %}
                 </div>
-                <aside class="col-md-4 blog-aside">
+                <aside class="col-md-4 blog-aside">                    
+                    <div class="aside-widget">
+                        <header>
+                            <h3>Recent Posts</h3>
+                        </header>
+                        <div class="body">
+                            {% set last_posts = 4|get_stat %}
+                            <ul class="tales-list">
+                                {% for p in last_posts %}
+                                <li><a href="{{ url_for('show_post',id=p.id) }}">{{p.title}}</a></li>
+                                {% endfor %}
+                            </ul>
+                        </div>
+                    </div>
+                 
                     {% for widget in widgets %}
                     <div class="aside-widget">
                         <header>
@@ -47,7 +61,7 @@
                         <div class="body">
                             {{widget.body}}
                         </div>
-                    </div>                    
+                    </div>
                     {% endfor %}
                 </aside>
             </div>

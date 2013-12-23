@@ -5,6 +5,7 @@ from flask.ext.wtf import Form
 from flask.ext.paginate import Pagination
 from app import app, login_manager
 from models import Post
+from app.comments.models import Comment
 from forms import PostForm, EditPostForm, NewPostForm
 
 import datetime
@@ -21,14 +22,16 @@ class PostsView(FlaskView):
             page = 1
 
         limit = 5
-        pagination = Pagination(page=page, 
-            per_page=limit, 
-            total=current_user.posts.count(), 
-            record_name='posts', 
-            alignment = 'right', 
-            bs_version=3)
+        posts, count = Post.pagination(page=page, limit=limit)
 
-        posts = current_user.get_user_posts(page=page, limit=limit)
+        pagination = Pagination(page=page, 
+            per_page= limit, 
+            total= count, 
+            record_name= 'posts', 
+            alignment = 'right', 
+            bs_version= 3)
+
+        
         return render_template('admin/posts/index.html', 
             title = 'Posts | Page %s' % page,
             form = form,
@@ -37,7 +40,6 @@ class PostsView(FlaskView):
     
     def get(self,id):
         post = Post.get_by_id(id)
-
         if post is None:
             flash('The post was not found', 'error')
             return redirect(url_for('PostsView:index'))
@@ -74,7 +76,7 @@ class PostsView(FlaskView):
         post = Post.get_by_id(id)
         if post is None:
             flash('The post was not found', 'error')
-            return redirect(url_for('UsersView:index'))
+            return redirect(url_for('PostsView:index'))
         if not current_user.is_admin() and  not post.is_mine():
             abort(401)
 
@@ -108,16 +110,21 @@ class PostsView(FlaskView):
     @route('/remove/<int:id>', methods = ['POST'])
     def delete(self,id):
         post = Post.get_by_id(id)
-        if not current_user.is_admin() and not post.is_mine():
+        if post is None:
+            flash('The post was not found', 'error')
+            return redirect(url_for('PostsView:index'))
+        if not current_user.is_admin() and  not post.is_mine():
             abort(401)
+
         try:
-            if post is None:
-                raise Exception('Post not found')
             title  = post.title
+            Comment.delete_rows(Comment.post_id==post.id)           
             Post.delete(post.id)
+
             flash('The post "%s" was removed' % title)
         except:
             flash('Error while removing the post', 'error')
+            raise
 
         if request.method == 'POST':
             return redirect(url_for('PostsView:index'))               

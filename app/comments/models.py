@@ -10,12 +10,17 @@ import datetime
 class Comment(CRUDMixin):
     __storm_table__ = "comments"
     body = Unicode(default=u'')
-    user_id = Int()
-    post_id = Int()
+    user_id = Int(default=0)
+    post_id = Int(default=0)
+    comment_id = Int(default=0)
     created_at = DateTime(default_factory = lambda: datetime.datetime(1970, 1, 1))
     modified_at = DateTime(default_factory = lambda: datetime.datetime(1970, 1, 1))   
     user = Reference(user_id, User.id)
     post = Reference(post_id, Post.id)
+    reply = Reference(comment_id, id)
+    
+    def __repr__(self): # pragma: no cover
+      return '<Comment %s>' % (self.id)
 
     @staticmethod
     def create_table():
@@ -24,10 +29,12 @@ class Comment(CRUDMixin):
                       body VARCHAR(512),\
                       user_id INTEGER,\
                       post_id INTEGER,\
+                      comment_id INTEGER,\
                       created_at TIMESTAMP,\
                       modified_at TIMESTAMP);", noresult=True)
       store.execute("CREATE INDEX comments_users_idx ON comments USING btree (user_id);", noresult=True)
       store.execute("CREATE INDEX comments_posts_idx ON comments USING btree (post_id);", noresult=True)
+      store.execute("CREATE INDEX comments_comment_idx ON comments USING btree (comment_id);", noresult=True)
       store.commit()
       return True
 

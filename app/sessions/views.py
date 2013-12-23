@@ -22,7 +22,7 @@ def unauthorized():
 
 @mod.route('/login', methods = ['GET', 'POST'])
 def login():
-    if g.user is not None and g.user.is_authenticated():
+    if current_user.is_authenticated():
         flash('You are already signed in.')
         return redirect(url_for('index'))
 
@@ -50,7 +50,12 @@ def login():
 
     return render_template('admin/signin.html', 
         title = 'Sign In',
-        form = form)    
+        form = form)
+
+@mod.route('/login/comment/<int:id>')
+def login_comment(id):
+    session['redirect_to'] = '%s#%s' % (url_for('show_post', id=id), "create-comment")
+    return redirect(url_for('sessions.login'))
 
 @mod.route('/logout', methods = ['POST', 'DELETE'])
 @login_required
@@ -69,9 +74,10 @@ def logout():
 
 @mod.route('/signup', methods = ['GET', 'POST'])
 def signup():
-    if g.user is not None and g.user.is_authenticated():
+    if current_user.is_authenticated():
         flash('You are already signed in.')
         return redirect(url_for('index'))        
+    
     form = SignUpForm()
     if form.validate_on_submit():
         try:

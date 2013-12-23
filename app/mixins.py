@@ -42,6 +42,11 @@ class CRUDMixin(object):
         return commit and store.commit()
 
     @classmethod
+    def delete_rows(cls, *args):
+        store.find(cls, args).remove()
+        return store.commit()
+
+    @classmethod
     def count(cls):
         return store.find(cls).count()
 
