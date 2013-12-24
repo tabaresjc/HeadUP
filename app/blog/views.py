@@ -2,7 +2,7 @@ from flask import Blueprint, render_template, flash, redirect, session, url_for,
 from flask.ext.login import login_user, logout_user, current_user, login_required
 from flask.ext.wtf import Form
 from flask.ext.paginate import Pagination
-from app import app, login_manager
+from app import app, login_manager, store
 from app.users.models import User
 from app.posts.models import Post
 from app.comments.models import Comment
@@ -29,6 +29,7 @@ def internal_error(error):
 
 @app.errorhandler(500)
 def internal_error(error):
+    store.rollback()
     return render_template('admin/500.html', title= 'Error %s' % error), 500
 
 @app.route('/', defaults={'page': 1})
