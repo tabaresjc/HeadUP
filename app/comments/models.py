@@ -26,7 +26,7 @@ class Comment(CRUDMixin):
     def create_table():
       store.execute("CREATE TABLE comments "
                     "(id SERIAL PRIMARY KEY,\
-                      body VARCHAR(512),\
+                      body VARCHAR(16384),\
                       user_id INTEGER,\
                       post_id INTEGER,\
                       comment_id INTEGER,\

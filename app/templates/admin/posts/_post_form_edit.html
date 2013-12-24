@@ -3,15 +3,15 @@
     {{form.hidden_tag()}}
     {{ render_inline_field(form.title, class="form-control",placeholder="Insert title") }}
     {{ render_inline_field(form.image_url, class="form-control",placeholder="Insert URL of Featured Image") }}
-    {{ render_inline_field(form.body, class="ckeditor",placeholder="Compose new post...", rows="20") }}
+    {{ render_inline_field(form.body,id="txt_editor_area",placeholder="Compose new post...", rows="20") }}
 	<div class="checkbox">
 		<label>
 		{{ render_inline_field(form.remain) }} See the post after submit
 		</label>
 	</div>    
     
-    <div class="actions">
+    <div class="actions clearfix">
     	<input type="submit" value="Save" class="btn btn-large btn-primary pull-right">
-        <div class="clearfix"></div>
+        <input id="btn_editor_clear" type="reset" value="Clear" class="btn btn-large btn-danger">
     </div>
 </form>

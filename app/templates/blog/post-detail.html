@@ -1,6 +1,8 @@
 {% extends "blog/base.html" %}
 {% block custom_js %}
     <script src="/static/ckeditor/ckeditor.js"></script>
+    <script src="/static/ckeditor/adapters/jquery.js"></script>
+    <script src="/static/js/editor_loader.js"></script>
 {% endblock %}
 {% block main %}
 <article class="blog-post">
@@ -72,9 +74,9 @@
                       <h3>{{current_user.name}}</h3>
                 </div>
             </div>
-            {{ render_inline_field(form.body, class="ckeditor",placeholder="Your thoughts...", rows="5") }}
+            {{ render_inline_field(form.body,id="txt_editor_area",placeholder="Your thoughts...", rows="5") }}
             <div class="buttons clearfix">
-                <button type="reset" class="btn btn-lg btn-tales-two">Clear</button>
+                <button id="btn_editor_clear" type="reset" class="btn btn-lg btn-tales-two">Clear</button>
                 <button type="submit" class="btn btn-lg btn-tales-one">Submit</button>
             </div>
         </form>
