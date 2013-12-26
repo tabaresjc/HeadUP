@@ -1,0 +1,18 @@
+{% extends "admin/admin.html" %}
+{% block custom_css %}
+    <link rel="stylesheet" href="/static/admin/css/compiled/index.css" type="text/css" media="screen" />
+    <link rel="stylesheet" href="/static/admin/css/compiled/ui-elements.css" type="text/css" media="screen">
+{% endblock %}
+{% block main %}
+		<div class="row">
+		    <div class="col-md-8 col-md-offset-2">
+		    	{{ pagination.info|safe }}
+		    	{{ pagination.links|safe }}
+		    	<div class="clearfix"></div>
+				{% for post in posts %}
+				{% include 'admin/posts/_post_item.html' %}
+				{% endfor %}
+				{{ pagination.links|safe }}
+		    </div>
+		</div>
+{% endblock %}

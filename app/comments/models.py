@@ -18,7 +18,7 @@ class Comment(CRUDMixin):
     user = Reference(user_id, User.id)
     post = Reference(post_id, Post.id)
     reply = Reference(comment_id, id)
-    
+
     def __repr__(self): # pragma: no cover
       return '<Comment %s>' % (self.id)
 

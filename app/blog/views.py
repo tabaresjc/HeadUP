@@ -1,4 +1,4 @@
-from flask import Blueprint, render_template, flash, redirect, session, url_for, request, g, jsonify, abort
+from flask import Blueprint, render_template, flash, redirect, session, url_for, request, g, jsonify, abort, Response
 from flask.ext.login import login_user, logout_user, current_user, login_required
 from flask.ext.wtf import Form
 from flask.ext.paginate import Pagination
@@ -87,3 +87,25 @@ def show_post(id):
         title = 'Post | %s' % post.title,
         post = post,
         form = form)
+
+@app.route('/comment/<int:id>/', methods = ['GET','POST'])
+@login_required
+def reply_comment(id):
+    try:
+        comment = Comment.get_by_id(id)
+    except:
+        comment = None
+
+    if comment is None:
+        abort(403)
+    
+    if request.method == 'POST':
+        form = CommentForm()
+    else:
+        form = CommentForm()
+
+    tmplt = render_template("blog/post_form.js",
+        comment = comment,
+        form = form)
+    resp = Response(tmplt, status=200, mimetype='text/javascript')
+    return resp

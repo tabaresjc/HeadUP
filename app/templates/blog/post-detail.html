@@ -42,19 +42,24 @@
         <header class="clearfix">
             <img src="{{ comment.user.avatar(76) }}" alt="User: {{ comment.user.name }}" class="avatar">
             <div class="meta">
-                <h3>{{ comment.user.name }}</h3>
+                <h3>{{ comment.user.name }} ({{ comment.user.nickname }})</h3>
                 <span class="date">
                     {{ comment.created_at | datetimeformat('%d %B %y, %H:%m')}}
                 </span>
-                <!-- <span class="separator">
+                <span class="separator">
                     -
                 </span>
-                <a href="#create-comment" class="reply-link">Reply</a> -->                
+                <form action="{{ url_for('reply_comment', id=comment.id) }}" data-remote="true" method="post">
+                    <input class="btn btn-warning" name="commit" type="submit" value="Reply">
+                </form>
+                
             </div>
         </header>
          <div class="body">
             {{ comment.body | safe }}
         </div>
+         <div class="reply">            
+        </div>        
     </article>
     {% endfor %}
 </aside>
@@ -74,7 +79,7 @@
                       <h3>{{current_user.name}}</h3>
                 </div>
             </div>
-            {{ render_inline_field(form.body,id="txt_editor_area",placeholder="Your thoughts...", rows="5") }}
+            {{ render_inline_field(form.body, id="txt_editor_area",placeholder="Your thoughts...", rows="5") }}
             <div class="buttons clearfix">
                 <button id="btn_editor_clear" type="reset" class="btn btn-lg btn-tales-two">Clear</button>
                 <button type="submit" class="btn btn-lg btn-tales-one">Submit</button>

@@ -89,7 +89,7 @@
             <div class="panel panel-primary">
             	<!-- Default panel contents -->
             	<div class="panel-heading">
-                    Recent posts
+                    <a href="{{ url_for('user_post',id=user.id) }}" class="panel-title">Recent posts</a>
             	</div>
             	<!-- Table -->
             	<table class="table">
@@ -146,7 +146,7 @@
                                     {{comment.created_at|datetimeformat(format='%a, %d %b %Y')}}
                                 </a>
                             </td>
-                            <td>{{comment.body | truncate(100)}}</td>
+                            <td>{{comment.body | truncate(100) | safe}}</td>
                         </tr>
                         {% endfor %}
                     </tbody>

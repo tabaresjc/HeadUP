@@ -137,3 +137,32 @@ class UsersView(FlaskView):
         if request.method == 'POST':
             return redirect(url_for('UsersView:index'))               
         return jsonify(redirect_to=url_for('UsersView:index'))
+
+
+    @route('/<int:id>/posts/', endpoint='user_post')
+    def user_post(self,id):
+        try:
+            page = int(request.args.get('page', 1))
+        except ValueError:
+            page = 1
+        
+        user = User.get_by_id(id)
+        if user is None:
+            flash('The user was not found', 'error')
+            return redirect(url_for('UsersView:index'))
+        
+        limit = 5
+        posts = user.get_user_posts(page=page, limit=limit)
+
+        pagination = Pagination(page=page, 
+            per_page= limit, 
+            total= user.posts.count(), 
+            record_name= 'posts', 
+            alignment = 'right', 
+            bs_version= 3)
+
+        return render_template("admin/users/user_posts.html",
+            title = 'User\'s Posts | %s' % user.name,
+            user = user,
+            posts = posts,
+            pagination = pagination)
