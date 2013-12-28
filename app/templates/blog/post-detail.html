@@ -36,31 +36,12 @@
 
 <aside class="comments" id="comments">
     <hr>
-    <h2><i class="icon-comments"></i> {{post.comments.count()}} Comments</h2>    
+    <h2><i class="icon-comments"></i> {{post.comments.count()}} Comments</h2> 
+    {% from "shared/_bootstrap_forms.html" import render_comment %}
     {% for comment in post.comments %}
-    <article id="comment_{{comment.id}}" class="comment">
-        <header class="clearfix">
-            <img src="{{ comment.user.avatar(76) }}" alt="User: {{ comment.user.name }}" class="avatar">
-            <div class="meta">
-                <h3>{{ comment.user.name }} ({{ comment.user.nickname }})</h3>
-                <span class="date">
-                    {{ comment.created_at | datetimeformat('%d %B %y, %H:%m')}}
-                </span>
-                <span class="separator">
-                    -
-                </span>
-                <form action="{{ url_for('reply_comment', id=comment.id) }}" data-remote="true" method="post">
-                    <input class="btn btn-warning" name="commit" type="submit" value="Reply">
-                </form>
-                
-            </div>
-        </header>
-         <div class="body">
-            {{ comment.body | safe }}
-        </div>
-         <div class="reply">            
-        </div>        
-    </article>
+        {% if not comment.comment_id %}
+            {{ render_comment(comment, current_user, post) }}
+        {% endif %}
     {% endfor %}
 </aside>
 <aside class="create-comment" id="create-comment">

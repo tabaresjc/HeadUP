@@ -88,24 +88,45 @@ def show_post(id):
         post = post,
         form = form)
 
-@app.route('/comment/<int:id>/', methods = ['GET','POST'])
+@app.route('/post/<int:post_id>/comment/<int:id>/', methods = ['GET','POST'])
 @login_required
-def reply_comment(id):
+def reply_comment(post_id, id):
     try:
         comment = Comment.get_by_id(id)
     except:
         comment = None
 
-    if comment is None:
+    try:
+        post = Post.get_by_id(post_id)
+    except:
+        post = None        
+
+    if comment is None or post is None:
         abort(403)
-    
+
+    form = CommentForm()
     if request.method == 'POST':
-        form = CommentForm()
+        if form.validate_on_submit():
+            try:
+                reply = Comment.create()
+                form.populate_obj(reply)
+                reply.user = current_user
+                reply.post = post
+                comment.replies.add(reply)
+                reply.save()
+                flash('Comment succesfully created')
+                return redirect('%s#comment_%s' % (url_for('show_post', id=post.id),reply.id) )
+            except:
+                flash('Error while posting the new comment, please retry later', 'error')
+        else:
+            flash('Invalid submission, please check the message below', 'error')
+        return redirect( url_for('show_post',id=post.id))
     else:
         form = CommentForm()
 
     tmplt = render_template("blog/post_form.js",
         comment = comment,
-        form = form)
+        form = form,
+        postid=post.id)
     resp = Response(tmplt, status=200, mimetype='text/javascript')
     return resp
