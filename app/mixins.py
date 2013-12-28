@@ -3,7 +3,7 @@ from storm.locals import *
 import datetime
 from flask.ext.paginate import Pagination
 
-class CRUDMixin(object):
+class CRUDMixin(Storm):
     __storm_primary__ = "id"
     id = Int()
 

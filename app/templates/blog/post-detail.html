@@ -54,12 +54,13 @@
             {{form.hidden_tag()}}
             <div class="row">
                 <div class="col-md-2">
-                    <img src="{{ current_user.avatar(76) }}" alt="User: {{ current_user.name }}" class="img-circle">
+                    <img src="{{ current_user.avatar(64) }}" alt="User: {{ current_user.name }}" class="img-circle">
                 </div>
                 <div class="col-md-10">
                       <h3>{{current_user.name}}</h3>
                 </div>
             </div>
+            <br/>
             {{ render_inline_field(form.body, id="txt_editor_area",placeholder="Your thoughts...", rows="5") }}
             <div class="buttons clearfix">
                 <button id="btn_editor_clear" type="reset" class="btn btn-lg btn-tales-two">Clear</button>

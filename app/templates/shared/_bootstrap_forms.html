@@ -32,19 +32,27 @@
 
 
 {% macro render_comment(comment, current_user, post, recursive = False) %}
+
 <article id="comment_{{comment.id}}" class="comment {{ 'reply' if recursive }}">
+    {% if recursive %}<hr class="line" />{% endif %}
     <header class="clearfix">
-        <img src="{{ comment.user.avatar(76) }}" alt="User: {{ comment.user.name }}" class="avatar">
+        <img src="{{ comment.user.avatar(64) }}" alt="User: {{ comment.user.name }}" class="avatar">
         <div class="meta">
-            <h3>{{ comment.user.name }} ({{ comment.user.nickname }})</h3>
-            <span class="date">
-                {{ comment.created_at | datetimeformat('%d %B %y, %H:%m')}}
-            </span>
-            {% if current_user.is_authenticated() %}
-            <form class="pull-right" action="{{ url_for('reply_comment', post_id=post.id, id=comment.id) }}" data-remote="true" method="GET">
-                <input class="btn btn-warning" name="commit" type="submit" value="Reply">
-            </form>
-            {% endif %}
+            <div class="row">
+              <div class="col-md-9">
+                <h3>{{ comment.user.name }} ({{ comment.user.nickname }})</h3>
+                <span class="date">
+                    {{ comment.created_at | datetimeformat('%d %B %y, %H:%m')}}
+                </span>                
+              </div>
+              <div class="col-md-3">
+                {% if current_user.is_authenticated() %}
+                <form class="pull-right" action="{{ url_for('reply_comment', post_id=post.id, id=comment.id) }}" data-remote="true" method="GET">
+                    <input class="btn btn-primary" name="commit" type="submit" value="Reply">
+                </form>
+                {% endif %}                
+              </div>
+            </div>
         </div>
     </header>
      <div class="body">

@@ -17,7 +17,7 @@ class Comment(CRUDMixin):
     modified_at = DateTime(default_factory = lambda: datetime.datetime(1970, 1, 1))   
     user = Reference(user_id, User.id)
     post = Reference(post_id, Post.id)
-    
+    reply = Reference(comment_id, 'Comment.id')
 
     def __repr__(self): # pragma: no cover
       return '<Comment %s>' % (self.id)

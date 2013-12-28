@@ -14,6 +14,8 @@ def before_request():
         g.user_count = User.count()
         g.post_count = Post.count()
         g.comment_count = Comment.count()
+    if 'redirect_to' in session and not request.endpoint in ['sessions.login','sessions.signup']:
+        session.pop('redirect_to', None)        
 
 @app.errorhandler(401)
 def internal_error(error):
@@ -112,7 +114,8 @@ def reply_comment(post_id, id):
                 form.populate_obj(reply)
                 reply.user = current_user
                 reply.post = post
-                comment.replies.add(reply)
+                reply.reply = comment
+                
                 reply.save()
                 flash('Comment succesfully created')
                 return redirect('%s#comment_%s' % (url_for('show_post', id=post.id),reply.id) )
