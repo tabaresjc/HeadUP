@@ -34,7 +34,7 @@
 <article id="comment_{{comment.id}}" class="comment {{ 'reply' if recursive }}">
   {% if recursive %}<hr class="line" />{% endif %}
   <header class="clearfix">
-    <img src="{{ comment.user.avatar(64) }}" alt="User: {{ comment.user.name }}" class="avatar">
+    <img src="{{ comment.user.avatar(64) }}" alt="{{ _('User: %(user)s', user=comment.user.name) }}" class="avatar">
     <div class="meta">
       <div class="row">
         <div class="col-md-9">
@@ -46,7 +46,7 @@
         <div class="col-md-3">
           {% if current_user.is_authenticated() %}
           <form class="pull-right" action="{{ url_for('reply_comment', post_id=post.id, id=comment.id) }}" data-remote="true" method="GET">
-            <input class="btn btn-primary" name="commit" type="submit" value="Reply">
+            <input class="btn btn-primary" name="commit" type="submit" value="{{_('Reply')}}">
           </form>
           {% endif %}                
         </div>

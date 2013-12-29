@@ -1,17 +1,18 @@
 from flask.ext.wtf import Form
 from wtforms import TextAreaField, TextField, FileField, BooleanField, validators
+from flask.ext.babel import lazy_gettext, gettext
 
 class PostForm(Form):
-	title = TextField('Title', [ validators.Required() ])    
-	body = TextAreaField('Body', [ validators.Required() ])
-	image_url = TextField('Featured Image')
+	title = TextField(lazy_gettext('Title'), [ validators.Required() ])    
+	body = TextAreaField(lazy_gettext('Body'), [ validators.Required() ])
+	image_url = TextField(lazy_gettext('Featured Image'))
 
 
 class EditPostForm(Form):
-	title = TextField('Title', [ validators.Required() ])    
-	body = TextAreaField('Body', [ validators.Required() ])
-	image_url = TextField('Featured Image')
-	remain = BooleanField('Show Post', default = True)
+	title = TextField(lazy_gettext('Title'), [ validators.Required() ])    
+	body = TextAreaField(lazy_gettext('Body'), [ validators.Required() ])
+	image_url = TextField(lazy_gettext('Featured Image'))
+	remain = BooleanField(lazy_gettext('Show Post'), default = True)
 
 class NewPostForm(EditPostForm):
 	def __init__(self, post, *args, **kwargs):

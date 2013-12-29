@@ -2,6 +2,7 @@ from flask import Blueprint, render_template, flash, redirect, session, url_for,
 from flask.ext.login import login_user, logout_user, current_user, login_required, user_logged_in, user_logged_out
 from flask.ext.classy import FlaskView, route
 from flask.ext.wtf import Form
+from flask.ext.babel import lazy_gettext, gettext
 from app import app, login_manager
 
 from forms import LoginForm, SignUpForm
@@ -17,13 +18,13 @@ def load_user(userid):
 @login_manager.unauthorized_handler
 def unauthorized():
     session['redirect_to'] = request.url
-    flash(u'You need to sign in or sign up before continuing.', 'error')
+    flash(gettext('You need to sign in or sign up before continuing.'), 'error')
     return redirect(url_for('sessions.login'))
 
 @mod.route('/login', methods = ['GET', 'POST'])
 def login():
     if current_user.is_authenticated():
-        flash('You are already signed in.')
+        flash(gettext('You are already signed in.'))
         return redirect(url_for('index'))
 
     form = LoginForm()
@@ -44,12 +45,12 @@ def login():
                 flash('Signed in successfully.')
                 return redirect(redirect_to)
             else:
-                raise Exception('User not found or invalid password')
+                raise Exception(gettext('User not found or invalid password'))
         except:
-            flash('Invalid email or password', 'error')
+            flash(gettext('Invalid email or password'), 'error')
 
     return render_template('admin/signin.html', 
-        title = 'Sign In',
+        title = gettext('Sign In'),
         form = form)
 
 @mod.route('/login/comment/<int:id>')
@@ -66,16 +67,16 @@ def logout():
         if 'redirect_to' in session:
             redirect_to = session['redirect_to']
             session.pop('redirect_to', None)
-        flash('Signed out successfully.')
+        flash(gettext('Signed out successfully.'))
     else:
-        flash('Invalid Action', 'error')
+        flash(gettext('Invalid Action'), 'error')
 
     return redirect(url_for('index'))
 
 @mod.route('/signup', methods = ['GET', 'POST'])
 def signup():
     if current_user.is_authenticated():
-        flash('You are already signed in.')
+        flash(gettext('You are already signed in.'))
         return redirect(url_for('index'))        
     
     form = SignUpForm()
@@ -92,12 +93,11 @@ def signup():
             user.save()
             ## Login User
             login_user(user)
-            flash('Welcome! You have signed up successfully.')
+            flash(gettext('Welcome! You have signed up successfully.'))
             return redirect(url_for('index'))
         except:
-            flash('Error, Please try a different email or nickname', 'error')
+            flash(gettext('Error while saving the new user, please retry later'), 'error')
 
-        
     return render_template('admin/signup.html', 
-        title = 'Sign Up',
+        title = gettext('Sign Up'),
         form = form)

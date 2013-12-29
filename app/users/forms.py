@@ -1,24 +1,25 @@
 from flask.ext.wtf import Form
 from wtforms import BooleanField, TextField, TextAreaField, PasswordField, SelectField, validators
+from flask.ext.babel import lazy_gettext, gettext
 
 class UserForm(Form):
-	email = TextField('Email', [ validators.Required(), validators.Email() , validators.Length(min = 10, max = 255)])
-	name = TextField('Name', [ validators.Required(), validators.Length(min = 5, max = 255) ])
-	nickname = TextField('Nickname', [ validators.Required() , validators.Length(min = 0, max = 64)])
-	role = SelectField('Role', [validators.Optional()], choices=[('1','Administrator'),('2','Writer')])
-	password = PasswordField('Password', [ 
+	email = TextField(lazy_gettext('Email'), [ validators.Required(), validators.Email() , validators.Length(min = 10, max = 255)])
+	name = TextField(lazy_gettext('Name'), [ validators.Required(), validators.Length(min = 5, max = 255) ])
+	nickname = TextField(lazy_gettext('Nickname'), [ validators.Required() , validators.Length(min = 0, max = 64)])
+	role = SelectField(lazy_gettext('Role'), [validators.Optional()], choices=[('1','Administrator'),('2','Writer')])
+	password = PasswordField(lazy_gettext('Password'), [ 
 		validators.Optional(), 
-		validators.EqualTo('confirm_password', message='Please repeat the password'),
+		validators.EqualTo('confirm_password', message=lazy_gettext('Please repeat the password')),
 		validators.Length(min = 6, max = 64)
 	])
-	confirm_password = PasswordField('Confirm', [ validators.Optional() ])
-	address = TextAreaField('Address', [ validators.Length(min = 0, max = 255) ])
-	phone = TextField('Phone', [ validators.Length(min = 0, max = 64) ])
+	confirm_password = PasswordField(lazy_gettext('Confirm'), [ validators.Optional() ])
+	address = TextAreaField(lazy_gettext('Address'), [ validators.Length(min = 0, max = 255) ])
+	phone = TextField(lazy_gettext('Phone'), [ validators.Length(min = 0, max = 64) ])
 
 class NewUserForm(UserForm):
-	password = PasswordField('Password', [ 
+	password = PasswordField(lazy_gettext('Password'), [ 
 		validators.Required(), 
-		validators.EqualTo('confirm_password', message='Please repeat the password'),
+		validators.EqualTo('confirm_password', message=lazy_gettext('Please repeat the password')),
 		validators.Length(min = 6, max = 64)
 	])
 

@@ -2,6 +2,7 @@ from flask import Blueprint, render_template, flash, redirect, session, url_for,
 from flask.ext.login import login_user, logout_user, current_user, login_required
 from flask.ext.wtf import Form
 from flask.ext.paginate import Pagination
+from flask.ext.babel import lazy_gettext, gettext
 from app import app, login_manager, store, babel
 from app.users.models import User
 from app.posts.models import Post
@@ -20,7 +21,7 @@ def before_request():
 
 @babel.localeselector
 def get_locale():
-    return request.accept_languages.best_match(LANGUAGES.keys())
+    return "es" #request.accept_languages.best_match(LANGUAGES.keys())
 
 @app.errorhandler(401)
 def internal_error(error):
@@ -47,11 +48,11 @@ def index(page=1):
     pagination = Pagination(page=page, 
         per_page= limit, 
         total= count, 
-        record_name= 'posts', 
+        record_name= gettext('posts'), 
         alignment = 'right', 
         bs_version= 3)
     return render_template("blog/index.html",
-        title = 'Home',
+        title = gettext('Home'),
         posts = posts,
         pagination = pagination)
 
@@ -76,12 +77,12 @@ def show_post(id):
                 comment.user = current_user
                 comment.post = post
                 comment.save()
-                flash('Comment succesfully created')
+                flash(gettext('Comment succesfully created'))
                 return redirect('%s#comment_%s' % (url_for('show_post', id=post.id),comment.id) )
             except:
-                flash('Error while posting the new comment, please retry later', 'error')
+                flash(gettext('Error while posting the new comment, please retry later'), 'error')
         else:
-            flash('Invalid submission, please check the message below', 'error')
+            flash(gettext('Invalid submission, please check the message below'), 'error')
     else:
         # Hides the form when the user is not authenticated
         # Limit the number of comments per post
@@ -91,7 +92,7 @@ def show_post(id):
             form = CommentForm()
 
     return render_template("blog/post-detail.html",
-        title = 'Post | %s' % post.title,
+        title = gettext('Post | %(title)s',title=post.title),
         post = post,
         form = form)
 
@@ -122,12 +123,12 @@ def reply_comment(post_id, id):
                 reply.reply = comment
                 
                 reply.save()
-                flash('Comment succesfully created')
+                flash(gettext('Comment succesfully created'))
                 return redirect('%s#comment_%s' % (url_for('show_post', id=post.id),reply.id) )
             except:
-                flash('Error while posting the new comment, please retry later', 'error')
+                flash(gettext('Error while posting the new comment, please retry later'), 'error')
         else:
-            flash('Invalid submission, please check the message below', 'error')
+            flash(gettext('Invalid submission, please check the message below'), 'error')
         return redirect( url_for('show_post',id=post.id))
     else:
         form = CommentForm()

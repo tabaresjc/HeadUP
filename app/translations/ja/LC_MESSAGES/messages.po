@@ -1,0 +1,345 @@
+# Japanese translations for PROJECT.
+# Copyright (C) 2013 ORGANIZATION
+# This file is distributed under the same license as the PROJECT project.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2013.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PROJECT VERSION\n"
+"Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
+"POT-Creation-Date: 2013-12-29 19:13+0900\n"
+"PO-Revision-Date: 2013-12-29 19:13+0900\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: ja <LL@li.org>\n"
+"Plural-Forms: nplurals=1; plural=0\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 1.3\n"
+
+#: app/__init__.py:35
+msgid "Please log in to access this page."
+msgstr ""
+
+#: app/admin/views.py:23
+msgid "Blog Administration"
+msgstr ""
+
+#: app/blog/views.py:51 app/posts/views.py:31 app/users/views.py:161
+msgid "posts"
+msgstr ""
+
+#: app/blog/views.py:55
+msgid "Home"
+msgstr ""
+
+#: app/blog/views.py:80 app/blog/views.py:126
+msgid "Comment succesfully created"
+msgstr ""
+
+#: app/blog/views.py:83 app/blog/views.py:129
+msgid "Error while posting the new comment, please retry later"
+msgstr ""
+
+#: app/blog/views.py:85 app/blog/views.py:131 app/posts/views.py:69
+#: app/posts/views.py:99
+msgid "Invalid submission, please check the message below"
+msgstr ""
+
+#: app/blog/views.py:95
+#, python-format
+msgid "Post | %(title)s"
+msgstr ""
+
+#: app/comments/forms.py:6 app/posts/forms.py:7 app/posts/forms.py:13
+msgid "Body"
+msgstr ""
+
+#: app/posts/forms.py:6 app/posts/forms.py:12
+msgid "Title"
+msgstr ""
+
+#: app/posts/forms.py:8 app/posts/forms.py:14
+msgid "Featured Image"
+msgstr ""
+
+#: app/posts/forms.py:15
+msgid "Show Post"
+msgstr ""
+
+#: app/posts/views.py:37
+#, python-format
+msgid "Posts | %(page)s"
+msgstr ""
+
+#: app/posts/views.py:64
+msgid "Post succesfully created"
+msgstr ""
+
+#: app/posts/views.py:67
+msgid "Error while creating the post"
+msgstr ""
+
+#: app/posts/views.py:71
+msgid "Create Post"
+msgstr ""
+
+#: app/posts/views.py:79 app/posts/views.py:115
+msgid "The post was not found"
+msgstr ""
+
+#: app/posts/views.py:90
+msgid "Post was succesfully saved"
+msgstr ""
+
+#: app/posts/views.py:97
+msgid "Error while updating the post"
+msgstr ""
+
+#: app/posts/views.py:106
+#, python-format
+msgid "Edit Post: %(title)s"
+msgstr ""
+
+#: app/posts/views.py:125
+#, python-format
+msgid "The post \"%(title)s\" was removed"
+msgstr ""
+
+#: app/sessions/forms.py:7 app/sessions/forms.py:12 app/users/forms.py:6
+msgid "Email"
+msgstr ""
+
+#: app/sessions/forms.py:8 app/sessions/forms.py:15 app/users/forms.py:10
+#: app/users/forms.py:20
+msgid "Password"
+msgstr ""
+
+#: app/sessions/forms.py:13 app/users/forms.py:7
+msgid "Name"
+msgstr ""
+
+#: app/sessions/forms.py:14 app/users/forms.py:8
+msgid "Nickname"
+msgstr ""
+
+#: app/sessions/forms.py:17
+msgid "Passwords must match"
+msgstr ""
+
+#: app/sessions/forms.py:20 app/users/forms.py:15
+msgid "Confirm"
+msgstr ""
+
+#: app/sessions/forms.py:28
+msgid ""
+"This name has invalid characters. Please use letters, numbers, dots and "
+"underscores only."
+msgstr ""
+
+#: app/sessions/forms.py:32
+msgid ""
+"This nickname has invalid characters. Please use letters, numbers, dots "
+"and underscores only."
+msgstr ""
+
+#: app/sessions/forms.py:36
+msgid "This email is already in use. Please choose another one."
+msgstr ""
+
+#: app/sessions/forms.py:40
+msgid "This nickname is already in use. Please choose another one."
+msgstr ""
+
+#: app/sessions/views.py:21
+msgid "You need to sign in or sign up before continuing."
+msgstr ""
+
+#: app/sessions/views.py:27 app/sessions/views.py:79
+msgid "You are already signed in."
+msgstr ""
+
+#: app/sessions/views.py:48
+msgid "User not found or invalid password"
+msgstr ""
+
+#: app/sessions/views.py:50
+msgid "Invalid email or password"
+msgstr ""
+
+#: app/sessions/views.py:53
+msgid "Sign In"
+msgstr ""
+
+#: app/sessions/views.py:70
+msgid "Signed out successfully."
+msgstr ""
+
+#: app/sessions/views.py:72
+msgid "Invalid Action"
+msgstr ""
+
+#: app/sessions/views.py:96
+msgid "Welcome! You have signed up successfully."
+msgstr ""
+
+#: app/sessions/views.py:99
+msgid "Error while saving the new user, please retry later"
+msgstr ""
+
+#: app/sessions/views.py:102
+msgid "Sign Up"
+msgstr ""
+
+#: app/templates/blog/base.html:44
+msgid "Actions"
+msgstr ""
+
+#: app/templates/blog/base.html:49
+msgid "Edit Post"
+msgstr ""
+
+#: app/templates/blog/base.html:50
+#, python-format
+msgid "This will remove '%(title)s', Are you sure?"
+msgstr ""
+
+#: app/templates/blog/base.html:50
+msgid "Delete User"
+msgstr ""
+
+#: app/templates/blog/base.html:52
+msgid "New Post"
+msgstr ""
+
+#: app/templates/blog/base.html:59
+msgid "Recent Posts"
+msgstr ""
+
+#: app/templates/blog/post-detail.html:26
+#: app/templates/blog/post-detail.html:37
+#, python-format
+msgid "%(count)s Comments"
+msgstr ""
+
+#: app/templates/blog/post-detail.html:55
+#: app/templates/shared/_bootstrap_forms.html:37
+#, python-format
+msgid "User: %(user)s"
+msgstr ""
+
+#: app/templates/blog/post-detail.html:64
+msgid "Clear"
+msgstr ""
+
+#: app/templates/blog/post-detail.html:65 app/templates/blog/post_form.js:10
+msgid "Submit"
+msgstr ""
+
+#: app/templates/blog/post-detail.html:71
+msgid "Comments closed"
+msgstr ""
+
+#: app/templates/blog/post-detail.html:75
+msgid "To comment please sign in"
+msgstr ""
+
+#: app/templates/blog/post-detail.html:77
+msgid "Sign in"
+msgstr ""
+
+#: app/templates/blog/post_form.js:4
+#, python-format
+msgid "Reply to @%(name)s"
+msgstr ""
+
+#: app/templates/blog/post_form.js:7
+msgid "Your thoughts..."
+msgstr ""
+
+#: app/templates/blog/post_form.js:9
+msgid "Cancel"
+msgstr ""
+
+#: app/templates/shared/_bootstrap_forms.html:49
+msgid "Reply"
+msgstr ""
+
+#: app/users/forms.py:9
+msgid "Role"
+msgstr ""
+
+#: app/users/forms.py:12 app/users/forms.py:22
+msgid "Please repeat the password"
+msgstr ""
+
+#: app/users/forms.py:16
+msgid "Address"
+msgstr ""
+
+#: app/users/forms.py:17
+msgid "Phone"
+msgstr ""
+
+#: app/users/views.py:29
+msgid "users"
+msgstr ""
+
+#: app/users/views.py:33
+#, python-format
+msgid "Users | Page %(page)s"
+msgstr ""
+
+#: app/users/views.py:40 app/users/views.py:87 app/users/views.py:152
+msgid "The user was not found"
+msgstr ""
+
+#: app/users/views.py:44
+#, python-format
+msgid "User's Profile | %(name)s"
+msgstr ""
+
+#: app/users/views.py:64 app/users/views.py:103
+msgid "User was succesfully saved"
+msgstr ""
+
+#: app/users/views.py:67
+msgid "Error while creating the user"
+msgstr ""
+
+#: app/users/views.py:70 app/users/views.py:109
+msgid "Invalid submission, please check the messages below"
+msgstr ""
+
+#: app/users/views.py:75
+msgid "Create new user"
+msgstr ""
+
+#: app/users/views.py:107
+msgid "Error while updating the user"
+msgstr ""
+
+#: app/users/views.py:116
+#, python-format
+msgid "Edit User's Profile | %(name)s"
+msgstr ""
+
+#: app/users/views.py:131
+msgid "User not found"
+msgstr ""
+
+#: app/users/views.py:134
+#, python-format
+msgid "The user \"%(name)s\" was removed"
+msgstr ""
+
+#: app/users/views.py:136
+msgid "Error while removing the user"
+msgstr ""
+
+#: app/users/views.py:166
+#, python-format
+msgid "User's Posts | %(name)s"
+msgstr ""
+

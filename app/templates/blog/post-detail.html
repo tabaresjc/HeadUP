@@ -12,8 +12,7 @@
             {% if post.image_url %}
             <img src="{{post.image_url}}" class="img-responsive" width="100%">
             {% endif %}
-            <div class="meta clearfix">
-  
+            <div class="meta clearfix">  
                 <div class="author">
                     <i class="icon-user"></i>
                     <span class="data">{{post.user.name}}</span>
@@ -24,7 +23,7 @@
                 </div>
                 <div class="comments">
                     <i class="icon-comments"></i>
-                    <span class="data"><a href="#comments">{{post.comments.count()}} Comments</a></span>
+                    <span class="data"><a href="#comments">{{ _('%(count)s Comments', count=post.comments.count()) }}</a></span>
                 </div>                                
             </div>
         </div>
@@ -35,7 +34,7 @@
 </article>
 <aside class="comments" id="comments">
     <hr>
-    <h2><i class="icon-comments"></i> {{post.comments.count()}} Comments</h2> 
+    <h2><i class="icon-comments"></i>{{ _('%(count)s Comments', count=post.comments.count()) }}</h2> 
     {% from "shared/_bootstrap_forms.html" import render_comment %}
     {% for comment in post.comments %}
         {% if not comment.comment_id %}
@@ -53,29 +52,29 @@
             {{form.hidden_tag()}}
             <div class="row">
                 <div class="col-md-2">
-                    <img src="{{ current_user.avatar(64) }}" alt="User: {{ current_user.name }}" class="img-circle">
+                    <img src="{{ current_user.avatar(64) }}" alt="{{ _('User: %(user)s', user=current_user.name) }}" class="img-circle">
                 </div>
                 <div class="col-md-10">
                       <h3>{{current_user.name}}</h3>
                 </div>
             </div>
             <br/>
-            {{ render_inline_field(form.body, id="txt_editor_area",placeholder="Your thoughts...", rows="5") }}
+            {{ render_inline_field(form.body, id="txt_editor_area",placeholder="{{_('Your thoughts...')}}", rows="5") }}
             <div class="buttons clearfix">
-                <button id="btn_editor_clear" type="reset" class="btn btn-lg btn-tales-two">Clear</button>
-                <button type="submit" class="btn btn-lg btn-tales-one">Submit</button>
+                <button id="btn_editor_clear" type="reset" class="btn btn-lg btn-tales-two">{{_('Clear')}}</button>
+                <button type="submit" class="btn btn-lg btn-tales-one">{{_('Submit')}}</button>
             </div>
         </form>
     </div>
     {% elif post.comments.count() > 50 %}
     <hr>
-    <h3><i class="glyphicon glyphicon-lock"></i> Comments closed</h3>
+    <h3><i class="glyphicon glyphicon-lock"></i> {{_('Comments closed')}}</h3>
     {% else %}
     <hr>
     <div style="text-align:center;">
-        <h3><i class="glyphicon glyphicon-log-in"></i> To comment please sign in</h3>
+        <h3><i class="glyphicon glyphicon-log-in"></i> {{_('To comment please sign in')}}</h3>
         <a href="{{ url_for('sessions.login_comment', id=post.id) }}" class="btn btn-lg btn-primary" style="float:none;">
-            Sign in
+            {{_('Sign in')}}
         </a>
     </div>
     {% endif %}

@@ -2,6 +2,7 @@ from flask import Blueprint, render_template, flash, redirect, session, url_for,
 from flask.ext.login import login_user, logout_user, current_user, login_required
 from flask.ext.wtf import Form
 from flask.ext.paginate import Pagination
+from flask.ext.babel import lazy_gettext, gettext
 from app import app, login_manager
 from app.posts.models import Post
 
@@ -19,6 +20,6 @@ def dashboard(page=1):
         bs_version= 3)
 
     return render_template("admin/dashboard.html",
-        title = 'Blog Administration',
+        title = gettext('Blog Administration'),
         posts = posts,
         pagination = pagination)

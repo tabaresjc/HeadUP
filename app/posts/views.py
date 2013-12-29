@@ -2,6 +2,7 @@ from flask import render_template, flash, redirect, session, url_for, request, g
 from flask.ext.login import current_user, login_required
 from flask.ext.classy import FlaskView, route
 from flask.ext.wtf import Form
+from flask.ext.babel import lazy_gettext, gettext
 from flask.ext.paginate import Pagination
 from app import app, login_manager
 from models import Post
@@ -27,13 +28,13 @@ class PostsView(FlaskView):
         pagination = Pagination(page=page, 
             per_page= limit, 
             total= count, 
-            record_name= 'posts', 
+            record_name= gettext('posts'), 
             alignment = 'right', 
             bs_version= 3)
 
         
         return render_template('admin/posts/index.html', 
-            title = 'Posts | Page %s' % page,
+            title = gettext('Posts | %(page)s', page=page),
             form = form,
             posts = posts,
             pagination = pagination)
@@ -60,14 +61,14 @@ class PostsView(FlaskView):
                     post.user = current_user
                     post.save()
 
-                    flash('Post succesfully created')
+                    flash(gettext('Post succesfully created'))
                     return redirect(url_for('PostsView:index'))
                 except:
-                    flash('Error while creating the post', 'error')
+                    flash(gettext('Error while creating the post'), 'error')
             else:
-                flash('Invalid submission, please check the message below', 'error')
+                flash(gettext('Invalid submission, please check the message below'), 'error')
         return render_template('admin/posts/add.html', 
-            title = 'Create Post',
+            title = gettext('Create Post'),
             form = form)
 
     @route('/<int:id>', methods = ['PUT'])
@@ -75,7 +76,7 @@ class PostsView(FlaskView):
     def put(self, id):
         post = Post.get_by_id(id)
         if post is None:
-            flash('The post was not found', 'error')
+            flash(gettext('The post was not found'), 'error')
             return redirect(url_for('PostsView:index'))
         if not current_user.is_admin() and  not post.is_mine():
             abort(401)
@@ -86,23 +87,23 @@ class PostsView(FlaskView):
                 try:
                     form.populate_obj(post)                    
                     post.save()
-                    flash('Post was succesfully saved')
+                    flash(gettext('Post was succesfully saved'))
                     if request.method == 'POST':
                         if form.remain.data:
                             return redirect(url_for('PostsView:get', id=post.id))
                         else:
                             return redirect(url_for('PostsView:index'))                            
                 except:
-                    flash('Error while updating the post', 'error')
+                    flash(gettext('Error while updating the post'), 'error')
             else:
-                flash('Invalid submission, please check the message below', 'error')
+                flash(gettext('Invalid submission, please check the message below'), 'error')
             
             if request.method == 'PUT':
                 return jsonify(redirect_to=url_for('PostsView:index'))
         else:
             form = NewPostForm(post)
-        return render_template('admin/posts/edit.html', 
-            title = 'Edit Post: %s' % post.title,
+        return render_template('admin/posts/edit.html',
+            title = gettext('Edit Post: %(title)s', title=title),
             form = form,
             post = post)
 
@@ -111,7 +112,7 @@ class PostsView(FlaskView):
     def delete(self,id):
         post = Post.get_by_id(id)
         if post is None:
-            flash('The post was not found', 'error')
+            flash(gettext('The post was not found'), 'error')
             return redirect(url_for('PostsView:index'))
         if not current_user.is_admin() and  not post.is_mine():
             abort(401)
@@ -121,7 +122,7 @@ class PostsView(FlaskView):
             Comment.delete_rows(Comment.post_id==post.id)           
             Post.delete(post.id)
 
-            flash('The post "%s" was removed' % title)
+            flash(gettext('The post "%(title)s" was removed', title=title))
         except:
             flash('Error while removing the post', 'error')
             raise

@@ -41,22 +41,22 @@
                     {% if current_user.is_authenticated()  %}
                     <div class="aside-widget">
                         <header>
-                            <h3>Actions</h3>
+                            <h3>{{_('Actions')}}</h3>
                         </header>
                         <div class="body">                            
                             <ul class="tales-list">
                                 {% if post and post.is_mine()%}                               
-                                <li><a href="{{ url_for('PostsView:put_0',id=post.id) }}">Edit Post</a></li>
-                                <li><a href="{{ url_for('PostsView:delete_0', id = post.id) }}" data-method="post" data-confirm="This will remove '{{ post.title }}', Are you sure?">Delete User</a></li>
+                                <li><a href="{{ url_for('PostsView:put_0',id=post.id) }}">{{_('Edit Post')}}</a></li>
+                                <li><a href="{{ url_for('PostsView:delete_0', id = post.id) }}" data-method="post" data-confirm="{{_("This will remove '%(title)s', Are you sure?", title=post.title)}}">{{_('Delete User')}}</a></li>
                                 {% endif %}
-                                <li><a href="{{ url_for('PostsView:post_0') }}">New Post</a></li>
+                                <li><a href="{{ url_for('PostsView:post_0') }}">{{_('New Post')}}</a></li>
                             </ul>
                         </div>
                     </div>
                     {% endif %}
                     <div class="aside-widget">
                         <header>
-                            <h3>Recent Posts</h3>
+                            <h3>{{_('Recent Posts')}}</h3>
                         </header>
                         <div class="body">
                             {% set last_posts = 4|get_stat %}
