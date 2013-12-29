@@ -1,3 +1,3 @@
 web: gunicorn run-heroku:app
-init: pybabel compile -d app/translations
-upgrade: pybabel compile -d app/translations
+init: pybabel compile -f -d app/translations
+upgrade: pybabel compile -f -d app/translations
