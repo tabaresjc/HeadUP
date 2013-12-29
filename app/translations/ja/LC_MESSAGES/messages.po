@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2013-12-29 19:13+0900\n"
+"POT-Creation-Date: 2013-12-29 23:48+0900\n"
 "PO-Revision-Date: 2013-12-29 19:13+0900\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: ja <LL@li.org>\n"
@@ -30,7 +30,7 @@ msgstr ""
 msgid "posts"
 msgstr ""
 
-#: app/blog/views.py:55
+#: app/blog/views.py:55 app/templates/blog/layout/header.html:57
 msgid "Home"
 msgstr ""
 
@@ -111,16 +111,19 @@ msgstr ""
 msgid "Email"
 msgstr ""
 
-#: app/sessions/forms.py:8 app/sessions/forms.py:15 app/users/forms.py:10
-#: app/users/forms.py:20
+#: app/sessions/forms.py:8 app/sessions/forms.py:15
+#: app/templates/admin/signin.html:42 app/templates/admin/signup.html:46
+#: app/users/forms.py:10 app/users/forms.py:20
 msgid "Password"
 msgstr ""
 
-#: app/sessions/forms.py:13 app/users/forms.py:7
+#: app/sessions/forms.py:13 app/templates/admin/signup.html:44
+#: app/users/forms.py:7
 msgid "Name"
 msgstr ""
 
-#: app/sessions/forms.py:14 app/users/forms.py:8
+#: app/sessions/forms.py:14 app/templates/admin/signup.html:45
+#: app/users/forms.py:8
 msgid "Nickname"
 msgstr ""
 
@@ -160,6 +163,10 @@ msgstr ""
 msgid "You are already signed in."
 msgstr ""
 
+#: app/sessions/views.py:45
+msgid "Signed in successfully."
+msgstr ""
+
 #: app/sessions/views.py:48
 msgid "User not found or invalid password"
 msgstr ""
@@ -168,7 +175,8 @@ msgstr ""
 msgid "Invalid email or password"
 msgstr ""
 
-#: app/sessions/views.py:53
+#: app/sessions/views.py:53 app/templates/admin/signin.html:47
+#: app/templates/blog/layout/header.html:41
 msgid "Sign In"
 msgstr ""
 
@@ -188,8 +196,41 @@ msgstr ""
 msgid "Error while saving the new user, please retry later"
 msgstr ""
 
-#: app/sessions/views.py:102
+#: app/sessions/views.py:102 app/templates/admin/signup.html:39
+#: app/templates/admin/signup.html:49 app/templates/blog/layout/header.html:44
 msgid "Sign Up"
+msgstr ""
+
+#: app/templates/admin/signin.html:37
+msgid "Log in"
+msgstr ""
+
+#: app/templates/admin/signin.html:41
+msgid "E-mail address"
+msgstr ""
+
+#: app/templates/admin/signin.html:53
+msgid "Don't have an account?"
+msgstr ""
+
+#: app/templates/admin/signin.html:54
+msgid "Sign up"
+msgstr ""
+
+#: app/templates/admin/signup.html:43
+msgid "E-mail"
+msgstr ""
+
+#: app/templates/admin/signup.html:47
+msgid "Confirm Password"
+msgstr ""
+
+#: app/templates/admin/signup.html:56
+msgid "Already have an account?"
+msgstr ""
+
+#: app/templates/admin/signup.html:57 app/templates/blog/post-detail.html:77
+msgid "Sign in"
 msgstr ""
 
 #: app/templates/blog/base.html:44
@@ -223,6 +264,10 @@ msgstr ""
 msgid "%(count)s Comments"
 msgstr ""
 
+#: app/templates/blog/post-detail.html:49
+msgid "Add Comment"
+msgstr ""
+
 #: app/templates/blog/post-detail.html:55
 #: app/templates/shared/_bootstrap_forms.html:37
 #, python-format
@@ -245,10 +290,6 @@ msgstr ""
 msgid "To comment please sign in"
 msgstr ""
 
-#: app/templates/blog/post-detail.html:77
-msgid "Sign in"
-msgstr ""
-
 #: app/templates/blog/post_form.js:4
 #, python-format
 msgid "Reply to @%(name)s"
@@ -260,6 +301,43 @@ msgstr ""
 
 #: app/templates/blog/post_form.js:9
 msgid "Cancel"
+msgstr ""
+
+#: app/templates/blog/layout/_post_item.html:15
+msgid "Read more"
+msgstr ""
+
+#: app/templates/blog/layout/footer.html:6
+msgid "Statistics"
+msgstr ""
+
+#: app/templates/blog/layout/footer.html:10
+msgid "Authors"
+msgstr ""
+
+#: app/templates/blog/layout/footer.html:14
+msgid "Posts"
+msgstr ""
+
+#: app/templates/blog/layout/footer.html:18
+msgid "Comments"
+msgstr ""
+
+#: app/templates/blog/layout/header.html:22
+#, python-format
+msgid "Hi, %(name)s"
+msgstr ""
+
+#: app/templates/blog/layout/header.html:27
+msgid "Dashboard"
+msgstr ""
+
+#: app/templates/blog/layout/header.html:30
+msgid "Profile"
+msgstr ""
+
+#: app/templates/blog/layout/header.html:34
+msgid "Sign Out"
 msgstr ""
 
 #: app/templates/shared/_bootstrap_forms.html:49
@@ -342,4 +420,16 @@ msgstr ""
 #, python-format
 msgid "User's Posts | %(name)s"
 msgstr ""
+
+#~ msgid "Statistics"
+#~ msgstr ""
+
+#~ msgid "Authors"
+#~ msgstr ""
+
+#~ msgid "Posts"
+#~ msgstr ""
+
+#~ msgid "Comments"
+#~ msgstr ""
 

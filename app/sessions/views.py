@@ -42,7 +42,7 @@ def login():
                 if 'redirect_to' in session:
                     redirect_to = session['redirect_to']
                     session.pop('redirect_to', None)
-                flash('Signed in successfully.')
+                flash(gettext('Signed in successfully.'))
                 return redirect(redirect_to)
             else:
                 raise Exception(gettext('User not found or invalid password'))

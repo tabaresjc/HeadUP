@@ -12,7 +12,7 @@
                 {{post.body|htmltruncate(500)|safe}}
             </div>
             <div class="clearfix">
-                <a href="{{ url_for('show_post', id=post.id) }}" class="btn btn-tales-one">Read more</a>
+                <a href="{{ url_for('show_post', id=post.id) }}" class="btn btn-tales-one">{{_('Read more')}}</a>
             </div>
         </article>
     </div>

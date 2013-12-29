@@ -3,343 +3,426 @@
 # This file is distributed under the same license as the PROJECT project.
 # FIRST AUTHOR <EMAIL@ADDRESS>, 2013.
 #
-#, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2013-12-29 19:12+0900\n"
-"PO-Revision-Date: 2013-12-29 19:13+0900\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"POT-Creation-Date: 2013-12-29 23:48+0900\n"
+"PO-Revision-Date: 2013-12-29 23:50+0900\n"
+"Last-Translator: Juan Tabares <juan.ctt@live.com>\n"
 "Language-Team: es <LL@li.org>\n"
-"Plural-Forms: nplurals=2; plural=(n != 1)\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 1.3\n"
+"Language: es\n"
+"X-Generator: Poedit 1.6.3\n"
 
 #: app/__init__.py:35
 msgid "Please log in to access this page."
-msgstr ""
+msgstr "Por favor, inicie sesión para acceder a esta página."
 
 #: app/admin/views.py:23
 msgid "Blog Administration"
-msgstr ""
+msgstr "Blog Administración"
 
 #: app/blog/views.py:51 app/posts/views.py:31 app/users/views.py:161
 msgid "posts"
-msgstr ""
+msgstr "artículos"
 
-#: app/blog/views.py:55
+#: app/blog/views.py:55 app/templates/blog/layout/header.html:57
 msgid "Home"
-msgstr ""
+msgstr "Inicio"
 
 #: app/blog/views.py:80 app/blog/views.py:126
 msgid "Comment succesfully created"
-msgstr ""
+msgstr "Comentario creado exitosamente"
 
 #: app/blog/views.py:83 app/blog/views.py:129
 msgid "Error while posting the new comment, please retry later"
-msgstr ""
+msgstr "Error al publicar el comentario, por favor vuelva a intentar más tarde"
 
 #: app/blog/views.py:85 app/blog/views.py:131 app/posts/views.py:69
 #: app/posts/views.py:99
 msgid "Invalid submission, please check the message below"
-msgstr ""
+msgstr "Datos invalidos, por favor revise los mensajes a continuación"
 
 #: app/blog/views.py:95
 #, python-format
 msgid "Post | %(title)s"
-msgstr ""
+msgstr "Artículo | %(title)s"
 
 #: app/comments/forms.py:6 app/posts/forms.py:7 app/posts/forms.py:13
 msgid "Body"
-msgstr ""
+msgstr "Mensaje"
 
 #: app/posts/forms.py:6 app/posts/forms.py:12
 msgid "Title"
-msgstr ""
+msgstr "Titulo"
 
 #: app/posts/forms.py:8 app/posts/forms.py:14
 msgid "Featured Image"
-msgstr ""
+msgstr "Foto principal"
 
 #: app/posts/forms.py:15
 msgid "Show Post"
-msgstr ""
+msgstr "Mostrar artículo"
 
 #: app/posts/views.py:37
 #, python-format
 msgid "Posts | %(page)s"
-msgstr ""
+msgstr "Artículos | %(page)s"
 
 #: app/posts/views.py:64
 msgid "Post succesfully created"
-msgstr ""
+msgstr "Artículo creado exitosamente"
 
 #: app/posts/views.py:67
 msgid "Error while creating the post"
-msgstr ""
+msgstr "Error al crear el artículo"
 
 #: app/posts/views.py:71
 msgid "Create Post"
-msgstr ""
+msgstr "Crear Artículo"
 
 #: app/posts/views.py:79 app/posts/views.py:115
 msgid "The post was not found"
-msgstr ""
+msgstr "El artículo no fue encontrado"
 
 #: app/posts/views.py:90
 msgid "Post was succesfully saved"
-msgstr ""
+msgstr "Artículo guardado con exito"
 
 #: app/posts/views.py:97
 msgid "Error while updating the post"
-msgstr ""
+msgstr "Error al actualizar el Artículo"
 
 #: app/posts/views.py:106
 #, python-format
 msgid "Edit Post: %(title)s"
-msgstr ""
+msgstr "Editar Artículo: %(title)s"
 
 #: app/posts/views.py:125
 #, python-format
 msgid "The post \"%(title)s\" was removed"
-msgstr ""
+msgstr "El artículo \"%(title)s\" fue removido"
 
 #: app/sessions/forms.py:7 app/sessions/forms.py:12 app/users/forms.py:6
 msgid "Email"
-msgstr ""
+msgstr "Email"
 
-#: app/sessions/forms.py:8 app/sessions/forms.py:15 app/users/forms.py:10
-#: app/users/forms.py:20
+#: app/sessions/forms.py:8 app/sessions/forms.py:15
+#: app/templates/admin/signin.html:42 app/templates/admin/signup.html:46
+#: app/users/forms.py:10 app/users/forms.py:20
 msgid "Password"
-msgstr ""
+msgstr "Contraseña"
 
-#: app/sessions/forms.py:13 app/users/forms.py:7
+#: app/sessions/forms.py:13 app/templates/admin/signup.html:44
+#: app/users/forms.py:7
 msgid "Name"
-msgstr ""
+msgstr "Nombre"
 
-#: app/sessions/forms.py:14 app/users/forms.py:8
+#: app/sessions/forms.py:14 app/templates/admin/signup.html:45
+#: app/users/forms.py:8
 msgid "Nickname"
-msgstr ""
+msgstr "Apodo"
 
 #: app/sessions/forms.py:17
 msgid "Passwords must match"
-msgstr ""
+msgstr "Las contraseñas deben coincidir"
 
 #: app/sessions/forms.py:20 app/users/forms.py:15
 msgid "Confirm"
-msgstr ""
+msgstr "Confirmar"
 
 #: app/sessions/forms.py:28
 msgid ""
 "This name has invalid characters. Please use letters, numbers, dots and "
 "underscores only."
 msgstr ""
+"Este nombre tiene caracteres no válidos. Utilice letras, números, puntos y "
+"guiones bajos solamente."
 
 #: app/sessions/forms.py:32
 msgid ""
-"This nickname has invalid characters. Please use letters, numbers, dots "
-"and underscores only."
+"This nickname has invalid characters. Please use letters, numbers, dots and "
+"underscores only."
 msgstr ""
+"Este apodo tiene caracteres no válidos. Utilice letras, números, puntos y "
+"guiones bajos solamente."
 
 #: app/sessions/forms.py:36
 msgid "This email is already in use. Please choose another one."
-msgstr ""
+msgstr "Este correo electrónico ya está en uso. Por favor, elija otro."
 
 #: app/sessions/forms.py:40
 msgid "This nickname is already in use. Please choose another one."
-msgstr ""
+msgstr "Este apodo ya está en uso. Por favor, elija otro."
 
 #: app/sessions/views.py:21
 msgid "You need to sign in or sign up before continuing."
-msgstr ""
+msgstr "Es necesario iniciar sesión o registrarse antes de continuar."
 
 #: app/sessions/views.py:27 app/sessions/views.py:79
 msgid "You are already signed in."
-msgstr ""
+msgstr "Ya ha iniciado sesión"
+
+#: app/sessions/views.py:45
+msgid "Signed in successfully."
+msgstr "Sesión iniciada con exito."
 
 #: app/sessions/views.py:48
 msgid "User not found or invalid password"
-msgstr ""
+msgstr "Usuario no encontrado o contraseña invalida"
 
 #: app/sessions/views.py:50
 msgid "Invalid email or password"
-msgstr ""
+msgstr "Correo electrónico o contraseña invalidas"
 
-#: app/sessions/views.py:53
+#: app/sessions/views.py:53 app/templates/admin/signin.html:47
+#: app/templates/blog/layout/header.html:41
 msgid "Sign In"
-msgstr ""
+msgstr "Ingresar"
 
 #: app/sessions/views.py:70
 msgid "Signed out successfully."
-msgstr ""
+msgstr "Sesión terminada"
 
 #: app/sessions/views.py:72
 msgid "Invalid Action"
-msgstr ""
+msgstr "Action invalida"
 
 #: app/sessions/views.py:96
 msgid "Welcome! You have signed up successfully."
-msgstr ""
+msgstr "Bienvenido! Usted se ha registrado satisfactoriamente"
 
 #: app/sessions/views.py:99
 msgid "Error while saving the new user, please retry later"
 msgstr ""
+"Error al guardar el nuevo usuario, por favor vuelva a intentar más tarde"
 
-#: app/sessions/views.py:102
+#: app/sessions/views.py:102 app/templates/admin/signup.html:39
+#: app/templates/admin/signup.html:49 app/templates/blog/layout/header.html:44
 msgid "Sign Up"
-msgstr ""
+msgstr "Registro"
+
+#: app/templates/admin/signin.html:37
+msgid "Log in"
+msgstr "Iniciar Sesión"
+
+#: app/templates/admin/signin.html:41
+msgid "E-mail address"
+msgstr "Dirección de correo electrónico"
+
+#: app/templates/admin/signin.html:53
+msgid "Don't have an account?"
+msgstr "¿Ya tienes una cuenta?"
+
+#: app/templates/admin/signin.html:54
+msgid "Sign up"
+msgstr "Registro"
+
+#: app/templates/admin/signup.html:43
+msgid "E-mail"
+msgstr "Correo"
+
+#: app/templates/admin/signup.html:47
+msgid "Confirm Password"
+msgstr "Confirmar Contraseña"
+
+#: app/templates/admin/signup.html:56
+msgid "Already have an account?"
+msgstr "¿Ya tienes una cuenta?"
+
+#: app/templates/admin/signup.html:57 app/templates/blog/post-detail.html:77
+msgid "Sign in"
+msgstr "Iniciar Sesión"
 
 #: app/templates/blog/base.html:44
 msgid "Actions"
-msgstr ""
+msgstr "Acciones"
 
 #: app/templates/blog/base.html:49
 msgid "Edit Post"
-msgstr ""
+msgstr "Editar Artículo"
 
 #: app/templates/blog/base.html:50
 #, python-format
 msgid "This will remove '%(title)s', Are you sure?"
-msgstr ""
+msgstr "Esto eliminará '%(title)s', ¿Estás seguro?"
 
 #: app/templates/blog/base.html:50
 msgid "Delete User"
-msgstr ""
+msgstr "Eliminar Usuario"
 
 #: app/templates/blog/base.html:52
 msgid "New Post"
-msgstr ""
+msgstr "Nuevo Artículo"
 
 #: app/templates/blog/base.html:59
 msgid "Recent Posts"
-msgstr ""
+msgstr "Artículos Recientes"
 
 #: app/templates/blog/post-detail.html:26
 #: app/templates/blog/post-detail.html:37
 #, python-format
 msgid "%(count)s Comments"
-msgstr ""
+msgstr "%(count)s Comentarios"
+
+#: app/templates/blog/post-detail.html:49
+msgid "Add Comment"
+msgstr "Añadir comentario"
 
 #: app/templates/blog/post-detail.html:55
 #: app/templates/shared/_bootstrap_forms.html:37
 #, python-format
 msgid "User: %(user)s"
-msgstr ""
+msgstr "Usuario: %(user)s"
 
 #: app/templates/blog/post-detail.html:64
 msgid "Clear"
-msgstr ""
+msgstr "Borrar"
 
 #: app/templates/blog/post-detail.html:65 app/templates/blog/post_form.js:10
 msgid "Submit"
-msgstr ""
+msgstr "Enviar"
 
 #: app/templates/blog/post-detail.html:71
 msgid "Comments closed"
-msgstr ""
+msgstr "Comentarios cerrados"
 
 #: app/templates/blog/post-detail.html:75
 msgid "To comment please sign in"
-msgstr ""
-
-#: app/templates/blog/post-detail.html:77
-msgid "Sign in"
-msgstr ""
+msgstr "Para comentar, por favor inicia sesión"
 
 #: app/templates/blog/post_form.js:4
 #, python-format
 msgid "Reply to @%(name)s"
-msgstr ""
+msgstr "Responder a @%(name)s"
 
 #: app/templates/blog/post_form.js:7
 msgid "Your thoughts..."
-msgstr ""
+msgstr "Tus comentarios..."
 
 #: app/templates/blog/post_form.js:9
 msgid "Cancel"
-msgstr ""
+msgstr "Cancelar"
+
+#: app/templates/blog/layout/_post_item.html:15
+msgid "Read more"
+msgstr "Leer más"
+
+#: app/templates/blog/layout/footer.html:6
+msgid "Statistics"
+msgstr "Estadisticas"
+
+#: app/templates/blog/layout/footer.html:10
+msgid "Authors"
+msgstr "Escritores"
+
+#: app/templates/blog/layout/footer.html:14
+msgid "Posts"
+msgstr "Artículos"
+
+#: app/templates/blog/layout/footer.html:18
+msgid "Comments"
+msgstr "Comentarios"
+
+#: app/templates/blog/layout/header.html:22
+#, python-format
+msgid "Hi, %(name)s"
+msgstr "Hola, %(name)s"
+
+#: app/templates/blog/layout/header.html:27
+msgid "Dashboard"
+msgstr "Escritorio"
+
+#: app/templates/blog/layout/header.html:30
+msgid "Profile"
+msgstr "Perfil"
+
+#: app/templates/blog/layout/header.html:34
+msgid "Sign Out"
+msgstr "Salir Sesión"
 
 #: app/templates/shared/_bootstrap_forms.html:49
 msgid "Reply"
-msgstr ""
+msgstr "Responder"
 
 #: app/users/forms.py:9
 msgid "Role"
-msgstr ""
+msgstr "Rol"
 
 #: app/users/forms.py:12 app/users/forms.py:22
 msgid "Please repeat the password"
-msgstr ""
+msgstr "Por favor, repita la contraseña"
 
 #: app/users/forms.py:16
 msgid "Address"
-msgstr ""
+msgstr "Dirección"
 
 #: app/users/forms.py:17
 msgid "Phone"
-msgstr ""
+msgstr "Telefono"
 
 #: app/users/views.py:29
 msgid "users"
-msgstr ""
+msgstr "usuarios"
 
 #: app/users/views.py:33
 #, python-format
 msgid "Users | Page %(page)s"
-msgstr ""
+msgstr "Usuarios | Pagina %(page)s"
 
 #: app/users/views.py:40 app/users/views.py:87 app/users/views.py:152
 msgid "The user was not found"
-msgstr ""
+msgstr "El usuario no fue encontrado"
 
 #: app/users/views.py:44
 #, python-format
 msgid "User's Profile | %(name)s"
-msgstr ""
+msgstr "Perfil de Usuario | %(name)s"
 
 #: app/users/views.py:64 app/users/views.py:103
 msgid "User was succesfully saved"
-msgstr ""
+msgstr "Usuario guardado exitosamente"
 
 #: app/users/views.py:67
 msgid "Error while creating the user"
-msgstr ""
+msgstr "Error al crear el usuario"
 
 #: app/users/views.py:70 app/users/views.py:109
 msgid "Invalid submission, please check the messages below"
-msgstr ""
+msgstr "Datos invalidos, por favor revise los mensajes a continuación"
 
 #: app/users/views.py:75
 msgid "Create new user"
-msgstr ""
+msgstr "Crear usuario nuevo"
 
 #: app/users/views.py:107
 msgid "Error while updating the user"
-msgstr ""
+msgstr "Error al actualizar el usuario"
 
 #: app/users/views.py:116
 #, python-format
 msgid "Edit User's Profile | %(name)s"
-msgstr ""
+msgstr "Editar Perfil de Usuario | %(name)s"
 
 #: app/users/views.py:131
 msgid "User not found"
-msgstr ""
+msgstr "Usuario no encontrado"
 
 #: app/users/views.py:134
 #, python-format
 msgid "The user \"%(name)s\" was removed"
-msgstr ""
+msgstr "El usuario \"%(name)s\" fue removido"
 
 #: app/users/views.py:136
 msgid "Error while removing the user"
-msgstr ""
+msgstr "Error al remover el usuario"
 
 #: app/users/views.py:166
 #, python-format
 msgid "User's Posts | %(name)s"
-msgstr ""
-
+msgstr "Aritculos del Usuario | %(name)s"

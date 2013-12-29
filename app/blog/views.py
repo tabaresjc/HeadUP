@@ -21,7 +21,7 @@ def before_request():
 
 @babel.localeselector
 def get_locale():
-    return "es" #request.accept_languages.best_match(LANGUAGES.keys())
+    return request.accept_languages.best_match(LANGUAGES.keys())
 
 @app.errorhandler(401)
 def internal_error(error):

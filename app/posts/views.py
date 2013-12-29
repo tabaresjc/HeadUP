@@ -103,7 +103,7 @@ class PostsView(FlaskView):
         else:
             form = NewPostForm(post)
         return render_template('admin/posts/edit.html',
-            title = gettext('Edit Post: %(title)s', title=title),
+            title = gettext('Edit Post: %(title)s', title=post.title),
             form = form,
             post = post)
 

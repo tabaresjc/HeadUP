@@ -36,25 +36,25 @@
         {% include 'shared/message.html' %}  
         <div class="box">
             <div class="content-wrap">
-                <h6>Sign Up</h6>
+                <h6>{{_('Sign Up')}}</h6>
                 {% from "shared/_bootstrap_forms.html" import render_inline_field %}
                 <form action="{{ url_for('sessions.signup') }}" method="post" name="signup" autocomplete="off">
                     {{form.hidden_tag()}}
-                    {{ render_inline_field(form.email, class="form-control",placeholder="E-mail") }}
-                    {{ render_inline_field(form.name, class="form-control",placeholder="Name") }}
-                    {{ render_inline_field(form.nickname, class="form-control",placeholder="Nickname") }}
-                    {{ render_inline_field(form.password, class="form-control",placeholder="Password") }}
-                    {{ render_inline_field(form.confirm_password, class="form-control",placeholder="Confirm Password") }}
+                    {{ render_inline_field(form.email, class="form-control",placeholder=_('E-mail')) }}
+                    {{ render_inline_field(form.name, class="form-control",placeholder=_('Name')) }}
+                    {{ render_inline_field(form.nickname, class="form-control",placeholder=_('Nickname')) }}
+                    {{ render_inline_field(form.password, class="form-control",placeholder=_('Password')) }}
+                    {{ render_inline_field(form.confirm_password, class="form-control",placeholder=_('Confirm Password')) }}
                     <div class="action">
-                        <input type="submit" value="Sign Up" class="btn-glow primary login btn-lg">
+                        <input type="submit" value="{{_('Sign Up')}}" class="btn-glow primary login btn-lg">
                     </div>
                 </form>
             </div>
         </div>
 
         <div class="already">
-            <p>Already have an account?</p>
-            <a href="{{ url_for('sessions.login') }}">Sign in</a>
+            <p>{{_('Already have an account?')}}</p>
+            <a href="{{ url_for('sessions.login') }}">{{_('Sign in')}}</a>
         </div>
     </div>
 
