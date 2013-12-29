@@ -3,6 +3,7 @@ from flask.ext.login import LoginManager
 from flask.ext.classy import FlaskView
 from flask.ext.principal import Principal
 from flask_wtf.csrf import CsrfProtect
+from flask.ext.babel import Babel, lazy_gettext
 from storm.locals import create_database, Store, ReferenceSet, Reference, Desc
 from config import STORM_DATABASE_URI
 from ago import human
@@ -19,6 +20,9 @@ app.jinja_env.lstrip_blocks = True
 # Load the CSRF Protection
 CsrfProtect(app)
 
+# Load the Babel extension for Internationalization
+babel = Babel(app)
+
 # Database Configuration
 database = create_database(STORM_DATABASE_URI)
 store = Store(database)
@@ -28,7 +32,7 @@ login_manager = LoginManager()
 login_manager.init_app(app)
 # add our view as the login view to finish configuring the LoginManager
 login_manager.login_view = "sessions.login"
-
+login_manager.login_message = lazy_gettext('Please log in to access this page.')
 #----------------------------------------
 # controllers
 #----------------------------------------

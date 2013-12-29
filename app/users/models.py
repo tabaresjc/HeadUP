@@ -6,6 +6,7 @@ from app.mixins import CRUDMixin
 from storm.locals import *
 from hashlib import md5
 import datetime
+import re
 
 ROLE_WRITER = 2
 ROLE_ADMIN = 1
@@ -50,7 +51,25 @@ class User(UserMixin, CRUDMixin):
 
     @staticmethod
     def find_by_email(email):
-      return store.find(User, User.email == email).one() 
+      return store.find(User, User.email == email).one()
+
+    @staticmethod
+    def make_valid_nickname(nickname):
+        return re.sub('[^a-zA-Z0-9_\.]', '', nickname)
+
+    @staticmethod
+    def is_email_taken(email):
+        if store.find(User, User.email == email).count() > 0:
+          return True
+        else:
+          return False
+
+    @staticmethod
+    def is_nickname_taken(nickname):
+        if store.find(User, User.nickname == nickname).count() > 0:
+          return True
+        else:
+          return False
    
     @staticmethod
     def create_table():

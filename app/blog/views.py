@@ -2,11 +2,12 @@ from flask import Blueprint, render_template, flash, redirect, session, url_for,
 from flask.ext.login import login_user, logout_user, current_user, login_required
 from flask.ext.wtf import Form
 from flask.ext.paginate import Pagination
-from app import app, login_manager, store
+from app import app, login_manager, store, babel
 from app.users.models import User
 from app.posts.models import Post
 from app.comments.models import Comment
 from app.comments.forms import CommentForm
+from config import LANGUAGES
 
 @app.before_request
 def before_request():
@@ -16,6 +17,10 @@ def before_request():
         g.comment_count = Comment.count()
     if 'redirect_to' in session and request.endpoint and request.endpoint not in ['static', 'sessions.login','sessions.signup','sessions.login_comment']:
         session.pop('redirect_to', None)
+
+@babel.localeselector
+def get_locale():
+    return request.accept_languages.best_match(LANGUAGES.keys())
 
 @app.errorhandler(401)
 def internal_error(error):
