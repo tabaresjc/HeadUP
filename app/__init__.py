@@ -14,7 +14,8 @@ app = Flask(__name__)
 
 # Load the app's configuration
 app.config.from_object('config')
-
+app.jinja_env.trim_blocks = True
+app.jinja_env.lstrip_blocks = True
 # Load the CSRF Protection
 CsrfProtect(app)
 

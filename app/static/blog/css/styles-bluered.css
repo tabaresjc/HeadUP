@@ -646,8 +646,11 @@ hr {
   margin-bottom: 90px;
 }
 .blog-post header h1 {
-  font-family: 'PT Serif', serif;
+  font-family: sans-serif;
+  font-size: 26px;
+  line-height: normal;
   margin-bottom: 22px;
+  font-weight: normal;
 }
 .blog-post header .lead-image {
   position: relative;
