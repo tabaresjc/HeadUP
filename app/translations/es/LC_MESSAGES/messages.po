@@ -7,48 +7,53 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2013-12-29 23:48+0900\n"
-"PO-Revision-Date: 2013-12-29 23:50+0900\n"
+"POT-Creation-Date: 2013-12-30 15:59+0900\n"
+"PO-Revision-Date: 2013-12-30 16:01+0900\n"
 "Last-Translator: Juan Tabares <juan.ctt@live.com>\n"
 "Language-Team: es <LL@li.org>\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=utf-8\n"
+"Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 1.3\n"
-"Language: es\n"
 "X-Generator: Poedit 1.6.3\n"
+"Language: es\n"
 
-#: app/__init__.py:35
+#: app/__init__.py:34
 msgid "Please log in to access this page."
 msgstr "Por favor, inicie sesión para acceder a esta página."
+
+#: app/__init__.py:78
+#, python-format
+msgid "Posted %(ago)s ago"
+msgstr "Publicado hace %(ago)s"
 
 #: app/admin/views.py:23
 msgid "Blog Administration"
 msgstr "Blog Administración"
 
-#: app/blog/views.py:51 app/posts/views.py:31 app/users/views.py:161
+#: app/blog/views.py:57 app/posts/views.py:30 app/users/views.py:161
 msgid "posts"
 msgstr "artículos"
 
-#: app/blog/views.py:55 app/templates/blog/layout/header.html:57
+#: app/blog/views.py:61 app/templates/blog/layout/header.html:57
 msgid "Home"
 msgstr "Inicio"
 
-#: app/blog/views.py:80 app/blog/views.py:126
+#: app/blog/views.py:86 app/blog/views.py:132
 msgid "Comment succesfully created"
 msgstr "Comentario creado exitosamente"
 
-#: app/blog/views.py:83 app/blog/views.py:129
+#: app/blog/views.py:89 app/blog/views.py:135
 msgid "Error while posting the new comment, please retry later"
 msgstr "Error al publicar el comentario, por favor vuelva a intentar más tarde"
 
-#: app/blog/views.py:85 app/blog/views.py:131 app/posts/views.py:69
-#: app/posts/views.py:99
+#: app/blog/views.py:91 app/blog/views.py:137 app/posts/views.py:68
+#: app/posts/views.py:98
 msgid "Invalid submission, please check the message below"
 msgstr "Datos invalidos, por favor revise los mensajes a continuación"
 
-#: app/blog/views.py:95
+#: app/blog/views.py:101
 #, python-format
 msgid "Post | %(title)s"
 msgstr "Artículo | %(title)s"
@@ -69,41 +74,41 @@ msgstr "Foto principal"
 msgid "Show Post"
 msgstr "Mostrar artículo"
 
-#: app/posts/views.py:37
+#: app/posts/views.py:36
 #, python-format
 msgid "Posts | %(page)s"
 msgstr "Artículos | %(page)s"
 
-#: app/posts/views.py:64
+#: app/posts/views.py:63
 msgid "Post succesfully created"
 msgstr "Artículo creado exitosamente"
 
-#: app/posts/views.py:67
+#: app/posts/views.py:66
 msgid "Error while creating the post"
 msgstr "Error al crear el artículo"
 
-#: app/posts/views.py:71
+#: app/posts/views.py:70
 msgid "Create Post"
 msgstr "Crear Artículo"
 
-#: app/posts/views.py:79 app/posts/views.py:115
+#: app/posts/views.py:78 app/posts/views.py:114
 msgid "The post was not found"
 msgstr "El artículo no fue encontrado"
 
-#: app/posts/views.py:90
+#: app/posts/views.py:89
 msgid "Post was succesfully saved"
 msgstr "Artículo guardado con exito"
 
-#: app/posts/views.py:97
+#: app/posts/views.py:96
 msgid "Error while updating the post"
 msgstr "Error al actualizar el Artículo"
 
-#: app/posts/views.py:106
+#: app/posts/views.py:105
 #, python-format
 msgid "Edit Post: %(title)s"
 msgstr "Editar Artículo: %(title)s"
 
-#: app/posts/views.py:125
+#: app/posts/views.py:124
 #, python-format
 msgid "The post \"%(title)s\" was removed"
 msgstr "El artículo \"%(title)s\" fue removido"
