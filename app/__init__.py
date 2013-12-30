@@ -3,10 +3,9 @@ from flask.ext.login import LoginManager
 from flask.ext.classy import FlaskView
 from flask.ext.principal import Principal
 from flask_wtf.csrf import CsrfProtect
-from flask.ext.babel import Babel, lazy_gettext
+from flask.ext.babel import Babel, lazy_gettext, gettext, format_datetime, format_timedelta
 from storm.locals import create_database, Store, ReferenceSet, Reference, Desc
 from config import STORM_DATABASE_URI
-from ago import human
 from utilities import truncate
 import os
 import datetime
@@ -60,9 +59,7 @@ CommentsView.register(app)
 from app.users.models import User
 from app.posts.models import Post
 from app.comments.models import Comment
-from app.db_init import DbInit
 
-DbInit.create_db()
 
 # User.posts = ReferenceSet(User.id, UserPosts.user_id, UserPosts.post_id, Post.id)
 User.posts = ReferenceSet(User.id, Post.user_id, order_by = Desc(Post.id))	
@@ -73,11 +70,12 @@ Comment.replies = ReferenceSet(Comment.id, Comment.comment_id, order_by = Commen
 #----------------------------------------
 # filters
 #----------------------------------------
-def datetimeformat(value, format='%a, %d %b %Y %H:%M:%S'):
-    return value.strftime(format)
+def datetimeformat(value, format='EEE, d MMM yyyy H:mm:ss'):
+    return format_datetime(value,format)
 
 def humanformat(value):
-    return human(value, precision=1)
+    #return human(value, precision=1)
+    return gettext('Posted %(ago)s ago', ago=format_timedelta(value, granularity='second'))
 
 def user_role(value):
     if value is users.models.ROLE_ADMIN:

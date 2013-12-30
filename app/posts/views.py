@@ -9,7 +9,6 @@ from models import Post
 from app.comments.models import Comment
 from forms import PostForm, EditPostForm, NewPostForm
 
-import datetime
 
 class PostsView(FlaskView):
     route_base = '/posts'

@@ -18,9 +18,9 @@ class CRUDMixin(Storm):
     def create(cls, **kwargs):
         instance = cls(**kwargs)
         if hasattr(instance,'created_at'):
-            setattr(instance, 'created_at', datetime.datetime.now())
+            setattr(instance, 'created_at', datetime.datetime.utcnow())
         if hasattr(instance,'modified_at'):
-            setattr(instance, 'modified_at', datetime.datetime.now())            
+            setattr(instance, 'modified_at', datetime.datetime.utcnow())            
         return instance
 
     def update(self, commit=True, **kwargs):
@@ -32,7 +32,7 @@ class CRUDMixin(Storm):
         store.add(self)       
         if commit:
             if hasattr(self,'modified_at'):
-                setattr(self, 'modified_at', datetime.datetime.now())
+                setattr(self, 'modified_at', datetime.datetime.utcnow())
             store.commit()
         return self
 

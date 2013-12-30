@@ -49,7 +49,7 @@
                         <a href="{{ url_for('UsersView:get', id=user.id) }}" class="name">{{ user.name }}</a>
                         <span class="subtext">{{ user.email }}</span>
                     </td>
-                    <td>{{ user.created_at|datetimeformat(format='%a, %d %b %Y')  }} </td>
+                    <td>{{ user.created_at|datetimeformat(format='EEE, d MMM yyyy')  }} </td>
                     <td>{{ user.posts.count() }}</td>
                     <td>{{ user.role|user_role }}</td>
                     <td>

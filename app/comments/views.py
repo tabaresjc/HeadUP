@@ -4,7 +4,6 @@ from flask.ext.classy import FlaskView, route
 from flask.ext.wtf import Form
 from app import app, login_manager
 from flask.ext.paginate import Pagination
-import datetime
 
 class CommentsView(FlaskView):
     route_base = '/comments'

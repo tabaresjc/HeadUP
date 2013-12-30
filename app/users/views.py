@@ -8,7 +8,7 @@ from flask.ext.paginate import Pagination
 from models import User
 from forms import UserForm, EditUserForm, NewUserForm
 from app.posts.models import Post
-import datetime
+
 
 class UsersView(FlaskView):
     route_base = '/users'

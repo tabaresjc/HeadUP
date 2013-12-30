@@ -23,6 +23,12 @@ def before_request():
 def get_locale():
     return request.accept_languages.best_match(LANGUAGES.keys())
 
+@babel.timezoneselector
+def get_timezone():
+    if current_user and current_user.is_authenticated():
+        return current_user.timezone
+    return "Asia/Tokyo"
+
 @app.errorhandler(401)
 def internal_error(error):
     return render_template('admin/401.html', title= 'Error %s' % error), 401
