@@ -21,6 +21,8 @@ def before_request():
 
 @babel.localeselector
 def get_locale():
+    if current_user and current_user.is_authenticated():
+        return current_user.lang
     return request.accept_languages.best_match(LANGUAGES.keys())
 
 @babel.timezoneselector

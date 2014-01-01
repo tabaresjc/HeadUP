@@ -2,7 +2,7 @@ from flask import Blueprint, render_template, flash, redirect, session, url_for,
 from flask.ext.login import login_user, logout_user, current_user, login_required
 from flask.ext.classy import FlaskView, route
 from flask.ext.wtf import Form
-from flask.ext.babel import lazy_gettext, gettext
+from flask.ext.babel import lazy_gettext, gettext, refresh
 from app import app, login_manager
 from flask.ext.paginate import Pagination
 from models import User
@@ -57,6 +57,8 @@ class UsersView(FlaskView):
                         user.role = int(form.role.data)
 
                     del form.role
+                    del form.timezone
+                    del form.lang
                     form.populate_obj(user)
                     user.set_password(form.password.data)
                     user.save()
@@ -99,7 +101,7 @@ class UsersView(FlaskView):
                     del form.password
                     form.populate_obj(user)
                     user.save()
-
+                    refresh()
                     flash(gettext('User was succesfully saved'))
                     if request.method == 'POST':
                         return redirect(url_for('UsersView:get',id=user.id))                        

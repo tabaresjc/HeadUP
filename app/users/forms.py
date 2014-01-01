@@ -1,6 +1,14 @@
 from flask.ext.wtf import Form
 from wtforms import BooleanField, TextField, TextAreaField, PasswordField, SelectField, validators
 from flask.ext.babel import lazy_gettext, gettext
+from config import LANGUAGES_FORM
+import pytz
+
+def get_timezones():
+	tz = []
+	for c in pytz.all_timezones:
+		tz.append((c,c))
+	return tz
 
 class UserForm(Form):
 	email = TextField(lazy_gettext('Email'), [ validators.Required(), validators.Email() , validators.Length(min = 10, max = 255)])
@@ -15,6 +23,8 @@ class UserForm(Form):
 	confirm_password = PasswordField(lazy_gettext('Confirm'), [ validators.Optional() ])
 	address = TextAreaField(lazy_gettext('Address'), [ validators.Length(min = 0, max = 255) ])
 	phone = TextField(lazy_gettext('Phone'), [ validators.Length(min = 0, max = 64) ])
+	timezone = SelectField(u'Timezone', choices=get_timezones())
+	lang = SelectField(u'language', choices=LANGUAGES_FORM)
 
 class NewUserForm(UserForm):
 	password = PasswordField(lazy_gettext('Password'), [ 
@@ -33,6 +43,8 @@ class EditUserForm(UserForm):
 		self.role.data = unicode(user.role)
 		self.address.data = user.address
 		self.phone.data = user.phone
+		self.timezone.data = user.timezone
+		self.lang.data = user.lang
 
 
 

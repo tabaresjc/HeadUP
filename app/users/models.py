@@ -23,6 +23,7 @@ class User(UserMixin, CRUDMixin):
     last_seen = DateTime(default_factory = lambda: datetime.datetime(1970, 1, 1))
     last_login = DateTime(default_factory = lambda: datetime.datetime(1970, 1, 1))
     timezone = Unicode(default=u'Asia/Tokyo')
+    lang = Unicode(default=u'en')
     created_at = DateTime(default_factory = lambda: datetime.datetime(1970, 1, 1))
     modified_at = DateTime(default_factory = lambda: datetime.datetime(1970, 1, 1))    
     
@@ -86,6 +87,7 @@ class User(UserMixin, CRUDMixin):
                       last_seen TIMESTAMP,\
                       last_login TIMESTAMP,\
                       timezone VARCHAR(20) DEFAULT 'Asia/Tokyo'::character varying,\
+                      lang VARCHAR(20) DEFAULT 'en'::character varying,\
                       created_at TIMESTAMP,\
                       modified_at TIMESTAMP);", noresult=True)
       store.execute("CREATE INDEX users_email_idx ON users USING btree (email);", noresult=True)
