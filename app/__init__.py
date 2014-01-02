@@ -6,7 +6,7 @@ from flask_wtf.csrf import CsrfProtect
 from flask.ext.babel import Babel, lazy_gettext, gettext, format_datetime, format_timedelta
 from storm.locals import create_database, Store, ReferenceSet, Reference, Desc
 from config import STORM_DATABASE_URI
-from utilities import truncate
+from utilities import truncate, get_navigation_bar
 import os
 import datetime
 
@@ -109,5 +109,5 @@ app.jinja_env.filters['humanformat'] = humanformat
 app.jinja_env.filters['user_role'] = user_role
 app.jinja_env.filters['htmltruncate'] = htmltruncate
 app.jinja_env.filters['get_stat'] = get_stat
-
+app.jinja_env.filters['sidebar'] = get_navigation_bar
 app.jinja_env.tests['administrator'] = is_administrator

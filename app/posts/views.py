@@ -41,7 +41,7 @@ class PostsView(FlaskView):
     def get(self,id):
         post = Post.get_by_id(id)
         if post is None:
-            flash('The post was not found', 'error')
+            flash(gettext('The post was not found'), 'error')
             return redirect(url_for('PostsView:index'))
 
         return render_template('admin/posts/show.html', 
@@ -123,7 +123,7 @@ class PostsView(FlaskView):
 
             flash(gettext('The post "%(title)s" was removed', title=title))
         except:
-            flash('Error while removing the post', 'error')
+            flash(gettext('Error while removing the post'), 'error')
             raise
 
         if request.method == 'POST':

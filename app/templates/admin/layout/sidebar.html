@@ -1,53 +1,7 @@
-    {% set navigation_bar = {
-        'home': {
-            'name': 'Dashboard',
-            'url': 'dashboard',
-            'icon': 'icon-home',
-            'pattern': 'dashboard',
-            'index': '0'
-        },
-        'posts': {
-            'name': 'Posts',
-            'url': '',
-            'icon': 'icon-edit',
-            'pattern': 'PostsView',
-            'index': '1',
-            'sub-menu': {
-                'index': {
-                    'name': 'Post List',
-                    'url': 'PostsView:index',
-                    'index': '0'
-                },
-                'new': {
-                    'name': 'New Post',
-                    'url': 'PostsView:post_0',
-                    'index': '1'
-                }
-            }       
-        },
-        'users': {
-            'name': 'Users',
-            'url': '',
-            'icon': 'icon-user',
-            'pattern': 'UsersView',
-            'index': '2',
-            'sub-menu': {
-                'index': {
-                    'name': 'User List',
-                    'url': 'UsersView:index',
-                    'index': '0'
-                },
-                'new': {
-                    'name': 'New User',
-                    'url': 'UsersView:post_0',
-                    'index': '1'
-                }            
-            }       
-        }    
-    } -%}
+    {% set navigation_bar = None|sidebar -%}
     <div id="sidebar-nav">
         <ul id="dashboard-menu">
-            {% for item in navigation_bar|sort(attribute='index', reverse=True) %}        
+            {% for item in navigation_bar %}        
             <li class="element">
                 {% if request.endpoint.startswith(navigation_bar[item]['pattern'])  %}
                 <div class="pointer">
@@ -62,7 +16,7 @@
                     <i class="icon-chevron-down"></i>
                 </a>
                 <ul class="submenu">
-                    {% for si in navigation_bar[item]['sub-menu']|sort(attribute='index', reverse=True) %}
+                    {% for si in navigation_bar[item]['sub-menu'] %}
                     <li><a href="{{ url_for(navigation_bar[item]['sub-menu'][si]['url']) }}">{{navigation_bar[item]['sub-menu'][si]['name']}}</a></li>
                     {% endfor %}
                 </ul>
