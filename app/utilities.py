@@ -13,8 +13,14 @@ navigation_bar = {
     }
 
 def get_navigation_bar(value, sorted=True):
-    d = navigation_bar
-    d.update({'posts': {
+    d = dict([
+        ('home', {
+            'name': 'Dashboard',
+            'url': 'dashboard',
+            'icon': 'icon-home',
+            'pattern': 'dashboard'
+        }), 
+        ('posts', {
                 'name': 'Posts',
                 'url': '',
                 'icon': 'icon-edit',
@@ -29,8 +35,8 @@ def get_navigation_bar(value, sorted=True):
                         'url': 'PostsView:post_0'
                     }
                 }       
-            }})
-    d.update({'users': {
+            }), 
+        ('users', {
                 'name': 'Users',
                 'url': '',
                 'icon': 'icon-user',
@@ -45,7 +51,7 @@ def get_navigation_bar(value, sorted=True):
                         'url': 'UsersView:post_0'
                     }            
                 }       
-            }})
+            })])
     return d
 
 class UnbalancedError(Exception):
