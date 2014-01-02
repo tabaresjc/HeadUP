@@ -1,5 +1,5 @@
 import sys
-
+from collections import OrderedDict
 
 END = -1
 
@@ -8,51 +8,45 @@ navigation_bar = {
             'name': 'Dashboard',
             'url': 'dashboard',
             'icon': 'icon-home',
-            'pattern': 'dashboard',
-            'order': '0'
-        },
-        'posts': {
-            'name': 'Posts',
-            'url': '',
-            'icon': 'icon-edit',
-            'pattern': 'PostsView',
-            'order': '1',
-            'sub-menu': {
-                'index': {
-                    'name': 'Post List',
-                    'url': 'PostsView:index',
-                    'item_index': '0'
-                },
-                'new': {
-                    'name': 'New Post',
-                    'url': 'PostsView:post_0',
-                    'item_index': '1'
-                }
-            }       
-        },
-        'users': {
-            'name': 'Users',
-            'url': '',
-            'icon': 'icon-user',
-            'pattern': 'UsersView',
-            'order': '2',
-            'sub-menu': {
-                'index': {
-                    'name': 'User List',
-                    'url': 'UsersView:index',
-                    'item_index': '0'
-                },
-                'new': {
-                    'name': 'New User',
-                    'url': 'UsersView:post_0',
-                    'item_index': '1'
-                }            
-            }       
-        }    
+            'pattern': 'dashboard'
+        }
     }
 
 def get_navigation_bar(value, sorted=True):
-    return navigation_bar
+    d = navigation_bar
+    d.update({'posts': {
+                'name': 'Posts',
+                'url': '',
+                'icon': 'icon-edit',
+                'pattern': 'PostsView',
+                'sub-menu': {
+                    'index': {
+                        'name': 'Post List',
+                        'url': 'PostsView:index'
+                    },
+                    'new': {
+                        'name': 'New Post',
+                        'url': 'PostsView:post_0'
+                    }
+                }       
+            }})
+    d.update({'users': {
+                'name': 'Users',
+                'url': '',
+                'icon': 'icon-user',
+                'pattern': 'UsersView',
+                'sub-menu': {
+                    'index': {
+                        'name': 'User List',
+                        'url': 'UsersView:index'
+                    },
+                    'new': {
+                        'name': 'New User',
+                        'url': 'UsersView:post_0'
+                    }            
+                }       
+            }})
+    return d
 
 class UnbalancedError(Exception):
     pass
