@@ -14,14 +14,17 @@ from config import LANGUAGES
 
 @app.before_request
 def before_request():
-    if request.endpoint in ['index','show_post']:
-        g.user_count = User.count()
-        g.post_count = Post.count()
-        g.comment_count = Comment.count()
-        g.searhform = SearchForm()
-
-    if 'redirect_to' in session and request.endpoint and request.endpoint not in ['static', 'sessions.login','sessions.signup','sessions.login_comment']:
-        session.pop('redirect_to', None)
+    if request.endpoint:
+        if request.endpoint in ['index','show_post', 'search_post']:
+            g.user_count = User.count()
+            g.post_count = Post.count()
+            g.comment_count = Comment.count()
+            if request.endpoint != 'search_post':
+                g.searhform = SearchForm()
+        if 'redirect_to' in session and request.endpoint not in ['static', 'sessions.login','sessions.signup','sessions.login_comment']:
+            session.pop('redirect_to', None)
+        if 'search_query' in session and request.endpoint not in ['search_post']:
+            session.pop('search_query', None)
 
 @babel.localeselector
 def get_locale():
@@ -168,16 +171,24 @@ def search_post():
         if form.validate_on_submit():
             try:
                 posts, count = Search.search_post(form.searchtext.data, limit=limit, page=page)
+                session['search_query'] = form.searchtext.data
             except:
                 flash(gettext('Error while searching, please retry later'), 'error')
         else:
             flash(gettext('Invalid submission, please check the message below'), 'error')
+    else:
+        if 'search_query' in session:
+            form.searchtext.data = session['search_query']
+            try:
+                posts, count = Search.search_post(form.searchtext.data, limit=limit, page=page)
+            except:
+                flash(gettext('Error while searching, please retry later'), 'error')            
     
     pagination = Pagination(page=page, 
         per_page= limit,
         total= count, 
         record_name= gettext('posts'), 
-        alignment = 'right', 
+        alignment = 'right',
         bs_version= 3)
 
     return render_template("blog/post-search.html",
