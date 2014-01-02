@@ -23,7 +23,8 @@ def before_request():
                 g.searhform = SearchForm()
         if 'redirect_to' in session and request.endpoint not in ['static', 'sessions.login','sessions.signup','sessions.login_comment']:
             session.pop('redirect_to', None)
-
+        # if 'search_query' in session and request.endpoint not in ['search_post']:
+        #     session.pop('search_query', None)
 
 @babel.localeselector
 def get_locale():
