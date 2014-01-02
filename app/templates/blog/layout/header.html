@@ -60,6 +60,18 @@
                     <a href="{{ url_for('show_post',id=post.id) }}">{{post.title | truncate(30) }}</a>
                     {% endif %}
                 </div>
+                {% if g.searhform %}
+                {% from "shared/_bootstrap_forms.html" import render_search_field %}
+                <div class="tales-searchbox">
+                    <form action="{{ url_for('search_post') }}" method="post" accept-charset="utf-8">
+                        {{g.searhform.hidden_tag()}}                        
+                        <button class="searchbutton" type="submit">
+                            <i class="icon-search"></i>
+                        </button>
+                        {{ render_search_field(g.searhform.searchtext,class="searchfield",placeholder=_('Search'),id="searchbox") }}
+                    </form>
+                </div>
+                {% endif %}
             </div>
         </div>
     </header>

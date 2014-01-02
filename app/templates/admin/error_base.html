@@ -45,24 +45,29 @@
                 <!-- edit form column -->
                 <div class="col-md-4 col-md-offset-1">
                     {% include 'shared/message.html' %}
-                    <p>Did you try searching? Enter a keyword(s) in the search field. Or, try one of the links below.</p>
-
-                    <input class="search" type="text" placeholder="Search input..">
+                    {% if g.searhform %}
+                    {% from "shared/_bootstrap_forms.html" import render_search_field %}
+                    <p>{{ _('Did you try searching? Enter a keyword(s) in the search field. Or, try one of the links below.') }}</p>
+                    <form action="{{ url_for('search_post') }}" method="post" accept-charset="utf-8">
+                        {{ g.searhform.hidden_tag()}}                        
+                        {{ render_search_field(g.searhform.searchtext, class="search",placeholder=_('Search')) }}
+                    </form>
                     <br/><br/>
+                    {% endif %}
                     <div class="pop-dialog full">
                         <div class="body">
                             <div class="settings">
                                 <div class="items">
                                     <div class="item">
-                                        <h5>Blog</h5>
+                                        <h5>{{_('Blog')}}</h5>
                                     </div>                                    
                                     <div class="item">
                                         <i class="icon-reorder"></i>
-                                        <a href="{{ url_for('index') }}">Home Page</a>
+                                        <a href="{{ url_for('index') }}">{{_('Home Page')}}</a>
                                     </div>
                                     <div class="item">
                                         <i class="icon-reorder"></i>
-                                        <a href="{{ url_for('index') }}">Archives</a>
+                                        <a href="{{ url_for('index') }}">{{_('Archives')}}</a>
                                     </div>                                    
                                 </div>
                             </div>
@@ -75,15 +80,15 @@
                             <div class="settings">
                                 <div class="items">
                                     <div class="item">
-                                        <h3 href="{{ url_for('dashboard') }}">Dashboard</h3>
+                                        <h3 href="{{ url_for('dashboard') }}">{{_('Dashboard')}}</h3>
                                     </div>                                    
                                     <div class="item">
                                         <i class="icon-reorder"></i>
-                                        <a href="{{ url_for('PostsView:index') }}">Posts</a>
+                                        <a href="{{ url_for('PostsView:index') }}">{{_('Posts')}}</a>
                                     </div>
                                     <div class="item">
                                         <i class="icon-reorder"></i>
-                                        <a href="{{ url_for('PostsView:post_0') }}">New Post</a>
+                                        <a href="{{ url_for('PostsView:post_0') }}">{{_('New Post')}}</a>
                                     </div>
                                     <div class="item">
                                         <i class="icon-reorder"></i>

@@ -8,6 +8,8 @@ from app.users.models import User
 from app.posts.models import Post
 from app.comments.models import Comment
 from app.comments.forms import CommentForm
+from forms import SearchForm
+from models import Search
 from config import LANGUAGES
 
 @app.before_request
@@ -16,6 +18,8 @@ def before_request():
         g.user_count = User.count()
         g.post_count = Post.count()
         g.comment_count = Comment.count()
+        g.searhform = SearchForm()
+
     if 'redirect_to' in session and request.endpoint and request.endpoint not in ['static', 'sessions.login','sessions.signup','sessions.login_comment']:
         session.pop('redirect_to', None)
 
@@ -41,6 +45,7 @@ def internal_error(error):
 
 @app.errorhandler(404)
 def internal_error(error):
+    g.searhform = SearchForm()
     return render_template('admin/404.html', title= 'Error %s' % error), 404
 
 @app.errorhandler(500)
@@ -64,7 +69,7 @@ def index(page=1):
         posts = posts,
         pagination = pagination)
 
-@app.route('/post/<int:id>', methods = ['GET','POST'])
+@app.route('/post/<int:id>/', methods = ['GET','POST'])
 def show_post(id):
     try:
         post = Post.get_by_id(id)
@@ -147,3 +152,36 @@ def reply_comment(post_id, id):
         postid=post.id)
     resp = Response(tmplt, status=200, mimetype='text/javascript')
     return resp
+
+@app.route('/search/', methods = ['GET', 'POST'])
+def search_post():
+    form = SearchForm()
+    posts = None
+    count = 0
+    limit = 5
+    try:
+        page = int(request.args.get('page', 1))
+    except ValueError:
+        page = 1
+
+    if request.method == 'POST':
+        if form.validate_on_submit():
+            try:
+                posts, count = Search.search_post(form.searchtext.data, limit=limit, page=page)
+            except:
+                flash(gettext('Error while searching, please retry later'), 'error')
+        else:
+            flash(gettext('Invalid submission, please check the message below'), 'error')
+    
+    pagination = Pagination(page=page, 
+        per_page= limit,
+        total= count, 
+        record_name= gettext('posts'), 
+        alignment = 'right', 
+        bs_version= 3)
+
+    return render_template("blog/post-search.html",
+        title = gettext('Search'),
+        form = form,
+        posts = posts,
+        pagination = pagination)

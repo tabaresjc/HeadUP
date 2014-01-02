@@ -1,0 +1,33 @@
+{% extends "blog/base.html" %}
+{% block main %}
+		<div class="row">
+            {% if form %}
+            {% from "shared/_bootstrap_forms.html" import render_inline_field %}
+            <div class="col-md-12 well">
+                <form action="{{ url_for('search_post') }}" method="post" accept-charset="utf-8">
+                    {{form.hidden_tag()}}                        
+                    {{ render_inline_field(form.searchtext, class="form-control",placeholder=_('Search')) }}
+				    <div class="actions clearfix">
+				    	<input type="submit" value="Search" class="btn btn-large btn-primary pull-right">
+				        <input type="reset" value="Clear" class="btn btn-large btn-danger">
+				    </div>                    
+                </form>
+            </div>
+            {% endif %}			
+			{% if posts %}
+			<br/><br/>
+			<h3>{{ _('Found %(count)s articles', count=pagination.total) }}<h3>
+		    <div class="col-md-12">
+		    	{{ pagination.links|safe }}
+		    	<div class="clearfix"></div>
+
+		    	{% for post in posts %}
+				{% include 'blog/layout/_post_item.html' %}
+				{% endfor %}			
+
+		    	{{ pagination.links|safe }}
+		    	<div class="clearfix"></div>				
+		    </div>
+		    {% endif %}
+		</div>
+{% endblock %}
