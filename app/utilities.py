@@ -1,16 +1,5 @@
 import sys
-from collections import OrderedDict
 
-END = -1
-
-navigation_bar = {
-        'home': {
-            'name': 'Dashboard',
-            'url': 'dashboard',
-            'icon': 'icon-home',
-            'pattern': 'dashboard'
-        }
-    }
 
 def get_navigation_bar(value, sorted=True):
     d = dict([
@@ -53,6 +42,8 @@ def get_navigation_bar(value, sorted=True):
                 }       
             })])
     return d
+
+END = -1
 
 class UnbalancedError(Exception):
     pass
