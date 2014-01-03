@@ -175,8 +175,20 @@ class Utilities(object):
                             'url': 'PostsView:post_0'
                         }
                     }       
-                }), 
+                }),
             (2, {
+                    'name': 'Comments',
+                    'url': '',
+                    'icon': 'icon-comments-alt',
+                    'pattern': 'CommentsView',
+                    'sub-menu': {
+                        'index': {
+                            'name': 'Comments List',
+                            'url': 'CommentsView:index'
+                        }
+                    }       
+                }),                 
+            (3, {
                     'name': 'Users',
                     'url': '',
                     'icon': 'icon-user',
@@ -191,18 +203,7 @@ class Utilities(object):
                             'url': 'UsersView:post_0'
                         }            
                     }       
-                }),
-            (3, {
-                    'name': 'Comments',
-                    'url': '',
-                    'icon': 'icon-comments-alt',
-                    'pattern': 'CommentsView',
-                    'sub-menu': {
-                        'index': {
-                            'name': 'Comments List',
-                            'url': 'CommentsView:index'
-                        }
-                    }       
                 })
+
             ])
         return d

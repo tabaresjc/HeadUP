@@ -6,19 +6,17 @@
 {% block main %}
     <div class="row head">
         <div class="col-md-12">
-            <h4>{{_('Comments')}}</h4>
+            <h4>{{ _('Comment by %(name)s', name=comment.user.name) }}</h4>
         </div>
     </div>
     <br/>
 	<div class="row">
-	    <div class="col-md-8 col-md-offset-2">
-	    	{{ pagination.info|safe }}
-	    	{{ pagination.links|safe }}
-	    	<div class="clearfix"></div>
-			{% for comment in comments %}
-			{% include 'admin/comments/_comment_item.html' %}
-			{% endfor %}
-			{{ pagination.links|safe }}
+	    <div class="col-md-9">
+	    	{% include 'admin/comments/_comment_item.html' %}
 	    </div>
+
+	    <div class="col-md-3">
+	    	{% include 'admin/comments/_sidebar.html' %}
+	    </div>		    
 	</div>
 {% endblock %}

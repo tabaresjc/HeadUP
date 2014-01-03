@@ -4,9 +4,14 @@
     <link rel="stylesheet" href="/static/admin/css/compiled/ui-elements.css" type="text/css" media="screen">
 {% endblock %}
 {% block main %}
+    <div class="row head">
+        <div class="col-md-12">
+            <h3>{{ title }}</h3>
+        </div>
+    </div>
+    <br/>
 	<div class="row">
-	    <div class="col-md-9">
-	    	<h3>{{ title }}</h3>
+	    <div class="col-md-9">	    	
 	    	{% include 'admin/posts/_post_item.html' %}
 	    </div>
 	    <div class="col-md-3">

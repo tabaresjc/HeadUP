@@ -1,4 +1,4 @@
-from flask.ext.login import UserMixin
+from flask.ext.login import UserMixin, current_user
 from app import app, database, store
 from app.mixins import CRUDMixin
 from storm.locals import *
@@ -21,6 +21,9 @@ class Comment(CRUDMixin):
 
     def __repr__(self): # pragma: no cover
       return '<Comment %s>' % (self.id)
+
+    def can_edit(self):
+      return current_user.is_authenticated() and (self.user.id == current_user.id or current_user.is_admin())
 
     @staticmethod
     def create_table():

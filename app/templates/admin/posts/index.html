@@ -4,18 +4,24 @@
     <link rel="stylesheet" href="/static/admin/css/compiled/ui-elements.css" type="text/css" media="screen">
 {% endblock %}
 {% block main %}
-		<div class="row">
-		    <div class="col-md-9">
-		    	{{ pagination.info|safe }}
-		    	{{ pagination.links|safe }}
-		    	<div class="clearfix"></div>
-				{% for post in posts %}
-				{% include 'admin/posts/_post_item.html' %}
-				{% endfor %}
-				{{ pagination.links|safe }}
-		    </div>
-		    <div class="col-md-3">
-		    	{% include 'admin/posts/_sidebar.html' %}
-		    </div>
-		</div>
+    <div class="row head">
+        <div class="col-md-12">
+            <h4>{{_('Comments')}}</h4>
+        </div>
+    </div>
+    <br/>
+	<div class="row">
+	    <div class="col-md-9">
+	    	{{ pagination.info|safe }}
+	    	{{ pagination.links|safe }}
+	    	<div class="clearfix"></div>
+			{% for post in posts %}
+			{% include 'admin/posts/_post_item.html' %}
+			{% endfor %}
+			{{ pagination.links|safe }}
+	    </div>
+	    <div class="col-md-3">
+	    	{% include 'admin/posts/_sidebar.html' %}
+	    </div>
+	</div>
 {% endblock %}

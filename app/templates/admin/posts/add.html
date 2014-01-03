@@ -9,15 +9,20 @@
     <script src="/static/js/editor_loader.js"></script>
 {% endblock %}
 {% block main %}
-		<div class="row">
-		    <div class="col-md-9">
-		    	<h3>{{ title }}</h3>
-		    	<div class="well">
-		    		{% include 'admin/posts/_post_form_add.html' %}
-		    	</div>
-		    </div>
-		    <div class="col-md-3">
-		    	{% include 'admin/posts/_sidebar.html' %}
-		    </div>		    
-		</div>
+    <div class="row head">
+        <div class="col-md-12">
+            <h3>{{ title }}</h3>
+        </div>
+    </div>
+    <br/>
+	<div class="row">
+	    <div class="col-md-9">
+	    	<div class="well">
+	    		{% include 'admin/posts/_post_form_add.html' %}
+	    	</div>
+	    </div>
+	    <div class="col-md-3">
+	    	{% include 'admin/posts/_sidebar.html' %}
+	    </div>		    
+	</div>
 {% endblock %}
