@@ -12,8 +12,8 @@
 				<a href="{{ url_for('UsersView:get',id=current_user.id) }}">
 					<img alt="{{ current_user.name }}" class="img-thumbnail" src="{{ current_user.avatar(144) }}">
 				</a>
-				<div><strong>Email</strong><br/>{{ current_user.email }}</div>
-				<div><strong>Last login</strong><br/>{{ current_user.last_seen|datetimeformat }}</div>
+				<div><strong>{{_('Email')}}</strong><br/>{{ current_user.email }}</div>
+				<div><strong>{{_('Last login')}}</strong><br/>{{ current_user.last_seen|datetimeformat }}</div>
 			</div>
 			<div class="panel-footer">
 				<div class="div btn-group">
@@ -42,14 +42,14 @@
 		<div class="col-md-6 col-sm-6 stat">
 			<div class="data">
 				<span class="number">{{current_user.posts.count()}}</span>
-				Posts
+				{{_('Posts')}}
 			</div>
 			<span class="date"></span>
 		</div>
 		<div class="col-md-6 col-sm-6 stat">
 			<div class="data">
 				<span class="number">{{current_user.comments.count()}}</span>
-				Comments
+				{{_('Comments')}}
 			</div>
 			<span class="date"></span>
 		</div>
