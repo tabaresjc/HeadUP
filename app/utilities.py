@@ -154,13 +154,13 @@ class Utilities(object):
     @staticmethod
     def get_navigation_bar(value, sorted=True):
         d = dict([
-            ('home', {
+            (0, {
                 'name': 'Dashboard',
                 'url': 'dashboard',
                 'icon': 'icon-home',
                 'pattern': 'dashboard'
-            }), 
-            ('posts', {
+                }), 
+            (1, {
                     'name': 'Posts',
                     'url': '',
                     'icon': 'icon-edit',
@@ -176,7 +176,7 @@ class Utilities(object):
                         }
                     }       
                 }), 
-            ('users', {
+            (2, {
                     'name': 'Users',
                     'url': '',
                     'icon': 'icon-user',
@@ -192,7 +192,7 @@ class Utilities(object):
                         }            
                     }       
                 }),
-            ('comments', {
+            (3, {
                     'name': 'Comments',
                     'url': '',
                     'icon': 'icon-comments-alt',
