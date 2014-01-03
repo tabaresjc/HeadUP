@@ -103,7 +103,6 @@ def get_stat(value):
     else:
         return 0
 
-
 app.jinja_env.filters['datetimeformat'] = datetimeformat
 app.jinja_env.filters['humanformat'] = humanformat
 app.jinja_env.filters['user_role'] = user_role
