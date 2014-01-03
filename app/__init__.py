@@ -3,12 +3,13 @@ from flask.ext.login import LoginManager
 from flask.ext.classy import FlaskView
 from flask.ext.principal import Principal
 from flask_wtf.csrf import CsrfProtect
-from flask.ext.babel import Babel, lazy_gettext, gettext, format_datetime, format_timedelta
+from flask.ext.babel import Babel, lazy_gettext
 from storm.locals import create_database, Store, ReferenceSet, Reference, Desc
 from config import STORM_DATABASE_URI
-from utilities import truncate, get_navigation_bar
+from utilities import Utilities
+
 import os
-import datetime
+
 
 app = Flask(__name__)
 
@@ -70,43 +71,11 @@ Comment.replies = ReferenceSet(Comment.id, Comment.comment_id, order_by = Commen
 #----------------------------------------
 # filters
 #----------------------------------------
-def datetimeformat(value, format='EEE, d MMM yyyy H:mm:ss'):
-    return format_datetime(value,format)
 
-def humanformat(value):
-    #return human(value, precision=1)
-    return gettext('Posted %(ago)s ago', ago=format_timedelta(value, granularity='second'))
-
-def user_role(value):
-    if value is users.models.ROLE_ADMIN:
-    	return 'Admin'
-    else:
-    	return 'Writer'
-
-def is_administrator(value):
-    if value is users.models.ROLE_ADMIN:
-    	return True
-    else:
-    	return False
-
-def htmltruncate(value,target_len = 200, ellipsis='...'):
-    return truncate(value,target_len,ellipsis)
-
-# Get stats and values for the widgets of the blog
-def get_stat(value):
-    if value == 4:
-        last_post, count = Post.pagination()
-        return last_post
-    elif value == 5:
-        last_comments, count = Comment.pagination()
-        return last_comments        
-    else:
-        return 0
-
-app.jinja_env.filters['datetimeformat'] = datetimeformat
-app.jinja_env.filters['humanformat'] = humanformat
-app.jinja_env.filters['user_role'] = user_role
-app.jinja_env.filters['htmltruncate'] = htmltruncate
-app.jinja_env.filters['get_stat'] = get_stat
-app.jinja_env.filters['sidebar'] = get_navigation_bar
-app.jinja_env.tests['administrator'] = is_administrator
+app.jinja_env.filters['datetimeformat'] = Utilities.datetimeformat
+app.jinja_env.filters['humanformat'] = Utilities.humanformat
+app.jinja_env.filters['user_role'] = Utilities.user_role
+app.jinja_env.filters['htmltruncate'] = Utilities.htmltruncate
+app.jinja_env.filters['get_stat'] = blog.models.get_stat
+app.jinja_env.filters['sidebar'] = Utilities.get_navigation_bar
+app.jinja_env.tests['administrator'] = Utilities.is_administrator

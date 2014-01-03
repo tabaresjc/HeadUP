@@ -260,7 +260,7 @@ input.search {
 /* Sidebar */
 #sidebar-nav {
   position: absolute;
-  width: 180px;
+  width: 190px;
   float: left;
   margin: 0em;
   padding-top: 5.8em;
@@ -275,7 +275,7 @@ input.search {
 }
 #sidebar-nav #dashboard-menu > li > a {
   display: block;
-  padding: 19px 14px 15px 14px;
+  padding: 19px 9px 15px 9px;
   margin-left: -15px;
   margin-bottom: 5px;
   border-bottom: 1px solid #dae1e8;
@@ -421,7 +421,7 @@ input.search {
   overflow: hidden;
   position: relative;
   background: #fff;
-  margin-left: 177px;
+  margin-left: 187px;
   border-left: 1px solid #dae3e9;
   border-bottom: 1px solid #dae3e9;
   box-shadow: -3px 3px 3px -2px #f1f1f3;

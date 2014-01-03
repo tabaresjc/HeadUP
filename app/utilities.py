@@ -1,47 +1,6 @@
 import sys
-
-
-def get_navigation_bar(value, sorted=True):
-    d = dict([
-        ('home', {
-            'name': 'Dashboard',
-            'url': 'dashboard',
-            'icon': 'icon-home',
-            'pattern': 'dashboard'
-        }), 
-        ('posts', {
-                'name': 'Posts',
-                'url': '',
-                'icon': 'icon-edit',
-                'pattern': 'PostsView',
-                'sub-menu': {
-                    'index': {
-                        'name': 'Post List',
-                        'url': 'PostsView:index'
-                    },
-                    'new': {
-                        'name': 'New Post',
-                        'url': 'PostsView:post_0'
-                    }
-                }       
-            }), 
-        ('users', {
-                'name': 'Users',
-                'url': '',
-                'icon': 'icon-user',
-                'pattern': 'UsersView',
-                'sub-menu': {
-                    'index': {
-                        'name': 'User List',
-                        'url': 'UsersView:index'
-                    },
-                    'new': {
-                        'name': 'New User',
-                        'url': 'UsersView:post_0'
-                    }            
-                }       
-            })])
-    return d
+import datetime
+from flask.ext.babel import Babel, lazy_gettext, gettext, format_datetime, format_timedelta
 
 END = -1
 
@@ -177,3 +136,87 @@ if __name__ == "__main__":
             print(truncate(raw_input("> "), int(sys.argv[1])))
     except EOFError:
         sys.exit(0)
+
+class Utilities(object):
+    @staticmethod
+    def datetimeformat(value, format='EEE, d MMM yyyy H:mm:ss'):
+        return format_datetime(value,format)
+
+    @staticmethod
+    def humanformat(value):
+        #return human(value, precision=1)
+        return gettext('Posted %(ago)s ago', ago=format_timedelta(value, granularity='second'))
+
+    @staticmethod
+    def user_role(value):
+        if value is users.models.ROLE_ADMIN:
+            return 'Admin'
+        else:
+            return 'Writer'
+
+    @staticmethod
+    def is_administrator(value):
+        if value is users.models.ROLE_ADMIN:
+            return True
+        else:
+            return False
+
+    @staticmethod
+    def htmltruncate(value,target_len = 200, ellipsis='...'):
+        return truncate(value,target_len,ellipsis)
+
+    @staticmethod
+    def get_navigation_bar(value, sorted=True):
+        d = dict([
+            ('home', {
+                'name': 'Dashboard',
+                'url': 'dashboard',
+                'icon': 'icon-home',
+                'pattern': 'dashboard'
+            }), 
+            ('posts', {
+                    'name': 'Posts',
+                    'url': '',
+                    'icon': 'icon-edit',
+                    'pattern': 'PostsView',
+                    'sub-menu': {
+                        'index': {
+                            'name': 'Post List',
+                            'url': 'PostsView:index'
+                        },
+                        'new': {
+                            'name': 'New Post',
+                            'url': 'PostsView:post_0'
+                        }
+                    }       
+                }), 
+            ('users', {
+                    'name': 'Users',
+                    'url': '',
+                    'icon': 'icon-user',
+                    'pattern': 'UsersView',
+                    'sub-menu': {
+                        'index': {
+                            'name': 'User List',
+                            'url': 'UsersView:index'
+                        },
+                        'new': {
+                            'name': 'New User',
+                            'url': 'UsersView:post_0'
+                        }            
+                    }       
+                }),
+            ('comments', {
+                    'name': 'Comments',
+                    'url': '',
+                    'icon': 'icon-comments-alt',
+                    'pattern': 'CommentsView',
+                    'sub-menu': {
+                        'index': {
+                            'name': 'Comments List',
+                            'url': 'CommentsView:index'
+                        }
+                    }       
+                })
+            ])
+        return d
