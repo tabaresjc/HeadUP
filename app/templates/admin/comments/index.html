@@ -3,21 +3,19 @@
     <link rel="stylesheet" href="/static/admin/css/compiled/index.css" type="text/css" media="screen" />
     <link rel="stylesheet" href="/static/admin/css/compiled/ui-elements.css" type="text/css" media="screen">
 {% endblock %}
-{% block custom_js %}
-    <script src="/static/ckeditor/ckeditor.js"></script>
-    <script src="/static/ckeditor/adapters/jquery.js"></script>
-    <script src="/static/js/editor_loader.js"></script>
-{% endblock %}
 {% block main %}
 		<div class="row">
 		    <div class="col-md-9">
-		    	<h3>{{ title }}</h3>
-		    	<div class="well">
-		    		{% include 'admin/posts/_post_form_add.html' %}
-		    	</div>
+		    	{{ pagination.info|safe }}
+		    	{{ pagination.links|safe }}
+		    	<div class="clearfix"></div>
+				{% for comment in comments %}
+				{% include 'admin/comments/_comment_item.html' %}
+				{% endfor %}
+				{{ pagination.links|safe }}
 		    </div>
 		    <div class="col-md-3">
-		    	{% include 'admin/posts/_sidebar.html' %}
-		    </div>		    
+		    	{% include 'admin/comments/_sidebar.html' %}
+		    </div>
 		</div>
 {% endblock %}

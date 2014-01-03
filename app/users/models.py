@@ -1,8 +1,8 @@
 from flask.ext.login import UserMixin, current_user
+from flask.ext.babel import lazy_gettext, gettext, format_datetime, format_timedelta
 from werkzeug.security import generate_password_hash, check_password_hash
 from app import app, database, store
 from app.mixins import CRUDMixin
-
 from storm.locals import *
 from hashlib import md5
 import datetime
@@ -35,6 +35,12 @@ class User(UserMixin, CRUDMixin):
 
     def is_admin(self):
       return self.role == int(ROLE_ADMIN)
+
+    def role_desc(self):
+        if self.role == int(ROLE_ADMIN):
+            return gettext('Admin')
+        else:
+            return gettext('Writer')
 
     def is_current(self):
       return self.id == current_user.id

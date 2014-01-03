@@ -7,7 +7,7 @@
 				</a>
 		    </div>
 		    <div class="col-md-3">
-				{% if post.user_id == current_user.id %}
+				{% if post.can_edit() %}
 				<a class="btn btn-success pull-right" href="{{ url_for('PostsView:put_0', id=post.id) }}">
 					<i class="icon-edit"></i>
 				</a>
@@ -38,8 +38,8 @@
 	</div>
 	<div class="panel-footer">
 		<div>
-			{% if post.user_id == current_user.id %}			
-				<a href="{{ url_for('PostsView:delete_0', id=post.id) }}" data-method="post" rel="nofollow" data-confirm="This will remove '{{ post.title }}'?">
+			{% if post.can_edit() %}
+				<a href="{{ url_for('PostsView:delete_0', id=post.id) }}" data-method="post" rel="nofollow" data-confirm="{{_('This will remove \'%(title)s\', Are you sure?', title=post.title)}}">
 					<i class="icon-trash"></i>
 				</a>
 			{% endif %}

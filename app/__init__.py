@@ -74,8 +74,6 @@ Comment.replies = ReferenceSet(Comment.id, Comment.comment_id, order_by = Commen
 
 app.jinja_env.filters['datetimeformat'] = Utilities.datetimeformat
 app.jinja_env.filters['humanformat'] = Utilities.humanformat
-app.jinja_env.filters['user_role'] = Utilities.user_role
 app.jinja_env.filters['htmltruncate'] = Utilities.htmltruncate
 app.jinja_env.filters['get_stat'] = blog.models.get_stat
 app.jinja_env.filters['sidebar'] = Utilities.get_navigation_bar
-app.jinja_env.tests['administrator'] = Utilities.is_administrator

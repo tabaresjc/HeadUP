@@ -7,7 +7,7 @@
 <div class="table-wrapper users-table section">
     <div class="row head">
         <div class="col-md-12">
-            <h4>Users</h4>
+            <h4>{{_('Users')}}</h4>
         </div>
     </div>
 
@@ -24,16 +24,16 @@
             <thead>
                 <tr>
                     <th class="col-md-3">
-                        Name
+                        {{_('Name')}}
                     </th>
                     <th class="col-md-3">
-                        <span class="line"></span>Signed up
+                        <span class="line"></span>{{_('Signed up')}}
                     </th>
                     <th class="col-md-2">
-                        <span class="line"></span>Total Posts
+                        <span class="line"></span>{{_('Total Posts')}}
                     </th>
                     <th class="col-md-2">
-                        <span class="line"></span>Role
+                        <span class="line"></span>{{_('Role')}}
                     </th>                    
                     <th>
                         <span class="line"></span>
@@ -43,7 +43,7 @@
             <tbody>
                 <!-- row -->
                 {% for user in users %}
-                 <tr class="{{ 'first' if user.id == users.first().id }}">
+                 <tr {% if loop.first %}class="first"{% endif %}>
                     <td>
                         <img src="{{ user.avatar(48) }}" class="img-circle avatar hidden-phone" />
                         <a href="{{ url_for('UsersView:get', id=user.id) }}" class="name">{{ user.name }}</a>
@@ -51,14 +51,14 @@
                     </td>
                     <td>{{ user.created_at|datetimeformat(format='EEE, d MMM yyyy')  }} </td>
                     <td>{{ user.posts.count() }}</td>
-                    <td>{{ user.role|user_role }}</td>
+                    <td>{{ user.role_desc() }}</td>
                     <td>
-                        {% if current_user.id == user.id or current_user.is_admin() %}
+                        {% if user.is_current() or current_user.is_admin() %}
                         <div class="btn-group">
                             <a class="btn btn-primary" href="{{ url_for('UsersView:put_0', id=user.id) }}" title="Change user's settings">
                                 <i class="glyphicon glyphicon-pencil"></i>
                             </a>
-                            {% if current_user.id != user.id %}
+                            {% if not user.is_current() %}
                             <a class="btn btn-danger" data-confirm="This will remove {{user.name}}, Are you sure?" data-method="post" href="{{ url_for('UsersView:delete_0', id=user.id) }}"title="Remove this user">
                                 <i class="glyphicon glyphicon-trash"></i>
                             </a>

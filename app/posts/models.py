@@ -22,6 +22,9 @@ class Post(CRUDMixin):
     def is_mine(self):
       return current_user.is_authenticated() and self.user.id == current_user.id
 
+    def can_edit(self):
+      return current_user.is_authenticated() and (self.user.id == current_user.id or current_user.is_admin())
+
     @staticmethod
     def create_table():
       store.execute("CREATE TABLE posts "

@@ -1,6 +1,6 @@
 import sys
 import datetime
-from flask.ext.babel import Babel, lazy_gettext, gettext, format_datetime, format_timedelta
+from flask.ext.babel import lazy_gettext, gettext, format_datetime, format_timedelta
 
 END = -1
 
@@ -146,20 +146,6 @@ class Utilities(object):
     def humanformat(value):
         #return human(value, precision=1)
         return gettext('Posted %(ago)s ago', ago=format_timedelta(value, granularity='second'))
-
-    @staticmethod
-    def user_role(value):
-        if value is users.models.ROLE_ADMIN:
-            return 'Admin'
-        else:
-            return 'Writer'
-
-    @staticmethod
-    def is_administrator(value):
-        if value is users.models.ROLE_ADMIN:
-            return True
-        else:
-            return False
 
     @staticmethod
     def htmltruncate(value,target_len = 200, ellipsis='...'):
