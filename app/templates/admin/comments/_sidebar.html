@@ -20,10 +20,6 @@
                         <a href="{{ url_for('CommentsView:delete_0', id = comment.id) }}" data-method="post" data-confirm="This will remove '{{ comment.id }}'?">{{_('Delete Comment')}}</a>
                     </div>
                     {% endif %}
-                    <div class="item">
-                        <i class="icon-plus icon-formatted"></i>
-                        <a href="{{ url_for('CommentsView:post_0') }}">{{_('New Comment')}}</a>
-                    </div>
                 {% endif %}
                 {% if request.endpoint.startswith('CommentsView:get') %}
                     {% if comment.can_edit() %}
@@ -36,10 +32,6 @@
                         <a href="{{ url_for('CommentsView:delete_0', id = comment.id) }}" data-method="post" data-confirm="This will remove '{{ comment.id }}'?">{{_('Delete Comment')}}</a>
                     </div>
                     {% endif %}
-                    <div class="item">
-                        <i class="icon-plus icon-formatted"></i>
-                        <a href="{{ url_for('CommentsView:post_0') }}">{{_('New Comment')}}</a>
-                    </div>
                 {% endif %}
             </div>
         </div>

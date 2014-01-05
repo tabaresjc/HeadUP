@@ -18,7 +18,8 @@ app.config.from_object('config')
 app.jinja_env.trim_blocks = True
 app.jinja_env.lstrip_blocks = True
 # Load the CSRF Protection
-CsrfProtect(app)
+csrf = CsrfProtect()
+csrf.init_app(app)
 
 # Load the Babel extension for Internationalization
 babel = Babel(app)

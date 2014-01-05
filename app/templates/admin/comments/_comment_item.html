@@ -6,8 +6,11 @@
 			    <h3 class="panel-title">{{ _('Posted by %(name)s', name=comment.user.name) }}</h3>
 			    {% else %}
 				<a href="{{ url_for('CommentsView:get', id=comment.id) }}">
-					<h3 class="panel-title">{{ _('Posted by %(name)s', name=comment.user.name) }}</h3>
+					<h5 class="panel-title">{{ _('Posted by %(name)s', name=comment.user.name) }}</h5>
 				</a>
+                {% if comment.reply %}
+                    <strong> {{ _('In response to the user %(name)s', name=comment.reply.user.name) }}</strong>
+                {% endif %}				
 			    {% endif %}
 		    </div>
 		    <div class="col-md-3">
@@ -39,7 +42,7 @@
 			</a>
 			{% endif %}		
 			<div class="pull-right">
-				<strong>{{ comment.created_at | humanformat }}</strong>
+				<strong>{{ comment.modified_at | humanformat }}</strong>
 			</div>
 		</div>
 		<div class="clearfix"></div>

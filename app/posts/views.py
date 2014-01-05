@@ -113,18 +113,15 @@ class PostsView(FlaskView):
         if post is None:
             flash(gettext('The post was not found'), 'error')
             return redirect(url_for('PostsView:index'))
-        if not current_user.is_admin() and  not post.is_mine():
+        if not post.can_edit():
             abort(401)
 
         try:
-            title  = post.title
-            Comment.delete_rows(Comment.post_id==post.id)           
+            title  = post.title        
             Post.delete(post.id)
-
             flash(gettext('The post "%(title)s" was removed', title=title))
         except:
             flash(gettext('Error while removing the post'), 'error')
-            raise
 
         if request.method == 'POST':
             return redirect(url_for('PostsView:index'))               

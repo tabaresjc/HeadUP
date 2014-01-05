@@ -1,9 +1,9 @@
-from flask import Blueprint, render_template, flash, redirect, session, url_for, request, g, jsonify, abort, Response
+from flask import Blueprint, render_template, flash, redirect, session, url_for, request, g, jsonify, json, abort, Response
 from flask.ext.login import login_user, logout_user, current_user, login_required
 from flask.ext.wtf import Form
 from flask.ext.paginate import Pagination
 from flask.ext.babel import lazy_gettext, gettext
-from app import app, login_manager, store, babel
+from app import app, login_manager, store, babel, csrf
 from app.users.models import User
 from app.posts.models import Post
 from app.comments.models import Comment

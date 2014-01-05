@@ -7,3 +7,11 @@ class CommentForm(Form):
 		validators.Required(), 
 		validators.Length(min = 0, max = 16000)  
 		])
+
+class EditCommentForm(CommentForm):
+	remain = BooleanField(lazy_gettext('Show Post'), default = True)
+
+class NewCommentForm(EditCommentForm):
+	def __init__(self, comment, *args, **kwargs):
+		Form.__init__(self, *args, **kwargs)
+		self.body.data = comment.body

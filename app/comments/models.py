@@ -24,6 +24,17 @@ class Comment(CRUDMixin):
 
     def can_edit(self):
       return current_user.is_authenticated() and (self.user.id == current_user.id or current_user.is_admin())
+    
+    @staticmethod
+    def safe_delete(comment, recursive=False):
+      if comment.replies:
+        for c in comment.replies:
+          Comment.safe_delete(c, recursive=True)
+        replies = store.find(Comment, Comment.comment_id == comment.id)
+        replies.remove()      
+      Comment.delete(comment.id, commit=False)
+      if not recursive:
+        store.commit()
 
     @staticmethod
     def create_table():
