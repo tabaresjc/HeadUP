@@ -11,6 +11,14 @@ Requeriments
 * Flask-WTF
 * Storm ORM (version 0.20)
 * Flask-Classy
+* Flask-paginate
+* Flask-login
+
+
+Usage
+-----
+Enter "python run.py" to start webserver
+
 
 
 About Flask Framework
