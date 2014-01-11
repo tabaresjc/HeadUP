@@ -132,7 +132,7 @@ class UsersView(FlaskView):
             if user is None:
                 raise Exception(gettext('User not found'))
             name  = user.name
-            #User.delete(user.id)
+            User.delete(user.id)
             flash(gettext('The user "%(name)s" was removed', name=name))
         except:
             flash(gettext('Error while removing the user'), 'error')
