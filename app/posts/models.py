@@ -40,6 +40,7 @@ class Post(CRUDMixin):
                       created_at TIMESTAMP,\
                       modified_at TIMESTAMP);", noresult=True)
       store.execute("CREATE INDEX posts_title_idx ON posts USING btree (title);", noresult=True)
+      store.execute("CREATE INDEX posts_category_id_idx ON posts USING btree (category_id);", noresult=True)
       store.execute("CREATE INDEX posts_slug_idx ON posts USING hash (slug);", noresult=True)
       store.commit()
       return True

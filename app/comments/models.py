@@ -1,5 +1,5 @@
-from flask.ext.login import UserMixin, current_user
-from app import app, database, store
+from flask.ext.login import current_user
+from app import store
 from app.mixins import CRUDMixin
 from storm.locals import *
 from app.users.models import User
@@ -13,8 +13,8 @@ class Comment(CRUDMixin):
     user_id = Int(default=0)
     post_id = Int(default=0)
     comment_id = Int(default=0)
-    created_at = DateTime(default_factory = lambda: datetime.datetime(1970, 1, 1))
-    modified_at = DateTime(default_factory = lambda: datetime.datetime(1970, 1, 1))
+    created_at = DateTime(default_factory=lambda: datetime.datetime(1970, 1, 1))
+    modified_at = DateTime(default_factory=lambda: datetime.datetime(1970, 1, 1))
     user = Reference(user_id, User.id)
     post = Reference(post_id, Post.id)
     reply = Reference(comment_id, 'Comment.id')
@@ -46,9 +46,9 @@ class Comment(CRUDMixin):
                       comment_id INTEGER,\
                       created_at TIMESTAMP,\
                       modified_at TIMESTAMP);", noresult=True)
-      store.execute("CREATE INDEX comments_users_idx ON comments USING btree (user_id);", noresult=True)
-      store.execute("CREATE INDEX comments_posts_idx ON comments USING btree (post_id);", noresult=True)
-      store.execute("CREATE INDEX comments_comment_idx ON comments USING btree (comment_id);", noresult=True)
+      store.execute("CREATE INDEX comments_user_idx ON comments USING btree (user_id);", noresult=True)
+      store.execute("CREATE INDEX comments_post_idx ON comments USING btree (post_id);", noresult=True)
+      store.execute("CREATE INDEX comments_comment_id_idx ON comments USING btree (comment_id);", noresult=True)
       store.commit()
       return True
 
