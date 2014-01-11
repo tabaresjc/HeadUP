@@ -60,13 +60,14 @@ CommentsView.register(app)
 from app.users.models import User
 from app.posts.models import Post
 from app.comments.models import Comment
-
+from app.categories.models import Category
 
 # User.posts = ReferenceSet(User.id, UserPosts.user_id, UserPosts.post_id, Post.id)
 User.posts = ReferenceSet(User.id, Post.user_id, order_by=Desc(Post.id))
 Post.comments = ReferenceSet(Post.id, Comment.post_id, order_by=Comment.id)
 User.comments = ReferenceSet(User.id, Comment.user_id, order_by=Desc(Comment.id))
 Comment.replies = ReferenceSet(Comment.id, Comment.comment_id, order_by=Comment.id)
+Category.posts = ReferenceSet(Category.id, Post.category_id, order_by=Post.id)
 
 #----------------------------------------
 # filters

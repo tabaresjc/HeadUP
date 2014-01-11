@@ -14,7 +14,7 @@ class Comment(CRUDMixin):
     post_id = Int(default=0)
     comment_id = Int(default=0)
     created_at = DateTime(default_factory = lambda: datetime.datetime(1970, 1, 1))
-    modified_at = DateTime(default_factory = lambda: datetime.datetime(1970, 1, 1))   
+    modified_at = DateTime(default_factory = lambda: datetime.datetime(1970, 1, 1))
     user = Reference(user_id, User.id)
     post = Reference(post_id, Post.id)
     reply = Reference(comment_id, 'Comment.id')
@@ -31,7 +31,7 @@ class Comment(CRUDMixin):
         for c in comment.replies:
           Comment.safe_delete(c, recursive=True)
         replies = store.find(Comment, Comment.comment_id == comment.id)
-        replies.remove()      
+        replies.remove()
       Comment.delete(comment.id, commit=False)
       if not recursive:
         store.commit()
@@ -53,6 +53,6 @@ class Comment(CRUDMixin):
       return True
 
     @staticmethod
-    def exist_table():      
+    def exist_table():
       result = store.execute("SELECT EXISTS(SELECT 1 FROM information_schema.tables WHERE table_name='comments');").get_one()
       return result[0]

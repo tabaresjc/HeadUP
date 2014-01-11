@@ -1,19 +1,21 @@
-from flask.ext.login import UserMixin
 from flask.ext.login import current_user
-from app import app, database, store
+from app import store
 from app.mixins import CRUDMixin
 from storm.locals import *
 from app.users.models import User
 import datetime
 
+
 class Post(CRUDMixin):
-    __storm_table__ = "posts"    
+    __storm_table__ = "posts"
     title = Unicode(default=u'')
     body = Unicode(default=u'')
+    slug = Unicode(default=u'')
     user_id = Int()
+    category_id = Int(default=1)
     image_url = Unicode(default=u'')
-    created_at = DateTime(default_factory = lambda: datetime.datetime(1970, 1, 1))
-    modified_at = DateTime(default_factory = lambda: datetime.datetime(1970, 1, 1))
+    created_at = DateTime(default_factory=lambda: datetime.datetime(1970, 1, 1))
+    modified_at = DateTime(default_factory=lambda: datetime.datetime(1970, 1, 1))
     user = Reference(user_id, User.id)
 
     def __repr__(self): # pragma: no cover
@@ -31,11 +33,14 @@ class Post(CRUDMixin):
                     "(id SERIAL PRIMARY KEY,\
                       title VARCHAR(128) NOT NULL,\
                       body TEXT,\
+                      slug VARCHAR(255) NOT NULL,\
                       image_url VARCHAR(255),\
                       user_id INTEGER,\
+                      category_id INTEGER,\
                       created_at TIMESTAMP,\
                       modified_at TIMESTAMP);", noresult=True)
       store.execute("CREATE INDEX posts_title_idx ON posts USING btree (title);", noresult=True)
+      store.execute("CREATE INDEX posts_slug_idx ON posts USING hash (slug);", noresult=True)
       store.commit()
       return True
 

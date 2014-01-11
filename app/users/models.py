@@ -11,21 +11,22 @@ import re
 ROLE_WRITER = 2
 ROLE_ADMIN = 1
 
+
 class User(UserMixin, CRUDMixin):
     __storm_table__ = "users"
     email = Unicode(default=u'')
-    name = Unicode(default=u'')    
-    nickname = Unicode(default=u'')    
+    name = Unicode(default=u'')
+    nickname = Unicode(default=u'')
     password = Unicode(default=u'')
     role = Int(default=ROLE_WRITER)
     address = Unicode(default=u'')
     phone = Unicode(default=u'')
-    last_seen = DateTime(default_factory = lambda: datetime.datetime(1970, 1, 1))
-    last_login = DateTime(default_factory = lambda: datetime.datetime(1970, 1, 1))
+    last_seen = DateTime(default_factory=lambda: datetime.datetime(1970, 1, 1))
+    last_login = DateTime(default_factory=lambda: datetime.datetime(1970, 1, 1))
     timezone = Unicode(default=u'Asia/Tokyo')
     lang = Unicode(default=u'en')
-    created_at = DateTime(default_factory = lambda: datetime.datetime(1970, 1, 1))
-    modified_at = DateTime(default_factory = lambda: datetime.datetime(1970, 1, 1))    
+    created_at = DateTime(default_factory=lambda: datetime.datetime(1970, 1, 1))
+    modified_at = DateTime(default_factory=lambda: datetime.datetime(1970, 1, 1))
     
     def set_password(self, password):
       self.password = unicode(generate_password_hash(password))
@@ -51,10 +52,10 @@ class User(UserMixin, CRUDMixin):
     def __repr__(self): # pragma: no cover
         return '<User %s %r>' % (self.id, self.name)
 
-    def get_user_posts(self, limit = 10, page = 1):      
+    def get_user_posts(self, limit=10, page=1):
       return self.posts.find().config(offset=(page-1)*limit, limit=limit)
 
-    def get_user_comments(self, limit = 10, page = 1):      
+    def get_user_comments(self, limit=10, page=1):
       return self.comments.find().config(offset=(page-1)*limit, limit=limit)
 
     @staticmethod
@@ -100,14 +101,12 @@ class User(UserMixin, CRUDMixin):
                       lang VARCHAR(20) DEFAULT 'en'::character varying,\
                       created_at TIMESTAMP,\
                       modified_at TIMESTAMP);", noresult=True)
-      store.execute("CREATE INDEX users_email_idx ON users USING btree (email);", noresult=True)
-      store.execute("CREATE INDEX users_nickname_idx ON users USING btree (nickname);", noresult=True)
+      store.execute("CREATE INDEX users_email_idx ON users USING hash (email);", noresult=True)
+      store.execute("CREATE INDEX users_nickname_idx ON users USING hash (nickname);", noresult=True)
       store.commit()
       return True
 
     @staticmethod
-    def exist_table():      
+    def exist_table():
       result = store.execute("SELECT EXISTS(SELECT 1 FROM information_schema.tables WHERE table_name='users');").get_one()
       return result[0]
-
-
