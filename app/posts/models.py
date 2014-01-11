@@ -33,7 +33,7 @@ class Post(CRUDMixin):
                     "(id SERIAL PRIMARY KEY,\
                       title VARCHAR(128) NOT NULL,\
                       body TEXT,\
-                      slug VARCHAR(255) NOT NULL,\
+                      slug VARCHAR(255) NOT NULL DEFAULT 'uncategorized'::character varying,\
                       image_url VARCHAR(255),\
                       user_id INTEGER,\
                       category_id INTEGER,\
