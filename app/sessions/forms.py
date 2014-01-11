@@ -25,11 +25,11 @@ class SignUpForm(Form):
 			valid = False
 
 		if self.name.data != User.make_valid_name(self.name.data):
-			self.name.errors.append(gettext('This name has invalid characters. Please use letters, numbers, dots and underscores only.'))
+			self.name.errors.append(gettext('This name has invalid characters'))
 			valid = False
 
 		if self.nickname.data != User.make_valid_nickname(self.nickname.data):
-			self.nickname.errors.append(gettext('This nickname has invalid characters. Please use letters, numbers, dots and underscores only.'))
+			self.nickname.errors.append(gettext('This nickname has invalid characters'))
 			valid = False
 
 		if User.is_email_taken(self.email.data):
