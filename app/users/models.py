@@ -1,7 +1,7 @@
 from flask.ext.login import UserMixin, current_user
-from flask.ext.babel import lazy_gettext, gettext, format_datetime, format_timedelta
+from flask.ext.babel import gettext
 from werkzeug.security import generate_password_hash, check_password_hash
-from app import app, database, store
+from app import store
 from app.mixins import CRUDMixin
 from storm.locals import *
 from hashlib import md5
@@ -53,10 +53,10 @@ class User(UserMixin, CRUDMixin):
         return '<User %s %r>' % (self.id, self.name)
 
     def get_user_posts(self, limit=10, page=1):
-      return self.posts.find().config(offset=(page-1)*limit, limit=limit)
+      return self.posts.find().config(offset=(page - 1) * limit, limit=limit)
 
     def get_user_comments(self, limit=10, page=1):
-      return self.comments.find().config(offset=(page-1)*limit, limit=limit)
+      return self.comments.find().config(offset=(page - 1) * limit, limit=limit)
 
     @staticmethod
     def find_by_email(email):

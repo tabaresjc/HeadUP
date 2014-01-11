@@ -3,6 +3,8 @@
     {{form.hidden_tag()}}
     {{ render_inline_field(form.title, class="form-control",placeholder=_('Insert title')) }}
     {{ render_inline_field(form.image_url, class="form-control",placeholder=_('Insert URL of Featured Image')) }}
+    {{ render_inline_field(form.slug, class="form-control",placeholder=_('Insert slug')) }}
+    {{ render_inline_field(form.category_id, class="form-control") }}    
     {{ render_inline_field(form.body,id="txt_editor_area",placeholder=_('Compose new post...'), rows="15") }}
     <div class="actions clearfix">
     	<input type="submit" value="{{_('Save')}}" class="btn btn-large btn-primary pull-right">

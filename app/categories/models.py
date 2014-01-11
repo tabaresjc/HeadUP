@@ -35,3 +35,7 @@ class Category(CRUDMixin):
     def exist_table():
       result = store.execute("SELECT EXISTS(SELECT 1 FROM information_schema.tables WHERE table_name='categories');").get_one()
       return result[0]
+
+    @classmethod
+    def get_list(cls):
+      return [(g.id, g.name) for g in store.find(cls)]
