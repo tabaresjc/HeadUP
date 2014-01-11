@@ -12,7 +12,8 @@ import os
 
 
 app = Flask(__name__)
-
+if os.environ.get('HEROKU') is None:
+	app.debug = True
 # Load the app's configuration
 app.config.from_object('config')
 app.jinja_env.trim_blocks = True
@@ -78,3 +79,9 @@ app.jinja_env.filters['humanformat'] = Utilities.humanformat
 app.jinja_env.filters['htmltruncate'] = Utilities.htmltruncate
 app.jinja_env.filters['get_stat'] = blog.models.get_stat
 app.jinja_env.filters['sidebar'] = Utilities.get_navigation_bar
+
+
+if app.debug:
+	import sys
+	from storm.tracer import debug
+	debug(True, stream=sys.stdout)

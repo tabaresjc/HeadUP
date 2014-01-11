@@ -65,7 +65,7 @@ class CommentsView(FlaskView):
                     comment.body = unicode(data.body)
                     comment.save()
                     js = [ { "result": "ok" ,"type": "comment", "id" : comment.id, "body" : comment.body, "redirect": url_for('CommentsView:index') } ]
-                    return Response(json.dumps(js),  mimetype='application/json')
+                    return Response(json.dumps(js), mimetype='application/json')
                 except:
                     js = [ { "result": "error" ,"type": "comment", "message" : gettext("Error while updating the comment") } ]
                     return Response(json.dumps(js),  mimetype='application/json')
