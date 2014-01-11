@@ -37,7 +37,7 @@ login_manager.login_message = lazy_gettext('Please log in to access this page.')
 # controllers
 #----------------------------------------
 import blog.views
-
+import admin.views
 
 # register the sessions module blueprint
 from app.sessions.views import mod as sessionsModule
@@ -54,6 +54,10 @@ PostsView.register(app)
 # register the Comment module
 from app.comments.views import CommentsView
 CommentsView.register(app)
+
+# register the Category module
+from app.categories.views import CategoriesView
+CategoriesView.register(app)
 #----------------------------------------
 # Check Databases
 #----------------------------------------
