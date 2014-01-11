@@ -62,6 +62,10 @@ class User(UserMixin, CRUDMixin):
       return store.find(User, User.email == email).one()
 
     @staticmethod
+    def make_valid_name(name):
+        return re.sub('[!#\[\]\(\)\.]', '', name)
+
+    @staticmethod
     def make_valid_nickname(nickname):
         return re.sub('[^a-zA-Z0-9_\.]', '', nickname)
 

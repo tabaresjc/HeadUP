@@ -24,7 +24,7 @@ class SignUpForm(Form):
 		if not Form.validate(self):
 			valid = False
 
-		if self.name.data != User.make_valid_nickname(self.name.data):
+		if self.name.data != User.make_valid_name(self.name.data):
 			self.name.errors.append(gettext('This name has invalid characters. Please use letters, numbers, dots and underscores only.'))
 			valid = False
 
