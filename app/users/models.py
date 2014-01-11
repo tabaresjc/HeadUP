@@ -67,7 +67,7 @@ class User(UserMixin, CRUDMixin):
 
     @staticmethod
     def make_valid_nickname(nickname):
-        return re.sub('[^a-zA-Z0-9_\.]', '', nickname)
+        return re.sub('[!#\[\]\(\)\.]', '', nickname)
 
     @staticmethod
     def is_email_taken(email):
