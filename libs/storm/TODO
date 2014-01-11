@@ -1,0 +1,87 @@
+- The on_remote flag of references should be infered when the
+  local property is a primary key (or part of it?).
+
+- Allow something like Int(unique=True), so that it may be used for
+  cached gets (perhaps with get(Class.the_key, value), or
+  get(Class, value, attribute=Class.the_key).
+
+- Unicode(autoreload=True) will mark the field as autoreload by default.
+
+- Lazy-by-default attributes:
+
+  class C(object):
+      ...
+      attr = Unicode(lazy=True)
+
+  This would make attr be loaded only if touched.
+
+  Or maybe lazy groups:
+
+  class C(object):
+      ...
+      lazy_group = LazyGroup()
+      attr = Unicode(lazy=True, lazy_group=lazy_group)
+
+  Once one of the group attributes are accessed all of them are retrieved
+  at the same time.
+
+  Lazy groups may be integers as well:
+
+  class C(object):
+      ...
+      attr = Unicode(lazy_group=1)
+
+  lazy_group=None means not lazy.
+
+- Implement ResultSet.reverse[d]() to invert order_by()?
+
+- Add support to cyclic references when all of elements of the cycle are
+  flushed at the same time.
+
+- Implement support for negative caches to tell when an object
+  isn't available.
+
+- Implement support for complex removes and updates with Exists().
+
+- Log SQL statements and Store actions.
+
+- Support for quoted strings.
+
+- Option to keep object in cache until explicitly removed?
+
+- Implement store.copy()
+
+- Implement must_define in properties.
+
+- Implement slicing ([:]) in BoundReferenceSet
+
+- Handle $foo$bar$foo$ literals
+
+- Could Reference(Set)s include a "where" clause? Readonly perhaps?
+
+- Make the primary key for a class be optional. If it's not provided
+  the object isn't cached and updates aren't tracked.
+
+- Between()
+
+- Automatic class generation, perhaps based on Django's inspectdb:
+
+  http://www.djangoproject.com/documentation/legacy_databases/
+  http://www.djangoproject.com/documentation/django_admin/
+
+- Support allow_microseconds=False in DateTime properties/variables.
+
+- Support allow_self in Reference and ReferenceSet, and default
+  to false.
+
+- Set operations in ReferenceSets (suggested by Stephan Diehl):
+
+  accessGroups = set([grp1, grp2, grp3])
+  if usr.groups & accessGroups:
+      doSomething
+
+- Think about something like a store.cache(...) method with the same
+  signature of store.find(...) which stores objects in the cache so
+  that they don't get deallocated during the current transaction.  The
+  Cache class interface would have to be expanded to handle these cases
+  in a special way.

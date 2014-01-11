@@ -1,0 +1,214 @@
+Storm is an Object Relational Mapper for Python developed at
+Canonical.  API docs, a manual, and a tutorial are available from:
+
+http://storm.canonical.com/
+
+
+Introduction
+============
+
+The project was in development for more than a year for use in
+Canonical projects such as Launchpad and Landscape before being
+released as free software on July 9th, 2007.
+
+Design:
+
+ * Clean and lightweight API offers a short learning curve and
+   long-term maintainability.
+ * Storm is developed in a test-driven manner. An untested line of
+   code is considered a bug.
+ * Storm needs no special class constructors, nor imperative base
+   classes.
+ * Storm is well designed (different classes have very clear
+   boundaries, with small and clean public APIs).
+ * Designed from day one to work both with thin relational
+   databases, such as SQLite, and big iron systems like PostgreSQL
+   and MySQL.
+ * Storm is easy to debug, since its code is written with a KISS
+   principle, and thus is easy to understand.
+ * Designed from day one to work both at the low end, with trivial
+   small databases, and the high end, with applications accessing
+   billion row tables and committing to multiple database backends.
+ * It's very easy to write and support backends for Storm (current
+   backends have around 100 lines of code).
+
+Features:
+
+ * Storm is fast.
+ * Storm lets you efficiently access and update large datasets by
+   allowing you to formulate complex queries spanning multiple
+   tables using Python.
+ * Storm allows you to fallback to SQL if needed (or if you just
+   prefer), allowing you to mix "old school" code and ORM code
+ * Storm handles composed primary keys with ease (no need for
+   surrogate keys).
+ * Storm doesn't do schema management, and as a result you're free
+   to manage the schema as wanted, and creating classes that work
+   with Storm is clean and simple.
+ * Storm works very well connecting to several databases and using
+   the same Python types (or different ones) with all of them.
+ * Storm can handle obj.attr = <A SQL expression> assignments, when
+   that's really needed (the expression is executed at INSERT/UPDATE
+   time).
+ * Storm handles relationships between objects even before they were
+   added to a database.
+ * Storm works well with existing database schemas.
+ * Storm will flush changes to the database automatically when
+   needed, so that queries made affect recently modified objects.
+
+
+License
+=======
+
+Copyright (C) 2006-2009 Canonical, Ltd.  All contributions must have
+copyright assigned to Canonical.
+
+This library is free software; you can redistribute it and/or
+modify it under the terms of the GNU Lesser General Public
+License as published by the Free Software Foundation; either
+version 2.1 of the License, or (at your option) any later version.
+
+This library is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+Lesser General Public License for more details.
+
+You should have received a copy of the GNU Lesser General Public
+License along with this library; if not, write to the Free Software
+Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA
+02110-1301 USA
+
+On Ubuntu systems, the complete text of the GNU Lesser General
+Public Version 2.1 License is in /usr/share/common-licenses/LGPL-2.1
+
+
+Developing Storm
+================
+
+SHORT VERSION:  If you are running ubuntu, or probably debian, the
+following should work.  If not, and for reference, the long version
+is below.
+
+ $ dev/ubuntu-deps
+ $ make develop
+ $ dev/db-setup
+ $ make check
+
+LONG VERSION:
+
+The following instructions describe the procedure for setting up a
+development environment and running the test suite.
+
+Installing dependencies
+-----------------------
+
+The following instructions assume that you're using Ubuntu.  The
+same procedure will probably work without changes on a Debian system
+and with minimal changes on a non-Debian-based linux distribution.
+In order to run the test suite, and exercise all supported backends,
+you will need to install MySQL and PostgreSQL, along with the
+related Python database drivers:
+
+ $ sudo apt-get install \
+       python-mysqldb mysql-server \
+       postgresql pgbouncer \
+       build-essential
+
+These will take a few minutes to download (its a bit under 200MB all
+together).  Once the download is complete, a screen called
+"configuring mysql-server-5.0" will be shown.  When asked for a
+password for the root user leave the field blank and hit enter to
+continue.  This is not a recommended setting for a production
+server, but makes life easier on a development machine.  You may be
+asked to enter a password multiple times.  Leave it blank in each
+case.
+
+The Python dependencies for running tests can mostly be installed with
+apt-get:
+
+ $ apt-get install \
+       python-django python-fixtures python-psycopg2 \
+       python-testresources python-transaction python-twisted \
+       python-zope.component python-zope.security
+
+Two modules - pgbouncer and timeline - are not yet packaged in
+Ubuntu. These can be installed from PyPI:
+
+  http://pypi.python.org/pypi/pgbouncer
+  http://pypi.python.org/pypi/timeline
+
+Alternatively, dependencies can be downloaded as eggs into the current
+directory with:
+
+ $ make develop
+
+This ensures that all dependencies are available, downloading from
+PyPI as appropriate.
+
+Setting up database users and access security
+---------------------------------------------
+
+PostgreSQL needs to be setup to allow TCP/IP connections from
+localhost.  Edit /etc/postgresql/8.3/main/pg_hba.conf and make sure
+the following line is present:
+
+ host all all 127.0.0.1/32 trust
+
+This will probably (with PostgresSQL 8.4) entail changing 'md5' to
+'trust'.
+
+In order to run the two-phase commit tests, you will also need to
+change the max_prepared_transactions value in postgres.conf to
+something like
+
+  max_prepared_transactions = 200
+
+Now save and close, then restart the server:
+
+ $ sudo /etc/init.d/postgresql-8.4 restart
+
+Next, you probably noticed that, while MySQL asked us about a root
+user several times, PostgreSQL didn't ask us at all.  Lets create
+our PostgreSQL user now.  As noted in the Ubuntu PostgreSQL
+documentation, the easiest thing is to create a user with the same
+name as your username.  Run the following command to create a user
+for yourself (if prompted for a password, leave it blank):
+
+ $ sudo -u postgres createuser --superuser $USER
+
+Despite having created our root user already, MySQL requires an
+extra step. First we start mysql as the root user (which, you may
+recall, has no password) with:
+
+ $ mysql -u root
+
+Then we create a new user. Be sure to replace YOUR_USERNAME with
+your actual user name (leaving the quotes in place).
+
+mysql> GRANT ALL PRIVILEGES ON *.* TO 'YOUR_USERNAME'@'localhost'
+IDENTIFIED BY '' WITH GRANT OPTION;
+
+Creating test databases
+-----------------------
+
+The test suite needs some local databases in place to exercise MySQL
+and PostgreSQL functionality.  While still at the MySQL command
+prompt run:
+
+mysql> CREATE DATABASE storm_test CHARACTER SET utf8;
+
+Use Ctrl+D to exit, then, once back on the standard terminal, run
+the command for PostgreSQL:
+
+ $ createdb storm_test
+
+Running the tests
+-----------------
+
+Finally, its time to run the tests!  Go into the base directory of
+the storm branch you want to test, and run:
+
+ $ make check
+
+They'll take a while to run.  All tests should pass: failures mean
+there's a problem with your environment or a bug in Storm.

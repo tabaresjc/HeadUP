@@ -1,0 +1,79 @@
+#!/usr/bin/env python
+#
+# Copyright (c) 2006, 2007 Canonical
+#
+# Written by Gustavo Niemeyer <gustavo@niemeyer.net>
+#
+# This file is part of Storm Object Relational Mapper.
+#
+# Storm is free software; you can redistribute it and/or modify
+# it under the terms of the GNU Lesser General Public License as
+# published by the Free Software Foundation; either version 2.1 of
+# the License, or (at your option) any later version.
+#
+# Storm is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU Lesser General Public License for more details.
+#
+# You should have received a copy of the GNU Lesser General Public License
+# along with this program.  If not, see <http://www.gnu.org/licenses/>.
+#
+import glob
+import optparse
+import unittest
+import sys
+import os
+
+
+def add_eggs_to_path():
+    here = os.path.dirname(__file__)
+    egg_paths = glob.glob(os.path.join(here, "*.egg"))
+    sys.path[:0] = map(os.path.abspath, egg_paths)
+
+# python setup.py test [--dry-run] puts $package.egg directories in the
+# top directory, so we add them to sys.path here for convenience.
+add_eggs_to_path()
+
+
+def test_with_runner(runner):
+    usage = "test.py [options] [<test filename>, ...]"
+
+    parser = optparse.OptionParser(usage=usage)
+
+    parser.add_option('--verbose', action='store_true')
+    opts, args = parser.parse_args()
+
+    if opts.verbose:
+        runner.verbosity = 2
+
+    # Import late, after any and all sys.path jiggery pokery.
+    from tests import find_tests
+
+    suite = find_tests(args)
+    result = runner.run(suite)
+    return not result.wasSuccessful()
+
+
+def test_with_trial():
+    from twisted.trial.reporter import TreeReporter
+    from twisted.trial.runner import TrialRunner
+    runner = TrialRunner(reporterFactory=TreeReporter, realTimeErrors=True)
+    return test_with_runner(runner)
+
+
+def test_with_unittest():
+    runner = unittest.TextTestRunner()
+    return test_with_runner(runner)
+
+
+if __name__ == "__main__":
+    runner = os.environ.get("STORM_TEST_RUNNER")
+    if not runner:
+        runner = "unittest"
+    runner_func = globals().get("test_with_%s" % runner.replace(".", "_"))
+    if not runner_func:
+        sys.exit("Test runner not found: %s" % runner)
+    sys.exit(runner_func())
+
+# vim:ts=4:sw=4:et

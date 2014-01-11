@@ -1,0 +1,554 @@
+0.20 (2013-06-28)
+=================
+
+Improvements
+------------
+
+- A new CaptureTracer has been added to storm.testing, for capturing all SQL
+  statements executed by Storm. It can be used like this:
+
+    with CaptureTracer() as tracer:
+      # Run queries
+      pass
+    print tracer.queries  # Print all queries run in the context manager block
+
+  You will need the python-fixtures package in order to use this feature.
+
+- Setuptools <http://pypi.python.org/pypi/setuptools> is now required
+  to run setup.py. This makes it much easier to install the majority
+  of the dependencies required to run the test suite in its entirety.
+
+- Disconnection errors arising from PostgreSQL are now more reliably
+  detected, especially with regard to recent libpq updates in Ubuntu.
+  There are also disconnection tests that simulate sudden termination
+  of pgbouncer <http://pgfoundry.org/projects/pgbouncer/>.
+
+- Insert expressions now support multi-row and subquery INSERT
+  statements.
+
+- Support in the postgres backend to use the RETURNING extension for UPDATE
+  statement, optionally specifying the columns to return.
+  (PostgreSQL >= 8.2 only)
+
+- Add a new Distinct expression for pre-pending the 'DISTINCT' token to
+  SQL expressions that support it (like columns).
+
+- Switch to REPEATABLE READ as isolation level for Postgres. If you use
+  psycopg2 < 2.4, it doesn't change anything. For psycopg2 2.4 and newer, it
+  will keep the same behavior on Postgres < 9 as it's equivalent to
+  SERIALIZABLE, but it will be less strict on Postgres >= 9.
+
+- Add support for two-phase commits, using the DB API version 2.0, which
+  is only supported by PostgreSQL.
+
+- ZStormResourceManager now has a schema_stamp_dir optional instance attribute
+  that, if set, will be used to to save timestamps of the schema's patch
+  packages, so schema upgrades will be performed only when needed.
+
+
+Bug fixes
+---------
+
+- When a SQLObjectResultSet object was sliced with slice.start and
+  slice.end both zero (sqlobject[0:0]), the full, unsliced resultset
+  was returned (bug #872086).
+
+- Fixes some test failures around Django disconnections from
+  PostgreSQL stores.
+
+- Some of the proxy-less disconnection tests were causing segfaults,
+  so they're now run in a subprocess via subunit's IsolatedTestCase,
+  when it's available.
+
+- Fix a few non-uses of super() in TestHelper.
+
+- Abort the transaction and reset ZStorm at the end of
+  tests/zope/README.txt.
+
+- Fix the ./test script to not import tests until after local eggs
+  have been added to sys.path. This ensures that all possible features
+  are available to the tests.
+
+- If transaction.commit() fails, call transaction.abort() to rollback
+  everything and leave the transaction in a clean state when using Django's
+  ZopeTransactionMiddleware and DatabaseWrapper.
+
+- It's now again possible to use the Desc() expression when passing an
+  order_by parameter to a ReferenceSet (bug #620369).
+
+0.19 (2011-10-03)
+=================
+
+Improvements
+------------
+ - A new Cast expressions compiles an input and the type to cast it to
+   into a call the CAST function (bug #681121).
+ - The storm.zope.testing.ZStormResourceManager now supports applying database
+   schemas using a custom URI, typically for connecting to the database using a
+   different user with greater privileges than the user running the tests. Note
+   that the format of the 'databases' parameter passed to the constructor of
+   the ZStormResourceManager class has changed. So now you have to create your
+   resource manager roughly like this::
+
+    databases = [{"name": "test",
+                  "uri": "postgres://user@host/db",
+                  "schema": Schema(...),
+                  "schema-uri: "postgres://schema_user@host/db"}]
+    manager = ZStormResourceManager(databases)
+
+   where the "schema-uri" key is optional and would default to "uri" if
+   not given. The old format of the 'databases' parameter is still supported
+   but deprecated. (bug #772258)
+ - A new storm.twisted.transact module has been added with facilities to
+   integrate Storm with twisted, by running transactions in a separate
+   thread from the main one in order to not block the reactor. (bug #777047)
+ - ResultSet.config's "distinct" argument now also accepts a tuple of
+   columns, which will be turned into a DISTINCT ON clause.
+ - Provide wrapped cursor objects in the Django integration
+   layer. Catch some disconnection errors that might otherwise be
+   missed, leading to broken connections. (bug #816049)
+ - A new JSON property is available. It's similar to the existing
+   Pickle property, except that it serializes data as JSON, and must
+   back onto a text column rather than a byte column. (bug #726799, #846867)
+ - Cache the compilation of columns and tables (bug #826170, #848925).
+ - Add two new tracers extracted from the Launchpad codebase.
+   BaseStatementTracer provides statements with parameters substituted
+   to its subclasses. TimelineTracer records queries in a timeline
+   (useful for OOPS reports).
+ - New ROW constructor (bug #698344).
+ - Add support for Postgres DISTINCT ON queries. (bug #374777)
+
+Bug fixes
+---------
+ - When retrieving and using an object with Store.get(), Storm will no
+   longer issue two queries when there is a live invalidated object
+   (bug #697513).
+ - When a datetime object is returned by the database driver,
+   DateVariable failed to detect and convert it to a date() object
+   (bug #391601).
+ - The ISQLObjectResultSet declares an is_empty method, which matches
+   the existing implementation. This makes it possible to call the
+   method in security proxied environments (bug #759384).
+ - The UUIDVariable correctly converts inputs to unicode before
+   sending them to the database. This makes the UUID property usable
+   (bug #691752).
+ - Move the firing of the register-transaction event in
+   Connection.execute before the connection checking, to make sure
+   that the store gets registered properly for future rollbacks (bug
+   #819282).
+ - Skip tests/zope/README.txt when zope.security is not found. (bug #848848)
+ - Fix the handling of disconnection errors in the storm.django bridge. (bug
+   #854787)
+
+
+0.18 (2010-10-25)
+=================
+
+Improvements
+------------
+ - Include code to manage and migrate database schemas.  See the
+   storm.schema sub-package (bug #250412).
+ - Added a storm.zope.testing.ZStormResourceManager class to manage a
+   set of stores registered with ZStorm (bug #618704).  It can be used
+   roughly like this::
+
+    from testresources import ResourcedTestCase
+    from storm.zope.testing import ZStormResourceManager
+    from storm.schema import Schema
+
+    name = "test"
+    uri = "sqlite:"
+    schema = Schema(...)
+    manager = ZStormResourceManager({name: (uri, schema)})
+
+    class MyTest(ResourcedTestCase):
+
+        resources = [("zstorm", manager)]
+
+        def test_stuff(self):
+            store = self.zstorm.get("test")
+            store.execute(...)
+
+ - When a TimeoutError is raised it includes a description about why
+   the exception was raised, to help make it easier to reason about
+   timeout-related issues (bug #617973).
+ - Improved the IResultSet interface to document the rationale of why some
+   attributes are not included (bug #659883).
+
+Bug fixes
+---------
+ - Make storm compatible with psycopg2 2.2 (bug #585704).
+ - Fix bug #620615, which caused lazy expressions to cause subsequent
+   loading of objects to explode if unflushed.
+ - Fix bug #620508, which caused slicing a ResultSet to break subsequent
+   count() calls.
+ - Fix bug #659708, correcting the behavior of the sqlobject is_empty
+   and __nonzero__ methods.
+ - Fix bug #619017, which caused __storm_loaded__ to be called without
+   its object's variables defined if the object were in the alive cache but
+   disappeared.
+
+
+0.17 (2010-08-05)
+=================
+
+Improvements
+------------
+ - The order_by parameter defined on ReferenceSet can now be
+   specified as a string, to workaround circular dependency issues.
+   The order by property column will be resolved after import time
+   (bug #580037).
+ - The Store and Connection classes have block_access() and
+   unblock_access() methods that can be used to block access to the
+   database connection.  This can be used to ensure that an
+   application doesn't access the database at unexpected times.
+ - When using stores managed by ZStorm, a ZStormError will be raised
+   on attempts to use a per-thread store from the wrong thread (bug
+   #348815).
+ - ResultSet.is_empty strips the ORDER BY clause, when present, to
+   provide a performance boost for queries that would match a large
+   number of rows (bug #246200).
+ - A new ResultSet.get_select_expr method returns a Select
+   expression built for a specified set of columns, based on the
+   settings of the result set (bug #337494).
+ - ResultSet.any and ReferenceSet.any strips the ORDER BY clause,
+   when present, to provide a performance boost for queries that
+   would match a large number of rows (bug #608825).
+ - SQLObjectResultSet has a new is_empty method which should be used
+   in preference to __nonzero__, because it is compatible with
+   ResultSet.
+
+Bug fixes
+---------
+ - SQLite reserved words are handled properly (bug #593633).
+ - A bug in change checkpointing logic has been fixed to detect
+   changes in mutable objects correctly and to prevent useless (or
+   potentially harmful!) columns to be specified in updates (bug
+   #553334).
+
+
+0.16 (2009-11-28)
+=================
+
+Improvements
+------------
+ - The set expression constructor will now flatten its first argument
+   if it is of the same type.  The resulting expression tree uses less
+   stack when compiling so reduces the chance of hitting Python's
+   recursion limit (bug #242813).
+ - Add startswith(), endswith() and contains_string() methods to
+   Comparable.  These methods perform prefix, suffix and substring
+   checks respectively using the LIKE operator, taking care of escaping
+   for you (bug #387840).
+ - C extensions are enabled by default.  Define the
+   STORM_CEXTENSIONS=0 environment variable to disable them (bug #410592).
+ - The README file contains information about Storm's license and
+   detailed instructions on setting up a development environment
+   suitable for running the entire test suite.
+ - 'make doc' uses Pydoctor to generate API documentation.
+ - Integration tests for Django now work with Django 1.1.
+
+Bug fixes
+---------
+ - Remove a leak when mutable variables (ListVariable or PickleVariable
+   instances) are collected before store.flush, leaving hooks behind them.
+ - The ResultSet min, max and sum methods now work correctly when the
+   result set is empty and the column has allow_none=False set.
+   Previously this resulted in a NoneError (bug #457801).
+ - MySQL reserved words are handled properly (bug #433833).
+ - Test loading code has been simplified.  Support for py.test has
+   been removed in this process, as it was not functioning correctly
+   and didn't fit into the PyUnit framework (bug #331905).
+ - Remote diverged and remote deleted references now use a weak
+   (Python) reference to the local object.  This prevents a leak
+   when the remote object stays in memory (bug #475148).
+ - Check for invalidated state when returning the remote object of a
+   relation: it fixes a bug if the local key of the Reference is the
+   primary key (bug #435962).
+ - The default Cache instance created for a Store honours Cache's
+   default size.  Store's docstring has been updated to reflect
+   this (bug #374180).
+
+
+0.15 (2009-08-07)
+=================
+
+Improvements
+------------
+ - Add support for latest version on Django by not checking arguments
+   passed to _cursor.
+ - Added support for using Expressions with ResultSet.set().
+ - The default cache size was changed from 100 to 1000 objects.
+ - Added the new GenerationalCache with a faster implementation of
+   the caching API (by Jeroen Vermeulen).  This will likely become
+   the default implementation in the future, so please test it if
+   possible.
+ - A new UUID property type has been added.  It depends on the uuid
+   module introduced in Python 2.5 to represent values.
+ - The StoreDataManager now gets passed a transaction manager from the
+   ZStorm utility.  This will make it easier to support non-default
+   transaction managers in the future.
+ - An adapter is now available for converting ISQLObjectResultSet
+   objects to IResultSet.  This is intended to help in gradual porting
+   SQLObject applications to Storm's native API (bug #338184, by Gavin
+   Panella).
+ - If a disconnection occurs outside of Storm's control, a
+   DisconnectionError will still be raised next time the connection is
+   used through Storm.  This is useful if the connection is being
+   shared with another framework like Django (bug #374909).
+ - The PostgreSQL backend now requires psycopg2 >= 2.0.7.  The work
+   around for broken quoting behaviour in older psycopg2 versions has
+   been removed. (bug #322206).
+ - A new Neg expression is available.  It provides unary minus by
+   prepending a minus sign to whatever expression is passed to it
+   (bug #397654 by Michael Hudson).
+ - A new Coalese expressions is available.
+ - ResultSets now have a find().  It acts similar to Store.find(), but
+   without the first argument (it uses the same classes as the original
+   result), and only returns results found in the original result set.
+   (bug #338255).
+ - Result.rowcount exposes the number of rows affected by the
+   query, when known.
+ - ResultSet.remove returns the number of rows deleted from the database.
+   (bug #180122).
+
+Bug fixes
+---------
+ - The fix for ResultSet.count() on distinct results from last release
+   has been improved, and the fix has been extended to the other
+   aggregates.  This may change the result of some count(), min(),
+   max(), sum() and avg() calls for results using distinct, limit or
+   offset.
+ - The test suite now passes when run with Python 2.6.
+ - ListVariable now converts its elements to database representation
+   correctly (bug #136806 reported by Marc Tardif).
+ - compile_python now works for values that don't produce valid Python
+   expressions with repr().
+ - The C extension should now build under Windows.
+
+
+0.14 (2009-01-09)
+=================
+
+Improvements
+------------
+ - A new doctest describing the 'Infoheritance' pattern is integrated into
+   the test suite.
+ - A new storm.django package has been added to allow use of Storm
+   within Django applications.
+ - The way Storm interacts with the Zope transaction manager has
+   changed.  Rather than using a synchronizer to join each new
+   transaction, it now delays joining the transaction until the store
+   is actually used.
+ - The Store constructor takes an optional cache keyword argument.
+ - ResultSets now offer an is_empty() method.
+
+Bug fixes
+---------
+ - Manage better row full of NULL in case of LEFT JOIN, without validating
+   against object constraints.
+ - The Reference class now has an __ne__() method, so inequality
+   checks against a reference now work in find expressions (bug
+   #244768 reported by Stuart Bishop).
+ - Make ResultSet.count() handles the distinct, limit and offset flags, to
+   really reflect the length of the current ResultSet.
+ - The store doesn't iterate on all the alive objects anymore, using instead
+   events that objects can subscribe to. This improves performance drastically
+   when lots of objects are in the cache.
+
+
+0.13 (2008-08-28)
+=================
+
+Improvements
+------------
+ - Add group_by/having methods on ResultSet objects, to allow access to
+   the "GROUP BY" and "HAVING" statements.
+ - Change tests/store to keep the connection during the tests to make it
+   faster.
+ - Implemented support for plugging generic "tracers".  Statement
+   debugging is now implemented using a tracer, and easily enabled
+   with storm.tracer.debug(True) (storm.database.DEBUG = True is gone).
+ - All properties now accept a "validator" parameter.  When used, a
+   function like validate(object, attribute_name, value) should be
+   given, and it may validate or modify the value before it's set in
+   the property.  The value assigned to the property is the result
+   of the validator, so the original value should be returned if
+   changing it isn't intended.
+ - Expressions can be passed to Store.find() as well as classes.  This
+   makes it possible to request individual columns from a table,
+   computed expressions or aggregates.
+ - Objects will be flushed in the order they become dirty by default.
+   This means that generally the order in which Python operations are
+   performed will be used to define the order in which flushes are done,
+   which is generally the most expected.
+ - The cextensions module was fixed, optimized, and improved.  It's now
+   built by default, but to actually enable it the environment variable
+   STORM_CEXTENSIONS=1 must be defined at runtime.  The module will
+   likely be enabled by default on a future release.
+ - ClassAlias will now cache all explicitly named aliases, to prevent
+   the cost of rebuilding it.
+ - Result sets and reference sets now have a __contains__() method.
+   While code like "item in set" was previously possible, it involved
+   iterating over the result set, which is expensive for large
+   databases.
+ - The storm.zope.zstorm code can now be used with only the
+   zope.interface and transaction packages installed.  This makes it
+   easier to reuse the per-thread store management and global
+   transaction handling from other web frameworks.
+
+Bug fixes
+---------
+ - Make is_in returns False instead of NULL on an empty result set.
+ - ZStorm now keeps strong references to named stores. Previously it only kept
+   weak ones, so stores were recreated more often than necessary.
+ - References now won't flush the store or query the database when
+   the foreign key is None.
+ - When a reference is set to an object that wasn't yet inserted in
+   the database, the foreign key is immediately unset instead of
+   keeping the old value up to the flushing.
+ - Setting a reference to None works even if the previously referenced
+   object isn't in memory.
+ - When setting a reference, flush ordering is only enforced if the
+   key is dirty.  This allows a number of changes that would
+   previously raise OrderLoopError.
+ - If the remote object in a back reference is removed, the reference
+   will now be broken.
+ - Fixed a race condition when two threads try to initialize the
+   ClassInfo for a given class at the same time.
+ - Improve handling of AUTO INCREMENT columns in the MySQL backend to
+   remove an unnecessary query when adding objects to a store.
+
+
+0.12 (2008-01-28)
+=================
+
+Improvements
+------------
+ - The Connection will reconnect automatically when connection
+   drops are detected and a rollback is performed.  As a result,
+   the Store should handle reconnections in a seamless way in
+   most circumstances (#94986, by James Henstridge).  This is
+   supported in the MySQL and PostgreSQL backends.
+ - Store.flush() will not load values inserted in the database.
+   Instead, undefined variables are set to AutoReload, and resolved
+   once first accessed.  This won't be noticeable in normal usage,
+   but will boost the performance of inserts.
+ - Support in the postgres backend to use the RETURNING extension of
+   the INSERT statement to retrieve the primary key on inserts for
+   object identity mapping (PostgreSQL >= 8.2 only)
+ - Introduced a cache mechanism that keeps the N last retrieved objects
+   in memory to optimize cases where the same object is retrieved
+   often while no strong references are kept elsewhere.  Implemented by
+   Bernd Dorn, from Lovely Systems.
+ - Improved support for TimeDelta properties on all backends.  Many
+   more formats are accepted now, and some issues were fixed.
+
+Bug fixes
+---------
+ - TimeDelta was added to storm.locals.
+ - Fixed TimeDelta support in SQLite, MySQL, and PostgreSQL,
+   and enabled base test for all backends to ensure that it
+   continues to work.
+ - Schema names are accepted in __storm_table__ when using
+   PostgreSQL as the database (e.g. "schema.table"). (#146580,
+   reported by James Mayfield)
+ - Test runner handles path correctly on Windows, and SQLite
+   tests won't break (patch by Ali Afshar).
+ - In the SQLite backend, ensure that we're able to recommit a
+   transaction after "database is locked" errors.  Also make sure
+   that when this happens the timeout is actually the expected
+   one (patch by Richard Boulton)
+ - TransactionFailedError is now imported from the public
+   place: ZODB.POSException (#129715, by James Henstridge).
+ - TimeDelta was added to storm.locals.
+ - Tables named with reserved keywords are properly escaped.
+ - Reserved keywords on column names are properly escaped when
+   part of an insert or update statement (#184849, by Thomas Herve).
+ - Prevent cached objects from issuing selects to retrieve their
+   data when find()s were previously made and already brough
+   their data (#174388, reported and fixed by Bernd Dorn).
+ - Fixed bug which caused an object to be readded to the store
+   when a reference of an object that had already been removed
+   was looked up.
+ - Prevent pathological case which happens when a statement like
+   "SELECT ... WHERE table.id = currval(...)" is executed in
+   PostgreSQL.  The change is only meaningful on PostgreSQL < 8.2,
+   as newer versions will use the RETURNING extension instead.
+ - Specify both of the joining tables explicitly when compiling Proxy,
+   so that it doesn't break due to incorrect references in the ON clause
+   when multiple tables are used (reported in #162528 by S3ym0ur and
+   Hamilton Tran)
+ - MySQL client charset now defaults to UTF-8 (reported
+   by Brad Crittenden).
+
+
+0.11 (2007-10-08)
+=================
+
+Improvements
+------------
+ - Added case-insensitive support to the Like expression and
+   Class.attr.like() constructions.
+ - ZStorm.get_name() for obtaining the the name of the given store.
+
+Bug fixes
+---------
+ - storm.zope wasn't included on the tarball due to an error in setup.py.
+ - Binary strings are now properly quoted with the E'' formatting if
+   needed, in the postgres backend.
+
+
+0.10 (2007-08-08)
+=================
+
+Improvements
+------------
+ - Improvements were made to the tutorial.
+ - There is now a setup.py script for installing Storm.
+ - Count and ClassAlias is now available through the storm.locals
+   module.
+ - A new hook, __storm_pre_flush__, can be implemented on objects in a
+   Store. It is called before an object is flushed to the
+   database.
+ - Storm can now use the built-in sqlite support in Python 2.5 and
+   above.
+ - There is now a storm.properties.Decimal, which allows you to store
+   Decimal (as opposed to binary) floating point values.
+ - storm.zope was added, which offers a simple integration mechanism
+   with the Zope transaction machinery.
+ - Complex expressions other than simple Columns can now be passed to
+   the aggregation methods of ResultSet (avg,max,min,sum).
+ - Backend implementors can now override preset_primary_key on their
+   Database object to come up with primary key values before an
+   Insert.
+ - A large amount of API documentation was added.
+
+Bug fixes
+---------
+ - SQL reserved words are now properly escaped in SQL
+   statements.
+ - GROUP BY and ORDER BY statements are now ordered correctly.
+ - Running the tests with trial now works.
+ - All backends are now initialized such that their transactions are
+   truly SERIALIZABLE. Psycopg2 and Pysqlite2 both did not previously
+   have serializable transactions by default, but this has been fixed.
+ - A bug in ResultSet.cached which could occasionally cause
+   inconsistencies in ResultSet.set was fixed.
+
+API Changes
+-----------
+
+Most changes are backwards compatible. There were some incompatible
+changes which may affect alternative database backends.
+
+ - Chars was renamed to RawStr. Chars still exists, but is
+   deprecated. All raw 8-bit data in your database should be
+   represented with RawStr.
+ - compiler handlers have had their arguments reordered.
+ - The Compile.__call__ method now returns only the Statement.
+ - Compile.fork was renamed to Compile.create_child.
+ - Many methods which previously had underscores were renamed to get
+   rid of the underscores to reflect their status as things which can
+   be safely touched in subclasses. Documentation was added clarifying
+   their intended use.
