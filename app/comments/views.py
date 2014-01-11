@@ -114,7 +114,7 @@ class CommentsView(FlaskView):
             else:
                 flash(gettext('Comment removed'))
                 return redirect(url_for('CommentsView:index'))
-        except:            
+        except:
             if request.is_xhr:
                 js = [ { "result": "error" , "type": "comment", "redirect": url_for('CommentsView:index') } ]
                 return Response(json.dumps(js),  mimetype='application/json')
