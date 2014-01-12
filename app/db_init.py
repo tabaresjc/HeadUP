@@ -63,6 +63,7 @@ class DbInit(object):
         category = Category.create()
         category.name = u'Uncategorized'
         category.slug = u'uncategorized'
+        category.description = u'Fallback category or standard category'
         category.save()
 
         print "*******************************************"

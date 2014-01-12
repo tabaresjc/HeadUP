@@ -1,0 +1,24 @@
+{% extends "admin/admin.html" %}
+{% block custom_css %}
+    <link rel="stylesheet" href="/static/admin/css/compiled/index.css" type="text/css" media="screen" />
+    <link rel="stylesheet" href="/static/admin/css/compiled/ui-elements.css" type="text/css" media="screen">
+{% endblock %}
+{% block main %}
+    <div class="row head">
+        <div class="col-md-12">
+            <h4>{{_('New Category')}}</h4>
+        </div>
+    </div>
+    <br/>
+    <div class="row">
+       <div class="col-md-9">
+            <div class="well">
+                {% include 'admin/categories/_category_form_add.html' %}
+            </div>
+        </div>
+        <div class="col-md-3">
+            {% include 'admin/categories/_sidebar.html' %}
+        </div>          
+    </div>
+{% endblock %}
+

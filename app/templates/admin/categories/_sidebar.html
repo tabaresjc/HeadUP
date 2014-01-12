@@ -1,0 +1,28 @@
+<div class="pop-dialog full">
+    <div class="body">
+        <div class="settings">
+            <div class="items">
+                <div class="item">
+                    <h5>{{_('Go to')}}</h5>
+                </div>
+                <div class="item">
+                    <i class="icon-reorder"></i>
+                    <a href="{{ url_for('CategoriesView:index') }}">{{_('Categories List')}}</a>
+                </div>
+
+                {% if request.endpoint.startswith('CategoriesView:put') %}
+                    {% if category.can_edit() %}
+                    <div class="item">
+                        <i class="icon-trash icon-formatted"></i>
+                        <a href="{{ url_for('CategoriesView:delete_0', id = category.id) }}" data-method="post" data-confirm="This will remove '{{ category.name }}'?">{{_('Delete Category')}}</a>
+                    </div>                    
+                    <div class="item">
+                        <i class="icon-plus icon-formatted"></i>
+                        <a href="{{ url_for('CategoriesView:post_0') }}">{{_('New Category')}}</a>
+                    </div>
+                    {% endif %}
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</div>

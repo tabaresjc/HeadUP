@@ -1,11 +1,13 @@
 import sys
-import datetime
-from flask.ext.babel import lazy_gettext, gettext, format_datetime, format_timedelta
+from flask import request, json, Response, flash, redirect
+from flask.ext.babel import gettext, format_datetime, format_timedelta
 
 END = -1
 
+
 class UnbalancedError(Exception):
     pass
+
 
 class OpenTag:
     def __init__(self, tag, rest=''):
@@ -15,12 +17,15 @@ class OpenTag:
     def as_string(self):
         return '<' + self.tag + self.rest + '>'
 
+
 class CloseTag(OpenTag):
     def as_string(self):
         return '</' + self.tag + '>'
 
+
 class SelfClosingTag(OpenTag):
     pass
+
 
 class Tokenizer:
     def __init__(self, input):
@@ -77,10 +82,10 @@ class Tokenizer:
             char = self.__next_char()
         if self.input[self.counter - 1] == '/':
             self.counter += 1
-            return SelfClosingTag( ''.join(tag), ''.join(rest) )
+            return SelfClosingTag(''.join(tag), ''.join(rest))
         else:
             self.counter += 1
-            return OpenTag( ''.join(tag), ''.join(rest) )
+            return OpenTag(''.join(tag), ''.join(rest))
 
     def __close_tag(self):
         """Return an open/close tag token.
@@ -93,9 +98,10 @@ class Tokenizer:
             tag.append(char)
             char = self.__next_char()
         self.counter += 1
-        return CloseTag( ''.join(tag) )
+        return CloseTag(''.join(tag))
 
-def truncate(str, target_len, ellipsis = ''):
+
+def truncate(str, target_len, ellipsis=''):
     """Returns a copy of str truncated to target_len characters,
     preserving HTML markup (which does not count towards the length).
     Any tags that would be left open by truncation will be closed at
@@ -137,10 +143,24 @@ if __name__ == "__main__":
     except EOFError:
         sys.exit(0)
 
+
 class Utilities(object):
     @staticmethod
+    def redirect_json_or_html(url, type, message=''):
+        if request.is_xhr:
+            if message:
+                js = [{"result": "error", "message": message, "type": "category", "redirect": url}]
+            else:
+                js = [{"result": "ok", "type": "category", "redirect": url}]
+            return Response(json.dumps(js), mimetype='application/json')
+        else:
+            if message:
+                flash(message, 'error')
+            return redirect(url)
+
+    @staticmethod
     def datetimeformat(value, format='EEE, d MMM yyyy H:mm:ss'):
-        return format_datetime(value,format)
+        return format_datetime(value, format)
 
     @staticmethod
     def humanformat(value):
@@ -148,8 +168,8 @@ class Utilities(object):
         return gettext('Posted %(ago)s ago', ago=format_timedelta(value, granularity='second'))
 
     @staticmethod
-    def htmltruncate(value,target_len = 200, ellipsis='...'):
-        return truncate(value,target_len,ellipsis)
+    def htmltruncate(value, target_len=200, ellipsis='...'):
+        return truncate(value, target_len, ellipsis)
 
     @staticmethod
     def get_navigation_bar(value, sorted=True):
@@ -159,51 +179,50 @@ class Utilities(object):
                 'url': 'dashboard',
                 'icon': 'icon-home',
                 'pattern': 'dashboard'
-                }), 
+            }),
             (1, {
-                    'name': 'Posts',
-                    'url': '',
-                    'icon': 'icon-edit',
-                    'pattern': 'PostsView',
-                    'sub-menu': {
-                        'index': {
-                            'name': 'Post List',
-                            'url': 'PostsView:index'
-                        },
-                        'new': {
-                            'name': 'New Post',
-                            'url': 'PostsView:post_0'
-                        }
-                    }       
-                }),
+                'name': 'Posts',
+                'url': '',
+                'icon': 'icon-edit',
+                'pattern': 'PostsView',
+                'sub-menu': {
+                    'index': {
+                        'name': 'Post List',
+                        'url': 'PostsView:index'
+                    },
+                    'new': {
+                        'name': 'New Post',
+                        'url': 'PostsView:post_0'
+                    }
+                }
+            }),
             (2, {
-                    'name': 'Comments',
-                    'url': '',
-                    'icon': 'icon-comments-alt',
-                    'pattern': 'CommentsView',
-                    'sub-menu': {
-                        'index': {
-                            'name': 'Comments List',
-                            'url': 'CommentsView:index'
-                        }
-                    }       
-                }),                 
+                'name': 'Comments',
+                'url': 'CommentsView:index',
+                'icon': 'icon-comments-alt',
+                'pattern': 'CommentsView'
+            }),
             (3, {
-                    'name': 'Users',
-                    'url': '',
-                    'icon': 'icon-user',
-                    'pattern': 'UsersView',
-                    'sub-menu': {
-                        'index': {
-                            'name': 'User List',
-                            'url': 'UsersView:index'
-                        },
-                        'new': {
-                            'name': 'New User',
-                            'url': 'UsersView:post_0'
-                        }            
-                    }       
-                })
-
-            ])
+                'name': 'Categories',
+                'url': 'CategoriesView:index',
+                'icon': 'icon-bookmark',
+                'pattern': 'CategoriesView'
+            }),
+            (4, {
+                'name': 'Users',
+                'url': '',
+                'icon': 'icon-user',
+                'pattern': 'UsersView',
+                'sub-menu': {
+                    'index': {
+                        'name': 'User List',
+                        'url': 'UsersView:index'
+                    },
+                    'new': {
+                        'name': 'New User',
+                        'url': 'UsersView:post_0'
+                    }
+                }
+            })
+        ])
         return d

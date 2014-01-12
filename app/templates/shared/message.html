@@ -3,6 +3,7 @@
 <div class="message_container">
 {% for category, message in messages %}                    
     <div class="alert alert-{{ 'danger' if category == 'error' else 'success' }}">
+        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
         {% if category == 'error' %}
         <i class="glyphicon glyphicon-remove-sign"></i>
         {% elif category == 'info' %}
@@ -10,8 +11,7 @@
         {% else %}
         <i class="glyphicon glyphicon-ok-sign"></i>            
         {% endif %}
-        {{ message }}
-        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+        {{ message | safe }}        
     </div>                    
 {% endfor %}
 </div>
