@@ -4,6 +4,7 @@ from app.comments.models import Comment
 from app.categories.models import Category
 from app import store
 import datetime
+import re
 
 
 class DbInit(object):
@@ -93,3 +94,11 @@ class DbInit(object):
                 post.user = user
                 post.save()
             print "Created Dummy Posts for %r" % user
+
+    @staticmethod
+    def normalize_posts_url():
+        posts = store.find(Post)
+        for post in posts:
+            post.slug = re.sub('[^a-zA-Z0-9]', '_', post.title).lower()
+            print post.slug
+        store.commit()
