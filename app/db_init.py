@@ -2,6 +2,7 @@ from app.users.models import User
 from app.posts.models import Post
 from app.comments.models import Comment
 from app.categories.models import Category
+from app import store
 import datetime
 
 
@@ -92,3 +93,8 @@ class DbInit(object):
                 post.user = user
                 post.save()
             print "Created Dummy Posts for %r" % user
+
+    @staticmethod
+    def remove_table_categories():
+        store.execute("DROP TABLE categories;", noresult=True)
+        return store.commit()
