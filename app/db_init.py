@@ -27,6 +27,15 @@ class DbInit(object):
         print "Created user %r" % user1
 
     @staticmethod
+    def init_categories():
+        print "*******************************************"
+        category = Category.create()
+        category.name = u'Uncategorized'
+        category.slug = u'uncategorized'
+        category.description = u'Fallback category or standard category'
+        category.save()
+
+    @staticmethod
     def create_db():
         # Posts
         if not Post.exist_table():
@@ -46,6 +55,7 @@ class DbInit(object):
         if not Category.exist_table():
             Category.create_table()
             print "Created Table [Category]"
+            DbInit.init_categories()
         else:
             print "Table [Category] already exist"
 
@@ -59,13 +69,6 @@ class DbInit(object):
 
     @staticmethod
     def create_posts():
-        print "*******************************************"
-        category = Category.create()
-        category.name = u'Uncategorized'
-        category.slug = u'uncategorized'
-        category.description = u'Fallback category or standard category'
-        category.save()
-
         print "*******************************************"
         user = User.get_by_id(1)
         if not user is None:
