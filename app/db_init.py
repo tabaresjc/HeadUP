@@ -93,8 +93,3 @@ class DbInit(object):
                 post.user = user
                 post.save()
             print "Created Dummy Posts for %r" % user
-
-    @staticmethod
-    def remove_table_categories():
-        store.execute("DROP TABLE categories;", noresult=True)
-        return store.commit()
