@@ -4,7 +4,7 @@
                 {% if post.image_url %}
                 <img src="{{post.image_url}}" class="img-responsive" width="100%">
                 {% endif %}                
-                <h3><a href="{{ url_for('show_post', id=post.id) }}" rel="nofollow">{{ post.title }}</a></h3>
+                <h3><a href="{{ url_for('show_article', cat=post.category.slug, post=post.slug) }}" rel="nofollow">{{ post.title }}</a></h3>
                 <span class="meta">{{post.created_at|datetimeformat('EEE, d MMM yyyy')}}, By {{ post.user.name }}</span>
                 <hr>
             </header>
@@ -12,7 +12,7 @@
                 {{post.body|htmltruncate(500)|safe}}
             </div>
             <div class="clearfix">
-                <a href="{{ url_for('show_post', id=post.id) }}" class="btn btn-tales-one">{{_('Read more')}}</a>
+                <a href="{{ url_for('show_article', cat=post.category.slug, post=post.slug) }}" class="btn btn-tales-one">{{_('Read more')}}</a>
             </div>
         </article>
     </div>

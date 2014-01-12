@@ -2,8 +2,9 @@ from app import store
 from app.mixins import CRUDMixin
 from flask.ext.login import current_user
 from storm.locals import *
-import datetime
 from app.posts.models import Post
+import datetime
+
 
 class Category(CRUDMixin):
     __storm_table__ = "categories"
@@ -53,3 +54,8 @@ class Category(CRUDMixin):
       store.find(Post, Post.category_id == from_category.id).set(category_id=to_category.id)
       store.commit()
       return True
+
+    @classmethod
+    def get_by_cat_slug(cls, cat, slug):
+      return store.find(Category,
+        Category.slug == unicode(cat)).one().posts.find(Post.slug == unicode(slug)).one()

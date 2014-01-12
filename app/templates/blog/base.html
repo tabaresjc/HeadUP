@@ -62,7 +62,7 @@
                             {% set last_posts = 4|get_stat %}
                             <ul class="tales-list">
                                 {% for p in last_posts %}
-                                <li><a href="{{ url_for('show_post',id=p.id) }}">{{p.title}}</a></li>
+                                <li><a href="{{url_for('show_article', cat=p.category.slug, post=p.slug)}}">{{p.title}}</a></li>
                                 {% endfor %}
                             </ul>
                         </div>

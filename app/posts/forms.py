@@ -1,7 +1,8 @@
 from flask.ext.wtf import Form
 from wtforms import TextAreaField, TextField, BooleanField, SelectField, validators
-from flask.ext.babel import lazy_gettext
+from flask.ext.babel import lazy_gettext, gettext
 from app.categories.models import Category
+from models import Post
 
 
 class PostForm(Form):
@@ -15,6 +16,17 @@ class PostForm(Form):
         Form.__init__(self, *args, **kwargs)
         self.category_id.data = 1
         self.category_id.choices = Category.get_list()
+    
+    def validate(self):
+        valid = True
+        if not Form.validate(self):
+            valid = False
+        
+        if Post.get_by_slug(self.slug.data):
+            self.to_id.errors.append(gettext('Please select a different slug'))
+            valid = False
+
+        return valid
 
 
 class EditPostForm(Form):
@@ -29,7 +41,17 @@ class EditPostForm(Form):
         Form.__init__(self, *args, **kwargs)
         self.category_id.data = 1
         self.category_id.choices = Category.get_list()
+    
+    def validate(self):
+        valid = True
+        if not Form.validate(self):
+            valid = False
+        
+        if Post.get_by_slug(self.slug.data):
+            self.to_id.errors.append(gettext('Please select a different slug'))
+            valid = False
 
+        return valid
 
 class NewPostForm(EditPostForm):
     def __init__(self, post, *args, **kwargs):

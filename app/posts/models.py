@@ -17,6 +17,7 @@ class Post(CRUDMixin):
     created_at = DateTime(default_factory=lambda: datetime.datetime(1970, 1, 1))
     modified_at = DateTime(default_factory=lambda: datetime.datetime(1970, 1, 1))
     user = Reference(user_id, User.id)
+    category = Reference(category_id, 'Category.id')
 
     def __repr__(self): # pragma: no cover
       return '<Post %r>' % (self.title)
@@ -49,6 +50,11 @@ class Post(CRUDMixin):
     def exist_table():
       result = store.execute("SELECT EXISTS(SELECT 1 FROM information_schema.tables WHERE table_name='posts');").get_one()
       return result[0]
+
+    @classmethod
+    def get_by_slug(cls, slug):
+      cat = store.find(cls, cls.slug == slug).one()
+      return cat
 
 # class UserPosts(object):
 #     __storm_table__ = "userposts"
