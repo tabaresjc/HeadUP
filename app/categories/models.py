@@ -59,3 +59,14 @@ class Category(CRUDMixin):
     def get_by_cat_slug(cls, cat, slug):
       return store.find(Category,
         Category.slug == unicode(cat)).one().posts.find(Post.slug == unicode(slug)).one()
+
+    @classmethod
+    def get_by_cat(cls, cat):
+      return store.find(Category, Category.slug == unicode(cat)).one()
+
+    @classmethod
+    def get_posts_by_cat(cls, cat, limit=10, page=1, desc=True):
+      category = store.find(Category, Category.slug == unicode(cat)).one()
+      offset = (page - 1) * limit
+      bounderie = offset + limit
+      return category.posts.find()[offset:bounderie], category

@@ -16,7 +16,7 @@ from config import LANGUAGES
 @app.before_request
 def before_request():
     if request.endpoint:
-        if request.endpoint in ['index', 'show_post', 'search_post', 'show_article']:
+        if request.endpoint in ['index', 'show_post', 'search_post', 'show_article', 'show_category']:
             g.user_count = User.count()
             g.post_count = Post.count()
             g.comment_count = Comment.count()
@@ -103,6 +103,25 @@ def show_article(cat, post):
         title=gettext('Post | %(title)s', title=post.title),
         post=post,
         form=form)
+
+
+@app.route('/category/<string:cat>', defaults={'page': 1})
+@app.route('/category/<string:cat>/<int:page>')
+def show_category(cat, page=1):
+    limit = 5
+    posts, category = Category.get_posts_by_cat(cat, limit=limit, page=page)
+
+    pagination = Pagination(page=page,
+        per_page=limit,
+        total=category.posts.count(),
+        record_name=gettext('posts'),
+        alignment='right',
+        bs_version=3)
+    return render_template("blog/index.html",
+        title=gettext('Category | %(category)s', category=category.name),
+        posts=posts,
+        pagination=pagination,
+        category=category)
 
 
 @app.route('/post/<int:id>/', methods=['GET', 'POST'])
