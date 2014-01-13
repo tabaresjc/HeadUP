@@ -33,7 +33,7 @@
                     <tr>
                         <td>{{ category.name }}</td>
                         <td>{{ category.slug }}</td>
-                        <td>{{ category.description|htmltruncate(15) }}</td>
+                        <td>{{ category.description|htmltruncate(20) }}</td>
                         <td>{{ category.posts.count() }}</td>
                         <td>
                             {% if category.can_edit() %}
@@ -55,17 +55,23 @@
         </div>
         <div class="col-md-3">
             {% from "shared/_bootstrap_forms.html" import render_normal_field %}
-            <div class="well">
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                    <h3 class="panel-title">{{ _('Transfer Posts')}}</h3>
+                </div>
                 <form action="{{url_for('CategoriesView:transfer_post')}}" method="post" name="TransferPosts" class="form-horizontal" role="form">
                     {{form.hidden_tag()}}
-                    <h5>{{ _('Transfer Posts')}}</h5>
-                    {{ render_normal_field(trans.from_id, class="form-control")}}
-                    {{ render_normal_field(trans.to_id, class="form-control")}}
-                    <div class="actions clearfix">
-                        <input type="submit" value="{{_('Save')}}" class="btn btn-large btn-primary pull-right">
+                    <div class="panel-body">                    
+                        {{form.hidden_tag()}}                        
+                        {{ render_normal_field(trans.from_id, class="form-control")}}
+                        {{ render_normal_field(trans.to_id, class="form-control")}}
+                    </div>
+                    <div class="panel-footer">
+                        <button type="reset" class="btn btn-large btn-danger">{{_('Clear')}}</button>
+                        <button type="submit" class="btn btn-primary pull-right">{{_('Transfer')}}</button>
                     </div>
                 </form>
-            </div>
+            </div>            
         </div>
     </div>
 {% endblock %}

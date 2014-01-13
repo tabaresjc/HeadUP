@@ -121,7 +121,7 @@ class CategoriesView(FlaskView):
             if not Category.transfer_posts(category):
                 return util.redirect_json_or_html(url_for('CategoriesView:index'),
                     'category',
-                    gettext('Can\'t remove the last category'))
+                    gettext('Sorry, the last category can not be removed'))
 
             name = category.name
             Category.delete(category.id)

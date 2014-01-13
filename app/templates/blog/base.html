@@ -45,7 +45,7 @@
                         </header>
                         <div class="body">                            
                             <ul class="tales-list">
-                                {% if post and post.is_mine()%}                               
+                                {% if post and post.is_mine() %}                               
                                 <li><a href="{{ url_for('PostsView:put_0',id=post.id) }}">{{_('Edit Post')}}</a></li>
                                 <li><a href="{{ url_for('PostsView:delete_0', id = post.id) }}" data-method="post" data-confirm="{{_("This will remove '%(title)s', Are you sure?", title=post.title)}}">{{_('Delete User')}}</a></li>
                                 {% endif %}

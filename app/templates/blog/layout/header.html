@@ -55,9 +55,14 @@
             <div class="container">
                 <div class="tales-breadcrumb">
                     <a href="{{url_for('index')}}">{{_('Home')}}</a>
-                    {% if post %}
+                    {% if category %}
                     <span class="separator">&#x2F;</span>
-                    <a href="{{ url_for('show_post',id=post.id) }}">{{post.title | truncate(30) }}</a>
+                    <a href="{{url_for('show_category', cat=category.slug)}}">{{ category.name }}</a>
+                    {% elif  post %}
+                    <span class="separator">&#x2F;</span>
+                    <a href="{{url_for('show_category', cat=post.category.slug)}}">{{ post.category.name }}</a>
+                    <span class="separator">&#x2F;</span>
+                    <a href="{{url_for('show_article', cat=post.category.slug, post=post.slug)}}">{{ post.title | truncate(30) }}</a>
                     {% endif %}
                 </div>
                 {% if g.searhform %}
