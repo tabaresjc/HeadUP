@@ -118,7 +118,7 @@ def show_category(cat, page=1):
         alignment='right',
         bs_version=3)
     return render_template("blog/index.html",
-        title=gettext('Category | %(category)s', category=category.name),
+        title=category.name,
         posts=posts,
         pagination=pagination,
         category=category)

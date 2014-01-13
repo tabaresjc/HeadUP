@@ -33,7 +33,7 @@
                     <tr>
                         <td>{{ category.name }}</td>
                         <td>{{ category.slug }}</td>
-                        <td>{{ category.description|htmltruncate(20) }}</td>
+                        <td>{{ category.description|htmltruncate(40) }}</td>
                         <td>{{ category.posts.count() }}</td>
                         <td>
                             {% if category.can_edit() %}
