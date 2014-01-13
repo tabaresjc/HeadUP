@@ -2,6 +2,7 @@ from app import store
 from storm.locals import *
 from app.posts.models import Post
 from app.comments.models import Comment
+from app.categories.models import Category
 
 
 class Search(object):
@@ -25,5 +26,8 @@ def get_stat(value):
     elif value == 5:
         last_comments, count = Comment.pagination()
         return last_comments
+    elif value == 6:
+        last_categories, count = Category.pagination()
+        return last_categories        
     else:
         return 0

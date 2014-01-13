@@ -57,6 +57,19 @@
                     {% endif %}
                     <div class="aside-widget">
                         <header>
+                            <h3>{{_('Pigeon')}}</h3>
+                        </header>
+                        <div class="body">
+                            {% set categories = 6|get_stat %}
+                            <ul class="tales-list">
+                                {% for c in categories %}
+                                <li><a href="{{url_for('show_category', cat=c.slug)}}">{{c.name}}</a></li>
+                                {% endfor %}
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="aside-widget">
+                        <header>
                             <h3>{{_('Recent Posts')}}</h3>
                         </header>
                         <div class="body">
