@@ -83,30 +83,3 @@ class User(UserMixin, CRUDMixin):
           return True
         else:
           return False
-   
-    @staticmethod
-    def create_table():
-      store.execute("CREATE TABLE users "
-                    "(id SERIAL PRIMARY KEY,\
-                      email VARCHAR(255) UNIQUE NOT NULL,\
-                      name VARCHAR(64) UNIQUE NOT NULL,\
-                      nickname VARCHAR(64) UNIQUE NOT NULL,\
-                      password VARCHAR(255),\
-                      role SMALLINT,\
-                      address VARCHAR(255),\
-                      phone VARCHAR(64),\
-                      last_seen TIMESTAMP,\
-                      last_login TIMESTAMP,\
-                      timezone VARCHAR(20) DEFAULT 'Asia/Tokyo'::character varying,\
-                      lang VARCHAR(20) DEFAULT 'en'::character varying,\
-                      created_at TIMESTAMP,\
-                      modified_at TIMESTAMP);", noresult=True)
-      store.execute("CREATE INDEX users_email_idx ON users USING hash (email);", noresult=True)
-      store.execute("CREATE INDEX users_nickname_idx ON users USING hash (nickname);", noresult=True)
-      store.commit()
-      return True
-
-    @staticmethod
-    def exist_table():
-      result = store.execute("SELECT EXISTS(SELECT 1 FROM information_schema.tables WHERE table_name='users');").get_one()
-      return result[0]

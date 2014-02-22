@@ -22,24 +22,6 @@ class Category(CRUDMixin):
     def __repr__(self):
       return '<Category %s>' % (self.id)
 
-    @staticmethod
-    def create_table():
-      store.execute("CREATE TABLE categories "
-                    "(id SERIAL PRIMARY KEY,\
-                      name VARCHAR(50),\
-                      slug VARCHAR(255),\
-                      description VARCHAR(255),\
-                      created_at TIMESTAMP,\
-                      modified_at TIMESTAMP);", noresult=True)
-      store.execute("CREATE INDEX categories_slug_idx ON categories USING hash(slug);", noresult=True)
-      store.commit()
-      return True
-
-    @staticmethod
-    def exist_table():
-      result = store.execute("SELECT EXISTS(SELECT 1 FROM information_schema.tables WHERE table_name='categories');").get_one()
-      return result[0]
-
     @classmethod
     def get_list(cls):
       return [(g.id, g.name) for g in store.find(cls)]

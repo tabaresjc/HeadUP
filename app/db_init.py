@@ -8,8 +8,8 @@ import re
 
 
 class DbInit(object):
-    @staticmethod
-    def init_db():
+    @classmethod
+    def init_db(cls):
         user = User.create()
         user.name = u'Juan Tabares'
         user.nickname = u'jctt'
@@ -18,18 +18,10 @@ class DbInit(object):
         user.email = u'juan.ctt@live.com'
         user.last_seen = datetime.datetime.utcnow()
         user.save()
-        print "Created user %r" % user
-        user1 = User.create()
-        user1.name = u'Mrs. Arnaldo Wyman'
-        user1.nickname = u'arnaldo'
-        user1.set_password(u'admin123456')
-        user1.email = u'example-2@railstutorial.org'
-        user1.last_seen = datetime.datetime.utcnow()
-        user1.save()
-        print "Created user %r" % user1
+        DbInit.init_categories()
 
-    @staticmethod
-    def init_categories():
+    @classmethod
+    def init_categories(cls):
         print "*******************************************"
         category = Category.create()
         category.name = u'Uncategorized'
@@ -37,40 +29,8 @@ class DbInit(object):
         category.description = u'Fallback category or standard category'
         category.save()
 
-    @staticmethod
-    def create_db():
-        # Posts
-        if not Post.exist_table():
-            Post.create_table()
-            print "Created Table [Post]"
-        else:
-            print "Table [Post] already exist"
-
-        # Comments
-        if not Comment.exist_table():
-            Comment.create_table()
-            print "Created Table [Comment]"
-        else:
-            print "Table [Comment] already exist"
-
-        # Categories
-        if not Category.exist_table():
-            Category.create_table()
-            print "Created Table [Category]"
-            DbInit.init_categories()
-        else:
-            print "Table [Category] already exist"
-
-        # Users
-        if not User.exist_table():
-            User.create_table()
-            print "Created Table [User]"
-            DbInit.init_db()
-        else:
-            print "Table [User] already exist"
-
-    @staticmethod
-    def create_posts():
+    @classmethod
+    def create_posts(cls):
         print "*******************************************"
         user = User.get_by_id(1)
         if not user is None:
@@ -95,8 +55,8 @@ class DbInit(object):
                 post.save()
             print "Created Dummy Posts for %r" % user
 
-    @staticmethod
-    def normalize_posts_url():
+    @classmethod
+    def normalize_posts_url(cls):
         posts = store.find(Post)
         for post in posts:
             post.slug = re.sub('[^a-zA-Z0-9]', '_', post.title).lower()

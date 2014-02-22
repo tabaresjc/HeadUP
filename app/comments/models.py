@@ -36,23 +36,3 @@ class Comment(CRUDMixin):
       if not recursive:
         store.commit()
 
-    @staticmethod
-    def create_table():
-      store.execute("CREATE TABLE comments "
-                    "(id SERIAL PRIMARY KEY,\
-                      body VARCHAR(16384),\
-                      user_id INTEGER,\
-                      post_id INTEGER,\
-                      comment_id INTEGER,\
-                      created_at TIMESTAMP,\
-                      modified_at TIMESTAMP);", noresult=True)
-      store.execute("CREATE INDEX comments_user_idx ON comments USING btree (user_id);", noresult=True)
-      store.execute("CREATE INDEX comments_post_idx ON comments USING btree (post_id);", noresult=True)
-      store.execute("CREATE INDEX comments_comment_id_idx ON comments USING btree (comment_id);", noresult=True)
-      store.commit()
-      return True
-
-    @staticmethod
-    def exist_table():
-      result = store.execute("SELECT EXISTS(SELECT 1 FROM information_schema.tables WHERE table_name='comments');").get_one()
-      return result[0]

@@ -28,29 +28,6 @@ class Post(CRUDMixin):
     def can_edit(self):
       return current_user.is_authenticated() and (self.user.id == current_user.id or current_user.is_admin())
 
-    @staticmethod
-    def create_table():
-      store.execute("CREATE TABLE posts "
-                    "(id SERIAL PRIMARY KEY,\
-                      title VARCHAR(128) NOT NULL,\
-                      body TEXT,\
-                      slug VARCHAR(255) NOT NULL DEFAULT 'uncategorized'::character varying,\
-                      image_url VARCHAR(255),\
-                      user_id INTEGER,\
-                      category_id INTEGER,\
-                      created_at TIMESTAMP,\
-                      modified_at TIMESTAMP);", noresult=True)
-      store.execute("CREATE INDEX posts_title_idx ON posts USING btree (title);", noresult=True)
-      store.execute("CREATE INDEX posts_category_id_idx ON posts USING btree (category_id);", noresult=True)
-      store.execute("CREATE INDEX posts_slug_idx ON posts USING hash (slug);", noresult=True)
-      store.commit()
-      return True
-
-    @staticmethod
-    def exist_table():
-      result = store.execute("SELECT EXISTS(SELECT 1 FROM information_schema.tables WHERE table_name='posts');").get_one()
-      return result[0]
-
     @classmethod
     def get_by_slug(cls, slug):
       cat = store.find(cls, cls.slug == slug).one()
