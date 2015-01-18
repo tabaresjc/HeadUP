@@ -5,5 +5,5 @@ lenargs = len(sys.argv)
 if  2 == lenargs and sys.argv[1] == 'init':
     DbInit.init_db()
     DbInit.init_categories()
-elif 2 == lenargs and sys.argv[1] == 'create-posts'
+elif 2 == lenargs and sys.argv[1] == 'create-posts':
     DbInit.create_posts()
