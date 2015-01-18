@@ -149,7 +149,7 @@ CREATE TABLE `users` (
 
 LOCK TABLES `users` WRITE;
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
-INSERT INTO `users` VALUES (1,'juan.ctt@live.com','Juan Tabares','jctt','pbkdf2:sha1:1000$WdZ8kbEd$4a6716c8caf50505422db016f0ab1f94bf6efac8',1,'','','2014-02-23 10:57:23','2014-02-23 04:19:39','Asia/Tokyo','en','2014-01-01 15:43:09','2014-02-23 10:57:23'),(2,'example-2@railstutorial.org','Mrs. Arnaldo Wyman','arnaldo','pbkdf2:sha1:1000$wbPCUaPZ$f23910cfe96c1bb9df809dcdf5baf1978a952ce5',2,'','','2014-01-02 06:28:19','2014-01-01 15:48:06','Asia/Tokyo','en','2014-01-01 15:43:09','2014-01-02 06:28:19'),(3,'pinard@luxeys.com','pinard','pinard','pbkdf2:sha1:1000$VFobdFCT$4a75a6176d0c3bdbad32a14ce6f20551965c595d',1,'','','2014-01-06 03:53:31','2014-01-06 03:53:31','Asia/Tokyo','en','2014-01-06 03:53:31','2014-01-06 04:28:16');
+INSERT INTO `users` VALUES (1,'juan.ctt@live.com','Juan Tabares','jctt','pbkdf2:sha1:1000$WdZ8kbEd$4a6716c8caf50505422db016f0ab1f94bf6efac8',1,'','','2014-02-23 10:57:23','2014-02-23 04:19:39','Asia/Tokyo','en','2014-01-01 15:43:09','2014-02-23 10:57:23'),(2,'example-2@railstutorial.org','Mrs. Arnaldo Wyman','arnaldo','pbkdf2:sha1:1000$wbPCUaPZ$f23910cfe96c1bb9df809dcdf5baf1978a952ce5',2,'','','2014-01-02 06:28:19','2014-01-01 15:48:06','Asia/Tokyo','en','2014-01-01 15:43:09','2014-01-02 06:28:19');
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
