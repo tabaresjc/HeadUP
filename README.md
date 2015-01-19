@@ -13,13 +13,13 @@ Requeriments
 * Flask-Classy
 * Flask-paginate
 * Flask-login
-
+* Install MySQL & MySQL Python Lib
 
 Usage
 -----
-Enter "python run.py" to start webserver
-
-
+* I recommend to create your own python environment pip install virtualenv 
+* pip install requeriments.txt
+* Enter "python run.py" to start webserver
 
 About Flask Framework
 ---------------------
