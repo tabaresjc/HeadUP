@@ -1,7 +1,8 @@
     {% set navigation_bar = None|sidebar -%}
     <div id="sidebar-nav">
         <ul id="dashboard-menu">
-            {% for item in navigation_bar %}        
+            {% for item in navigation_bar %}
+            {% if (not navigation_bar[item].get('require_admin')) or (current_user.is_admin() and navigation_bar[item].get('require_admin') == True) %}
             <li class="element">
                 {% if request.endpoint.startswith(navigation_bar[item]['pattern'])  %}
                 <div class="pointer">
@@ -27,6 +28,7 @@
                 </a>
                 {% endif %}
             </li>
+            {% endif %}
             {% endfor %}
             <li>
                 <a href="{{ url_for('sessions.logout') }}" data-method="post" >

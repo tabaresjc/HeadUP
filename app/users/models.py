@@ -1,3 +1,5 @@
+# -*- coding: utf-8 -*-
+
 from flask.ext.login import UserMixin, current_user
 from flask.ext.babel import gettext
 from werkzeug.security import generate_password_hash, check_password_hash
@@ -27,12 +29,12 @@ class User(UserMixin, CRUDMixin):
     lang = Unicode(default=u'en')
     created_at = DateTime(default_factory=lambda: datetime.datetime(1970, 1, 1))
     modified_at = DateTime(default_factory=lambda: datetime.datetime(1970, 1, 1))
-    
+
     def set_password(self, password):
       self.password = unicode(generate_password_hash(password))
 
     def check_password(self, password):
-      return check_password_hash(self.password, password)
+      return check_password_hash(str(self.password), str(password))
 
     def is_admin(self):
       return self.role == int(ROLE_ADMIN)

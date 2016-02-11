@@ -1,3 +1,5 @@
+# -*- coding: utf8 -*-
+
 from flask import Blueprint, render_template, flash, redirect, session, url_for, request, g, jsonify, abort
 from flask.ext.login import login_user, logout_user, current_user, login_required
 from flask.ext.classy import FlaskView, route
@@ -22,14 +24,14 @@ class UsersView(FlaskView):
 
         limit = 5
         users, count = User.pagination(page=page, limit=limit, orderby='users.id', desc=False)
-        
-        pagination = Pagination(page=page, 
-            per_page=limit, 
-            total= count, 
+
+        pagination = Pagination(page=page,
+            per_page=limit,
+            total= count,
             record_name=gettext('users'),
             bs_version=3)
 
-        return render_template('admin/users/index.html', 
+        return render_template('admin/users/index.html',
             title = gettext('Users | Page %(page)s', page=page),
             users = users,
             pagination = pagination)
@@ -39,14 +41,14 @@ class UsersView(FlaskView):
         if user is None:
             flash(gettext('The user was not found'), 'error')
             return redirect(url_for('UsersView:index'))
-        
-        return render_template('admin/users/show.html', 
+
+        return render_template('admin/users/show.html',
             title = gettext('User\'s Profile | %(name)s', name=user.name),
             user = user)
 
     @route('/', methods = ['POST'])
-    @route('/new', methods = ['GET'])    
-    def post(self):        
+    @route('/new', methods = ['GET'])
+    def post(self):
         if request.method == 'POST':
             form = NewUserForm()
             if form.validate_on_submit():
@@ -64,16 +66,16 @@ class UsersView(FlaskView):
                     user.save()
 
                     flash(gettext('User was succesfully saved'))
-                    return redirect(url_for('UsersView:get',id=user.id))                     
+                    return redirect(url_for('UsersView:get',id=user.id))
                 except:
                     flash(gettext('Error while creating the user'), 'error')
-                    raise                    
+                    raise
             else:
                 flash(gettext('Invalid submission, please check the messages below'), 'error')
         else:
             form = NewUserForm()
 
-        return render_template('admin/users/add.html', 
+        return render_template('admin/users/add.html',
             title = gettext('Create new user'),
             form = form,
             user = [])
@@ -88,7 +90,7 @@ class UsersView(FlaskView):
         if user is None:
             flash(gettext('The user was not found'), 'error')
             return redirect(url_for('UsersView:index'))
-        
+
         if request.method in ['POST','PUT']:
             form = UserForm()
             if form.validate_on_submit():
@@ -104,17 +106,17 @@ class UsersView(FlaskView):
                     refresh()
                     flash(gettext('User was succesfully saved'))
                     if request.method == 'POST':
-                        return redirect(url_for('UsersView:get',id=user.id))                        
+                        return redirect(url_for('UsersView:get',id=user.id))
                 except:
                     flash(gettext('Error while updating the user'), 'error')
             else:
                 flash(gettext('Invalid submission, please check the messages below'), 'error')
-            
+
             if request.method == 'PUT':
                 return jsonify(redirect_to=url_for('UsersView:index'))
         else:
             form = EditUserForm(user)
-        return render_template('admin/users/edit.html', 
+        return render_template('admin/users/edit.html',
             title = gettext('Edit User\'s Profile | %(name)s', name=user.name),
             form = form,
             user = user)
@@ -138,7 +140,7 @@ class UsersView(FlaskView):
             flash(gettext('Error while removing the user'), 'error')
 
         if request.method == 'POST':
-            return redirect(url_for('UsersView:index'))               
+            return redirect(url_for('UsersView:index'))
         return jsonify(redirect_to=url_for('UsersView:index'))
 
 
@@ -148,20 +150,20 @@ class UsersView(FlaskView):
             page = int(request.args.get('page', 1))
         except ValueError:
             page = 1
-        
+
         user = User.get_by_id(id)
         if user is None:
             flash(gettext('The user was not found'), 'error')
             return redirect(url_for('UsersView:index'))
-        
+
         limit = 5
         posts = user.get_user_posts(page=page, limit=limit)
 
-        pagination = Pagination(page=page, 
-            per_page= limit, 
-            total= user.posts.count(), 
-            record_name= gettext('posts'), 
-            alignment = 'right', 
+        pagination = Pagination(page=page,
+            per_page= limit,
+            total= user.posts.count(),
+            record_name= gettext('posts'),
+            alignment = 'right',
             bs_version= 3)
 
         return render_template("admin/users/user_posts.html",

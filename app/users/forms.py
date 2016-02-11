@@ -1,3 +1,5 @@
+# -*- coding: utf8 -*-
+
 from flask.ext.wtf import Form
 from wtforms import BooleanField, TextField, TextAreaField, PasswordField, SelectField, validators
 from flask.ext.babel import lazy_gettext, gettext
@@ -15,8 +17,8 @@ class UserForm(Form):
 	name = TextField(lazy_gettext('Name'), [ validators.Required(), validators.Length(min = 5, max = 255) ])
 	nickname = TextField(lazy_gettext('Nickname'), [ validators.Required() , validators.Length(min = 0, max = 64)])
 	role = SelectField(lazy_gettext('Role'), [validators.Optional()], choices=[('1','Administrator'),('2','Writer')])
-	password = PasswordField(lazy_gettext('Password'), [ 
-		validators.Optional(), 
+	password = PasswordField(lazy_gettext('Password'), [
+		validators.Optional(),
 		validators.EqualTo('confirm_password', message=lazy_gettext('Please repeat the password')),
 		validators.Length(min = 6, max = 64)
 	])
@@ -27,8 +29,8 @@ class UserForm(Form):
 	lang = SelectField(u'language', choices=LANGUAGES_FORM)
 
 class NewUserForm(UserForm):
-	password = PasswordField(lazy_gettext('Password'), [ 
-		validators.Required(), 
+	password = PasswordField(lazy_gettext('Password'), [
+		validators.Required(),
 		validators.EqualTo('confirm_password', message=lazy_gettext('Please repeat the password')),
 		validators.Length(min = 6, max = 64)
 	])
@@ -45,6 +47,3 @@ class EditUserForm(UserForm):
 		self.phone.data = user.phone
 		self.timezone.data = user.timezone
 		self.lang.data = user.lang
-
-
-

@@ -91,7 +91,7 @@ class Pagination(object):
         if self.alignment:
             self.alignment = ' pull-{0}'.format(self.alignment)
 
-        self.bs_version = kwargs.get('bs_version') or 2
+        self.bs_version = kwargs.get('bs_version') or 3
 
     @property
     def total_pages(self):

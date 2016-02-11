@@ -76,8 +76,8 @@ def index(page=1):
         per_page=limit,
         total=count,
         record_name=gettext('posts'),
-        alignment='right',
-        bs_version=3)
+        alignment='right')
+
     return render_template("blog/index.html",
         title=gettext('Home'),
         posts=posts,
@@ -251,3 +251,26 @@ def search_post():
         form=form,
         posts=posts,
         pagination=pagination)
+
+@app.route('/stamp/create/', methods=['GET', 'POST'])
+@login_required
+def create_stamp():
+    from app.posts.forms import PostForm
+    form = PostForm()
+    if request.method == 'POST':
+        if form.validate_on_submit():
+            try:
+                post = Post.create()
+                form.populate_obj(post)
+                post.user = current_user
+                post.save()
+                flash(gettext('Stamp succesfully created'))
+                return redirect(url_for('index'))
+            except:
+                flash(gettext('Error while posting the new comment, please retry later'), 'error')
+        else:
+            flash(gettext('Invalid submission, please check the message below'), 'error')
+        return redirect(url_for('show_post', id=post.id))
+    else:
+        form = PostForm()
+    return render_template("blog/stamp/form.html", form=form)

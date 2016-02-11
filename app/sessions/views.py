@@ -1,3 +1,5 @@
+# -*- coding: utf-8 -*-
+
 from flask import Blueprint, render_template, flash, redirect, session, url_for, request, g, jsonify
 from flask.ext.login import login_user, logout_user, current_user, login_required, user_logged_in, user_logged_out
 from flask.ext.classy import FlaskView, route
@@ -31,9 +33,8 @@ def login():
     if form.validate_on_submit():
         try:
             user = User.find_by_email(form.email.data)
-            if (user is not None) and (user.check_password(form.password.data)): 
+            if user and user.check_password(form.password.data):
                 login_user(user)
-                
                 # Update the User's info
                 user.last_login = user.last_seen
                 user.last_seen = datetime.datetime.utcnow()
@@ -49,7 +50,7 @@ def login():
         except:
             flash(gettext('Invalid email or password'), 'error')
 
-    return render_template('admin/signin.html', 
+    return render_template('admin/signin.html',
         title = gettext('Sign In'),
         form = form)
 
@@ -77,8 +78,8 @@ def logout():
 def signup():
     if current_user.is_authenticated():
         flash(gettext('You are already signed in.'))
-        return redirect(url_for('index'))        
-    
+        return redirect(url_for('index'))
+
     form = SignUpForm()
     if form.validate_on_submit():
         try:
@@ -98,6 +99,6 @@ def signup():
         except:
             flash(gettext('Error while saving the new user, please retry later'), 'error')
 
-    return render_template('admin/signup.html', 
+    return render_template('admin/signup.html',
         title = gettext('Sign Up'),
         form = form)

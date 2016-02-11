@@ -204,12 +204,14 @@ class Utilities(object):
             }),
             (3, {
                 'name': 'Categories',
+                'require_admin': True,
                 'url': 'CategoriesView:index',
                 'icon': 'icon-bookmark',
                 'pattern': 'CategoriesView'
             }),
             (4, {
                 'name': 'Users',
+                'require_admin': True,
                 'url': '',
                 'icon': 'icon-user',
                 'pattern': 'UsersView',

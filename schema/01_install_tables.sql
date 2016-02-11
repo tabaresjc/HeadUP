@@ -1,5 +1,5 @@
-CREATE DATABASE  IF NOT EXISTS `pigeondb` /*!40100 DEFAULT CHARACTER SET latin1 */;
-USE `pigeondb`;
+CREATE DATABASE  IF NOT EXISTS `headsup` /*!40100 DEFAULT CHARACTER SET latin1 */;
+USE `headsup`;
 -- MySQL dump 10.13  Distrib 5.6.13, for Win32 (x86)
 --
 -- Host: pigeoninstance.caknt709wevh.us-east-1.rds.amazonaws.com    Database: pigeondb
@@ -149,7 +149,7 @@ CREATE TABLE `users` (
 
 LOCK TABLES `users` WRITE;
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
-INSERT INTO `users` VALUES (1,'juan.ctt@live.com','Juan Tabares','jctt','pbkdf2:sha1:1000$WdZ8kbEd$4a6716c8caf50505422db016f0ab1f94bf6efac8',1,'','','2014-02-23 10:57:23','2014-02-23 04:19:39','Asia/Tokyo','en','2014-01-01 15:43:09','2014-02-23 10:57:23'),(2,'example-2@railstutorial.org','Mrs. Arnaldo Wyman','arnaldo','pbkdf2:sha1:1000$wbPCUaPZ$f23910cfe96c1bb9df809dcdf5baf1978a952ce5',2,'','','2014-01-02 06:28:19','2014-01-01 15:48:06','Asia/Tokyo','en','2014-01-01 15:43:09','2014-01-02 06:28:19');
+INSERT INTO `users` VALUES (1,'juan.ctt@live.com','Juan Tabares','jctt','pbkdf2:sha1:1000$HEpeLJqg$a47004672eb0b6f6fb6b5a289071598b8bd5b9c4',1,'','','2014-02-23 10:57:23','2014-02-23 04:19:39','Asia/Tokyo','en','2014-01-01 15:43:09','2014-02-23 10:57:23'),(2,'example-2@railstutorial.org','Mrs. Arnaldo Wyman','arnaldo','pbkdf2:sha1:1000$wbPCUaPZ$f23910cfe96c1bb9df809dcdf5baf1978a952ce5',2,'','','2014-01-02 06:28:19','2014-01-01 15:48:06','Asia/Tokyo','en','2014-01-01 15:43:09','2014-01-02 06:28:19');
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;

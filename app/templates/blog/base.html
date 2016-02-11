@@ -39,58 +39,16 @@
                     {% block main %}{% endblock %}
                 </div>
                 <aside class="col-md-4 blog-aside">
-                    {% if current_user.is_authenticated()  %}
                     <div class="aside-widget">
                         <header>
-                            <h3>{{_('Actions')}}</h3>
+                            <h3>{{_('Post''s Stamper')}}</h3>
                         </header>
-                        <div class="body">                            
+                        <div class="body">
                             <ul class="tales-list">
-                                {% if post and post.is_mine() %}                               
-                                <li><a href="{{ url_for('PostsView:put_0',id=post.id) }}">{{_('Edit Post')}}</a></li>
-                                <li><a href="{{ url_for('PostsView:delete_0', id = post.id) }}" data-method="post" data-confirm="{{_("This will remove '%(title)s', Are you sure?", title=post.title)}}">{{_('Delete User')}}</a></li>
-                                {% endif %}
-                                <li><a href="{{ url_for('PostsView:post_0') }}">{{_('New Post')}}</a></li>
+                                <li><a href="{{ url_for('create_stamp') }}">{{ _('Write') }}</a></li>
                             </ul>
                         </div>
                     </div>
-                    {% endif %}
-                    <div class="aside-widget">
-                        <header>
-                            <h3>{{_('Pigeon')}}</h3>
-                        </header>
-                        <div class="body">
-                            {% set categories = 6|get_stat %}
-                            <ul class="tales-list">
-                                {% for c in categories %}
-                                <li><a href="{{url_for('show_category', cat=c.slug)}}">{{c.name}}</a></li>
-                                {% endfor %}
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="aside-widget">
-                        <header>
-                            <h3>{{_('Recent Posts')}}</h3>
-                        </header>
-                        <div class="body">
-                            {% set last_posts = 4|get_stat %}
-                            <ul class="tales-list">
-                                {% for p in last_posts %}
-                                <li><a href="{{url_for('show_article', cat=p.category.slug, post=p.slug)}}">{{p.title}}</a></li>
-                                {% endfor %}
-                            </ul>
-                        </div>
-                    </div>                 
-                    {% for widget in widgets %}
-                    <div class="aside-widget">
-                        <header>
-                            <h3>{{widget.title}}</h3>
-                        </header>
-                        <div class="body">
-                            {{widget.body}}
-                        </div>
-                    </div>
-                    {% endfor %}
                 </aside>
             </div>
         </div>
@@ -103,6 +61,7 @@
     <script src="/static/bootstrap/js/bootstrap.min.js"></script>
     <script src="/static/blog/js/vendor/modernizr/modernizr.js"></script>
     <script src="/static/js/jquery_ujs.js"></script>
+    <script src="/static/js/main.js"></script>
     {% block custom_js %}{% endblock %}
 </body>
 </html>
