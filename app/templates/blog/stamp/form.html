@@ -1,13 +1,17 @@
-{% from "shared/_bootstrap_forms.html" import render_inline_field %}
-<form action="{{url_for('PostsView:post_1')}}" method="post" name="AddPost" autocomplete="off">
-    {{form.hidden_tag()}}
-    {{ render_inline_field(form.title, class="form-control",placeholder=_('Insert title')) }}
-    {{ render_inline_field(form.image_url, class="form-control",placeholder=_('Insert URL of Featured Image')) }}
-    {{ render_inline_field(form.slug, class="form-control",placeholder=_('Insert slug')) }}
-    {{ render_inline_field(form.category_id, class="form-control") }}    
-    {{ render_inline_field(form.body,id="txt_editor_area",placeholder=_('Compose new post...'), rows="15") }}
-    <div class="actions clearfix">
-      <input type="submit" value="{{_('Save')}}" class="btn btn-large btn-primary pull-right">
-        <input id="btn_editor_clear" type="reset" value="{{_('Clear')}}" class="btn btn-large btn-danger">
-    </div>
-</form>
+{% extends "blog/base.html" %}
+{% block main %}
+  {% from "shared/_bootstrap_forms.html" import render_inline_field %}
+  <form action="{{ url_for('PostsView:post_1') }}" method="post" name="stamp_form" autocomplete="off">
+      {{form.hidden_tag()}}
+      {{ render_inline_field(form.title, class="form-control",placeholder=_('Insert title')) }}
+      {{ render_inline_field(form.image_url, class="form-control",placeholder=_('Insert URL of Featured Image')) }}
+      {{ render_inline_field(form.slug, class="form-control",placeholder=_('Insert slug')) }}
+      {{ render_inline_field(form.category_id, class="form-control") }}
+      {{ render_inline_field(form.body,id="txt_editor_area",placeholder=_('Compose new post...'), rows="8", style="width:100%; padding: 8px;") }}
+      <div class="actions clearfix">
+          <input type="hidden" name="redirect_to" value="{{ url_for('PostsView:post_1') }}">
+          <input type="submit" value="{{ _('Save') }}" class="btn btn-large btn-primary pull-right">
+          <input id="btn_editor_clear" type="reset" value="{{_('Clear')}}" class="btn btn-large btn-danger">
+      </div>
+  </form>
+{% endblock %}

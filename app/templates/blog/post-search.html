@@ -6,15 +6,15 @@
             <div class="col-md-12 well">
             	<h5>{{_('Search posts with the following keyword')}}</h5>
                 <form action="{{ url_for('search_post') }}" method="post" accept-charset="utf-8">
-                    {{form.hidden_tag()}}                        
+                    {{form.hidden_tag()}}
                     {{ render_inline_field(form.searchtext, class="form-control",placeholder=_('Search')) }}
 				    <div class="actions clearfix">
 				    	<input type="submit" value="Search" class="btn btn-large btn-primary pull-right">
 				        <input type="reset" value="Clear" class="btn btn-large btn-danger">
-				    </div>                    
+				    </div>
                 </form>
             </div>
-            {% endif %}			
+            {% endif %}
 			{% if posts %}
 			<br/><br/>
 		    <div class="col-md-12">
@@ -25,10 +25,10 @@
 
 		    	{% for post in posts %}
 				{% include 'blog/layout/_post_item.html' %}
-				{% endfor %}			
+				{% endfor %}
 
 		    	{{ pagination.links|safe }}
-		    	<div class="clearfix"></div>				
+		    	<div class="clearfix"></div>
 		    </div>
 		    {% endif %}
 		</div>
