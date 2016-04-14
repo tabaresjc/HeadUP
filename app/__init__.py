@@ -1,10 +1,15 @@
-from flask import Flask
+from flask import Flask, request_finished, got_request_exception
 from flask.ext.login import LoginManager
 from flask_wtf.csrf import CsrfProtect
 from flask.ext.babel import Babel, lazy_gettext
+
+from werkzeug import LocalProxy, cached_property, ImmutableDict
+from werkzeug.contrib.fixers import ProxyFix
+
 from storm.locals import create_database, Store, ReferenceSet, Desc
 from config import STORM_DATABASE_URI
 from utilities import Utilities
+import flask
 
 import os
 
@@ -24,8 +29,44 @@ csrf.init_app(app)
 babel = Babel(app)
 
 # Database Configuration
-database = create_database(STORM_DATABASE_URI)
-store = Store(database)
+def get_db_connection():
+  try:
+    if not flask.g.db:
+      raise AttributeError()
+  except (KeyError, AttributeError):
+    flask.g.db = Store(create_database(STORM_DATABASE_URI))
+  return flask.g.db
+
+def close_db_connection(response=None):
+  try:
+    if flask.g.db:
+      flask.g.db.rollback()
+      flask.g.db.close()
+      flask.g.db = None
+      del flask.g.db
+  except (KeyError, AttributeError):
+    pass
+  return response
+
+
+@app.after_request
+def after_request_handler(response=None):
+  close_db_connection()
+  return response
+
+app.before_request(close_db_connection)
+
+def request_finished_handler(sender, response):
+  after_request_handler(response)
+
+request_finished.connect(request_finished_handler, app)
+
+def got_request_exception_handler(sender, exception):
+  after_request_handler()
+
+got_request_exception.connect(got_request_exception_handler, app)
+
+store = LocalProxy(get_db_connection)
 
 # Load the session controller
 login_manager = LoginManager()
