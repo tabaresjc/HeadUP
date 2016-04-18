@@ -1,7 +1,7 @@
     <header>
         <div class="widewrapper masthead">
             <div class="container">
-                <a href="{{url_for('index')}}" id="logo">
+                <a href="{{ url_for('index') }}" id="logo">
                     <img src="/static/logo.png" alt="Pigeon Blog">
                 </a>
 
@@ -62,7 +62,7 @@
                     <span class="separator">&#x2F;</span>
                     <a href="{{url_for('show_category', cat=post.category.slug)}}">{{ post.category.name }}</a>
                     <span class="separator">&#x2F;</span>
-                    <a href="{{url_for('show_article', cat=post.category.slug, post=post.slug)}}">{{ post.title | truncate(30) }}</a>
+                    <a href="{{ url_for('show_stamp', post_id=post.id) }}">{{ post.title | truncate(30) }}</a>
                     {% endif %}
                 </div>
             </div>

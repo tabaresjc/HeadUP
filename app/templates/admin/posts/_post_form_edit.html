@@ -2,17 +2,15 @@
 <form action="{{url_for('PostsView:put_0', id=post.id)}}" method="POST" name="EditPost" autocomplete="off">
     {{form.hidden_tag()}}
     {{ render_inline_field(form.title, class="form-control",placeholder=_('Insert title')) }}
-    {{ render_inline_field(form.image_url, class="form-control",placeholder=_('Insert URL of Featured Image')) }}
-    {{ render_inline_field(form.slug, class="form-control",placeholder=_('Insert slug')) }}
     {{ render_inline_field(form.category_id, class="form-control") }}
     {{ render_inline_field(form.body,id="txt_editor_area",placeholder=_('Edit Post...'), rows="20") }}
 	<div class="checkbox">
 		<label>
-		{{ render_inline_field(form.remain) }} 
+		{{ render_inline_field(form.remain) }}
         {{_('View post after save')}}
 		</label>
-	</div>    
-    
+	</div>
+
     <div class="actions clearfix">
     	<input type="submit" value="{{_('Save')}}" class="btn btn-large btn-primary pull-right">
         <input id="btn_editor_clear" type="reset" value="{{_('Clear')}}" class="btn btn-large btn-danger">

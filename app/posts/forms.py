@@ -8,8 +8,6 @@ from models import Post
 class PostForm(Form):
     title = TextField(lazy_gettext('Title'), [validators.Required()])
     body = TextAreaField(lazy_gettext('Body'), [validators.Required()])
-    image_url = TextField(lazy_gettext('Featured Image'))
-    slug = TextField(lazy_gettext('Slug'), [validators.Required()])
     category_id = SelectField(u'Category', coerce=int)
 
     def __init__(self, *args, **kwargs):
@@ -18,46 +16,31 @@ class PostForm(Form):
         self.category_id.choices = Category.get_list()
 
     def validate(self):
-        valid = True
         if not Form.validate(self):
-            valid = False
-
-        if Post.get_by_slug(self.slug.data):
-            self.to_id.errors.append(gettext('Please select a different slug'))
-            valid = False
-
-        return valid
+            return False
+        return True
 
 
 class EditPostForm(Form):
     title = TextField(lazy_gettext('Title'), [validators.Required()])
     body = TextAreaField(lazy_gettext('Body'), [validators.Required()])
-    image_url = TextField(lazy_gettext('Featured Image'))
     remain = BooleanField(lazy_gettext('Show Post'), default=True)
-    slug = TextField(lazy_gettext('Slug'), [validators.Required()])
     category_id = SelectField(u'Category', coerce=int)
 
     def __init__(self, *args, **kwargs):
         Form.__init__(self, *args, **kwargs)
         self.id = kwargs.get('id') if kwargs.get('id') else 0
-        self.category_id.data = 1
         self.category_id.choices = Category.get_list()
 
     def validate(self):
-        valid = True
         if not Form.validate(self):
-            valid = False
-        if Post.check_if_slug_is_taken(self.id, self.slug.data):
-            self.slug.errors.append(gettext('Please select a different slug'))
-            valid = False
-        return valid
+            return False
+        return True
 
 class NewPostForm(EditPostForm):
     def __init__(self, post, *args, **kwargs):
         Form.__init__(self, *args, **kwargs)
         self.title.data = post.title
         self.body.data = post.body
-        self.image_url.data = post.image_url
-        self.slug.data = post.slug
         self.category_id.data = post.category_id
         self.category_id.choices = Category.get_list()

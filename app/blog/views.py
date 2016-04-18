@@ -57,7 +57,7 @@ def internal_error_500(error):
 
 
 @app.route('/', defaults={'page': 1})
-@app.route('/page/<int:page>')
+@app.route('/stamps/page/<int:page>')
 def index(page=1):
     limit = 5
     posts, count = Post.pagination(limit=limit, page=page)
@@ -73,25 +73,42 @@ def index(page=1):
         pagination=pagination)
 
 
-@app.route('/<string:cat>/<string:post>')
-def show_article(cat, post):
-    try:
-        post = Category.get_by_cat_slug(cat, post)
-    except:
-        post = None
-
+@app.route('/stamp/<int:post_id>')
+def show_stamp(post_id):
+    post = Post.get_by_id(post_id)
     if post is None:
         abort(404)
+    return render_template("blog/stamp/detail.html",
+        title=gettext('Stamp | %(title)s', title=post.title),
+        post=post)
 
-    if not current_user.is_authenticated() or post.comments.count() > 50:
-        form = None
+
+@app.route('/stamp/create', defaults={'post_id': None}, methods=['GET', 'POST'])
+@app.route('/stamp/<int:post_id>/edit', methods=['GET', 'POST'])
+@login_required
+def create_stamp(post_id):
+    from app.posts.forms import PostForm, EditPostForm
+    form = EditPostForm() if post_id else PostForm()
+
+    if request.method == 'POST':
+        if form.validate_on_submit():
+            try:
+                post = Post.create()
+                form.populate_obj(post)
+                post.user = current_user
+                post.save()
+                flash(gettext('Stamp succesfully created'))
+                return redirect(url_for('index'))
+            except:
+                flash(gettext('Error while posting the new comment, please retry later'), 'error')
+        else:
+            flash(gettext('Invalid submission, please check the message below'), 'error')
+        return redirect(url_for('show_post', id=post.id))
     else:
-        form = CommentForm()
-
-    return render_template("blog/post-detail.html",
-        title=gettext('Post | %(title)s', title=post.title),
-        post=post,
-        form=form)
+        form = PostForm()
+    return render_template("blog/stamp/form.html",
+        form=form,
+        post_id=post_id)
 
 
 @app.route('/category/<string:cat>', defaults={'page': 1})
@@ -240,26 +257,3 @@ def search_post():
         form=form,
         posts=posts,
         pagination=pagination)
-
-@app.route('/stamp/create/', methods=['GET', 'POST'])
-@login_required
-def create_stamp():
-    from app.posts.forms import PostForm
-    form = PostForm()
-    if request.method == 'POST':
-        if form.validate_on_submit():
-            try:
-                post = Post.create()
-                form.populate_obj(post)
-                post.user = current_user
-                post.save()
-                flash(gettext('Stamp succesfully created'))
-                return redirect(url_for('index'))
-            except:
-                flash(gettext('Error while posting the new comment, please retry later'), 'error')
-        else:
-            flash(gettext('Invalid submission, please check the message below'), 'error')
-        return redirect(url_for('show_post', id=post.id))
-    else:
-        form = PostForm()
-    return render_template("blog/stamp/form.html", form=form)

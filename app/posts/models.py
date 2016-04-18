@@ -30,8 +30,7 @@ class Post(CRUDMixin):
 
     @classmethod
     def get_by_slug(cls, slug):
-      cat = store.find(cls, cls.slug == slug).one()
-      return cat
+      return store.find(cls, cls.slug == slug).one()
 
     @classmethod
     def check_if_slug_is_taken(cls, id, slug):
