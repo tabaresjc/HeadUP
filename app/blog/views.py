@@ -87,27 +87,38 @@ def show_stamp(post_id):
 @app.route('/stamp/<int:post_id>/edit', methods=['GET', 'POST'])
 @login_required
 def create_stamp(post_id):
-    from app.posts.forms import PostForm, EditPostForm
-    form = EditPostForm() if post_id else PostForm()
+    from app.posts.forms import PostForm, NewPostForm, EditPostForm
+
+    if post_id:
+        post = Post.get_by_id(post_id)
+        if post is None:
+            abort(404)
+    else:
+        post = None
 
     if request.method == 'POST':
+        form = EditPostForm(id=post_id)
         if form.validate_on_submit():
             try:
-                post = Post.create()
-                form.populate_obj(post)
-                post.user = current_user
+                if post_id:
+                    form.populate_obj(post)
+                else:
+                    post = Post.create()
+                    form.populate_obj(post)
+                    post.user = current_user
                 post.save()
-                flash(gettext('Stamp succesfully created'))
-                return redirect(url_for('index'))
+                flash(gettext('Stamp succesfully saved'))
+                return redirect(url_for('show_stamp', post_id=post.id))
             except:
                 flash(gettext('Error while posting the new comment, please retry later'), 'error')
         else:
             flash(gettext('Invalid submission, please check the message below'), 'error')
-        return redirect(url_for('show_post', id=post.id))
+        return redirect(url_for('create_stamp', post_id=post.id))
     else:
-        form = PostForm()
+        form = NewPostForm(post) if post_id else PostForm()
     return render_template("blog/stamp/form.html",
         form=form,
+        post=post,
         post_id=post_id)
 
 
@@ -128,48 +139,6 @@ def show_category(cat, page=1):
         posts=posts,
         pagination=pagination,
         category=category)
-
-
-@app.route('/post/<int:id>/', methods=['GET', 'POST'])
-def show_post(id):
-    try:
-        post = Post.get_by_id(id)
-    except:
-        post = None
-
-    if post is None:
-        abort(404)
-
-    if request.method == 'POST':
-        if not current_user.is_authenticated():
-            abort(401)
-        form = CommentForm()
-        if form.validate_on_submit():
-            try:
-                comment = Comment.create()
-                form.populate_obj(comment)
-                comment.user = current_user
-                comment.post = post
-                comment.save()
-                flash(gettext('Comment succesfully created'))
-                return redirect('%s#comment_%s' % (url_for('show_article',
-                    cat=post.category.slug,
-                    post=post.slug),
-                comment.id))
-            except:
-                flash(gettext('Error while posting the new comment, please retry later'), 'error')
-        else:
-            flash(gettext('Invalid submission, please check the message below'), 'error')
-    else:
-        if not current_user.is_authenticated() or post.comments.count() > 50:
-            form = None
-        else:
-            form = CommentForm()
-
-    return render_template("blog/post-detail.html",
-        title=gettext('Post | %(title)s', title=post.title),
-        post=post,
-        form=form)
 
 
 @app.route('/post/<int:post_id>/comment/<int:id>/', methods=['GET', 'POST'])
