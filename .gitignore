@@ -54,3 +54,6 @@ venv
 *.pyc
 gitcommit.log
 *.sublime-project
+
+
+app/static/
