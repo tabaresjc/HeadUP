@@ -11,17 +11,17 @@ class PostForm(Form):
     image_url = TextField(lazy_gettext('Featured Image'))
     slug = TextField(lazy_gettext('Slug'), [validators.Required()])
     category_id = SelectField(u'Category', coerce=int)
-    
+
     def __init__(self, *args, **kwargs):
         Form.__init__(self, *args, **kwargs)
         self.category_id.data = 1
         self.category_id.choices = Category.get_list()
-    
+
     def validate(self):
         valid = True
         if not Form.validate(self):
             valid = False
-        
+
         if Post.get_by_slug(self.slug.data):
             self.to_id.errors.append(gettext('Please select a different slug'))
             valid = False
@@ -39,18 +39,17 @@ class EditPostForm(Form):
 
     def __init__(self, *args, **kwargs):
         Form.__init__(self, *args, **kwargs)
+        self.id = kwargs.get('id') if kwargs.get('id') else 0
         self.category_id.data = 1
         self.category_id.choices = Category.get_list()
-    
+
     def validate(self):
         valid = True
         if not Form.validate(self):
             valid = False
-        
-        if Post.get_by_slug(self.slug.data):
-            self.to_id.errors.append(gettext('Please select a different slug'))
+        if Post.check_if_slug_is_taken(self.id, self.slug.data):
+            self.slug.errors.append(gettext('Please select a different slug'))
             valid = False
-
         return valid
 
 class NewPostForm(EditPostForm):

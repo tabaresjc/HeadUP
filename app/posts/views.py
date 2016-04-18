@@ -27,13 +27,13 @@ class PostsView(FlaskView):
             record_name=gettext('posts'),
             alignment='right',
             bs_version=3)
-        
+
         return render_template('admin/posts/index.html',
             title=gettext('Posts | %(page)s', page=page),
             form=form,
             posts=posts,
             pagination=pagination)
-    
+
     def get(self, id):
         post = Post.get_by_id(id)
         if post is None:
@@ -77,7 +77,7 @@ class PostsView(FlaskView):
             abort(401)
 
         if request.method in ['POST', 'PUT']:
-            form = EditPostForm()
+            form = EditPostForm(id=id)
             if form.validate_on_submit():
                 try:
                     form.populate_obj(post)
@@ -92,7 +92,7 @@ class PostsView(FlaskView):
                     flash(gettext('Error while updating the post'), 'error')
             else:
                 flash(gettext('Invalid submission, please check the message below'), 'error')
-            
+
             if request.method == 'PUT':
                 return jsonify(redirect_to=url_for('PostsView:index'))
         else:

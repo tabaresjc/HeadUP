@@ -33,6 +33,13 @@ class Post(CRUDMixin):
       cat = store.find(cls, cls.slug == slug).one()
       return cat
 
+    @classmethod
+    def check_if_slug_is_taken(cls, id, slug):
+      if id:
+          return store.find(cls, cls.id != id, cls.slug == slug).count()
+      else:
+          return store.find(cls, cls.slug == slug).count()
+
 # class UserPosts(object):
 #     __storm_table__ = "userposts"
 #     __storm_primary__ = "user_id", "post_id"
