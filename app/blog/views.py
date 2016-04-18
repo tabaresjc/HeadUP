@@ -16,19 +16,8 @@ from config import LANGUAGES
 @app.before_request
 def before_request():
     if request.endpoint:
-        if request.endpoint in ['index', 'show_post', 'search_post', 'show_article', 'show_category']:
-            g.user_count = User.count()
-            g.post_count = Post.count()
-            g.comment_count = Comment.count()
-            if request.endpoint != 'search_post':
-                g.searhform = SearchForm()
-        if 'redirect_to' in session and request.endpoint not in ['static',
-        'sessions.login',
-        'sessions.signup',
-        'sessions.login_comment']:
+        if 'redirect_to' in session and request.endpoint not in ['static', 'sessions.login', 'sessions.signup', 'sessions.login_comment']:
             session.pop('redirect_to', None)
-        # if 'search_query' in session and request.endpoint not in ['search_post']:
-        #     session.pop('search_query', None)
 
 
 @babel.localeselector
@@ -191,7 +180,7 @@ def reply_comment(post_id, id):
                 reply.user = current_user
                 reply.post = post
                 reply.reply = comment
-                
+
                 reply.save()
                 flash(gettext('Comment succesfully created'))
                 return redirect('%s#comment_%s' % (url_for('show_post', id=post.id), reply.id))
@@ -238,7 +227,7 @@ def search_post():
                 posts, count = Search.search_post(form.searchtext.data, limit=limit, page=page)
             except:
                 flash(gettext('Error while searching, please retry later'), 'error')
-    
+
     pagination = Pagination(page=page,
         per_page=limit,
         total=count,

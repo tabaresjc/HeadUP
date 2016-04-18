@@ -19,7 +19,7 @@
                                 <a class="dropdown-toggle"
                                    data-toggle="dropdown"
                                    href="javascript:void(0);">
-                                    {{ _('Hi, %(name)s', name=current_user.name) }} 
+                                    {{ _('Hi, %(name)s', name=current_user.name) }}
                                     <b class="caret"></b>
                                 </a>
                                 <ul class="dropdown-menu">
@@ -28,12 +28,12 @@
                                     </li>
                                     <li>
                                         <a href="{{url_for('UsersView:get',id=current_user.id)}}">{{_('Profile')}}</a>
-                                    </li>                                    
+                                    </li>
                                     <li>
                                         <a href="{{ url_for('sessions.logout') }}" data-method="post" role="button" title="Sign Out">
                                             {{_('Sign Out')}}
                                         </a>
-                                    </li> 
+                                    </li>
                                 </ul>
                             </li>
                             {% else %}
@@ -46,7 +46,7 @@
                             {% endif %}
                         </ul>
                     </div>
-                </nav>        
+                </nav>
 
             </div>
         </div>
@@ -65,18 +65,6 @@
                     <a href="{{url_for('show_article', cat=post.category.slug, post=post.slug)}}">{{ post.title | truncate(30) }}</a>
                     {% endif %}
                 </div>
-                {% if g.searhform %}
-                {% from "shared/_bootstrap_forms.html" import render_search_field %}
-                <div class="tales-searchbox">
-                    <form action="{{ url_for('search_post') }}" method="post" accept-charset="utf-8">
-                        {{g.searhform.hidden_tag()}}                        
-                        <button class="searchbutton" type="submit">
-                            <i class="icon-search"></i>
-                        </button>
-                        {{ render_search_field(g.searhform.searchtext,class="searchfield",placeholder=_('Search'),id="searchbox") }}
-                    </form>
-                </div>
-                {% endif %}
             </div>
         </div>
     </header>
