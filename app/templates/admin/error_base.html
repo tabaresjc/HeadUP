@@ -2,7 +2,7 @@
 <html>
 <head>
     {% include 'shared/meta.html' %}
-    
+
     <!-- bootstrap -->
     <link href="/static/bootstrap/css/bootstrap.css" rel="stylesheet" />
     <link href="/static/admin/css/bootstrap/bootstrap-overrides.css" type="text/css" rel="stylesheet">
@@ -13,8 +13,8 @@
     <link rel="stylesheet" type="text/css" href="/static/admin/css/compiled/icons.css">
 
     <!-- libraries -->
-    <link rel="stylesheet" type="text/css" href="css/lib/font-awesome.css">
-    
+    <link rel="stylesheet" type="text/css" href="/static/admin/css/lib/font-awesome.css">
+
     <!-- this page specific styles -->
     <link rel="stylesheet" href="/static/admin/css/compiled/personal-info.css" type="text/css" media="screen" />
     <link rel="stylesheet" href="/static/admin/css/compiled/ui-elements.css" type="text/css" media="screen">
@@ -29,7 +29,7 @@
 
     <!-- navbar -->
     <header class="navbar navbar-inverse" role="banner" style="text-align:center;height:70px;padding-top:10px">
-        <a class="navbar-brand" href="{{ url_for('index') }}" style="float:none;"><img src="/static/logo.png" ></a>     
+        <a class="navbar-brand" href="{{ url_for('index') }}" style="float:none;"><img src="/static/logo.png" ></a>
     </header>
     <!-- end navbar -->
 
@@ -49,7 +49,7 @@
                     {% from "shared/_bootstrap_forms.html" import render_search_field %}
                     <p>{{ _('Did you try searching? Enter a keyword(s) in the search field. Or, try one of the links below.') }}</p>
                     <form action="{{ url_for('search_post') }}" method="post" accept-charset="utf-8">
-                        {{ g.searhform.hidden_tag()}}                        
+                        {{ g.searhform.hidden_tag()}}
                         {{ render_search_field(g.searhform.searchtext, class="search",placeholder=_('Search')) }}
                     </form>
                     <br/><br/>
@@ -60,15 +60,15 @@
                                 <div class="items">
                                     <div class="item">
                                         <h5>{{_('Blog')}}</h5>
-                                    </div>                                    
+                                    </div>
                                     <div class="item">
                                         <i class="icon-reorder"></i>
                                         <a href="{{ url_for('index') }}">{{_('Home Page')}}</a>
                                     </div>
-                                    <div class="item">
+                                    <!-- <div class="item">
                                         <i class="icon-reorder"></i>
                                         <a href="{{ url_for('index') }}">{{_('Archives')}}</a>
-                                    </div>                                    
+                                    </div> -->
                                 </div>
                             </div>
                         </div>
@@ -81,7 +81,7 @@
                                 <div class="items">
                                     <div class="item">
                                         <h3 href="{{ url_for('dashboard') }}">{{_('Dashboard')}}</h3>
-                                    </div>                                    
+                                    </div>
                                     <div class="item">
                                         <i class="icon-reorder"></i>
                                         <a href="{{ url_for('PostsView:index') }}">{{_('Posts')}}</a>
@@ -93,14 +93,14 @@
                                     <div class="item">
                                         <i class="icon-reorder"></i>
                                         <a href="{{ url_for('UsersView:get', id = current_user.id) }}">Profile</a>
-                                    </div>                                    
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                     {% endif %}
                 </div>
-            </div>            
+            </div>
         </div>
     </div>
     <!-- end main container -->

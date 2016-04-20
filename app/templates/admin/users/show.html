@@ -11,12 +11,14 @@
         <h3 class="name">{{ user.name }} ({{user.nickname}})</h3>
         <span class="area">{{user.email}}</span>
     </div>
+
     <div class="col-md-3">
-       <a class="btn btn-success pull-right" href="{{ url_for('UsersView:index') }}">
+        {% if current_user.is_admin() -%}
+        <a class="btn btn-success pull-right" href="{{ url_for('UsersView:index') }}">
             <i class="glyphicon glyphicon-th-list"></i>
             <span>{{_('User List')}}</span>
-        </a>         
-
+        </a>
+        {%- endif %}
     </div>
 </div>
 <div class="row header">
@@ -42,7 +44,7 @@
     <div class="col-md-12">
         <div class="panel panel-primary">
             <div class="panel-heading">{{_('User\'s Info')}}</div>
-            <table class="table table-striped table-condensed">                        
+            <table class="table table-striped table-condensed">
                 <tbody>
                     <tr>
                         <td class="col-md-2"><strong>{{_('Id')}}</strong></td>
@@ -51,7 +53,7 @@
                     <tr>
                         <td><strong>{{_('Last seen')}}</strong></td>
                         <td>{{ user.last_seen|datetimeformat  }}</td>
-                    </tr>                    
+                    </tr>
                     <tr>
                         <td><strong>{{_('Name')}}</strong></td>
                         <td>{{ user.name }}</td>
@@ -67,17 +69,17 @@
                     <tr>
                         <td><strong>{{_('Phone')}}</strong></td>
                         <td>{{ user.phone if user.is_current() else '*****'}}</td>
-                    </tr>                         
+                    </tr>
                     <tr>
                         <td><strong>{{_('Role')}}</strong></td>
                         <td>{{ user.role_desc() }}</td>
-                    </tr>                    
+                    </tr>
                     <tr>
                         <td><strong>{{_('Created at')}}</strong></td>
                         <td>{{ user.created_at|datetimeformat  }}</td>
                     </tr>
                 </tbody>
-            </table>                             
+            </table>
         </div>
     </div>
 </div>

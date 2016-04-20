@@ -7,9 +7,8 @@ from werkzeug import LocalProxy, cached_property, ImmutableDict
 from werkzeug.contrib.fixers import ProxyFix
 
 from storm.locals import create_database, Store, ReferenceSet, Desc
-from config import STORM_DATABASE_URI
+from config import STORM_DATABASE_URI, LANGUAGES
 import flask
-
 import os
 
 app = Flask(__name__)
@@ -38,7 +37,7 @@ babel = Babel(app)
 def get_locale():
     if current_user and current_user.is_authenticated:
         return current_user.lang
-    return request.accept_languages.best_match(LANGUAGES.keys())
+    return flask.request.accept_languages.best_match(LANGUAGES.keys())
 
 
 @babel.timezoneselector
@@ -150,6 +149,26 @@ def before_request(response=None):
         if 'redirect_to' in flask.session and flask.request.endpoint not in ['static', 'sessions.login', 'sessions.signup', 'sessions.login_comment']:
             flask.session.pop('redirect_to', None)
     return response
+
+@app.errorhandler(401)
+def internal_error_401(error):
+    return flask.render_template('admin/401.html', title='Error %s' % error), 401
+
+@app.errorhandler(403)
+def internal_error_403(error):
+    return flask.render_template('admin/403.html', title='Error %s' % error), 403
+
+@app.errorhandler(404)
+def internal_error_404(error):
+    from app.blog.forms import SearchForm
+    flask.g.searhform = SearchForm()
+    return flask.render_template('admin/404.html', title='Error %s' % error), 404
+
+@app.errorhandler(500)
+def internal_error_500(error):
+    if store:
+        store.rollback()
+    return flask.render_template('admin/500.html', title='Error %s' % error), 500
 
 
 if app.debug:

@@ -10,29 +10,6 @@ from app.categories.models import Category
 from app.comments.forms import CommentForm
 from forms import SearchForm
 from models import Search
-from config import LANGUAGES
-
-
-@app.errorhandler(401)
-def internal_error_401(error):
-    return render_template('admin/401.html', title='Error %s' % error), 401
-
-
-@app.errorhandler(403)
-def internal_error_403(error):
-    return render_template('admin/403.html', title='Error %s' % error), 403
-
-
-@app.errorhandler(404)
-def internal_error_404(error):
-    g.searhform = SearchForm()
-    return render_template('admin/404.html', title='Error %s' % error), 404
-
-
-@app.errorhandler(500)
-def internal_error_500(error):
-    store.rollback()
-    return render_template('admin/500.html', title='Error %s' % error), 500
 
 
 @app.route('/', defaults={'page': 1})
