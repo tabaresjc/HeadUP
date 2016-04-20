@@ -44,7 +44,7 @@
           </span>                
         </div>
         <div class="col-md-3">
-          {% if current_user.is_authenticated() %}
+          {% if current_user.is_authenticated %}
           <form class="pull-right" action="{{ url_for('reply_comment', post_id=post.id, id=comment.id) }}" data-remote="true" method="GET">
             <input class="btn btn-primary" name="commit" type="submit" value="{{_('Reply')}}">
           </form>

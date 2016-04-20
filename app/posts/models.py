@@ -23,10 +23,10 @@ class Post(CRUDMixin):
       return '<Post %r>' % (self.title)
 
     def is_mine(self):
-      return current_user.is_authenticated() and self.user.id == current_user.id
+      return current_user.is_authenticated and self.user.id == current_user.id
 
     def can_edit(self):
-      return current_user.is_authenticated() and (self.user.id == current_user.id or current_user.is_admin())
+      return current_user.is_authenticated and (self.user.id == current_user.id or current_user.is_admin())
 
     @classmethod
     def get_by_slug(cls, slug):

@@ -1,4 +1,5 @@
-{% extends "blog/base.html" %}
+{% extends "blog/layout/base.html" %}
+
 {% block main %}
   {% from "shared/_bootstrap_forms.html" import render_inline_field %}
   <form action="{{ url_for('create_stamp', post_id=post_id) }}" method="post" name="stamp_form" autocomplete="off">

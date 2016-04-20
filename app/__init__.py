@@ -8,7 +8,6 @@ from werkzeug.contrib.fixers import ProxyFix
 
 from storm.locals import create_database, Store, ReferenceSet, Desc
 from config import STORM_DATABASE_URI
-from utilities import Utilities
 import flask
 
 import os
@@ -117,12 +116,8 @@ Category.posts = ReferenceSet(Category.id, Post.category_id, order_by=Post.id)
 #----------------------------------------
 # filters
 #----------------------------------------
-
-app.jinja_env.filters['datetimeformat'] = Utilities.datetimeformat
-app.jinja_env.filters['humanformat'] = Utilities.humanformat
-app.jinja_env.filters['htmltruncate'] = Utilities.htmltruncate
-app.jinja_env.filters['get_stat'] = blog.models.get_stat
-app.jinja_env.filters['sidebar'] = Utilities.get_navigation_bar
+from utils import init_jinja_filters
+init_jinja_filters(app)
 
 if app.debug:
     import sys

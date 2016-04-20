@@ -23,7 +23,7 @@ class Comment(CRUDMixin):
       return '<Comment %s>' % (self.id)
 
     def can_edit(self):
-      return current_user.is_authenticated() and (self.user.id == current_user.id or current_user.is_admin())
+      return current_user.is_authenticated and (self.user.id == current_user.id or current_user.is_admin())
     
     @staticmethod
     def safe_delete(comment, recursive=False):

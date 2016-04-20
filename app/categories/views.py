@@ -3,7 +3,7 @@ from flask.ext.login import login_required
 from flask.ext.classy import FlaskView, route
 from flask.ext.babel import gettext
 from flask.ext.paginate import Pagination
-from app import Utilities as util
+from app.utils import Utilities as util
 from forms import CategoryForm, NewCategoryForm, TranferCatForm
 from models import Category
 
@@ -42,7 +42,7 @@ class CategoriesView(FlaskView):
         if trans.validate_on_submit():
             cat_from = Category.get_by_id(trans.from_id.data)
             cat_to = Category.get_by_id(trans.to_id.data)
-            
+
             if cat_from and cat_to:
                 Category.transfer_posts(cat_from, cat_to)
                 flash(gettext('The posts were transfered from %(from_name)s to %(to_name)s',

@@ -22,14 +22,14 @@ def before_request():
 
 @babel.localeselector
 def get_locale():
-    if current_user and current_user.is_authenticated():
+    if current_user and current_user.is_authenticated:
         return current_user.lang
     return request.accept_languages.best_match(LANGUAGES.keys())
 
 
 @babel.timezoneselector
 def get_timezone():
-    if current_user and current_user.is_authenticated():
+    if current_user and current_user.is_authenticated:
         return current_user.timezone
     return "Asia/Tokyo"
 
@@ -66,7 +66,6 @@ def index(page=1):
         total=count,
         record_name=gettext('posts'),
         alignment='right')
-
     return render_template("blog/index.html",
         title=gettext('Home'),
         posts=posts,

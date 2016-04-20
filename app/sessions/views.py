@@ -25,7 +25,7 @@ def unauthorized():
 
 @mod.route('/login', methods = ['GET', 'POST'])
 def login():
-    if current_user.is_authenticated():
+    if current_user.is_authenticated:
         flash(gettext('You are already signed in.'))
         return redirect(url_for('index'))
 
@@ -76,7 +76,7 @@ def logout():
 
 @mod.route('/signup', methods = ['GET', 'POST'])
 def signup():
-    if current_user.is_authenticated():
+    if current_user.is_authenticated:
         flash(gettext('You are already signed in.'))
         return redirect(url_for('index'))
 
