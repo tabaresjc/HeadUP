@@ -61,12 +61,6 @@ class Utilities(object):
                     }
                 }
             }),
-            (2, {
-                'name': 'Comments',
-                'url': 'CommentsView:index',
-                'icon': 'icon-comments-alt',
-                'pattern': 'CommentsView'
-            }),
             (3, {
                 'name': 'Categories',
                 'require_admin': True,

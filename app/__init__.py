@@ -1,5 +1,5 @@
-from flask import Flask, request_finished, got_request_exception
-from flask.ext.login import LoginManager
+from flask import Flask
+from flask.ext.login import LoginManager, current_user
 from flask_wtf.csrf import CsrfProtect
 from flask.ext.babel import Babel, lazy_gettext
 
@@ -16,18 +16,40 @@ app = Flask(__name__)
 if os.environ.get('HEROKU') is None:
   app.debug = True
 
+#--------------------------------------------------------------------------------
 # Load the app's configuration
+#--------------------------------------------------------------------------------
 app.config.from_object('config')
 app.jinja_env.trim_blocks = True
 app.jinja_env.lstrip_blocks = True
+
+#--------------------------------------------------------------------------------
 # Load the CSRF Protection
+#--------------------------------------------------------------------------------
 csrf = CsrfProtect()
 csrf.init_app(app)
 
+#--------------------------------------------------------------------------------
 # Load the Babel extension for Internationalization
+#--------------------------------------------------------------------------------
 babel = Babel(app)
 
+@babel.localeselector
+def get_locale():
+    if current_user and current_user.is_authenticated:
+        return current_user.lang
+    return request.accept_languages.best_match(LANGUAGES.keys())
+
+
+@babel.timezoneselector
+def get_timezone():
+    if current_user and current_user.is_authenticated:
+        return current_user.timezone
+    return "Asia/Tokyo"
+
+#--------------------------------------------------------------------------------
 # Database Configuration
+#--------------------------------------------------------------------------------
 def get_db_connection():
   try:
     if not flask.g.db:
@@ -36,7 +58,7 @@ def get_db_connection():
     flask.g.db = Store(create_database(STORM_DATABASE_URI))
   return flask.g.db
 
-def close_db_connection(response=None):
+def close_db_connection():
   try:
     if flask.g.db:
       flask.g.db.rollback()
@@ -45,37 +67,30 @@ def close_db_connection(response=None):
       del flask.g.db
   except (KeyError, AttributeError):
     pass
-  return response
-
-
-@app.after_request
-def after_request_handler(response=None):
-  close_db_connection()
-  return response
-
-app.before_request(close_db_connection)
 
 def request_finished_handler(sender, response):
   after_request_handler(response)
 
-request_finished.connect(request_finished_handler, app)
-
 def got_request_exception_handler(sender, exception):
   after_request_handler()
 
-got_request_exception.connect(got_request_exception_handler, app)
+flask.request_finished.connect(request_finished_handler, app)
+flask.got_request_exception.connect(got_request_exception_handler, app)
 
 store = LocalProxy(get_db_connection)
 
+#--------------------------------------------------------------------------------
 # Load the session controller
+#--------------------------------------------------------------------------------
 login_manager = LoginManager()
 login_manager.init_app(app)
 # add our view as the login view to finish configuring the LoginManager
 login_manager.login_view = "sessions.login"
 login_manager.login_message = lazy_gettext('Please log in to access this page.')
-#----------------------------------------
-# controllers
-#----------------------------------------
+
+#--------------------------------------------------------------------------------
+# Register Views
+#--------------------------------------------------------------------------------
 import blog.views
 import admin.views
 
@@ -98,9 +113,10 @@ CommentsView.register(app)
 # register the Category module
 from app.categories.views import CategoriesView
 CategoriesView.register(app)
-#----------------------------------------
-# Check Databases
-#----------------------------------------
+
+#--------------------------------------------------------------------------------
+# Register the models and their references
+#--------------------------------------------------------------------------------
 from app.users.models import User
 from app.posts.models import Post
 from app.comments.models import Comment
@@ -113,11 +129,28 @@ User.comments = ReferenceSet(User.id, Comment.user_id, order_by=Desc(Comment.id)
 Comment.replies = ReferenceSet(Comment.id, Comment.comment_id, order_by=Comment.id)
 Category.posts = ReferenceSet(Category.id, Post.category_id, order_by=Post.id)
 
-#----------------------------------------
-# filters
-#----------------------------------------
+#--------------------------------------------------------------------------------
+# Register the filters
+#--------------------------------------------------------------------------------
 from utils import init_jinja_filters
 init_jinja_filters(app)
+
+#--------------------------------------------------------------------------------
+# Application's event handlers
+#--------------------------------------------------------------------------------
+@app.after_request
+def after_request_handler(response=None):
+  close_db_connection()
+  return response
+
+@app.before_request
+def before_request(response=None):
+    close_db_connection()
+    if flask.request.endpoint:
+        if 'redirect_to' in flask.session and flask.request.endpoint not in ['static', 'sessions.login', 'sessions.signup', 'sessions.login_comment']:
+            flask.session.pop('redirect_to', None)
+    return response
+
 
 if app.debug:
     import sys

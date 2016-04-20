@@ -13,27 +13,6 @@ from models import Search
 from config import LANGUAGES
 
 
-@app.before_request
-def before_request():
-    if request.endpoint:
-        if 'redirect_to' in session and request.endpoint not in ['static', 'sessions.login', 'sessions.signup', 'sessions.login_comment']:
-            session.pop('redirect_to', None)
-
-
-@babel.localeselector
-def get_locale():
-    if current_user and current_user.is_authenticated:
-        return current_user.lang
-    return request.accept_languages.best_match(LANGUAGES.keys())
-
-
-@babel.timezoneselector
-def get_timezone():
-    if current_user and current_user.is_authenticated:
-        return current_user.timezone
-    return "Asia/Tokyo"
-
-
 @app.errorhandler(401)
 def internal_error_401(error):
     return render_template('admin/401.html', title='Error %s' % error), 401
@@ -119,6 +98,48 @@ def create_stamp(post_id):
         form=form,
         post=post,
         post_id=post_id)
+
+
+@app.route('/post/<int:id>/', methods=['GET', 'POST'])
+def show_post(id):
+    try:
+        post = Post.get_by_id(id)
+    except:
+        post = None
+
+    if post is None:
+        abort(404)
+
+    if request.method == 'POST':
+        if not current_user.is_authenticated():
+            abort(401)
+        form = CommentForm()
+        if form.validate_on_submit():
+            try:
+                comment = Comment.create()
+                form.populate_obj(comment)
+                comment.user = current_user
+                comment.post = post
+                comment.save()
+                flash(gettext('Comment succesfully created'))
+                return redirect('%s#comment_%s' % (url_for('show_article',
+                    cat=post.category.slug,
+                    post=post.slug),
+                comment.id))
+            except:
+                flash(gettext('Error while posting the new comment, please retry later'), 'error')
+        else:
+            flash(gettext('Invalid submission, please check the message below'), 'error')
+    else:
+        if not current_user.is_authenticated() or post.comments.count() > 50:
+            form = None
+        else:
+            form = CommentForm()
+
+    return render_template("blog/post-detail.html",
+        title=gettext('Post | %(title)s', title=post.title),
+        post=post,
+        form=form)
 
 
 @app.route('/category/<string:cat>', defaults={'page': 1})
