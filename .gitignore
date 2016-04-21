@@ -55,5 +55,5 @@ venv
 gitcommit.log
 *.sublime-project
 
-
-app/static/
+# Ignore the static folder where
+app/static/upload/
