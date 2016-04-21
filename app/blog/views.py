@@ -16,16 +16,13 @@ from models import Search
 @app.route('/stamps/page/<int:page>')
 def index(page=1):
     limit = 5
-    posts, count = Post.pagination(limit=limit, page=page)
-    pagination = Pagination(page=page,
-        per_page=limit,
-        total=count,
-        record_name=gettext('posts'),
-        alignment='right')
+    posts, total = Post.pagination(limit=limit, page=page)
     return render_template("blog/index.html",
         title=gettext('Home'),
         posts=posts,
-        pagination=pagination)
+        page=page,
+        limit=limit,
+        total=total)
 
 
 @app.route('/stamp/<int:post_id>')
@@ -77,7 +74,7 @@ def create_stamp(post_id):
         post_id=post_id)
 
 
-@app.route('/post/<int:id>/', methods=['GET', 'POST'])
+@app.route('/post/<int:id>', methods=['GET', 'POST'])
 def show_post(id):
     try:
         post = Post.get_by_id(id)
@@ -123,67 +120,20 @@ def show_post(id):
 @app.route('/category/<string:cat>/<int:page>')
 def show_category(cat, page=1):
     limit = 5
-    posts, category = Category.get_posts_by_cat(cat, limit=limit, page=page)
 
-    pagination = Pagination(page=page,
-        per_page=limit,
-        total=category.posts.count(),
-        record_name=gettext('posts'),
-        alignment='right',
-        bs_version=3)
+    posts, category = Category.get_posts_by_cat(cat, limit=limit, page=page)
+    total = category.posts.count()
+
     return render_template("blog/index.html",
         title=category.name,
         posts=posts,
-        pagination=pagination,
+        page=page,
+        limit=limit,
+        total=total,
         category=category)
 
 
-@app.route('/post/<int:post_id>/comment/<int:id>/', methods=['GET', 'POST'])
-@login_required
-def reply_comment(post_id, id):
-    try:
-        comment = Comment.get_by_id(id)
-    except:
-        comment = None
-
-    try:
-        post = Post.get_by_id(post_id)
-    except:
-        post = None
-
-    if comment is None or post is None:
-        abort(403)
-
-    form = CommentForm()
-    if request.method == 'POST':
-        if form.validate_on_submit():
-            try:
-                reply = Comment.create()
-                form.populate_obj(reply)
-                reply.user = current_user
-                reply.post = post
-                reply.reply = comment
-
-                reply.save()
-                flash(gettext('Comment succesfully created'))
-                return redirect('%s#comment_%s' % (url_for('show_post', id=post.id), reply.id))
-            except:
-                flash(gettext('Error while posting the new comment, please retry later'), 'error')
-        else:
-            flash(gettext('Invalid submission, please check the message below'), 'error')
-        return redirect(url_for('show_post', id=post.id))
-    else:
-        form = CommentForm()
-
-    tmplt = render_template("blog/post_form.js",
-        comment=comment,
-        form=form,
-        postid=post.id)
-    resp = Response(tmplt, status=200, mimetype='text/javascript')
-    return resp
-
-
-@app.route('/search/', methods=['GET', 'POST'])
+@app.route('/search', methods=['GET', 'POST'])
 def search_post():
     form = SearchForm()
     posts = None

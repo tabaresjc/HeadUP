@@ -1,8 +1,10 @@
 # -*- coding: utf8 -*-
 
 import sys
+from app import app
 from flask import request, json, Response, flash, redirect
 from flask.ext.babel import gettext, format_datetime, format_timedelta
+from flask.ext.paginate import Pagination
 import truncate
 
 
@@ -13,7 +15,49 @@ def init_jinja_filters(app):
     app.jinja_env.filters['sidebar'] = Utilities.get_navigation_bar
 
 
+@app.context_processor
+def utility_processor():
+    def pag(name, page, per_page, total, record_name, alignment = 'right', bs_version = 3, kind = None, **kwargs):
+        name = u'%s.%s.%s.%s.%s.%s.%s' % (name, page, per_page, total, record_name, alignment, bs_version)
+        pagination = Utilities.get_pagination_by_name(name)
+
+        if not pagination:
+            pagination = Pagination(page=page, per_page=per_page, total=total, record_name=record_name, alignment=alignment, bs_version=bs_version, **kwargs)
+            Utilities.set_pagination_by_name(name, pagination)
+
+        if kind == 'links':
+            return pagination.links
+        elif kind == 'info':
+            return pagination.info
+        else:
+            return pagination
+    return dict(pag=pag)
+
+
 class Utilities(object):
+
+    @staticmethod
+    def get_pagination_by_name(name):
+        if not name:
+            return None
+        try:
+            pages_obj = Utilities.pages_obj
+        except AttributeError:
+            pages_obj = dict()
+            Utilities.pages_obj = pages_obj
+        return pages_obj.get(name, None)
+
+    @staticmethod
+    def set_pagination_by_name(name, pagination):
+        if not name:
+            return None
+        try:
+            pages_obj = Utilities.pages_obj
+        except AttributeError:
+            pages_obj = dict()
+            Utilities.pages_obj = pages_obj
+        Utilities.pages_obj[name] = pagination
+
     @staticmethod
     def redirect_json_or_html(url, type, message=''):
         if request.is_xhr:
