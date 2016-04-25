@@ -10,6 +10,8 @@ class Post(CRUDMixin):
     __storm_table__ = "posts"
     title = Unicode(default=u'')
     body = Unicode(default=u'')
+    extra_body = Unicode(default=u'')
+    is_anonymous = Int(default=0)
     slug = Unicode(default=u'')
     user_id = Int()
     category_id = Int(default=1)

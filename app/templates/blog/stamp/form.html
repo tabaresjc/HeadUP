@@ -1,12 +1,15 @@
 {% extends "blog/layout/base.html" %}
 
 {% block main %}
-  {% from "shared/_bootstrap_forms.html" import render_inline_field %}
+  {% import "shared/_bootstrap_forms.html" as forms %}
   <form action="{{ url_for('create_stamp', post_id=post_id) }}" method="post" name="stamp_form" autocomplete="off">
       {{ form.hidden_tag() }}
-      {{ render_inline_field(form.title, class="form-control",placeholder=_('Insert title')) }}
-      {{ render_inline_field(form.category_id, class="form-control") }}
-      {{ render_inline_field(form.body,id="txt_editor_area",placeholder=_('Compose new post...'), rows="8", style="width:100%; padding: 8px;") }}
+      {{ forms.render_field(form.title, class="form-control", placeholder=_('Best description of your post (30 words)')) }}
+      {{ forms.render_field(form.body, id="txt_challenge", placeholder=_('Description of what you had to cope with (150 words)'), rows="8", style="width:100%; padding: 8px;") }}
+      {{ forms.render_field(form.extra_body, id="txt_solution", placeholder=_('Description of what you had to cope with (150 words)'), rows="8", style="width:100%; padding: 8px;") }}
+
+      {{ forms.render_field(form.category_id, class="form-control") }}
+      {{ forms.render_field(form.is_anonymous) }}
       <div class="actions clearfix">
           <input type="submit" value="{{ _('Save') }}" class="btn btn-large btn-primary pull-right">
           <input id="btn_editor_clear" type="reset" value="{{_('Clear')}}" class="btn btn-large btn-danger">

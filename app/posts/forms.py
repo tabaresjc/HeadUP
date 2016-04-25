@@ -7,8 +7,10 @@ from models import Post
 
 class PostForm(Form):
     title = TextField(lazy_gettext('Title'), [validators.Required()])
-    body = TextAreaField(lazy_gettext('Body'), [validators.Required()])
+    body = TextAreaField(lazy_gettext('Your Challenge'), [validators.Required()])
+    extra_body = TextAreaField(lazy_gettext('Your Solution'), [validators.Required()])
     category_id = SelectField(u'Category', coerce=int)
+    is_anonymous = BooleanField(lazy_gettext('Anonymous'), default=0)
 
     def __init__(self, *args, **kwargs):
         Form.__init__(self, *args, **kwargs)
@@ -23,9 +25,11 @@ class PostForm(Form):
 
 class EditPostForm(Form):
     title = TextField(lazy_gettext('Title'), [validators.Required()])
-    body = TextAreaField(lazy_gettext('Body'), [validators.Required()])
-    remain = BooleanField(lazy_gettext('Show Post'), default=True)
+    body = TextAreaField(lazy_gettext('Your Challenge'), [validators.Required()])
+    extra_body = TextAreaField(lazy_gettext('Your Solution'), [validators.Required()])
     category_id = SelectField(u'Category', coerce=int)
+    is_anonymous = BooleanField(lazy_gettext('Anonymous'), default=0)
+    remain = BooleanField(lazy_gettext('Show Post'), default=True)
 
     def __init__(self, *args, **kwargs):
         Form.__init__(self, *args, **kwargs)
@@ -42,5 +46,7 @@ class NewPostForm(EditPostForm):
         Form.__init__(self, *args, **kwargs)
         self.title.data = post.title
         self.body.data = post.body
+        self.extra_body.data = post.extra_body
+        self.is_anonymous.data = post.is_anonymous
         self.category_id.data = post.category_id
         self.category_id.choices = Category.get_list()
