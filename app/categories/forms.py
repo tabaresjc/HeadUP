@@ -1,3 +1,5 @@
+# -*- coding: utf8 -*-
+
 from flask.ext.wtf import Form
 from wtforms import TextField, TextAreaField, SelectField, validators
 from flask.ext.babel import lazy_gettext, gettext

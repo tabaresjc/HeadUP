@@ -121,38 +121,4 @@
         </div>
     </div>
 </div>
-<div class="row">
-    <!-- bio, new note & orders column -->
-    <div class="col-md-12">
-        <div>
-            <!-- recent orders table -->
-            <div class="panel panel-primary">
-                <!-- Default panel contents -->
-                <div class="panel-heading">{{_('Recent comments')}}</div>
-                <!-- Table -->
-                <table class="table">
-                    <thead>
-                        <tr>
-                            <th class="col-md-2">{{_('Posted at')}}</th>
-                            <th>{{_('Message')}}</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                    <!-- row -->
-                        {% for comment in user.get_user_comments(limit=5) %}
-                        <tr class="{{'first' if loop.first}}">
-                            <td>
-                                <a href="{{ '%s#comment_%s' % (url_for('show_post', id=comment.post.id),comment.id)  }}">
-                                    {{comment.created_at|datetimeformat(format='EEE, d MMM yyyy')}}
-                                </a>
-                            </td>
-                            <td>{{comment.body | truncate(100) | safe}}</td>
-                        </tr>
-                        {% endfor %}
-                    </tbody>
-                </table>
-            </div>
-        </div>
-    </div>
-</div>
 {% endblock %}

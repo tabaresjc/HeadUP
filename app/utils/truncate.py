@@ -1,4 +1,5 @@
 # -*- coding: utf8 -*-
+
 import sys
 
 END = -1

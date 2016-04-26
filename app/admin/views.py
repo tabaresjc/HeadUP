@@ -1,3 +1,5 @@
+# -*- coding: utf8 -*-
+
 from flask import render_template
 from flask.ext.login import current_user, login_required
 from flask.ext.paginate import Pagination

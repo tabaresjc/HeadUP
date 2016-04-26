@@ -16,7 +16,7 @@ class UserForm(Form):
 	email = TextField(lazy_gettext('Email'), [ validators.Required(), validators.Email() , validators.Length(min = 10, max = 255)])
 	name = TextField(lazy_gettext('Name'), [ validators.Required(), validators.Length(min = 5, max = 255) ])
 	nickname = TextField(lazy_gettext('Nickname'), [ validators.Required() , validators.Length(min = 0, max = 64)])
-	role = SelectField(lazy_gettext('Role'), [validators.Optional()], choices=[('1','Administrator'),('2','Writer')])
+	role_id = SelectField(lazy_gettext('Role'), [validators.Optional()], choices=[('1','Administrator'),('2','Writer')])
 	password = PasswordField(lazy_gettext('Password'), [
 		validators.Optional(),
 		validators.EqualTo('confirm_password', message=lazy_gettext('Please repeat the password')),
@@ -42,7 +42,7 @@ class EditUserForm(UserForm):
 		self.email.data = user.email
 		self.name.data = user.name
 		self.nickname.data = user.nickname
-		self.role.data = unicode(user.role)
+		self.role_id.data = unicode(user.role_id)
 		self.address.data = user.address
 		self.phone.data = user.phone
 		self.timezone.data = user.timezone

@@ -1,15 +1,13 @@
+# -*- coding: utf8 -*-
+
 from flask import render_template, flash, redirect, session, url_for, request, g, abort, Response
 from flask.ext.login import current_user, login_required
 from flask.ext.paginate import Pagination
 from flask.ext.babel import gettext
-from app import app, store, babel
+from app import app, babel
 from app.users.models import User
 from app.posts.models import Post
-from app.comments.models import Comment
 from app.categories.models import Category
-from app.comments.forms import CommentForm
-from forms import SearchForm
-from models import Search
 
 
 @app.route('/', defaults={'page': 1})
@@ -62,7 +60,7 @@ def create_stamp(post_id):
                 flash(gettext('Stamp succesfully saved'))
                 return redirect(url_for('show_stamp', post_id=post.id))
             except:
-                flash(gettext('Error while posting the new comment, please retry later'), 'error')
+                flash(gettext('Error while posting, please retry later'), 'error')
         else:
             flash(gettext('Invalid submission, please check the message below'), 'error')
         return redirect(url_for('create_stamp', post_id=post.id))
@@ -74,7 +72,7 @@ def create_stamp(post_id):
         post_id=post_id)
 
 
-@app.route('/post/<int:id>', methods=['GET', 'POST'])
+@app.route('/post/<int:id>', methods=['GET'])
 def show_post(id):
     try:
         post = Post.get_by_id(id)
@@ -84,36 +82,10 @@ def show_post(id):
     if post is None:
         abort(404)
 
-    if request.method == 'POST':
-        if not current_user.is_authenticated():
-            abort(401)
-        form = CommentForm()
-        if form.validate_on_submit():
-            try:
-                comment = Comment.create()
-                form.populate_obj(comment)
-                comment.user = current_user
-                comment.post = post
-                comment.save()
-                flash(gettext('Comment succesfully created'))
-                return redirect('%s#comment_%s' % (url_for('show_article',
-                    cat=post.category.slug,
-                    post=post.slug),
-                comment.id))
-            except:
-                flash(gettext('Error while posting the new comment, please retry later'), 'error')
-        else:
-            flash(gettext('Invalid submission, please check the message below'), 'error')
-    else:
-        if not current_user.is_authenticated() or post.comments.count() > 50:
-            form = None
-        else:
-            form = CommentForm()
-
     return render_template("blog/post-detail.html",
         title=gettext('Post | %(title)s', title=post.title),
         post=post,
-        form=form)
+        form=None)
 
 
 @app.route('/category/<string:cat>', defaults={'page': 1})

@@ -3,32 +3,93 @@
 from flask.ext.login import UserMixin, current_user
 from flask.ext.babel import gettext
 from werkzeug.security import generate_password_hash, check_password_hash
-from app import store
-from app.mixins import CRUDMixin
-from storm.locals import *
+from app import db
+from app.utils.db import ModelBase
 from hashlib import md5
 import datetime
 import re
 
-ROLE_WRITER = 2
-ROLE_ADMIN = 1
+class User(db.Model, ModelBase, UserMixin):
 
+    __tablename__ = 'users'
 
-class User(UserMixin, CRUDMixin):
-    __storm_table__ = "users"
-    email = Unicode(default=u'')
-    name = Unicode(default=u'')
-    nickname = Unicode(default=u'')
-    password = Unicode(default=u'')
-    role = Int(default=ROLE_WRITER)
-    address = Unicode(default=u'')
-    phone = Unicode(default=u'')
-    last_seen = DateTime(default_factory=lambda: datetime.datetime(1970, 1, 1))
-    last_login = DateTime(default_factory=lambda: datetime.datetime(1970, 1, 1))
-    timezone = Unicode(default=u'Asia/Tokyo')
-    lang = Unicode(default=u'en')
-    created_at = DateTime(default_factory=lambda: datetime.datetime(1970, 1, 1))
-    modified_at = DateTime(default_factory=lambda: datetime.datetime(1970, 1, 1))
+    id = db.Column(db.Integer, primary_key=True)
+    email = db.Column(db.String(255), index=True, unique=True)
+    nickname = db.Column(db.String(255), index=True, unique=True)
+    password = db.Column(db.String(255))
+    role_id = db.Column(db.Integer)
+    posts = db.relationship('Post', backref='user', lazy='dynamic')
+    attributes = db.Column(db.PickleType)
+
+    created_at = db.Column(db.DateTime, default=datetime.datetime.utcnow)
+    modified_at = db.Column(db.DateTime, default=datetime.datetime.utcnow)
+
+    def __repr__(self): # pragma: no cover
+        return u'<User %s>' % (self.id)
+
+    @property
+    def name(self):
+        return self.get_attribute('name', '')
+
+    @name.setter
+    def name(self, value):
+        return self.set_attribute('name', value)
+
+    @property
+    def nickname(self):
+        return self.get_attribute('nickname')
+
+    @nickname.setter
+    def nickname(self, value):
+        return self.set_attribute('nickname', value)
+
+    @property
+    def address(self):
+        return self.get_attribute('address', '')
+
+    @address.setter
+    def address(self, value):
+        return self.set_attribute('address', value)
+
+    @property
+    def phone(self):
+        return self.get_attribute('phone', '')
+
+    @phone.setter
+    def phone(self, value):
+        return self.set_attribute('phone', value)
+
+    @property
+    def last_seen(self):
+        return self.get_attribute('last_seen')
+
+    @last_seen.setter
+    def last_seen(self, value):
+        return self.set_attribute('last_seen', value)
+
+    @property
+    def last_login(self):
+        return self.get_attribute('last_login')
+
+    @last_login.setter
+    def last_login(self, value):
+        return self.set_attribute('last_login', value)
+
+    @property
+    def timezone(self):
+        return self.get_attribute('timezone')
+
+    @timezone.setter
+    def timezone(self, value):
+        return self.set_attribute('timezone', value)
+
+    @property
+    def lang(self):
+        return self.get_attribute('lang')
+
+    @lang.setter
+    def lang(self, value):
+        return self.set_attribute('lang', value)
 
     def set_password(self, password):
       self.password = unicode(generate_password_hash(password))
@@ -37,13 +98,10 @@ class User(UserMixin, CRUDMixin):
       return check_password_hash(str(self.password), str(password))
 
     def is_admin(self):
-      return self.role == int(ROLE_ADMIN)
+      return self.role_id == Role.ROLE_ADMIN
 
     def role_desc(self):
-        if self.role == int(ROLE_ADMIN):
-            return gettext('Admin')
-        else:
-            return gettext('Writer')
+        return Role.ROLES.get(self.role_id, '')
 
     def is_current(self):
       return self.id == current_user.id
@@ -51,37 +109,41 @@ class User(UserMixin, CRUDMixin):
     def avatar(self, size):
       return 'http://www.gravatar.com/avatar/' + md5(self.email).hexdigest() + '?d=mm&s=' + str(size)
 
-    def __repr__(self): # pragma: no cover
-        return '<User %s %r>' % (self.id, self.name)
-
     def get_user_posts(self, limit=10, page=1):
-      return self.posts.find().config(offset=(page - 1) * limit, limit=limit)
+      return self.posts.order_by(db.text("id DESC")).offset((page - 1) * limit).limit(limit)
 
-    def get_user_comments(self, limit=10, page=1):
-      return self.comments.find().config(offset=(page - 1) * limit, limit=limit)
+    @classmethod
+    def find_by_email(cls, email):
+      return cls.query.filter_by(email=email).first()
 
-    @staticmethod
-    def find_by_email(email):
-      return store.find(User, User.email == email).one()
-
-    @staticmethod
-    def make_valid_name(name):
+    @classmethod
+    def make_valid_name(cls, name):
         return re.sub('[!#\[\]\(\)\.]', '', name)
 
-    @staticmethod
-    def make_valid_nickname(nickname):
+    @classmethod
+    def make_valid_nickname(cls, nickname):
         return re.sub('[!#\[\]\(\)\.]', '', nickname)
 
-    @staticmethod
-    def is_email_taken(email):
-        if store.find(User, User.email == email).count() > 0:
+    @classmethod
+    def is_email_taken(cls, email):
+        if cls.query.filter_by(email=email).count() > 0:
           return True
         else:
           return False
 
-    @staticmethod
-    def is_nickname_taken(nickname):
-        if store.find(User, User.nickname == nickname).count() > 0:
+    @classmethod
+    def is_nickname_taken(cls, nickname):
+        if cls.query.filter_by(nickname=nickname).count() > 0:
           return True
         else:
           return False
+
+
+class Role(object):
+    ROLE_ADMIN = 1
+    ROLE_WRITER = 2
+
+    ROLES = {
+        ROLE_ADMIN: gettext('Admin'),
+        ROLE_WRITER: gettext('Writer'),
+    }

@@ -95,18 +95,19 @@ class UsersView(FlaskView):
             form = UserForm()
             if form.validate_on_submit():
                 try:
-                    if form.role.data != u'None':
-                        user.role = int(form.role.data)
-                    del form.role
+                    if form.role_id.data != u'None':
+                        user.role_id = int(form.role_id.data)
+                    del form.role_id
                     if form.password.data:
                         user.set_password(form.password.data)
                     del form.password
+                    user.phone = form.phone.data
                     form.populate_obj(user)
                     user.save()
                     refresh()
-                    flash(gettext('User was succesfully saved'))
+                    flash(gettext('User was succesfully saved' + user.phone))
                     if request.method == 'POST':
-                        return redirect(url_for('UsersView:get',id=user.id))
+                        return redirect(url_for('UsersView:get', id=user.id))
                 except:
                     flash(gettext('Error while updating the user'), 'error')
             else:

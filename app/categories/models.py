@@ -1,30 +1,42 @@
-from app import store
-from app.mixins import CRUDMixin
+# -*- coding: utf8 -*-
+
 from flask.ext.login import current_user
-from storm.locals import *
+from app import db
+from app.utils.db import ModelBase
 from app.posts.models import Post
 import datetime
 
 
-class Category(CRUDMixin):
-    __storm_table__ = "categories"
-    
-    name = Unicode(default=u'')
-    slug = Unicode(default=u'')
-    description = Unicode(default=u'')
+class Category(db.Model, ModelBase):
 
-    created_at = DateTime(default_factory=lambda: datetime.datetime(1970, 1, 1))
-    modified_at = DateTime(default_factory=lambda: datetime.datetime(1970, 1, 1))
+    __tablename__ = 'categories'
 
-    def can_edit(self):
-      return current_user and current_user.is_admin()
-    
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String(255), index=True, unique=True)
+    slug = db.Column(db.String(255), index=True, unique=True)
+    posts = db.relationship('Post', backref='category', lazy='dynamic')
+    attributes = db.Column(db.PickleType)
+
+    created_at = db.Column(db.DateTime, default=datetime.datetime.utcnow)
+    modified_at = db.Column(db.DateTime, default=datetime.datetime.utcnow)
+
     def __repr__(self):
       return '<Category %s>' % (self.id)
 
+    @property
+    def description(self):
+        return self.get_attribute('description', u'')
+
+    @description.setter
+    def description(self, value):
+        return self.set_attribute('description', value)
+
+    def can_edit(self):
+      return current_user and current_user.is_admin()
+
     @classmethod
     def get_list(cls):
-      return [(g.id, g.name) for g in store.find(cls)]
+      return [(g.id, g.name) for g in cls.query.all()]
 
     @classmethod
     def transfer_posts(cls, from_category, to_category=None):

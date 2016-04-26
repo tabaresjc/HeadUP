@@ -1,3 +1,5 @@
+# -*- coding: utf8 -*-
+
 from flask import render_template, flash, redirect, url_for, request, abort
 from flask.ext.login import login_required
 from flask.ext.classy import FlaskView, route

@@ -13,7 +13,8 @@ def init_jinja_filters(app):
     app.jinja_env.filters['humanformat'] = Utilities.humanformat
     app.jinja_env.filters['htmltruncate'] = truncate.html_truncate
     app.jinja_env.filters['sidebar'] = Utilities.get_navigation_bar
-
+    app.jinja_env.trim_blocks = True
+    app.jinja_env.lstrip_blocks = True
 
 @app.context_processor
 def utility_processor():
