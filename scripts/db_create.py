@@ -7,6 +7,12 @@ if  2 == lenargs and sys.argv[1] == 'init':
     print "Init Database"
     from app import db
     db.create_all()
+    from app.categories.models import Category
+    c1 = Category.create(name=u'Uncategorized', slug=u'uncategorized')
+    c1.save()
+    c2 = Category.create(name=u'News', slug=u'news')
+    c2.save()
+
 elif  5 == lenargs and sys.argv[1] == 'create_user':
     print "Create User"
     from app.users.models import User, Role
