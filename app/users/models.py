@@ -4,7 +4,7 @@ from flask.ext.login import UserMixin, current_user
 from flask.ext.babel import gettext
 from werkzeug.security import generate_password_hash, check_password_hash
 from app import db
-from app.utils.db import ModelBase
+from app.utils.db import ModelBase, MutableDict
 from hashlib import md5
 import datetime
 import re
@@ -14,15 +14,17 @@ class User(db.Model, ModelBase, UserMixin):
     __tablename__ = 'users'
 
     id = db.Column(db.Integer, primary_key=True)
+
     email = db.Column(db.String(255), index=True, unique=True)
     nickname = db.Column(db.String(255), index=True, unique=True)
     password = db.Column(db.String(255))
     role_id = db.Column(db.Integer)
-    posts = db.relationship('Post', backref='user', lazy='dynamic')
-    attributes = db.Column(db.PickleType)
+    attributes = db.Column(MutableDict.as_mutable(db.PickleType))
 
     created_at = db.Column(db.DateTime, default=datetime.datetime.utcnow)
     modified_at = db.Column(db.DateTime, default=datetime.datetime.utcnow)
+
+    posts = db.relationship('Post', backref='user', lazy='dynamic')
 
     def __repr__(self): # pragma: no cover
         return u'<User %s>' % (self.id)

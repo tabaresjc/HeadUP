@@ -2,7 +2,7 @@
 
 from flask.ext.login import current_user
 from app import db
-from app.utils.db import ModelBase
+from app.utils.db import ModelBase, MutableDict
 from app.users.models import User, Role
 import datetime
 
@@ -18,7 +18,7 @@ class Post(db.Model, ModelBase):
     category_id = db.Column(db.Integer, db.ForeignKey('categories.id', ondelete='CASCADE', onupdate='NO ACTION'))
 
     anonymous = db.Column(db.SmallInteger)
-    attributes = db.Column(db.PickleType)
+    attributes = db.Column(MutableDict.as_mutable(db.PickleType))
 
     created_at = db.Column(db.DateTime, default=datetime.datetime.utcnow)
     modified_at = db.Column(db.DateTime, default=datetime.datetime.utcnow)

@@ -21,6 +21,8 @@ elif  5 == lenargs and sys.argv[1] == 'create_user':
             password='',
             nickname=email_parts[0],
             role_id=Role.ROLE_ADMIN,
+            address=u'',
+            phone=u'',
             lang='en'
         )
         user.set_password(unicode(password))

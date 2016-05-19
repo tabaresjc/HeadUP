@@ -2,7 +2,7 @@
 
 from flask.ext.login import current_user
 from app import db
-from app.utils.db import ModelBase
+from app.utils.db import ModelBase, MutableDict
 from app.posts.models import Post
 import datetime
 
@@ -15,7 +15,7 @@ class Category(db.Model, ModelBase):
     name = db.Column(db.String(255), index=True, unique=True)
     slug = db.Column(db.String(255), index=True, unique=True)
     posts = db.relationship('Post', backref='category', lazy='dynamic')
-    attributes = db.Column(db.PickleType)
+    attributes = db.Column(MutableDict.as_mutable(db.PickleType))
 
     created_at = db.Column(db.DateTime, default=datetime.datetime.utcnow)
     modified_at = db.Column(db.DateTime, default=datetime.datetime.utcnow)
