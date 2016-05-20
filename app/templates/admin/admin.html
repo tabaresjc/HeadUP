@@ -47,7 +47,7 @@
 	<!-- container -->
     <div class="content {{ content_class }}">
         {% block stats %}{% endblock %}
-        <div id="pad-wrapper" class="{{container_class}}">
+        <div id="pad-wrapper" class="{{ container_class }}">
             {% include 'shared/message.html' %}
             {% block main %}{% endblock %}
         </div>

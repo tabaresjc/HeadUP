@@ -27,9 +27,9 @@
 		<div class="row">
 		    <div class="col-md-12">
 		    {% if request.endpoint.startswith('CommentsView:get') %}
-		    	{{comment.body|safe}}
+		    	{{ comment.body|safe }}
 		    {% else %}
-		    	{{comment.body|htmltruncate(200)|safe}}
+		    	{{ comment.body|htmltruncate(200)|safe }}
 		    {% endif %}
 		    </div>
 	    </div>
@@ -37,7 +37,7 @@
 	<div class="panel-footer">
 		<div>
 			{% if comment.can_edit() %}
-			<a href="{{ url_for('CommentsView:delete_0', id=comment.id) }}" data-method="post" rel="nofollow" data-confirm="{{_('This will remove the comment \'%(title)s\', Are you sure?', title=comment.id)}}">
+			<a href="{{ url_for('CommentsView:delete_0', id=comment.id) }}" data-method="post" rel="nofollow" data-confirm="{{ _('This will remove the comment \'%(title)s\', Are you sure?', title=comment.id) }}">
 				<i class="icon-trash"></i>
 			</a>
 			{% endif %}		

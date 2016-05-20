@@ -3,49 +3,49 @@
         <div class="settings">
             <div class="items">
                 <div class="item">
-                    <h5>{{_('Go to')}}</h5>
+                    <h5>{{ _('Go to') }}</h5>
                 </div>
                 {% if request.endpoint.startswith('PostsView:index') %}
                     <div class="item">
                         <i class="icon-plus icon-formatted"></i>
-                        <a href="{{ url_for('PostsView:post_0') }}">{{_('New Post')}}</a>
+                        <a href="{{ url_for('PostsView:post_0') }}">{{ _('New Post') }}</a>
                     </div>
                 {% else %}
                 <div class="item">
                     <i class="icon-reorder"></i>
-                    <a href="{{ url_for('PostsView:index') }}">{{_('Posts List')}}</a>
+                    <a href="{{ url_for('PostsView:index') }}">{{ _('Posts List') }}</a>
                 </div>
                 {% endif %}
                 {% if request.endpoint.startswith('PostsView:put') %}
                     <div class="item">
                         <i class="icon-eye-open icon-formatted"></i>
-                        <a href="{{ url_for('PostsView:get', id = post.id) }}">{{_('Show Post')}}</a>
+                        <a href="{{ url_for('PostsView:get', id = post.id) }}">{{ _('Show Post') }}</a>
                     </div>
                     {% if post.can_edit() %}
                     <div class="item">
                         <i class="icon-trash icon-formatted"></i>
-                        <a href="{{ url_for('PostsView:delete_0', id = post.id) }}" data-method="post" data-confirm="This will remove '{{ post.title }}'?">{{_('Delete Post')}}</a>
+                        <a href="{{ url_for('PostsView:delete_0', id = post.id) }}" data-method="post" data-confirm="This will remove '{{ post.title }}'?">{{ _('Delete Post') }}</a>
                     </div>
                     {% endif %}
                     <div class="item">
                         <i class="icon-plus icon-formatted"></i>
-                        <a href="{{ url_for('PostsView:post_0') }}">{{_('New Post')}}</a>
+                        <a href="{{ url_for('PostsView:post_0') }}">{{ _('New Post') }}</a>
                     </div>
                 {% endif %}
                 {% if request.endpoint.startswith('PostsView:get') %}
                     {% if post.can_edit() %}
                     <div class="item">
                         <i class="icon-edit icon-formatted"></i>
-                        <a href="{{ url_for('PostsView:put_0', id = post.id) }}">{{_('Edit Post')}}</a>
+                        <a href="{{ url_for('PostsView:put_0', id = post.id) }}">{{ _('Edit Post') }}</a>
                     </div>                            
                     <div class="item">
                         <i class="icon-trash icon-formatted"></i>
-                        <a href="{{ url_for('PostsView:delete_0', id = post.id) }}" data-method="post" data-confirm="This will remove '{{ post.title }}'?">{{_('Delete Post')}}</a>
+                        <a href="{{ url_for('PostsView:delete_0', id = post.id) }}" data-method="post" data-confirm="This will remove '{{ post.title }}'?">{{ _('Delete Post') }}</a>
                     </div>
                     {% endif %}
                     <div class="item">
                         <i class="icon-plus icon-formatted"></i>
-                        <a href="{{ url_for('PostsView:post_0') }}">{{_('New Post')}}</a>
+                        <a href="{{ url_for('PostsView:post_0') }}">{{ _('New Post') }}</a>
                     </div>
                 {% endif %}
             </div>

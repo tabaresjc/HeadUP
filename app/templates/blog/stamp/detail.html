@@ -3,25 +3,25 @@
 {% block main %}
 <article class="blog-post">
     <header>
-        <h1>{{post.title}}</h1>
+        <h1>{{ post.title }}</h1>
         <div class="lead-image" style="min-height:110px;">
             {% if post.image_url %}
-            <img src="{{post.image_url}}" class="img-responsive" width="100%">
+            <img src="{{ post.image_url }}" class="img-responsive" width="100%">
             {% endif %}
             <div class="meta clearfix">
                 <div class="author">
                     <i class="icon-user"></i>
-                    <span class="data">{{post.user.name}}</span>
+                    <span class="data">{{ post.user.name }}</span>
                 </div>
                 <div class="date">
                     <i class="icon-calendar"></i>
-                    <span class="data"> {{post.created_at|datetimeformat('d MMM yyyy')}}</span>
+                    <span class="data"> {{ post.created_at|datetimeformat('d MMM yyyy') }}</span>
                 </div>
             </div>
         </div>
     </header>
     <div class="body">
-    	{{post.body|safe}}
+    	{{ post.body|safe }}
     </div>
 </article>
 {% endblock %}

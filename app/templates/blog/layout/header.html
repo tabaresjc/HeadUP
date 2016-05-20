@@ -24,24 +24,24 @@
                                 </a>
                                 <ul class="dropdown-menu">
                                     <li>
-                                        <a href="{{url_for('dashboard')}}">{{_('Dashboard')}}</a>
+                                        <a href="{{ url_for('dashboard')}}">{{ _('Dashboard') }}</a>
                                     </li>
                                     <li>
-                                        <a href="{{url_for('UsersView:get',id=current_user.id)}}">{{_('Profile')}}</a>
+                                        <a href="{{ url_for('UsersView:get',id=current_user.id)}}">{{ _('Profile') }}</a>
                                     </li>
                                     <li>
                                         <a href="{{ url_for('sessions.logout') }}" data-method="post" role="button" title="Sign Out">
-                                            {{_('Sign Out')}}
+                                            {{ _('Sign Out') }}
                                         </a>
                                     </li>
                                 </ul>
                             </li>
                             {% else %}
                             <li>
-                                <a href="{{url_for('sessions.login')}}">{{_('Sign In')}}</a>
+                                <a href="{{ url_for('sessions.login')}}">{{ _('Sign In') }}</a>
                             </li>
                             <li>
-                                <a href="{{url_for('sessions.signup')}}">{{_('Sign Up')}}</a>
+                                <a href="{{ url_for('sessions.signup')}}">{{ _('Sign Up') }}</a>
                             </li>
                             {% endif %}
                         </ul>
@@ -54,13 +54,13 @@
         <div class="widewrapper subheader">
             <div class="container">
                 <div class="tales-breadcrumb">
-                    <a href="{{url_for('index')}}">{{_('Home')}}</a>
+                    <a href="{{ url_for('index')}}">{{ _('Home') }}</a>
                     {% if category %}
                     <span class="separator">&#x2F;</span>
-                    <a href="{{url_for('show_category', cat=category.slug)}}">{{ category.name }}</a>
+                    <a href="{{ url_for('show_category', cat=category.slug)}}">{{ category.name  }}</a>
                     {% elif  post %}
                     <span class="separator">&#x2F;</span>
-                    <a href="{{url_for('show_category', cat=post.category.slug)}}">{{ post.category.name }}</a>
+                    <a href="{{ url_for('show_category', cat=post.category.slug)}}">{{ post.category.name  }}</a>
                     <span class="separator">&#x2F;</span>
                     <a href="{{ url_for('show_stamp', post_id=post.id) }}">{{ post.title | truncate(30) }}</a>
                     {% endif %}

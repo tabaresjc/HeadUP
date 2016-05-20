@@ -11,8 +11,8 @@
             <div class="panel-heading">
                 <h3 class="panel-title">Create User</h3>
             </div>
-            <form action="{{url_for('UsersView:post_1')}}" method="post" name="UserEdit" class="form-horizontal" role="form">
-                {{form.hidden_tag()}}
+            <form action="{{ url_for('UsersView:post_1') }}" method="post" name="UserEdit" class="form-horizontal" role="form">
+                {{ form.hidden_tag() }}
                 <div class="panel-body">
                     {{ render_normal_field(form.name, class="form-control") }}
                     {{ render_normal_field(form.nickname, class="form-control") }}

@@ -7,7 +7,7 @@
 <div class="table-wrapper users-table section">
     <div class="row head">
         <div class="col-md-12">
-            <h4>{{_('Users')}}</h4>
+            <h4>{{ _('Users') }}</h4>
         </div>
     </div>
 
@@ -24,16 +24,16 @@
             <thead>
                 <tr>
                     <th class="col-md-3">
-                        {{_('Name')}}
+                        {{ _('Name') }}
                     </th>
                     <th class="col-md-3">
-                        <span class="line"></span>{{_('Signed up')}}
+                        <span class="line"></span>{{ _('Signed up') }}
                     </th>
                     <th class="col-md-2">
-                        <span class="line"></span>{{_('Total Posts')}}
+                        <span class="line"></span>{{ _('Total Posts') }}
                     </th>
                     <th class="col-md-2">
-                        <span class="line"></span>{{_('Role')}}
+                        <span class="line"></span>{{ _('Role') }}
                     </th>                    
                     <th>
                         <span class="line"></span>
@@ -59,7 +59,7 @@
                                 <i class="glyphicon glyphicon-pencil"></i>
                             </a>
                             {% if not user.is_current() %}
-                            <a class="btn btn-danger" data-confirm="This will remove {{user.name}}, Are you sure?" data-method="post" href="{{ url_for('UsersView:delete_0', id=user.id) }}"title="Remove this user">
+                            <a class="btn btn-danger" data-confirm="This will remove {{ user.name}}, Are you sure?" data-method="post" href="{{ url_for('UsersView:delete_0', id=user.id)  }}"title="Remove this user">
                                 <i class="glyphicon glyphicon-trash"></i>
                             </a>
                             {% endif %}

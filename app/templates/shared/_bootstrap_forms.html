@@ -11,10 +11,10 @@
 
 {% macro render_normal_field(field, field_width=10, label_width=2, wrap_class='') %}
 <div class="form-group">
-  <label class="col-lg-{{label_width}} control-label">{{field.label}}</label>
-  <div class="col-lg-{{field_width}}">
+  <label class="col-lg-{{ label_width}} control-label">{{ field.label }}</label>
+  <div class="col-lg-{{ field_width }}">
     {% if wrap_class!='' %}
-    <div class="{{wrap_class}}">
+    <div class="{{ wrap_class }}">
       {{ field(**kwargs)|safe }}
     </div>
     {% else %}

@@ -5,28 +5,28 @@
                 {% if user %}
                 <div class="item">
                     <a href="http://gravatar.com/emails" target="_blank">
-                        <img src="{{user.avatar(128)}}" class="img-thumbnail">
+                        <img src="{{ user.avatar(128) }}" class="img-thumbnail">
                     </a>
                 </div>
                 {% endif %}
                 <div class="item">
                     <i class="icon-reorder"></i>
-                    <a href="{{ url_for('UsersView:index') }}">{{_('Users List')}}</a>
+                    <a href="{{ url_for('UsersView:index') }}">{{ _('Users List') }}</a>
                 </div>
                 {% if request.endpoint.startswith('UsersView:put') %}
                     <div class="item">
                         <i class="icon-eye-open icon-formatted"></i>
-                        <a href="{{ url_for('UsersView:get', id = user.id) }}">{{_('Show User')}}</a>
+                        <a href="{{ url_for('UsersView:get', id = user.id) }}">{{ _('Show User') }}</a>
                     </div>
                     {% if not user.is_current() and current_user.is_admin() %}
                     <div class="item">
                         <i class="icon-trash icon-formatted"></i>
-                        <a href="{{ url_for('UsersView:delete_0', id = user.id) }}" data-method="post" data-confirm="{{_('This will remove \'%(name)s\', Are you sure?', name=user.name)}}">{{_('Delete User')}}</a>
+                        <a href="{{ url_for('UsersView:delete_0', id = user.id) }}" data-method="post" data-confirm="{{ _('This will remove \'%(name)s\', Are you sure?', name=user.name)}}">{{ _('Delete User') }}</a>
                     </div>
                     {% endif %}
                     <div class="item">
                         <i class="icon-plus icon-formatted"></i>
-                        <a href="{{ url_for('UsersView:post_0') }}">{{_('New User')}}</a>
+                        <a href="{{ url_for('UsersView:post_0') }}">{{ _('New User') }}</a>
                     </div>
                 {% endif %}
             </div>

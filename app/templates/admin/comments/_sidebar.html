@@ -3,21 +3,21 @@
         <div class="settings">
             <div class="items">
                 <div class="item">
-                    <h5>{{_('Go to')}}</h5>
+                    <h5>{{ _('Go to') }}</h5>
                 </div>
                 <div class="item">
                     <i class="icon-reorder"></i>
-                    <a href="{{ url_for('CommentsView:index') }}">{{_('Comments List')}}</a>
+                    <a href="{{ url_for('CommentsView:index') }}">{{ _('Comments List') }}</a>
                 </div>
                 {% if request.endpoint.startswith('CommentsView:put') %}
                     <div class="item">
                         <i class="icon-eye-open icon-formatted"></i>
-                        <a href="{{ url_for('CommentsView:get', id = comment.id) }}">{{_('Show Comment')}}</a>
+                        <a href="{{ url_for('CommentsView:get', id = comment.id) }}">{{ _('Show Comment') }}</a>
                     </div>
                     {% if comment.can_edit() %}
                     <div class="item">
                         <i class="icon-trash icon-formatted"></i>
-                        <a href="{{ url_for('CommentsView:delete_0', id = comment.id) }}" data-method="post" data-confirm="This will remove '{{ comment.id }}'?">{{_('Delete Comment')}}</a>
+                        <a href="{{ url_for('CommentsView:delete_0', id = comment.id) }}" data-method="post" data-confirm="This will remove '{{ comment.id }}'?">{{ _('Delete Comment') }}</a>
                     </div>
                     {% endif %}
                 {% endif %}
@@ -25,11 +25,11 @@
                     {% if comment.can_edit() %}
                     <div class="item">
                         <i class="icon-edit icon-formatted"></i>
-                        <a href="{{ url_for('CommentsView:put_0', id = comment.id) }}">{{_('Edit Comment')}}</a>
+                        <a href="{{ url_for('CommentsView:put_0', id = comment.id) }}">{{ _('Edit Comment') }}</a>
                     </div>                            
                     <div class="item">
                         <i class="icon-trash icon-formatted"></i>
-                        <a href="{{ url_for('CommentsView:delete_0', id = comment.id) }}" data-method="post" data-confirm="This will remove '{{ comment.id }}'?">{{_('Delete Comment')}}</a>
+                        <a href="{{ url_for('CommentsView:delete_0', id = comment.id) }}" data-method="post" data-confirm="This will remove '{{ comment.id }}'?">{{ _('Delete Comment') }}</a>
                     </div>
                     {% endif %}
                 {% endif %}

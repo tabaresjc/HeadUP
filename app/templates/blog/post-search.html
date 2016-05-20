@@ -4,9 +4,9 @@
             {% if form %}
             {% from "shared/_bootstrap_forms.html" import render_inline_field %}
             <div class="col-md-12 well">
-            	<h5>{{_('Search posts with the following keyword')}}</h5>
+            	<h5>{{ _('Search posts with the following keyword') }}</h5>
                 <form action="{{ url_for('search_post') }}" method="post" accept-charset="utf-8">
-                    {{form.hidden_tag()}}
+                    {{ form.hidden_tag() }}
                     {{ render_inline_field(form.searchtext, class="form-control",placeholder=_('Search')) }}
 				    <div class="actions clearfix">
 				    	<input type="submit" value="Search" class="btn btn-large btn-primary pull-right">

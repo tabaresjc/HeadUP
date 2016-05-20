@@ -1,11 +1,11 @@
 {% from "shared/_bootstrap_forms.html" import render_inline_field %}
-<form action="{{url_for('PostsView:post_1')}}" method="post" name="AddPost" autocomplete="off">
-    {{form.hidden_tag()}}
+<form action="{{ url_for('PostsView:post_1') }}" method="post" name="AddPost" autocomplete="off">
+    {{ form.hidden_tag() }}
     {{ render_inline_field(form.title, class="form-control",placeholder=_('Insert title')) }}
     {{ render_inline_field(form.category_id, class="form-control") }}    
     {{ render_inline_field(form.body,id="txt_editor_area",placeholder=_('Compose new post...'), rows="15") }}
     <div class="actions clearfix">
-    	<input type="submit" value="{{_('Save')}}" class="btn btn-large btn-primary pull-right">
-        <input id="btn_editor_clear" type="reset" value="{{_('Clear')}}" class="btn btn-large btn-danger">
+    	<input type="submit" value="{{ _('Save') }}" class="btn btn-large btn-primary pull-right">
+        <input id="btn_editor_clear" type="reset" value="{{ _('Clear') }}" class="btn btn-large btn-danger">
     </div>
 </form>

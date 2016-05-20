@@ -10,23 +10,23 @@
         </div>
         <ul class="nav navbar-nav pull-right hidden-xs">            
             <li>
-                <a href="javascript:void(0);" class="hidden-xs hidden-sm">{{_('Welcome, %(name)s',name=current_user.name)}} </a>
+                <a href="javascript:void(0);" class="hidden-xs hidden-sm">{{ _('Welcome, %(name)s',name=current_user.name) }} </a>
             </li>
             
             <li class="dropdown">
                 <a href="javascript:void(0);" class="dropdown-toggle hidden-xs hidden-sm" data-toggle="dropdown">
-                    {{_('Your account')}}
+                    {{ _('Your account') }}
                     <b class="caret"></b>
                 </a>
                 <ul class="dropdown-menu">
-                    <li><a href="{{ url_for('PostsView:index') }}">{{_('Posts')}}</a></li>
-                    <li><a href="{{ url_for('PostsView:post_0') }}">{{_('Add new Post')}}</a></li>
+                    <li><a href="{{ url_for('PostsView:index') }}">{{ _('Posts') }}</a></li>
+                    <li><a href="{{ url_for('PostsView:post_0') }}">{{ _('Add new Post') }}</a></li>
                     <li class="divider"></li>
-                    <li><a href="{{ url_for('UsersView:get', id=current_user.id) }}">{{_('Profile')}}</a></li>
+                    <li><a href="{{ url_for('UsersView:get', id=current_user.id) }}">{{ _('Profile') }}</a></li>
                 </ul>
             </li>
             <li class="settings hidden-xs hidden-sm">
-                <a href="{{ url_for('sessions.logout') }}" data-method="post" role="button" title="{{_('Sign Out')}}">
+                <a href="{{ url_for('sessions.logout') }}" data-method="post" role="button" title="{{ _('Sign Out') }}">
                     <i class="icon-signout"></i>
                 </a>
             </li>

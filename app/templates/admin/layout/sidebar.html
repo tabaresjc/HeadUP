@@ -65,7 +65,7 @@
                 </a>
                 <ul class="submenu"{% if request.endpoint.startswith(item['pattern'])  %} style="display: block;"{% endif %}>
                     {% for key, submnenu in item['sub-menu'].iteritems() %}
-                    <li><a href="{{ url_for(submnenu['url']) }}">{{submnenu['name']}}</a></li>
+                    <li><a href="{{ url_for(submnenu['url']) }}">{{ submnenu['name'] }}</a></li>
                     {% endfor %}
                 </ul>
                 {% else %}
@@ -80,7 +80,7 @@
             <li>
                 <a href="{{ url_for('sessions.logout') }}" data-method="post" >
                     <i class="icon-signout"></i>
-                    <span>{{_('Sign Out')}}</span>
+                    <span>{{ _('Sign Out') }}</span>
                 </a>
             </li>
         </ul>

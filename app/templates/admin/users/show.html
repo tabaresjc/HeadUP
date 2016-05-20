@@ -8,15 +8,15 @@
 <div class="row header">
     <div class="col-md-9">
         <img src="{{ user.avatar(74) }}" class="avatar img-circle">
-        <h3 class="name">{{ user.name }} ({{user.nickname}})</h3>
-        <span class="area">{{user.email}}</span>
+        <h3 class="name">{{ user.name }} ({{ user.nickname }})</h3>
+        <span class="area">{{ user.email }}</span>
     </div>
 
     <div class="col-md-3">
         {% if current_user.is_admin() -%}
         <a class="btn btn-success pull-right" href="{{ url_for('UsersView:index') }}">
             <i class="glyphicon glyphicon-th-list"></i>
-            <span>{{_('User List')}}</span>
+            <span>{{ _('User List') }}</span>
         </a>
         {%- endif %}
     </div>
@@ -25,15 +25,15 @@
     <div class="col-md-12">
         <div class="div pull-right">
             {% if not user.is_current() and current_user.is_admin() %}
-            <a class="btn btn-danger" title="Delete user" href="{{ url_for('UsersView:delete_0',id=user.id) }}" data-method="post" data-confirm="{{_('This will remove \'%(name)s\', Are you sure?',name=user.name)}}">
+            <a class="btn btn-danger" title="Delete user" href="{{ url_for('UsersView:delete_0',id=user.id) }}" data-method="post" data-confirm="{{ _('This will remove \'%(name)s\', Are you sure?',name=user.name) }}">
                 <i class="icon-trash"></i>
-                <span>{{_('Remove')}}</span>
+                <span>{{ _('Remove') }}</span>
             </a>
             {% endif %}
             {% if user.is_current() or current_user.is_admin() %}
             <a class="btn btn-primary" href="{{ url_for('UsersView:put_0',id=user.id) }}">
                 <i class="glyphicon glyphicon-pencil"></i>
-                <span>{{_('Edit')}}</span>
+                <span>{{ _('Edit') }}</span>
             </a>
             {% endif %}
         </div>
@@ -43,39 +43,39 @@
 <div class="row">
     <div class="col-md-12">
         <div class="panel panel-primary">
-            <div class="panel-heading">{{_('User\'s Info')}}</div>
+            <div class="panel-heading">{{ _('User\'s Info') }}</div>
             <table class="table table-striped table-condensed">
                 <tbody>
                     <tr>
-                        <td class="col-md-2"><strong>{{_('Id')}}</strong></td>
+                        <td class="col-md-2"><strong>{{ _('Id') }}</strong></td>
                         <td>{{ user.id }}</td>
                     </tr>
                     <tr>
-                        <td><strong>{{_('Last seen')}}</strong></td>
+                        <td><strong>{{ _('Last seen') }}</strong></td>
                         <td>{{ user.last_seen|datetimeformat  }}</td>
                     </tr>
                     <tr>
-                        <td><strong>{{_('Name')}}</strong></td>
+                        <td><strong>{{ _('Name') }}</strong></td>
                         <td>{{ user.name }}</td>
                     </tr>
                     <tr>
-                        <td><strong>{{_('Nickname')}}</strong></td>
+                        <td><strong>{{ _('Nickname') }}</strong></td>
                         <td>{{ user.nickname }}</td>
                     </tr>
                     <tr>
-                        <td><strong>{{_('Address')}}</strong></td>
+                        <td><strong>{{ _('Address') }}</strong></td>
                         <td>{{ user.address if user.is_current() else '*****'}}</td>
                     </tr>
                     <tr>
-                        <td><strong>{{_('Phone')}}</strong></td>
+                        <td><strong>{{ _('Phone') }}</strong></td>
                         <td>{{ user.phone if user.is_current() else '*****'}}</td>
                     </tr>
                     <tr>
-                        <td><strong>{{_('Role')}}</strong></td>
+                        <td><strong>{{ _('Role') }}</strong></td>
                         <td>{{ user.role_desc() }}</td>
                     </tr>
                     <tr>
-                        <td><strong>{{_('Created at')}}</strong></td>
+                        <td><strong>{{ _('Created at') }}</strong></td>
                         <td>{{ user.created_at|datetimeformat  }}</td>
                     </tr>
                 </tbody>
@@ -91,28 +91,28 @@
             <div class="panel panel-primary">
             	<!-- Default panel contents -->
             	<div class="panel-heading">
-                    <a href="{{ url_for('user_post',id=user.id) }}" class="panel-title">{{_('Recent posts')}}</a>
+                    <a href="{{ url_for('user_post',id=user.id) }}" class="panel-title">{{ _('Recent posts') }}</a>
             	</div>
             	<!-- Table -->
             	<table class="table">
             		<thead>
             			<tr>
-            				<th class="col-md-2">{{_('Posted at')}}</th>
-            				<th class="col-md-2">{{_('Updated at')}}</th>
-            				<th>{{_('Title')}}</th>
+            				<th class="col-md-2">{{ _('Posted at') }}</th>
+            				<th class="col-md-2">{{ _('Updated at') }}</th>
+            				<th>{{ _('Title') }}</th>
             			</tr>
             		</thead>
             		<tbody>
                     <!-- row -->
                     	{% for post in user.get_user_posts(limit=5) %}
-	                    <tr class="{{'first' if loop.first}}">
+	                    <tr class="{{ 'first' if loop.first }}">
 	                        <td>
                                 <a href="{{ url_for('show_post', id=post.id) }}">
-                                    {{post.created_at|datetimeformat(format='EEE, d MMM yyyy')}}
+                                    {{ post.created_at|datetimeformat(format='EEE, d MMM yyyy') }}
                                 </a>
                             </td>
-	                        <td>{{post.modified_at|datetimeformat(format='EEE, d MMM yyyy')}}</td>
-	                        <td>{{post.title}}</td>
+	                        <td>{{ post.modified_at|datetimeformat(format='EEE, d MMM yyyy') }}</td>
+	                        <td>{{ post.title }}</td>
 	                    </tr>
 	                    {% endfor %}
             		</tbody>
