@@ -57,4 +57,4 @@ gitcommit.log
 
 # Ignore the static folder where
 app/static/upload/
-./config.py
+/config.py
