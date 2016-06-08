@@ -1,0 +1,14 @@
+html, body {
+  height: 100%;
+}
+.container-wrap {
+  min-height: 100%;
+  margin-bottom: -40px;
+}
+.container-wrap:after {
+  content: "";
+  display: block;
+}
+.site-footer, .container-wrap:after {
+  height: 40px;
+}

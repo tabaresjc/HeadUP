@@ -1,5 +1,9 @@
-    <footer>
-        <div class="widewrapper copyright">
-            <div class="container">@2016 Headsup</div>
+    <footer class="copyrights site-footer">
+      <div class="container">
+        <div class="row">
+          <div class="col-xs-12  col-sm-6">
+            Copyright ©{{ today.year if today.year == 2016 else '2016-%s' % today.year  }} Headsup. All rights reserved.
+          </div>
         </div>
+      </div>
     </footer>

@@ -1,6 +1,7 @@
 # -*- coding: utf8 -*-
 
 import sys
+import datetime
 from app import app
 from flask import request, json, Response, flash, redirect
 from flask.ext.babel import gettext, format_datetime, format_timedelta
@@ -17,6 +18,9 @@ def init_jinja_filters(app):
 
 @app.context_processor
 def utility_processor():
+
+    today = datetime.date.today()
+
     def pag(name, page, per_page, total, record_name, alignment = 'right', bs_version = 3, kind = None, **kwargs):
         name = u'%s.%s.%s.%s.%s.%s.%s' % (name, page, per_page, total, record_name, alignment, bs_version)
         pagination = Utilities.get_pagination_by_name(name)
@@ -31,7 +35,8 @@ def utility_processor():
             return pagination.info
         else:
             return pagination
-    return dict(pag=pag)
+    return dict(pag=pag,
+      today=today)
 
 
 class Utilities(object):
