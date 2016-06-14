@@ -1,18 +1,16 @@
 {% from "shared/_bootstrap_forms.html" import render_inline_field %}
 <form action="{{ url_for('PostsView:put_0', id=post.id) }}" method="POST" name="EditPost" autocomplete="off">
     {{ form.hidden_tag() }}
-    {{ render_inline_field(form.title, class="form-control",placeholder=_('Insert title')) }}
+    {{ render_inline_field(form.title, class="form-control", placeholder=_('Best description of your post (30 words)')) }}
+    {{ render_inline_field(form.body, id="txt_challenge", placeholder=_('Description of what you had to cope with (150 words)'), rows="8", style="width:100%; padding: 8px;") }}
+    {{ render_inline_field(form.extra_body, id="txt_solution", placeholder=_('Description of what you had to cope with (150 words)'), rows="8", style="width:100%; padding: 8px;") }}
     {{ render_inline_field(form.category_id, class="form-control") }}
-    {{ render_inline_field(form.body,id="txt_editor_area",placeholder=_('Edit Post...'), rows="20") }}
-	<div class="checkbox">
-		<label>
-		{{ render_inline_field(form.remain) }}
-        {{ _('View post after save') }}
-		</label>
-	</div>
-
+    <div class="checkbox">
+  		<label>{{ form.remain()|safe }} {{ _('View post after save') }}</label>
+      <label style="float:right">{{ form.anonymous()|safe }} {{ _('Make this Post Anonymous') }}</label>
+  	</div>
     <div class="actions clearfix">
     	<input type="submit" value="{{ _('Save') }}" class="btn btn-large btn-primary pull-right">
-        <input id="btn_editor_clear" type="reset" value="{{ _('Clear') }}" class="btn btn-large btn-danger">
+      <input id="btn_editor_clear" type="reset" value="{{ _('Clear') }}" class="btn btn-large btn-danger">
     </div>
 </form>
