@@ -64,9 +64,11 @@ class Returning(Expr):
 
     This is only supported in PostgreSQL 8.2+.
     """
+
     def __init__(self, expr, columns=None):
         self.expr = expr
         self.columns = columns
+
 
 @compile.when(Returning)
 def compile_returning(compile, expr, state):
@@ -86,6 +88,7 @@ class currval(FuncExpr):
 
     def __init__(self, column):
         self.column = column
+
 
 @compile.when(currval)
 def compile_currval(compile, expr, state):
@@ -231,7 +234,7 @@ pg_connection_failure_codes = frozenset([
     '57P01',  # ADMIN SHUTDOWN
     '57P02',  # CRASH SHUTDOWN
     '57P03',  # CANNOT CONNECT NOW
-    ])
+])
 
 
 class PostgresConnection(Connection):
@@ -248,9 +251,9 @@ class PostgresConnection(Connection):
         in-memory objects with their specific rows.
         """
         if (isinstance(statement, Insert) and
-            self._database._version >= 80200 and
-            statement.primary_variables is not Undef and
-            statement.primary_columns is not Undef):
+                self._database._version >= 80200 and
+                statement.primary_variables is not Undef and
+                statement.primary_columns is not Undef):
 
             # Here we decorate the Insert statement with a Returning
             # expression, so that we get back in the result the values
@@ -416,6 +419,6 @@ class PostgresTimeoutTracer(TimeoutTracer):
         # This should just check for
         # psycopg2.extensions.QueryCanceledError in the future.
         if (isinstance(error, DatabaseError) and
-            "statement timeout" in str(error)):
+                "statement timeout" in str(error)):
             raise TimeoutError(
                 statement, params, "SQL server cancelled statement")

@@ -12,8 +12,8 @@ class Cache(object):
 
     def __init__(self, size=1000):
         self._size = size
-        self._cache = {} # {obj_info: obj, ...}
-        self._order = [] # [obj_info, ...]
+        self._cache = {}  # {obj_info: obj, ...}
+        self._order = []  # [obj_info, ...]
 
     def clear(self):
         """Clear the entire cache at once."""

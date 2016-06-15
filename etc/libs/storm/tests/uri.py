@@ -175,4 +175,3 @@ class URITest(TestHelper):
 
     def test_str_option_only(self):
         self.str("scheme:?a=b")
-

@@ -45,11 +45,13 @@ install_exceptions(MySQLdb)
 
 compile = compile.create_child()
 
+
 @compile.when(Select)
 def compile_select_mysql(compile, select, state):
     if select.offset is not Undef and select.limit is Undef:
         select.limit = sys.maxint
     return compile_select(compile, select, state)
+
 
 @compile.when(SQLToken)
 def compile_sql_token_mysql(compile, expr, state):
@@ -83,7 +85,7 @@ class MySQLConnection(Connection):
 
     def execute(self, statement, params=None, noresult=False):
         if (isinstance(statement, Insert) and
-            statement.primary_variables is not Undef):
+                statement.primary_variables is not Undef):
 
             result = Connection.execute(self, statement, params)
 
@@ -118,7 +120,7 @@ class MySQLConnection(Connection):
         # http://dev.mysql.com/doc/refman/5.0/en/gone-away.html
         return (isinstance(exc, (OperationalError,
                                  extra_disconnection_errors)) and
-                exc.args[0] in (2006, 2013)) # (SERVER_GONE_ERROR, SERVER_LOST)
+                exc.args[0] in (2006, 2013))  # (SERVER_GONE_ERROR, SERVER_LOST)
 
 
 class MySQL(Database):
@@ -194,7 +196,7 @@ def _convert_time(time_str):
     if "." in s:
         f = float(s)
         s = int(f)
-        return time(int(h), int(m), s, (f-s)*1000000)
+        return time(int(h), int(m), s, (f - s) * 1000000)
     return time(int(h), int(m), int(s), 0)
 
 

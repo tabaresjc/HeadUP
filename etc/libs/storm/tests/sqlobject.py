@@ -40,7 +40,9 @@ class SQLObjectTest(TestHelper):
         SQLObjectBase._storm_property_registry.clear()
 
         self.store = Store(create_database("sqlite:"))
+
         class SQLObject(SQLObjectBase):
+
             @staticmethod
             def _get_store():
                 return self.store
@@ -139,7 +141,9 @@ class SQLObjectTest(TestHelper):
 
     def test_SO_creating(self):
         test = self
+
         class Person(self.Person):
+
             def set(self, **args):
                 test.assertEquals(self._SO_creating, True)
                 test.assertEquals(args, {"name": "John Joe"})
@@ -149,7 +153,9 @@ class SQLObjectTest(TestHelper):
 
     def test_object_not_added_if__create_fails(self):
         objects = []
+
         class Person(self.Person):
+
             def _create(self, id, **kwargs):
                 objects.append(self)
                 raise RuntimeError
@@ -160,7 +166,9 @@ class SQLObjectTest(TestHelper):
 
     def test_init_hook(self):
         called = []
+
         class Person(self.Person):
+
             def _init(self, *args, **kwargs):
                 called.append(True)
 
@@ -195,7 +203,8 @@ class SQLObjectTest(TestHelper):
         self.assertEqual(result[0].name, "John Joe")
 
     def test_select_orderBy(self):
-        result = self.Person.select("name LIKE 'John%'", orderBy=("name","id"))
+        result = self.Person.select(
+            "name LIKE 'John%'", orderBy=("name", "id"))
         self.assertEquals(result[0].name, "John Doe")
 
     def test_select_orderBy_expr(self):
@@ -458,9 +467,11 @@ class SQLObjectTest(TestHelper):
 
     def test_col_storm_validator(self):
         calls = []
+
         def validator(obj, attr, value):
             calls.append((obj, attr, value))
             return value
+
         class Person(self.SQLObject):
             name = StringCol(storm_validator=validator)
         person = Person.get(2)
@@ -498,6 +509,7 @@ class SQLObjectTest(TestHelper):
         self.assertEquals(person.ts,
                           datetime.datetime(2007, 2, 5, 20, 53, 15,
                                             tzinfo=tzutc()))
+
     def test_date_col(self):
         class Person(self.SQLObject):
             ts = DateCol()
@@ -555,6 +567,7 @@ class SQLObjectTest(TestHelper):
 
     def test_foreign_key_storm_validator(self):
         calls = []
+
         def validator(obj, attr, value):
             calls.append((obj, attr, value))
             return value
@@ -873,7 +886,8 @@ class SQLObjectTest(TestHelper):
 
     def test_result_set_prejoin(self):
         self.store.execute("ALTER TABLE person ADD COLUMN phone_id INTEGER")
-        self.store.execute("UPDATE person SET phone_id=1 WHERE name='John Doe'")
+        self.store.execute(
+            "UPDATE person SET phone_id=1 WHERE name='John Doe'")
 
         class Person(self.Person):
             address = ForeignKey(foreignKey="Address", dbName="address_id")
@@ -909,7 +923,8 @@ class SQLObjectTest(TestHelper):
         class Address(self.SQLObject):
             city = StringCol()
 
-        result = Person.select("person.name = 'John Doe'", prejoins=["address"])
+        result = Person.select(
+            "person.name = 'John Doe'", prejoins=["address"])
         person = result[0]
 
         # Remove the row behind its back.
@@ -1095,10 +1110,12 @@ class SQLObjectTest(TestHelper):
 
     def test_result_set_prejoinClauseTables(self):
         self.store.execute("ALTER TABLE person ADD COLUMN phone_id INTEGER")
-        self.store.execute("UPDATE person SET phone_id=1 WHERE name='John Doe'")
+        self.store.execute(
+            "UPDATE person SET phone_id=1 WHERE name='John Doe'")
 
         class Person(self.Person):
-            address = ForeignKey(foreignKey="AddressClass", dbName="address_id")
+            address = ForeignKey(
+                foreignKey="AddressClass", dbName="address_id")
             phone = ForeignKey(foreignKey="PhoneClass", dbName="phone_id")
 
         # Name the class so that it doesn't match the table name, to ensure
@@ -1143,10 +1160,11 @@ class SQLObjectTest(TestHelper):
         self.assertTrue(john in self.Person.select())
         self.assertFalse(john in self.Person.selectBy(name="John Joe"))
         self.assertFalse(john in self.Person.select(
-                "Person.name = 'John Joe'"))
+            "Person.name = 'John Joe'"))
 
     def test_result_set_contains_does_not_use_iter(self):
         """Calling 'item in result_set' does not iterate over the set. """
+
         def no_iter(self):
             raise RuntimeError
         real_iter = SQLObjectResultSet.__iter__
@@ -1199,6 +1217,7 @@ class SQLObjectTest(TestHelper):
 
     def test_set(self):
         class Person(self.Person):
+
             def set(self, **kw):
                 kw["id"] += 1
                 super(Person, self).set(**kw)
@@ -1218,4 +1237,3 @@ class SQLObjectTest(TestHelper):
         result = self.Person.select(expr)
         self.assertEquals([person.name for person in result],
                           ["John Joe"])
-

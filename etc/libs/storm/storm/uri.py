@@ -83,7 +83,7 @@ class URI(object):
         tokens = [self.scheme, ":"]
         append = tokens.append
         if (self.username is not None or self.password is not None or
-            self.host is not None or self.port is not None):
+                self.host is not None or self.port is not None):
             append("//")
             if self.username is not None or self.password is not None:
                 if self.username is not None:
@@ -120,8 +120,8 @@ def unescape(s):
     r = []
     while j != -1:
         r.append(s[i:j])
-        i = j+3
-        r.append(chr(int(s[j+1:i], 16)))
+        i = j + 3
+        r.append(chr(int(s[j + 1:i], 16)))
         j = s.find("%", i)
     r.append(s[i:])
     return "".join(r)

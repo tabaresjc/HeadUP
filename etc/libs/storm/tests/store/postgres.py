@@ -34,15 +34,18 @@ class Lst1(object):
     id = Int(primary=True)
     ints = List(type=Int())
 
+
 class LstEnum(object):
     __storm_table__ = "lst1"
     id = Int(primary=True)
     ints = List(type=Enum(map={"one": 1, "two": 2, "three": 3}))
 
+
 class Lst2(object):
     __storm_table__ = "lst2"
     id = Int(primary=True)
     ints = List(type=List(type=Int()))
+
 
 class FooWithSchema(Foo):
     __storm_table__ = "public.foo"
@@ -108,23 +111,23 @@ class PostgresStoreTest(TestHelper, StoreTest):
 
         lst = Lst1()
         lst.id = 1
-        lst.ints = [1,2,3,4]
+        lst.ints = [1, 2, 3, 4]
 
         self.store.add(lst)
 
         result = self.store.execute("SELECT ints FROM lst1 WHERE id=1")
-        self.assertEquals(result.get_one(), ([1,2,3,4],))
+        self.assertEquals(result.get_one(), ([1, 2, 3, 4],))
 
         del lst
         gc.collect()
 
-        lst = self.store.find(Lst1, Lst1.ints == [1,2,3,4]).one()
+        lst = self.store.find(Lst1, Lst1.ints == [1, 2, 3, 4]).one()
         self.assertTrue(lst)
 
         lst.ints.append(5)
 
         result = self.store.execute("SELECT ints FROM lst1 WHERE id=1")
-        self.assertEquals(result.get_one(), ([1,2,3,4,5],))
+        self.assertEquals(result.get_one(), ([1, 2, 3, 4, 5],))
 
     def test_list_enum_variable(self):
 
@@ -134,7 +137,7 @@ class PostgresStoreTest(TestHelper, StoreTest):
         self.store.add(lst)
 
         result = self.store.execute("SELECT ints FROM lst1 WHERE id=1")
-        self.assertEquals(result.get_one(), ([1,2],))
+        self.assertEquals(result.get_one(), ([1, 2],))
 
         del lst
         gc.collect()
@@ -145,7 +148,7 @@ class PostgresStoreTest(TestHelper, StoreTest):
         lst.ints.append("three")
 
         result = self.store.execute("SELECT ints FROM lst1 WHERE id=1")
-        self.assertEquals(result.get_one(), ([1,2,3],))
+        self.assertEquals(result.get_one(), ([1, 2, 3],))
 
     def test_list_variable_nested(self):
 
@@ -156,18 +159,18 @@ class PostgresStoreTest(TestHelper, StoreTest):
         self.store.add(lst)
 
         result = self.store.execute("SELECT ints FROM lst2 WHERE id=1")
-        self.assertEquals(result.get_one(), ([[1,2],[3,4]],))
+        self.assertEquals(result.get_one(), ([[1, 2], [3, 4]],))
 
         del lst
         gc.collect()
 
-        lst = self.store.find(Lst2, Lst2.ints == [[1,2],[3,4]]).one()
+        lst = self.store.find(Lst2, Lst2.ints == [[1, 2], [3, 4]]).one()
         self.assertTrue(lst)
 
         lst.ints.append([5, 6])
 
         result = self.store.execute("SELECT ints FROM lst2 WHERE id=1")
-        self.assertEquals(result.get_one(), ([[1,2],[3,4],[5,6]],))
+        self.assertEquals(result.get_one(), ([[1, 2], [3, 4], [5, 6]],))
 
     def test_add_find_with_schema(self):
         foo = FooWithSchema()
@@ -188,7 +191,7 @@ class PostgresStoreTest(TestHelper, StoreTest):
         self.store.flush()
         foo2 = self.store.add(Foo())
         self.store.flush()
-        self.assertEquals(foo2.id-foo1.id, 1)
+        self.assertEquals(foo2.id - foo1.id, 1)
 
     def test_list_unnecessary_update(self):
         """

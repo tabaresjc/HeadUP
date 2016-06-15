@@ -45,6 +45,7 @@ install_exceptions(sqlite)
 
 compile = compile.create_child()
 
+
 @compile.when(Select)
 def compile_select_sqlite(compile, select, state):
     if select.offset is not Undef and select.limit is Undef:
@@ -65,6 +66,7 @@ def compile_select_sqlite(compile, select, state):
 
 # Considering the above, selects have a greater precedence.
 compile.set_precedence(5, Union, Except, Intersect)
+
 
 @compile.when(Insert)
 def compile_insert_sqlite(compile, insert, state):
@@ -209,16 +211,16 @@ create_from_uri = SQLite
 
 
 # Here is a sad story about PySQLite2.
-# 
+#
 # PySQLite does some very dirty tricks to control the moment in
 # which transactions begin and end.  It actually *changes* the
 # transactional behavior of SQLite.
-# 
+#
 # The real behavior of SQLite is that transactions are SERIALIZABLE
 # by default.  That is, any reads are repeatable, and changes in
 # other threads or processes won't modify data for already started
 # transactions that have issued any reading or writing statements.
-# 
+#
 # PySQLite changes that in a very unpredictable way.  First, it will
 # only actually begin a transaction if a INSERT/UPDATE/DELETE/REPLACE
 # operation is executed (yes, it will parse the statement).  This
@@ -226,19 +228,19 @@ create_from_uri = SQLite
 # operations are seen, will be operating in READ COMMITTED mode.  Then,
 # if after that a INSERT/UPDATE/DELETE/REPLACE is seen, the transaction
 # actually begins, and so it moves into SERIALIZABLE mode.
-# 
+#
 # Another pretty surprising behavior is that it will *commit* any
 # on-going transaction if any other statement besides
 # SELECT/INSERT/UPDATE/DELETE/REPLACE is seen.
-# 
+#
 # In an ORM we're really dealing with cached data, so working on top
 # of a system like that means that cache validity is pretty random.
-# 
+#
 # So what we do about that in this module is disabling all that hackery
 # by *pretending* to PySQLite that we'll work without transactions
 # (isolation_level=None), and then we actually take responsibility for
 # controlling the transaction.
-# 
+#
 # References:
 #     http://www.sqlite.org/lockingv3.html
 #     http://docs.python.org/lib/sqlite3-Controlling-Transactions.html

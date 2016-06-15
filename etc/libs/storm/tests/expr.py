@@ -29,6 +29,7 @@ from storm.expr import *
 class Func1(NamedFunc):
     name = "func1"
 
+
 class Func2(NamedFunc):
     name = "func2"
 
@@ -43,10 +44,12 @@ for i in range(10):
 class TrackContext(FromExpr):
     context = None
 
+
 @compile.when(TrackContext)
 def compile_track_context(compile, expr, state):
     expr.context = state.context
     return ""
+
 
 def track_contexts(n):
     return [TrackContext() for i in range(n)]
@@ -470,6 +473,7 @@ class CompileTest(TestHelper):
 
     def test_customize(self):
         custom_compile = compile.create_child()
+
         @custom_compile.when(type(None))
         def compile_none(compile, state, expr):
             return "None"
@@ -477,7 +481,8 @@ class CompileTest(TestHelper):
         self.assertEquals(statement, "func1(None)")
 
     def test_customize_inheritance(self):
-        class C(object): pass
+        class C(object):
+            pass
         compile_parent = Compile()
         compile_child = compile_parent.create_child()
 
@@ -893,7 +898,7 @@ class CompileTest(TestHelper):
     def test_insert_select(self):
         expr = Insert((Column(column1, table1), Column(column2, table1)),
                       values=Select(
-                        (Column(column3, table3), Column(column4, table4))))
+            (Column(column3, table3), Column(column4, table4))))
         state = State()
         statement = compile(expr, state)
         self.assertEquals(
@@ -1232,14 +1237,14 @@ class CompileTest(TestHelper):
         statement = compile(expr, state)
         self.assertEquals(statement, "func1() LIKE ? ESCAPE ?")
         self.assertVariablesEqual(state.parameters,
-                          [RawStrVariable("value"), RawStrVariable("!")])
+                                  [RawStrVariable("value"), RawStrVariable("!")])
 
         expr = Func1().like("Hello", "!")
         state = State()
         statement = compile(expr, state)
         self.assertEquals(statement, "func1() LIKE ? ESCAPE ?")
         self.assertVariablesEqual(state.parameters,
-                          [Variable("Hello"), RawStrVariable("!")])
+                                  [Variable("Hello"), RawStrVariable("!")])
 
     def test_like_compareable_case(self):
         expr = Func1().like("Hello")
@@ -1638,7 +1643,7 @@ class CompileTest(TestHelper):
         expr = Select(column1, tables=Alias(Table(table1)))
         state = State()
         statement = compile(expr, state)
-        self.assertEquals(statement[:statement.rfind("_")+1],
+        self.assertEquals(statement[:statement.rfind("_") + 1],
                           'SELECT column1 FROM "table 1" AS "_')
         self.assertEquals(state.parameters, [])
 
@@ -1981,7 +1986,8 @@ class CompileTest(TestHelper):
         self.assertEquals(state.parameters, [])
 
     def test_auto_tables_with_column_and_replace(self):
-        expr = Select(AutoTables(Column(elem1, table1), [table2], replace=True))
+        expr = Select(AutoTables(
+            Column(elem1, table1), [table2], replace=True))
         state = State()
         statement = compile(expr, state)
         self.assertEquals(statement, 'SELECT "table 1".elem1 FROM "table 2"')
@@ -2366,6 +2372,7 @@ class CompilePythonTest(TestHelper):
         """The get_matcher() works for expressions containing values
         whose repr is not valid Python syntax."""
         class BadRepr(object):
+
             def __repr__(self):
                 return "$Not a valid Python expression$"
 

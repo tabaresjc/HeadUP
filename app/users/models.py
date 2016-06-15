@@ -9,6 +9,7 @@ from hashlib import md5
 import datetime
 import re
 
+
 class User(db.Model, ModelBase, UserMixin):
 
     __tablename__ = 'users'
@@ -26,7 +27,7 @@ class User(db.Model, ModelBase, UserMixin):
 
     posts = db.relationship('Post', backref='user', lazy='dynamic')
 
-    def __repr__(self): # pragma: no cover
+    def __repr__(self):  # pragma: no cover
         return u'<User %s>' % (self.id)
 
     @property
@@ -94,29 +95,29 @@ class User(db.Model, ModelBase, UserMixin):
         return self.set_attribute('lang', value)
 
     def set_password(self, password):
-      self.password = unicode(generate_password_hash(password))
+        self.password = unicode(generate_password_hash(password))
 
     def check_password(self, password):
-      return check_password_hash(str(self.password), str(password))
+        return check_password_hash(str(self.password), str(password))
 
     def is_admin(self):
-      return self.role_id == Role.ROLE_ADMIN
+        return self.role_id == Role.ROLE_ADMIN
 
     def role_desc(self):
         return Role.ROLES.get(self.role_id, '')
 
     def is_current(self):
-      return self.id == current_user.id
+        return self.id == current_user.id
 
     def avatar(self, size):
-      return 'http://www.gravatar.com/avatar/' + md5(self.email).hexdigest() + '?d=mm&s=' + str(size)
+        return 'http://www.gravatar.com/avatar/' + md5(self.email).hexdigest() + '?d=mm&s=' + str(size)
 
     def get_user_posts(self, limit=10, page=1):
-      return self.posts.order_by(db.text("id DESC")).offset((page - 1) * limit).limit(limit)
+        return self.posts.order_by(db.text("id DESC")).offset((page - 1) * limit).limit(limit)
 
     @classmethod
     def find_by_email(cls, email):
-      return cls.query.filter_by(email=email).first()
+        return cls.query.filter_by(email=email).first()
 
     @classmethod
     def make_valid_name(cls, name):
@@ -129,16 +130,16 @@ class User(db.Model, ModelBase, UserMixin):
     @classmethod
     def is_email_taken(cls, email):
         if cls.query.filter_by(email=email).count() > 0:
-          return True
+            return True
         else:
-          return False
+            return False
 
     @classmethod
     def is_nickname_taken(cls, nickname):
         if cls.query.filter_by(nickname=nickname).count() > 0:
-          return True
+            return True
         else:
-          return False
+            return False
 
 
 class Role(object):

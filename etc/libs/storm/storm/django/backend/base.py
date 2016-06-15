@@ -2,7 +2,7 @@ __metaclass__ = type
 
 __all__ = [
     'DatabaseWrapper', 'DatabaseError', 'IntegrityError',
-    ]
+]
 
 from django.conf import settings
 import transaction
@@ -39,7 +39,7 @@ class StormDatabaseWrapperMixin(object):
         return StormCursorWrapper(self._store, cursor)
 
     def _commit(self):
-        #print "commit"
+        # print "commit"
         try:
             transaction.commit()
         except Exception:
@@ -47,7 +47,7 @@ class StormDatabaseWrapperMixin(object):
             raise
 
     def _rollback(self):
-        #print "rollback"
+        # print "rollback"
         transaction.abort()
 
     def close(self):
@@ -116,6 +116,7 @@ def DatabaseWrapper(*args, **kwargs):
         if PostgresStormDatabaseWrapper is None:
             from django.db.backends.postgresql_psycopg2.base import (
                 DatabaseWrapper as PostgresDatabaseWrapper)
+
             class PostgresStormDatabaseWrapper(StormDatabaseWrapperMixin,
                                                PostgresDatabaseWrapper):
                 pass
@@ -125,6 +126,7 @@ def DatabaseWrapper(*args, **kwargs):
         if MySQLStormDatabaseWrapper is None:
             from django.db.backends.mysql.base import (
                 DatabaseWrapper as MySQLDatabaseWrapper)
+
             class MySQLStormDatabaseWrapper(StormDatabaseWrapperMixin,
                                             MySQLDatabaseWrapper):
                 pass

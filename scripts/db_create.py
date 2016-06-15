@@ -3,7 +3,7 @@
 import sys
 
 lenargs = len(sys.argv)
-if  2 == lenargs and sys.argv[1] == 'init':
+if 2 == lenargs and sys.argv[1] == 'init':
     print "Init Database"
     from app import db
     db.create_all()
@@ -13,7 +13,7 @@ if  2 == lenargs and sys.argv[1] == 'init':
     c2 = Category.create(name=u'News', slug=u'news')
     c2.save()
 
-elif  5 == lenargs and sys.argv[1] == 'create_user':
+elif 5 == lenargs and sys.argv[1] == 'create_user':
     print "Create User"
     from app.users.models import User, Role
     name = sys.argv[2]

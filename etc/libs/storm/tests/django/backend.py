@@ -43,15 +43,15 @@ def make_wrapper():
     from storm.django.backend import base
     if django.VERSION >= (1, 1):
         wrapper = base.DatabaseWrapper({
-                'DATABASE_HOST': settings.DATABASE_HOST,
-                'DATABASE_NAME': settings.DATABASE_NAME,
-                'DATABASE_OPTIONS': settings.DATABASE_OPTIONS,
-                'DATABASE_PASSWORD': settings.DATABASE_PASSWORD,
-                'DATABASE_PORT': settings.DATABASE_PORT,
-                'DATABASE_USER': settings.DATABASE_USER,
-                'TIME_ZONE': settings.TIME_ZONE,
-                'OPTIONS': {},
-                })
+            'DATABASE_HOST': settings.DATABASE_HOST,
+            'DATABASE_NAME': settings.DATABASE_NAME,
+            'DATABASE_OPTIONS': settings.DATABASE_OPTIONS,
+            'DATABASE_PASSWORD': settings.DATABASE_PASSWORD,
+            'DATABASE_PORT': settings.DATABASE_PORT,
+            'DATABASE_USER': settings.DATABASE_USER,
+            'TIME_ZONE': settings.TIME_ZONE,
+            'OPTIONS': {},
+        })
     else:
         wrapper = base.DatabaseWrapper(**settings.DATABASE_OPTIONS)
     return wrapper
@@ -152,6 +152,7 @@ class DjangoBackendTests(object):
         store = global_zstorm.get("django")
         # Watch for register-transaction calls.
         calls = []
+
         def register_transaction(owner):
             calls.append(owner)
         store._event.hook("register-transaction", register_transaction)
@@ -164,7 +165,8 @@ class DjangoBackendTests(object):
         _transaction = transaction.get()
         resource1 = self.mocker.mock()
         self.expect(resource1.prepare).throw(AttributeError).count(0)
-        self.expect(resource1.tpc_begin(_transaction)).throw(DisconnectionError)
+        self.expect(resource1.tpc_begin(_transaction)
+                    ).throw(DisconnectionError)
         self.expect(resource1.abort(_transaction)).count(2)
         self.expect(resource1.sortKey())
         self.mocker.replay()
@@ -231,6 +233,7 @@ class DjangoBackendDisconnectionTests(DatabaseDisconnectionMixin):
         store = global_zstorm.get("django")
         # Watch for register-transaction calls.
         calls = []
+
         def register_transaction(owner):
             calls.append(owner)
         store._event.hook("register-transaction", register_transaction)
@@ -305,8 +308,9 @@ class MySQLDjangoBackendTests(DjangoBackendTests, TestHelper):
         store.execute("DROP TABLE django_test")
         transaction.commit()
 
+
 class PostgresDjangoBackendDisconnectionTests(
-    DjangoBackendDisconnectionTests, TestHelper):
+        DjangoBackendDisconnectionTests, TestHelper):
 
     environment_variable = "STORM_POSTGRES_URI"
     host_environment_variable = "STORM_POSTGRES_HOST_URI"
@@ -314,7 +318,7 @@ class PostgresDjangoBackendDisconnectionTests(
 
 
 class MySQLDjangoBackendDisconnectionTests(
-    DjangoBackendDisconnectionTests, TestHelper):
+        DjangoBackendDisconnectionTests, TestHelper):
 
     environment_variable = "STORM_MYSQL_URI"
     host_environment_variable = "STORM_MYSQL_HOST_URI"

@@ -1,6 +1,6 @@
 __all__ = [
     'has_twisted',
-    ]
+]
 
 try:
     import twisted

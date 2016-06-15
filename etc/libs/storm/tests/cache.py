@@ -42,7 +42,7 @@ class BaseCacheTest(TestHelper):
         super(BaseCacheTest, self).setUp()
         self.obj_infos = [StubObjectInfo(i) for i in range(10)]
         for i in range(len(self.obj_infos)):
-            setattr(self, "obj%d" % (i+1), self.obj_infos[i])
+            setattr(self, "obj%d" % (i + 1), self.obj_infos[i])
 
     def clear_hashed(self):
         for obj_info in self.obj_infos:
@@ -283,10 +283,10 @@ class TestGenerationalCache(BaseCacheTest):
         the first one.
         """
         cache = GenerationalCache(1)
-        cache.add(self.obj1) # new=[1]    old=[]
-        cache.add(self.obj2) # new=[2]    old=[1]
+        cache.add(self.obj1)  # new=[1]    old=[]
+        cache.add(self.obj2)  # new=[2]    old=[1]
         cache.set_size(2)    # new=[1, 2] old=[]
-        cache.add(self.obj3) # new=[3]    old=[1, 2]
+        cache.add(self.obj3)  # new=[3]    old=[1, 2]
         self.assertEqual(sorted(cache.get_cached()),
                          [self.obj1, self.obj2, self.obj3])
 
@@ -331,10 +331,10 @@ class TestGenerationalCache(BaseCacheTest):
         generation is listed only once in the cache's contents.
         """
         cache = GenerationalCache(2)
-        cache.add(self.obj1) # new=[1]    old=[]
-        cache.add(self.obj2) # new=[1, 2] old=[]
-        cache.add(self.obj3) # new=[3]    old=[1, 2]
-        cache.add(self.obj1) # new=[3, 1] old=[1, 2]
+        cache.add(self.obj1)  # new=[1]    old=[]
+        cache.add(self.obj2)  # new=[1, 2] old=[]
+        cache.add(self.obj3)  # new=[3]    old=[1, 2]
+        cache.add(self.obj1)  # new=[3, 1] old=[1, 2]
 
         self.assertEqual(sorted(cache.get_cached()),
                          [self.obj1, self.obj2, self.obj3])
@@ -345,10 +345,10 @@ class TestGenerationalCache(BaseCacheTest):
         primary and secondary generations.
         """
         cache = GenerationalCache(2)
-        cache.add(self.obj1) # new=[1]    old=[]
-        cache.add(self.obj2) # new=[1, 2] old=[]
-        cache.add(self.obj3) # new=[3]    old=[1, 2]
-        cache.add(self.obj1) # new=[3, 1] old=[1, 2]
+        cache.add(self.obj1)  # new=[1]    old=[]
+        cache.add(self.obj2)  # new=[1, 2] old=[]
+        cache.add(self.obj3)  # new=[3]    old=[1, 2]
+        cache.add(self.obj1)  # new=[3, 1] old=[1, 2]
 
         present = cache.remove(self.obj1)
         self.assertTrue(present)

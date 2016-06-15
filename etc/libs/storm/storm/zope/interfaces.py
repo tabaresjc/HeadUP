@@ -152,16 +152,16 @@ class IResultSet(Interface):
 class ISQLObjectResultSet(Interface):
 
     def __getitem__(item):
-       """List emulation."""
+        """List emulation."""
 
     def __getslice__(slice):
-       """Slice support."""
+        """Slice support."""
 
     def __iter__():
-       """List emulation."""
+        """List emulation."""
 
     def count():
-       """Return the number of items in the result set."""
+        """Return the number of items in the result set."""
 
     def __nonzero__():
         """Return C{True} if this result set contains any results.
@@ -172,7 +172,7 @@ class ISQLObjectResultSet(Interface):
         """
 
     def __contains__(item):
-       """Support C{if FooObject in Foo.select(query)}."""
+        """Support C{if FooObject in Foo.select(query)}."""
 
     def intersect(otherSelect, intersectAll=False, orderBy=None):
         """Return the intersection of this result and C{otherSelect}
@@ -186,7 +186,7 @@ class ISQLObjectResultSet(Interface):
         """Return C{True} if this result set doesn't contain any results."""
 
     def prejoin(prejoins):
-       """Return a new L{SelectResults} with the list of attributes prejoined.
+        """Return a new L{SelectResults} with the list of attributes prejoined.
 
-       @param prejoins: The list of attribute names to prejoin.
-       """
+        @param prejoins: The list of attribute names to prejoin.
+        """

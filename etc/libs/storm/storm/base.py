@@ -32,4 +32,3 @@ class Storm(object):
     specify References with strings.
     """
     __metaclass__ = PropertyPublisherMeta
-

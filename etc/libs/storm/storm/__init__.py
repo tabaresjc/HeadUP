@@ -55,4 +55,4 @@ if os.environ.get("STORM_CEXTENSIONS") != "0":
         has_cextensions = True
     except ImportError, e:
         if "cextensions" not in str(e):
-           raise
+            raise

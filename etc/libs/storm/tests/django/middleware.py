@@ -190,7 +190,8 @@ class TransactionMiddlewareTests(TestHelper):
             "django.db.transaction.set_clean")
 
         self.expect(is_managed()).result(True).count(1)
-        self.expect(resource1.tpc_begin(_transaction)).throw(DisconnectionError)
+        self.expect(resource1.tpc_begin(_transaction)
+                    ).throw(DisconnectionError)
         self.expect(resource1.abort(_transaction)).count(2)
         # None of these methods should be called
         self.expect(set_clean()).count(0)

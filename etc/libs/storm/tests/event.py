@@ -38,8 +38,10 @@ class EventTest(TestHelper):
     def test_hook_unhook_emit(self):
         called1 = []
         called2 = []
+
         def callback1(owner, arg1, arg2):
             called1.append((owner, arg1, arg2))
+
         def callback2(owner, arg1, arg2, data1, data2):
             called2.append((owner, arg1, arg2, data1, data2))
 
@@ -60,16 +62,17 @@ class EventTest(TestHelper):
         self.assertEquals(sorted(called1), [
                           (marker, 1, 2),
                           (marker, 5, 6),
-                         ])
+                          ])
         self.assertEquals(sorted(called2), [
                           (marker, 1, 2, 10, 20),
                           (marker, 3, 4, 10, 20),
                           (marker, 3, 4, 30, 40),
                           (marker, 3, 4, 30, 40),
-                         ])
+                          ])
 
     def test_unhook_by_returning_false(self):
         called = []
+
         def callback(owner):
             called.append(owner)
             return len(called) < 2
@@ -87,6 +90,7 @@ class EventTest(TestHelper):
         marker = Marker()
 
         called = []
+
         def callback(owner):
             called.append(owner)
 

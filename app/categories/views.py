@@ -22,21 +22,23 @@ class CategoriesView(FlaskView):
             page = 1
 
         limit = 5
-        categories, count = Category.pagination(page=page, limit=limit, desc=False)
+        categories, count = Category.pagination(
+            page=page, limit=limit, desc=False)
 
         pagination = Pagination(page=page,
-            per_page=limit,
-            total=count,
-            record_name=gettext('posts'),
-            alignment='right',
-            bs_version=3)
+                                per_page=limit,
+                                total=count,
+                                record_name=gettext('posts'),
+                                alignment='right',
+                                bs_version=3)
         trans = TranferCatForm()
         return render_template('admin/categories/index.html',
-            title=gettext('Categories | %(page)s', page=page),
-            form=form,
-            categories=categories,
-            pagination=pagination,
-            trans=trans)
+                               title=gettext(
+                                   'Categories | %(page)s', page=page),
+                               form=form,
+                               categories=categories,
+                               pagination=pagination,
+                               trans=trans)
 
     @route('/transfer', methods=['POST'])
     def transfer_post(self):
@@ -48,7 +50,7 @@ class CategoriesView(FlaskView):
             if cat_from and cat_to:
                 Category.transfer_posts(cat_from, cat_to)
                 flash(gettext('The posts were transfered from %(from_name)s to %(to_name)s',
-                    from_name=cat_from.name, to_name=cat_to.name))
+                              from_name=cat_from.name, to_name=cat_to.name))
             else:
                 flash(gettext('Either category was not found'), 'error')
         else:
@@ -72,10 +74,11 @@ class CategoriesView(FlaskView):
                 except:
                     flash(gettext('Error while creating the category'), 'error')
             else:
-                flash(gettext('Invalid submission, please check the message below'), 'error')
+                flash(
+                    gettext('Invalid submission, please check the message below'), 'error')
         return render_template('admin/categories/add.html',
-            title=gettext('Create Category'),
-            form=form)
+                               title=gettext('Create Category'),
+                               form=form)
 
     @route('/<int:id>', methods=['PUT'])
     @route('/edit/<int:id>', methods=['GET', 'POST'])
@@ -101,13 +104,15 @@ class CategoriesView(FlaskView):
                 if request.is_xhr:
                     return util.redirect_json_or_html(url_for('CategoriesView:index'), 'category', gettext('Invalid submission, please check the message below'))
                 else:
-                    flash(gettext('Invalid submission, please check the message below'), 'error')
+                    flash(
+                        gettext('Invalid submission, please check the message below'), 'error')
         else:
             form = NewCategoryForm(category)
         return render_template('admin/categories/edit.html',
-            title=gettext('Edit Category: %(name)s', name=category.name),
-            form=form,
-            category=category)
+                               title=gettext(
+                                   'Edit Category: %(name)s', name=category.name),
+                               form=form,
+                               category=category)
 
     @route('/<int:id>', methods=['DELETE'])
     @route('/remove/<int:id>', methods=['POST'])
@@ -122,15 +127,15 @@ class CategoriesView(FlaskView):
         try:
             if not Category.transfer_posts(category):
                 return util.redirect_json_or_html(url_for('CategoriesView:index'),
-                    'category',
-                    gettext('Sorry, the last category can not be removed'))
+                                                  'category',
+                                                  gettext('Sorry, the last category can not be removed'))
 
             name = category.name
             Category.delete(category.id)
             flash(gettext('The category "%(name)s" was removed', name=name))
         except:
             return util.redirect_json_or_html(url_for('CategoriesView:index'),
-                'category',
-                gettext('Error while removing the category'))
+                                              'category',
+                                              gettext('Error while removing the category'))
 
         return util.redirect_json_or_html(url_for('CategoriesView:index'), 'category')

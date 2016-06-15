@@ -190,7 +190,7 @@ class Reference(object):
             try:
                 remote = get_obj_info(remote).get_obj()
             except ClassInfoError:
-                pass # It might fail when remote is a tuple or a raw value.
+                pass  # It might fail when remote is a tuple or a raw value.
             self._relation.link(local, remote, True)
 
     def _build_relation(self):
@@ -237,7 +237,7 @@ class ReferenceSet(object):
             return self
 
         #store = Store.of(local)
-        #if store is None:
+        # if store is None:
         #    return None
 
         if self._relation2 is None:
@@ -406,6 +406,7 @@ class Proxy(ComparableExpr):
         when it's first used. It avoids having a test at every single
         place where the attribute is touched.
         """
+
         def __get__(self, obj, cls=None):
             resolver = PropertyResolver(obj, obj._cls)
             obj._remote_prop = resolver.resolve_one(obj._unresolved_prop)
@@ -432,6 +433,7 @@ class Proxy(ComparableExpr):
     @property
     def variable_factory(self):
         return self._remote_prop.variable_factory
+
 
 @compile.when(Proxy)
 def compile_proxy(compile, proxy, state):
@@ -641,7 +643,7 @@ class Relation(object):
                                       remote_info)
                 local_info.event.hook("flushed", self._break_on_local_flushed,
                                       remote_info)
-                #local_info.event.hook("removed", self._break_on_local_removed,
+                # local_info.event.hook("removed", self._break_on_local_removed,
                 #                      remote_info)
                 remote_info.event.hook("removed", self._break_on_remote_removed,
                                        weakref.ref(local_info))
@@ -664,7 +666,7 @@ class Relation(object):
                                        local_info)
                 remote_info.event.hook("flushed", self._break_on_remote_flushed,
                                        local_info)
-                #local_info.event.hook("removed", self._break_on_remote_removed,
+                # local_info.event.hook("removed", self._break_on_remote_removed,
                 #                      local_info)
 
                 local_info.event.hook("changed", self._break_on_local_diverged,
@@ -887,7 +889,7 @@ class Relation(object):
         except KeyError:
             map = {}
             for local_prop, _remote_column in zip(self.local_key,
-                                                   self.remote_key):
+                                                  self.remote_key):
                 map[_remote_column] = local_prop.__get__(None, local_cls)
             return self._r_to_l.setdefault(local_cls, map).get(remote_column)
 
@@ -942,6 +944,7 @@ def _find_descriptor_class(used_cls, descr):
             if _descr is descr:
                 return cls
     raise RuntimeError("Reference used in an unknown class")
+
 
 def _find_descriptor_obj(used_cls, descr):
     for cls in used_cls.__mro__:

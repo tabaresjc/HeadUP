@@ -26,6 +26,7 @@ import weakref
 
 __all__ = ['make_app']
 
+
 def make_app(app):
     """Capture the per-request timeline object needed for storm tracing.
 
@@ -46,6 +47,7 @@ def make_app(app):
     TimelineTracer.
     """
     timeline_map = threading.local()
+
     def wrapper(environ, start_response):
         timeline = environ.get('timeline.timeline')
         timeline_map.timeline = None

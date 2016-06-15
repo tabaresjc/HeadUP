@@ -33,4 +33,3 @@ def store(_context, name, uri):
     _context.action(discriminator=("store", name),
                     callable=set_default_uri,
                     args=(name, uri))
-

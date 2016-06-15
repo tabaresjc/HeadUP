@@ -15,7 +15,7 @@ import gc
 
 
 if sys.version_info < (2, 4):
-    from sets import Set as set # pragma: nocover
+    from sets import Set as set  # pragma: nocover
 
 
 __all__ = ["Mocker", "expect", "IS", "CONTAINS", "IN", "MATCH",
@@ -104,11 +104,11 @@ class MockerTestCase(unittest.TestCase):
                     raise
                 else:
                     if (self.mocker.is_recording() and
-                        self.mocker.get_events()):
+                            self.mocker.get_events()):
                         raise RuntimeError("Mocker must be put in replay "
                                            "mode with self.mocker.replay()")
                     if (hasattr(result, "addCallback") and
-                        hasattr(result, "addErrback")):
+                            hasattr(result, "addErrback")):
                         def verify(result):
                             self.mocker.verify()
                             return result
@@ -129,6 +129,7 @@ class MockerTestCase(unittest.TestCase):
         # which might mean that cleanup wouldn't happen.  With that in mind,
         # we make integration easier by using the following trick.
         run_method = self.run
+
         def run_wrapper(*args, **kwargs):
             try:
                 return run_method(*args, **kwargs)
@@ -206,7 +207,8 @@ class MockerTestCase(unittest.TestCase):
     def failUnlessIs(self, first, second, msg=None):
         """Assert that C{first} is the same object as C{second}."""
         if first is not second:
-            raise self.failureException(msg or "%r is not %r" % (first, second))
+            raise self.failureException(
+                msg or "%r is not %r" % (first, second))
 
     def failIfIs(self, first, second, msg=None):
         """Assert that C{first} is not the same object as C{second}."""
@@ -216,7 +218,8 @@ class MockerTestCase(unittest.TestCase):
     def failUnlessIn(self, first, second, msg=None):
         """Assert that C{first} is contained in C{second}."""
         if first not in second:
-            raise self.failureException(msg or "%r not in %r" % (first, second))
+            raise self.failureException(
+                msg or "%r not in %r" % (first, second))
 
     def failUnlessStartsWith(self, first, second, msg=None):
         """Assert that C{first} starts with C{second}."""
@@ -232,13 +235,13 @@ class MockerTestCase(unittest.TestCase):
 
     def failUnlessEndsWith(self, first, second, msg=None):
         """Assert that C{first} starts with C{second}."""
-        if first[len(first)-len(second):] != second:
+        if first[len(first) - len(second):] != second:
             raise self.failureException(msg or "%r doesn't end with %r" %
                                                (first, second))
 
     def failIfEndsWith(self, first, second, msg=None):
         """Assert that C{first} doesn't start with C{second}."""
-        if first[len(first)-len(second):] == second:
+        if first[len(first) - len(second):] == second:
             raise self.failureException(msg or "%r ends with %r" %
                                                (first, second))
 
@@ -281,17 +284,16 @@ class MockerTestCase(unittest.TestCase):
             second_method = second_methods.get(name)
             if second_method is None:
                 if name[:1] == "_":
-                    continue # First may have its own private methods.
+                    continue  # First may have its own private methods.
                 raise self.failureException("%s.%s%s not present in %s" %
-                    (first.__name__, name, first_formatted, second.__name__))
+                                            (first.__name__, name, first_formatted, second.__name__))
 
             second_argspec = inspect.getargspec(second_method)
             if first_argspec != second_argspec:
                 second_formatted = inspect.formatargspec(*second_argspec)
                 raise self.failureException("%s.%s%s != %s.%s%s" %
-                    (first.__name__, name, first_formatted,
-                     second.__name__, name, second_formatted))
-
+                                            (first.__name__, name, first_formatted,
+                                             second.__name__, name, second_formatted))
 
     assertIs = failUnlessIs
     assertIsNot = failIfIs
@@ -387,6 +389,7 @@ class MockerBase(object):
     on = expect
 
     class __metaclass__(type):
+
         def __init__(self, name, bases, dict):
             # Make independent lists on each subclass, inheriting from parent.
             self._recorders = list(getattr(self, "_recorders", ()))
@@ -528,7 +531,7 @@ class MockerBase(object):
     def proxy(self, object, spec=True, type=True, name=None, count=True,
               passthrough=True):
         """Return a new mock object which proxies to the given object.
- 
+
         Proxies are useful when only part of the behavior of an object
         is to be mocked.  Unknown expressions may be passed through to
         the real implementation implicitly (if the C{passthrough} argument
@@ -689,7 +692,7 @@ class MockerBase(object):
             # instead of the actual event because we want a stable sort
             # (ordering between 2 events is undefined).
             events = self._events
-            order = [(events[i].satisfied()*2 + events[i].has_run(), i)
+            order = [(events[i].satisfied() * 2 + events[i].has_run(), i)
                      for i in range(len(events))]
             order.sort()
             postponed = None
@@ -744,7 +747,7 @@ class MockerBase(object):
 
     def result(self, value):
         """Make the last recorded event return the given value on replay.
-        
+
         @param value: Object to be returned when the event is replayed.
         """
         self.call(lambda *args, **kwargs: value)
@@ -802,7 +805,7 @@ class MockerBase(object):
 
     def unorder(self):
         """Disable the ordered mode.
-        
+
         See the L{order()} method for more information.
         """
         self._ordering = False
@@ -1032,7 +1035,7 @@ class Mock(object):
         except MatchError, exception:
             root_mock = path.root_mock
             if (path.root_object is not None and
-                root_mock.__mocker_passthrough__):
+                    root_mock.__mocker_passthrough__):
                 return path.execute(path.root_object)
             # Reinstantiate to show raise statement on traceback, and
             # also to make the traceback shown shorter.
@@ -1112,7 +1115,7 @@ class Mock(object):
 def find_object_name(obj, depth=0):
     """Try to detect how the object is named on a previous scope."""
     try:
-        frame = sys._getframe(depth+1)
+        frame = sys._getframe(depth + 1)
     except:
         return None
     for name, frame_obj in frame.f_locals.iteritems():
@@ -1216,7 +1219,7 @@ class Path(object):
             return None
         return self.actions[-1].path
     parent_path = property(parent_path)
- 
+
     def __add__(self, action):
         """Return a new path which includes the given action at the end."""
         return self.__class__(self.root_mock, self.root_object,
@@ -1224,13 +1227,13 @@ class Path(object):
 
     def __eq__(self, other):
         """Verify if the two paths are equal.
-        
+
         Two paths are equal if they refer to the same mock object, and
         have the actions with equal kind, args and kwargs.
         """
         if (self.root_mock is not other.root_mock or
-            self.root_object is not other.root_object or
-            len(self.actions) != len(other.actions)):
+                self.root_object is not other.root_object or
+                len(self.actions) != len(other.actions)):
             return False
         for action, other_action in zip(self.actions, other.actions):
             if action != other_action:
@@ -1239,12 +1242,12 @@ class Path(object):
 
     def matches(self, other):
         """Verify if the two paths are equivalent.
-        
+
         Two paths are equal if they refer to the same mock object, and
         have the same actions performed on them.
         """
         if (self.root_mock is not other.root_mock or
-            len(self.actions) != len(other.actions)):
+                len(self.actions) != len(other.actions)):
             return False
         for action, other_action in zip(self.actions, other.actions):
             if not action.matches(other_action):
@@ -1265,7 +1268,8 @@ class Path(object):
             if action.kind == "getattr":
                 result = "%s.%s" % (result, action.args[0])
             elif action.kind == "setattr":
-                result = "%s.%s = %r" % (result, action.args[0], action.args[1])
+                result = "%s.%s = %r" % (
+                    result, action.args[0], action.args[1])
             elif action.kind == "delattr":
                 result = "del %s.%s" % (result, action.args[0])
             elif action.kind == "call":
@@ -1431,14 +1435,14 @@ def match_params(args1, kwargs1, args2, kwargs2):
     args2l = len(args2)
     if args1[0] is ARGS:
         args1 = args1[1:]
-        array = [0]*args2l
+        array = [0] * args2l
     else:
-        array = [1]*args2l
+        array = [1] * args2l
     for i in range(len(args1)):
         last = array[0]
         if args1[i] is ARGS:
             for j in range(1, args2l):
-                last, array[j] = array[j], min(array[j-1], array[j], last)
+                last, array[j] = array[j], min(array[j - 1], array[j], last)
         else:
             array[0] = i or int(args1[i] != args2[0])
             for j in range(1, args2l):
@@ -1659,6 +1663,7 @@ class PathMatcher(Task):
     def matches(self, path):
         return self.path.matches(path)
 
+
 def path_matcher_recorder(mocker, event):
     event.add_task(PathMatcher(event.path))
 
@@ -1704,12 +1709,14 @@ class ImplicitRunCounter(RunCounter):
     implicit ones.
     """
 
+
 def run_counter_recorder(mocker, event):
     """Any event may be repeated once, unless disabled by default."""
     if event.path.root_mock.__mocker_count__:
         event.add_task(ImplicitRunCounter(1))
 
 Mocker.add_recorder(run_counter_recorder)
+
 
 def run_counter_removal_recorder(mocker, event):
     """
@@ -1720,7 +1727,7 @@ def run_counter_removal_recorder(mocker, event):
     parent_path = event.path.parent_path
     for event in mocker.get_events()[::-1]:
         if (event.path is parent_path and
-            event.path.actions[-1].kind == "getattr"):
+                event.path.actions[-1].kind == "getattr"):
             for task in event.get_tasks():
                 if type(task) is ImplicitRunCounter:
                     event.remove_task(task)
@@ -1736,6 +1743,7 @@ class MockReturner(Task):
 
     def run(self, path):
         return Mock(self.mocker, path)
+
 
 def mock_returner_recorder(mocker, event):
     """Events that lead to other events must return mock objects."""
@@ -1792,7 +1800,7 @@ class Orderer(Task):
 
     def __init__(self, path):
         self.path = path
-        self._run = False 
+        self._run = False
         self._dependencies = []
 
     def replay(self):
@@ -1864,7 +1872,7 @@ class SpecChecker(Task):
         if not self._method:
             raise AssertionError("Method not found in real specification")
         if self._unsupported:
-            return # Can't check it. Happens with builtin functions. :-(
+            return  # Can't check it. Happens with builtin functions. :-(
         action = path.actions[-1]
         obtained_len = len(action.args)
         obtained_kwargs = action.kwargs.copy()
@@ -1873,13 +1881,14 @@ class SpecChecker(Task):
             if i < obtained_len and name in action.kwargs:
                 self._raise("%r provided twice" % name)
             if (i >= obtained_len and i < nodefaults_len and
-                name not in action.kwargs):
+                    name not in action.kwargs):
                 self._raise("%r not provided" % name)
             obtained_kwargs.pop(name, None)
         if obtained_len > len(self._args) and not self._varargs:
             self._raise("too many args provided")
         if obtained_kwargs and not self._varkwargs:
             self._raise("unknown kwargs: %s" % ", ".join(obtained_kwargs))
+
 
 def spec_checker_recorder(mocker, event):
     spec = event.path.root_mock.__mocker_spec__
@@ -1919,7 +1928,7 @@ def global_replace(remove, install):
     """Replace object 'remove' with object 'install' on all dictionaries."""
     for referrer in gc.get_referrers(remove):
         if (type(referrer) is dict and
-            referrer.get("__mocker_replace__", True)):
+                referrer.get("__mocker_replace__", True)):
             for key, value in referrer.items():
                 if value is remove:
                     referrer[key] = install
@@ -1937,7 +1946,7 @@ class Patcher(Task):
 
     def __init__(self):
         super(Patcher, self).__init__()
-        self._monitored = {} # {kind: {id(object): object}}
+        self._monitored = {}  # {kind: {id(object): object}}
         self._patched = {}
 
     def is_monitoring(self, obj, kind):
@@ -2044,6 +2053,7 @@ class PatchedMethod(object):
         object = obj or cls
         if not self._is_monitoring(object, self._kind):
             return self._unpatched.__get__(obj, cls)
+
         def method(*args, **kwargs):
             if self._kind == "getattr" and args[0].startswith("__mocker_"):
                 return self._unpatched.__get__(obj, cls)(args[0])

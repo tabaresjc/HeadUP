@@ -20,7 +20,7 @@ class Category(db.Model, ModelBase):
     modified_at = db.Column(db.DateTime, default=datetime.datetime.utcnow)
 
     def __repr__(self):
-      return '<Category %s>' % (self.id)
+        return '<Category %s>' % (self.id)
 
     @property
     def description(self):
@@ -31,41 +31,43 @@ class Category(db.Model, ModelBase):
         return self.set_attribute('description', value)
 
     def can_edit(self):
-      return current_user and current_user.is_admin()
+        return current_user and current_user.is_admin()
 
     @classmethod
     def get_list(cls):
-      return [(g.id, g.name) for g in cls.query.all()]
+        return [(g.id, g.name) for g in cls.query.all()]
 
     @classmethod
     def transfer_posts(cls, from_category, to_category=None):
-      from app.posts.models import Post
-      result, count = cls.pagination(limit=1, desc=False)
-      if count <= 1:
-        return False
-      if not to_category:
-        to_category = result.one()
+        from app.posts.models import Post
+        result, count = cls.pagination(limit=1, desc=False)
+        if count <= 1:
+            return False
+        if not to_category:
+            to_category = result.one()
 
-      Post.query.filter_by(category_id=from_category.id).update(dict(category_id=to_category.id))
+        Post.query.filter_by(category_id=from_category.id).update(
+            dict(category_id=to_category.id))
 
-      db.session.commit()
-      return True
+        db.session.commit()
+        return True
 
     @classmethod
     def get_by_cat_slug(cls, cat, slug):
-      category = cls.query.filter_by(slug=cat).one_or_none()
-      if not category:
-          return None
-      return category.posts
+        category = cls.query.filter_by(slug=cat).one_or_none()
+        if not category:
+            return None
+        return category.posts
 
     @classmethod
     def get_by_cat(cls, cat):
-      return cls.query.filter_by(slug=cat).one_or_none()
+        return cls.query.filter_by(slug=cat).one_or_none()
 
     @classmethod
     def get_posts_by_cat(cls, cat, limit=10, page=1, desc=True):
-      category = cls.query.filter_by(slug=cat).one_or_none()
-      if not category:
-          return None, None
-      posts = category.posts.order_by(db.text('id DESC')).limit(limit).offset((page - 1) * limit)
-      return posts, category
+        category = cls.query.filter_by(slug=cat).one_or_none()
+        if not category:
+            return None, None
+        posts = category.posts.order_by(db.text('id DESC')).limit(
+            limit).offset((page - 1) * limit)
+        return posts, category

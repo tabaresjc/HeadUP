@@ -340,7 +340,8 @@ class DatabaseTest(object):
                                     "WHERE id=10")
                 connection2.commit()
             except OperationalError, e:
-                self.assertEquals(str(e), "database is locked") # SQLite blocks
+                # SQLite blocks
+                self.assertEquals(str(e), "database is locked")
             result = connection1.execute("SELECT title FROM test WHERE id=10")
             self.assertEquals(result.get_one(), ("Title 10",))
         finally:
@@ -353,6 +354,7 @@ class DatabaseTest(object):
     def test_execute_sends_event(self):
         event = EventSystem(marker)
         calls = []
+
         def register_transaction(owner):
             calls.append(owner)
         event.hook("register-transaction", register_transaction)
@@ -363,7 +365,7 @@ class DatabaseTest(object):
         self.assertEqual(calls[0], marker)
 
     def from_database(self, row):
-        return [int(item)+1 for item in row]
+        return [int(item) + 1 for item in row]
 
     def test_wb_result_get_one_goes_through_from_database(self):
         result = self.connection.execute("SELECT one, two FROM number")
@@ -625,7 +627,7 @@ class UnsupportedDatabaseTest(object):
 
         # Copy the real module over to a new place, since the old one is
         # already using the real module, if it's available.
-        db_module = __import__("storm.databases."+self.db_module_name,
+        db_module = __import__("storm.databases." + self.db_module_name,
                                None, None, [""])
         db_module_filename = db_module.__file__
         if db_module_filename.endswith(".pyc"):

@@ -84,20 +84,20 @@ class SQLObjectStyle(object):
         return self._under_to_mixed(column_name)
 
     def pythonClassToDBTable(self, class_name):
-        return class_name[0].lower()+self._mixed_to_under(class_name[1:])
+        return class_name[0].lower() + self._mixed_to_under(class_name[1:])
 
     def dbTableToPythonClass(self, table_name):
-        return table_name[0].upper()+self._under_to_mixed(table_name[1:])
+        return table_name[0].upper() + self._under_to_mixed(table_name[1:])
 
     def pythonClassToDBTableReference(self, class_name):
         return self.tableReference(self.pythonClassToDBTable(class_name))
 
     def tableReference(self, table_name):
-        return table_name+"_id"
+        return table_name + "_id"
 
     def _mixed_to_under(self, name, _re=re.compile("[A-Z]+")):
         if name.endswith("ID"):
-            return self._mixed_to_under(name[:-2]+"_id")
+            return self._mixed_to_under(name[:-2] + "_id")
         name = _re.sub(self._mixed_to_under_sub, name)
         if name.startswith("_"):
             return name[1:]
@@ -192,6 +192,7 @@ class SQLObjectMeta(PropertyPublisherMeta):
                 def define_add_remove(dict, prop):
                     capitalised_name = (prop._otherClass[0].capitalize() +
                                         prop._otherClass[1:])
+
                     def add(self, obj):
                         prop._get_bound_reference_set(self).add(obj)
                     add.__name__ = "add" + capitalised_name
@@ -202,7 +203,6 @@ class SQLObjectMeta(PropertyPublisherMeta):
                     remove.__name__ = "remove" + capitalised_name
                     dict.setdefault(remove.__name__, remove)
                 define_add_remove(dict, prop)
-
 
         id_type = dict.setdefault("_idType", int)
         id_cls = {int: Int, str: RawStr, unicode: AutoUnicode}[id_type]
@@ -526,7 +526,7 @@ class SQLObjectResultSet(object):
     def __getitem__(self, index):
         if isinstance(index, slice):
             if index.start and index.start < 0 or (
-                index.stop and index.stop < 0):
+                    index.stop and index.stop < 0):
                 L = list(self)
                 if len(L) > 100:
                     warnings.warn('Negative indices when slicing are slow: '
@@ -620,6 +620,7 @@ def detuplelize(item):
         return item[0]
     return item
 
+
 def join_aliased_relation(local_cls, remote_cls, relation):
     """Build a join expression between local_cls and remote_cls.
 
@@ -634,7 +635,6 @@ def join_aliased_relation(local_cls, remote_cls, relation):
     local_key = tuple(Column(column.name, local_cls)
                       for column in relation.local_key)
     return compare_columns(local_key, remote_key)
-
 
 
 class PropertyAdapter(object):
@@ -680,8 +680,10 @@ class AutoUnicodeVariable(Variable):
 
     def parse_set(self, value, from_db):
         if not isinstance(value, basestring):
-            raise TypeError("Expected basestring, found %s" % repr(type(value)))
+            raise TypeError("Expected basestring, found %s" %
+                            repr(type(value)))
         return unicode(value)
+
 
 class AutoUnicode(SimpleProperty):
     variable_class = AutoUnicodeVariable
@@ -690,20 +692,26 @@ class AutoUnicode(SimpleProperty):
 class StringCol(PropertyAdapter, AutoUnicode):
     pass
 
+
 class IntCol(PropertyAdapter, Int):
     pass
+
 
 class BoolCol(PropertyAdapter, Bool):
     pass
 
+
 class FloatCol(PropertyAdapter, Float):
     pass
+
 
 class UtcDateTimeCol(PropertyAdapter, DateTime):
     _kwargs = {"tzinfo": tzutc()}
 
+
 class DateCol(PropertyAdapter, Date):
     pass
+
 
 class IntervalCol(PropertyAdapter, TimeDelta):
     pass
@@ -765,4 +773,4 @@ class CONTAINSSTRING(Like):
         string = string.replace("!", "!!") \
                        .replace("_", "!_") \
                        .replace("%", "!%")
-        Like.__init__(self, expr, "%"+string+"%", SQLRaw("'!'"))
+        Like.__init__(self, expr, "%" + string + "%", SQLRaw("'!'"))

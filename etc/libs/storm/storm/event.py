@@ -50,7 +50,7 @@ class EventSystem(object):
             callbacks = self._hooks.get(name)
             if callbacks:
                 for callback, data in tuple(callbacks):
-                    if callback(owner, *(args+data)) is False:
+                    if callback(owner, *(args + data)) is False:
                         callbacks.discard((callback, data))
 
 

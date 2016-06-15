@@ -72,11 +72,11 @@ class VariableTest(TestHelper):
         self.assertEquals(variable.sets, [(marker, True)])
 
     def test_constructor_value_factory(self):
-        variable = CustomVariable(value_factory=lambda:marker)
+        variable = CustomVariable(value_factory=lambda: marker)
         self.assertEquals(variable.sets, [(marker, False)])
 
     def test_constructor_value_factory_from_db(self):
-        variable = CustomVariable(value_factory=lambda:marker, from_db=True)
+        variable = CustomVariable(value_factory=lambda: marker, from_db=True)
         self.assertEquals(variable.sets, [(marker, True)])
 
     def test_constructor_column(self):
@@ -158,6 +158,7 @@ class VariableTest(TestHelper):
 
     def test_set_with_validator(self):
         args = []
+
         def validator(obj, attr, value):
             args.append((obj, attr, value))
             return value
@@ -167,6 +168,7 @@ class VariableTest(TestHelper):
 
     def test_set_with_validator_and_validator_arguments(self):
         args = []
+
         def validator(obj, attr, value):
             args.append((obj, attr, value))
             return value
@@ -178,6 +180,7 @@ class VariableTest(TestHelper):
 
     def test_set_with_validator_raising_error(self):
         args = []
+
         def validator(obj, attr, value):
             args.append((obj, attr, value))
             raise ZeroDivisionError()
@@ -188,6 +191,7 @@ class VariableTest(TestHelper):
 
     def test_set_with_validator_changing_value(self):
         args = []
+
         def validator(obj, attr, value):
             args.append((obj, attr, value))
             return 42
@@ -198,6 +202,7 @@ class VariableTest(TestHelper):
 
     def test_set_from_db_wont_call_validator(self):
         args = []
+
         def validator(obj, attr, value):
             args.append((obj, attr, value))
             return 42
@@ -210,6 +215,7 @@ class VariableTest(TestHelper):
         event = EventSystem(marker)
 
         changed_values = []
+
         def changed(owner, variable, old_value, new_value, fromdb):
             changed_values.append((owner, variable,
                                    old_value, new_value, fromdb))
@@ -226,18 +232,18 @@ class VariableTest(TestHelper):
         variable.delete()
 
         self.assertEquals(changed_values[0],
-          (marker, variable, Undef, "value1", False))
+                          (marker, variable, Undef, "value1", False))
         self.assertEquals(changed_values[1],
-          (marker, variable, ("g", ("s", "value1")), "value2", False))
+                          (marker, variable, ("g", ("s", "value1")), "value2", False))
         self.assertEquals(changed_values[2],
-          (marker, variable, ("g", ("s", "value2")), ("g", ("s", "value3")),
-           True))
+                          (marker, variable, ("g", ("s", "value2")), ("g", ("s", "value3")),
+                           True))
         self.assertEquals(changed_values[3],
-          (marker, variable, ("g", ("s", "value3")), None, True))
+                          (marker, variable, ("g", ("s", "value3")), None, True))
         self.assertEquals(changed_values[4],
-          (marker, variable, None, "value4", False))
+                          (marker, variable, None, "value4", False))
         self.assertEquals(changed_values[5],
-          (marker, variable, ("g", ("s", "value4")), Undef, False))
+                          (marker, variable, ("g", ("s", "value4")), Undef, False))
         self.assertEquals(len(changed_values), 6)
 
     def test_get_state(self):
@@ -298,10 +304,9 @@ class VariableTest(TestHelper):
         event = EventSystem(marker)
 
         resolve_values = []
+
         def resolve(owner, variable, value):
             resolve_values.append((owner, variable, value))
-
-
 
         lazy_value = LazyValue()
         variable = CustomVariable(lazy_value, event=event)
@@ -317,6 +322,7 @@ class VariableTest(TestHelper):
         event = EventSystem(marker)
 
         changed_values = []
+
         def changed(owner, variable, old_value, new_value, fromdb):
             changed_values.append((owner, variable,
                                    old_value, new_value, fromdb))
@@ -349,6 +355,7 @@ class VariableTest(TestHelper):
         event = EventSystem(marker)
 
         resolve_called = []
+
         def resolve(owner, variable, value):
             resolve_called.append(True)
 
@@ -725,13 +732,13 @@ class ParseIntervalTest(TestHelper):
         self.check("0:01:00", timedelta(0, 60))
 
     def test_twelve_minutes(self):
-        self.check("0:12:00", timedelta(0, 12*60))
+        self.check("0:12:00", timedelta(0, 12 * 60))
 
     def test_one_hour(self):
-        self.check("1:00:00", timedelta(0, 60*60))
+        self.check("1:00:00", timedelta(0, 60 * 60))
 
     def test_twelve_hours(self):
-        self.check("12:00:00", timedelta(0, 12*60*60))
+        self.check("12:00:00", timedelta(0, 12 * 60 * 60))
 
     def test_one_day(self):
         self.check("1 day, 0:00:00", timedelta(1))
@@ -741,7 +748,7 @@ class ParseIntervalTest(TestHelper):
 
     def test_twelve_twelve_twelve_twelve_twelve(self):
         self.check("12 days, 12:12:12.120000",
-                   timedelta(12, 12*60*60 + 12*60 + 12, 120000))
+                   timedelta(12, 12 * 60 * 60 + 12 * 60 + 12, 120000))
 
     def test_minus_twelve_centiseconds(self):
         self.check("-1 day, 23:59:59.880000", timedelta(0, 0, -120000))
@@ -860,6 +867,7 @@ class EncodedValueVariableTestMixin(object):
         variable = self.variable_type(event=event, value_factory=list)
 
         changes = []
+
         def changed(owner, variable, old_value, new_value, fromdb):
             changes.append((variable, old_value, new_value, fromdb))
 
@@ -959,6 +967,7 @@ class ListVariableTest(TestHelper):
                                 value_factory=list)
 
         changes = []
+
         def changed(owner, variable, old_value, new_value, fromdb):
             changes.append((variable, old_value, new_value, fromdb))
 

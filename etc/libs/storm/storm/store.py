@@ -73,13 +73,13 @@ class Store(object):
         self._connection = database.connect(self._event)
         self._alive = WeakValueDictionary()
         self._dirty = {}
-        self._order = {} # (info, info) = count
+        self._order = {}  # (info, info) = count
         if cache is None:
             self._cache = Cache()
         else:
             self._cache = cache
         self._implicit_flush_block_count = 0
-        self._sequence = 0 # Advisory ordering.
+        self._sequence = 0  # Advisory ordering.
 
     def get_database(self):
         """Return this Store's Database object."""
@@ -383,7 +383,6 @@ class Store(object):
         # to test it without whitebox.
         self._order.clear()
 
-
     def _mark_autoreload(self, obj=None, invalidate=False):
         if obj is None:
             obj_infos = self._iter_alive()
@@ -491,9 +490,9 @@ class Store(object):
                 for i, obj_info in enumerate(sorted_dirty):
                     for before_info in predecessors.get(obj_info, ()):
                         if before_info in self._dirty:
-                            break # A predecessor is still dirty.
+                            break  # A predecessor is still dirty.
                     else:
-                        break # Found an item without dirty predecessors.
+                        break  # Found an item without dirty predecessors.
                 else:
                     raise OrderLoopError("Can't flush due to ordering loop")
                 del sorted_dirty[i]
@@ -601,7 +600,7 @@ class Store(object):
                     lazy_value = variable.get_lazy()
                     if isinstance(lazy_value, Expr):
                         if id(column) in cls_info.primary_key_idx:
-                            select_variables.append(variable) # See below.
+                            select_variables.append(variable)  # See below.
                             changes[column] = variable
                         else:
                             changes[column] = lazy_value
@@ -645,7 +644,7 @@ class Store(object):
                 idx = primary_key_idx.get(id(column))
                 if idx is not None:
                     if (cached_primary_vars is not None
-                        and variable.get_lazy() is AutoReload):
+                            and variable.get_lazy() is AutoReload):
                         # For auto-reloading a primary key, just
                         # get the value out of the cache.
                         variable.set(cached_primary_vars[idx].get())
@@ -786,7 +785,6 @@ class Store(object):
 
             variable.checkpoint()
 
-
     def _is_dirty(self, obj_info):
         return obj_info in self._dirty
 
@@ -800,7 +798,6 @@ class Store(object):
 
     def _iter_dirty(self):
         return self._dirty
-
 
     def _add_to_alive(self, obj_info):
         """Add an object to the set of known in-memory objects.
@@ -871,7 +868,6 @@ class Store(object):
                     # This will raise LostObjectError if the object is gone.
                     self._validate_alive(obj_info)
                 self._set_dirty(obj_info)
-
 
     def _enable_lazy_resolving(self, obj_info):
         obj_info.event.hook("resolve-lazy-value", self._resolve_lazy_value)
@@ -974,9 +970,9 @@ class ResultSet(object):
         if self._select is not Undef:
             if self._order_by is not Undef:
                 self._select.order_by = self._order_by
-            if self._limit is not Undef: # XXX UNTESTED!
+            if self._limit is not Undef:  # XXX UNTESTED!
                 self._select.limit = self._limit
-            if self._offset is not Undef: # XXX UNTESTED!
+            if self._offset is not Undef:  # XXX UNTESTED!
                 self._select.offset = self._offset
             return self._select
         columns, default_tables = self._find_spec.get_columns_and_tables()
@@ -1234,7 +1230,7 @@ class ResultSet(object):
                                " GROUP BY clause ")
         columns, default_tables = self._find_spec.get_columns_and_tables()
         if (self._select is Undef and not self._distinct and
-            self._offset is Undef and self._limit is Undef):
+                self._offset is Undef and self._limit is Undef):
             select = Select(aggregate_func(expr), self._where,
                             self._tables, default_tables)
         else:
@@ -1439,11 +1435,11 @@ class ResultSet(object):
         for obj_info in self._store._iter_alive():
             try:
                 if (obj_info.cls_info is self._find_spec.default_cls_info and
-                    (match is None or match(get_column))):
+                        (match is None or match(get_column))):
                     objects.append(self._store._get_object(obj_info))
             except LostObjectError:
-                pass # This may happen when resolving lazy values
-                     # in get_column().
+                pass  # This may happen when resolving lazy values
+                # in get_column().
         return objects
 
     def find(self, *args, **kwargs):
@@ -1712,7 +1708,7 @@ class FindSpec(object):
         if len(self._cls_spec_info) != len(find_spec._cls_spec_info):
             return False
         for (is_expr1, info1), (is_expr2, info2) in zip(
-            self._cls_spec_info, find_spec._cls_spec_info):
+                self._cls_spec_info, find_spec._cls_spec_info):
             if is_expr1 != is_expr2:
                 return False
             if info1 is not info2:
@@ -1754,7 +1750,7 @@ class FindSpec(object):
         for (is_expr, info), value in zip(self._cls_spec_info, item):
             if is_expr:
                 if not isinstance(value, (Expr, Variable)) and (
-                    value is not None):
+                        value is not None):
                     value = getattr(info, "variable_factory", Variable)(
                         value=value)
                 columns.append(info)
@@ -1793,7 +1789,7 @@ def replace_columns(expr, columns):
         # The ORDER BY clause might refer to columns we have replaced.
         # Luckily we can ignore it if there is no limit/offset.
         if expr.order_by is not Undef and (
-            expr.limit is not Undef or expr.offset is not Undef):
+                expr.limit is not Undef or expr.offset is not Undef):
             raise FeatureError(
                 "__contains__() does not yet support set "
                 "expressions that combine ORDER BY with "

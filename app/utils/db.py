@@ -27,9 +27,9 @@ class ModelBase(object):
     @classmethod
     def create(cls, **kwargs):
         instance = cls(**kwargs)
-        if hasattr(instance,'created_at'):
+        if hasattr(instance, 'created_at'):
             setattr(instance, 'created_at', datetime.datetime.utcnow())
-        if hasattr(instance,'modified_at'):
+        if hasattr(instance, 'modified_at'):
             setattr(instance, 'modified_at', datetime.datetime.utcnow())
         return instance
 
@@ -41,7 +41,7 @@ class ModelBase(object):
     def save(self, commit=True):
         db.session.add(self)
         if commit:
-            if hasattr(self,'modified_at'):
+            if hasattr(self, 'modified_at'):
                 setattr(self, 'modified_at', datetime.datetime.utcnow())
             db.session.commit()
         return self
@@ -58,13 +58,14 @@ class ModelBase(object):
         return db.session.query(cls).count()
 
     @classmethod
-    def pagination(cls, limit = 10, page = 1, orderby = 'id', desc = True):
+    def pagination(cls, limit=10, page=1, orderby='id', desc=True):
         query = cls.query
         count = query.count()
         records = []
         if count:
             sort_by = '%s %s' % (orderby, 'DESC' if desc else 'ASC')
-            records = query.order_by(db.text(sort_by)).limit(limit).offset((page - 1) * limit)
+            records = query.order_by(db.text(sort_by)).limit(
+                limit).offset((page - 1) * limit)
         return records, count
 
 

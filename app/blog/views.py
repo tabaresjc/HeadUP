@@ -16,11 +16,11 @@ def index(page=1):
     limit = 5
     posts, total = Post.pagination(limit=limit, page=page)
     return render_template("blog/index.html",
-        title=gettext('Home'),
-        posts=posts,
-        page=page,
-        limit=limit,
-        total=total)
+                           title=gettext('Home'),
+                           posts=posts,
+                           page=page,
+                           limit=limit,
+                           total=total)
 
 
 @app.route('/stamp/<int:post_id>')
@@ -29,8 +29,9 @@ def show_stamp(post_id):
     if post is None:
         abort(404)
     return render_template("blog/stamp/detail.html",
-        title=gettext('Stamp | %(title)s', title=post.title),
-        post=post)
+                           title=gettext('Stamp | %(title)s',
+                                         title=post.title),
+                           post=post)
 
 
 @app.route('/stamp/create', defaults={'post_id': None}, methods=['GET', 'POST'])
@@ -67,9 +68,9 @@ def create_stamp(post_id):
     else:
         form = NewPostForm(post) if post_id else PostForm()
     return render_template("blog/stamp/form.html",
-        form=form,
-        post=post,
-        post_id=post_id)
+                           form=form,
+                           post=post,
+                           post_id=post_id)
 
 
 @app.route('/post/<int:id>', methods=['GET'])
@@ -83,9 +84,9 @@ def show_post(id):
         abort(404)
 
     return render_template("blog/post-detail.html",
-        title=gettext('Post | %(title)s', title=post.title),
-        post=post,
-        form=None)
+                           title=gettext('Post | %(title)s', title=post.title),
+                           post=post,
+                           form=None)
 
 
 @app.route('/category/<string:cat>', defaults={'page': 1})
@@ -97,12 +98,12 @@ def show_category(cat, page=1):
     total = category.posts.count()
 
     return render_template("blog/index.html",
-        title=category.name,
-        posts=posts,
-        page=page,
-        limit=limit,
-        total=total,
-        category=category)
+                           title=category.name,
+                           posts=posts,
+                           page=page,
+                           limit=limit,
+                           total=total,
+                           category=category)
 
 
 @app.route('/search', methods=['GET', 'POST'])
@@ -119,7 +120,8 @@ def search_post():
     if request.method == 'POST':
         if form.validate_on_submit():
             try:
-                posts, count = Search.search_post(form.searchtext.data, limit=limit, page=page)
+                posts, count = Search.search_post(
+                    form.searchtext.data, limit=limit, page=page)
                 session['search_query'] = form.searchtext.data
             except:
                 flash(gettext('Error while searching, please retry later'), 'error')
@@ -129,19 +131,20 @@ def search_post():
         if 'search_query' in session:
             form.searchtext.data = session['search_query']
             try:
-                posts, count = Search.search_post(form.searchtext.data, limit=limit, page=page)
+                posts, count = Search.search_post(
+                    form.searchtext.data, limit=limit, page=page)
             except:
                 flash(gettext('Error while searching, please retry later'), 'error')
 
     pagination = Pagination(page=page,
-        per_page=limit,
-        total=count,
-        record_name=gettext('posts'),
-        alignment='right',
-        bs_version=3)
+                            per_page=limit,
+                            total=count,
+                            record_name=gettext('posts'),
+                            alignment='right',
+                            bs_version=3)
 
     return render_template("blog/post-search.html",
-        title=gettext('Search'),
-        form=form,
-        posts=posts,
-        pagination=pagination)
+                           title=gettext('Search'),
+                           form=form,
+                           posts=posts,
+                           pagination=pagination)

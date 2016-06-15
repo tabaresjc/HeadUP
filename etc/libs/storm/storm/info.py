@@ -115,7 +115,7 @@ class ClassInfo(dict):
         # columns have __eq__ implementations that do things we don't want - we
         # want to look these up in a dict and use identity semantics
         id_positions = dict((id(column), i)
-                             for i, column in enumerate(self.columns))
+                            for i, column in enumerate(self.columns))
 
         self.primary_key_idx = dict((id(column), i)
                                     for i, column in

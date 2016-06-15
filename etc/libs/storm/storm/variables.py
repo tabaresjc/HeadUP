@@ -226,7 +226,7 @@ class Variable(object):
         old_value = self._value
         self._value = new_value
         if (self.event is not None and
-            (self._lazy_value is not Undef or new_value != old_value)):
+                (self._lazy_value is not Undef or new_value != old_value)):
             if old_value is not None and old_value is not Undef:
                 old_value = self.parse_get(old_value, False)
             self.event.emit("changed", self, old_value, value, from_db)
@@ -361,7 +361,7 @@ class DecimalVariable(Variable):
     @staticmethod
     def parse_set(value, from_db):
         if (from_db and isinstance(value, basestring) or
-            isinstance(value, (int, long))):
+                isinstance(value, (int, long))):
             value = Decimal(value)
         elif not isinstance(value, Decimal):
             raise TypeError("Expected Decimal, found %r: %r"
@@ -566,7 +566,7 @@ class MutableValueVariable(Variable):
 
     def _detect_changes(self, obj_info):
         if (self._checkpoint_state is not Undef and
-            self.get_state() != self._checkpoint_state):
+                self.get_state() != self._checkpoint_state):
             self.event.emit("changed", self, None, self._value, False)
 
     def _detect_changes_and_stop(self, obj_info):
@@ -698,6 +698,7 @@ def _parse_time(time_str):
         return int(hour), int(minute), second, microsecond
     return int(hour), int(minute), int(second), 0
 
+
 def _parse_date(date_str):
     if "-" not in date_str:
         raise ValueError("Unknown date format: %r" % date_str)
@@ -714,7 +715,7 @@ def _parse_interval_table():
         ("s sec second seconds", lambda x: timedelta(seconds=x)),
         ("ms millisecond milliseconds", lambda x: timedelta(milliseconds=x)),
         ("microsecond microseconds", lambda x: timedelta(microseconds=x))
-        ):
+    ):
         for unit in units.split():
             table[unit] = delta
     return table
@@ -725,6 +726,7 @@ _parse_interval_re = re.compile(r"[\s,]*"
                                 r"([-+]?(?:\d\d?:\d\d?(?::\d\d?)?(?:\.\d+)?"
                                 r"|\d+(?:\.\d+)?))"
                                 r"[\s,]*")
+
 
 def _parse_interval(interval):
     result = timedelta(0)

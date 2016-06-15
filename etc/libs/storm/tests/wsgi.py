@@ -5,6 +5,7 @@ import time
 
 from storm.wsgi import make_app
 
+
 class TestMakeApp(TestCase):
 
     def stub_app(self, environ, start_response):
@@ -28,7 +29,7 @@ class TestMakeApp(TestCase):
         # In a request, with no timeline object in the environ, find_timeline
         # returns None:
         app, find_timeline = make_app(self.stub_app)
-        self.in_request = lambda:self.assertEqual(None, find_timeline())
+        self.in_request = lambda: self.assertEqual(None, find_timeline())
         self.calls = []
         list(app({}, self.stub_start_response))
         # And we definitely got into the call:
@@ -38,27 +39,27 @@ class TestMakeApp(TestCase):
         # If a timeline object is known, find_timeline finds it:
         app, find_timeline = make_app(self.stub_app)
         timeline = FakeTimeline()
-        self.in_request = lambda:self.assertEqual(timeline, find_timeline())
+        self.in_request = lambda: self.assertEqual(timeline, find_timeline())
         list(app({'timeline.timeline': timeline}, self.stub_start_response))
 
     def test_find_timeline_set_in_environ_during_generator(self):
         # If a timeline object is known, find_timeline finds it:
         app, find_timeline = make_app(self.stub_app)
         timeline = FakeTimeline()
-        self.in_generator = lambda:self.assertEqual(timeline, find_timeline())
+        self.in_generator = lambda: self.assertEqual(timeline, find_timeline())
         list(app({'timeline.timeline': timeline}, self.stub_start_response))
 
     def test_timeline_is_replaced_in_subsequent_request(self):
         app, find_timeline = make_app(self.stub_app)
         timeline = FakeTimeline()
-        self.in_request = lambda:self.assertEqual(timeline, find_timeline())
+        self.in_request = lambda: self.assertEqual(timeline, find_timeline())
         list(app({'timeline.timeline': timeline}, self.stub_start_response))
 
         # Having left the request, the timeline is left behind...
         self.assertEqual(timeline, find_timeline())
         # ... but only until the next request comes through.
         timeline2 = FakeTimeline()
-        self.in_request = lambda:self.assertEqual(timeline2, find_timeline())
+        self.in_request = lambda: self.assertEqual(timeline2, find_timeline())
         list(app({'timeline.timeline': timeline2}, self.stub_start_response))
 
     def test_lookups_are_threaded(self):
@@ -68,8 +69,10 @@ class TestMakeApp(TestCase):
         errors = Queue.Queue()
         sync = threading.Condition()
         waiting = []
+
         def check_timeline():
             timeline = FakeTimeline()
+
             def start_response(status, headers):
                 # Block on the condition, so all test threads are in
                 # start_response when the test resumes.

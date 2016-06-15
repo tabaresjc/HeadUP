@@ -34,7 +34,7 @@ from tests.helper import TestHelper, MakePath
 class SQLiteMemoryTest(DatabaseTest, TestHelper):
 
     helpers = [MakePath]
-    
+
     def get_path(self):
         return ""
 
@@ -62,8 +62,8 @@ class SQLiteMemoryTest(DatabaseTest, TestHelper):
         self.assertEquals(database._filename, ":memory:")
 
     def test_concurrent_behavior(self):
-        pass # We can't connect to the in-memory database twice, so we can't
-             # exercise the concurrency behavior (nor it makes sense).
+        pass  # We can't connect to the in-memory database twice, so we can't
+        # exercise the concurrency behavior (nor it makes sense).
 
     def test_synchronous(self):
         synchronous_values = {"OFF": 0, "NORMAL": 1, "FULL": 2}
@@ -116,13 +116,13 @@ class SQLiteFileTest(SQLiteMemoryTest):
             connection2.execute("INSERT INTO test VALUES (2)")
         except OperationalError, exception:
             self.assertEquals(str(exception), "database is locked")
-            self.assertTrue(time.time()-started >= 0.3)
+            self.assertTrue(time.time() - started >= 0.3)
         else:
             self.fail("OperationalError not raised")
 
     def test_commit_timeout(self):
         """Regression test for commit observing the timeout.
-        
+
         In 0.10, the timeout wasn't observed for connection.commit().
 
         """
@@ -145,13 +145,13 @@ class SQLiteFileTest(SQLiteMemoryTest):
             self.assertEquals(str(exception), "database is locked")
             # In 0.10, the next assertion failed because the timeout wasn't
             # enforced for the "COMMIT" statement.
-            self.assertTrue(time.time()-started >= 0.3)
+            self.assertTrue(time.time() - started >= 0.3)
         else:
             self.fail("OperationalError not raised")
 
     def test_recover_after_timeout(self):
         """Regression test for recovering from database locked exception.
-        
+
         In 0.10, connection.commit() would forget that a transaction was in
         progress if an exception was raised, such as an OperationalError due to
         another connection being open.  As a result, a subsequent modification
@@ -232,7 +232,8 @@ class SQLiteFileTest(SQLiteMemoryTest):
             self.assertEquals(result,
                               foreign_keys_values[value])
 
+
 class SQLiteUnsupportedTest(UnsupportedDatabaseTest, TestHelper):
- 
+
     dbapi_module_names = ["pysqlite2", "sqlite3"]
     db_module_name = "sqlite"

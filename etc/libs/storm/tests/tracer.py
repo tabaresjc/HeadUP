@@ -102,6 +102,7 @@ class TracerTest(TestHelper):
         stash = []
 
         class Tracer(object):
+
             def m1(_, *args, **kwargs):
                 stash.extend(["m1", args, kwargs])
 
@@ -454,6 +455,7 @@ class StubConnection(Connection):
 class BaseStatementTracerTest(TestCase):
 
     class LoggingBaseStatementTracer(BaseStatementTracer):
+
         def _expanded_raw_execute(self, connection, raw_cursor, statement):
             self.__dict__.setdefault('calls', []).append(
                 (connection, raw_cursor, statement))

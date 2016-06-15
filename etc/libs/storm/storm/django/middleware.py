@@ -40,6 +40,7 @@ class ZopeTransactionMiddleware(object):
     If this is enabled, a Zope transaction will be run to cover each
     request.
     """
+
     def __init__(self):
         self.commit_safe_methods = getattr(
             settings, 'STORM_COMMIT_SAFE_METHODS', True)
@@ -73,7 +74,7 @@ class ZopeTransactionMiddleware(object):
         # be in managed transaction mode.
         if django_transaction.is_managed():
             if self.commit_safe_methods or (
-                request.method not in ['HEAD', 'GET']):
+                    request.method not in ['HEAD', 'GET']):
                 try:
                     transaction.commit()
                 except Exception:

@@ -4,10 +4,13 @@ import sys
 
 END = -1
 
+
 class UnbalancedError(Exception):
     pass
 
+
 class OpenTag:
+
     def __init__(self, tag, rest=''):
         self.tag = tag
         self.rest = rest
@@ -15,14 +18,19 @@ class OpenTag:
     def as_string(self):
         return '<' + self.tag + self.rest + '>'
 
+
 class CloseTag(OpenTag):
+
     def as_string(self):
         return '</' + self.tag + '>'
+
 
 class SelfClosingTag(OpenTag):
     pass
 
+
 class Tokenizer:
+
     def __init__(self, input):
         self.input = input
         self.counter = 0  # points at the next unconsumed character of the input
@@ -104,7 +112,8 @@ def html_truncate(str, target_len=200, ellipsis='...'):
     the string was truncated."""
     stack = []   # open tags are pushed on here, then popped when the matching close tag is found
     retval = []  # string to be returned
-    length = 0   # number of characters (not counting markup) placed in retval so far
+    # number of characters (not counting markup) placed in retval so far
+    length = 0
     tokens = Tokenizer(str)
     tok = tokens.next_token()
     while tok != END:
@@ -113,20 +122,20 @@ def html_truncate(str, target_len=200, ellipsis='...'):
             break
         if tok.__class__.__name__ == 'OpenTag':
             stack.append(tok)
-            retval.append( tok.as_string() )
+            retval.append(tok.as_string())
         elif tok.__class__.__name__ == 'CloseTag':
             if stack[-1].tag == tok.tag:
                 stack.pop()
-                retval.append( tok.as_string() )
+                retval.append(tok.as_string())
             else:
-                raise UnbalancedError( tok.as_string() )
+                raise UnbalancedError(tok.as_string())
         elif tok.__class__.__name__ == 'SelfClosingTag':
-            retval.append( tok.as_string() )
+            retval.append(tok.as_string())
         else:
             retval.append(tok)
             length += 1
         tok = tokens.next_token()
     while len(stack) > 0:
-        tok = CloseTag( stack.pop().tag )
-        retval.append( tok.as_string() )
+        tok = CloseTag(stack.pop().tag)
+        retval.append(tok.as_string())
     return ''.join(retval)

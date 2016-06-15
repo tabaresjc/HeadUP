@@ -84,7 +84,7 @@ class TimeoutTracer(object):
         last_remaining_time = getattr(connection,
                                       "_timeout_tracer_remaining_time", 0)
         if (remaining_time > last_remaining_time or
-            last_remaining_time - remaining_time >= self.granularity):
+                last_remaining_time - remaining_time >= self.granularity):
             self.set_statement_timeout(raw_cursor, remaining_time)
             connection._timeout_tracer_remaining_time = remaining_time
 
@@ -178,7 +178,7 @@ class BaseStatementTracer(object):
             except TypeError:
                 statement_to_log = \
                     "Unformattable query: %r with params %r." % (
-                    statement, query_params)
+                        statement, query_params)
         self._expanded_raw_execute(connection, raw_cursor, statement_to_log)
 
     def _expanded_raw_execute(self, connection, raw_cursor, statement):

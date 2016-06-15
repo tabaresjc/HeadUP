@@ -347,6 +347,7 @@ class ZStormTest(TestHelper):
         store = self.zstorm.get("name", "sqlite:")
 
         failures = []
+
         def f():
             # We perform this twice to show that ZStormError is raised
             # consistently (i.e. not just the first time).
@@ -396,4 +397,3 @@ class ZStormUtilityTest(TestHelper):
     def test_utility(self):
         provideUtility(ZStorm())
         self.assertTrue(isinstance(getUtility(IZStorm), ZStorm))
-

@@ -27,17 +27,22 @@ class StormError(Exception):
 class CompileError(StormError):
     pass
 
+
 class NoTableError(CompileError):
     pass
+
 
 class ExprError(StormError):
     pass
 
+
 class NoneError(StormError):
     pass
 
+
 class PropertyPathError(StormError):
     pass
+
 
 class ClassInfoError(StormError):
     pass
@@ -50,8 +55,10 @@ class URIError(StormError):
 class ClosedError(StormError):
     pass
 
+
 class FeatureError(StormError):
     pass
+
 
 class DatabaseModuleError(StormError):
     pass
@@ -60,23 +67,30 @@ class DatabaseModuleError(StormError):
 class StoreError(StormError):
     pass
 
+
 class NoStoreError(StormError):
     pass
+
 
 class WrongStoreError(StoreError):
     pass
 
+
 class NotFlushedError(StoreError):
     pass
+
 
 class OrderLoopError(StoreError):
     pass
 
+
 class NotOneError(StoreError):
     pass
 
+
 class UnorderedError(StoreError):
     pass
+
 
 class LostObjectError(StoreError):
     pass
@@ -85,29 +99,38 @@ class LostObjectError(StoreError):
 class Error(StormError):
     pass
 
+
 class Warning(StormError):
     pass
+
 
 class InterfaceError(Error):
     pass
 
+
 class DatabaseError(Error):
     pass
+
 
 class InternalError(DatabaseError):
     pass
 
+
 class OperationalError(DatabaseError):
     pass
+
 
 class ProgrammingError(DatabaseError):
     pass
 
+
 class IntegrityError(DatabaseError):
     pass
 
+
 class DataError(DatabaseError):
     pass
+
 
 class NotSupportedError(DatabaseError):
     pass
@@ -126,7 +149,7 @@ class TimeoutError(StormError):
         self.message = message
 
     def __str__(self):
-	return ', '.join(
+        return ', '.join(
             [repr(element) for element in
              (self.message, self.statement, self.params)
              if element is not None])

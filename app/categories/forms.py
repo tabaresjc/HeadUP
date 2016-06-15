@@ -15,6 +15,7 @@ class CategoryForm(Form):
 
 
 class NewCategoryForm(CategoryForm):
+
     def __init__(self, category, *args, **kwargs):
         Form.__init__(self, *args, **kwargs)
         self.name.data = category.name
@@ -23,8 +24,10 @@ class NewCategoryForm(CategoryForm):
 
 
 class TranferCatForm(Form):
-    from_id = SelectField(lazy_gettext('From'), coerce=int, description=lazy_gettext('From'))
-    to_id = SelectField(lazy_gettext('To'), coerce=int, description=lazy_gettext('To'))
+    from_id = SelectField(lazy_gettext('From'), coerce=int,
+                          description=lazy_gettext('From'))
+    to_id = SelectField(lazy_gettext('To'), coerce=int,
+                        description=lazy_gettext('To'))
 
     def __init__(self, *args, **kwargs):
         Form.__init__(self, *args, **kwargs)
@@ -38,7 +41,8 @@ class TranferCatForm(Form):
             valid = False
 
         if self.from_id.data == self.to_id.data:
-            self.to_id.errors.append(gettext('Please select a different category'))
+            self.to_id.errors.append(
+                gettext('Please select a different category'))
             valid = False
 
         return valid

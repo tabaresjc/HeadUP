@@ -24,7 +24,7 @@ __all__ = [
     'has_fixtures',
     'has_psycopg',
     'has_subunit',
-    ]
+]
 
 import doctest
 import os
@@ -73,10 +73,10 @@ def find_tests(testpaths=()):
     for root, dirnames, filenames in os.walk(testdir):
         for filename in filenames:
             filepath = os.path.join(root, filename)
-            relpath = filepath[len(topdir)+1:]
+            relpath = filepath[len(topdir) + 1:]
 
             if (filename == "__init__.py" or filename.endswith(".pyc") or
-                relpath == os.path.join("tests", "conftest.py")):
+                    relpath == os.path.join("tests", "conftest.py")):
                 # Skip non-tests.
                 continue
 
@@ -108,9 +108,9 @@ def find_tests(testpaths=()):
                         os.path.sep, ".")
                     parent_module = __import__(parent_path, None, None, [""])
                     suite.addTest(doctest.DocFileSuite(
-                            os.path.basename(relpath),
-                            module_relative=True,
-                            package=parent_module,
-                            optionflags=doctest.ELLIPSIS))
+                        os.path.basename(relpath),
+                        module_relative=True,
+                        package=parent_module,
+                        optionflags=doctest.ELLIPSIS))
 
     return suite

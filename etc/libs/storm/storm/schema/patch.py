@@ -125,9 +125,9 @@ class PatchApplier(object):
             type, value, traceback = sys.exc_info()
             patch_repr = getattr(module, "__file__", version)
             raise BadPatchError, \
-                  "Patch %s failed: %s: %s" % \
-                      (patch_repr, type.__name__, str(value)), \
-                      traceback
+                "Patch %s failed: %s: %s" % \
+                (patch_repr, type.__name__, str(value)), \
+                traceback
         self._committer.commit()
 
     def apply_all(self):

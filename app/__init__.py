@@ -17,23 +17,24 @@ import os
 
 app = Flask(__name__)
 if os.environ.get('HEROKU') is None:
-  app.debug = True
+    app.debug = True
 
-#--------------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 # Load the app's configuration
-#--------------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 app.config.from_object('config')
 
-#--------------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 # Load the CSRF Protection
-#--------------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 csrf = CsrfProtect()
 csrf.init_app(app)
 
-#--------------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 # Load the Babel extension for Internationalization
-#--------------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 babel = Babel(app)
+
 
 @babel.localeselector
 def get_locale():
@@ -41,61 +42,66 @@ def get_locale():
         return current_user.lang
     return flask.request.accept_languages.best_match(LANGUAGES.keys())
 
+
 @babel.timezoneselector
 def get_timezone():
     if current_user and current_user.is_authenticated:
         return current_user.timezone
     return "Asia/Tokyo"
 
-#--------------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 # Database Configuration
-#--------------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 db = SQLAlchemy(app)
 
-#--------------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 # Load the session controller
-#--------------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 login_manager = LoginManager()
 login_manager.init_app(app)
 # add our view as the login view to finish configuring the LoginManager
 login_manager.login_view = "sessions.login"
-login_manager.login_message = lazy_gettext('Please log in to access this page.')
+login_manager.login_message = lazy_gettext(
+    'Please log in to access this page.')
 
-#--------------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 # Register Views
-#--------------------------------------------------------------------------------
-import blog.views
-import admin.views
+# -------------------------------------------------------------------------
+import blog.views  # noqa
+import admin.views  # noqa
 
 # register the sessions module blueprint
-from app.sessions.views import mod as sessionsModule
+from app.sessions.views import mod as sessionsModule  # noqa
 app.register_blueprint(sessionsModule, url_prefix='/members')
 
-# # register the Category module
-from app.categories.views import CategoriesView
+# register the Category module
+from app.categories.views import CategoriesView  # noqa
 CategoriesView.register(app)
 
 # register the Post module
-from app.posts.views import PostsView
+from app.posts.views import PostsView  # noqa
 PostsView.register(app)
 
 # register the User module
-from app.users.views import UsersView
+from app.users.views import UsersView  # noqa
 UsersView.register(app)
 
-#--------------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 # Register the filters
-#--------------------------------------------------------------------------------
-from utils import init_jinja_filters
+# -------------------------------------------------------------------------
+from utils import init_jinja_filters  # noqa
 init_jinja_filters(app)
 
-#--------------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 # Application's event handlers
-#--------------------------------------------------------------------------------
+# -------------------------------------------------------------------------
+
+
 @app.after_request
 def after_request_handler(response=None):
-  # close_db_connection()
-  return response
+    # close_db_connection()
+    return response
+
 
 @app.before_request
 def before_request(response=None):
@@ -104,17 +110,21 @@ def before_request(response=None):
     #         flask.session.pop('redirect_to', None)
     return response
 
+
 @app.errorhandler(401)
 def internal_error_401(error):
     return flask.render_template('admin/401.html', title='Error %s' % error), 401
+
 
 @app.errorhandler(403)
 def internal_error_403(error):
     return flask.render_template('admin/403.html', title='Error %s' % error), 403
 
+
 @app.errorhandler(404)
 def internal_error_404(error):
     return flask.render_template('admin/404.html', title='Error %s' % error), 404
+
 
 @app.errorhandler(500)
 def internal_error_500(error):

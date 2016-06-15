@@ -13,9 +13,11 @@ import datetime
 
 mod = Blueprint('sessions', __name__)
 
+
 @login_manager.user_loader
 def load_user(userid):
     return User.get_by_id(userid)
+
 
 @login_manager.unauthorized_handler
 def unauthorized():
@@ -23,7 +25,8 @@ def unauthorized():
     flash(gettext('You need to sign in or sign up before continuing.'), 'error')
     return redirect(url_for('sessions.login'))
 
-@mod.route('/login', methods = ['GET', 'POST'])
+
+@mod.route('/login', methods=['GET', 'POST'])
 def login():
     if current_user.is_authenticated:
         flash(gettext('You are already signed in.'))
@@ -51,15 +54,18 @@ def login():
             flash(gettext('Invalid email or password'), 'error')
 
     return render_template('admin/signin.html',
-        title = gettext('Sign In'),
-        form = form)
+                           title=gettext('Sign In'),
+                           form=form)
+
 
 @mod.route('/login/comment/<int:id>')
 def login_comment(id):
-    session['redirect_to'] = '%s#%s' % (url_for('show_post', id=id), "create-comment")
+    session['redirect_to'] = '%s#%s' % (
+        url_for('show_post', id=id), "create-comment")
     return redirect(url_for('sessions.login'))
 
-@mod.route('/logout', methods = ['POST', 'DELETE'])
+
+@mod.route('/logout', methods=['POST', 'DELETE'])
 @login_required
 def logout():
     form = Form()
@@ -74,7 +80,8 @@ def logout():
 
     return redirect(url_for('index'))
 
-@mod.route('/signup', methods = ['GET', 'POST'])
+
+@mod.route('/signup', methods=['GET', 'POST'])
 def signup():
     if current_user.is_authenticated:
         flash(gettext('You are already signed in.'))
@@ -83,7 +90,7 @@ def signup():
     form = SignUpForm()
     if form.validate_on_submit():
         try:
-            ## Create user from the form
+            # Create user from the form
             user = User.create()
 
             form.populate_obj(user)
@@ -92,7 +99,7 @@ def signup():
             user.last_login = datetime.datetime.utcnow()
             ## Store in database
             user.save()
-            ## Login User
+            # Login User
             login_user(user)
             flash(gettext('Welcome! You have signed up successfully.'))
             return redirect(url_for('index'))
@@ -100,5 +107,5 @@ def signup():
             flash(gettext('Error while saving the new user, please retry later'), 'error')
 
     return render_template('admin/signup.html',
-        title = gettext('Sign Up'),
-        form = form)
+                           title=gettext('Sign Up'),
+                           form=form)

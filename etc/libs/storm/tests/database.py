@@ -155,9 +155,9 @@ class ConnectionTest(TestHelper):
         self.assertEquals(self.executed, [("something", marker)])
 
     def test_execute_params(self):
-        result = self.connection.execute("something", (1,2,3))
+        result = self.connection.execute("something", (1, 2, 3))
         self.assertTrue(isinstance(result, Result))
-        self.assertEquals(self.executed, [("something", (1,2,3))])
+        self.assertEquals(self.executed, [("something", (1, 2, 3))])
 
     def test_execute_noresult(self):
         result = self.connection.execute("something", noresult=True)
@@ -173,7 +173,7 @@ class ConnectionTest(TestHelper):
 
         # TODO: Unsupported for now.
         #result = connection.execute("$$?$$ ? $asd$'?$asd$ ? '?'")
-        #self.assertEquals(self.executed,
+        # self.assertEquals(self.executed,
         #                  [("'?' %s '?' %s '?'", marker),
         #                   ("$$?$$ %s $asd'?$asd$ %s '?'", marker)])
 
@@ -333,13 +333,13 @@ class ConnectionTest(TestHelper):
         refs_before = len(gc.get_referrers(self.raw_connection))
         self.connection.close()
         refs_after = len(gc.get_referrers(self.raw_connection))
-        self.assertEquals(refs_after, refs_before-1)
+        self.assertEquals(refs_after, refs_before - 1)
 
     def test_del_deallocates_raw_connection(self):
         refs_before = len(gc.get_referrers(self.raw_connection))
         self.connection.__del__()
         refs_after = len(gc.get_referrers(self.raw_connection))
-        self.assertEquals(refs_after, refs_before-1)
+        self.assertEquals(refs_after, refs_before - 1)
 
     def test_wb_del_with_previously_deallocated_connection(self):
         self.connection._raw_connection = None
@@ -352,7 +352,9 @@ class ConnectionTest(TestHelper):
 
     def test_wb_ensure_connected_noop(self):
         """Check that _ensure_connected() is a no-op for STATE_CONNECTED."""
-        self.assertEqual(self.connection._state, storm.database.STATE_CONNECTED)
+        self.assertEqual(self.connection._state,
+                         storm.database.STATE_CONNECTED)
+
         def connect():
             raise DatabaseError("_ensure_connected() tried to connect")
         self.database.raw_connect = connect
@@ -378,6 +380,7 @@ class ConnectionTest(TestHelper):
         """Check that the connection is flagged on reconnect failures."""
         self.connection._state = storm.database.STATE_RECONNECT
         self.connection._raw_connection = None
+
         def _fail_to_connect():
             raise DatabaseError("could not connect")
         self.database.raw_connect = _fail_to_connect
@@ -399,6 +402,7 @@ class ConnectionTest(TestHelper):
         self.assertEqual(self.connection._state,
                          storm.database.STATE_CONNECTED)
         # Error is converted to DisconnectionError:
+
         def raise_exception():
             raise FakeException
         self.assertRaises(DisconnectionError,
@@ -419,6 +423,7 @@ class ConnectionTest(TestHelper):
         self.assertEqual(self.connection._state,
                          storm.database.STATE_CONNECTED)
         # Error is converted to DisconnectionError:
+
         def raise_exception():
             raise FakeException
         # Exception passes through as normal.
@@ -487,13 +492,13 @@ class ResultTest(TestHelper):
         refs_before = len(gc.get_referrers(self.raw_cursor))
         self.result.close()
         refs_after = len(gc.get_referrers(self.raw_cursor))
-        self.assertEquals(refs_after, refs_before-1)
+        self.assertEquals(refs_after, refs_before - 1)
 
     def test_del_deallocates_raw_cursor(self):
         refs_before = len(gc.get_referrers(self.raw_cursor))
         self.result.__del__()
         refs_after = len(gc.get_referrers(self.raw_cursor))
-        self.assertEquals(refs_after, refs_before-1)
+        self.assertEquals(refs_after, refs_before - 1)
 
     def test_wb_del_with_previously_deallocated_cursor(self):
         self.result._raw_cursor = None
@@ -519,6 +524,7 @@ class CreateDatabaseTest(TestHelper):
         TestHelper.setUp(self)
         self.db_module = new.module("db_module")
         self.uri = None
+
         def create_from_uri(uri):
             self.uri = uri
             return "RESULT"

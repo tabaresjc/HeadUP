@@ -23,7 +23,7 @@ __all__ = [
     'has_zope_component',
     'has_zope_security',
     'has_testresources',
-    ]
+]
 
 try:
     import transaction

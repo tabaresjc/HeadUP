@@ -50,7 +50,7 @@ setup(
     # warning) by distutils.
     include_package_data=True,
     zip_safe=False,
-    test_suite = "tests.find_tests",
+    test_suite="tests.find_tests",
     tests_require=[
         # Versions based on Lucid, where packaged.
         "django >= 1.1.1",
@@ -71,5 +71,5 @@ setup(
         # zope.interface is installed via a package but zope.component is not.
         "zope.component < 3.11.0",
         "zope.security >= 3.7.2",
-        ],
-    )
+    ],
+)

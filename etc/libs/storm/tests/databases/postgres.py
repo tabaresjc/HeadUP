@@ -194,7 +194,7 @@ class PostgresTest(DatabaseTest, TestHelper):
                                 "(id SERIAL PRIMARY KEY, a INT[])")
 
         variable = ListVariable(IntVariable)
-        variable.set([1,2,3,4])
+        variable.set([1, 2, 3, 4])
 
         state = State()
         statement = compile(variable, state)
@@ -210,7 +210,7 @@ class PostgresTest(DatabaseTest, TestHelper):
 
         variable = ListVariable(IntVariable)
         result.set_variable(variable, array)
-        self.assertEquals(variable.get(), [1,2,3,4])
+        self.assertEquals(variable.get(), [1, 2, 3, 4])
 
     def test_array_support_with_empty(self):
         try:
@@ -250,7 +250,7 @@ class PostgresTest(DatabaseTest, TestHelper):
         column = SQLRaw("1")
         Alias.auto_counter = 0
         alias = Alias(column, "id")
-        expr = Union(Select(alias), Select(column), order_by=alias+1,
+        expr = Union(Select(alias), Select(column), order_by=alias + 1,
                      limit=1, offset=1, all=True)
 
         state = State()
@@ -267,9 +267,9 @@ class PostgresTest(DatabaseTest, TestHelper):
     def test_expressions_in_union_in_union_order_by(self):
         column = SQLRaw("1")
         alias = Alias(column, "id")
-        expr = Union(Select(alias), Select(column), order_by=alias+1,
+        expr = Union(Select(alias), Select(column), order_by=alias + 1,
                      limit=1, offset=1, all=True)
-        expr = Union(expr, expr, order_by=alias+1, all=True)
+        expr = Union(expr, expr, order_by=alias + 1, all=True)
         result = self.connection.execute(expr)
         self.assertEquals(result.get_all(), [(1,), (1,)])
 
@@ -280,7 +280,7 @@ class PostgresTest(DatabaseTest, TestHelper):
         value2 = self.connection.execute(expr2).get_one()[0]
         value3 = self.connection.execute(expr1).get_one()[0]
         self.assertEquals(value1, value2)
-        self.assertEquals(value3-value1, 1)
+        self.assertEquals(value3 - value1, 1)
 
     def test_like_case(self):
         expr = Like("name", "value")
@@ -296,35 +296,41 @@ class PostgresTest(DatabaseTest, TestHelper):
     def test_case_default_like(self):
 
         like = Like(SQLRaw("description"), u"%hullah%")
-        expr = Select(SQLRaw("id"), like, tables=["like_case_insensitive_test"])
+        expr = Select(SQLRaw("id"), like, tables=[
+                      "like_case_insensitive_test"])
         result = self.connection.execute(expr)
         self.assertEquals(result.get_all(), [(1,)])
 
         like = Like(SQLRaw("description"), u"%HULLAH%")
-        expr = Select(SQLRaw("id"), like, tables=["like_case_insensitive_test"])
+        expr = Select(SQLRaw("id"), like, tables=[
+                      "like_case_insensitive_test"])
         result = self.connection.execute(expr)
         self.assertEquals(result.get_all(), [(2,)])
 
     def test_case_sensitive_like(self):
 
         like = Like(SQLRaw("description"), u"%hullah%", case_sensitive=True)
-        expr = Select(SQLRaw("id"), like, tables=["like_case_insensitive_test"])
+        expr = Select(SQLRaw("id"), like, tables=[
+                      "like_case_insensitive_test"])
         result = self.connection.execute(expr)
         self.assertEquals(result.get_all(), [(1,)])
 
         like = Like(SQLRaw("description"), u"%HULLAH%", case_sensitive=True)
-        expr = Select(SQLRaw("id"), like, tables=["like_case_insensitive_test"])
+        expr = Select(SQLRaw("id"), like, tables=[
+                      "like_case_insensitive_test"])
         result = self.connection.execute(expr)
         self.assertEquals(result.get_all(), [(2,)])
 
     def test_case_insensitive_like(self):
 
         like = Like(SQLRaw("description"), u"%hullah%", case_sensitive=False)
-        expr = Select(SQLRaw("id"), like, tables=["like_case_insensitive_test"])
+        expr = Select(SQLRaw("id"), like, tables=[
+                      "like_case_insensitive_test"])
         result = self.connection.execute(expr)
         self.assertEquals(result.get_all(), [(1,), (2,)])
         like = Like(SQLRaw("description"), u"%HULLAH%", case_sensitive=False)
-        expr = Select(SQLRaw("id"), like, tables=["like_case_insensitive_test"])
+        expr = Select(SQLRaw("id"), like, tables=[
+                      "like_case_insensitive_test"])
         result = self.connection.execute(expr)
         self.assertEquals(result.get_all(), [(1,), (2,)])
 
@@ -412,14 +418,14 @@ class PostgresTest(DatabaseTest, TestHelper):
 
     def test_execute_insert_returning(self):
         if self.database._version < 80200:
-            return # Can't run this test with old PostgreSQL versions.
+            return  # Can't run this test with old PostgreSQL versions.
 
         column1 = Column("id1", "returning_test")
         column2 = Column("id2", "returning_test")
         variable1 = IntVariable()
         variable2 = IntVariable()
         insert = Insert({}, primary_columns=(column1, column2),
-                            primary_variables=(variable1, variable2))
+                        primary_variables=(variable1, variable2))
         self.connection.execute(insert)
 
         self.assertTrue(variable1.is_defined())
@@ -438,7 +444,7 @@ class PostgresTest(DatabaseTest, TestHelper):
         variable1 = IntVariable()
         variable2 = IntVariable()
         insert = Insert({}, primary_columns=(column1, column2),
-                            primary_variables=(variable1, variable2))
+                        primary_variables=(variable1, variable2))
         self.database._version = 80109
 
         self.connection.execute(insert)
@@ -473,7 +479,7 @@ class PostgresTest(DatabaseTest, TestHelper):
 
     def test_execute_update_returning(self):
         if self.database._version < 80200:
-            return # Can't run this test with old PostgreSQL versions.
+            return  # Can't run this test with old PostgreSQL versions.
 
         column1 = Column("id1", "returning_test")
         column2 = Column("id2", "returning_test")
@@ -568,7 +574,7 @@ class PostgresTest(DatabaseTest, TestHelper):
 
     def test_unknown_serialization(self):
         self.assertRaises(ValueError, create_database,
-            os.environ["STORM_POSTGRES_URI"] + "?isolation=stuff")
+                          os.environ["STORM_POSTGRES_URI"] + "?isolation=stuff")
 
     def test_is_disconnection_error_with_ssl_syscall_error(self):
         """
@@ -584,7 +590,7 @@ _max_prepared_transactions = None
 
 
 class PostgresTwoPhaseCommitTest(TwoPhaseCommitTest, TestHelper):
-    
+
     def is_supported(self):
         uri = os.environ.get("STORM_POSTGRES_URI")
         if not uri:
@@ -627,6 +633,7 @@ class PostgresDisconnectionTest(DatabaseDisconnectionTest, TwoPhaseCommitDisconn
         must swallow them and reconnect.
         """
         class FakeConnection:
+
             def rollback(self):
                 raise InterfaceError('connection already closed')
         self.connection._raw_connection = FakeConnection()
@@ -664,24 +671,27 @@ if has_subunit:
     # Some of the following tests are prone to segfaults, presumably in
     # _psycopg.so. Run them in a subprocess if possible.
     from subunit import IsolatedTestCase
+
     class MisbehavingTestCase(TestHelper, IsolatedTestCase):
         pass
 else:
     # If we can't run them in a subprocess we still want to create tests, but
     # prevent them from running, so that the skip is reported
     class MisbehavingTestCase(TestHelper):
+
         def is_supported(self):
             return False
 
 
 class PostgresDisconnectionTestWithoutProxyUnixSockets(
-    PostgresDisconnectionTestWithoutProxyBase, MisbehavingTestCase):
+        PostgresDisconnectionTestWithoutProxyBase, MisbehavingTestCase):
     """Disconnection tests using Unix sockets."""
 
     database_uri = os.environ.get("STORM_POSTGRES_URI")
 
+
 class PostgresDisconnectionTestWithoutProxyTCPSockets(
-    PostgresDisconnectionTestWithoutProxyBase, MisbehavingTestCase):
+        PostgresDisconnectionTestWithoutProxyBase, MisbehavingTestCase):
     """Disconnection tests using TCP sockets."""
 
     database_uri = os.environ.get("STORM_POSTGRES_HOST_URI")
@@ -737,9 +747,11 @@ class PostgresDisconnectionTestWithPGBouncerBase(object):
 if has_fixtures:
     # Upgrade to full test case class with fixtures.
     from fixtures import TestWithFixtures
+
     class PostgresDisconnectionTestWithPGBouncer(
-        PostgresDisconnectionTestWithPGBouncerBase,
-        TestWithFixtures, TestHelper): pass
+            PostgresDisconnectionTestWithPGBouncerBase,
+            TestWithFixtures, TestHelper):
+            pass
 
 
 class PostgresTimeoutTracerTest(TimeoutTracerTestBase):

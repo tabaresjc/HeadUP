@@ -32,7 +32,6 @@ from storm.variables import (
     PickleVariable, JSONVariable, ListVariable, EnumVariable)
 
 
-
 __all__ = ["Property", "SimpleProperty",
            "Bool", "Int", "Float", "Decimal", "RawStr", "Unicode",
            "DateTime", "Date", "Time", "TimeDelta", "UUID", "Enum",
@@ -115,7 +114,7 @@ class PropertyColumn(Column):
                                         validator_attribute=attr,
                                         **variable_kwargs))
 
-        self.cls = cls # Used by references
+        self.cls = cls  # Used by references
 
         # Copy attributes from the property to avoid one additional
         # function call on each access.
@@ -135,15 +134,19 @@ class SimpleProperty(Property):
 
 class Bool(SimpleProperty):
     variable_class = BoolVariable
- 
+
+
 class Int(SimpleProperty):
     variable_class = IntVariable
+
 
 class Float(SimpleProperty):
     variable_class = FloatVariable
 
+
 class Decimal(SimpleProperty):
     variable_class = DecimalVariable
+
 
 class RawStr(SimpleProperty):
     variable_class = RawStrVariable
@@ -151,26 +154,34 @@ class RawStr(SimpleProperty):
 # OBSOLETE RawStr was Chars in 0.9. This will die soon.
 Chars = RawStr
 
+
 class Unicode(SimpleProperty):
     variable_class = UnicodeVariable
+
 
 class DateTime(SimpleProperty):
     variable_class = DateTimeVariable
 
+
 class Date(SimpleProperty):
     variable_class = DateVariable
+
 
 class Time(SimpleProperty):
     variable_class = TimeVariable
 
+
 class TimeDelta(SimpleProperty):
     variable_class = TimeDeltaVariable
+
 
 class UUID(SimpleProperty):
     variable_class = UUIDVariable
 
+
 class Pickle(SimpleProperty):
     variable_class = PickleVariable
+
 
 class JSON(SimpleProperty):
     variable_class = JSONVariable
@@ -232,6 +243,7 @@ class PropertyRegistry(object):
     An object which remembers the Storm properties specified on
     classes, and is able to translate names to these properties.
     """
+
     def __init__(self):
         self._properties = []
 
@@ -247,7 +259,7 @@ class PropertyRegistry(object):
         to the given namespace.  For instance C{get("Class.id", "a.b.c")}
         will choose C{a.Class.id} rather than C{d.Class.id}.
         """
-        key = ".".join(reversed(name.split(".")))+"."
+        key = ".".join(reversed(name.split("."))) + "."
         i = bisect_left(self._properties, (key,))
         l = len(self._properties)
         best_props = []
@@ -275,7 +287,7 @@ class PropertyRegistry(object):
                         common_prefix += 1
                     else:
                         break
-                path_info = (-common_prefix, len(path_parts)-common_prefix)
+                path_info = (-common_prefix, len(path_parts) - common_prefix)
                 if path_info < best_path_info:
                     best_path_info = path_info
                     best_props = [(path, prop)]
@@ -304,7 +316,7 @@ class PropertyRegistry(object):
         for attr in cls_info.attributes:
             prop = cls_info.attributes[attr]
             prop_ref = weakref.KeyedRef(prop, self._remove, None)
-            pair = (attr+suffix, prop_ref)
+            pair = (attr + suffix, prop_ref)
             prop_ref.key = pair
             insort_left(self._properties, pair)
 
@@ -316,7 +328,7 @@ class PropertyRegistry(object):
         suffix.reverse()
         suffix = ".%s." % ".".join(suffix)
         prop_ref = weakref.KeyedRef(prop, self._remove, None)
-        pair = (attr_name+suffix, prop_ref)
+        pair = (attr_name + suffix, prop_ref)
         prop_ref.key = pair
         insort_left(self._properties, pair)
 

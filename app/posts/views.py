@@ -22,17 +22,17 @@ class PostsView(FlaskView):
         posts, count = Post.pagination(page=page, limit=limit)
 
         pagination = Pagination(page=page,
-            per_page=limit,
-            total=count,
-            record_name=gettext('posts'),
-            alignment='right',
-            bs_version=3)
+                                per_page=limit,
+                                total=count,
+                                record_name=gettext('posts'),
+                                alignment='right',
+                                bs_version=3)
 
         return render_template('admin/posts/index.html',
-            title=gettext('Posts | %(page)s', page=page),
-            form=form,
-            posts=posts,
-            pagination=pagination)
+                               title=gettext('Posts | %(page)s', page=page),
+                               form=form,
+                               posts=posts,
+                               pagination=pagination)
 
     def get(self, id):
         post = Post.get_by_id(id)
@@ -41,8 +41,8 @@ class PostsView(FlaskView):
             return redirect(url_for('PostsView:index'))
 
         return render_template('admin/posts/show.html',
-            title=post.title,
-            post=post)
+                               title=post.title,
+                               post=post)
 
     @route('/', methods=['POST'])
     @route('/new', methods=['GET'])
@@ -61,10 +61,11 @@ class PostsView(FlaskView):
                 except:
                     flash(gettext('Error while creating the post'), 'error')
             else:
-                flash(gettext('Invalid submission, please check the message below'), 'error')
+                flash(
+                    gettext('Invalid submission, please check the message below'), 'error')
         return render_template('admin/posts/add.html',
-            title=gettext('Create Post'),
-            form=form)
+                               title=gettext('Create Post'),
+                               form=form)
 
     @route('/<int:id>', methods=['PUT'])
     @route('/edit/<int:id>', methods=['GET', 'POST'])
@@ -91,16 +92,18 @@ class PostsView(FlaskView):
                 except:
                     flash(gettext('Error while updating the post'), 'error')
             else:
-                flash(gettext('Invalid submission, please check the message below'), 'error')
+                flash(
+                    gettext('Invalid submission, please check the message below'), 'error')
 
             if request.method == 'PUT':
                 return jsonify(redirect_to=url_for('PostsView:index'))
         else:
             form = NewPostForm(post)
         return render_template('admin/posts/edit.html',
-            title=gettext('Edit Post: %(title)s', title=post.title),
-            form=form,
-            post=post)
+                               title=gettext(
+                                   'Edit Post: %(title)s', title=post.title),
+                               form=form,
+                               post=post)
 
     @route('/<int:id>', methods=['DELETE'])
     @route('/remove/<int:id>', methods=['POST'])
@@ -113,7 +116,7 @@ class PostsView(FlaskView):
             abort(401)
 
         try:
-            title  = post.title
+            title = post.title
             Post.delete(post.id)
             flash(gettext('The post "%(title)s" was removed', title=title))
         except:

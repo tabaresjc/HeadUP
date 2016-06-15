@@ -23,31 +23,34 @@ class UsersView(FlaskView):
             page = 1
 
         limit = 5
-        users, count = User.pagination(page=page, limit=limit, orderby='users.id', desc=False)
+        users, count = User.pagination(
+            page=page, limit=limit, orderby='users.id', desc=False)
 
         pagination = Pagination(page=page,
-            per_page=limit,
-            total= count,
-            record_name=gettext('users'),
-            bs_version=3)
+                                per_page=limit,
+                                total=count,
+                                record_name=gettext('users'),
+                                bs_version=3)
 
         return render_template('admin/users/index.html',
-            title = gettext('Users | Page %(page)s', page=page),
-            users = users,
-            pagination = pagination)
+                               title=gettext(
+                                   'Users | Page %(page)s', page=page),
+                               users=users,
+                               pagination=pagination)
 
-    def get(self,id):
+    def get(self, id):
         user = User.get_by_id(id)
         if user is None:
             flash(gettext('The user was not found'), 'error')
             return redirect(url_for('UsersView:index'))
 
         return render_template('admin/users/show.html',
-            title = gettext('User\'s Profile | %(name)s', name=user.name),
-            user = user)
+                               title=gettext(
+                                   'User\'s Profile | %(name)s', name=user.name),
+                               user=user)
 
-    @route('/', methods = ['POST'])
-    @route('/new', methods = ['GET'])
+    @route('/', methods=['POST'])
+    @route('/new', methods=['GET'])
     def post(self):
         if request.method == 'POST':
             form = NewUserForm()
@@ -66,22 +69,23 @@ class UsersView(FlaskView):
                     user.save()
 
                     flash(gettext('User was succesfully saved'))
-                    return redirect(url_for('UsersView:get',id=user.id))
+                    return redirect(url_for('UsersView:get', id=user.id))
                 except:
                     flash(gettext('Error while creating the user'), 'error')
                     raise
             else:
-                flash(gettext('Invalid submission, please check the messages below'), 'error')
+                flash(
+                    gettext('Invalid submission, please check the messages below'), 'error')
         else:
             form = NewUserForm()
 
         return render_template('admin/users/add.html',
-            title = gettext('Create new user'),
-            form = form,
-            user = [])
+                               title=gettext('Create new user'),
+                               form=form,
+                               user=[])
 
-    @route('/<int:id>', methods = ['PUT'])
-    @route('/edit/<int:id>', methods = ['GET', 'POST'])
+    @route('/<int:id>', methods=['PUT'])
+    @route('/edit/<int:id>', methods=['GET', 'POST'])
     def put(self, id):
         if not current_user.is_admin() and current_user.id != id:
             abort(401)
@@ -91,7 +95,7 @@ class UsersView(FlaskView):
             flash(gettext('The user was not found'), 'error')
             return redirect(url_for('UsersView:index'))
 
-        if request.method in ['POST','PUT']:
+        if request.method in ['POST', 'PUT']:
             form = UserForm()
             if form.validate_on_submit():
                 try:
@@ -111,20 +115,22 @@ class UsersView(FlaskView):
                 except:
                     flash(gettext('Error while updating the user'), 'error')
             else:
-                flash(gettext('Invalid submission, please check the messages below'), 'error')
+                flash(
+                    gettext('Invalid submission, please check the messages below'), 'error')
 
             if request.method == 'PUT':
                 return jsonify(redirect_to=url_for('UsersView:index'))
         else:
             form = EditUserForm(user)
         return render_template('admin/users/edit.html',
-            title = gettext('Edit User\'s Profile | %(name)s', name=user.name),
-            form = form,
-            user = user)
+                               title=gettext(
+                                   'Edit User\'s Profile | %(name)s', name=user.name),
+                               form=form,
+                               user=user)
 
-    @route('/<int:id>', methods = ['DELETE'])
-    @route('/remove/<int:id>', methods = ['POST'])
-    def delete(self,id):
+    @route('/<int:id>', methods=['DELETE'])
+    @route('/remove/<int:id>', methods=['POST'])
+    def delete(self, id):
         if not current_user.is_admin() and current_user.id != id:
             abort(401)
         if User.count() <= 1:
@@ -134,7 +140,7 @@ class UsersView(FlaskView):
         try:
             if user is None:
                 raise Exception(gettext('User not found'))
-            name  = user.name
+            name = user.name
             User.delete(user.id)
             flash(gettext('The user "%(name)s" was removed', name=name))
         except:
@@ -144,9 +150,8 @@ class UsersView(FlaskView):
             return redirect(url_for('UsersView:index'))
         return jsonify(redirect_to=url_for('UsersView:index'))
 
-
     @route('/<int:id>/posts/', endpoint='user_post')
-    def user_post(self,id):
+    def user_post(self, id):
         try:
             page = int(request.args.get('page', 1))
         except ValueError:
@@ -161,14 +166,15 @@ class UsersView(FlaskView):
         posts = user.get_user_posts(page=page, limit=limit)
 
         pagination = Pagination(page=page,
-            per_page= limit,
-            total= user.posts.count(),
-            record_name= gettext('posts'),
-            alignment = 'right',
-            bs_version= 3)
+                                per_page=limit,
+                                total=user.posts.count(),
+                                record_name=gettext('posts'),
+                                alignment='right',
+                                bs_version=3)
 
         return render_template("admin/users/user_posts.html",
-            title = gettext('User\'s Posts | %(name)s', name=user.name),
-            user = user,
-            posts = posts,
-            pagination = pagination)
+                               title=gettext(
+                                   'User\'s Posts | %(name)s', name=user.name),
+                               user=user,
+                               posts=posts,
+                               pagination=pagination)

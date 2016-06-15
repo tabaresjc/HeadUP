@@ -52,7 +52,7 @@ class Result(object):
     _closed = False
 
     def __init__(self, connection, raw_cursor):
-        self._connection = connection # Ensures deallocation order.
+        self._connection = connection  # Ensures deallocation order.
         self._raw_cursor = raw_cursor
         if raw_cursor.arraysize == 1:
             # Default of 1 is silly.
@@ -179,11 +179,11 @@ class Connection(object):
     _blocked = False
     _closed = False
     _two_phase_transaction = False  # If True, a two-phase transaction has
-                                    # been started with begin()
+    # been started with begin()
     _state = STATE_CONNECTED
 
     def __init__(self, database, event=None):
-        self._database = database # Ensures deallocation order.
+        self._database = database  # Ensures deallocation order.
         self._event = event
         self._raw_connection = self._database.raw_connect()
 
@@ -285,7 +285,8 @@ class Connection(object):
             self._ensure_connected()
             if xid:
                 raw_xid = self._raw_xid(xid)
-                self._check_disconnect(self._raw_connection.tpc_commit, raw_xid)
+                self._check_disconnect(
+                    self._raw_connection.tpc_commit, raw_xid)
             elif self._two_phase_transaction:
                 self._check_disconnect(self._raw_connection.tpc_commit)
                 self._two_phase_transaction = False
@@ -515,6 +516,7 @@ def convert_param_marks(statement, from_param_mark, to_param_mark):
 
 
 _database_schemes = {}
+
 
 def register_scheme(scheme, factory):
     """Register a handler for a new database URI scheme.

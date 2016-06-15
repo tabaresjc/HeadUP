@@ -88,6 +88,7 @@ class DjangoStoreTests(TestHelper):
 
         store = stores.get_store("name")
         other_stores = []
+
         def f():
             other_stores.append(stores.get_store("name"))
 

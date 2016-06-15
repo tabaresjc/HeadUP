@@ -54,6 +54,7 @@ class Foo(object):
     id = Int(primary=True)
     title = Unicode()
 
+
 class Bar(object):
     __storm_table__ = "bar"
     id = Int(primary=True)
@@ -61,22 +62,27 @@ class Bar(object):
     foo_id = Int()
     foo = Reference(foo_id, Foo.id)
 
+
 class UniqueID(object):
     __storm_table__ = "unique_id"
     id = UUID(primary=True)
+
     def __init__(self, id):
         self.id = id
+
 
 class Blob(object):
     __storm_table__ = "bin"
     id = Int(primary=True)
     bin = RawStr()
 
+
 class Link(object):
     __storm_table__ = "link"
     __storm_primary__ = "foo_id", "bar_id"
     foo_id = Int()
     bar_id = Int()
+
 
 class SelfRef(object):
     __storm_table__ = "selfref"
@@ -86,24 +92,31 @@ class SelfRef(object):
     selfref = Reference(selfref_id, id)
     selfref_on_remote = Reference(id, selfref_id, on_remote=True)
 
+
 class FooRef(Foo):
     bar = Reference(Foo.id, Bar.foo_id)
+
 
 class FooRefSet(Foo):
     bars = ReferenceSet(Foo.id, Bar.foo_id)
 
+
 class FooRefSetOrderID(Foo):
     bars = ReferenceSet(Foo.id, Bar.foo_id, order_by=Bar.id)
+
 
 class FooRefSetOrderTitle(Foo):
     bars = ReferenceSet(Foo.id, Bar.foo_id, order_by=Bar.title)
 
+
 class FooIndRefSet(Foo):
     bars = ReferenceSet(Foo.id, Link.foo_id, Link.bar_id, Bar.id)
+
 
 class FooIndRefSetOrderID(Foo):
     bars = ReferenceSet(Foo.id, Link.foo_id, Link.bar_id, Bar.id,
                         order_by=Bar.id)
+
 
 class FooIndRefSetOrderTitle(Foo):
     bars = ReferenceSet(Foo.id, Link.foo_id, Link.bar_id, Bar.id,
@@ -117,6 +130,7 @@ class FooValue(object):
     value1 = Int()
     value2 = Int()
 
+
 class BarProxy(object):
     __storm_table__ = "bar"
     id = Int(primary=True)
@@ -124,6 +138,7 @@ class BarProxy(object):
     foo_id = Int()
     foo = Reference(foo_id, Foo.id)
     foo_title = Proxy(foo, Foo.title)
+
 
 class Money(object):
     __storm_table__ = "money"
@@ -212,12 +227,18 @@ class StoreTest(object):
         connection.execute("INSERT INTO bin (id, bin) VALUES (10, 'Blob 30')")
         connection.execute("INSERT INTO bin (id, bin) VALUES (20, 'Blob 20')")
         connection.execute("INSERT INTO bin (id, bin) VALUES (30, 'Blob 10')")
-        connection.execute("INSERT INTO link (foo_id, bar_id) VALUES (10, 100)")
-        connection.execute("INSERT INTO link (foo_id, bar_id) VALUES (10, 200)")
-        connection.execute("INSERT INTO link (foo_id, bar_id) VALUES (10, 300)")
-        connection.execute("INSERT INTO link (foo_id, bar_id) VALUES (20, 100)")
-        connection.execute("INSERT INTO link (foo_id, bar_id) VALUES (20, 200)")
-        connection.execute("INSERT INTO link (foo_id, bar_id) VALUES (30, 300)")
+        connection.execute(
+            "INSERT INTO link (foo_id, bar_id) VALUES (10, 100)")
+        connection.execute(
+            "INSERT INTO link (foo_id, bar_id) VALUES (10, 200)")
+        connection.execute(
+            "INSERT INTO link (foo_id, bar_id) VALUES (10, 300)")
+        connection.execute(
+            "INSERT INTO link (foo_id, bar_id) VALUES (20, 100)")
+        connection.execute(
+            "INSERT INTO link (foo_id, bar_id) VALUES (20, 200)")
+        connection.execute(
+            "INSERT INTO link (foo_id, bar_id) VALUES (30, 300)")
         connection.execute("INSERT INTO money (id, value)"
                            " VALUES (10, '12.3455')")
         connection.execute("INSERT INTO selfref (id, title, selfref_id)"
@@ -390,6 +411,7 @@ class StoreTest(object):
 
         class MyFoo(Foo):
             loaded = False
+
             def __storm_loaded__(self):
                 self.loaded = True
 
@@ -598,7 +620,7 @@ class StoreTest(object):
                           (10, "Title 30"),
                           (20, "Title 20"),
                           (30, "Title 10"),
-                         ])
+                          ])
 
     def test_find_from_cache(self):
         foo = self.store.get(Foo, 10)
@@ -609,12 +631,12 @@ class StoreTest(object):
                                  Foo.title == u"Title 20")
         self.assertEquals([(foo.id, foo.title) for foo in result], [
                           (20, "Title 20"),
-                         ])
+                          ])
 
         result = self.store.find(Foo, Foo.id == 10,
                                  Foo.title == u"Title 20")
         self.assertEquals([(foo.id, foo.title) for foo in result], [
-                         ])
+        ])
 
     def test_find_sql(self):
         foo = self.store.find(Foo, SQL("foo.id = 20")).one()
@@ -628,11 +650,11 @@ class StoreTest(object):
         result = self.store.find(Foo, id=20, title=u"Title 20")
         self.assertEquals([(foo.id, foo.title) for foo in result], [
                           (20, u"Title 20")
-                         ])
+                          ])
 
         result = self.store.find(Foo, id=10, title=u"Title 20")
         self.assertEquals([(foo.id, foo.title) for foo in result], [
-                         ])
+        ])
 
     def test_find_order_by(self, *args):
         result = self.store.find(Foo).order_by(Foo.title)
@@ -641,7 +663,7 @@ class StoreTest(object):
                           (30, "Title 10"),
                           (20, "Title 20"),
                           (10, "Title 30"),
-                         ])
+                          ])
 
     def test_find_order_asc(self, *args):
         result = self.store.find(Foo).order_by(Asc(Foo.title))
@@ -650,7 +672,7 @@ class StoreTest(object):
                           (30, "Title 10"),
                           (20, "Title 20"),
                           (10, "Title 30"),
-                         ])
+                          ])
 
     def test_find_order_desc(self, *args):
         result = self.store.find(Foo).order_by(Desc(Foo.title))
@@ -659,7 +681,7 @@ class StoreTest(object):
                           (10, "Title 30"),
                           (20, "Title 20"),
                           (30, "Title 10"),
-                         ])
+                          ])
 
     def test_find_default_order_asc(self):
         class MyFoo(Foo):
@@ -671,7 +693,7 @@ class StoreTest(object):
                           (30, "Title 10"),
                           (20, "Title 20"),
                           (10, "Title 30"),
-                         ])
+                          ])
 
     def test_find_default_order_desc(self):
         class MyFoo(Foo):
@@ -683,7 +705,7 @@ class StoreTest(object):
                           (10, "Title 30"),
                           (20, "Title 20"),
                           (30, "Title 10"),
-                         ])
+                          ])
 
     def test_find_default_order_with_tuple(self):
         class MyLink(Link):
@@ -698,7 +720,7 @@ class StoreTest(object):
                           (20, 200),
                           (20, 100),
                           (30, 300),
-                         ])
+                          ])
 
     def test_find_default_order_with_tuple_and_expr(self):
         class MyLink(Link):
@@ -713,7 +735,7 @@ class StoreTest(object):
                           (20, 200),
                           (20, 100),
                           (30, 300),
-                         ])
+                          ])
 
     def test_find_index(self):
         """
@@ -1159,7 +1181,7 @@ class StoreTest(object):
         self.assertEquals(self.get_items(), [
                           (10, "Title 30"),
                           (30, "Title 10"),
-                         ])
+                          ])
 
     def test_find_cached(self):
         foo = self.store.get(Foo, 20)
@@ -1216,7 +1238,7 @@ class StoreTest(object):
                           None,
                           (200, u"Title 200"),
                           (300, u"Title 100"),
-                         ])
+                          ])
 
     def test_using_find_with_strings(self):
         foo = self.store.using("foo").find(Foo, id=10).one()
@@ -1237,7 +1259,7 @@ class StoreTest(object):
                           None,
                           (200, u"Title 200"),
                           (300, u"Title 100"),
-                         ])
+                          ])
 
     def test_find_tuple(self):
         bar = self.store.get(Bar, 200)
@@ -1250,7 +1272,7 @@ class StoreTest(object):
         self.assertEquals(lst, [
                           ((10, u"Title 30"), (100, u"Title 300")),
                           ((30, u"Title 10"), (300, u"Title 100")),
-                         ])
+                          ])
 
     def test_find_tuple_using(self):
         bar = self.store.get(Bar, 200)
@@ -1264,7 +1286,7 @@ class StoreTest(object):
                           ((10, u"Title 30"), (100, u"Title 300")),
                           ((20, u"Title 20"), None),
                           ((30, u"Title 10"), (300, u"Title 100")),
-                         ])
+                          ])
 
     def test_find_tuple_using_with_disallow_none(self):
         class Bar(object):
@@ -1285,7 +1307,7 @@ class StoreTest(object):
                           ((10, u"Title 30"), (100, u"Title 300")),
                           ((20, u"Title 20"), None),
                           ((30, u"Title 10"), (300, u"Title 100")),
-                         ])
+                          ])
 
     def test_find_tuple_using_skip_when_none(self):
         bar = self.store.get(Bar, 200)
@@ -1304,7 +1326,7 @@ class StoreTest(object):
                           (None, None),
                           ((300, u"Title 100"), (300, 10)),
                           ((300, u"Title 100"), (300, 30)),
-                         ])
+                          ])
 
     def test_find_tuple_contains(self):
         foo = self.store.get(Foo, 10)
@@ -1414,9 +1436,9 @@ class StoreTest(object):
         result.order_by(Foo.id)
         self.assertEquals([(foo.id, foo.title, bar_id, bar_title)
                            for foo, bar_id, bar_title in result],
-                           [(10, u"Title 30", 100, u"Title 300"),
-                            (20, u"Title 20", 200, u"Title 200"),
-                            (30, u"Title 10", 300, u"Title 100")])
+                          [(10, u"Title 30", 100, u"Title 300"),
+                           (20, u"Title 20", 200, u"Title 200"),
+                           (30, u"Title 10", 300, u"Title 100")])
 
     def test_find_using_with_expr(self):
         result = self.store.using(Foo).find(Foo.title)
@@ -1492,7 +1514,7 @@ class StoreTest(object):
         result2 = self.store.find(Foo.title, Foo.id != 10)
         result = result1.union(result2)
         self.assertEquals(sorted(result),
-                          [u"Title 10", u"Title 20", u"Title 30",])
+                          [u"Title 10", u"Title 20", u"Title 30", ])
 
     def test_find_with_expr_union_mismatch(self):
         result1 = self.store.find(Foo.title)
@@ -1683,7 +1705,7 @@ class StoreTest(object):
                           (10, "Title 30"),
                           (20, "Title 20"),
                           (30, "Title 10"),
-                         ])
+                          ])
 
         self.store.commit()
 
@@ -1692,7 +1714,7 @@ class StoreTest(object):
                           (20, "Title 20"),
                           (30, "Title 10"),
                           (40, "Title 40"),
-                         ])
+                          ])
 
     def test_add_rollback_commit(self):
         foo = Foo()
@@ -1708,7 +1730,7 @@ class StoreTest(object):
                           (10, "Title 30"),
                           (20, "Title 20"),
                           (30, "Title 10"),
-                         ])
+                          ])
 
         self.store.commit()
 
@@ -1716,7 +1738,7 @@ class StoreTest(object):
                           (10, "Title 30"),
                           (20, "Title 20"),
                           (30, "Title 10"),
-                         ])
+                          ])
 
     def test_add_get(self):
         foo = Foo()
@@ -1805,12 +1827,12 @@ class StoreTest(object):
         self.assertEquals(self.get_items(), [
                           (10, "Title 30"),
                           (30, "Title 10"),
-                         ])
+                          ])
         self.assertEquals(self.get_committed_items(), [
                           (10, "Title 30"),
                           (20, "Title 20"),
                           (30, "Title 10"),
-                         ])
+                          ])
 
         self.store.commit()
         self.assertEquals(Store.of(foo), None)
@@ -1818,7 +1840,7 @@ class StoreTest(object):
         self.assertEquals(self.get_committed_items(), [
                           (10, "Title 30"),
                           (30, "Title 10"),
-                         ])
+                          ])
 
     def test_remove_rollback_update(self):
         foo = self.store.get(Foo, 20)
@@ -1834,7 +1856,7 @@ class StoreTest(object):
                           (10, "Title 30"),
                           (20, "Title 200"),
                           (30, "Title 10"),
-                         ])
+                          ])
 
     def test_remove_flush_rollback_update(self):
         foo = self.store.get(Foo, 20)
@@ -1851,7 +1873,7 @@ class StoreTest(object):
                           (10, "Title 30"),
                           (20, "Title 20"),
                           (30, "Title 10"),
-                         ])
+                          ])
 
     def test_remove_add_update(self):
         foo = self.store.get(Foo, 20)
@@ -1867,7 +1889,7 @@ class StoreTest(object):
                           (10, "Title 30"),
                           (20, "Title 200"),
                           (30, "Title 10"),
-                         ])
+                          ])
 
     def test_remove_flush_add_update(self):
         foo = self.store.get(Foo, 20)
@@ -1884,7 +1906,7 @@ class StoreTest(object):
                           (10, "Title 30"),
                           (20, "Title 200"),
                           (30, "Title 10"),
-                         ])
+                          ])
 
     def test_remove_twice(self):
         foo = self.store.get(Foo, 10)
@@ -1944,12 +1966,12 @@ class StoreTest(object):
                           (10, "Title 30"),
                           (20, "Title 20"),
                           (30, "Title 10"),
-                         ])
+                          ])
         self.assertEquals(self.get_committed_items(), [
                           (10, "Title 30"),
                           (20, "Title 20"),
                           (30, "Title 10"),
-                         ])
+                          ])
 
         self.store.flush()
 
@@ -1957,12 +1979,12 @@ class StoreTest(object):
                           (10, "Title 30"),
                           (20, "Title 200"),
                           (30, "Title 10"),
-                         ])
+                          ])
         self.assertEquals(self.get_committed_items(), [
                           (10, "Title 30"),
                           (20, "Title 20"),
                           (30, "Title 10"),
-                         ])
+                          ])
 
         self.store.commit()
 
@@ -1970,7 +1992,7 @@ class StoreTest(object):
                           (10, "Title 30"),
                           (20, "Title 200"),
                           (30, "Title 10"),
-                         ])
+                          ])
 
     def test_update_flush_reload_rollback(self):
         foo = self.store.get(Foo, 20)
@@ -1990,7 +2012,7 @@ class StoreTest(object):
                           (10, "Title 30"),
                           (20, "Title 200"),
                           (30, "Title 10"),
-                         ])
+                          ])
 
     def test_update_commit_twice(self):
         foo = self.store.get(Foo, 20)
@@ -2003,7 +2025,7 @@ class StoreTest(object):
                           (10, "Title 30"),
                           (20, "Title 2000"),
                           (30, "Title 10"),
-                         ])
+                          ])
 
     def test_update_checkpoints(self):
         bar = self.store.get(Bar, 200)
@@ -2027,7 +2049,7 @@ class StoreTest(object):
                           (10, "Title 30"),
                           (25, "Title 20"),
                           (30, "Title 10"),
-                         ])
+                          ])
 
         # Update twice to see if the notion of primary key for the
         # existent object was updated as well.
@@ -2040,7 +2062,7 @@ class StoreTest(object):
                           (10, "Title 30"),
                           (27, "Title 20"),
                           (30, "Title 10"),
-                         ])
+                          ])
 
         # Ensure only the right ones are there.
 
@@ -2067,7 +2089,7 @@ class StoreTest(object):
                           (10, "Title 10"),
                           (20, "Title 20"),
                           (30, "Title 30"),
-                         ])
+                          ])
 
     def test_wb_update_not_dirty_after_flush(self):
         foo = self.store.get(Foo, 20)
@@ -2088,7 +2110,7 @@ class StoreTest(object):
                           (10, "Title 30"),
                           (20, "Title 200"),
                           (30, "Title 10"),
-                         ])
+                          ])
 
     def test_update_find(self):
         foo = self.store.get(Foo, 20)
@@ -2120,7 +2142,7 @@ class StoreTest(object):
                           (20, "Title 20"),
                           (30, "Title 10"),
                           (40, "Title 400"),
-                         ])
+                          ])
 
     def test_add_remove_add(self):
         foo = Foo()
@@ -2147,7 +2169,7 @@ class StoreTest(object):
                           (20, "Title 20"),
                           (30, "Title 10"),
                           (400, "Title 400"),
-                         ])
+                          ])
 
         self.assertTrue(self.store.get(Foo, 400) is foo)
 
@@ -2243,7 +2265,7 @@ class StoreTest(object):
         self.assertEquals([(foo.id, foo.title) for foo in result], [
                           (20, "Title 20"),
                           (20, "Title 20"),
-                         ])
+                          ])
 
     def test_join_distinct(self):
 
@@ -2275,7 +2297,7 @@ class StoreTest(object):
 
         self.assertEquals([(foo.id, foo.title) for foo in result], [
                           (20, "Title 20"),
-                         ])
+                          ])
 
     def test_sub_select(self):
         foo = self.store.find(Foo, Foo.id == Select(SQL("20"))).one()
@@ -2298,7 +2320,7 @@ class StoreTest(object):
 
         self.store.flush()
 
-        old_foo = foo # Keep a reference.
+        old_foo = foo  # Keep a reference.
 
         foo = Foo()
         foo.id = 20
@@ -2314,8 +2336,10 @@ class StoreTest(object):
         loaded = []
 
         class MyFoo(Foo):
+
             def __init__(self):
                 loaded.append("NO!")
+
             def __storm_loaded__(self):
                 loaded.append((self.id, self.title))
                 self.title = u"Title 200"
@@ -2335,7 +2359,7 @@ class StoreTest(object):
                           (10, "Title 30"),
                           (20, "Title 200"),
                           (30, "Title 10"),
-                         ])
+                          ])
 
         self.store.rollback()
 
@@ -2346,6 +2370,7 @@ class StoreTest(object):
 
         class MyFoo(Foo):
             counter = 0
+
             def __storm_pre_flush__(self):
                 if self.counter == 0:
                     self.title = u"Flushing: %s" % self.title
@@ -2355,7 +2380,7 @@ class StoreTest(object):
 
         self.assertEquals(foo.title, "Title 20")
         self.store.flush()
-        self.assertEquals(foo.title, "Title 20") # It wasn't dirty.
+        self.assertEquals(foo.title, "Title 20")  # It wasn't dirty.
         foo.title = u"Something"
         self.store.flush()
         self.assertEquals(foo.title, "Flushing: Something")
@@ -2367,7 +2392,7 @@ class StoreTest(object):
                           (10, "Title 30"),
                           (20, "Flushing: Something"),
                           (30, "Title 10"),
-                         ])
+                          ])
 
         # This shouldn't do anything, because the object is clean again.
         foo.counter = 0
@@ -2377,6 +2402,7 @@ class StoreTest(object):
     def test_flush_hook_all(self):
 
         class MyFoo(Foo):
+
             def __storm_pre_flush__(self):
                 other = [foo1, foo2][foo1 is self]
                 other.title = u"Changed in hook: " + other.title
@@ -2393,6 +2419,7 @@ class StoreTest(object):
 
         class MyFoo(Foo):
             done = False
+
             def __storm_flushed__(self):
                 if not self.done:
                     self.done = True
@@ -2402,7 +2429,7 @@ class StoreTest(object):
 
         self.assertEquals(foo.title, "Title 20")
         self.store.flush()
-        self.assertEquals(foo.title, "Title 20") # It wasn't dirty.
+        self.assertEquals(foo.title, "Title 20")  # It wasn't dirty.
         foo.title = u"Something"
         self.store.flush()
         self.assertEquals(foo.title, "Flushed: Something")
@@ -2414,7 +2441,7 @@ class StoreTest(object):
                           (10, "Title 30"),
                           (20, "Flushed: Something"),
                           (30, "Title 10"),
-                         ])
+                          ])
 
         # This shouldn't do anything, because the object is clean again.
         foo.done = False
@@ -2457,7 +2484,7 @@ class StoreTest(object):
                           (10, "Title 30"),
                           (20, "Title 20"),
                           (30, "Title 10"),
-                         ])
+                          ])
 
     def test_flush_with_removed_prop_forced_dirty(self):
         foo = self.store.get(Foo, 20)
@@ -2469,7 +2496,7 @@ class StoreTest(object):
                           (10, "Title 30"),
                           (20, "Title 20"),
                           (30, "Title 10"),
-                         ])
+                          ])
 
     def test_flush_with_removed_prop_really_dirty(self):
         foo = self.store.get(Foo, 20)
@@ -2480,7 +2507,7 @@ class StoreTest(object):
                           (10, "Title 30"),
                           (25, "Title 20"),
                           (30, "Title 10"),
-                         ])
+                          ])
 
     def test_wb_block_implicit_flushes(self):
         # Make sure calling store.flush() will fail.
@@ -2785,6 +2812,7 @@ class StoreTest(object):
         thus not creating a leak when unhooked.
         """
         self.get_cache(self.store).set_size(0)
+
         class MyFoo(Foo):
             bar = Reference(Foo.id, Bar.foo_id, on_remote=True)
 
@@ -2812,6 +2840,7 @@ class StoreTest(object):
 
     def test_reference_on_non_primary_key(self):
         self.store.execute("INSERT INTO bar VALUES (400, 40, 'Title 30')")
+
         class MyBar(Bar):
             foo = Reference(Bar.title, Foo.title)
 
@@ -2879,7 +2908,6 @@ class StoreTest(object):
         self.assertEquals(bar.foo.id, None)
         self.assertEquals(bar.foo.title, "Title 40")
 
-
         self.store.flush()
 
         self.assertTrue(bar.foo.id)
@@ -2931,7 +2959,7 @@ class StoreTest(object):
         bar.title = u"Title 400"
         bar.foo = foo
         bar.foo = None
-        bar.foo = None # Twice to make sure it doesn't blow up.
+        bar.foo = None  # Twice to make sure it doesn't blow up.
         self.store.add(bar)
 
         self.store.flush()
@@ -3661,7 +3689,7 @@ class StoreTest(object):
         self.assertEquals(items, [
                           (200, 20, "Title 200"),
                           (400, 20, "Title 100"),
-                         ])
+                          ])
 
     def test_reference_set_assign_fails(self):
         foo = self.store.get(FooRefSet, 20)
@@ -3685,7 +3713,7 @@ class StoreTest(object):
         self.assertEquals(items, [
                           (200, 20, "Title 200"),
                           (400, 20, "Title 100"),
-                         ])
+                          ])
 
     def test_reference_set_with_added(self):
         bar1 = Bar()
@@ -3729,7 +3757,7 @@ class StoreTest(object):
 
         self.assertEquals(items, [
                           (400, 20, "Title 20"),
-                         ])
+                          ])
 
         bar = self.store.get(Bar, 200)
         bar.title = u"Title 20"
@@ -3742,7 +3770,7 @@ class StoreTest(object):
         self.assertEquals(items, [
                           (200, 20, "Title 20"),
                           (400, 20, "Title 20"),
-                         ])
+                          ])
 
     def test_reference_set_contains(self):
         def no_iter(self):
@@ -3770,7 +3798,7 @@ class StoreTest(object):
         self.assertEquals(items, [
                           (200, 20, "Title 200"),
                           (400, 20, "Title 100"),
-                         ])
+                          ])
 
         # Notice that there's another item with this title in the base,
         # which isn't part of the reference.
@@ -3807,7 +3835,7 @@ class StoreTest(object):
         items = [(bar.id, bar.foo_id, bar.title) for bar in foo.bars]
         self.assertEquals(items, [
                           (200, 20, "Title 200"),
-                         ])
+                          ])
 
         bar = self.store.get(Bar, 400)
         bar.foo_id = 20
@@ -3817,7 +3845,7 @@ class StoreTest(object):
         items = [(bar.id, bar.foo_id, bar.title) for bar in foo.bars]
         self.assertEquals(items, [
                           (400, 20, "Title 100"),
-                         ])
+                          ])
 
     def test_reference_set_count(self):
         self.add_reference_set_bar_400()
@@ -3837,7 +3865,7 @@ class StoreTest(object):
         self.assertEquals(items, [
                           (200, 20, "Title 200"),
                           (400, 20, "Title 100"),
-                         ])
+                          ])
 
         del items[:]
         for bar in foo.bars.order_by(Bar.title):
@@ -3845,7 +3873,7 @@ class StoreTest(object):
         self.assertEquals(items, [
                           (400, 20, "Title 100"),
                           (200, 20, "Title 200"),
-                         ])
+                          ])
 
     def test_reference_set_default_order_by(self):
         self.add_reference_set_bar_400()
@@ -3858,7 +3886,7 @@ class StoreTest(object):
         self.assertEquals(items, [
                           (200, 20, "Title 200"),
                           (400, 20, "Title 100"),
-                         ])
+                          ])
 
         items = []
         for bar in foo.bars.find():
@@ -3866,7 +3894,7 @@ class StoreTest(object):
         self.assertEquals(items, [
                           (200, 20, "Title 200"),
                           (400, 20, "Title 100"),
-                         ])
+                          ])
 
         foo = self.store.get(FooRefSetOrderTitle, 20)
 
@@ -3876,7 +3904,7 @@ class StoreTest(object):
         self.assertEquals(items, [
                           (400, 20, "Title 100"),
                           (200, 20, "Title 200"),
-                         ])
+                          ])
 
         del items[:]
         for bar in foo.bars.find():
@@ -3884,7 +3912,7 @@ class StoreTest(object):
         self.assertEquals(items, [
                           (400, 20, "Title 100"),
                           (200, 20, "Title 200"),
-                         ])
+                          ])
 
     def test_reference_set_first_last(self):
         self.add_reference_set_bar_400()
@@ -4121,7 +4149,7 @@ class StoreTest(object):
 
         self.assertEquals(items, [
                           (100, "Title 300"),
-                         ])
+                          ])
 
     def test_indirect_reference_set_clear(self):
         foo = self.store.get(FooIndRefSet, 20)
@@ -4134,7 +4162,7 @@ class StoreTest(object):
         self.assertEquals(items, [
                           (100, 10, "Title 300"),
                           (200, 20, "Title 200"),
-                         ])
+                          ])
 
         foo = self.store.get(FooIndRefSet, 30)
         foo.bars.clear(Bar.id < 300)
@@ -4146,7 +4174,7 @@ class StoreTest(object):
         items = [(bar.id, bar.foo_id, bar.title) for bar in foo.bars]
         self.assertEquals(items, [
                           (200, 20, "Title 200"),
-                         ])
+                          ])
 
         foo.bars.clear(id=200)
 
@@ -4167,7 +4195,7 @@ class StoreTest(object):
         self.assertEquals(items, [
                           (200, "Title 200"),
                           (100, "Title 300"),
-                         ])
+                          ])
 
         del items[:]
         for bar in foo.bars.order_by(Bar.id):
@@ -4176,7 +4204,7 @@ class StoreTest(object):
         self.assertEquals(items, [
                           (100, "Title 300"),
                           (200, "Title 200"),
-                         ])
+                          ])
 
     def test_indirect_reference_set_default_order_by(self):
         foo = self.store.get(FooIndRefSetOrderTitle, 20)
@@ -4187,7 +4215,7 @@ class StoreTest(object):
         self.assertEquals(items, [
                           (200, "Title 200"),
                           (100, "Title 300"),
-                         ])
+                          ])
 
         del items[:]
         for bar in foo.bars.find():
@@ -4195,7 +4223,7 @@ class StoreTest(object):
         self.assertEquals(items, [
                           (200, "Title 200"),
                           (100, "Title 300"),
-                         ])
+                          ])
 
         foo = self.store.get(FooIndRefSetOrderID, 20)
 
@@ -4205,7 +4233,7 @@ class StoreTest(object):
         self.assertEquals(items, [
                           (100, "Title 300"),
                           (200, "Title 200"),
-                         ])
+                          ])
 
         del items[:]
         for bar in foo.bars.find():
@@ -4213,7 +4241,7 @@ class StoreTest(object):
         self.assertEquals(items, [
                           (100, "Title 300"),
                           (200, "Title 200"),
-                         ])
+                          ])
 
     def test_indirect_reference_set_first_last(self):
         foo = self.store.get(FooIndRefSetOrderID, 20)
@@ -4295,7 +4323,7 @@ class StoreTest(object):
                           (100, "Title 300"),
                           (200, "Title 200"),
                           (300, "Title 100"),
-                         ])
+                          ])
 
     def test_indirect_reference_set_remove(self):
         foo = self.store.get(FooIndRefSet, 20)
@@ -4310,7 +4338,7 @@ class StoreTest(object):
 
         self.assertEquals(items, [
                           (100, "Title 300"),
-                         ])
+                          ])
 
     def test_indirect_reference_set_add_remove(self):
         foo = self.store.get(FooIndRefSet, 20)
@@ -4327,7 +4355,7 @@ class StoreTest(object):
         self.assertEquals(items, [
                           (100, "Title 300"),
                           (200, "Title 200"),
-                         ])
+                          ])
 
     def test_indirect_reference_set_add_remove_with_wrapper(self):
         foo = self.store.get(FooIndRefSet, 20)
@@ -4345,7 +4373,7 @@ class StoreTest(object):
         self.assertEquals(items, [
                           (100, "Title 300"),
                           (300, "Title 100"),
-                         ])
+                          ])
 
     def test_indirect_reference_set_add_remove_with_added(self):
         foo = FooIndRefSet()
@@ -4371,7 +4399,7 @@ class StoreTest(object):
 
         self.assertEquals(items, [
                           (500, "Title 500"),
-                         ])
+                          ])
 
     def test_indirect_reference_set_with_added_no_store(self):
         bar1 = Bar()
@@ -4407,7 +4435,7 @@ class StoreTest(object):
         self.assertEquals(values, [
                           (100, 10, "Title 300"),
                           (200, 20, "Title 200"),
-                         ])
+                          ])
 
     def test_references_raise_nostore(self):
         foo1 = FooRefSet()
@@ -4484,7 +4512,7 @@ class StoreTest(object):
         self.assertEquals(items, [
                           (100, "Title 300"),
                           (200, "Title 200"),
-                         ])
+                          ])
 
     def test_string_reference_set_order_by(self):
         """
@@ -4527,7 +4555,7 @@ class StoreTest(object):
         foo5 = Foo()
 
         for i, foo in enumerate([foo1, foo2, foo3, foo4, foo5]):
-            foo.title = u"Object %d" % (i+1)
+            foo.title = u"Object %d" % (i + 1)
             self.store.add(foo)
 
         self.store.add_flush_order(foo2, foo4)
@@ -4566,7 +4594,7 @@ class StoreTest(object):
                           (10, "Title 30"),
                           (20, "to_db(from_py(Title 20))"),
                           (30, "Title 10"),
-                         ])
+                          ])
 
     def test_variable_filter_on_update_unchanged(self):
         foo = self.store.get(FooVariable, 20)
@@ -4575,7 +4603,7 @@ class StoreTest(object):
                           (10, "Title 30"),
                           (20, "Title 20"),
                           (30, "Title 10"),
-                         ])
+                          ])
 
     def test_variable_filter_on_insert(self):
         foo = FooVariable()
@@ -4590,7 +4618,7 @@ class StoreTest(object):
                           (20, "Title 20"),
                           (30, "Title 10"),
                           (40, "to_db(from_py(Title 40))"),
-                         ])
+                          ])
 
     def test_variable_filter_on_missing_values(self):
         foo = FooVariable()
@@ -4609,7 +4637,7 @@ class StoreTest(object):
                           (10, "Title 30"),
                           (20, "to_db(from_py(Title 20))"),
                           (30, "Title 10"),
-                         ])
+                          ])
 
     def test_variable_filter_on_set_expr(self):
         foo = FooVariable()
@@ -4620,17 +4648,18 @@ class StoreTest(object):
                           (10, "Title 30"),
                           (20, "to_db(from_py(Title 20))"),
                           (30, "Title 10"),
-                         ])
+                          ])
 
     def test_wb_result_set_variable(self):
         Result = self.store._connection.result_factory
 
         class MyResult(Result):
+
             def set_variable(self, variable, value):
                 if variable.__class__ is UnicodeVariable:
                     variable.set(u"set_variable(%s)" % value)
                 elif variable.__class__ is IntVariable:
-                    variable.set(value+1)
+                    variable.set(value + 1)
                 else:
                     variable.set(value)
 
@@ -4659,7 +4688,7 @@ class StoreTest(object):
 
     def test_default_factory(self):
         class MyFoo(Foo):
-            title = Unicode(default_factory=lambda:u"Some default value")
+            title = Unicode(default_factory=lambda: u"Some default value")
 
         foo = MyFoo()
         self.store.add(foo)
@@ -4848,7 +4877,9 @@ class StoreTest(object):
         # Disable the cache, which holds strong references.
         self.get_cache(self.store).set_size(0)
         loaded = []
+
         class MyFoo(Foo):
+
             def __storm_loaded__(oself):
                 loaded.append(None)
                 obj_info = get_obj_info(oself)
@@ -4880,6 +4911,7 @@ class StoreTest(object):
         """
         blob = self.store.get(Blob, 20)
         blob.bin = "\x80\x02}q\x01U\x01aK\x01s."
+
         class PickleBlob(object):
             __storm_table__ = "bin"
             id = Int(primary=True)
@@ -4953,7 +4985,7 @@ class StoreTest(object):
                           (10, "Title 30"),
                           (10, "Title 30"),
                           (20, "Title 20"),
-                         ])
+                          ])
 
     def test_expr_values(self):
         foo = self.store.get(Foo, 20)
@@ -4965,7 +4997,7 @@ class StoreTest(object):
                           (10, "Title 30"),
                           (20, "Title 20"),
                           (30, "Title 10"),
-                         ])
+                          ])
 
         self.store.flush()
 
@@ -4975,7 +5007,7 @@ class StoreTest(object):
                           (10, "Title 30"),
                           (20, "New title"),
                           (30, "Title 10"),
-                         ])
+                          ])
 
         self.assertEquals(foo.title, "New title")
 
@@ -4989,7 +5021,7 @@ class StoreTest(object):
                           (10, "Title 30"),
                           (20, "Title 20"),
                           (30, "Title 10"),
-                         ])
+                          ])
 
         self.assertEquals(foo.title, "New title")
 
@@ -4999,7 +5031,7 @@ class StoreTest(object):
                           (10, "Title 30"),
                           (20, "New title"),
                           (30, "Title 10"),
-                         ])
+                          ])
 
     def test_expr_values_flush_and_load_in_separate_steps(self):
         foo = self.store.get(Foo, 20)
@@ -5013,7 +5045,7 @@ class StoreTest(object):
                           (10, "Title 30"),
                           (20, "New title"),
                           (30, "Title 10"),
-                         ])
+                          ])
 
         # But our value is now an AutoReload.
         lazy_value = get_obj_info(foo).variables[Foo.title].get_lazy()
@@ -5034,7 +5066,7 @@ class StoreTest(object):
                           (10, "Title 30"),
                           (20, "Title 20"),
                           (30, "Title 10"),
-                         ])
+                          ])
 
         self.assertEquals(foo.title, "New title")
 
@@ -5045,7 +5077,7 @@ class StoreTest(object):
                           (20, "Title 20"),
                           (30, "Title 10"),
                           (40, "New title"),
-                         ])
+                          ])
 
     def test_expr_values_flush_on_demand_with_removed_and_added(self):
         foo = self.store.get(Foo, 20)
@@ -5059,7 +5091,7 @@ class StoreTest(object):
                           (10, "Title 30"),
                           (20, "Title 20"),
                           (30, "Title 10"),
-                         ])
+                          ])
 
         self.assertEquals(foo.title, "New title")
 
@@ -5069,7 +5101,7 @@ class StoreTest(object):
                           (10, "Title 30"),
                           (20, "New title"),
                           (30, "Title 10"),
-                         ])
+                          ])
 
     def test_expr_values_flush_on_demand_with_removed_and_rollbacked(self):
         foo = self.store.get(Foo, 20)
@@ -5084,7 +5116,7 @@ class StoreTest(object):
                           (10, "Title 30"),
                           (20, "Title 20"),
                           (30, "Title 10"),
-                         ])
+                          ])
 
         self.assertEquals(foo.title, "New title")
 
@@ -5094,7 +5126,7 @@ class StoreTest(object):
                           (10, "Title 30"),
                           (20, "New title"),
                           (30, "Title 10"),
-                         ])
+                          ])
 
     def test_expr_values_flush_on_demand_with_added_and_removed(self):
 
@@ -5126,7 +5158,7 @@ class StoreTest(object):
                           (10, "Title 30"),
                           (20, "Title 20"),
                           (30, "Title 10"),
-                         ])
+                          ])
 
         self.assertEquals(foo.title, None)
 
@@ -5135,7 +5167,7 @@ class StoreTest(object):
                           (10, "Title 30"),
                           (20, "Title 20"),
                           (30, "Title 10"),
-                         ])
+                          ])
 
     def test_expr_values_flush_on_demand_with_removed(self):
 
@@ -5161,7 +5193,7 @@ class StoreTest(object):
                           (10, "Title 30"),
                           (20, "Title 20"),
                           (30, "Title 10"),
-                         ])
+                          ])
 
         self.assertEquals(foo.title, None)
 
@@ -5170,7 +5202,7 @@ class StoreTest(object):
                           (10, "Title 30"),
                           (20, "Title 20"),
                           (30, "Title 10"),
-                         ])
+                          ])
 
     def test_lazy_value_preserved_with_subsequent_object_initialization(self):
         """
@@ -5220,7 +5252,7 @@ class StoreTest(object):
 
     def test_expr_values_with_columns(self):
         bar = self.store.get(Bar, 200)
-        bar.foo_id = Bar.id+1
+        bar.foo_id = Bar.id + 1
         self.assertEquals(bar.foo_id, 201)
 
     def test_autoreload_attribute(self):
@@ -5399,7 +5431,9 @@ class StoreTest(object):
 
     def test_invalidated_hook(self):
         called = []
+
         class MyFoo(Foo):
+
             def __storm_invalidated__(self):
                 called.append(True)
         foo = self.store.get(MyFoo, 20)
@@ -5416,7 +5450,9 @@ class StoreTest(object):
         store.py:_mark_autoreload.
         """
         called = []
+
         class MyFoo(Foo):
+
             def __storm_invalidated__(self):
                 if not called:
                     called.append(get_obj_info(foo1).get("invalidated"))
@@ -5533,13 +5569,13 @@ class StoreTest(object):
         self.assertEquals([(foo.id, foo.title) for foo in result3], [
                           (30, "Title 10"),
                           (10, "Title 30"),
-                         ])
+                          ])
 
         result3.order_by(Desc(Foo.title))
         self.assertEquals([(foo.id, foo.title) for foo in result3], [
                           (10, "Title 30"),
                           (30, "Title 10"),
-                         ])
+                          ])
 
     def test_result_union_duplicated(self):
         result1 = self.store.find(Foo, id=30)
@@ -5549,7 +5585,7 @@ class StoreTest(object):
 
         self.assertEquals([(foo.id, foo.title) for foo in result3], [
                           (30, "Title 10"),
-                         ])
+                          ])
 
     def test_result_union_duplicated_with_all(self):
         result1 = self.store.find(Foo, id=30)
@@ -5560,7 +5596,7 @@ class StoreTest(object):
         self.assertEquals([(foo.id, foo.title) for foo in result3], [
                           (30, "Title 10"),
                           (30, "Title 10"),
-                         ])
+                          ])
 
     def test_result_union_with_empty(self):
         result1 = self.store.find(Foo, id=30)
@@ -5570,7 +5606,7 @@ class StoreTest(object):
 
         self.assertEquals([(foo.id, foo.title) for foo in result3], [
                           (30, "Title 10"),
-                         ])
+                          ])
 
     def test_result_union_incompatible(self):
         result1 = self.store.find(Foo, id=10)
@@ -5634,13 +5670,13 @@ class StoreTest(object):
         self.assertEquals([(foo.id, foo.title) for foo in result3], [
                           (30, "Title 10"),
                           (10, "Title 30"),
-                         ])
+                          ])
 
         result3.order_by(Desc(Foo.title))
         self.assertEquals([(foo.id, foo.title) for foo in result3], [
                           (10, "Title 30"),
                           (30, "Title 10"),
-                         ])
+                          ])
 
     def test_result_difference_with_empty(self):
         if self.__class__.__name__.startswith("MySQL"):
@@ -5653,7 +5689,7 @@ class StoreTest(object):
 
         self.assertEquals([(foo.id, foo.title) for foo in result3], [
                           (30, "Title 10"),
-                         ])
+                          ])
 
     def test_result_difference_incompatible(self):
         if self.__class__.__name__.startswith("MySQL"):
@@ -5695,13 +5731,13 @@ class StoreTest(object):
         self.assertEquals([(foo.id, foo.title) for foo in result3], [
                           (30, "Title 10"),
                           (10, "Title 30"),
-                         ])
+                          ])
 
         result3.order_by(Desc(Foo.title))
         self.assertEquals([(foo.id, foo.title) for foo in result3], [
                           (10, "Title 30"),
                           (30, "Title 10"),
-                         ])
+                          ])
 
     def test_result_intersection_with_empty(self):
         if self.__class__.__name__.startswith("MySQL"):
@@ -5736,7 +5772,8 @@ class StoreTest(object):
         self.assertEquals(bar.foo_title, "Title 20")
 
     def test_proxy_equals(self):
-        bar = self.store.find(BarProxy, BarProxy.foo_title == u"Title 20").one()
+        bar = self.store.find(
+            BarProxy, BarProxy.foo_title == u"Title 20").one()
         self.assertTrue(bar)
         self.assertEquals(bar.id, 200)
 
@@ -5824,6 +5861,7 @@ class StoreTest(object):
 
     def test_preset_primary_key(self):
         check = []
+
         def preset_primary_key(primary_columns, primary_variables):
             check.append([(variable.is_defined(), variable.get_lazy())
                           for variable in primary_variables])
@@ -5922,18 +5960,19 @@ class StoreTest(object):
                 self.assertEquals(myfoo.title, title)
             except AssertionError, e:
                 raise AssertionError(unicode(e, 'replace') +
-                    " (ensure your database was created with CREATE DATABASE"
-                    " ... CHARACTER SET utf8)")
+                                     " (ensure your database was created with CREATE DATABASE"
+                                     " ... CHARACTER SET utf8)")
 
     def test_creation_order_is_preserved_when_possible(self):
         foos = [self.store.add(Foo()) for i in range(10)]
         self.store.flush()
-        for i in range(len(foos)-1):
-            self.assertTrue(foos[i].id < foos[i+1].id)
+        for i in range(len(foos) - 1):
+            self.assertTrue(foos[i].id < foos[i + 1].id)
 
     def test_update_order_is_preserved_when_possible(self):
         class MyFoo(Foo):
             sequence = 0
+
             def __storm_flushed__(self):
                 self.flush_order = MyFoo.sequence
                 MyFoo.sequence += 1
@@ -5952,6 +5991,7 @@ class StoreTest(object):
     def test_removal_order_is_preserved_when_possible(self):
         class MyFoo(Foo):
             sequence = 0
+
             def __storm_flushed__(self):
                 self.flush_order = MyFoo.sequence
                 MyFoo.sequence += 1
@@ -5991,6 +6031,7 @@ class StoreTest(object):
     def test_execute_sends_event(self):
         """Statement execution emits the register-transaction event."""
         calls = []
+
         def register_transaction(owner):
             calls.append(owner)
         self.store._event.hook("register-transaction", register_transaction)
@@ -6004,6 +6045,7 @@ class StoreTest(object):
         the connection.
         """
         calls = []
+
         def register_transaction(owner):
             calls.append(owner)
         self.store._event.hook("register-transaction", register_transaction)
@@ -6015,6 +6057,7 @@ class StoreTest(object):
     def test_add_sends_event(self):
         """Adding an object emits the register-transaction event."""
         calls = []
+
         def register_transaction(owner):
             calls.append(owner)
         self.store._event.hook("register-transaction", register_transaction)
@@ -6027,6 +6070,7 @@ class StoreTest(object):
     def test_remove_sends_event(self):
         """Adding an object emits the register-transaction event."""
         calls = []
+
         def register_transaction(owner):
             calls.append(owner)
         self.store._event.hook("register-transaction", register_transaction)
@@ -6041,6 +6085,7 @@ class StoreTest(object):
         """Modifying an object retrieved in a previous transaction emits the
         register-transaction event."""
         calls = []
+
         def register_transaction(owner):
             calls.append(owner)
         self.store._event.hook("register-transaction", register_transaction)

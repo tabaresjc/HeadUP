@@ -16,17 +16,20 @@ def init_jinja_filters(app):
     app.jinja_env.trim_blocks = True
     app.jinja_env.lstrip_blocks = True
 
+
 @app.context_processor
 def utility_processor():
 
     today = datetime.date.today()
 
-    def pag(name, page, per_page, total, record_name, alignment = 'right', bs_version = 3, kind = None, **kwargs):
-        name = u'%s.%s.%s.%s.%s.%s.%s' % (name, page, per_page, total, record_name, alignment, bs_version)
+    def pag(name, page, per_page, total, record_name, alignment='right', bs_version=3, kind=None, **kwargs):
+        name = u'%s.%s.%s.%s.%s.%s.%s' % (
+            name, page, per_page, total, record_name, alignment, bs_version)
         pagination = Utilities.get_pagination_by_name(name)
 
         if not pagination:
-            pagination = Pagination(page=page, per_page=per_page, total=total, record_name=record_name, alignment=alignment, bs_version=bs_version, **kwargs)
+            pagination = Pagination(page=page, per_page=per_page, total=total,
+                                    record_name=record_name, alignment=alignment, bs_version=bs_version, **kwargs)
             Utilities.set_pagination_by_name(name, pagination)
 
         if kind == 'links':
@@ -36,7 +39,7 @@ def utility_processor():
         else:
             return pagination
     return dict(pag=pag,
-      today=today)
+                today=today)
 
 
 class Utilities(object):
@@ -67,7 +70,8 @@ class Utilities(object):
     def redirect_json_or_html(url, type, message=''):
         if request.is_xhr:
             if message:
-                js = [{"result": "error", "message": message, "type": "category", "redirect": url}]
+                js = [{"result": "error", "message": message,
+                       "type": "category", "redirect": url}]
             else:
                 js = [{"result": "ok", "type": "category", "redirect": url}]
             return Response(json.dumps(js), mimetype='application/json')
@@ -82,5 +86,5 @@ class Utilities(object):
 
     @staticmethod
     def humanformat(value):
-        #return human(value, precision=1)
+        # return human(value, precision=1)
         return gettext('Posted %(ago)s ago', ago=format_timedelta(value, granularity='second'))
