@@ -13,9 +13,16 @@ from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy.pool import NullPool
 from config import LANGUAGES
 import flask
+import jinja2
 import os
 
 app = Flask(__name__)
+
+# Set the location of the templates
+app.jinja_loader = jinja2.ChoiceLoader([
+    app.jinja_loader,
+    jinja2.FileSystemLoader('templates'),
+])
 if os.environ.get('HEROKU') is None:
     app.debug = True
 
@@ -61,8 +68,7 @@ login_manager = LoginManager()
 login_manager.init_app(app)
 # add our view as the login view to finish configuring the LoginManager
 login_manager.login_view = "sessions.login"
-login_manager.login_message = lazy_gettext(
-    'Please log in to access this page.')
+login_manager.login_message = lazy_gettext('Please log in to access this page.')
 
 # -------------------------------------------------------------------------
 # Register Views
