@@ -1,0 +1,44 @@
+<div class="boxed  push-down-45">
+    <div class="meta">
+        <div class="row">
+            <div class="col-xs-12  col-sm-10  col-sm-offset-1">
+                <div class="meta__container--without-image">
+                    <div class="row">
+                        <div class="col-xs-12  col-sm-8">
+                            <div class="meta__info">
+                                <span class="meta__author">
+                                  <img src="{{ current_user.avatar(144) }}" alt="{{ post.user.name }}" width="30" height="30">
+                                  <a href="{{ url_for('show_stamp', post_id=post.id) }}">{{ post.user.name }}</a> {{ _('in') }} 
+                                  <a href="#">News</a>
+                                </span>
+                                <span class="meta__date"><span class="glyphicon glyphicon-calendar"></span> &nbsp; {{ post.created_at|datetimeformat('EEE, d MMM yyyy') }}</span>
+                            </div>
+                        </div>
+                        <div class="col-xs-12  col-sm-4"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Meta without image end -->
+    <!-- Start of the blogpost -->
+    <div class="row">
+        <div class="col-xs-10  col-xs-offset-1">
+            <!-- Start of the content -->
+            <div class="post-content--front-page">
+                <h2 class="front-page-title"><a href="single-post-without-image.html">{{ post.title }}</a></h2>
+                <h3>{{ post.body|safe }}</h3>
+                <p>{{ post.extra_body|htmltruncate(500)|safe }}</p>
+            </div>
+            <!-- End of the content -->
+            <a href="{{ url_for('show_stamp', post_id=post.id) }}">
+                <div class="read-more">
+                    {{ _('Continue Reading...') }}
+                    <div class="read-more__arrow">
+                        <span class="glyphicon  glyphicon-chevron-right"></span>
+                    </div>
+                </div>
+            </a>
+        </div>
+    </div>
+</div>

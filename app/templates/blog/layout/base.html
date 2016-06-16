@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
     {% include 'shared/meta.html' %}
+    {% block meta_extra %}{% endblock %}
     <!-- main template file -->
     <link rel="stylesheet" href="/static/theme/headsup/stylesheets/main.css"/>
     <link rel="stylesheet" href="/static/theme/headsup/stylesheets/custom.css"/>
@@ -19,12 +20,8 @@
     <div class="container container-wrap">
       <div class="row">
         {% block wide_container %}
-        <div class="col-xs-12  col-md-8">
-
-        </div>
-        <div class="col-xs-12  col-md-4">
-
-        </div>
+        <div class="col-xs-12  col-md-8">{% block content %}{% endblock %}</div>
+        <div class="col-xs-12  col-md-4">{% block sidebar %}{% endblock %}</div>
         {% endblock %}
       </div>
     </div>

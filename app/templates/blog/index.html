@@ -1,13 +1,7 @@
 {% extends "blog/layout/base.html" %}
 
-{% block main %}
-	<div class="row">
-    	{% for post in posts %}
-			{% include 'blog/layout/_post_item.html' %}
-		{% endfor %}
-		<div class="col-md-12 col-sm-12">
-    	{{ pag('index', page, limit, total, gettext('posts'), kind='links')|safe }}
-		</div>
-    	<div class="clearfix"></div>
-	</div>
+{% block content %}
+	{% for post in posts %}
+		{% include 'blog/stamp/_feed_item.html' %}
+	{% endfor %}
 {% endblock %}
