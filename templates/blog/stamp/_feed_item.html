@@ -7,9 +7,9 @@
                         <div class="col-xs-12  col-sm-8">
                             <div class="meta__info">
                                 <span class="meta__author">
-                                  <img src="{{ current_user.avatar(144) }}" alt="{{ post.user.name }}" width="30" height="30">
+                                  <img src="{{ post.user.avatar(144) }}" alt="{{ post.user.name }}" width="30" height="30">
                                   <a href="{{ url_for('show_stamp', post_id=post.id) }}">{{ post.user.name }}</a> {{ _('in') }} 
-                                  <a href="#">News</a>
+                                  <a href="#">{{ _('News') }}</a>
                                 </span>
                                 <span class="meta__date"><span class="glyphicon glyphicon-calendar"></span> &nbsp; {{ post.created_at|datetimeformat('EEE, d MMM yyyy') }}</span>
                             </div>
