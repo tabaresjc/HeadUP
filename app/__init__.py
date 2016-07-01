@@ -23,8 +23,6 @@ app.jinja_loader = jinja2.ChoiceLoader([
     app.jinja_loader,
     jinja2.FileSystemLoader('templates'),
 ])
-if os.environ.get('HEROKU') is None:
-    app.debug = True
 
 # -------------------------------------------------------------------------
 # Load the app's configuration

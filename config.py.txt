@@ -1,25 +1,24 @@
 # -*- coding: utf8 -*-
 
-# *************************************************
-# Save this file as config.py
-# *************************************************
-
 import os
 basedir = os.path.abspath(os.path.dirname(__file__))
 
+# *************************************************
+# Flask Configuration
+# *************************************************
 CSRF_ENABLED = True
 SECRET_KEY = 'GENERATE_YOUR_SECRET_KEY'
-
-if os.environ.get('DATABASE_URL') is None:
-    SQLALCHEMY_DATABASE_URI = 'mysql://user:pwd@localhost/headsup'
-else:
-    SQLALCHEMY_DATABASE_URI = os.environ['DATABASE_URL']
-
-SQLALCHEMY_TRACK_MODIFICATIONS = True
-
+DEBUG = False
 LANGUAGES = {
     'en': 'English',
     'es': 'Español'
 }
 
 LANGUAGES_FORM = [(u'en',u'English'), (u'es', u'Español')]
+
+# *************************************************
+# SQLAlchemy Configuration
+# *************************************************
+SQLALCHEMY_DATABASE_URI = os.environ.get('DATABASE_URL', 'mysql://user:pwd@host/database')
+SQLALCHEMY_TRACK_MODIFICATIONS = False
+SQLALCHEMY_ECHO = False
