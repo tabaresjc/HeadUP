@@ -6,6 +6,7 @@ basedir = os.path.abspath(os.path.dirname(__file__))
 # *************************************************
 # Flask Configuration
 # *************************************************
+SITE_NAME = 'Headsup'
 CSRF_ENABLED = True
 SECRET_KEY = 'GENERATE_YOUR_SECRET_KEY'
 DEBUG = False

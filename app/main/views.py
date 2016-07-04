@@ -16,7 +16,6 @@ def index(page=1):
     limit = 5
     posts, total = Post.pagination(limit=limit, page=page)
     return render_template("main/index.html",
-                           title=gettext('Home'),
                            posts=posts,
                            page=page,
                            limit=limit,

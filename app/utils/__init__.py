@@ -19,7 +19,9 @@ def init_jinja_filters(app):
 
 @app.context_processor
 def utility_processor():
-
+    # Site name
+    from config import SITE_NAME
+    # Send the current date & time
     today = datetime.date.today()
 
     def pag(name, page, per_page, total, record_name, alignment='right', bs_version=3, kind=None, **kwargs):
@@ -38,8 +40,10 @@ def utility_processor():
             return pagination.info
         else:
             return pagination
+
     return dict(pag=pag,
-                today=today)
+                today=today,
+                site_name=SITE_NAME)
 
 
 class Utilities(object):

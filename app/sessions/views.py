@@ -42,7 +42,7 @@ def login():
                 user.last_login = user.last_seen
                 user.last_seen = datetime.datetime.utcnow()
                 user.save()
-                redirect_to = url_for('dashboard')
+                redirect_to = url_for('index')
                 if 'redirect_to' in session:
                     redirect_to = session['redirect_to']
                     session.pop('redirect_to', None)
