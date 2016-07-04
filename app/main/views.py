@@ -11,11 +11,11 @@ from app.categories.models import Category
 
 
 @app.route('/', defaults={'page': 1})
-@app.route('/stamps/page/<int:page>')
+@app.route('/page/<int:page>')
 def index(page=1):
     limit = 5
     posts, total = Post.pagination(limit=limit, page=page)
-    return render_template("blog/index.html",
+    return render_template("main/index.html",
                            title=gettext('Home'),
                            posts=posts,
                            page=page,
@@ -28,7 +28,7 @@ def show_stamp(post_id):
     post = Post.get_by_id(post_id)
     if post is None:
         abort(404)
-    return render_template("blog/stamp/detail.html",
+    return render_template("main/stamp/detail.html",
                            title=gettext('Stamp | %(title)s',
                                          title=post.title),
                            post=post)
@@ -67,7 +67,7 @@ def create_stamp(post_id):
         return redirect(url_for('create_stamp', post_id=post.id))
     else:
         form = NewPostForm(post) if post_id else PostForm()
-    return render_template("blog/stamp/form.html",
+    return render_template("main/stamp/form.html",
                            form=form,
                            post=post,
                            post_id=post_id)
@@ -83,7 +83,7 @@ def show_post(id):
     if post is None:
         abort(404)
 
-    return render_template("blog/post-detail.html",
+    return render_template("main/post-detail.html",
                            title=gettext('Post | %(title)s', title=post.title),
                            post=post,
                            form=None)
@@ -97,7 +97,7 @@ def show_category(cat, page=1):
     posts, category = Category.get_posts_by_cat(cat, limit=limit, page=page)
     total = category.posts.count()
 
-    return render_template("blog/index.html",
+    return render_template("main/index.html",
                            title=category.name,
                            posts=posts,
                            page=page,
@@ -143,7 +143,7 @@ def search_post():
                             alignment='right',
                             bs_version=3)
 
-    return render_template("blog/post-search.html",
+    return render_template("main/post-search.html",
                            title=gettext('Search'),
                            form=form,
                            posts=posts,
