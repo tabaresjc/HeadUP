@@ -19,23 +19,23 @@
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse  navbar-collapse" id="readable-navbar-collapse">
           <ul class="navigation">
-            <li{% if request.endpoint == 'index' %} class="active"{% endif %}>
+            <li {% if request.endpoint == 'index' %}class="active"{% endif %}>
               <a href="/" class="dropdown-toggle" data-toggle="dropdown">{% trans%}Home{% endtrans %}</a>
             </li>
-            <li{% if request.endpoint == 'show_ranking' %} class="active"{% endif %}>
+            <li {% if request.endpoint == 'show_ranking' %}class="active"{% endif %}>
               <a href="/ranking" class="dropdown-toggle" data-toggle="dropdown">{% trans%}H'UP{% endtrans %}</a>
             </li>
-            <li{% if request.endpoint == 'show_mypage' %} class="active"{% endif %}>
-              <a href="/mypage" class="dropdown-toggle" data-toggle="dropdown">{% trans%}My Profile{% endtrans %}</a>
+            <li {% if request.endpoint == 'show_mypage' %}class="active"{% endif %}>
+              <a href="{{ url_for('dashboard') }}" class="dropdown-toggle" data-toggle="dropdown">{% trans%}My Page{% endtrans %}</a>
             </li>
-            <li{% if request.endpoint == 'show_categories' %} class="active"{% endif %}>
+            <li {% if request.endpoint == 'show_categories' %}class="active"{% endif %}>
               <a href="/categories" class="dropdown-toggle" data-toggle="dropdown">{% trans%}Up & Away{% endtrans %}</a>
             </li>
           </ul>
         </div><!-- /.navbar-collapse -->
       </nav>
       <div class="hidden-xs  hidden-sm">
-        <a href="#" class="search__container  js--toggle-search-mode"> <span class="glyphicon  glyphicon-search"></span>  </a>
+        <!-- <a href="#" class="search__container  js--toggle-search-mode"> <span class="glyphicon  glyphicon-search"></span>  </a> -->
         <!-- <div class="social">
           <a href="#" class="social__container"> <span class="glyphicon  glyphicon-heart"></span>  </a>
           <ul class="social__dropdown">
@@ -51,7 +51,7 @@
     </div>
   </header>
   <!-- Search - Open panel -->
-  <div class="search-panel">
+  <!-- <div class="search-panel">
     <div class="container">
       <div class="row">
         <div class="col-xs-12">
@@ -62,4 +62,4 @@
         </div>
       </div>
     </div>
-  </div>
+  </div> -->

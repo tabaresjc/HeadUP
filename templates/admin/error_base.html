@@ -1,7 +1,10 @@
 <!DOCTYPE html>
 <html>
 <head>
-    {% include 'shared/meta.html' %}
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <title>{% if title -%}{{ site_name }} | {{ title }}{%- else %}{{ site_name }}{%- endif %}</title>
+    <meta name="description" content="{{ description if description else '' }}">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <!-- bootstrap -->
     <link href="/static/bootstrap/css/bootstrap.css" rel="stylesheet" />
@@ -29,7 +32,7 @@
 
     <!-- navbar -->
     <header class="navbar navbar-inverse" role="banner" style="text-align:center;height:70px;padding-top:10px">
-        <a class="navbar-brand" href="{{ url_for('index') }}" style="float:none;"><img src="/static/logo.png" ></a>
+        <a class="navbar-brand" href="{{ url_for('index') }}" style="float:none;"><img alt="{{ site_name }}" src="/static/theme/admin/logo.png"></a>
     </header>
     <!-- end navbar -->
 
