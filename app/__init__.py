@@ -103,15 +103,11 @@ init_jinja_filters(app)
 
 @app.after_request
 def after_request_handler(response=None):
-    # close_db_connection()
     return response
 
 
 @app.before_request
 def before_request(response=None):
-    # if flask.request.endpoint:
-    #     if 'redirect_to' in flask.session and flask.request.endpoint not in ['static', 'sessions.login', 'sessions.signup', 'sessions.login_comment']:
-    #         flask.session.pop('redirect_to', None)
     return response
 
 
@@ -133,9 +129,3 @@ def internal_error_404(error):
 @app.errorhandler(500)
 def internal_error_500(error):
     return flask.render_template('admin/500.html', title='Error %s' % error), 500
-
-
-if app.debug:
-    import sys
-    from storm.tracer import debug
-    debug(True, stream=sys.stdout)
