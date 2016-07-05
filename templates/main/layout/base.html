@@ -16,21 +16,24 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
 </head>
 <body>
-    <!-- header -->
-    {% include 'main/layout/header.html' %}
-    <!-- end header -->
-    {% block container %}
-    <div class="container container-wrap">
-      <div class="row">
-        {% block wide_container %}
-        <div class="col-xs-12  col-md-8">{% block content %}{% endblock %}</div>
-        <div class="col-xs-12  col-md-4">{% block sidebar %}{% endblock %}</div>
-        {% endblock %}
+    <div class="container-wrap">
+      <!-- header -->
+      {% block page_header_block %}{% include 'main/layout/header.html' %}{% endblock %}
+      <!-- end header -->
+      {% block container %}
+      <div class="container">
+        <div class="row">
+          {% block wide_container %}
+          <div class="col-xs-12  col-md-8">{% block content %}{% endblock %}</div>
+          <div class="col-xs-12  col-md-4">{% block sidebar %}{% endblock %}</div>
+          {% endblock %}
+        </div>
       </div>
+      {% endblock %}
+      <div class="push"></div>
     </div>
-    {% endblock %}
     <!-- footer -->
-    {% include 'main/layout/footer.html' %}
+    {% block page_footer_block %}{% include 'main/layout/footer.html' %}{% endblock %}
     <!-- end footer -->
     <!-- Google Fonts -->
     <script type='text/javascript' src="//ajax.googleapis.com/ajax/libs/webfont/1/webfont.js" charset="utf-8"></script>
