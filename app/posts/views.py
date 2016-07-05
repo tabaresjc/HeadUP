@@ -8,7 +8,7 @@ from forms import PostForm, EditPostForm, NewPostForm
 
 
 class PostsView(FlaskView):
-    route_base = '/posts'
+    route_base = '/mypage/posts'
     decorators = [login_required]
 
     def index(self):

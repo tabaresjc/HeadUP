@@ -7,8 +7,8 @@ from flask.ext.babel import gettext
 from app import app
 
 
-@app.route('/dashboard/', defaults={'page': 1})
-@app.route('/dashboard/page/<int:page>')
+@app.route('/mypage/', defaults={'page': 1})
+@app.route('/mypage/page/<int:page>')
 @login_required
 def dashboard(page=1):
     limit = 5

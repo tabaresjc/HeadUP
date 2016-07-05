@@ -11,7 +11,7 @@ from models import Category
 
 
 class CategoriesView(FlaskView):
-    route_base = '/categories'
+    route_base = '/mypage/categories'
     decorators = [login_required]
 
     def index(self):

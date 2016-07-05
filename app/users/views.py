@@ -13,7 +13,7 @@ from app.posts.models import Post
 
 
 class UsersView(FlaskView):
-    route_base = '/users'
+    route_base = '/mypage/users'
     decorators = [login_required]
 
     def index(self):
