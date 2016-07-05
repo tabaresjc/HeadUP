@@ -8,7 +8,7 @@
 {% endblock %}
 
 {% block sidebar %}
-{% if current_user and current_user.is_authenticated %}
+{% if current_user and current_user.is_authenticated -%}
 <div class="widget-author  boxed  push-down-30">
 	<div class="widget-author__image-container">
 		<div class="widget-author__avatar--blurred">
@@ -23,5 +23,5 @@
 		</div>
 	</div>
 </div>
-{% endif %}
+{%- endif %}
 {% endblock %}
