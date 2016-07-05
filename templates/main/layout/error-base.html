@@ -1,0 +1,39 @@
+{% extends "main/layout/base.html" %}
+
+{% block page_header_block %}
+  {% include 'main/layout/header-no-menu.html' %}
+{% endblock %}
+
+{% block sidebar %}
+<div class="sidebar  boxed  push-down-30">
+  <div class="row">
+    <div class="col-xs-10  col-xs-offset-1">
+      <div class="widget-categories  push-down-30">
+        <h6>{{ _('Headsup') }}</h6>
+        <ul>
+          <li>
+            <a href="{{ url_for('index') }}">{{ _('Home Page') }}</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+{% if current_user and current_user.is_authenticated %}
+<div class="sidebar  boxed  push-down-30">
+  <div class="row">
+    <div class="col-xs-10  col-xs-offset-1">
+      <div class="widget-categories  push-down-30">
+        <h6>{{ _('MyPage') }}</h6>
+        <ul>
+          <li><a href="{{ url_for('dashboard') }}">{{ _('Dashboard') }}</a></li>
+          <li><a href="{{ url_for('PostsView:index') }}">{{ _('Posts') }}</a></li>
+          <li><a href="{{ url_for('PostsView:post_0') }}">{{ _('New Post') }}</a></li>
+          <li><a href="{{ url_for('UsersView:get', id = current_user.id) }}">{{ _('Profile') }}</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+{% endif %}
+{% endblock %}

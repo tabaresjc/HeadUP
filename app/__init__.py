@@ -113,19 +113,19 @@ def before_request(response=None):
 
 @app.errorhandler(401)
 def internal_error_401(error):
-    return flask.render_template('admin/401.html', title='Error %s' % error), 401
+    return flask.render_template('main/common/401.html', title=error), 401
 
 
 @app.errorhandler(403)
 def internal_error_403(error):
-    return flask.render_template('admin/403.html', title='Error %s' % error), 403
+    return flask.render_template('main/common/403.html', title=error), 403
 
 
 @app.errorhandler(404)
 def internal_error_404(error):
-    return flask.render_template('admin/404.html', title='Error %s' % error), 404
+    return flask.render_template('main/common/404.html', title=error), 404
 
 
 @app.errorhandler(500)
 def internal_error_500(error):
-    return flask.render_template('admin/500.html', title='Error %s' % error), 500
+    return flask.render_template('main/common/500.html', title=error), 500

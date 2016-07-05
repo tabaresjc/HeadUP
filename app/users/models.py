@@ -39,6 +39,14 @@ class User(db.Model, ModelBase, UserMixin):
         return self.set_attribute('name', value)
 
     @property
+    def description(self):
+        return self.get_attribute('description', '')
+
+    @description.setter
+    def description(self, value):
+        return self.set_attribute('description', value)
+
+    @property
     def nickname(self):
         return self.get_attribute('nickname')
 

@@ -1,0 +1,37 @@
+  <header class="header  push-down-45">
+    <div class="container">
+      <div class="logo" style="text-align:center;">
+        <a href="/">
+          <img src="/static/logo.png" alt="{% trans %}Logo{% endtrans %}" width="352" height="140">
+        </a>
+      </div>
+      <!-- Brand and toggle get grouped for better mobile display -->
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#readable-navbar-collapse">
+          <span class="sr-only">{% trans %}Toggle navigation{% endtrans %}</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+      </div>
+      <nav class="navbar  navbar-default hidden-lg hidden-md" role="navigation">
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse  navbar-collapse" id="readable-navbar-collapse">
+          <ul class="navigation">
+            <li {% if request.endpoint == 'index' %}class="active"{% endif %}>
+              <a href="/" class="dropdown-toggle" data-toggle="dropdown">{% trans%}Home{% endtrans %}</a>
+            </li>
+            <li {% if request.endpoint == 'show_ranking' %}class="active"{% endif %}>
+              <a href="/ranking" class="dropdown-toggle" data-toggle="dropdown">{% trans%}H'UP{% endtrans %}</a>
+            </li>
+            <li {% if request.endpoint == 'show_mypage' %}class="active"{% endif %}>
+              <a href="{{ url_for('dashboard') }}" class="dropdown-toggle" data-toggle="dropdown">{% trans%}My Page{% endtrans %}</a>
+            </li>
+            <li {% if request.endpoint == 'show_categories' %}class="active"{% endif %}>
+              <a href="/categories" class="dropdown-toggle" data-toggle="dropdown">{% trans%}Up & Away{% endtrans %}</a>
+            </li>
+          </ul>
+        </div>
+      </nav>
+    </div>
+  </header>
