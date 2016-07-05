@@ -8,14 +8,13 @@
             </button>
             <a class="navbar-brand" href="{{ url_for('dashboard') }}">
               <strong>{{ site_name }}</strong>
-              {{ _('Admin') if current_user.is_admin else '' }}
+              {{ _('Admin') if current_user.is_admin else _('My Page') }}
             </a>
         </div>
         <ul class="nav navbar-nav pull-right hidden-xs">            
             <li>
                 <a href="javascript:void(0);" class="hidden-xs hidden-sm">{{ _('Welcome, %(name)s',name=current_user.name) }} </a>
             </li>
-            
             <li class="dropdown">
                 <a href="javascript:void(0);" class="dropdown-toggle hidden-xs hidden-sm" data-toggle="dropdown">
                     {{ _('Your account') }}
@@ -29,8 +28,13 @@
                 </ul>
             </li>
             <li class="settings hidden-xs hidden-sm">
+                <a href="{{ url_for('index') }}" role="button" title="{{ _('Top') }}">
+                    <i class="glyphicon glyphicon-home"></i>
+                </a>
+            </li>
+            <li class="settings hidden-xs hidden-sm">
                 <a href="{{ url_for('sessions.logout') }}" data-method="post" role="button" title="{{ _('Sign Out') }}">
-                    <i class="icon-signout"></i>
+                    <i class="glyphicon glyphicon-log-out"></i>
                 </a>
             </li>
         </ul>

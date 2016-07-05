@@ -1,14 +1,20 @@
     {% set navigation_bar = [
         {
-            'name': 'Dashboard',
+            'name': 'Home',
+            'url': 'index',
+            'icon': 'glyphicon glyphicon-home',
+            'pattern': 'index'
+        },
+        {
+            'name': 'My Page',
             'url': 'dashboard',
-            'icon': 'icon-home',
+            'icon': 'glyphicon glyphicon-leaf',
             'pattern': 'dashboard'
         },
         {
             'name': 'Posts',
             'url': '',
-            'icon': 'icon-edit',
+            'icon': 'glyphicon glyphicon-edit',
             'pattern': 'PostsView',
             'sub-menu': {
                 'index': {
@@ -25,14 +31,14 @@
             'name': 'Categories',
             'require_admin': True,
             'url': 'CategoriesView:index',
-            'icon': 'icon-bookmark',
+            'icon': 'glyphicon glyphicon-bookmark',
             'pattern': 'CategoriesView'
         },
         {
             'name': 'Users',
             'require_admin': True,
             'url': '',
-            'icon': 'icon-user',
+            'icon': 'glyphicon glyphicon-user',
             'pattern': 'UsersView',
             'sub-menu': {
                 'index': {
@@ -79,7 +85,7 @@
             {%- endfor %}
             <li>
                 <a href="{{ url_for('sessions.logout') }}" data-method="post" >
-                    <i class="icon-signout"></i>
+                    <i class="glyphicon glyphicon-log-out"></i>
                     <span>{{ _('Sign Out') }}</span>
                 </a>
             </li>
