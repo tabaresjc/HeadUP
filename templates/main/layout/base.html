@@ -8,9 +8,9 @@
   {% block meta_extra %}{% endblock %}
   {% include 'shared/icons.html' %}
   <!-- main template file -->
-  {% include 'shared/message_header.html' %}
   <link rel="stylesheet" href="/static/theme/headsup/stylesheets/main.css"/>
   <link rel="stylesheet" href="/static/theme/headsup/stylesheets/custom.css"/>
+  {% include 'shared/message_header.html' %}
   <!--[if lt IE 9]>
   <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
   <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
@@ -39,7 +39,20 @@
   {% block page_footer_block %}{% include 'main/layout/footer.html' %}{% endblock %}
   <!-- end footer -->
   <!-- Google Fonts -->
-  <script type='text/javascript' src="//ajax.googleapis.com/ajax/libs/webfont/1/webfont.js" charset="utf-8"></script>
+  <script type="text/javascript">
+    WebFontConfig = {
+      google: { families: ['Open+Sans:300,400,700:latin', 'Lato:700,900:latin', 'Ubuntu:300:latin,latin-ext'] }
+    };
+    (function() {
+      var wf = document.createElement('script');
+      wf.src = ('https:' == document.location.protocol ? 'https' : 'http') +
+      '://ajax.googleapis.com/ajax/libs/webfont/1/webfont.js';
+      wf.type = 'text/javascript';
+      wf.async = 'true';
+      var s = document.getElementsByTagName('script')[0];
+      s.parentNode.insertBefore(wf, s);
+    })();
+  </script>
   <!-- end Google Fonts -->
   <!-- HU Scripts -->
   <script type='text/javascript' src="/static/theme/headsup/js/main.js" charset="utf-8"></script>
