@@ -117,8 +117,11 @@ class User(db.Model, ModelBase, UserMixin):
     def is_current(self):
         return self.id == current_user.id
 
+    def can_edit(self):
+        return self.id == current_user.id or current_user.is_admin()
+
     def avatar(self, size):
-        return 'http://www.gravatar.com/avatar/' + md5(self.email).hexdigest() + '?d=mm&s=' + str(size)
+        return 'https://www.gravatar.com/avatar/' + md5(self.email).hexdigest() + '?d=mm&s=' + str(size)
 
     def get_user_posts(self, limit=10, page=1):
         total = self.posts.count()

@@ -34,7 +34,7 @@ class UsersView(FlaskView):
     def get(self, id):
         user = User.get_by_id(id)
 
-        if user is None:
+        if user is None or not user.can_edit():
             flash(gettext('The user was not found'), 'error')
             return redirect(url_for('UsersView:index'))
 
@@ -67,11 +67,9 @@ class UsersView(FlaskView):
     @route('/<int:id>', methods=['PUT'])
     @route('/edit/<int:id>', methods=['GET', 'POST'])
     def put(self, id):
-        if not current_user.is_admin() and current_user.id != id:
-            abort(401)
-
         user = User.get_by_id(id)
-        if user is None:
+
+        if user is None or not user.can_edit():
             flash(gettext('The user was not found'), 'error')
             return redirect(url_for('UsersView:index'))
 
@@ -103,22 +101,21 @@ class UsersView(FlaskView):
     @route('/<int:id>', methods=['DELETE'])
     @route('/remove/<int:id>', methods=['POST'])
     def delete(self, id):
-        if not current_user.is_admin() and current_user.id != id:
-            abort(401)
-
-        if User.count() <= 1:
-            abort(403)
 
         user = User.get_by_id(id)
 
+        if user is None or not user.can_edit():
+            abort(401)
+
+        if current_user.id == user.id:
+            abort(403)
+
         try:
-            if user is None:
-                raise Exception(gettext('User not found'))
             name = user.name
             User.delete(user.id)
             flash(gettext('The user "%(name)s" was removed', name=name))
-        except:
-            flash(gettext('Error while removing the user'), 'error')
+        except Exception as e:
+            flash(gettext('Error while removing the user, %(error)s', error=e), 'error')
 
         if request.method == 'DELETE':
             return jsonify(redirect_to=url_for('UsersView:index'))
@@ -128,6 +125,7 @@ class UsersView(FlaskView):
     @route('/<int:id>/posts/', endpoint='user_post')
     def user_post(self, id):
         user = User.get_by_id(id)
+
         if user is None:
             flash(gettext('The user was not found'), 'error')
             return redirect(url_for('UsersView:index'))

@@ -8,13 +8,13 @@ from forms import PostForm, EditPostForm, NewPostForm
 
 
 class PostsView(FlaskView):
-    route_base = '/mypage/posts'
+    route_base = '/mypage/stamps'
     decorators = [login_required]
 
     def index(self):
         page = request.values.get('page', 1, type=int)
         limit = 10
-        posts, total = Post.pagination(page=page, limit=limit)
+        posts, total = Post.posts_by_user(current_user.id, page=page, limit=limit)
         return render_template('admin/posts/index.html',
                                posts=posts,
                                page=page,
@@ -24,7 +24,7 @@ class PostsView(FlaskView):
     def get(self, id):
         post = Post.get_by_id(id)
 
-        if post is None:
+        if post is None or not post.can_edit():
             flash(gettext('The requested stamp was not found'), 'error')
             return redirect(url_for('PostsView:index'))
 
@@ -57,12 +57,10 @@ class PostsView(FlaskView):
     @route('/edit/<int:id>', methods=['GET', 'POST'])
     def put(self, id):
         post = Post.get_by_id(id)
-        if post is None:
+
+        if post is None or not post.can_edit():
             flash(gettext('The requested stamp was not found'), 'error')
             return redirect(url_for('PostsView:index'))
-
-        if not current_user.is_admin() and not post.is_mine():
-            abort(401)
 
         if request.method in ['POST', 'PUT']:
             form = EditPostForm(id=id)

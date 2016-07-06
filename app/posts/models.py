@@ -55,3 +55,13 @@ class Post(db.Model, ModelBase):
 
     def can_edit(self):
         return current_user.is_authenticated and (self.user.id == current_user.id or current_user.is_admin())
+
+    @classmethod
+    def posts_by_user(cls, user_id, limit=10, page=1, orderby='id', desc=True):
+        query = cls.query.filter_by(user_id=user_id)
+        count = query.count()
+        records = []
+        if count:
+            sort_by = '%s %s' % (orderby, 'DESC' if desc else 'ASC')
+            records = query.order_by(db.text(sort_by)).limit(limit).offset((page - 1) * limit)
+        return records, count
