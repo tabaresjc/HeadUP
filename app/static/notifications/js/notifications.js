@@ -27,7 +27,7 @@
       this.messageTextSelectors.each(function(index, element) {
         var category = $(element).data('category'),
             text = $(element).text();
-        var notification = alertify.notify(text, 'success', 0);
+        var notification = alertify.notify(text, 'success', 5);
       });
     }
   };
