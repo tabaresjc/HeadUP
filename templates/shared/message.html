@@ -1,19 +1,11 @@
+<script src="/static/notifications/js/alertify.min.js"></script>
+<script type='text/javascript' src="/static/notifications/js/notifications.js" charset="utf-8"></script>
 {% with messages = get_flashed_messages(with_categories=true) %}
-{% if messages %}
-<div class="message_container">
-{% for category, message in messages %}                    
-    <div class="alert alert-{{ 'danger' if category == 'error' else 'success' }}">
-        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-        {% if category == 'error' %}
-        <i class="glyphicon glyphicon-remove-sign"></i>
-        {% elif category == 'info' %}
-        <i class="glyphicon glyphicon-info-sign"></i>
-        {% else %}
-        <i class="glyphicon glyphicon-ok-sign"></i>            
-        {% endif %}
-        {{ message | safe }}        
-    </div>                    
-{% endfor %}
+{% if messages -%}
+<div id="message-list" style="display:none;">
+  {% for category, message in messages -%}
+  <div data-category="{{ category }}">{{ message | safe }}</div>
+  {%- endfor %}
 </div>
 {% endif %}
-{% endwith %}
+{%- endwith %}

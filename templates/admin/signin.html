@@ -1,66 +1,69 @@
 <!DOCTYPE html>
 <html lang="en" class="login-bg" style="background-image:url('/static/theme/admin/img/bgs/9.jpg')">
 <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-    <title>{% if title -%}{{ site_name }} | {{ title }}{%- else %}{{ site_name }}{%- endif %}</title>
-    <meta name="description" content="{{ description if description else '' }}">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- bootstrap -->
-    <link href="/static/theme/admin/css/bootstrap/bootstrap.min.css" rel="stylesheet" />
-    <link href="/static/theme/admin/css/bootstrap/bootstrap-overrides.css" type="text/css" rel="stylesheet">
-
-    <!-- global styles -->
-    <link rel="stylesheet" type="text/css" href="/static/theme/admin/css/compiled/layout.css">
-    <link rel="stylesheet" type="text/css" href="/static/theme/admin/css/compiled/elements.css">
-    <link rel="stylesheet" type="text/css" href="/static/theme/admin/css/compiled/icons.css">
-
-    <!-- libraries -->
-    <link rel="stylesheet" type="text/css" href="/static/theme/admin/css/lib/font-awesome.css">
-    
-    <!-- this page specific styles -->
-    <link rel="stylesheet" href="/static/theme/admin/css/compiled/signin.css" type="text/css" media="screen" />
-
-    <!-- open sans font -->
-    <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
-
-    <!--[if lt IE 9]>
-      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
-    <![endif]-->
-    <meta name="csrf-token" content="{{ csrf_token() }}">
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+  <title>{% if title -%}{{ site_name }} | {{ title }}{%- else %}{{ site_name }}{%- endif %}</title>
+  <meta name="description" content="{{ description if description else '' }}">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- bootstrap -->
+  <link href="/static/theme/admin/css/bootstrap/bootstrap.min.css" rel="stylesheet" />
+  <link href="/static/theme/admin/css/bootstrap/bootstrap-overrides.css" type="text/css" rel="stylesheet">
+  
+  <!-- global styles -->
+  <link rel="stylesheet" type="text/css" href="/static/theme/admin/css/compiled/layout.css">
+  <link rel="stylesheet" type="text/css" href="/static/theme/admin/css/compiled/elements.css">
+  <link rel="stylesheet" type="text/css" href="/static/theme/admin/css/compiled/icons.css">
+  
+  <!-- libraries -->
+  <link rel="stylesheet" type="text/css" href="/static/theme/admin/css/lib/font-awesome.css">
+  
+  <!-- message notification styles -->
+  {% include 'shared/message_header.html' %}  
+  
+  <!-- this page specific styles -->
+  <link rel="stylesheet" href="/static/theme/admin/css/compiled/signin.css" type="text/css" media="screen" />
+  
+  <!-- open sans font -->
+  <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
+  
+  <!--[if lt IE 9]>
+  <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+  <![endif]-->
+  <meta name="csrf-token" content="{{ csrf_token() }}">
 </head>
 <body>
-    <div class="login-wrapper">
-        <a href="{{ url_for('index') }}">
-            <img alt="{{ site_name }}" class="logo" src="/static/theme/admin/logo.png">
-        </a>
-        {% include 'shared/message.html' %}
-        <div class="box">
-            <div class="content-wrap">
-                <h6>{{ _('Log in') }}</h6>
-                {% from "shared/_bootstrap_forms.html" import render_inline_field %}
-                <form action="{{ url_for('sessions.login') }}" method="post" name="login">
-                    {{ form.hidden_tag() }}
-                    {{ render_inline_field(form.email,class="form-control",placeholder=_('E-mail address')) }}
-                    {{ render_inline_field(form.password, class="form-control",placeholder=_('Password')) }}
-                    <div class="remember">
-                        {{ form.remember_me }}
-                        <label for="remember_me">Remember me</label>
-                    </div>                    
-                    <input type="submit" value="{{ _('Sign In') }}" class="btn-glow primary login">
-                </form>
-            </div>
-        </div>
-
-        <div class="no-account">
-            <p>{{ _('Don\'t have an account?') }}</p>
-            <a href="{{ url_for('sessions.signup')}}">{{ _('Sign up') }}</a>
-        </div>
+  <div class="login-wrapper">
+    <a href="{{ url_for('index') }}">
+      <img alt="{{ site_name }}" class="logo" src="/static/theme/admin/logo.png">
+    </a>
+    <div class="box">
+      <div class="content-wrap">
+        <h6>{{ _('Log in') }}</h6>
+        {% from "shared/_bootstrap_forms.html" import render_inline_field %}
+        <form action="{{ url_for('sessions.login') }}" method="post" name="login">
+          {{ form.hidden_tag() }}
+          {{ render_inline_field(form.email,class="form-control",placeholder=_('E-mail address')) }}
+          {{ render_inline_field(form.password, class="form-control",placeholder=_('Password')) }}
+          <div class="remember">
+            {{ form.remember_me }}
+            <label for="remember_me">Remember me</label>
+          </div>                    
+          <input type="submit" value="{{ _('Sign In') }}" class="btn-glow primary login">
+        </form>
+      </div>
     </div>
-
-	<!-- scripts -->
-    <script src="/static/js/jquery/jquery-1.12.4.js"></script>
-    <script src="/static/bootstrap/js/bootstrap.min.js"></script>
-    <script src="/static/theme/admin/js/theme.js"></script>
-    <script src="/static/js/jquery_ujs.js"></script>
+    
+    <div class="no-account">
+      <p>{{ _('Don\'t have an account?') }}</p>
+      <a href="{{ url_for('sessions.signup')}}">{{ _('Sign up') }}</a>
+    </div>
+  </div>
+  
+  <!-- scripts -->
+  <script src="/static/js/jquery/jquery-1.12.4.js"></script>
+  <script src="/static/bootstrap/js/bootstrap.min.js"></script>
+  <script src="/static/theme/admin/js/theme.js"></script>
+  <script src="/static/js/jquery_ujs.js"></script>
+  {% include 'shared/message.html' %}
 </body>
 </html>

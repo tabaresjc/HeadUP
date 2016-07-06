@@ -1,0 +1,15 @@
+{
+  "name": "jquery-smart-vimeo-embed",
+  "homepage": "https://github.com/hansoninc/jquery-smart-vimeo-embed",
+  "version": "1.1.1",
+  "_release": "1.1.1",
+  "_resolution": {
+    "type": "version",
+    "tag": "1.1.1",
+    "commit": "4ff44e3c9a6ccf8fdce8f95d2a29f6aad919dd37"
+  },
+  "_source": "git://github.com/hansoninc/jquery-smart-vimeo-embed.git",
+  "_target": "~1.1.1",
+  "_originalSource": "jquery-smart-vimeo-embed",
+  "_direct": true
+}
