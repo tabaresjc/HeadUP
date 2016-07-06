@@ -1,6 +1,6 @@
 # -*- coding: utf8 -*-
 
-from flask import render_template
+from flask import render_template, redirect, url_for
 from flask.ext.login import current_user, login_required
 from flask.ext.paginate import Pagination
 from flask.ext.babel import gettext
@@ -11,16 +11,14 @@ from app import app
 @app.route('/mypage/page/<int:page>')
 @login_required
 def dashboard(page=1):
-    limit = 5
-    posts = current_user.get_user_posts(page=page, limit=limit)
-    pagination = Pagination(page=page,
-                            per_page=limit,
-                            total=current_user.posts.count(),
-                            record_name='posts',
-                            alignment='right',
-                            bs_version=3)
+    limit = 10
+    posts, total = current_user.get_user_posts(page=page, limit=limit)
 
-    return render_template("admin/dashboard.html",
-                           title=gettext('Blog Administration'),
+    if not posts.count() and page > 1:
+        return redirect(url_for('dashboard'))
+
+    return render_template("admin/index.html",
                            posts=posts,
-                           pagination=pagination)
+                           page=page,
+                           limit=limit,
+                           total=total)

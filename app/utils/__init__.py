@@ -24,13 +24,13 @@ def utility_processor():
     # Send the current date & time
     today = datetime.date.today()
 
-    def pag(name, page, per_page, total, record_name, alignment='right', bs_version=3, kind=None, **kwargs):
+    def pag(name, page, limit, total, record_name, alignment='right', bs_version=3, kind=None, **kwargs):
         name = u'%s.%s.%s.%s.%s.%s.%s' % (
-            name, page, per_page, total, record_name, alignment, bs_version)
+            name, page, limit, total, record_name, alignment, bs_version)
         pagination = Utilities.get_pagination_by_name(name)
 
         if not pagination:
-            pagination = Pagination(page=page, per_page=per_page, total=total,
+            pagination = Pagination(page=page, per_page=limit, total=total,
                                     record_name=record_name, alignment=alignment, bs_version=bs_version, **kwargs)
             Utilities.set_pagination_by_name(name, pagination)
 

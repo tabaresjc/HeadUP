@@ -97,7 +97,7 @@ def signup():
             user.set_password(form.password.data)
             user.last_seen = datetime.datetime.utcnow()
             user.last_login = datetime.datetime.utcnow()
-            ## Store in database
+            # Store in database
             user.save()
             # Login User
             login_user(user)

@@ -6,16 +6,18 @@ basedir = os.path.abspath(os.path.dirname(__file__))
 # *************************************************
 # Flask Configuration
 # *************************************************
-SITE_NAME = 'Headsup'
 CSRF_ENABLED = True
 SECRET_KEY = 'GENERATE_YOUR_SECRET_KEY'
 DEBUG = False
-LANGUAGES = {
-    'en': 'English',
-    'es': 'Español'
-}
 
+# *************************************************
+# Site Configuration
+# *************************************************
+SITE_NAME = 'Headsup'
+DEFAULT_TIMEZONE = u'Asia/Tokyo'
+DEFAULT_USER_ROLES = [('1', 'Administrator'), ('2', 'Writer')]
 LANGUAGES_FORM = [(u'en',u'English'), (u'es', u'Español')]
+LANGUAGES = {'en': 'English','es': 'Español'}
 
 # *************************************************
 # SQLAlchemy Configuration

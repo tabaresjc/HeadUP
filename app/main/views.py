@@ -13,8 +13,10 @@ from app.categories.models import Category
 @app.route('/', defaults={'page': 1})
 @app.route('/page/<int:page>')
 def index(page=1):
-    limit = 5
+    limit = 20
     posts, total = Post.pagination(limit=limit, page=page)
+    if not posts.count() and page > 1:
+        return redirect(url_for('index'))
     return render_template("main/index.html",
                            posts=posts,
                            page=page,

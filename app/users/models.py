@@ -121,7 +121,9 @@ class User(db.Model, ModelBase, UserMixin):
         return 'http://www.gravatar.com/avatar/' + md5(self.email).hexdigest() + '?d=mm&s=' + str(size)
 
     def get_user_posts(self, limit=10, page=1):
-        return self.posts.order_by(db.text("id DESC")).offset((page - 1) * limit).limit(limit)
+        total = self.posts.count()
+        posts = self.posts.order_by(db.text("id DESC")).offset((page - 1) * limit).limit(limit)
+        return posts, total
 
     @classmethod
     def find_by_email(cls, email):

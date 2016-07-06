@@ -5,6 +5,7 @@ from wtforms import BooleanField, TextField, TextAreaField, PasswordField, Selec
 from flask.ext.babel import lazy_gettext, gettext
 from config import LANGUAGES_FORM
 import pytz
+import config
 
 
 def get_timezones():
@@ -15,35 +16,47 @@ def get_timezones():
 
 
 class UserForm(Form):
-    email = TextField(lazy_gettext('Email'), [validators.Required(
-    ), validators.Email(), validators.Length(min=10, max=255)])
+    email = TextField(lazy_gettext('Email'), [
+                      validators.Required(),
+                      validators.Email(),
+                      validators.Length(min=10, max=255)])
+
     name = TextField(lazy_gettext('Name'), [
-                     validators.Required(), validators.Length(min=5, max=255)])
+                     validators.Required(),
+                     validators.Length(min=5, max=255)])
+
     nickname = TextField(lazy_gettext('Nickname'), [
-                         validators.Required(), validators.Length(min=0, max=64)])
-    role_id = SelectField(lazy_gettext('Role'), [validators.Optional()], choices=[
-                          ('1', 'Administrator'), ('2', 'Writer')])
+                         validators.Required(),
+                         validators.Length(min=0, max=64)])
+    role_id = SelectField(lazy_gettext('Role'), [
+                          validators.Optional()],
+                          choices=config.DEFAULT_USER_ROLES)
+
     password = PasswordField(lazy_gettext('Password'), [
         validators.Optional(),
-        validators.EqualTo('confirm_password', message=lazy_gettext(
-            'Please repeat the password')),
-        validators.Length(min=6, max=64)
-    ])
-    confirm_password = PasswordField(
-        lazy_gettext('Confirm'), [validators.Optional()])
-    address = TextAreaField(lazy_gettext('Address'), [
-                            validators.Length(min=0, max=255)])
-    phone = TextField(lazy_gettext('Phone'), [
-                      validators.Length(min=0, max=64)])
+        validators.EqualTo('confirm_password', message=lazy_gettext('Please repeat the password')),
+        validators.Length(min=6, max=64)])
+
+    confirm_password = PasswordField(lazy_gettext('Confirm'), [validators.Optional()])
+
+    address = TextAreaField(lazy_gettext('Address'), [validators.Length(min=0, max=255)])
+
+    phone = TextField(lazy_gettext('Phone'), [validators.Length(min=0, max=64)])
+
     timezone = SelectField(u'Timezone', choices=get_timezones())
-    lang = SelectField(u'language', choices=LANGUAGES_FORM)
+
+    lang = SelectField(u'language', choices=config.LANGUAGES_FORM)
 
 
 class NewUserForm(UserForm):
+
+    def __init__(self, *args, **kwargs):
+        Form.__init__(self, *args, **kwargs)
+        self.timezone.data = config.DEFAULT_TIMEZONE
+
     password = PasswordField(lazy_gettext('Password'), [
         validators.Required(),
-        validators.EqualTo('confirm_password', message=lazy_gettext(
-            'Please repeat the password')),
+        validators.EqualTo('confirm_password', message=lazy_gettext('Please repeat the password')),
         validators.Length(min=6, max=64)
     ])
 
