@@ -7,12 +7,11 @@ from models import Post
 
 class PostForm(Form):
     title = TextField(lazy_gettext('Title'), [validators.Required()])
-    body = TextAreaField(lazy_gettext('Your Challenge'),
-                         [validators.Required()])
-    extra_body = TextAreaField(lazy_gettext(
-        'Your Solution'), [validators.Required()])
+    body = TextAreaField(lazy_gettext('Your Challenge'), [validators.Required()])
+    extra_body = TextAreaField(lazy_gettext('Your Solution'), [validators.Required()])
     category_id = SelectField(u'Category', coerce=int)
     anonymous = BooleanField(lazy_gettext('Anonymous'), default=0)
+    remain = BooleanField(lazy_gettext('Show Post'), default=False)
 
     def __init__(self, *args, **kwargs):
         Form.__init__(self, *args, **kwargs)
@@ -27,13 +26,11 @@ class PostForm(Form):
 
 class EditPostForm(Form):
     title = TextField(lazy_gettext('Title'), [validators.Required()])
-    body = TextAreaField(lazy_gettext('Your Challenge'),
-                         [validators.Required()])
-    extra_body = TextAreaField(lazy_gettext(
-        'Your Solution'), [validators.Required()])
+    body = TextAreaField(lazy_gettext('Your Challenge'), [validators.Required()])
+    extra_body = TextAreaField(lazy_gettext('Your Solution'), [validators.Required()])
     category_id = SelectField(u'Category', coerce=int)
     anonymous = BooleanField(lazy_gettext('Anonymous'), default=0)
-    remain = BooleanField(lazy_gettext('Show Post'), default=True)
+    remain = BooleanField(lazy_gettext('Show Post'), default=False)
 
     def __init__(self, *args, **kwargs):
         Form.__init__(self, *args, **kwargs)

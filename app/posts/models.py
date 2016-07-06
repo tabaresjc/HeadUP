@@ -14,10 +14,8 @@ class Post(db.Model, ModelBase):
     id = db.Column(db.Integer, primary_key=True)
 
     title = db.Column(db.String(255))
-    user_id = db.Column(db.Integer, db.ForeignKey(
-        'users.id', ondelete='CASCADE', onupdate='NO ACTION'))
-    category_id = db.Column(db.Integer, db.ForeignKey(
-        'categories.id', ondelete='CASCADE', onupdate='NO ACTION'))
+    user_id = db.Column(db.Integer, db.ForeignKey('users.id', ondelete='CASCADE', onupdate='NO ACTION'))
+    category_id = db.Column(db.Integer, db.ForeignKey('categories.id', ondelete='CASCADE', onupdate='NO ACTION'))
 
     anonymous = db.Column(db.SmallInteger)
     attributes = db.Column(MutableDict.as_mutable(db.PickleType))

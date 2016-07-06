@@ -1,27 +1,31 @@
 {% extends "admin/layout/base.html" %}
+
+{% set title = _('Stamps | %(page)s', page=page) %}
+
 {% block custom_css %}
-    <link rel="stylesheet" href="/static/theme/admin/css/compiled/index.css" type="text/css" media="screen" />
-    <link rel="stylesheet" href="/static/theme/admin/css/compiled/ui-elements.css" type="text/css" media="screen">
+<link rel="stylesheet" href="/static/theme/admin/css/compiled/index.css" type="text/css" media="screen" />
+<link rel="stylesheet" href="/static/theme/admin/css/compiled/ui-elements.css" type="text/css" media="screen">
 {% endblock %}
+
 {% block main %}
-    <div class="row head">
-        <div class="col-md-12">
-            <h4>{{ _('Posts') }}</h4>
-        </div>
-    </div>
-    <br/>
-	<div class="row">
-	    <div class="col-md-9">
-	    	{{ pagination.info|safe }}
-	    	{{ pagination.links|safe }}
-	    	<div class="clearfix"></div>
-			{% for post in posts %}
-			{% include 'admin/posts/_post_item.html' %}
-			{% endfor %}
-			{{ pagination.links|safe }}
-	    </div>
-	    <div class="col-md-3">
-	    	{% include 'admin/posts/_sidebar.html' %}
-	    </div>
-	</div>
+<div class="row head">
+  <div class="col-md-12">
+    <h4>{{ _('Stamps') }}</h4>
+  </div>
+</div>
+<br/>
+<div class="row">
+  <div class="col-md-9">
+    {{ pag('admin.posts.index', page, limit, total, _('stamps'), kind='info')|safe }}
+    {{ pag('admin.posts.index', page, limit, total, _('stamps'), kind='links')|safe }}
+    <div class="clearfix"></div>
+    {% for post in posts %}
+    {% include 'admin/posts/_post_item.html' %}
+    {% endfor %}
+    {{ pag('admin.posts.index', page, limit, total, _('stamps'), kind='links')|safe }}
+  </div>
+  <div class="col-md-3">
+    {% include 'admin/posts/_sidebar.html' %}
+  </div>
+</div>
 {% endblock %}

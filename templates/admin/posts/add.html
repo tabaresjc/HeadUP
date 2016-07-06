@@ -1,26 +1,31 @@
 {% extends "admin/layout/base.html" %}
+
+{% set title = _('New Stamp') %}
+
 {% block custom_css %}
-    <link rel="stylesheet" href="/static/theme/admin/css/compiled/index.css" type="text/css" media="screen" />
-    <link rel="stylesheet" href="/static/theme/admin/css/compiled/ui-elements.css" type="text/css" media="screen">
+<link rel="stylesheet" href="/static/theme/admin/css/compiled/index.css" type="text/css" media="screen" />
+<link rel="stylesheet" href="/static/theme/admin/css/compiled/ui-elements.css" type="text/css" media="screen">
 {% endblock %}
-{% block custom_js %}
-    <script src="/static/js/ckeditor/ckeditor.js"></script>
-{% endblock %}
+
 {% block main %}
-    <div class="row head">
-        <div class="col-md-12">
-            <h4>{{ _('New post') }}</h4>
-        </div>
+<div class="row head">
+  <div class="col-md-12">
+    <h4>{{ _('New Stamp') }}</h4>
+  </div>
+</div>
+<br/>
+<div class="row">
+  <div class="col-md-9">
+    <div class="well">
+      {% include 'admin/posts/_post_form_add.html' %}
     </div>
-    <br/>
-	<div class="row">
-	    <div class="col-md-9">
-	    	<div class="well">
-	    		{% include 'admin/posts/_post_form_add.html' %}
-	    	</div>
-	    </div>
-	    <div class="col-md-3">
-	    	{% include 'admin/posts/_sidebar.html' %}
-	    </div>		    
-	</div>
+  </div>
+  <div class="col-md-3">
+    {% include 'admin/posts/_sidebar.html' %}
+  </div>		    
+</div>
+{% endblock %}
+
+{% block custom_js %}
+<script src="/static/js/ckeditor/ckeditor.js"></script>
 {% endblock %}

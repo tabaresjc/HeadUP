@@ -6,7 +6,11 @@ from app import app
 from flask import request, json, Response, flash, redirect
 from flask.ext.babel import gettext, format_datetime, format_timedelta
 from flask.ext.paginate import Pagination
+from jinja2 import evalcontextfilter, Markup, escape
 import truncate
+import re
+
+_paragraph_re = re.compile(r'(?:\r\n|\r|\n){2,}')
 
 
 def init_jinja_filters(app):
@@ -15,6 +19,15 @@ def init_jinja_filters(app):
     app.jinja_env.filters['htmltruncate'] = truncate.html_truncate
     app.jinja_env.trim_blocks = True
     app.jinja_env.lstrip_blocks = True
+
+
+@app.template_filter()
+@evalcontextfilter
+def nl2br(eval_ctx, value):
+    result = u'\n\n'.join(u'<p>%s</p>' % p.replace('\n', '<br>\n') for p in _paragraph_re.split(escape(value)))
+    if eval_ctx.autoescape:
+        result = Markup(result)
+    return result
 
 
 @app.context_processor

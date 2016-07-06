@@ -1,48 +1,47 @@
 <div class="panel panel-primary">
 	<div class="panel-heading">
 		<div class="row">
-		    <div class="col-md-9">
-			    {% if request.endpoint.startswith('PostsView:get') %}
-			    <h3 class="panel-title">{{ post.title }}</h3>
-			    {% else %}
+			<div class="col-md-10">
+				{% if request.endpoint.startswith('PostsView:get') %}
+				<h3 class="panel-title">{{ post.title }}</h3>
+				{% else %}
 				<a href="{{ url_for('PostsView:get', id=post.id) }}">
 					<h3 class="panel-title">{{ post.title }}</h3>
 				</a>
-			    {% endif %}		    	
-
-		    </div>
-		    <div class="col-md-3">
+				{% endif %}		    	
+			</div>
+			<div class="col-md-2">
 				{% if post.can_edit() %}
 				<a class="btn btn-success pull-right" href="{{ url_for('PostsView:put_0', id=post.id) }}">
 					<i class="icon-edit"></i>
 				</a>
 				{% endif %}
-		    </div>
-		    <div class="clearfix"></div>
-	    </div>
+			</div>
+			<div class="clearfix"></div>
+		</div>
 	</div>
 	<div class="panel-body">
 		{% if post.image_url %}
 		<div class="row">
-		    <div class="col-md-12">
-		    	<img src="{{ post.image_url }}" class="img-responsive img-rounded" width="100%">
-		    	<br/>
-		    </div>
-	    </div>
-	    {% endif %}
+			<div class="col-md-12">
+				<img src="{{ post.image_url }}" class="img-responsive img-rounded" width="100%">
+				<br/>
+			</div>
+		</div>
+		{% endif %}
 		<div class="row">
-		    <div class="col-md-12">
+			<div class="col-md-12">
 				<p><strong>{{ post.body|safe }}</strong></p>
-		    {{ post.extra_body|htmltruncate(500)|safe }}
-		    </div>
-	    </div>
+				{{ post.extra_body|htmltruncate(500)|safe }}
+			</div>
+		</div>
 	</div>
 	<div class="panel-footer">
 		<div>
 			{% if post.can_edit() %}
-				<a href="{{ url_for('PostsView:delete_0', id=post.id) }}" data-method="post" rel="nofollow" data-confirm="{{ _('This will remove \'%(title)s\', Are you sure?', title=post.title) }}">
-					<i class="icon-trash"></i>
-				</a>
+			<a href="{{ url_for('PostsView:delete_0', id=post.id) }}" data-method="post" rel="nofollow" data-confirm="{{ _('This will remove \'%(title)s\', Are you sure?', title=post.title) }}">
+				<i class="icon-trash"></i>
+			</a>
 			{% endif %}
 			
 			<div class="pull-right">
