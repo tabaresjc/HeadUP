@@ -8,14 +8,15 @@ from app import app, babel
 from app.users.models import User
 from app.posts.models import Post
 from app.categories.models import Category
+from app.main.stamp import mod
 
 
-@app.route('/stamp/<int:post_id>')
-def show_stamp(post_id):
-    post = Post.get_by_id(post_id)
+@mod.route('/<int:id>')
+def show(id):
+    post = Post.get_by_id(id)
     if post is None:
         abort(404)
-    return render_template("main/stamp/detail.html",
+    return render_template("main/stamp/show.html",
                            title=gettext('Stamp | %(title)s',
                                          title=post.title),
                            post=post)

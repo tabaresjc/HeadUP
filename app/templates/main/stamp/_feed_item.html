@@ -8,7 +8,7 @@
                             <div class="meta__info">
                                 <span class="meta__author">
                                   <img src="{{ post.user.avatar(144) }}" alt="{{ post.user.name }}" width="30" height="30">
-                                  <a href="{{ url_for('show_stamp', post_id=post.id) }}">{{ post.user.name }}</a> {{ _('in') }} 
+                                  <a href="{{ url_for('stamp.show', id=post.id) }}">{{ post.user.name }}</a> {{ _('in') }} 
                                   <a href="#">{{ _('News') }}</a>
                                 </span>
                                 <span class="meta__date"><span class="glyphicon glyphicon-calendar"></span> &nbsp; {{ post.created_at|datetimeformat('EEE, d MMM yyyy') }}</span>
@@ -26,12 +26,12 @@
         <div class="col-xs-10  col-xs-offset-1">
             <!-- Start of the content -->
             <div class="post-content--front-page">
-                <h2 class="front-page-title"><a href="{{ url_for('show_stamp', post_id=post.id) }}">{{ post.title }}</a></h2>
+                <h2 class="front-page-title"><a href="{{ url_for('stamp.show', id=post.id) }}">{{ post.title }}</a></h2>
                 <h3>{{ post.body|safe }}</h3>
                 <p>{{ post.extra_body|htmltruncate(500)|safe }}</p>
             </div>
             <!-- End of the content -->
-            <a href="{{ url_for('show_stamp', post_id=post.id) }}">
+            <a href="{{ url_for('stamp.show', id=post.id) }}">
                 <div class="read-more">
                     {{ _('Continue Reading...') }}
                     <div class="read-more__arrow">

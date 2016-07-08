@@ -1,0 +1,16 @@
+{% if current_user and current_user.is_authenticated -%}
+<div class="widget-author  boxed  push-down-30">
+  <div class="widget-author__image-container">
+    <div class="widget-author__avatar--blurred">
+      <img alt="{{ current_user.name }}" src="{{ current_user.avatar(90) }}" width="90" height="90">
+    </div>
+    <img class="widget-author__avatar" alt="{{ current_user.name }}" src="{{ current_user.avatar(90) }}" width="90" height="90">
+  </div>
+  <div class="row">
+    <div class="col-xs-10  col-xs-offset-1">
+      <h4>{{ current_user.name }}</h4>
+      <p>{{ current_user.description }}</p>
+    </div>
+  </div>
+</div>
+{%- endif %}

@@ -25,12 +25,12 @@
     <!-- end header -->
     {% block container %}
     <div class="container">
+      {% block wide_container %}
       <div class="row">
-        {% block wide_container %}
         <div class="col-xs-12  col-md-8">{% block content %}{% endblock %}</div>
         <div class="col-xs-12  col-md-4">{% block sidebar %}{% endblock %}</div>
-        {% endblock %}
       </div>
+      {% endblock %}
     </div>
     {% endblock %}
     <div class="push"></div>

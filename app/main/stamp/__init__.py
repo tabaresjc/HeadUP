@@ -1,3 +1,6 @@
 # -*- coding: utf8 -*-
 
-from . import controller  # noqa
+from flask import Blueprint
+mod = Blueprint('stamp', __name__, url_prefix='/stamp')
+
+from . import view  # noqa
