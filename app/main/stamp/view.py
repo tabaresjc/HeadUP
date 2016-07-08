@@ -22,6 +22,19 @@ def show(id):
                            post=post)
 
 
+@mod.route('/edit/<int:id>')
+def edit(id):
+    post = Post.get_by_id(id)
+    if post is None:
+        abort(404)
+    return redirect(url_for('PostsView:put_0', id=post.id))
+
+
+@mod.route('/new')
+def new():
+    return redirect(url_for('PostsView:post_0'))
+
+
 @app.route('/stamp/create', defaults={'post_id': None}, methods=['GET', 'POST'])
 @app.route('/stamp/<int:post_id>/edit', methods=['GET', 'POST'])
 @login_required
