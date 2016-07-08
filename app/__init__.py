@@ -71,7 +71,7 @@ login_manager.login_message = lazy_gettext('Please log in to access this page.')
 # -------------------------------------------------------------------------
 # Register Views
 # -------------------------------------------------------------------------
-import main.views  # noqa
+import main  # noqa
 import admin.views  # noqa
 
 # register the sessions module blueprint
