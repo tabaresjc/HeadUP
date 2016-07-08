@@ -12,3 +12,5 @@ html, body {
 .push {
   height: 40px;
 }
+.container-wrap > header.header {position: fixed;top:0;width: 100%;z-index: 99}
+.container-wrap > .push-header {height: 110px;width: 100%;}
