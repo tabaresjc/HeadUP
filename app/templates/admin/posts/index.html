@@ -16,6 +16,7 @@
 <br/>
 <div class="row">
   <div class="col-md-9">
+    {% if posts and posts.count() -%}
     {{ pag('admin.posts.index', page, limit, total, _('stamps'), kind='info')|safe }}
     {{ pag('admin.posts.index', page, limit, total, _('stamps'), kind='links')|safe }}
     <div class="clearfix"></div>
@@ -23,6 +24,12 @@
     {% include 'admin/posts/_post_item.html' %}
     {% endfor %}
     {{ pag('admin.posts.index', page, limit, total, _('stamps'), kind='links')|safe }}
+    {%- else %}
+    <a href="{{ url_for('stamp.new') }}" class="no-post-message">
+      <img src="/static/theme/admin/img/Logo/feather-blue-256.png" alt="{{ site_name }}" />
+      <span>{{ _('You don\'t have any stamps yet<br/>Participate in this comunity by writting stamps!!')|safe }}</span>
+    </a>
+    {%- endif %}
   </div>
   <div class="col-md-3">
     {% include 'admin/posts/_sidebar.html' %}

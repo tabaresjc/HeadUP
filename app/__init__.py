@@ -8,7 +8,6 @@ from flask.ext.babel import Babel, lazy_gettext
 from werkzeug import LocalProxy, cached_property, ImmutableDict
 from werkzeug.contrib.fixers import ProxyFix
 
-from storm.locals import create_database, Store, ReferenceSet, Desc
 from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy.pool import NullPool
 from config import LANGUAGES
@@ -72,7 +71,7 @@ login_manager.login_message = lazy_gettext('Please log in to access this page.')
 # Register Views
 # -------------------------------------------------------------------------
 import main  # noqa
-import admin.views  # noqa
+import admin  # noqa
 
 # register the sessions module blueprint
 from app.sessions.views import mod as sessionsModule  # noqa

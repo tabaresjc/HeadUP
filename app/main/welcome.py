@@ -10,7 +10,7 @@ from app.posts.models import Post
 def index(page=1):
     limit = 20
     posts, total = Post.pagination(limit=limit, page=page)
-    if not posts.count() and page > 1:
+    if not posts and page > 1:
         return redirect(url_for('index'))
     return render_template("main/index.html",
                            posts=posts,

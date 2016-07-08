@@ -18,7 +18,7 @@ class UsersView(FlaskView):
 
     def index(self):
         page = request.values.get('page', 1, type=int)
-        limit = 2
+        limit = 20
         users, total = User.pagination(page=page, limit=limit,
                                        orderby='users.id', desc=False)
 
