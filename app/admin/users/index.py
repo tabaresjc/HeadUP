@@ -7,9 +7,8 @@ from flask.ext.wtf import Form
 from flask.ext.babel import lazy_gettext, gettext, refresh
 from app import app, login_manager
 from flask.ext.paginate import Pagination
-from models import User
+from app.models import Post, User
 from forms import UserForm, EditUserForm, NewUserForm
-from app.posts.models import Post
 
 
 class UsersView(FlaskView):

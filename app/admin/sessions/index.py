@@ -6,9 +6,8 @@ from flask.ext.classy import FlaskView, route
 from flask.ext.wtf import Form
 from flask.ext.babel import lazy_gettext, gettext
 from app import app, login_manager
-
 from forms import LoginForm, SignUpForm
-from app.users.models import User
+from app.models import User
 import datetime
 
 mod = Blueprint('sessions', __name__)

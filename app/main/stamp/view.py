@@ -5,9 +5,7 @@ from flask.ext.login import current_user, login_required
 from flask.ext.paginate import Pagination
 from flask.ext.babel import gettext
 from app import app, babel
-from app.users.models import User
-from app.posts.models import Post
-from app.categories.models import Category
+from app.models import User, Post, Category
 from app.main.stamp import mod
 
 

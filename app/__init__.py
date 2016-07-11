@@ -17,12 +17,6 @@ import os
 
 app = Flask(__name__)
 
-# Set the location of the templates
-# app.jinja_loader = jinja2.ChoiceLoader([
-#     app.jinja_loader,
-#     jinja2.FileSystemLoader('templates'),
-# ])
-
 # -------------------------------------------------------------------------
 # Load the app's configuration
 # -------------------------------------------------------------------------
@@ -70,24 +64,9 @@ login_manager.login_message = lazy_gettext('Please log in to access this page.')
 # -------------------------------------------------------------------------
 # Register Views
 # -------------------------------------------------------------------------
+import models  # noqa
 import main  # noqa
 import admin  # noqa
-
-# register the sessions module blueprint
-from app.sessions.views import mod as sessionsModule  # noqa
-app.register_blueprint(sessionsModule, url_prefix='/members')
-
-# register the Category module
-from app.categories.views import CategoriesView  # noqa
-CategoriesView.register(app)
-
-# register the Post module
-from app.posts.views import PostsView  # noqa
-PostsView.register(app)
-
-# register the User module
-from app.users.views import UsersView  # noqa
-UsersView.register(app)
 
 # -------------------------------------------------------------------------
 # Register the filters

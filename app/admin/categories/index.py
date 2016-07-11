@@ -7,7 +7,7 @@ from flask.ext.babel import gettext
 from flask.ext.paginate import Pagination
 from app.utils import Utilities as util
 from forms import CategoryForm, NewCategoryForm, TranferCatForm
-from models import Category
+from app.models import Category
 
 
 class CategoriesView(FlaskView):

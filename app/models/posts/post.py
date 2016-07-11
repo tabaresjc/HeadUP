@@ -3,7 +3,6 @@
 from flask.ext.login import current_user
 from app import db
 from app.utils.db import ModelBase, MutableDict
-from app.users.models import User, Role
 import datetime
 
 

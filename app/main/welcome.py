@@ -2,7 +2,7 @@
 
 from flask import render_template, redirect, url_for, request
 from app import app
-from app.posts.models import Post
+from app.models import Post
 
 
 @app.route('/', defaults={'page': 1})

@@ -1,7 +1,9 @@
+# -*- coding: utf-8 -*-
+
 from flask.ext.wtf import Form
 from wtforms import BooleanField, TextField, PasswordField, validators
 from flask.ext.babel import lazy_gettext, gettext
-from app.users.models import User
+from app.models import User
 
 
 class LoginForm(Form):

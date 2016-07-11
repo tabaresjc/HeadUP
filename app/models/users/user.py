@@ -1,9 +1,9 @@
 # -*- coding: utf-8 -*-
 
 from flask.ext.login import UserMixin, current_user
-from flask.ext.babel import gettext
 from werkzeug.security import generate_password_hash, check_password_hash
 from app import db
+from .role import Role
 from app.utils.db import ModelBase, MutableDict
 from hashlib import md5
 import datetime
@@ -153,13 +153,3 @@ class User(db.Model, ModelBase, UserMixin):
             return True
         else:
             return False
-
-
-class Role(object):
-    ROLE_ADMIN = 1
-    ROLE_WRITER = 2
-
-    ROLES = {
-        ROLE_ADMIN: gettext('Admin'),
-        ROLE_WRITER: gettext('Writer'),
-    }
