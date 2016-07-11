@@ -62,7 +62,7 @@ login_manager.login_view = "sessions.login"
 login_manager.login_message = lazy_gettext('Please log in to access this page.')
 
 # -------------------------------------------------------------------------
-# Register Views
+# Register Controllers & Models
 # -------------------------------------------------------------------------
 import models  # noqa
 import main  # noqa
@@ -77,16 +77,6 @@ init_jinja_filters(app)
 # -------------------------------------------------------------------------
 # Application's event handlers
 # -------------------------------------------------------------------------
-
-
-@app.after_request
-def after_request_handler(response=None):
-    return response
-
-
-@app.before_request
-def before_request(response=None):
-    return response
 
 
 @app.errorhandler(401)
