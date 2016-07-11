@@ -14,3 +14,7 @@ html, body {
 }
 .container-wrap > header.header {position: fixed;top:0;width: 100%;z-index: 99}
 .container-wrap > .push-header {height: 110px;width: 100%;}
+@media (max-width: 767px) {
+  div.logo {margin: 0;display: inline-block;position:absolute}
+  .container-wrap > .push-header {height: 100px;}
+}
