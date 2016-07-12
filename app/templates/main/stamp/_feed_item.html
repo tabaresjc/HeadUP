@@ -9,13 +9,14 @@
                                 <span class="meta__author">
                                   {% if not post.anonymous -%}
                                   <img src="{{ post.user.avatar(144) }}" alt="{{ post.user.name }}" width="30" height="30">
-                                  <a href="{{ url_for('stamp.show', id=post.id) }}">{{ post.user.name }}</a>
+                                  {% set user_name = '<a href="%s">%s</a>' % (url_for('stamp.show', id=post.id), post.user.name) %}
                                   {%- else %}
                                   <img src="/static/theme/headsup/images/user.png" width="30" height="30"/>
-                                  {{ _('Posted by Anonymous') }}
+                                  {% set user_name = _('Anonymous') %}
                                   {%- endif %}
-                                  {{ _('') }}
-                                  <a href="javascript:;">{{ _('in %(category)s', category=post.category.name) }}</a>                                  
+                                  {{ _('Posted by %(user)s', user=user_name|safe) }}
+                                  {% set category_name = '<a href="%s">%s</a>' % ('javascript:;', post.category.name) %}
+                                  {{ _('in %(category)s', category=category_name|safe) }}
                                 </span>
                                 <span class="meta__date"><span class="glyphicon glyphicon-calendar"></span> &nbsp; {{ post.created_at|datetimeformat('EEE, d MMM yyyy') }}</span>
                             </div>
