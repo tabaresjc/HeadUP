@@ -1,0 +1,38 @@
+{% extends "admin/layout/base.html" %}
+
+{% set title = _('New Picture') %}
+
+{% block custom_css %}
+<link rel="stylesheet" href="/static/theme/admin/css/compiled/index.css" type="text/css" media="screen" />
+<link rel="stylesheet" href="/static/theme/admin/css/compiled/ui-elements.css" type="text/css" media="screen">
+{% endblock %}
+
+{% block main %}
+<div class="row head">
+  <div class="col-md-12">
+    <h4>{{ _('New Picture') }}</h4>
+  </div>
+</div>
+<br/>
+<div class="row">
+  <div class="col-md-9">
+    <div class="well">
+      {% from "shared/_bootstrap_forms.html" import render_inline_field %}
+      <form action="{{ url_for('PicturesView:post_1') }}" method="post" name="AddPicture" autocomplete="off" enctype = "multipart/form-data">
+          {{ form.hidden_tag() }}
+          <input type=file name=file>
+          <div class="actions clearfix">
+          	<input type="submit" value="{{ _('Save') }}" class="btn btn-large btn-primary pull-right">
+              <input id="btn_editor_clear" type="reset" value="{{ _('Clear') }}" class="btn btn-large btn-danger">
+          </div>
+      </form>
+    </div>
+  </div>
+  <div class="col-md-3">
+
+  </div>
+</div>
+{% endblock %}
+
+{% block custom_js %}
+{% endblock %}

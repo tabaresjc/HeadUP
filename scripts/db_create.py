@@ -13,6 +13,11 @@ if 2 == lenargs and sys.argv[1] == 'init':
     c2 = Category.create(name=u'News', slug=u'news')
     c2.save()
 
+if 2 == lenargs and sys.argv[1] == 'update':
+    print "Update Database"
+    from app import db
+    db.create_all()
+
 elif 5 == lenargs and sys.argv[1] == 'create_user':
     print "Create User"
     from app.models import User, Role

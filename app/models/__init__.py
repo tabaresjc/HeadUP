@@ -3,3 +3,4 @@
 from categories import Category
 from posts import Post
 from users import User, Role
+from pictures import Picture

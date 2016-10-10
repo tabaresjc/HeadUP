@@ -1,0 +1,20 @@
+{% extends "admin/layout/base.html" %}
+
+{% block custom_css %}
+<link rel="stylesheet" href="/static/theme/admin/css/compiled/index.css" type="text/css" media="screen" />
+<link rel="stylesheet" href="/static/theme/admin/css/compiled/ui-elements.css" type="text/css" media="screen">
+{% endblock %}
+
+{% block main %}
+<div class="row">
+  <div class="col-md-12">
+    <div class="panel panel-primary">
+    	<div class="panel-body">
+    		{% if picture %}
+    		<img src="{{ picture.image_url }}" style="width:100%;height:auto" />
+    		{% endif %}
+    	</div>
+    </div>
+  </div>
+</div>
+{% endblock %}
