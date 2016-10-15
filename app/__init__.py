@@ -36,16 +36,16 @@ babel = Babel(app)
 
 @babel.localeselector
 def get_locale():
-    if current_user and current_user.is_authenticated:
-        return current_user.lang
-    return flask.request.accept_languages.best_match(LANGUAGES.keys())
+  if current_user and current_user.is_authenticated:
+    return current_user.lang
+  return flask.request.accept_languages.best_match(LANGUAGES.keys())
 
 
 @babel.timezoneselector
 def get_timezone():
-    if current_user and current_user.is_authenticated:
-        return current_user.timezone
-    return "Asia/Tokyo"
+  if current_user and current_user.is_authenticated:
+    return current_user.timezone
+  return "Asia/Tokyo"
 
 # -------------------------------------------------------------------------
 # Database Configuration
@@ -59,7 +59,8 @@ login_manager = LoginManager()
 login_manager.init_app(app)
 # add our view as the login view to finish configuring the LoginManager
 login_manager.login_view = "sessions.login"
-login_manager.login_message = lazy_gettext('Please log in to access this page.')
+login_manager.login_message = lazy_gettext(
+    'Please log in to access this page.')
 
 # -------------------------------------------------------------------------
 # Register Controllers & Models
@@ -81,19 +82,19 @@ init_jinja_filters(app)
 
 @app.errorhandler(401)
 def internal_error_401(error):
-    return flask.render_template('main/common/401.html', title=error), 401
+  return flask.render_template('main/common/401.html', title=error), 401
 
 
 @app.errorhandler(403)
 def internal_error_403(error):
-    return flask.render_template('main/common/403.html', title=error), 403
+  return flask.render_template('main/common/403.html', title=error), 403
 
 
 @app.errorhandler(404)
 def internal_error_404(error):
-    return flask.render_template('main/common/404.html', title=error), 404
+  return flask.render_template('main/common/404.html', title=error), 404
 
 
 @app.errorhandler(500)
 def internal_error_500(error):
-    return flask.render_template('main/common/500.html', title=error), 500
+  return flask.render_template('main/common/500.html', title=error), 500

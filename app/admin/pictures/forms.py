@@ -6,4 +6,4 @@ from app.models import Picture
 
 
 class PictureForm(Form):
-    pass
+  pass

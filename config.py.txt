@@ -18,6 +18,9 @@ DEFAULT_TIMEZONE = u'Asia/Tokyo'
 DEFAULT_USER_ROLES = [('1', 'Administrator'), ('2', 'Writer')]
 LANGUAGES_FORM = [(u'en', u'English'), (u'es', u'Español')]
 LANGUAGES = {'en': 'English', 'es': 'Español'}
+UPLOAD_MEDIA_FOLDER='media'
+UPLOAD_MEDIA_PICTURES='media/pictures'
+
 
 # *************************************************
 # SQLAlchemy Configuration

@@ -11,31 +11,30 @@ from forms import PictureForm
 
 
 class PicturesView(FlaskView):
-    route_base = '/mypage/pictures'
-    decorators = [login_required]
+  route_base = '/mypage/pictures'
+  decorators = [login_required]
 
-    def get(self, id):
-        picture = Picture.get_by_id(id)
+  def get(self, id):
+    picture = Picture.get_by_id(id)
 
-        return render_template('admin/pictures/show.html',
-                               picture=picture)
+    return render_template('admin/pictures/show.html',
+                           picture=picture)
 
-    @route('/', methods=['POST'])
-    @route('/new', methods=['GET'])
-    def post(self):
-        if request.method == 'POST':
-            form = PictureForm()
-            if form.validate_on_submit():
-                f = request.files.get('file')
-                picture = Picture.create()
-                picture.save_file(f)
-                picture.user = current_user
-                picture.save()
+  @route('/', methods=['POST'])
+  @route('/new', methods=['GET'])
+  def post(self):
+    if request.method == 'POST':
+      form = PictureForm()
+      if form.validate_on_submit():
+        f = request.files.get('file')
+        picture = Picture.create()
+        picture.save_file(f, current_user)
+        picture.save()
 
-                return redirect(url_for('PicturesView:get', id=picture.id))
-            else:
-                flash(gettext('Invalid submission, please check the messages below'), 'error')
-        else:
-            form = PictureForm()
+        return redirect(url_for('PicturesView:get', id=picture.id))
+      else:
+        flash(gettext('Invalid submission, please check the messages below'), 'error')
+    else:
+      form = PictureForm()
 
-        return render_template('admin/pictures/add.html', form=form, user=None)
+    return render_template('admin/pictures/add.html', form=form, user=None)
