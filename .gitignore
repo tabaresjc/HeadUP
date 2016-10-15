@@ -56,10 +56,11 @@ gitcommit.log
 *.sublime-project
 
 # Ignore the static folder where files will be uploaded
-app/static/uploads/
+media/
 
 # Ignore the config file
 /config.py
+
 
 # ignore npm & grunt dependencies
 node_modules/
