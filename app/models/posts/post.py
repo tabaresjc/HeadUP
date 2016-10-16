@@ -10,7 +10,7 @@ class Post(db.Model, ModelBase):
 
   __tablename__ = 'posts'
 
-  __json_meta__ = ['id', 'title', 'user_id']
+  __json_meta__ = ['id', 'title', 'user_id', 'category_id']
 
   id = db.Column(db.Integer, primary_key=True)
 

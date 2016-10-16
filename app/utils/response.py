@@ -17,22 +17,19 @@ def resp(template, status=True, **context):
   # detect the request type
   contentType = request.headers.get('Content-Type')
   acceptContent = request.headers.get('Accept')
-  # if request.is_xhr or contentType == 'application/json' or acceptContent == 'application/json':
-  json_data = {
-      'status': status,
-      'time': datetime.datetime.utcnow(),
-      'data': {}
-  }
+  if request.is_xhr or contentType == 'application/json' or acceptContent == 'application/json':
+      json_data = {
+        'status': status,
+        'time': datetime.datetime.utcnow(),
+        'data': {}
+      }
 
-  for key, obj in context.iteritems():
-    if isinstance(obj, (datetime.date, str, int, long, float, list, tuple, dict)):
-      json_data['data'][key] = obj
-    elif not isinstance(obj, Form):
-      json_data['data'][key] = obj
-  return jsonify(**json_data)
+      for key, obj in context.iteritems():
+        if not isinstance(obj, Form):
+          json_data['data'][key] = obj
+      return jsonify(**json_data)
 
-
-  # return render_template(template,  **context)
+  return render_template(template,  **context)
 
 
 class CustomJSONEncoder(JSONEncoder):
