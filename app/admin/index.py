@@ -16,7 +16,7 @@ def dashboard(page=1):
     return redirect(url_for('dashboard'))
 
   return render_template("admin/index.html",
-                         posts=posts,
-                         page=page,
-                         limit=limit,
-                         total=total)
+           posts = posts,
+           page = page,
+           limit = limit,
+           total = total)

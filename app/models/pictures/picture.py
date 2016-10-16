@@ -44,7 +44,7 @@ class Picture(db.Model, ModelBase):
             fileObj.save(os.path.join(UPLOAD_MEDIA_PICTURES, self.name))
 
             # is not being save yet
-            db.session.commit()
+            self.save()
         except Exception as e:
             db.session.rollback()
             raise e

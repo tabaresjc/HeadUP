@@ -9,29 +9,24 @@
   <!-- bootstrap -->
   <link href="/static/bootstrap/css/bootstrap.css" rel="stylesheet" />
   <link href="/static/theme/admin/css/bootstrap/bootstrap-overrides.css" type="text/css" rel="stylesheet" />
-  
+
   <!-- libraries -->
   <link href="/static/theme/admin/css/lib/jquery-ui-1.10.2.custom.css" rel="stylesheet" type="text/css" />
   <link href="/static/theme/admin/css/lib/font-awesome.css" type="text/css" rel="stylesheet" />
-  
+
   <!-- global styles -->
   <link rel="stylesheet" type="text/css" href="/static/theme/admin/css/compiled/layout.css">
   <link rel="stylesheet" type="text/css" href="/static/theme/admin/css/compiled/elements.css">
   <link rel="stylesheet" type="text/css" href="/static/theme/admin/css/compiled/icons.css">
-  
+
   <link rel="stylesheet" type="text/css" href="/static/theme/admin/css/compiled/skins/dark.css" />
+  <link rel="stylesheet" type="text/css" href="/static/theme/admin/override.css" />
   <!-- message notification styles -->
   {% include 'shared/message_header.html' %}
   <!-- this page specific styles -->
-  
-  {% block custom_css %}
-  {% endblock %}
-  <!-- open sans font -->
-  <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
-  
-  <!-- lato font -->
-  <link href='http://fonts.googleapis.com/css?family=Lato:300,400,700,900,300italic,400italic,700italic,900italic' rel='stylesheet' type='text/css'>
-  
+
+  {% block custom_css %}{% endblock %}
+
   <!--[if lt IE 9]>
   <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
   <![endif]-->
@@ -41,7 +36,7 @@
   {% set content_class = content_class|default('') %}
   {% set container_class = container_class|default('') %}
   {% set show_banner = show_banner|default(True) %}
-  
+
   <!-- navbar -->
   {% include 'admin/layout/navbar.html' %}
   <!-- end navbar -->
@@ -56,12 +51,13 @@
     </div>
   </div>
   <!-- end container -->
-  
+
   <!-- scripts -->
   <script src="/static/js/jquery/jquery-1.12.4.min.js"></script>
   <script src="/static/bootstrap/js/bootstrap.min.js"></script>
   <script src="/static/theme/admin/js/theme.js"></script>
   <script src="/static/js/jquery_ujs.js"></script>
+  <script src="/static/js/main.js"></script>
   {% include 'shared/message.html' %}
   {% block custom_js %}{% endblock %}
   <!-- end scripts -->

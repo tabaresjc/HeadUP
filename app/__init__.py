@@ -76,6 +76,12 @@ from utils import init_jinja_filters  # noqa
 init_jinja_filters(app)
 
 # -------------------------------------------------------------------------
+# JSON Encoder
+# -------------------------------------------------------------------------
+from utils.response import CustomJSONEncoder # noqa
+app.json_encoder = CustomJSONEncoder
+
+# -------------------------------------------------------------------------
 # Application's event handlers
 # -------------------------------------------------------------------------
 

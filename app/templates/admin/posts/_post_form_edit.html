@@ -1,6 +1,21 @@
 {% from "shared/_bootstrap_forms.html" import render_inline_field %}
-<form action="{{ url_for('PostsView:put_0', id=post.id) }}" method="POST" name="EditPost" autocomplete="off">
+{% set url_form = url_for('PostsView:put_0', id=post.id) if post else url_for('PostsView:post_1') %}
+{% set cover_picture = post.cover_picture if post and post.cover_picture else None %}
+<form action="{{ url_form }}" method="POST" name="postForm" autocomplete="off" enctype = "multipart/form-data">
     {{ form.hidden_tag() }}
+		<div class="cover-picture{{ ' with-picture' if cover_picture }}"
+      style="background-image:url({{ cover_picture.image_url if cover_picture }})">
+			<div class="cover-picture-edit-menu">
+          <span class="update">{{ _('Delete') }}</span>
+          <span class="delete">&nbsp;</span></div>
+      </div>
+			<div class="cover-picture-edit-button">
+				<span class="button">{{ _('Click here to upload a new cover picture') }}</span>
+			</div>
+    </div>
+    <div class="upload-file-container">
+      <input type=file name=file accept="image/x-png, image/gif, image/jpeg">
+		</div>
     {{ render_inline_field(form.title, class="form-control", placeholder=_('Best description of your post (30 words)')) }}
     {{ render_inline_field(form.body, id="txt_challenge", placeholder=_('Description of what you had to cope with (150 words)'), rows="8", style="width:100%; padding: 8px;") }}
     {{ render_inline_field(form.extra_body, id="txt_solution", placeholder=_('Description of what you had to cope with (150 words)'), rows="8", style="width:100%; padding: 8px;") }}

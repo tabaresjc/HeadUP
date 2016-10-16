@@ -1,0 +1,16 @@
+
+/* cover picture */
+form div.cover-picture {
+  border: 1px dotted #ccc;
+  width: 100%;
+  height: 150px;
+  margin-bottom: 15px;
+  cursor: pointer;
+  border-radius: 3px;
+  background: no-repeat center;
+  background-size: cover;
+}
+form div.cover-picture.with-picture {
+  border: none;
+}
+form div.upload-file-container input[name=file] {display: none}

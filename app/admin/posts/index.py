@@ -6,6 +6,7 @@ from flask.ext.classy import FlaskView, route
 from flask.ext.babel import gettext
 from flask.ext.paginate import Pagination
 from app.models import Post
+from app.utils.response import resp
 from forms import PostForm, EditPostForm, NewPostForm
 
 
@@ -17,7 +18,7 @@ class PostsView(FlaskView):
     page = request.values.get('page', 1, type=int)
     limit = 10
     posts, total = Post.posts_by_user(current_user.id, page=page, limit=limit)
-    return render_template('admin/posts/index.html',
+    return resp('admin/posts/index.html',
                            posts=posts,
                            page=page,
                            limit=limit,
@@ -30,7 +31,7 @@ class PostsView(FlaskView):
       flash(gettext('The requested stamp was not found'), 'error')
       return redirect(url_for('PostsView:index'))
 
-    return render_template('admin/posts/show.html',
+    return resp('admin/posts/show.html',
                            title=post.title,
                            post=post)
 
@@ -41,9 +42,16 @@ class PostsView(FlaskView):
     if request.method == 'POST':
       if form.validate_on_submit():
         try:
+          if request.files.get('file'):
+            f = request.files.get('file')
+            picture = Picture.create()
+            picture.save_file(f, current_user)
+          else:
+            picture = None
           post = Post.create()
           form.populate_obj(post)
           post.user = current_user
+          post.cover_picture_id = picture.id if picture else 0
           post.save()
           flash(gettext('Stamp succesfully created'))
           return redirect(url_for('PostsView:index'))
@@ -53,7 +61,7 @@ class PostsView(FlaskView):
         flash(
             gettext('Invalid submission, please check the message below'), 'error')
 
-    return render_template('admin/posts/add.html', form=form)
+    return resp('admin/posts/edit.html', form=form)
 
   @route('/<int:id>', methods=['PUT'])
   @route('/edit/<int:id>', methods=['GET', 'POST'])
@@ -67,17 +75,22 @@ class PostsView(FlaskView):
     if request.method in ['POST', 'PUT']:
       form = EditPostForm(id=id)
       if form.validate_on_submit():
-        try:
-          form.populate_obj(post)
-          post.save()
-          flash(gettext('Stamp was succesfully saved'))
-          if request.method == 'POST':
-            if form.remain.data:
-              return redirect(url_for('PostsView:put_0', id=post.id))
-            else:
-              return redirect(url_for('PostsView:get', id=post.id))
-        except Exception as e:
-          flash(gettext('Error while updating the stamp, %(error)s', error=e), 'error')
+        if request.files.get('file'):
+          from app.models import Picture
+          f = request.files.get('file')
+          picture = Picture.create()
+          picture.save_file(f, current_user)
+        else:
+          picture = None
+        form.populate_obj(post)
+        post.cover_picture_id = picture.id if picture else 0
+        post.save()
+        flash(gettext('Stamp was succesfully saved'))
+        if request.method == 'POST':
+          if form.remain.data:
+            return redirect(url_for('PostsView:put_0', id=post.id))
+          else:
+            return redirect(url_for('PostsView:get', id=post.id))
       else:
         flash(
             gettext('Invalid submission, please check the message below'), 'error')
@@ -87,7 +100,7 @@ class PostsView(FlaskView):
     else:
       form = NewPostForm(post)
 
-    return render_template('admin/posts/edit.html', form=form, post=post)
+    return resp('admin/posts/edit.html', form=form, post=post)
 
   @route('/<int:id>', methods=['DELETE'])
   @route('/remove/<int:id>', methods=['POST'])

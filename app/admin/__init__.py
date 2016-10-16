@@ -15,10 +15,6 @@ PostsView.register(app)
 from users.index import UsersView  # noqa
 UsersView.register(app)
 
-# register the Picture module
-from pictures.index import PicturesView  # noqa
-PicturesView.register(app)
-
 # register the sessions module blueprint
 from sessions.index import mod as sessionsModule  # noqa
 app.register_blueprint(sessionsModule, url_prefix='/members')
