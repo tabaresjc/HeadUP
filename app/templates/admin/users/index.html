@@ -30,7 +30,7 @@
           </th>
           <th class="col-md-2">
             <span class="line"></span>{{ _('Role') }}
-          </th>                    
+          </th>
           <th>
             <span class="line"></span>
           </th>
@@ -47,9 +47,9 @@
           </td>
           <td>{{ user.created_at|datetimeformat(format='EEE, d MMM yyyy')  }} </td>
           <td>{{ user.posts.count() }}</td>
-          <td>{{ user.role_desc() }}</td>
+          <td>{{ user.role_desc }}</td>
           <td>
-            {% if user.is_current() or current_user.is_admin() %}
+            {% if user.is_current() or current_user.is_admin %}
             <div class="btn-group">
               <a class="btn btn-primary" href="{{ url_for('UsersView:put_0', id=user.id) }}" title="Change user's settings">
                 <i class="glyphicon glyphicon-pencil"></i>
@@ -62,11 +62,11 @@
             </div>
             {% endif %}
           </td>
-          
-        </tr>               
-        {% endfor %}                
-        
-        
+
+        </tr>
+        {% endfor %}
+
+
       </tbody>
     </table>
   </div>

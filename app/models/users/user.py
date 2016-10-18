@@ -14,6 +14,8 @@ class User(db.Model, ModelBase, UserMixin):
 
     __tablename__ = 'users'
 
+    __json_meta__ = ['id', 'email', 'nickname', 'is_admin']
+
     id = db.Column(db.Integer, primary_key=True)
 
     email = db.Column(db.String(255), index=True, unique=True)
@@ -98,6 +100,10 @@ class User(db.Model, ModelBase, UserMixin):
     def lang(self):
         return self.get_attribute('lang')
 
+    @property
+    def role_desc(self):
+        return Role.ROLES.get(self.role_id, '')
+
     @lang.setter
     def lang(self, value):
         return self.set_attribute('lang', value)
@@ -108,17 +114,15 @@ class User(db.Model, ModelBase, UserMixin):
     def check_password(self, password):
         return check_password_hash(str(self.password), str(password))
 
+    @property
     def is_admin(self):
         return self.role_id == Role.ROLE_ADMIN
-
-    def role_desc(self):
-        return Role.ROLES.get(self.role_id, '')
 
     def is_current(self):
         return self.id == current_user.id
 
     def can_edit(self):
-        return self.id == current_user.id or current_user.is_admin()
+        return self.id == current_user.id or current_user.is_admin
 
     def avatar(self, size):
         return 'https://www.gravatar.com/avatar/' + md5(self.email).hexdigest() + '?d=mm&s=' + str(size)

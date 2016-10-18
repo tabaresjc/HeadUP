@@ -55,7 +55,7 @@
     <div id="sidebar-nav">
         <ul id="dashboard-menu">
             {% for item in navigation_bar -%}
-            {% if not item.get('require_admin') or (current_user.is_admin() and item.get('require_admin')) -%}
+            {% if not item.get('require_admin') or (current_user.is_admin and item.get('require_admin')) -%}
             <li class="element">
                 {% if request.endpoint.startswith(item['pattern'])  %}
                 <div class="pointer">

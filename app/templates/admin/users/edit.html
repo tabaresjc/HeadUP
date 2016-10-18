@@ -27,7 +27,7 @@
           {{ render_normal_field(form.confirm_password, class="form-control", autocomplete="off") }}
           {{ render_normal_field(form.timezone, class="form-control")}}
           {{ render_normal_field(form.lang, class="form-control")}}
-          {% if current_user.is_admin() and user.id != current_user.id -%}
+          {% if current_user.is_admin and user.id != current_user.id -%}
           {{ render_normal_field(form.role_id, class="form-control") }}
           {%- else %}
           <input type="hidden" name="role_id" value="{{ form.role_id.data }}">

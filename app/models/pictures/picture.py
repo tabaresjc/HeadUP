@@ -10,68 +10,70 @@ import os
 
 class Picture(db.Model, ModelBase):
 
-    __tablename__ = 'pictures'
+  __tablename__ = 'pictures'
 
-    id = db.Column(db.Integer, primary_key=True)
+  __json_meta__ = ['id', 'image_url', 'user_id']
 
-    user_id = db.Column(db.Integer, db.ForeignKey('users.id', ondelete='CASCADE', onupdate='NO ACTION'))
+  id = db.Column(db.Integer, primary_key=True)
 
-    attributes = db.Column(MutableDict.as_mutable(db.PickleType))
+  user_id = db.Column(db.Integer, db.ForeignKey(
+      'users.id', ondelete='CASCADE', onupdate='NO ACTION'))
 
-    created_at = db.Column(db.DateTime, default=datetime.datetime.utcnow)
-    modified_at = db.Column(db.DateTime, default=datetime.datetime.utcnow)
+  attributes = db.Column(MutableDict.as_mutable(db.PickleType))
 
-    def __repr__(self):  # pragma: no cover
-        return '<Picture %r>' % (self.id)
+  created_at = db.Column(db.DateTime, default=datetime.datetime.utcnow)
+  modified_at = db.Column(db.DateTime, default=datetime.datetime.utcnow)
 
-    def save_file(self, fileObj, user=None):
-        db.session.begin(subtransactions=True)
-        try:
-            import hashlib
-            extension = fileObj.filename.split('.')[-1]
+  def __repr__(self):  # pragma: no cover
+    return '<Picture %r>' % (self.id)
 
-            h = hashlib.new('md5')
-            h.update(fileObj.filename)
-            h.update(datetime.datetime.utcnow().isoformat())
+  def save_file(self, fileObj, user=None):
+    db.session.begin(subtransactions=True)
+    try:
+      import hashlib
+      extension = fileObj.filename.split('.')[-1]
 
-            self.extension = extension.lower()
-            self.name = u'%s.%s' % (h.hexdigest(), self.extension)
-            # associate this picture with the user
-            self.user = user
-            db.session.add(self)
+      h = hashlib.new('md5')
+      h.update(fileObj.filename)
+      h.update(datetime.datetime.utcnow().isoformat())
 
-            # attempt to save the file
-            fileObj.save(os.path.join(UPLOAD_MEDIA_PICTURES, self.name))
+      self.extension = extension.lower()
+      self.name = u'%s.%s' % (h.hexdigest(), self.extension)
+      # associate this picture with the user
+      self.user_id = user.id
+      db.session.add(self)
 
-            # is not being save yet
-            self.save()
-        except Exception as e:
-            db.session.rollback()
-            raise e
+      # attempt to save the file
+      fileObj.save(os.path.join(UPLOAD_MEDIA_PICTURES, self.name))
 
+      # is not saved yet!
+      self.save()
+    except Exception as e:
+      db.session.rollback()
+      raise e
 
-    @property
-    def image_url(self):
-        return os.path.join('/', UPLOAD_MEDIA_PICTURES, self.name)
+  @property
+  def image_url(self):
+    return os.path.join('/', UPLOAD_MEDIA_PICTURES, self.name)
 
-    @property
-    def name(self):
-        return self.get_attribute('name', '')
+  @property
+  def name(self):
+    return self.get_attribute('name', '')
 
-    @name.setter
-    def name(self, value):
-        return self.set_attribute('name', value)
+  @name.setter
+  def name(self, value):
+    return self.set_attribute('name', value)
 
-    @property
-    def extension(self):
-        return self.get_attribute('extension', '')
+  @property
+  def extension(self):
+    return self.get_attribute('extension', '')
 
-    @extension.setter
-    def extension(self, value):
-        return self.set_attribute('extension', value)
+  @extension.setter
+  def extension(self, value):
+    return self.set_attribute('extension', value)
 
-    def is_mine(self):
-        return current_user.is_authenticated and self.user.id == current_user.id
+  def is_mine(self):
+    return current_user.is_authenticated and self.user.id == current_user.id
 
-    def can_edit(self):
-        return current_user.is_authenticated and (self.user.id == current_user.id or current_user.is_admin())
+  def can_edit(self):
+    return current_user.is_authenticated and (self.user.id == current_user.id or current_user.is_admin)

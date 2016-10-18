@@ -10,6 +10,8 @@ class Category(db.Model, ModelBase):
 
   __tablename__ = 'categories'
 
+  __json_meta__ = ['id', 'name', 'slug']
+
   id = db.Column(db.Integer, primary_key=True)
   name = db.Column(db.String(255), index=True, unique=True)
   slug = db.Column(db.String(255), index=True, unique=True)
@@ -31,7 +33,7 @@ class Category(db.Model, ModelBase):
     return self.set_attribute('description', value)
 
   def can_edit(self):
-    return current_user and current_user.is_admin()
+    return current_user and current_user.is_admin
 
   @classmethod
   def get_list(cls):

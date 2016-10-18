@@ -10,7 +10,7 @@ class Post(db.Model, ModelBase):
 
   __tablename__ = 'posts'
 
-  __json_meta__ = ['id', 'title', 'user_id', 'category_id']
+  __json_meta__ = ['id', 'title', 'body', 'extra_body', 'user', 'cover_picture', 'category', 'anonymous']
 
   id = db.Column(db.Integer, primary_key=True)
 
@@ -46,14 +46,6 @@ class Post(db.Model, ModelBase):
     return self.set_attribute('extra_body', value)
 
   @property
-  def image_url(self):
-    return self.get_attribute('image_url', '')
-
-  @image_url.setter
-  def image_url(self, value):
-    return self.set_attribute('image_url', value)
-
-  @property
   def cover_picture(self):
 		from app.models import Picture
 		return Picture.get_by_id(self.cover_picture_id)
@@ -70,7 +62,7 @@ class Post(db.Model, ModelBase):
     return current_user.is_authenticated and self.user.id == current_user.id
 
   def can_edit(self):
-    return current_user.is_authenticated and (self.user.id == current_user.id or current_user.is_admin())
+    return current_user.is_authenticated and (self.user.id == current_user.id or current_user.is_admin)
 
   @classmethod
   def posts_by_user(cls, user_id, limit=10, page=1, orderby='id', desc=True):

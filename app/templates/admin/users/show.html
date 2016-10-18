@@ -15,9 +15,9 @@
     <h3 class="name">{{ user.name }} ({{ user.nickname }})</h3>
     <span class="area">{{ user.email }}</span>
   </div>
-  
+
   <div class="col-md-3">
-    {% if current_user.is_admin() -%}
+    {% if current_user.is_admin -%}
     <a class="btn btn-success pull-right" href="{{ url_for('UsersView:index') }}">
       <i class="glyphicon glyphicon-th-list"></i>
       <span>{{ _('User List') }}</span>
@@ -28,20 +28,20 @@
 <div class="row header">
   <div class="col-md-12">
     <div class="div pull-right">
-      {% if not user.is_current() and current_user.is_admin() %}
+      {% if not user.is_current() and current_user.is_admin %}
       <a class="btn btn-danger" title="Delete user" href="{{ url_for('UsersView:delete_0',id=user.id) }}" data-method="post" data-confirm="{{ _('This will remove \'%(name)s\', Are you sure?',name=user.name) }}">
         <i class="icon-trash"></i>
         <span>{{ _('Remove') }}</span>
       </a>
       {% endif %}
-      {% if user.is_current() or current_user.is_admin() %}
+      {% if user.is_current() or current_user.is_admin %}
       <a class="btn btn-primary" href="{{ url_for('UsersView:put_0',id=user.id) }}">
         <i class="glyphicon glyphicon-pencil"></i>
         <span>{{ _('Edit') }}</span>
       </a>
       {% endif %}
     </div>
-    
+
   </div>
 </div>
 <div class="row">
@@ -76,7 +76,7 @@
           </tr>
           <tr>
             <td><strong>{{ _('Role') }}</strong></td>
-            <td>{{ user.role_desc() }}</td>
+            <td>{{ user.role_desc }}</td>
           </tr>
           <tr>
             <td><strong>{{ _('Created at') }}</strong></td>
