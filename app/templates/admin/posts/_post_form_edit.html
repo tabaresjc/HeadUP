@@ -3,14 +3,13 @@
 {% set cover_picture = post.cover_picture if post and post.cover_picture else None %}
 <form action="{{ url_form }}" method="POST" name="postForm" autocomplete="off" enctype = "multipart/form-data">
     {{ form.hidden_tag() }}
-		<div class="cover-picture{{ ' with-picture' if cover_picture }}"
-      style="background-image:url({{ cover_picture.image_url if cover_picture }})">
+		<div class="cover-picture{{ ' with-picture' if cover_picture else ' without-picture' }}" style="background-image:url({{ cover_picture.image_url if cover_picture }})">
 			<div class="cover-picture-edit-menu">
-          <span class="update">{{ _('Delete') }}</span>
-          <span class="delete">&nbsp;</span>
+          <span class="update"><i class="glyphicon glyphicon-refresh"></i></span>
+          <span class="delete"><i class="glyphicon glyphicon-remove"></i></span>
 			</div>
 			<div class="cover-picture-edit-button">
-				<span class="button">{{ _('Click here to upload a new cover picture') }}</span>
+				<span class="upload">{{ _('Click here to upload a new cover picture') }}</span>
 			</div>
     </div>
     <div class="upload-file-container">

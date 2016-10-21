@@ -1,16 +1,54 @@
 
 /* cover picture */
-form div.cover-picture {
+.cover-picture {
   border: 1px dotted #ccc;
   width: 100%;
   height: 150px;
   margin-bottom: 15px;
-  cursor: pointer;
   border-radius: 3px;
   background: no-repeat center;
   background-size: cover;
+	position: relative;
 }
-form div.cover-picture.with-picture {
+
+.cover-picture span {cursor: pointer;}
+
+.cover-picture.with-picture {
   border: none;
 }
+
+.cover-picture-edit-menu,
+.cover-picture-edit-button {
+	position: absolute;
+	left: 0;
+	top: 0;
+	width: 100%;
+	height: 100%;
+	border-radius: 4px;
+	background: rgba(0, 0, 0, .5);
+	transition: all 300ms ease;
+	text-shadow: 0 1px 0 #000;
+	display: none;
+}
+.cover-picture-edit-menu > span {
+	position: absolute;
+	font-size: 1.7em;
+	color: #fff;
+	border: 3px solid #fff;
+	border-radius: 20px;
+	padding: 5px 8px 0px 8px;
+}
+.cover-picture-edit-button > span {
+	position: absolute;
+	font-size: 1.2em;
+	color: #fff;
+	left: 27%;
+	top: 33%;
+	padding: 5px 25px 5px 25px;
+}
+.cover-picture-edit-menu .update {left: 10px; top: 10px;}
+.cover-picture-edit-menu .delete {right: 10px; top: 10px;}
+.cover-picture.with-picture:hover .cover-picture-edit-menu {display: block}
+.cover-picture.without-picture .cover-picture-edit-button {display: block;background-image:none}
+
 form div.upload-file-container input[name=file] {display: none}

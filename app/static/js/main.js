@@ -14,6 +14,8 @@
 
 				this.coverPicInputFile = $('div.upload-file-container input[type=file]').first();
 				this.coverPicContainer = $('div.cover-picture').first();
+				this.picUpload = $('.cover-picture-edit-menu span.update, .cover-picture-edit-button span.upload');
+				this.removePicture = $('.cover-picture span.delete').first();
 			},
 			init: function() {
 				this.uploadCoverPictureSetup();
@@ -36,13 +38,26 @@
 				coverPicInputFile.on('change', function() {
 					var inputFile = coverPicInputFile.get(0);
 					fileReader.readAsDataURL(inputFile.files[0]);
+
+					coverPicContainer
+						.addClass('with-picture')
+						.removeClass('without-picture');
 				});
 
 				// trigger the input file to search for a picture
-				coverPicContainer.click(function(e) {
+				this.picUpload.each(function(index, el) {
+					$(el).click(function(e) {
+						e.preventDefault();
+						coverPicInputFile.trigger('click');
+					});
+				});
+
+				this.removePicture.click(function(e) {
 					e.preventDefault();
-					coverPicInputFile.removeClass('with-picture')
-						.trigger('click');
+					coverPicContainer
+						.removeClass('with-picture')
+						.addClass('without-picture')
+						.css('background-image', 'none');
 				});
 			}
 		};
