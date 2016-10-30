@@ -33,10 +33,11 @@ class UserForm(Form):
                           choices=config.DEFAULT_USER_ROLES)
 
     password = PasswordField(lazy_gettext('Password'), [
-        validators.Optional(),
+        validators.Required(),
         validators.EqualTo('confirm_password', message=lazy_gettext(
             'Please repeat the password')),
-        validators.Length(min=6, max=64)])
+        validators.Length(min=6, max=64)
+    ])
 
     confirm_password = PasswordField(
         lazy_gettext('Confirm'), [validators.Optional()])
@@ -50,22 +51,18 @@ class UserForm(Form):
 
     lang = SelectField(u'language', choices=config.LANGUAGES_FORM)
 
-
-class NewUserForm(UserForm):
-
     def __init__(self, *args, **kwargs):
         Form.__init__(self, *args, **kwargs)
         self.timezone.data = config.DEFAULT_TIMEZONE
 
-    password = PasswordField(lazy_gettext('Password'), [
-        validators.Required(),
-        validators.EqualTo('confirm_password', message=lazy_gettext(
-            'Please repeat the password')),
-        validators.Length(min=6, max=64)
-    ])
-
 
 class EditUserForm(UserForm):
+
+    password = PasswordField(lazy_gettext('Password'), [
+        validators.Optional(),
+        validators.EqualTo('confirm_password', message=lazy_gettext(
+            'Please repeat the password')),
+        validators.Length(min=6, max=64)])
 
     def __init__(self, user, *args, **kwargs):
         Form.__init__(self, *args, **kwargs)
@@ -75,5 +72,4 @@ class EditUserForm(UserForm):
         self.role_id.data = unicode(user.role_id)
         self.address.data = user.address
         self.phone.data = user.phone
-        self.timezone.data = user.timezone
         self.lang.data = user.lang

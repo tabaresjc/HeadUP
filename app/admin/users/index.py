@@ -8,7 +8,7 @@ from flask.ext.babel import lazy_gettext, gettext, refresh
 from app import app, login_manager
 from flask.ext.paginate import Pagination
 from app.models import Post, User
-from forms import UserForm, EditUserForm, NewUserForm
+from forms import UserForm, EditUserForm
 
 
 class UsersView(FlaskView):
@@ -39,7 +39,7 @@ class UsersView(FlaskView):
 
     @route('/new', methods=['GET', 'POST'])
     def post(self):
-        form = NewUserForm()
+        form = UserForm()
 
         if request.method == 'POST':
             if form.validate_on_submit():
