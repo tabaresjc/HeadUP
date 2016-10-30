@@ -8,7 +8,7 @@
         {% if request.endpoint.startswith('PostsView:index') %}
         <div class="item">
           <i class="icon-plus icon-formatted"></i>
-          <a href="{{ url_for('PostsView:post_0') }}">{{ _('New Stamp') }}</a>
+          <a href="{{ url_for('PostsView:post') }}">{{ _('New Stamp') }}</a>
         </div>
         {% else %}
         <div class="item">
@@ -29,14 +29,14 @@
         {% endif %}
         <div class="item">
           <i class="icon-plus icon-formatted"></i>
-          <a href="{{ url_for('PostsView:post_0') }}">{{ _('New Stamp') }}</a>
+          <a href="{{ url_for('PostsView:post') }}">{{ _('New Stamp') }}</a>
         </div>
         {% endif %}
         {% if request.endpoint.startswith('PostsView:get') %}
         {% if post.can_edit() %}
         <div class="item">
           <i class="icon-edit icon-formatted"></i>
-          <a href="{{ url_for('PostsView:put_0', id = post.id) }}">{{ _('Edit Stamp') }}</a>
+          <a href="{{ url_for('PostsView:put', id = post.id) }}">{{ _('Edit Stamp') }}</a>
         </div>                            
         <div class="item">
           <i class="icon-trash icon-formatted"></i>
@@ -45,7 +45,7 @@
         {% endif %}
         <div class="item">
           <i class="icon-plus icon-formatted"></i>
-          <a href="{{ url_for('PostsView:post_0') }}">{{ _('New Stamp') }}</a>
+          <a href="{{ url_for('PostsView:post') }}">{{ _('New Stamp') }}</a>
         </div>
         {% endif %}
       </div>

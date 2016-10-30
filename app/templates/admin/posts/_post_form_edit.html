@@ -1,5 +1,5 @@
 {% from "shared/_bootstrap_forms.html" import render_inline_field %}
-{% set url_form = url_for('PostsView:put_0', id=post.id) if post else url_for('PostsView:post_1') %}
+{% set url_form = url_for('PostsView:put', id=post.id) if post else url_for('PostsView:post') %}
 {% set cover_picture = post.cover_picture if post and post.cover_picture else None %}
 <form action="{{ url_form }}" method="POST" name="postForm" autocomplete="off" enctype = "multipart/form-data">
     {{ form.hidden_tag() }}
@@ -14,7 +14,8 @@
     </div>
     <div class="upload-file-container">
       <input type=file name=file accept="image/x-png, image/gif, image/jpeg">
-		</div>
+	  {{ render_inline_field(form.cover_picture_id) }}
+	</div>
     {{ render_inline_field(form.title, class="form-control", placeholder=_('Best description of your post (30 words)')) }}
     {{ render_inline_field(form.body, id="txt_challenge", placeholder=_('Description of what you had to cope with (150 words)'), rows="8", style="width:100%; padding: 8px;") }}
     {{ render_inline_field(form.extra_body, id="txt_solution", placeholder=_('Description of what you had to cope with (150 words)'), rows="8", style="width:100%; padding: 8px;") }}
