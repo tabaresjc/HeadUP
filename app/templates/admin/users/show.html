@@ -29,13 +29,13 @@
   <div class="col-md-12">
     <div class="div pull-right">
       {% if not user.is_current() and current_user.is_admin %}
-      <a class="btn btn-danger" title="Delete user" href="{{ url_for('UsersView:delete_0',id=user.id) }}" data-method="post" data-confirm="{{ _('This will remove \'%(name)s\', Are you sure?',name=user.name) }}">
+      <a class="btn btn-danger" title="Delete user" href="{{ url_for('UsersView:delete',id=user.id) }}" data-method="post" data-confirm="{{ _('This will remove \'%(name)s\', Are you sure?',name=user.name) }}">
         <i class="icon-trash"></i>
         <span>{{ _('Remove') }}</span>
       </a>
       {% endif %}
       {% if user.is_current() or current_user.is_admin %}
-      <a class="btn btn-primary" href="{{ url_for('UsersView:put_0',id=user.id) }}">
+      <a class="btn btn-primary" href="{{ url_for('UsersView:put',id=user.id) }}">
         <i class="glyphicon glyphicon-pencil"></i>
         <span>{{ _('Edit') }}</span>
       </a>
