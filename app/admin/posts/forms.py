@@ -45,7 +45,7 @@ class EditPostForm(Form):
         self.extra_body.data = post.extra_body
         self.anonymous.data = post.anonymous
         self.category_id.data = post.category_id
-            self.cover_picture_id.data = post.cover_picture_id
+        self.cover_picture_id.data = post.cover_picture_id
         self.category_id.choices = Category.get_list()
 
     def validate(self):

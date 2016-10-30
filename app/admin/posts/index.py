@@ -5,7 +5,7 @@ from flask.ext.login import current_user, login_required
 from flask.ext.classy import FlaskView, route
 from flask.ext.babel import gettext
 from flask.ext.paginate import Pagination
-from app.models import Post
+from app.models import Post, Picture
 from app.utils.response import resp
 from forms import PostForm, EditPostForm
 
