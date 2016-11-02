@@ -8,6 +8,7 @@ from flask.ext.babel import lazy_gettext, gettext, refresh
 from app import app, login_manager
 from flask.ext.paginate import Pagination
 from app.models import Post, User
+from app.utils.response import resp
 from forms import UserForm, EditUserForm
 
 
@@ -22,20 +23,20 @@ class UsersView(FlaskView):
                                        orderby='users.id', desc=False)
         if not users.count() and page > 1:
             return redirect(url_for('UsersView:index_1'))
-        return render_template('admin/users/index.html',
-                               users=users,
-                               page=page,
-                               limit=limit,
-                               total=total)
+        return resp('admin/users/index.html',
+                    users=users,
+                    page=page,
+                    limit=limit,
+                    total=total)
 
     def get(self, id):
         user = User.get_by_id(id)
 
         if user is None or not user.can_edit():
-            flash(gettext('The user was not found'), 'error')
-            return redirect(url_for('UsersView:index'))
+            return resp(url_for('UsersView:index'), status=False, redirect=True,
+                        message=gettext('The requested user was not found'))
 
-        return render_template('admin/users/show.html', user=user)
+        return resp('admin/users/show.html', user=user)
 
     @route('/new', methods=['GET', 'POST'])
     def post(self):
@@ -48,12 +49,13 @@ class UsersView(FlaskView):
                 user.set_password(form.password.data)
                 user.save()
 
-                flash(gettext('User was succesfully saved'))
-                return redirect(url_for('UsersView:get', id=user.id))
+                return resp(url_for('UsersView:get', id=user.id), redirect=True,
+                            message=gettext('User was succesfully saved'))
             else:
-                flash(gettext('Invalid submission, please check the messages below'), 'error')
+                return resp('admin/users/add.html', form=form, user=None, status=False,
+                            message=gettext('Invalid submission, please check the messages below'))
 
-        return render_template('admin/users/add.html', form=form, user=None)
+        return resp('admin/users/add.html', form=form, user=None)
 
     @route('/edit/<int:id>', methods=['GET', 'POST'])
     def put(self, id):
@@ -72,12 +74,13 @@ class UsersView(FlaskView):
                 form.populate_obj(user)
                 user.save()
                 refresh()
-                flash(gettext('User was succesfully saved'))
-                return redirect(url_for('UsersView:get', id=user.id))
+                return resp(url_for('UsersView:get', id=user.id), redirect=True,
+                            message=gettext('User was succesfully updated'))
             else:
-                flash(gettext('Invalid submission, please check the messages below'), 'error')
+                return resp('admin/users/edit.html', form=form, user=user,
+                            message=gettext('Invalid submission, please check the messages below'))
 
-        return render_template('admin/users/edit.html', form=form, user=user)
+        return resp('admin/users/edit.html', form=form, user=user)
 
     @route('/remove/<int:id>', methods=['POST', 'DELETE'])
     def delete(self, id):
@@ -93,28 +96,28 @@ class UsersView(FlaskView):
         try:
             name = user.name
             User.delete(user.id)
-            flash(gettext('The user "%(name)s" was removed', name=name))
+            return resp(url_for('UsersView:index'), redirect=True,
+                        message=gettext('The user "%(name)s" was removed', name=name))
         except Exception as e:
-            flash(gettext('Error while removing the user, %(error)s', error=e), 'error')
-
-        return redirect(url_for('UsersView:index'))
+            return resp(url_for('UsersView:index'), redirect=True,
+                        message=gettext('Error while removing the user, %(error)s', error=e))
 
     @route('/<int:id>/posts/', endpoint='user_post')
     def user_post(self, id):
         user = User.get_by_id(id)
 
         if user is None:
-            flash(gettext('The user was not found'), 'error')
-            return redirect(url_for('UsersView:index'))
+            return resp(url_for('UsersView:index'), status=False,
+                message=gettext('The user was not found'))
 
         page = request.values.get('page', 1, type=int)
         limit = 10
 
         posts, total = user.get_user_posts(page=page, limit=limit)
 
-        return render_template("admin/users/user_posts.html",
-                               user=user,
-                               posts=posts,
-                               page=page,
-                               limit=limit,
-                               total=total)
+        return resp("admin/users/user_posts.html",
+                    user=user,
+                    posts=posts,
+                    page=page,
+                    limit=limit,
+                    total=total)

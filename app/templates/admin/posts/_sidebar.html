@@ -24,7 +24,7 @@
         {% if post.can_edit() %}
         <div class="item">
           <i class="icon-trash icon-formatted"></i>
-          <a href="{{ url_for('PostsView:delete_0', id = post.id) }}" data-method="post" data-confirm="This will remove '{{ post.title }}'?">{{ _('Delete Stamp') }}</a>
+          <a href="{{ url_for('PostsView:delete', id = post.id) }}" data-method="post" data-confirm="This will remove '{{ post.title }}'?">{{ _('Delete Stamp') }}</a>
         </div>
         {% endif %}
         <div class="item">
@@ -40,7 +40,7 @@
         </div>                            
         <div class="item">
           <i class="icon-trash icon-formatted"></i>
-          <a href="{{ url_for('PostsView:delete_0', id = post.id) }}" data-method="post" data-confirm="This will remove '{{ post.title }}'?">{{ _('Delete Stamp') }}</a>
+          <a href="{{ url_for('PostsView:delete', id = post.id) }}" data-method="post" data-confirm="This will remove '{{ post.title }}'?">{{ _('Delete Stamp') }}</a>
         </div>
         {% endif %}
         <div class="item">

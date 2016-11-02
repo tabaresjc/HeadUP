@@ -28,8 +28,8 @@ class PostsView(FlaskView):
         post = Post.get_by_id(id)
 
         if post is None or not post.can_edit():
-            flash(gettext('The requested stamp was not found'), 'error')
-            return redirect(url_for('PostsView:index'))
+            return resp(url_for('PostsView:index'), status=False, redirect=True,
+                message=gettext('The requested stamp was not found'))
 
         return resp('admin/posts/show.html',
                     title=post.title,
@@ -40,25 +40,22 @@ class PostsView(FlaskView):
         form = PostForm()
         if request.method == 'POST':
             if form.validate_on_submit():
-                try:
-					post = Post.create()
+                post = Post.create()
+                if request.files.get('file'):
+                    f = request.files.get('file')
+                    picture = Picture.create()
+                    picture.save_file(f, current_user)
+                    post.cover_picture_id = picture.id if picture else 0
 
-					if request.files.get('file'):
-						f = request.files.get('file')
-						picture = Picture.create()
-						picture.save_file(f, current_user)
-						post.cover_picture_id = picture.id if picture else 0
+                form.populate_obj(post)
+                post.user = current_user
+                post.save()
 
-					form.populate_obj(post)
-					post.user = current_user
-					post.save()
-					flash(gettext('Stamp succesfully created'))
-					return redirect(url_for('PostsView:index'))
-                except Exception as e:
-                    flash(gettext('Error while creating the stamp, %(error)s', error=e), 'error')
+                return resp(url_for('PostsView:index'), redirect=True,
+                    message=gettext('Stamp succesfully created'))
             else:
-                flash(
-                    gettext('Invalid submission, please check the message below'), 'error')
+                return resp('admin/posts/edit.html', status=False, form=form, post=post,
+                    message=gettext('Invalid submission, please check the message below'))
 
         return resp('admin/posts/edit.html', form=form)
 
@@ -71,30 +68,30 @@ class PostsView(FlaskView):
             return redirect(url_for('PostsView:index'))
 
         form = EditPostForm(post)
-
         if request.method in ['POST']:
-            form = EditPostForm(id=id)
             if form.validate_on_submit():
-				if request.files.get('file'):
-					f = request.files.get('file')
-					picture = Picture.create()
-					picture.save_file(f, current_user)
-					post.cover_picture_id = picture.id if picture else 0
+                form.populate_obj(post)
+                f = request.files.get('file')
+                if f:
+                    picture = Picture.create()
+                    picture.save_file(f, current_user)
+                    post.cover_picture_id = picture.id if picture else 0
 
-				form.populate_obj(post)
-				post.save()
-				flash(gettext('Stamp was succesfully saved'))
+                post.save()
+                message = gettext('Stamp was succesfully saved')
 
-				if form.remain.data:
-					return redirect(url_for('PostsView:put', id=post.id))
-				else:
-					return redirect(url_for('PostsView:get', id=post.id))
+                if form.remain.data:
+                    url = url_for('PostsView:put', id=post.id)
+                else:
+                    url = url_for('PostsView:get', id=post.id)
+
+                return resp(url, redirect=True, message=message)
             else:
-                flash(gettext('Invalid submission, please check the message below'), 'error')
+                return resp('admin/posts/edit.html', status=False, form=form, post=post,
+                    message=gettext('Invalid submission, please check the message below'))
 
         return resp('admin/posts/edit.html', form=form, post=post)
 
-    @route('/<int:id>', methods=['DELETE'])
     @route('/remove/<int:id>', methods=['POST'])
     def delete(self, id):
         post = Post.get_by_id(id)
@@ -109,10 +106,8 @@ class PostsView(FlaskView):
         try:
             title = post.title
             Post.delete(post.id)
-            flash(gettext('The stamp "%(title)s" was removed', title=title))
+            return resp(url_for('PostsView:index'), redirect=True,
+                message=gettext('The stamp "%(title)s" was removed', title=title))
         except Exception as e:
-            flash(gettext('Error while removing the stamp, %(error)s', error=e), 'error')
-
-        if request.method == 'POST':
-            return redirect(url_for('PostsView:index'))
-        return jsonify(redirect_to=url_for('PostsView:index'))
+            return resp(url_for('PostsView:index'), status=False, redirect=True,
+                message=gettext('Error while removing the stamp, %(error)s', error=e))

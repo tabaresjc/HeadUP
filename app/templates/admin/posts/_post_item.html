@@ -39,7 +39,7 @@
 	<div class="panel-footer">
 		<div>
 			{% if post.can_edit() %}
-			<a href="{{ url_for('PostsView:delete_0', id=post.id) }}" data-method="post" rel="nofollow" data-confirm="{{ _('This will remove \'%(title)s\', Are you sure?', title=post.title) }}">
+			<a href="{{ url_for('PostsView:delete', id=post.id) }}" data-method="post" rel="nofollow" data-confirm="{{ _('This will remove \'%(title)s\', Are you sure?', title=post.title) }}">
 				<i class="icon-trash"></i>
 			</a>
 			{% endif %}

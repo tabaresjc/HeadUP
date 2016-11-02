@@ -1,6 +1,6 @@
 (function ($, window, document, undefined) {
   "use strict";
-  
+
   // Create the defaults once
   var pluginName = "notifications";
   var defaults = {
@@ -12,19 +12,19 @@
     messageTypes             : {message: 'success', error: 'error', warning: 'warning'},
     notifierPosition         : 'bottom-right',
   };
-  
+
   // Class Constructor
   function Notification(options) {
     this.options = $.extend({}, defaults, options);
     this.init();
   }
-  
+
   Notification.prototype = {
     init: function(element, options) {
       this.element = element;
       // Load the messages
       this.messageTextSelectors  = $(this.options.parentSelector + ' ' + this.options.messageTextSelectors);
-      
+
       this.setupSystemNotifications();
     },
     setupSystemNotifications: function() {
@@ -41,7 +41,7 @@
       });
     }
   };
-  
+
   // A really lightweight plugin wrapper around the constructor,
   // preventing against multiple instantiations
   $.fn[pluginName] = function (options) {
@@ -53,7 +53,7 @@
   };
 
   $(function() {
-    // load & display the system messages once is ready
+    // load & display the system messages once the page is ready
     $('#message-list').notifications();
   });
 })(jQuery, window, document);
