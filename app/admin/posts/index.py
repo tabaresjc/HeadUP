@@ -41,14 +41,15 @@ class PostsView(FlaskView):
         if request.method == 'POST':
             if form.validate_on_submit():
                 post = Post.create()
-                if request.files.get('file'):
-                    f = request.files.get('file')
+                form.populate_obj(post)
+                f = request.files.get('file')
+                post.user = current_user
+
+                if f:
                     picture = Picture.create()
                     picture.save_file(f, current_user)
                     post.cover_picture_id = picture.id if picture else 0
 
-                form.populate_obj(post)
-                post.user = current_user
                 post.save()
 
                 return resp(url_for('PostsView:index'), redirect=True,

@@ -52,3 +52,12 @@
 .cover-picture.without-picture .cover-picture-edit-button {display: block;background-image:none}
 
 form div.upload-file-container input[name=file] {display: none}
+
+.img-post {
+	width: 100%;
+    height: 200px;
+    margin: 0 0 12px;
+    border-radius: 3px;
+    background: no-repeat center;
+    background-size: cover;
+}

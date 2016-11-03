@@ -13,16 +13,11 @@
 </div>
 <br/>
 <div class="row">
-  <div class="col-md-9">	    	
+  <div class="col-md-9">
     <div class="panel panel-primary">
     	<div class="panel-body">
-    		{% if post.image_url %}
-    		<div class="row">
-    			<div class="col-md-12">
-    				<img src="{{ post.image_url }}" class="img-responsive img-rounded" width="100%">
-    				<br/>
-    			</div>
-    		</div>
+    		{% if post.cover_picture %}
+    		<div class="img-post" style="background-image:url({{ post.cover_picture.image_url }})"></div>
     		{% endif %}
     		<div class="row">
     			<div class="col-md-12">
@@ -38,11 +33,11 @@
     			</div>
     		</div>
     		<div class="clearfix"></div>
-    	</div>						
+    	</div>
     </div>
   </div>
   <div class="col-md-3">
     {% include 'admin/posts/_sidebar.html' %}
-  </div>		    
+  </div>
 </div>
 {% endblock %}

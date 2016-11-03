@@ -8,7 +8,7 @@
 				<a href="{{ url_for('PostsView:get', id=post.id) }}">
 					<h3 class="panel-title">{{ post.title }}</h3>
 				</a>
-				{% endif %}		    	
+				{% endif %}
 			</div>
 			<div class="col-md-2">
 				{% if post.can_edit() %}
@@ -21,13 +21,8 @@
 		</div>
 	</div>
 	<div class="panel-body">
-		{% if post.image_url %}
-		<div class="row">
-			<div class="col-md-12">
-				<img src="{{ post.image_url }}" class="img-responsive img-rounded" width="100%">
-				<br/>
-			</div>
-		</div>
+		{% if post.cover_picture %}
+		<div class="img-post" style="background-image:url({{ post.cover_picture.image_url }})"></div>
 		{% endif %}
 		<div class="row">
 			<div class="col-md-12">
@@ -43,11 +38,11 @@
 				<i class="icon-trash"></i>
 			</a>
 			{% endif %}
-			
+
 			<div class="pull-right">
 				<strong>{{ post.created_at | humanformat }}</strong>
 			</div>
 		</div>
 		<div class="clearfix"></div>
-	</div>						
+	</div>
 </div>
