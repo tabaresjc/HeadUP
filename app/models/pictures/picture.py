@@ -3,7 +3,7 @@
 from flask.ext.login import current_user
 from app import db
 from app.utils.db import ModelBase, MutableDict
-from config import UPLOAD_MEDIA_PICTURES
+from config import UPLOAD_MEDIA_PICTURES, UPLOAD_MEDIA_PICTURES_PATH
 import datetime
 import os
 
@@ -44,7 +44,7 @@ class Picture(db.Model, ModelBase):
       db.session.add(self)
 
       # attempt to save the file
-      fileObj.save(os.path.join(UPLOAD_MEDIA_PICTURES, self.name))
+      fileObj.save(os.path.join(UPLOAD_MEDIA_PICTURES_PATH, self.name))
 
       # is not saved yet!
       self.save()
