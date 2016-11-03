@@ -9,7 +9,7 @@ from app import app, login_manager
 from flask.ext.paginate import Pagination
 from app.models import Post, User
 from app.utils.response import resp
-from forms import UserForm, EditUserForm
+from forms import EditUserForm, NewUserForm
 
 
 class UsersView(FlaskView):
@@ -40,9 +40,10 @@ class UsersView(FlaskView):
 
     @route('/new', methods=['GET', 'POST'])
     def post(self):
-        form = UserForm()
+        form = NewUserForm()
 
         if request.method == 'POST':
+
             if form.validate_on_submit():
                 user = User.create()
                 form.populate_obj(user)
@@ -65,8 +66,9 @@ class UsersView(FlaskView):
             flash(gettext('The user was not found'), 'error')
             return redirect(url_for('UsersView:index'))
 
-        form = EditUserForm(user)
+
         if request.method in ['POST']:
+            form = EditUserForm()
             if form.validate_on_submit():
                 if form.password.data:
                     user.set_password(form.password.data)
@@ -79,6 +81,8 @@ class UsersView(FlaskView):
             else:
                 return resp('admin/users/edit.html', form=form, user=user,
                             message=gettext('Invalid submission, please check the messages below'))
+        else:
+            form = EditUserForm(user=user)
 
         return resp('admin/users/edit.html', form=form, user=user)
 

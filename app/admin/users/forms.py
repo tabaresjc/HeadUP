@@ -6,6 +6,7 @@ from flask.ext.babel import lazy_gettext, gettext
 from config import LANGUAGES_FORM
 import pytz
 import config
+from app.models import Role
 
 
 def get_timezones():
@@ -23,17 +24,17 @@ class UserForm(Form):
 
     name = TextField(lazy_gettext('Name'), [
                      validators.Required(),
-                     validators.Length(min=5, max=255)])
+                     validators.Length(min=3, max=255)])
 
     nickname = TextField(lazy_gettext('Nickname'), [
                          validators.Required(),
                          validators.Length(min=0, max=64)])
     role_id = SelectField(lazy_gettext('Role'), [
                           validators.Optional()],
-                          choices=config.DEFAULT_USER_ROLES)
+                          choices=Role.DEFAULT_USER_ROLES)
 
     password = PasswordField(lazy_gettext('Password'), [
-        validators.Required(),
+        validators.Optional(),
         validators.EqualTo('confirm_password', message=lazy_gettext(
             'Please repeat the password')),
         validators.Length(min=6, max=64)
@@ -56,20 +57,26 @@ class UserForm(Form):
         self.timezone.data = config.DEFAULT_TIMEZONE
 
 
-class EditUserForm(UserForm):
+class NewUserForm(UserForm):
 
     password = PasswordField(lazy_gettext('Password'), [
-        validators.Optional(),
+        validators.Required(),
         validators.EqualTo('confirm_password', message=lazy_gettext(
             'Please repeat the password')),
-        validators.Length(min=6, max=64)])
+        validators.Length(min=6, max=64)
+    ])
 
-    def __init__(self, user, *args, **kwargs):
+
+class EditUserForm(UserForm):
+
+    def __init__(self, user=None, *args, **kwargs):
         Form.__init__(self, *args, **kwargs)
-        self.email.data = user.email
-        self.name.data = user.name
-        self.nickname.data = user.nickname
-        self.role_id.data = unicode(user.role_id)
-        self.address.data = user.address
-        self.phone.data = user.phone
-        self.lang.data = user.lang
+        if user:
+            self.email.data = user.email
+            self.name.data = user.name
+            self.nickname.data = user.nickname
+            self.role_id.data = user.role_id
+            self.address.data = user.address
+            self.phone.data = user.phone
+            self.timezone.data = user.timezone
+            self.lang.data = user.lang
