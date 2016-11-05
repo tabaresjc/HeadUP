@@ -21,11 +21,6 @@ class PostForm(Form):
         self.category_id.data = 1
         self.category_id.choices = Category.get_list()
 
-    def validate(self):
-        if not Form.validate(self):
-            return False
-        return True
-
 
 class EditPostForm(Form):
     title = TextField(lazy_gettext('Title'), [validators.Required()])
@@ -37,18 +32,16 @@ class EditPostForm(Form):
     remain = BooleanField(lazy_gettext('Show Post'), default=False)
     cover_picture_id = HiddenField()
 
-    def __init__(self, post, *args, **kwargs):
+    def __init__(self, post=None, *args, **kwargs):
         Form.__init__(self, *args, **kwargs)
-        self.id = kwargs.get('id') if kwargs.get('id') else 0
-        self.title.data = post.title
-        self.body.data = post.body
-        self.extra_body.data = post.extra_body
-        self.anonymous.data = post.anonymous
-        self.category_id.data = post.category_id
-        self.cover_picture_id.data = post.cover_picture_id
         self.category_id.choices = Category.get_list()
-
-    def validate(self):
-        if not Form.validate(self):
-            return False
-        return True
+        if post:
+            self.id = kwargs.get('id') if kwargs.get('id') else 0
+            self.title.data = post.title
+            self.body.data = post.body
+            self.extra_body.data = post.extra_body
+            self.anonymous.data = post.anonymous
+            self.category_id.data = post.category_id
+            self.cover_picture_id.data = post.cover_picture_id
+        else:
+            self.category_id.data = 1

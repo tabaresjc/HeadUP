@@ -52,10 +52,15 @@ class PostsView(FlaskView):
 
                 post.save()
 
-                return resp(url_for('PostsView:index'), redirect=True,
+                if form.remain.data:
+                    url = url_for('PostsView:put', id=post.id)
+                else:
+                    url = url_for('PostsView:get', id=post.id)
+
+                return resp(url, redirect=True,
                     message=gettext('Stamp succesfully created'))
             else:
-                return resp('admin/posts/edit.html', status=False, form=form, post=post,
+                return resp('admin/posts/edit.html', status=False, form=form,
                     message=gettext('Invalid submission, please check the message below'))
 
         return resp('admin/posts/edit.html', form=form)
@@ -68,8 +73,9 @@ class PostsView(FlaskView):
             flash(gettext('The requested stamp was not found'), 'error')
             return redirect(url_for('PostsView:index'))
 
-        form = EditPostForm(post)
+
         if request.method in ['POST']:
+            form = EditPostForm()
             if form.validate_on_submit():
                 form.populate_obj(post)
                 f = request.files.get('file')
@@ -90,6 +96,8 @@ class PostsView(FlaskView):
             else:
                 return resp('admin/posts/edit.html', status=False, form=form, post=post,
                     message=gettext('Invalid submission, please check the message below'))
+        else:
+            form = EditPostForm(post)
 
         return resp('admin/posts/edit.html', form=form, post=post)
 
