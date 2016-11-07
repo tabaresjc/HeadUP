@@ -15,13 +15,13 @@
 	<div class="upload-file-container">
 		<input type=file name=file accept="image/x-png, image/gif, image/jpeg">
 	</div>
-	{{ render_inline_field(form.title, class="form-control", placeholder=_('Best description of your post (30 words)')) }}
-	{{ render_inline_field(form.body, id="txt_challenge", placeholder=_('Description of what you had to cope with (150 words)'), rows="8", style="width:100%; padding: 8px;") }}
-	{{ render_inline_field(form.extra_body, id="txt_solution", placeholder=_('Description of what you had to cope with (150 words)'), rows="8", style="width:100%; padding: 8px;") }}
+	{{ render_inline_field(form.title, class="form-control", placeholder=_('Title – Best description of your post (30 words)')) }}
+	{{ render_inline_field(form.body, id="txt_challenge", placeholder=_('Your Challenge – Description of what you had to cope with (150 words)'), rows="8", style="width:100%; padding: 8px;") }}
+	{{ render_inline_field(form.extra_body, id="txt_solution", placeholder=_('Your Solution – Description of what you did (150 words)'), rows="8", style="width:100%; padding: 8px;") }}
 	{{ render_inline_field(form.category_id, class="form-control") }}
 	{{ render_inline_field(form.cover_picture_id) }}
-	<div class="checkbox">
-		<label>{{ form.remain()|safe }} {{ _('Keep working on the stamp') }}</label>
+	<div class="checkbox clearfix">
+		{% if post %}<label>{{ form.remain()|safe }} {{ _('Keep working on the stamp') }}</label>{% endif %}
 		<label style="float:right">{{ form.anonymous()|safe }} {{ _('Make this Post Anonymous') }}</label>
 	</div>
 	<div class="actions clearfix">
