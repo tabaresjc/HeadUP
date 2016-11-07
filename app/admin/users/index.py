@@ -66,7 +66,6 @@ class UsersView(FlaskView):
             flash(gettext('The user was not found'), 'error')
             return redirect(url_for('UsersView:index'))
 
-
         if request.method in ['POST']:
             form = EditUserForm()
             if form.validate_on_submit():
@@ -112,7 +111,7 @@ class UsersView(FlaskView):
 
         if user is None:
             return resp(url_for('UsersView:index'), status=False,
-                message=gettext('The user was not found'))
+                        message=gettext('The user was not found'))
 
         page = request.values.get('page', 1, type=int)
         limit = 10

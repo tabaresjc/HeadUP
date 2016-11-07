@@ -8,7 +8,8 @@ from app.models import Category, Post
 
 class PostForm(Form):
     title = TextField(lazy_gettext('Title'), [validators.Required()])
-    body = TextAreaField(lazy_gettext('Your Challenge'), [validators.Required()])
+    body = TextAreaField(lazy_gettext('Your Challenge'),
+                         [validators.Required()])
     extra_body = TextAreaField(lazy_gettext(
         'Your Solution'), [validators.Required()])
     category_id = SelectField(u'Category', coerce=int)
@@ -24,7 +25,8 @@ class PostForm(Form):
 
 class EditPostForm(Form):
     title = TextField(lazy_gettext('Title'), [validators.Required()])
-    body = TextAreaField(lazy_gettext('Your Challenge'), [validators.Required()])
+    body = TextAreaField(lazy_gettext('Your Challenge'),
+                         [validators.Required()])
     extra_body = TextAreaField(lazy_gettext(
         'Your Solution'), [validators.Required()])
     category_id = SelectField(u'Category', coerce=int)

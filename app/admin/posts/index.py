@@ -17,7 +17,8 @@ class PostsView(FlaskView):
     def index(self):
         page = request.values.get('page', 1, type=int)
         limit = 10
-        posts, total = Post.posts_by_user(current_user.id, page=page, limit=limit)
+        posts, total = Post.posts_by_user(
+            current_user.id, page=page, limit=limit)
         return resp('admin/posts/index.html',
                     posts=posts,
                     page=page,
@@ -29,7 +30,7 @@ class PostsView(FlaskView):
 
         if post is None or not post.can_edit():
             return resp(url_for('PostsView:index'), status=False, redirect=True,
-                message=gettext('The requested stamp was not found'))
+                        message=gettext('The requested stamp was not found'))
 
         return resp('admin/posts/show.html',
                     title=post.title,
@@ -58,10 +59,10 @@ class PostsView(FlaskView):
                     url = url_for('PostsView:get', id=post.id)
 
                 return resp(url, redirect=True,
-                    message=gettext('Stamp succesfully created'))
+                            message=gettext('Stamp succesfully created'))
             else:
                 return resp('admin/posts/edit.html', status=False, form=form,
-                    message=gettext('Invalid submission, please check the message below'))
+                            message=gettext('Invalid submission, please check the message below'))
 
         return resp('admin/posts/edit.html', form=form)
 
@@ -96,7 +97,7 @@ class PostsView(FlaskView):
                 return resp(url, redirect=True, message=message)
             else:
                 return resp('admin/posts/edit.html', status=False, form=form, post=post,
-                    message=gettext('Invalid submission, please check the message below'))
+                            message=gettext('Invalid submission, please check the message below'))
         else:
             form = EditPostForm(post)
 
@@ -117,7 +118,7 @@ class PostsView(FlaskView):
             title = post.title
             Post.delete(post.id)
             return resp(url_for('PostsView:index'), redirect=True,
-                message=gettext('The stamp "%(title)s" was removed', title=title))
+                        message=gettext('The stamp "%(title)s" was removed', title=title))
         except Exception as e:
             return resp(url_for('PostsView:index'), status=False, redirect=True,
-                message=gettext('Error while removing the stamp, %(error)s', error=e))
+                        message=gettext('Error while removing the stamp, %(error)s', error=e))

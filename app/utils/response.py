@@ -38,7 +38,7 @@ def resp(template, status=True, message=None, **context):
     if context.get("redirect"):
         return redirect(template)
 
-    return render_template(template,  **context)
+    return render_template(template, **context)
 
 
 class CustomJSONEncoder(JSONEncoder):
