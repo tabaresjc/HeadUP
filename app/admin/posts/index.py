@@ -73,13 +73,14 @@ class PostsView(FlaskView):
             flash(gettext('The requested stamp was not found'), 'error')
             return redirect(url_for('PostsView:index'))
 
-
         if request.method in ['POST']:
             form = EditPostForm()
             if form.validate_on_submit():
                 form.populate_obj(post)
                 f = request.files.get('file')
                 if f:
+                    if post.cover_picture:
+                        post.cover_picture.remove()
                     picture = Picture.create()
                     picture.save_file(f, current_user)
                     post.cover_picture_id = picture.id if picture else 0
