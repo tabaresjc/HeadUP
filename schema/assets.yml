@@ -1,0 +1,6 @@
+admin_main:
+    filters: cssmin
+    output: theme/admin/main.css
+    contents:
+        - bootstrap/css/bootstrap.css
+        - theme/admin/css/bootstrap/bootstrap-overrides.css

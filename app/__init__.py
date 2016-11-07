@@ -4,9 +4,7 @@ from flask import Flask
 from flask.ext.login import LoginManager, current_user
 from flask_wtf.csrf import CsrfProtect
 from flask.ext.babel import Babel, lazy_gettext
-
-from werkzeug import LocalProxy, cached_property, ImmutableDict
-from werkzeug.contrib.fixers import ProxyFix
+from flask_assets import Environment, Bundle
 
 from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy.pool import NullPool
@@ -33,19 +31,12 @@ csrf.init_app(app)
 # -------------------------------------------------------------------------
 babel = Babel(app)
 
-
-@babel.localeselector
-def get_locale():
-    if current_user and current_user.is_authenticated:
-        return current_user.lang
-    return flask.request.accept_languages.best_match(LANGUAGES.keys())
-
-
-@babel.timezoneselector
-def get_timezone():
-    if current_user and current_user.is_authenticated:
-        return current_user.timezone
-    return "Asia/Tokyo"
+# -------------------------------------------------------------------------
+# Load Flask Assets
+# -------------------------------------------------------------------------
+assets = Environment(app)
+assets.from_yaml('schema/assets.yml')
+assets.auto_build = False
 
 # -------------------------------------------------------------------------
 # Database Configuration
@@ -59,8 +50,7 @@ login_manager = LoginManager()
 login_manager.init_app(app)
 # add our view as the login view to finish configuring the LoginManager
 login_manager.login_view = "sessions.login"
-login_manager.login_message = lazy_gettext(
-    'Please log in to access this page.')
+login_manager.login_message = lazy_gettext('Please log in to access this page.')
 
 # -------------------------------------------------------------------------
 # Register Controllers & Models
@@ -84,6 +74,20 @@ app.json_encoder = CustomJSONEncoder
 # -------------------------------------------------------------------------
 # Application's event handlers
 # -------------------------------------------------------------------------
+
+
+@babel.localeselector
+def get_locale():
+    if current_user and current_user.is_authenticated:
+        return current_user.lang
+    return flask.request.accept_languages.best_match(LANGUAGES.keys())
+
+
+@babel.timezoneselector
+def get_timezone():
+    if current_user and current_user.is_authenticated:
+        return current_user.timezone
+    return "Asia/Tokyo"
 
 
 @app.errorhandler(401)
