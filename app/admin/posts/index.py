@@ -77,7 +77,10 @@ class PostsView(FlaskView):
         if request.method in ['POST']:
             form = EditPostForm()
             if form.validate_on_submit():
-                if post.cover_picture and request.values.get('cover_picture_id', 0, int) == 0:
+                cover_picture_id = request.values.get('cover_picture_id', 0, int)
+                remain = request.values.get('remain', False, bool)
+
+                if post.cover_picture and cover_picture_id == 0:
                     # remove the picture, when user request its deletion
                     post.cover_picture.remove()
 
@@ -94,12 +97,10 @@ class PostsView(FlaskView):
                 post.save()
                 message = gettext('Stamp was succesfully saved')
 
-                if form.remain.data:
-                    url = url_for('PostsView:put', id=post.id)
-                else:
-                    url = url_for('PostsView:get', id=post.id)
+                if remain:
+                    return resp('admin/posts/edit.html', form=form, post=post, message=message)
 
-                return resp(url, redirect=True, message=message)
+                return resp(url_for('PostsView:get', id=post.id), redirect=True, message=message)
             else:
                 return resp('admin/posts/edit.html', status=False, form=form, post=post,
                             message=gettext('Invalid submission, please check the message below'))
