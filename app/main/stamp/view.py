@@ -32,6 +32,7 @@ def edit(id):
 def new():
     return redirect(url_for('PostsView:post'))
 
+
 @app.route('/post/<int:id>', methods=['GET'])
 def show_post(id):
     try:

@@ -11,7 +11,6 @@
 		Main.prototype = {
 			setupElements: function() {
 				// upload cover pictures elements
-
 				this.coverPicInputFile = $('div.upload-file-container input[type=file]').first();
 				this.coverPicContainer = $('div.cover-picture').first();
 				this.picUpload = $('.cover-picture-edit-menu span.update, .cover-picture-edit-button span.upload');
@@ -54,8 +53,10 @@
 
 				this.removePicture.click(function(e) {
 					e.preventDefault();
-					coverPicContainer
-						.removeClass('with-picture')
+					var targetField = $($(this).data("target"));
+					targetField.val("0");
+
+					coverPicContainer.removeClass('with-picture')
 						.addClass('without-picture')
 						.css('background-image', 'none');
 				});
