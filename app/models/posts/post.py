@@ -1,6 +1,6 @@
 # -*- coding: utf8 -*-
 
-from flask.ext.login import current_user
+from flask_login import current_user
 from app import db
 from app.utils.db import ModelBase, MutableDict
 import datetime

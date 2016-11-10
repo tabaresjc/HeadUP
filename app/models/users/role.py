@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-from flask.ext.babel import lazy_gettext
+from flask_babel import lazy_gettext
 
 
 class Role(object):

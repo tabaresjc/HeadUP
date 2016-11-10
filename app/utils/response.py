@@ -1,7 +1,7 @@
 # -*- coding: utf8 -*-
 from flask import render_template, jsonify, request, redirect, flash
 from flask.json import JSONEncoder
-from flask.ext.wtf import Form
+from flask_wtf import Form
 import datetime
 
 

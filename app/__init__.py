@@ -1,9 +1,9 @@
 # -*- coding: utf8 -*-
 
 from flask import Flask
-from flask.ext.login import LoginManager, current_user
+from flask_login import LoginManager, current_user
 from flask_wtf.csrf import CsrfProtect
-from flask.ext.babel import Babel, lazy_gettext
+from flask_babel import Babel, lazy_gettext
 from flask_assets import Environment, Bundle
 
 from flask_sqlalchemy import SQLAlchemy

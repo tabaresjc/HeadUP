@@ -1,10 +1,10 @@
 # -*- coding: utf8 -*-
 
 from flask import render_template, flash, redirect, url_for, request, abort
-from flask.ext.login import login_required
-from flask.ext.classy import FlaskView, route
-from flask.ext.babel import gettext
-from flask.ext.paginate import Pagination
+from flask_login import login_required
+from flask_classy import FlaskView, route
+from flask_babel import gettext
+from flask_paginate import Pagination
 from app.utils import Utilities as util
 from forms import CategoryForm, NewCategoryForm, TranferCatForm
 from app.models import Category

@@ -4,8 +4,8 @@ import sys
 import datetime
 from app import app
 from flask import request, json, Response, flash, redirect
-from flask.ext.babel import gettext, format_datetime, format_timedelta
-from flask.ext.paginate import Pagination
+from flask_babel import gettext, format_datetime, format_timedelta
+from flask_paginate import Pagination
 from jinja2 import evalcontextfilter, Markup, escape
 import truncate
 import re

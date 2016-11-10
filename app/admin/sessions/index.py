@@ -1,10 +1,10 @@
 # -*- coding: utf-8 -*-
 
 from flask import Blueprint, render_template, flash, redirect, session, url_for, request, g, jsonify
-from flask.ext.login import login_user, logout_user, current_user, login_required, user_logged_in, user_logged_out
-from flask.ext.classy import FlaskView, route
-from flask.ext.wtf import Form
-from flask.ext.babel import lazy_gettext, gettext
+from flask_login import login_user, logout_user, current_user, login_required, user_logged_in, user_logged_out
+from flask_classy import FlaskView, route
+from flask_wtf import Form
+from flask_babel import lazy_gettext, gettext
 from app import app, login_manager
 from forms import LoginForm, SignUpForm
 from app.models import User

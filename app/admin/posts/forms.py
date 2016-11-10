@@ -1,8 +1,8 @@
 # -*- coding: utf8 -*-
 
-from flask.ext.wtf import Form
+from flask_wtf import Form
 from wtforms import TextAreaField, TextField, BooleanField, SelectField, HiddenField, validators
-from flask.ext.babel import lazy_gettext, gettext
+from flask_babel import lazy_gettext, gettext
 from app.models import Category, Post
 
 

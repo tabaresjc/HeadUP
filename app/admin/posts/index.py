@@ -1,10 +1,10 @@
 # -*- coding: utf8 -*-
 
 from flask import render_template, flash, redirect, url_for, request, jsonify, abort
-from flask.ext.login import current_user, login_required
-from flask.ext.classy import FlaskView, route
-from flask.ext.babel import gettext
-from flask.ext.paginate import Pagination
+from flask_login import current_user, login_required
+from flask_classy import FlaskView, route
+from flask_babel import gettext
+from flask_paginate import Pagination
 from app.models import Post, Picture
 from app.utils.response import resp
 from forms import PostForm, EditPostForm

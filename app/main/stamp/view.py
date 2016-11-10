@@ -1,9 +1,9 @@
 # -*- coding: utf8 -*-
 
 from flask import render_template, flash, redirect, session, url_for, request, g, abort, Response
-from flask.ext.login import current_user, login_required
-from flask.ext.paginate import Pagination
-from flask.ext.babel import gettext
+from flask_login import current_user, login_required
+from flask_paginate import Pagination
+from flask_babel import gettext
 from app import app, babel
 from app.models import User, Post, Category
 from app.main.stamp import mod

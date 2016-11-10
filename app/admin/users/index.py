@@ -1,12 +1,12 @@
 # -*- coding: utf8 -*-
 
 from flask import Blueprint, render_template, flash, redirect, session, url_for, request, g, jsonify, abort
-from flask.ext.login import login_user, logout_user, current_user, login_required
-from flask.ext.classy import FlaskView, route
-from flask.ext.wtf import Form
-from flask.ext.babel import lazy_gettext, gettext, refresh
+from flask_login import login_user, logout_user, current_user, login_required
+from flask_classy import FlaskView, route
+from flask_wtf import Form
+from flask_babel import lazy_gettext, gettext, refresh
 from app import app, login_manager
-from flask.ext.paginate import Pagination
+from flask_paginate import Pagination
 from app.models import Post, User
 from app.utils.response import resp
 from forms import EditUserForm, NewUserForm
