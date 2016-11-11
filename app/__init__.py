@@ -35,7 +35,7 @@ babel = Babel(app)
 # Load Flask Assets
 # -------------------------------------------------------------------------
 assets = Environment(app)
-assets.from_yaml(os.path.join('schema/assets.yml'))
+assets.from_yaml(os.path.join(BASE_DIR, 'schema/assets.yml'))
 assets.auto_build = False
 
 # -------------------------------------------------------------------------
