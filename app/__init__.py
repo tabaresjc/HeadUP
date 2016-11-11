@@ -8,7 +8,7 @@ from flask_assets import Environment, Bundle
 
 from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy.pool import NullPool
-from config import LANGUAGES
+from config import LANGUAGES, BASE_DIR
 import flask
 import jinja2
 import os
@@ -35,7 +35,7 @@ babel = Babel(app)
 # Load Flask Assets
 # -------------------------------------------------------------------------
 assets = Environment(app)
-assets.from_yaml('schema/assets.yml')
+assets.from_yaml(os.path.join('schema/assets.yml'))
 assets.auto_build = False
 
 # -------------------------------------------------------------------------
