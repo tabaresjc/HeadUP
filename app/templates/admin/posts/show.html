@@ -8,7 +8,10 @@
 {% block main %}
 <div class="row head">
   <div class="col-md-12">
-    <h4>{{ post.title }}</h4>
+    <h4>
+		{{ post.title }}
+		{% if post.category %}<span>({{ post.category.name }})</span>{% endif %}
+	</h4>
   </div>
 </div>
 <br/>

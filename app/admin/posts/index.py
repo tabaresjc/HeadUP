@@ -7,7 +7,7 @@ from flask_babel import gettext
 from flask_paginate import Pagination
 from app.models import Post, Picture
 from app.utils.response import resp
-from forms import PostForm, EditPostForm
+from forms import PostForm
 
 
 class PostsView(FlaskView):
@@ -75,7 +75,7 @@ class PostsView(FlaskView):
             return redirect(url_for('PostsView:index'))
 
         if request.method in ['POST']:
-            form = EditPostForm()
+            form = PostForm()
             if form.validate_on_submit():
                 cover_picture_id = request.values.get('cover_picture_id', 0, int)
                 remain = request.values.get('remain', False, bool)
@@ -83,7 +83,7 @@ class PostsView(FlaskView):
                 if post.cover_picture and cover_picture_id == 0:
                     # remove the picture, when user request its deletion
                     post.cover_picture.remove()
-
+                c = form.category_id.data
                 form.populate_obj(post)
 
                 f = request.files.get('file')
@@ -105,7 +105,7 @@ class PostsView(FlaskView):
                 return resp('admin/posts/edit.html', status=False, form=form, post=post,
                             message=gettext('Invalid submission, please check the message below'))
         else:
-            form = EditPostForm(post)
+            form = PostForm(post)
 
         return resp('admin/posts/edit.html', form=form, post=post)
 

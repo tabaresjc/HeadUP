@@ -17,23 +17,6 @@ class PostForm(Form):
     remain = BooleanField(lazy_gettext('Show Post'), default=False)
     cover_picture_id = HiddenField()
 
-    def __init__(self, *args, **kwargs):
-        Form.__init__(self, *args, **kwargs)
-        self.category_id.data = 1
-        self.category_id.choices = Category.get_list()
-
-
-class EditPostForm(Form):
-    title = TextField(lazy_gettext('Title'), [validators.Required()])
-    body = TextAreaField(lazy_gettext('Your Challenge'),
-                         [validators.Required()])
-    extra_body = TextAreaField(lazy_gettext(
-        'Your Solution'), [validators.Required()])
-    category_id = SelectField(u'Category', coerce=int)
-    anonymous = BooleanField(lazy_gettext('Anonymous'), default=0)
-    remain = BooleanField(lazy_gettext('Show Post'), default=False)
-    cover_picture_id = HiddenField()
-
     def __init__(self, post=None, *args, **kwargs):
         Form.__init__(self, *args, **kwargs)
         self.category_id.choices = Category.get_list()
@@ -45,5 +28,3 @@ class EditPostForm(Form):
             self.anonymous.data = post.anonymous
             self.category_id.data = post.category_id
             self.cover_picture_id.data = post.cover_picture_id
-        else:
-            self.category_id.data = 1

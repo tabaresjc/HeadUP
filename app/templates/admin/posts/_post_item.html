@@ -3,16 +3,22 @@
 		<div class="row">
 			<div class="col-md-10">
 				{% if request.endpoint.startswith('PostsView:get') %}
-				<h3 class="panel-title">{{ post.title }}</h3>
+				<h3 class="panel-title">
+					{{ post.title }}
+					{% if post.category %}<span>({{ post.category.name }})</span>{% endif %}
+				</h3>
 				{% else %}
 				<a href="{{ url_for('PostsView:get', id=post.id) }}">
-					<h3 class="panel-title">{{ post.title }}</h3>
+					<h3 class="panel-title">
+						{{ post.title }}
+						{% if post.category %}<span>({{ post.category.name }})</span>{% endif %}
+					</h3>
 				</a>
 				{% endif %}
 			</div>
 			<div class="col-md-2">
 				{% if post.can_edit() %}
-				<a class="btn btn-success pull-right" href="{{ url_for('PostsView:put', id=post.id) }}">
+				<a class="btn btn-success btn-sm pull-right" href="{{ url_for('PostsView:put', id=post.id) }}">
 					<i class="icon-edit"></i>
 				</a>
 				{% endif %}
