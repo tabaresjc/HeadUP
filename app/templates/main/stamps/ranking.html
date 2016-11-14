@@ -1,0 +1,12 @@
+{% extends "main/layout/base.html" %}
+{% set title = _('Ranking') %}
+
+{% block content %}
+	{% for post in posts %}
+		{% include 'main/stamp/_feed_item.html' %}
+	{% endfor %}
+{% endblock %}
+
+{% block sidebar %}
+	{% include 'main/common/_sidebar_user.html' %}
+{% endblock %}

@@ -21,44 +21,17 @@
             <li {% if request.endpoint == 'index' %}class="active"{% endif %}>
               <a href="/" class="dropdown-toggle" data-toggle="dropdown">{% trans%}Home{% endtrans %}</a>
             </li>
-            <li {% if request.endpoint == 'show_ranking' %}class="active"{% endif %}>
-              <a href="/ranking" class="dropdown-toggle" data-toggle="dropdown">{% trans%}H'UP{% endtrans %}</a>
+            <li {% if request.endpoint == 'ranking' %}class="active"{% endif %}>
+              <a href="{{ url_for('ranking') }}" class="dropdown-toggle" data-toggle="dropdown">{% trans%}H'UP{% endtrans %}</a>
             </li>
             <li {% if request.endpoint == 'show_mypage' %}class="active"{% endif %}>
               <a href="{{ url_for('dashboard') }}" class="dropdown-toggle" data-toggle="dropdown">{% trans%}My Page{% endtrans %}</a>
             </li>
-            <li {% if request.endpoint == 'show_categories' %}class="active"{% endif %}>
+            <!-- <li {% if request.endpoint == 'show_categories' %}class="active"{% endif %}>
               <a href="/up-and-away" class="dropdown-toggle" data-toggle="dropdown">{% trans%}Up & Away{% endtrans %}</a>
-            </li>
+            </li> -->
           </ul>
-        </div><!-- /.navbar-collapse -->
+        </div>
       </nav>
-      <div class="hidden-xs  hidden-sm">
-        <!-- <a href="#" class="search__container  js--toggle-search-mode"> <span class="glyphicon  glyphicon-search"></span>  </a> -->
-        <!-- <div class="social">
-          <a href="#" class="social__container"> <span class="glyphicon  glyphicon-heart"></span>  </a>
-          <ul class="social__dropdown">
-            <li>
-              <a href="https://www.facebook.com/ProteusThemes" target="_blank" class="social__container"> <span class="zocial-facebook"></span>  </a>
-            </li>
-            <li>
-              <a href="https://twitter.com/ProteusNetCom" target="_blank" class="social__container"> <span class="zocial-twitter"></span>  </a>
-            </li>
-          </ul>
-        </div> -->
-      </div>
     </div>
   </header>
-  <!-- Search - Open panel -->
-  <!-- <div class="search-panel">
-    <div class="container">
-      <div class="row">
-        <div class="col-xs-12">
-          <form action="search-results.html">
-            <input type="text" class="search-panel__form  js--search-panel-text" placeholder="{% trans %}Begin typing for search{% endtrans %}">
-            <p class="search-panel__text">{% trans %}Press enter to see results or esc to cancel.{% endtrans %}</p>
-          </form>
-        </div>
-      </div>
-    </div>
-  </div> -->

@@ -20,7 +20,8 @@ def resp(template, status=True, message=None, **context):
     if request.is_xhr or contentType == 'application/json' or acceptContent == 'application/json':
         json_data = {
             'status': status,
-            'datetime': datetime.datetime.utcnow()
+            'datetime': datetime.datetime.utcnow(),
+            'data': {}
         }
 
         if message:
