@@ -95,7 +95,7 @@
       <div class="panel panel-primary">
         <!-- Default panel contents -->
         <div class="panel-heading">
-          <a href="{{ url_for('user_post',id=user.id) }}" class="panel-title">{{ _('Recent posts') }}</a>
+          {{ _('Recent posts') }}
         </div>
         <!-- Table -->
         <table class="table">
@@ -111,7 +111,7 @@
             {% for post in user.get_user_posts(limit=5)[0] %}
             <tr class="{{ 'first' if loop.first }}">
               <td>
-                <a href="{{ url_for('show_post', id=post.id) }}">
+                <a href="{{ url_for('PostsView:get', id=post.id) }}">
                   {{ post.created_at|datetimeformat(format='EEE, d MMM yyyy') }}
                 </a>
               </td>
