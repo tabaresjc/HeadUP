@@ -1,9 +1,10 @@
 # -*- coding: utf8 -*-
 
-from flask import render_template, redirect, url_for, abort, send_file
+from flask import render_template, redirect, url_for, abort, send_file, session
 from app import app
 from app.models import Post
 from app.main.stamp import mod
+from app.utils.response import nocache
 
 
 @mod.route('/<int:id>')
@@ -29,17 +30,25 @@ def new():
 
 
 @mod.route('/counter/<string:post_id>.gif')
+@nocache
 def count_page_view(post_id):
+    from app.models import Feed
+    import datetime
     id = Post.decode_id(post_id)
-
+    post = Post.get_by_id(id)
     try:
-        Post.begin_transaction()
-        post = Post.get_by_id(id)
-        post.update_score(page_view=1)
-        post.save()
-        Post.commit_transaction()
+        key = u'counter_post_%s' % id
+        count_time = float(session[key]) if key in session else 0
+
+        # Increase pageviews in 1 hour
+        if Feed.epoch_seconds(datetime.datetime.now()) > count_time:
+            Post.begin_transaction()
+            post.update_score(page_view=1)
+            post.save()
+            Post.commit_transaction()
+            session[key] = Feed.epoch_seconds(datetime.datetime.now() + datetime.timedelta(hours=8))
+
     except Exception as e:
         Post.rollback_transaction()
         raise e
-
     return send_file('static/theme/headsup/images/counter.gif', mimetype='image/gif')

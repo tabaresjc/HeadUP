@@ -23,7 +23,7 @@ class Post(db.Model, ModelBase):
         'categories.id', ondelete='CASCADE', onupdate='NO ACTION'))
 
     anonymous = db.Column(db.SmallInteger)
-    score = db.Column(db.Numeric)
+    score = db.Column(db.Numeric(20, 7), default=0, server_default='0', nullable=False)
     attributes = db.Column(MutableDict.as_mutable(db.PickleType))
 
     created_at = db.Column(db.DateTime, default=datetime.datetime.utcnow)
@@ -103,7 +103,10 @@ class Post(db.Model, ModelBase):
         if down_vote > 0:
             self.down_votes = self.down_votes + down_vote
 
-        self.score = Feed.score(self.page_views, self.votes, self.down_votes, self.created_at)
+        self.score = Feed.score(page_views=self.page_views,
+                                ups=self.votes,
+                                downs=self.down_votes,
+                                date=self.created_at)
 
     @property
     def encoded_id(self):
