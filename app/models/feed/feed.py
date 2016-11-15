@@ -6,7 +6,7 @@ import datetime
 
 
 class Feed:
-
+    vote_factor = 10
     epoch = datetime.datetime(1970, 1, 1)
 
     @classmethod
@@ -15,12 +15,12 @@ class Feed:
         return td.days * 86400 + td.seconds + (float(td.microseconds) / 1000000)
 
     @classmethod
-    def score(cls, ups, downs):
-        return ups - downs
+    def base_score(cls, page_views, ups, downs):
+        return page_views + (ups * cls.vote_factor) - (downs * cls.vote_factor)
 
     @classmethod
-    def hot(cls, ups, downs, date):
-        s = cls.score(ups, downs)
+    def score(cls, page_views, ups, downs, date):
+        s = cls.base_score(page_views, ups, downs)
         order = log(max(abs(s), 1), 10)
         sign = 1 if s > 0 else -1 if s < 0 else 0
         seconds = cls.epoch_seconds(date) - 1134028003
@@ -45,7 +45,7 @@ class Feed:
         count = query.count()
         records = []
         if count:
-            order = db.text('created_at DESC')
+            order = db.text('score DESC')
             offset = (page - 1) * limit
             records = query.order_by(order).limit(limit).offset(offset)
         return records, count

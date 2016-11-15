@@ -7,6 +7,18 @@ from sqlalchemy.ext.mutable import Mutable
 
 class ModelBase(object):
 
+    @classmethod
+    def begin_transaction(cls):
+        db.session.begin(subtransactions=True)
+
+    @classmethod
+    def commit_transaction(cls):
+        db.session.commit()
+
+    @classmethod
+    def rollback_transaction(cls):
+        db.session.rollback()
+
     def set_attribute(self, key, value):
         self.attributes = self.attributes or {}
         if not key:

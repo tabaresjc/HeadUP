@@ -1,6 +1,6 @@
 # -*- coding: utf8 -*-
 
-from flask import render_template, redirect, url_for, abort
+from flask import render_template, redirect, url_for, abort, send_file
 from app import app
 from app.models import Post
 from app.main.stamp import mod
@@ -26,3 +26,20 @@ def edit(id):
 @mod.route('/new')
 def new():
     return redirect(url_for('PostsView:post'))
+
+
+@mod.route('/counter/<string:post_id>.gif')
+def count_page_view(post_id):
+    id = Post.decode_id(post_id)
+
+    try:
+        Post.begin_transaction()
+        post = Post.get_by_id(id)
+        post.update_score(page_view=1)
+        post.save()
+        Post.commit_transaction()
+    except Exception as e:
+        Post.rollback_transaction()
+        raise e
+
+    return send_file('static/theme/headsup/images/counter.gif', mimetype='image/gif')

@@ -4,6 +4,7 @@ from flask_login import current_user
 from app import db
 from app.utils.db import ModelBase, MutableDict
 import datetime
+import base64
 
 
 class Post(db.Model, ModelBase):
@@ -22,6 +23,7 @@ class Post(db.Model, ModelBase):
         'categories.id', ondelete='CASCADE', onupdate='NO ACTION'))
 
     anonymous = db.Column(db.SmallInteger)
+    score = db.Column(db.Numeric)
     attributes = db.Column(MutableDict.as_mutable(db.PickleType))
 
     created_at = db.Column(db.DateTime, default=datetime.datetime.utcnow)
@@ -59,11 +61,57 @@ class Post(db.Model, ModelBase):
     def cover_picture_id(self, value):
         return self.set_attribute('cover_picture_id', value)
 
+    @property
+    def page_views(self):
+        return self.get_attribute('page_views', 1)
+
+    @page_views.setter
+    def page_views(self, value):
+        return self.set_attribute('page_views', value)
+
+    @property
+    def votes(self):
+        return self.get_attribute('votes', 0)
+
+    @votes.setter
+    def votes(self, value):
+        return self.set_attribute('votes', value)
+
+    @property
+    def down_votes(self):
+        return self.get_attribute('down_votes', 0)
+
+    @down_votes.setter
+    def down_votes(self, value):
+        return self.set_attribute('down_votes', value)
+
     def is_mine(self):
         return current_user.is_authenticated and self.user.id == current_user.id
 
     def can_edit(self):
         return current_user.is_authenticated and (self.user.id == current_user.id or current_user.is_admin)
+
+    def update_score(self, page_view=0, vote=0, down_vote=0):
+        from app.models import Feed
+        scale = 10
+        if page_view > 0:
+            self.page_views = self.page_views + page_view
+
+        if vote > 0:
+            self.votes = self.votes + vote
+
+        if down_vote > 0:
+            self.down_votes = self.down_votes + down_vote
+
+        self.score = Feed.score(self.page_views, self.votes, self.down_votes, self.created_at)
+
+    @property
+    def encoded_id(self):
+        return base64.b64encode(bytes('%s' % self.id)).encode('hex')
+
+    @classmethod
+    def decode_id(self, encodedValue):
+        return long(base64.b64decode(encodedValue.decode('hex')))
 
     @classmethod
     def posts_by_user(cls, user_id, limit=10, page=1, orderby='id', desc=True):
