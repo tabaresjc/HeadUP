@@ -1,31 +1,41 @@
 # -*- coding: utf8 -*-
 
-import sys
+import click
+from flask import Flask
+from . import app
 
-lenargs = len(sys.argv)
-if 2 == lenargs and sys.argv[1] == 'init':
-    print "Init Database"
+
+@app.cli.command()
+def db_init():
+    """Initialize the database."""
     from app import db
     db.create_all()
+    click.echo('Initialize the database.')
+
     from app.models import Category
     c1 = Category.create(name=u'Uncategorized', slug=u'uncategorized')
     c1.save()
     c2 = Category.create(name=u'News', slug=u'news')
     c2.save()
 
-if 2 == lenargs and sys.argv[1] == 'update':
-    print "Update Database"
+
+@app.cli.command()
+def db_update():
+    """Update Database."""
+    click.echo('Update Database.')
     from app import db
     db.create_all()
 
-elif 5 == lenargs and sys.argv[1] == 'create_user':
-    print "Create User"
+
+@app.cli.command()
+@click.option('--name', default=None, help='User\'s name')
+@click.option('--email', default='', help='User\'s email')
+@click.option('--password', default=None, help='User\'s password')
+def init_user(name, email, password):
+    """Create user."""
     from app.models import User, Role
-    name = sys.argv[2]
-    email = sys.argv[3]
-    password = sys.argv[4]
     email_parts = email.split('@')
-    if len(email_parts) > 1:
+    if len(email_parts) > 1 and name and password:
         user = User.create(
             name=name,
             email=email,
@@ -38,5 +48,6 @@ elif 5 == lenargs and sys.argv[1] == 'create_user':
         )
         user.set_password(unicode(password))
         user.save()
+        click.echo("User created")
     else:
-        print "Sorry! Can not create user :( "
+        click.echo("Sorry! can not create user :( ")
