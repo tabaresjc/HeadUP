@@ -1,0 +1,31 @@
+// Slider
+.slider {
+  margin-top: -45px;
+  margin-bottom: 30px;
+}
+
+.slider__subtitle {
+  margin-bottom: 10px;
+}
+
+.slider__title {
+  color: #fff;
+  margin-top: 0;
+  margin-bottom: 45px;
+}
+
+.slider__container {
+  padding: 20% 0;
+
+  @media (min-width: $screen-sm-min) {
+    padding: 5% 0;
+  }
+}
+
+.carousel-inner > .item > img {
+  max-width: none;
+}
+
+.carousel-caption {
+  top: 0;
+}

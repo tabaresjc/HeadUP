@@ -61,7 +61,24 @@ media/
 # Ignore the config file
 /config.py
 
-
 # ignore npm & grunt dependencies
+app/static/lib/bower_components
+app/static/lib/node_modules
 node_modules/
-source/bower_components/
+.sass-cache/
+/tmp/
+
+# ignore generated files
+app/static/assets/headsup/styles/main*.css
+app/static/assets/headsup/styles/base/main*.css
+app/static/assets/headsup/scripts/main*.js
+app/static/assets/headsup/fonts/bootstrap/
+app/templates/main/staging/
+app/templates/main/layout/base.html
+
+app/static/assets/admin/styles/main*.css
+app/static/assets/admin/styles/base/main*.css
+app/static/assets/admin/scripts/main*.js
+app/static/assets/admin/fonts/bootstrap/
+app/templates/admin/staging/
+app/templates/admin/layout/base.html

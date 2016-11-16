@@ -1,0 +1,10 @@
+// Comments
+.post-comments {
+  text-align: center;
+  margin-bottom: 15px;
+
+  @media (min-width: $screen-sm-min) {
+    text-align: left;
+    margin-bottom: 60px;
+  }
+}

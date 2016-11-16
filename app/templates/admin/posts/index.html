@@ -2,11 +2,6 @@
 
 {% set title = _('Stamps | %(page)s', page=page) %}
 
-{% block custom_css %}
-<link rel="stylesheet" href="/static/theme/admin/css/compiled/index.css" type="text/css" media="screen" />
-<link rel="stylesheet" href="/static/theme/admin/css/compiled/ui-elements.css" type="text/css" media="screen">
-{% endblock %}
-
 {% block main %}
 <div class="row head">
   <div class="col-md-12">
@@ -26,7 +21,7 @@
     {{ pag('admin.posts.index', page, limit, total, _('stamps'), kind='links')|safe }}
     {%- else %}
     <a href="{{ url_for('stamp.new') }}" class="no-post-message">
-      <img src="/static/theme/admin/img/Logo/feather-blue-256.png" alt="{{ site_name }}" />
+      <img src="/static/assets/admin/images/Logo/feather-blue-256.png" alt="{{ site_name }}" />
       <span>{{ _('You don\'t have any stamps yet<br/>Participate in this comunity by writting stamps!!')|safe }}</span>
     </a>
     {%- endif %}

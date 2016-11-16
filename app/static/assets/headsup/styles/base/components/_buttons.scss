@@ -1,0 +1,161 @@
+// Buttons
+.btn {
+  border: none;
+  border-radius: 4px;
+  font-weight: 700;
+  font-size: 14px;
+  font-family: $tertiary-font;
+  padding: 8px 16px;
+  margin-bottom: 5px;
+}
+
+.btn-primary {
+  border: 1px solid $primary-color;
+  background: linear-gradient(to bottom, $primary-color, darken($primary-color, 10));
+
+  &:hover {
+    background: darken($primary-color, 10);
+    border: 1px solid darken($primary-color, 10);
+  }
+}
+
+.btn-info {
+  border: 1px solid #6cb9d3;
+  background: linear-gradient(to bottom, #6cb9d3, darken(#6cb9d3, 10));
+
+  &:hover {
+    background: darken(#6cb9d3, 10);
+    border: 1px solid darken(#6cb9d3, 10);
+  }
+}
+
+.btn-gray {
+  color: #fff;
+  border: 1px solid #9a9a90;
+  background: linear-gradient(to bottom, #9a9a90, darken(#9a9a90, 10));
+
+  &:hover {
+    color: #fff;
+    background: darken(#9a9a90, 10);
+    border: 1px solid darken(#9a9a90, 10);
+  }
+}
+
+.btn-danger {
+  border: 1px solid #d8555e;
+  background: linear-gradient(to bottom, #d8555e, darken(#d8555e, 10));
+
+  &:hover {
+    background: darken(#d8555e, 10);
+    border: 1px solid darken(#d8555e, 10);
+  }
+}
+
+.btn-dark {
+  color: #fff;
+  border: 1px solid #2f343b;
+  background: linear-gradient(to bottom, #2f343b, darken(#2f343b, 10));
+
+  &:hover {
+    color: #fff;
+    background: darken(#2f343b, 10);
+    border: 1px solid darken(#2f343b, 10);
+  }
+}
+
+.btn-alternative {
+  color: #fff;
+  border: 1px solid #8d5ca9;
+  background: linear-gradient(to bottom, #8d5ca9, darken(#8d5ca9, 10));
+
+  &:hover {
+    color: #fff;
+    background: darken(#8d5ca9, 10);
+    border: 1px solid darken(#8d5ca9, 10);
+  }
+}
+
+.btn-light {
+  color: #9a9a90;
+  border: 1px solid #efefeb;
+  background: linear-gradient(to bottom, #efefeb, darken(#efefeb, 10));
+
+  &:hover {
+    color: #9a9a90;
+    background: darken(#efefeb, 10);
+    border: 1px solid darken(#efefeb, 10);
+  }
+}
+
+.btn-warning {
+  border: 1px solid #f58021;
+  background: linear-gradient(to bottom, #f58021, darken(#f58021, 10));
+
+  &:hover {
+    background: darken(#f58021, 10);
+    border: 1px solid darken(#f58021, 10);
+  }
+}
+
+.btn-primary--transparent {
+  background: transparent;
+  color: $primary-color;
+}
+
+.btn-info--transparent {
+  background: transparent;
+  color: #6cb9d3;
+}
+
+.btn-gray--transparent {
+  background: transparent;
+  color: #9a9a90;
+}
+
+.btn-danger--transparent {
+  background: transparent;
+  color: #d8555e;
+}
+
+.btn-dark--transparent {
+  background: transparent;
+  color: #2f343b;
+}
+
+.btn-alternative--transparent {
+  background: transparent;
+  color: #8d5ca9;
+}
+
+.btn-light--transparent {
+  background: transparent;
+  color: #90909a;
+  border-color: #90909a;
+}
+
+.btn-warning--transparent {
+  background: transparent;
+  color: #f58021;
+}
+
+.btn-transparent {
+  background-color: transparent;
+  border: 1px solid #9a9a90;
+  color: #dfe2e4;
+
+  &:hover {
+    background-color: #dfe2e4;
+    border: 1px solid #dfe2e4;
+    color: $primary-color;
+  }
+}
+
+.carousel-indicators li {
+  background-color: #9a9a90;
+  border-color: #9a9a90;
+}
+
+.carousel-indicators .active {
+  background-color: $primary-color;
+  border-color: $primary-color;
+}

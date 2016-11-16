@@ -1,0 +1,190 @@
+// Navigation
+.navbar {
+  margin: 0;
+  float: left;
+  width: 100%;
+
+  @media (min-width: $screen-md-min) {
+    width: auto;
+  }
+}
+
+.navbar-default {
+  background-color: transparent;
+  border: none;
+  font-family: $tertiary-font;
+  margin: 0;
+  min-height: 0;
+}
+
+.navigation {
+  list-style: none;
+  margin: 0;
+  padding: 15px 0;
+
+  @media (min-width: $screen-md-min) {
+    padding: 0;
+  }
+
+  > li {
+    padding: 5px 15px;
+    display: block;
+
+    @media (min-width: $screen-md-min) {
+      float: left;
+      padding: 0;
+
+    }
+
+    > a {
+      display: block;
+      position: relative;
+      color: #9a9a90;
+      text-transform: uppercase;
+      font-weight: 900;
+      text-decoration: none;
+
+
+      @media (min-width: $screen-md-min) {
+        padding: 26px 15px 25px 15px;
+
+        &:after {
+          position: absolute;
+          content: "";
+          height: 4px;
+          left: 0;
+          right: 0;
+          top: -1px;
+          background-color: $primary-color;
+          visibility: hidden;
+          opacity: 0;
+          transition: $primary-transition;
+        }
+      }
+    }
+
+    &:hover {
+      @media (min-width: $screen-md-min) {
+        > .navigation__dropdown {
+          visibility: visible;
+          opacity: 1;
+        }
+      }
+
+      > a {
+        color: $primary-color;
+
+        @media (min-width: $screen-md-min) {
+          &:after {
+            visibility: visible;
+            opacity: 1;
+          }
+        }
+      }
+    }
+  }
+
+  .active {
+    > a {
+      color: $primary-color;
+    }
+  }
+
+  @media (min-width: $screen-md-min) {
+    .active {
+      > a {
+        color: $primary-color;
+        display: block;
+        position: relative;
+
+        &:after {
+          position: absolute;
+          content: "";
+          height: 4px;
+          left: 0;
+          right: 0;
+          top: -1px;
+          background-color: $primary-color;
+          visibility: visible;
+          opacity: 1;
+          transition: $primary-transition;
+        }
+      }
+    }
+  }
+}
+
+// Dropdown menu
+.navigation__dropdown {
+  display: block;
+  list-style: none;
+  margin: 0;
+  padding: 5px 0;
+  transition: $primary-transition;
+
+  @media (min-width: $screen-md-min) {
+    visibility: hidden;
+    opacity: 0;
+    min-width: 120px;
+    width: auto;
+    position: absolute;
+    z-index: 1000;
+    top: 100%;
+    left: 0;
+    padding: 0;
+    border-top: 2px solid darken($primary-color, 5%);
+    border-bottom-left-radius: 3px;
+    border-bottom-right-radius: 3px;
+    overflow: hidden;
+  }
+
+  > li {
+    > a {
+      color: #9a9a90;
+      display: block;
+      padding: 3px 9px;
+
+      @media (min-width: $screen-md-min) {
+        background-color: $primary-color;
+        border-bottom: 1px solid darken($primary-color, 5%);
+        color: #f3f4f4;
+        font-weight: 700;
+        padding: 9px 16px;
+        white-space: nowrap;
+      }
+
+      &:hover {
+        color: $primary-color;
+        background-color: none;
+
+        @media (min-width: $screen-md-min) {
+          color: #f3f4f4;
+          background-color: darken($primary-color, 5%);
+        }
+      }
+    }
+  }
+}
+
+.navbar-collapse {
+  padding-left: 0;
+  padding-right: 0;
+  max-height: 600px;
+}
+
+// Navbar toggle for mobile devices
+.navbar-toggle {
+  border: 1px solid $primary-color;
+  border-radius: 2px;
+  margin: 18px 15px;
+  background: linear-gradient(to bottom, $primary-color 0%,#419a5c 100%);
+
+  &:hover,
+  &:focus {
+    outline: none;
+  }
+
+  .icon-bar {
+    background: #fff;
+  }
+}

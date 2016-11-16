@@ -1,8 +1,5 @@
 {% extends "admin/layout/base.html" %}
-{% block custom_css %}
-    <link rel="stylesheet" href="/static/theme/admin/css/compiled/index.css" type="text/css" media="screen" />
-    <link rel="stylesheet" href="/static/theme/admin/css/compiled/ui-elements.css" type="text/css" media="screen">
-{% endblock %}
+
 {% block main %}
     <div class="row head">
         <div class="col-md-12">
@@ -14,7 +11,7 @@
         <div class="col-md-9">
             <div class="well">
                 {% include 'admin/categories/_category_form_add.html' %}
-            </div>            
+            </div>
             {{ pagination.info|safe }}
             {{ pagination.links|safe }}
             <div class="clearfix"></div>
@@ -28,7 +25,7 @@
                         <th>{{ _('Actions')}} </th>
                     </tr>
                 </thead>
-                <tbody>              
+                <tbody>
                 {% for category in categories %}
                     <tr>
                         <td>{{ category.name }}</td>
@@ -40,7 +37,7 @@
                             <div class="btn-group">
                                 <a class="btn btn-primary" href="{{ url_for('CategoriesView:put_0', id=category.id) }}" title="Change category's settings">
                                     <i class="glyphicon glyphicon-pencil"></i>
-                                </a>                                
+                                </a>
                                 <a class="btn btn-danger" data-confirm="This will remove {{ category.name}}, Are you sure?" data-method="post" href="{{ url_for('CategoriesView:delete_0', id=category.id)  }}"title="Remove this category">
                                     <i class="glyphicon glyphicon-trash"></i>
                                 </a>
@@ -61,8 +58,8 @@
                 </div>
                 <form action="{{ url_for('CategoriesView:transfer_post') }}" method="post" name="TransferPosts" class="form-horizontal" role="form">
                     {{ form.hidden_tag() }}
-                    <div class="panel-body">                    
-                        {{ form.hidden_tag() }}                        
+                    <div class="panel-body">
+                        {{ form.hidden_tag() }}
                         {{ render_normal_field(trans.from_id, class="form-control")}}
                         {{ render_normal_field(trans.to_id, class="form-control")}}
                     </div>
@@ -71,7 +68,7 @@
                         <button type="submit" class="btn btn-primary pull-right">{{ _('Transfer') }}</button>
                     </div>
                 </form>
-            </div>            
+            </div>
         </div>
     </div>
 {% endblock %}

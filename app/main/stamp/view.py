@@ -51,4 +51,4 @@ def count_page_view(post_id):
     except Exception as e:
         Post.rollback_transaction()
         raise e
-    return send_file('static/theme/headsup/images/counter.gif', mimetype='image/gif')
+    return send_file('static/images/counter.gif', mimetype='image/gif')

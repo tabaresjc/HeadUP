@@ -1,0 +1,119 @@
+// Search and Social in header
+.search__container,
+.social__container,
+.social__container--dropdown {
+  display: block;
+  height: 70px;
+  width: 65px;
+  text-align: center;
+  line-height: 70px;
+  float: right;
+  border-left: 1px solid #dcdddd;
+  border-right: 1px solid #dcdddd;
+  color: $primary-color;
+
+  &:hover {
+    transition: $primary-transition;
+    color: $primary-color;
+    background-color: $body-bg;
+  }
+}
+
+.social__container {
+  border-right: none;
+}
+
+// Search Panel
+.search-panel {
+  display: none;
+  font-family: $secondary-font;
+  background-color: rgba(0, 0, 0, 0.75);
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 999;
+
+  form {
+    margin-top: 50px;
+    font-family: $secondary-font;
+
+    @media (min-width: $screen-md-min) {
+      margin-top: 160px;
+      margin-left: 70px;
+    }
+  }
+
+  .search-panel__form {
+    background: transparent;
+    border: none;
+    color: #efefeb;
+    font-size: 50px;
+    margin-bottom: 30px;
+    outline: none;
+  }
+
+  input::-webkit-input-placeholder {
+   color: #efefeb;
+   font-weight: 300;
+  }
+
+  .search-panel__text {
+    font-size: 18px;
+    color: $primary-color;
+    padding-left: 5px;
+  }
+}
+
+body.search-mode {
+  .search-panel {
+    display: block;
+    
+  }
+}
+
+// Social
+.social {
+  position: relative;
+  float: right;
+
+    &:hover {
+      .social__dropdown {
+        transition: $primary-transition;
+        opacity: 1;
+        visibility: visible;
+      }
+    }
+
+  .social__dropdown {
+    position: absolute;
+    opacity: 0;
+    visibility: hidden;
+    background: $primary-color;
+    z-index: 20;
+    list-style: none;
+    padding: 0;
+    left: 0;
+    top: 70px;
+    border-bottom-left-radius: 3px;
+    border-bottom-right-radius: 3px;
+
+    li {
+
+      .social__container {
+        border-top: 1px solid darken($primary-color, 10);
+      }
+
+      a {
+        border: none;
+        color: #fff;
+
+        &:hover {
+          background: darken($primary-color, 10);
+          color: #fff;
+        }
+      }
+    }
+  }
+}

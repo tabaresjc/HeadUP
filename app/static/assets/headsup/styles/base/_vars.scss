@@ -1,0 +1,45 @@
+/**
+ * Variables and Bootstrap overrides
+ */
+
+// Brand colors
+// -------------------------
+
+$primary-color: #51ab6d;
+
+// Headings and text color
+// -------------------------
+
+$headings-color: #2f343b;
+$text-color: #40454a;
+
+// Scaffolding
+// -------------------------
+
+$body-bg: #f3f4f4;
+
+// Transitions
+// -------------------------
+
+$primary-transition: all .1s linear;
+
+// Typography
+// -------------------------
+@import url('https://fonts.googleapis.com/css?family=PT+Sans+Narrow:400,700|Ubuntu+Condensed|Open+Sans:300,400,700');
+
+$font-size-base: 13px;
+$line-height-base: 1.5;
+
+$primary-font: 'Open Sans', sans-serif; // For content
+$secondary-font: 'PT Sans Narrow', sans-serif; // For headings and navigation
+$tertiary-font: MyriadPro, 'Ubuntu Condensed', sans-serif; // For smaller text
+
+$font-family-sans-serif: "Open Sans", sans-serif;
+
+$icon-font-path: "/static/assets/headsup/fonts/bootstrap/";
+$base-path: "/static/assets/headsup/";
+
+// Grid system
+// --------------------------------------------------
+
+$grid-float-breakpoint: 992px;

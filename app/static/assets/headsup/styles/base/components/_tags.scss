@@ -1,0 +1,30 @@
+// Tags under the post
+.tags {
+  clear: both;
+  margin-bottom: 30px;
+
+  @media (min-width: $screen-sm-min) {
+    margin-bottom: 60px;
+  }
+}
+
+.tags__link {
+  display: inline-block;
+  border: 1px solid $primary-color;
+  border-radius: 30px;
+  margin: 5px 5px;
+  padding: 9.5px 20px;
+  font-size: 14px;
+  font-weight: bold;
+  font-family: $tertiary-font;
+  transition: $primary-transition;
+
+  &:hover {
+    background-color: $primary-color;
+    color: #fff;
+  }
+}
+
+.widget-tags {
+  margin-bottom: 30px;
+}

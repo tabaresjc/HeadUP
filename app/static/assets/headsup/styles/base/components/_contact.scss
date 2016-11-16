@@ -1,0 +1,54 @@
+// Contact
+.contact {
+  padding: 10px 0 45px 0;
+
+  form {
+    font-family: $tertiary-font;
+    font-size: 16px;
+
+    input {
+      width: 100%;
+      padding: 9px  12px;
+      border: 1px solid #e0e0e0;
+      border-radius: 6px;
+      background: #f8f9fa;
+      margin-bottom: 30px;
+
+      &:focus {
+        background: transparent;
+        outline: none;
+      }
+    }
+
+    textarea {
+      width: 100%;
+      padding: 9px  12px;
+      border: 1px solid #e0e0e0;
+      border-radius: 6px;
+      background: #f8f9fa;
+      margin-bottom: 15px;
+
+      &:focus {
+        background: transparent;
+        outline: none;
+      }
+    }
+
+    input::-webkit-input-placeholder,
+    textarea::-webkit-input-placeholder {
+      color: #9a9a90;
+    }
+  }
+}
+
+.contact__text {
+  font-size: 18px;
+  line-height: 1.5;
+  margin-bottom: 30px;
+}
+
+.contact__obligatory {
+  padding-left: 15px;
+  font-size: 14px;
+  color: #9a9a90;
+}

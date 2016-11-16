@@ -15,7 +15,7 @@
 						  <img src="{{ post.user.avatar(144) }}" alt="{{ post.user.name }}" width="30" height="30">
 						  {% set user_name = '<a href="%s">%s</a>' % (url_for('stamp.show', id=post.id), post.user.name) %}
 						  {%- else %}
-						  <img src="/static/theme/headsup/images/user.png" width="30" height="30"/>
+						  <img src="/static/images/user.png" width="30" height="30"/>
 						  {% set user_name = _('Anonymous') %}
 						  {%- endif %}
 						  {{ _('Posted by %(user)s', user=user_name|safe) }}

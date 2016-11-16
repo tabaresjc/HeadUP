@@ -1,0 +1,24 @@
+{
+  "name": "headsup",
+  "description": "Your site to share a positive experience",
+  "homepage": "http://hup.space/",
+  "authors": [
+    "Juan Tabares <juan.ctt@live.com>",
+    "Thibault Defrance <thibault.defrance@gmx.fr>"
+  ],
+  "license": "MIT",
+  "private": true,
+  "keywords": [
+    "headsup"
+  ],
+  "devDependencies": {
+    "sass-bootstrap": "~3.0.2",
+    "requirejs": "^2.3.2",
+    "almond": "^0.3.3"
+  },
+  "dependencies": {
+    "jquery": "^1.9.0",
+    "jquery-smart-vimeo-embed": "^1.1.1",
+    "underscore": "^1.8.3"
+  }
+}

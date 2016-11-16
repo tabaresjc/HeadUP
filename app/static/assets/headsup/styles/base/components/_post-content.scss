@@ -1,0 +1,36 @@
+// Default post content, designed for maximum readability
+.post-content {
+  margin-bottom: 30px;
+  font-size: 16px;
+  line-height: 1.65;
+  color: $text-color;
+
+  @media (min-width: $screen-sm-min) {
+    margin-bottom: 60px;
+    font-size: 20px;
+  }
+
+  ul, ol {
+    margin: 3.5% 0;
+
+    ul, ol {
+      margin: 1% 0 2% 0;
+    }
+  }
+}
+
+.post-content--front-page {
+  margin-bottom: 30px;
+
+  // h2 {
+  //   margin-bottom: 0;
+  // }
+
+  h3 {
+    font-size: 24px;
+  }
+
+  p {
+    font-size: 18px;
+  }
+}

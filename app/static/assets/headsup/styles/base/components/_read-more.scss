@@ -1,0 +1,15 @@
+// Read more
+.read-more {
+  border-top: 1px solid #e4e4e4;
+  padding: 18px 5px 20px 5px;
+  text-transform: uppercase;
+  font-size: 14px;
+  font-weight: 700;
+  font-family: $tertiary-font;
+  transition: $primary-transition;
+}
+
+.read-more__arrow {
+  display: inline;
+  float: right;
+}

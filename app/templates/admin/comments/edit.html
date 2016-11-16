@@ -1,8 +1,5 @@
 {% extends "admin/layout/base.html" %}
-{% block custom_css %}
-    <link rel="stylesheet" href="/static/theme/admin/css/compiled/index.css" type="text/css" media="screen" />
-    <link rel="stylesheet" href="/static/theme/admin/css/compiled/ui-elements.css" type="text/css" media="screen">
-{% endblock %}
+
 {% block custom_js %}
     <script src="/static/ckeditor/ckeditor.js"></script>
     <script src="/static/ckeditor/adapters/jquery.js"></script>
@@ -19,20 +16,20 @@
                 <br/>
                 <a href="{{ '%s#comment_%s' % (url_for('show_post', id=comment.post.id), comment.id) }}">
                     {{ _('Posted at "%(title)s"', title=comment.post.title) }}
-                </a>                
-                
+                </a>
+
             </p>
         </div>
     </div>
     <br/>
 	<div class="row">
-	    <div class="col-md-9">	    	
+	    <div class="col-md-9">
 	    	<div class="well">
 	    		{% include 'admin/comments/_comment_form_edit.html' %}
 	    	</div>
 	    </div>
 	    <div class="col-md-3">
 	    	{% include 'admin/comments/_sidebar.html' %}
-	    </div>		    
+	    </div>
 	</div>
 {% endblock %}
