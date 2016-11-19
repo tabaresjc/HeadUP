@@ -5,7 +5,7 @@ module.exports = {
 		files: [
 			{
 				expand: true,
-				cwd: '<%= pkg.app.lib %>/bower_components/sass-bootstrap/dist/fonts',
+				cwd: '<%= pkg.app.lib %>/bower_components/bootstrap-sass/assets/fonts/bootstrap',
 				src: ['**'],
 				dest: '<%= pkg.app.assets %>/headsup/fonts/bootstrap'
 			},
@@ -21,7 +21,7 @@ module.exports = {
 		files: [
 			{
 				expand: true,
-				cwd: '<%= pkg.app.lib %>/bower_components/sass-bootstrap/dist/fonts',
+				cwd: '<%= pkg.app.lib %>/bower_components/bootstrap-sass/assets/fonts/bootstrap',
 				src: ['**'],
 				dest: '<%= pkg.app.assets %>/admin/fonts/bootstrap'
 			},

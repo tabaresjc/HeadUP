@@ -1,7 +1,7 @@
 require.config({
 	paths: {
 		jquery: '../../../../lib/bower_components/jquery/dist/jquery',
-		bootstrap: '../../../../lib/bower_components/sass-bootstrap/dist/js/bootstrap',
+		bootstrap: '../../../../lib/bower_components/bootstrap-sass/assets/javascripts/bootstrap',
 		jqueryVimeoEmbed: '../../../../lib/bower_components/jquery-smart-vimeo-embed/jquery-smartvimeoembed',
 		alertifyjs: '../../../../lib/node_modules/alertifyjs/build/alertify',
 		notification: '../../../../assets/plugins/scripts/notifications',
