@@ -1,9 +1,0 @@
-{% with messages = get_flashed_messages(with_categories=true) %}
-{% if messages -%}
-<div id="message-list" style="display:none;">
-  {% for category, message in messages -%}
-  <div data-category="{{ category }}">{{ message | safe }}</div>
-  {%- endfor %}
-</div>
-{% endif %}
-{%- endwith %}

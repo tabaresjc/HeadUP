@@ -1,23 +1,21 @@
 'use strict';
 
 module.exports = {
-	assets: {
+	frontend: {
 		files: [{
 			dot: true,
 			src: [
 				'<%= pkg.app.tmp %>',
-				'<%= pkg.app.assets %>/headsup/styles/*.css',
-				'<%= pkg.app.assets %>/headsup/scripts/*.js',
+				'<%= pkg.app.assets %>/headsup/styles/base/*.css'
 			]
 		}]
 	},
-	adminassets: {
+	backend: {
 		files: [{
 			dot: true,
 			src: [
 				'<%= pkg.app.tmp %>',
-				'<%= pkg.app.assets %>/admin/styles/*.css',
-				'<%= pkg.app.assets %>/admin/scripts/*.js',
+				'<%= pkg.app.assets %>/admin/styles/base/*.css',
 			]
 		}]
 	},

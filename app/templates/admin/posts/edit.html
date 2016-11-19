@@ -4,23 +4,19 @@
 
 {% block main %}
 <div class="row head">
-  <div class="col-md-12">
-    <h4>{{ _('Edit Stamp') if post else _('New Stamp') }}</h4>
-  </div>
+	<div class="col-md-12">
+		<h4>{{ _('Edit Stamp') if post else _('New Stamp') }}</h4>
+	</div>
 </div>
 <br/>
 <div class="row">
-  <div class="col-md-9">
-    <div class="well">
-      {% include 'admin/posts/_post_form_edit.html' %}
-    </div>
-  </div>
-  <div class="col-md-3">
-    {% include 'admin/posts/_sidebar.html' %}
-  </div>
+	<div class="col-md-9">
+		<div class="well">
+			{% include 'admin/posts/_post_form_edit.html' %}
+		</div>
+	</div>
+	<div class="col-md-3">
+		{% include 'admin/posts/_sidebar.html' %}
+	</div>
 </div>
-{% endblock %}
-
-{% block custom_js %}
-<script src="/static/js/ckeditor/ckeditor.js"></script>
 {% endblock %}

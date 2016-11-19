@@ -4,14 +4,12 @@ from flask import Flask
 from flask_login import LoginManager, current_user
 from flask_wtf.csrf import CsrfProtect
 from flask_babel import Babel, lazy_gettext
-from flask_assets import Environment, Bundle
-
 from flask_sqlalchemy import SQLAlchemy
-from sqlalchemy.pool import NullPool
-from config import LANGUAGES, BASE_DIR
 import flask
 import jinja2
 import os
+import config
+
 
 app = Flask(__name__)
 
@@ -30,13 +28,6 @@ csrf.init_app(app)
 # Load the Babel extension for Internationalization
 # -------------------------------------------------------------------------
 babel = Babel(app)
-
-# -------------------------------------------------------------------------
-# Load Flask Assets
-# -------------------------------------------------------------------------
-assets = Environment(app)
-assets.from_yaml(os.path.join(BASE_DIR, 'configuration/assets.yml'))
-assets.auto_build = False
 
 # -------------------------------------------------------------------------
 # Database Configuration
@@ -80,7 +71,7 @@ app.json_encoder = CustomJSONEncoder
 def get_locale():
     if current_user and current_user.is_authenticated:
         return current_user.lang
-    return flask.request.accept_languages.best_match(LANGUAGES.keys())
+    return flask.request.accept_languages.best_match(config.LANGUAGES.keys())
 
 
 @babel.timezoneselector

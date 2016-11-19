@@ -1,83 +1,110 @@
 /* cover picture */
-
 .cover-picture {
-  border: 1px dotted #ccc;
-  width: 100%;
-  height: 150px;
-  margin-bottom: 15px;
-  border-radius: 3px;
-  background: no-repeat center;
-  background-size: cover;
-  position: relative;
-  span {
-    cursor: pointer;
-  }
-  &.with-picture {
-    border: none;
-  }
+	border: 1px dotted #ccc;
+	width: 100%;
+	height: 150px;
+	margin-bottom: 15px;
+	border-radius: 3px;
+	background: no-repeat center;
+	background-size: cover;
+	position: relative;
+
+	span {
+		cursor: pointer;
+	}
+
+	&.with-picture {
+		border: none;
+	}
 }
 
-.cover-picture-edit-menu, .cover-picture-edit-button {
-  position: absolute;
-  left: 0;
-  top: 0;
-  width: 100%;
-  height: 100%;
-  border-radius: 4px;
-  background: rgba(0, 0, 0, 0.5);
-  transition: all 300ms ease;
-  text-shadow: 0 1px 0 #000;
-  display: none;
+.cover-picture-edit-button,
+.cover-picture-edit-menu {
+	position: absolute;
+	left: 0;
+	top: 0;
+	width: 100%;
+	height: 100%;
+	border-radius: 4px;
+	background: rgba(0, 0, 0, 0.5);
+	transition: all 300ms ease;
+	text-shadow: 0 1px 0 #000;
+	display: none;
 }
 
 .cover-picture-edit-menu > span {
-  position: absolute;
-  font-size: 1.7em;
-  color: #fff;
-  border: 3px solid #fff;
-  border-radius: 20px;
-  padding: 5px 8px 0px 8px;
+	position: absolute;
+	font-size: 1.7em;
+	color: #fff;
+	border: 3px solid #fff;
+	border-radius: 20px;
+	padding: 5px 8px 0;
 }
 
 .cover-picture-edit-button > span {
-  position: absolute;
-  font-size: 1.2em;
-  color: #fff;
-  left: 27%;
-  top: 33%;
-  padding: 5px 25px 5px 25px;
+	position: absolute;
+	font-size: 1.2em;
+	color: #fff;
+	left: 27%;
+	top: 33%;
+	padding: 5px 25px;
 }
 
 .cover-picture-edit-menu {
-  .update {
-    left: 10px;
-    top: 10px;
-  }
-  .delete {
-    right: 10px;
-    top: 10px;
-  }
+	.update {
+		left: 10px;
+		top: 10px;
+	}
+
+	.delete {
+		right: 10px;
+		top: 10px;
+	}
 }
 
 .cover-picture {
-  &.with-picture:hover .cover-picture-edit-menu {
-    display: block;
-  }
-  &.without-picture .cover-picture-edit-button {
-    display: block;
-    background-image: none;
-  }
+	&.with-picture:hover .cover-picture-edit-menu {
+		display: block;
+	}
+
+	&.without-picture .cover-picture-edit-button {
+		display: block;
+		background-image: none;
+	}
 }
 
 form div.upload-file-container input[name=file] {
-  display: none;
+	display: none;
 }
 
 .img-post {
-  width: 100%;
-  height: 200px;
-  margin: 0 0 12px;
-  border-radius: 3px;
-  background: no-repeat center;
-  background-size: cover;
+	width: 100%;
+	height: 200px;
+	margin: 0 0 12px;
+	border-radius: 3px;
+	background: no-repeat center;
+	background-size: cover;
 }
+
+.panel-primary .panel-title {
+	color: #fff;
+}
+
+.panel-post .panel-heading {position: relative}
+.panel-post .panel-heading a:hover {text-decoration:none}
+
+.panel .actions {
+	position: absolute;
+	right: 16px;
+	top: 6px;
+}
+
+.panel .actions i {
+	font-size: 0.875em;
+	margin: 0 3px;
+}
+
+.panel .actions i:hover {
+	cursor: pointer;
+}
+.pagination-page-info {margin-bottom: 20px}

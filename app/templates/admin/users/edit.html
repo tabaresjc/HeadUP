@@ -2,10 +2,6 @@
 
 {% set title = _('Edit User\'s Profile | %(name)s', name=user.name) %}
 
-{% block custom_css %}
-<link rel="stylesheet" href="/static/theme/admin/css/compiled/ui-elements.css" type="text/css" media="screen">
-{% endblock %}
-
 {% block main %}
 <div class="row">
   <!-- edit form column -->
@@ -17,7 +13,7 @@
       </div>
       <form action="{{ url_for('UsersView:put', id=user.id) }}" method="post" name="UserEdit" class="form-horizontal" role="form">
         {{ form.hidden_tag() }}
-        <div class="panel-body">                    
+        <div class="panel-body">
           {{ render_normal_field(form.name, class="form-control") }}
           {{ render_normal_field(form.nickname, class="form-control") }}
           {{ render_normal_field(form.email, class="form-control") }}
@@ -34,7 +30,7 @@
           {%- endif %}
         </div>
         <div class="panel-footer">
-          <button type="reset" class="btn btn-large btn-danger">{{ _('Clear') }}</button> 
+          <button type="reset" class="btn btn-large btn-danger">{{ _('Clear') }}</button>
           <button id="UserEditFormSubmit" type="submit" class="btn btn-primary pull-right">{{ _('Save Changes') }}</button>
         </div>
       </form>

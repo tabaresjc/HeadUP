@@ -11,7 +11,7 @@
 	<!-- build:css(app) /static/assets/headsup/styles/main.css -->
     <link rel="stylesheet" href="/static/assets/headsup/styles/base/main.css"/>
 	<link rel="stylesheet" href="/static/lib/node_modules/alertifyjs/build/css/alertify.css"/>
-	<link rel="stylesheet" href="/static/lib/node_modules/alertifyjs/build/css/themes/semantic.css"/>
+	<link rel="stylesheet" href="/static/assets/plugins/styles/alertify.css"/>
     <!-- endbuild -->
 
     <!--[if lt IE 9]>
@@ -46,9 +46,7 @@
 
 	{{> main-js}}
 
-	<!-- custom hu scripts -->
-	{% include 'shared/message_no_script.html' %}
+	{% include 'shared/message.html' %}
     {% block custom_js %}{% endblock %}
-    <!-- end custom hu scripts -->
 </body>
 </html>

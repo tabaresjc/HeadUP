@@ -1,63 +1,30 @@
-<!DOCTYPE html>
-<html lang="en" class="login-bg" style="background-image:url('/static/assets/admin/images/bgs/9.jpg')">
+{% extends "admin/layout/base.html" %}
 
-<head>
-	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-	<title>{% if title -%}{{ site_name }} | {{ title }}{%- else %}{{ site_name }}{%- endif %}</title>
-	<meta name="description" content="{{ description if description else '' }}">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+{% set title = _('Signin') %}
+{% set page_class = 'login-bg' %}
 
-	<!-- build:css(app) /static/assets/admin/styles/main.css -->
-	<link rel="stylesheet" href="/static/assets/admin/styles/base/main.css">
-	<link rel="stylesheet" href="/static/assets/admin/styles/lib/font-awesome.css">
-	<link rel="stylesheet" href="/static/lib/node_modules/alertifyjs/build/css/alertify.css"/>
-	<link rel="stylesheet" href="/static/lib/node_modules/alertifyjs/build/css/themes/semantic.css"/>
-	<!-- endbuild -->
-
-	<link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
-
-	<!--[if lt IE 9]>
-	<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
-	<![endif]-->
-	<meta name="csrf-token" content="{{ csrf_token() }}">
-</head>
-
-<body>
-	<div class="login-wrapper">
-		<a href="{{ url_for('index') }}">
-			<img alt="{{ site_name }}" class="logo" src="/static/assets/admin/images/logo.png">
-		</a>
-		<div class="box">
-			<div class="content-wrap">
-				<h6>{{ _('Log in') }}</h6> {% from "shared/_bootstrap_forms.html" import render_inline_field %}
-				<form action="{{ url_for('sessions.login') }}" method="post" name="login">
-					{{ form.hidden_tag() }} {{ render_inline_field(form.email,class="form-control",placeholder=_('E-mail address')) }} {{ render_inline_field(form.password, class="form-control",placeholder=_('Password')) }}
-					<div class="remember">
-						{{ form.remember_me }}
-						<label for="remember_me">Remember me</label>
-					</div>
-					<input type="submit" value="{{ _('Sign In') }}" class="btn-glow primary login">
-				</form>
-			</div>
-		</div>
-
-		<div class="no-account">
-			<p>{{ _('Don\'t have an account?') }}</p>
-			<a href="{{ url_for('sessions.signup')}}">{{ _('Sign up') }}</a>
+{% block wide_container_main %}
+<div class="login-wrapper">
+	<a href="{{ url_for('index') }}">
+		<img alt="{{ site_name }}" class="logo" src="/static/assets/admin/images/logo.png">
+	</a>
+	<div class="box">
+		<div class="content-wrap">
+			<h6>{{ _('Log in') }}</h6> {% from "shared/_bootstrap_forms.html" import render_inline_field %}
+			<form action="{{ url_for('sessions.login') }}" method="post" name="login">
+				{{ form.hidden_tag() }} {{ render_inline_field(form.email,class="form-control",placeholder=_('E-mail address')) }} {{ render_inline_field(form.password, class="form-control",placeholder=_('Password')) }}
+				<div class="remember">
+					{{ form.remember_me }}
+					<label for="remember_me">Remember me</label>
+				</div>
+				<input type="submit" value="{{ _('Sign In') }}" class="btn-glow primary login">
+			</form>
 		</div>
 	</div>
 
-	<!-- build:js(app) /static/assets/admin/scripts/main.js -->
-	<script src="/static/lib/bower_components/jquery/dist/jquery.js"></script>
-	<script src="/static/lib/bower_components/sass-bootstrap/dist/js/bootstrap.js"></script>
-	<script src="/static/lib/node_modules/alertifyjs/build/alertify.js"></script>
-	<script src="/static/assets/admin/scripts/base/plugins/theme.js"></script>
-	<script src="/static/assets/admin/scripts/base/plugins/jquery_ujs.js"></script>
-	<script src="/static/assets/admin/scripts/base/plugins/upload.js"></script>
-    <script src="/static/assets/admin/scripts/base/plugins/notifications.js" charset="utf-8"></script>
-	<!-- endbuild -->
-
-	{% include 'shared/message.html' %}
-</body>
-
-</html>
+	<div class="no-account">
+		<p>{{ _('Don\'t have an account?') }}</p>
+		<a href="{{ url_for('sessions.signup')}}">{{ _('Sign up') }}</a>
+	</div>
+</div>
+{% endblock %}

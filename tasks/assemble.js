@@ -1,13 +1,10 @@
 'use strict';
 
 module.exports = {
-	options: {
-		partials: [
-			'<%= pkg.app.templates %>/main/assemble/includes/*.hbs',
-			'<%= pkg.app.templates %>/admin/assemble/includes/*.hbs'
-		],
-	},
-	dev: {
+	'frontend-dev': {
+		options: {
+			partials: '<%= pkg.app.templates %>/main/assemble/includes/*.hbs',
+		},
 		files: [{
 			expand: true,
 			cwd: '<%= pkg.app.templates %>/main/assemble',
@@ -15,7 +12,10 @@ module.exports = {
 			dest: '<%= pkg.app.templates %>/main/layout'
 		}]
 	},
-	admindev: {
+	'backend-dev': {
+		options: {
+			partials: '<%= pkg.app.templates %>/admin/assemble/includes/*.hbs',
+		},
 		files: [{
 			expand: true,
 			cwd: '<%= pkg.app.templates %>/admin/assemble',
@@ -23,9 +23,10 @@ module.exports = {
 			dest: '<%= pkg.app.templates %>/admin/layout'
 		}]
 	},
-	dist: {
+	'frontend-prd': {
 		options: {
-			production: true
+			production: true,
+			partials: '<%= pkg.app.templates %>/main/assemble/includes/*.hbs',
 		},
 		files: [{
 			expand: true,
@@ -34,9 +35,10 @@ module.exports = {
 			dest: '<%= pkg.app.templates %>/main/staging'
 		}]
 	},
-	dist: {
+	'backend-prd': {
 		options: {
-			production: true
+			production: true,
+			partials: '<%= pkg.app.templates %>/admin/assemble/includes/*.hbs',
 		},
 		files: [{
 			expand: true,

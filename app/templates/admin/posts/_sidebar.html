@@ -2,9 +2,6 @@
   <div class="body">
     <div class="settings">
       <div class="items">
-        <div class="item">
-          <h5>{{ _('Go to') }}</h5>
-        </div>
         {% if request.endpoint.startswith('PostsView:index') %}
         <div class="item">
           <i class="icon-plus icon-formatted"></i>
@@ -37,7 +34,7 @@
         <div class="item">
           <i class="icon-edit icon-formatted"></i>
           <a href="{{ url_for('PostsView:put', id = post.id) }}">{{ _('Edit Stamp') }}</a>
-        </div>                            
+        </div>
         <div class="item">
           <i class="icon-trash icon-formatted"></i>
           <a href="{{ url_for('PostsView:delete', id = post.id) }}" data-method="post" data-confirm="This will remove '{{ post.title }}'?">{{ _('Delete Stamp') }}</a>

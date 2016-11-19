@@ -3,34 +3,51 @@ module.exports = function(grunt, options) {
 
 	return {
 		'default': [
-			'dev',
-			'admindev'
 		],
-		'dev': [
-			'clean:assets',
-			'assemble:dev',
-			'compass:dev',
-			'copy:support',
+		'frontend-dev': [
+			'clean:frontend',
+			'assemble:frontend-dev',
+			'compass:frontend',
+			'postcss:frontend',
+			'copy:frontend',
 			'clean:after'
 		],
-		'admindev': [
-			'clean:adminassets',
-			'assemble:admindev',
-			'compass:admindev',
-			'copy:adminsupport',
+		'backend-dev': [
+			'clean:backend',
+			'assemble:backend-dev',
+			'compass:backend',
+			'postcss:backend',
+			'copy:backend',
 			'clean:after'
 		],
 		'dist': [
-			'clean:assets',
-			'assemble:dist',
-			'compass:dist',
-			'requirejs:dist',
-			'useminPrepare',
+		],
+		'frontend-prd': [
+			'clean:frontend',
+			'assemble:frontend-prd',
+			'compass:frontend',
+			'postcss:frontend',
+			'requirejs:frontend',
+			'useminPrepare:frontend',
 			'concat',
 			'cssmin',
-			'filerev',
+			'filerev:frontend',
 			'usemin',
-			'copy:dist',
+			'copy:frontend',
+			'clean:after'
+		],
+		'backend-prd': [
+			'clean:backend',
+			'assemble:backend-prd',
+			'compass:backend',
+			'postcss:backend',
+			'requirejs:backend',
+			'useminPrepare:backend',
+			'concat',
+			'cssmin',
+			'filerev:backend',
+			'usemin',
+			'copy:backend',
 			'clean:after'
 		]
 	};
