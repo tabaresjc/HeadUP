@@ -108,3 +108,16 @@ form div.upload-file-container input[name=file] {
 	cursor: pointer;
 }
 .pagination-page-info {margin-bottom: 20px}
+
+.no-post-message {
+  border: 1px solid #3289C7;
+  text-align: center;
+  display: inline-block;
+  width: 100%;
+  padding: 35px 20px;
+  border-radius: 6px;
+}
+.no-post-message > * {display: block;margin: 0 auto;}
+.no-post-message > img {width: 200px;height: 200px;margin-bottom: 20px;}
+.no-post-message > span {font-size: 1.5em;}
+.no-post-message:hover {text-decoration: none;}

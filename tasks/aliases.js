@@ -3,6 +3,8 @@ module.exports = function(grunt, options) {
 
 	return {
 		'default': [
+			'frontend-dev',
+			'backend-dev'
 		],
 		'frontend-dev': [
 			'clean:frontend',
@@ -21,6 +23,8 @@ module.exports = function(grunt, options) {
 			'clean:after'
 		],
 		'dist': [
+			'frontend-prd',
+			'backend-prd'
 		],
 		'frontend-prd': [
 			'clean:frontend',
