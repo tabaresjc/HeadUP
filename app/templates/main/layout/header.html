@@ -23,10 +23,24 @@
 						<a href="{{ url_for('ranking') }}">{% trans%}H'UP{% endtrans %}</a>
 					</li>
 					<li class="{% if request.endpoint=='show_mypage' %}active{% endif %}">
-						<a href="{{ url_for('dashboard') }}">{% trans%}My Page{% endtrans %}</a>
+						<a href="{{ url_for('dashboard') }}" rel="nofollow">{% trans%}My Page{% endtrans %}</a>
 					</li>
 				</ul>
 			</div>
 		</nav>
+		<div class="hidden-xs hidden-sm">
+			{% if current_user and current_user.is_authenticated -%}
+			<a href="{{ url_for('sessions.logout') }}" data-method="post" rel="nofollow" class="btn_container">
+				<span class="glyphicon glyphicon-log-out"></span>
+			</a>
+			{%- else %}
+			<a href="{{ url_for('sessions.signup') }}" rel="nofollow" class="btn_container">
+				<span class="glyphicon glyphicon-plus"></span>
+			</a>
+			<a href="{{ url_for('sessions.login') }}" rel="nofollow" class="btn_container">
+				<span class="glyphicon glyphicon-log-in"></span>
+			</a>
+			{%- endif %}
+		</div>
 	</div>
 </header>

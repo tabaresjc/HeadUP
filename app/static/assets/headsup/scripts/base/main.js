@@ -5,7 +5,8 @@ require.config({
 		bootstrap: '../../../../lib/bower_components/bootstrap-sass/assets/javascripts/bootstrap',
 		jqueryVimeoEmbed: '../../../../lib/bower_components/jquery-smart-vimeo-embed/jquery-smartvimeoembed',
 		alertifyjs: '../../../../lib/node_modules/alertifyjs/build/alertify',
-		notification: '../../../../assets/plugins/scripts/notifications'
+		notification: '../../../../assets/plugins/scripts/notifications',
+		jquery_ujs: '../../../../assets/plugins/scripts/jquery_ujs'
 	},
 	shim: {
 		bootstrap: {
@@ -16,7 +17,10 @@ require.config({
 		},
 		notification: {
 			deps: ['jquery', 'alertifyjs']
-		}
+		},
+		jquery_ujs: {
+			deps: ['jquery']
+		},
 	}
 });
 
@@ -24,6 +28,7 @@ require([
 	'jquery',
 	'underscore',
 	'bootstrap',
+	'jquery_ujs',
 	'alertifyjs',
 	'jqueryVimeoEmbed',
 	'notification',

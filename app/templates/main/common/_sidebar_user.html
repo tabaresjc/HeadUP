@@ -1,42 +1,42 @@
 {% if current_user and current_user.is_authenticated -%}
 <div class="widget-author  boxed  push-down-30">
-  <div class="widget-author__image-container">
-    <div class="widget-author__avatar--blurred">
-      <img alt="{{ current_user.name }}" src="{{ current_user.avatar(90) }}" width="90" height="90">
-    </div>
-    <img class="widget-author__avatar" alt="{{ current_user.name }}" src="{{ current_user.avatar(90) }}" width="90" height="90">
-  </div>
-  <div class="row">
-    <div class="col-xs-10  col-xs-offset-1">
-      <h4>{{ current_user.name }}</h4>
-      <p>{{ current_user.description }}</p>
-    </div>
-  </div>
+	<div class="widget-author__image-container">
+		<div class="widget-author__avatar--blurred">
+			<img alt="{{ current_user.name }}" src="{{ current_user.avatar(90) }}" width="90" height="90">
+		</div>
+		<img class="widget-author__avatar" alt="{{ current_user.name }}" src="{{ current_user.avatar(90) }}" width="90" height="90">
+	</div>
+	<div class="row">
+		<div class="col-xs-10  col-xs-offset-1">
+			<h4>{{ current_user.name }}</h4>
+			<p>{{ current_user.description }}</p>
+		</div>
+	</div>
 </div>
 {%- else %}
 <div class="sidebar  boxed  push-down-30">
-  <div class="row">
-    <div class="col-xs-10  col-xs-offset-1">
-      <div class="widget-categories  push-down-30">
-        <h6>{{ _('Don\'t have an account yet?') }}</h6>
-        <a href="{{ url_for('sessions.login') }}" class="btn  btn-primary btn-primary--transparent btn-lg btn-block">{{ _('Login') }}</a>
-        <a href="{{ url_for('sessions.signup') }}" class="btn  btn-primary btn-primary--transparent btn-lg btn-block">{{ _('Signup') }}</a>
-      </div>
-    </div>
-  </div>
+	<div class="row">
+		<div class="col-xs-10  col-xs-offset-1">
+			<div class="widget-categories  push-down-30">
+				<h6>{{ _('Don\'t have an account yet?') }}</h6>
+				<a href="{{ url_for('sessions.login') }}" rel="nofollow" class="btn  btn-primary btn-primary--transparent btn-lg btn-block">{{ _('Login') }}</a>
+				<a href="{{ url_for('sessions.signup') }}" rel="nofollow" class="btn  btn-primary btn-primary--transparent btn-lg btn-block">{{ _('Signup') }}</a>
+			</div>
+		</div>
+	</div>
 </div>
 {%- endif %}
 <div class="sidebar  boxed  push-down-30">
-  <div class="row">
-    <div class="col-xs-10  col-xs-offset-1">
-      <div class="widget-categories  push-down-30">
-        <h6>{{ _('Start here!') }}</h6>
-        {% if request.endpoint == 'stamp.show' and post.is_mine() -%}
-        <a href="{{ url_for('stamp.edit', id=post.id) }}" class="btn  btn-primary btn-lg btn-block">{{ _('Edit Stamp') }}</a>
-        {%- else %}
-        <a href="{{ url_for('stamp.new') }}" class="btn  btn-primary btn-primary--transparent btn-lg btn-block">{{ _('New Stamp') }}</a>
-        {%- endif %}
-      </div>
-    </div>
-  </div>
+	<div class="row">
+		<div class="col-xs-10  col-xs-offset-1">
+			<div class="widget-categories  push-down-30">
+				<h6>{{ _('Start here!') }}</h6>
+				{% if request.endpoint == 'stamp.show' and post.is_mine() -%}
+				<a href="{{ url_for('stamp.edit', id=post.id) }}" rel="nofollow" class="btn  btn-primary btn-lg btn-block">{{ _('Edit Stamp') }}</a>
+				{%- else %}
+				<a href="{{ url_for('stamp.new') }}" rel="nofollow" class="btn  btn-primary btn-primary--transparent btn-lg btn-block">{{ _('New Stamp') }}</a>
+				{%- endif %}
+			</div>
+		</div>
+	</div>
 </div>

@@ -1,4 +1,5 @@
 // Search and Social in header
+.btn_container,
 .search__container,
 .social__container,
 .social__container--dropdown {
@@ -9,13 +10,16 @@
   line-height: 70px;
   float: right;
   border-left: 1px solid #dcdddd;
-  border-right: 1px solid #dcdddd;
   color: $primary-color;
 
   &:hover {
     transition: $primary-transition;
     color: $primary-color;
     background-color: $body-bg;
+  }
+
+  &:first-child {
+    border-right: 1px solid #dcdddd;
   }
 }
 
@@ -69,7 +73,7 @@
 body.search-mode {
   .search-panel {
     display: block;
-    
+
   }
 }
 
