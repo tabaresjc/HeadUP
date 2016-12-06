@@ -3,21 +3,21 @@
 
 	var alertify = require('alertifyjs');
 
-	// Create the defaults once
-	var pluginName = "notifications";
+	var pluginName = "huNotifications";
 
+	// Create the defaults options
 	var defaults = {
-		// parent selector
-		parentSelector: 'body',
 		// message selectors
 		messageTextSelectors: '#message-list > div',
 		// translate the category used on the system to the one use on this library
 		messageTypes: {
 			message: 'success',
+			success: 'success',
 			error: 'error',
 			warning: 'warning'
 		},
-		notifierPosition: 'bottom-right',
+		notifierPosition: 'top-right',
+		notifyWaitSeconds: 5
 	};
 
 	// Class Constructor
@@ -27,41 +27,39 @@
 	}
 
 	Notification.prototype = {
-		init: function(element, options) {
-			this.element = element;
-			// Load the messages
-			this.messageTextSelectors = $(this.options.parentSelector + ' ' + this.options.messageTextSelectors);
-
+		init: function() {
 			this.setupSystemNotifications();
 		},
 		setupSystemNotifications: function() {
-			// Load the types
-			var messageTypes = this.options.messageTypes;
 			// set the position of the notifier
 			alertify.set('notifier', 'position', this.options.notifierPosition);
+		},
+		loadFlashMessages: function() {
+			var main = this;
+			var messagesEl = $(main.options.messageTextSelectors);
 
-			this.messageTextSelectors.each(function(index, element) {
-				var name = $(element).data('category'),
+			messagesEl.each(function(index, element) {
+				var category = $(element).data('category'),
 					text = $(element).text();
-				var messageType = messageTypes[name];
-				var notification = alertify.notify(text, messageType, 5);
+
+				main.notify(text, category);
 			});
+		},
+		notify: function(text, category, waitSeconds) {
+			var main = this;
+			var duration = waitSeconds || main.options.notifyWaitSeconds;
+			var messageType = category !== undefined && typeof main.options.messageTypes[category] !== 'undefined' ? main.options.messageTypes[category] : 'success';
+			alertify.notify(text, messageType, duration);
 		}
 	};
 
-	// A really lightweight plugin wrapper around the constructor,
-	// preventing against multiple instantiations
-	$.fn[pluginName] = function(options) {
-		return this.each(function() {
-			if (!$.data(this, "plugin_" + pluginName)) {
-				$.data(this, "plugin_" + pluginName, new Notification(this, options));
-			}
-		});
-	};
+	var notification = new Notification();
+
+	window[pluginName] = notification;
 
 	$(function() {
 		// load & display the system messages once the page is ready
-		$('#message-list').notifications();
+		notification.loadFlashMessages();
 	});
 
 })(jQuery, document, window);

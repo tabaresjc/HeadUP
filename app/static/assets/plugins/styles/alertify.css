@@ -19,11 +19,11 @@
   color: #333;
   border-bottom: 1px solid #e5e5e5;
   border-radius: 6px 6px 0 0;
-  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-family: Helvetica, Arial, sans-serif;
   font-size: 18px;
 }
 .alertify .ajs-body {
-  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-family: Helvetica, Arial, sans-serif;
   color: black;
 }
 .alertify.ajs-resizable .ajs-content,
@@ -46,7 +46,7 @@
 }
 .alertify-notifier .ajs-message.ajs-success {
   color: #fff;
-  background: rgba(81,171,109, 0.80);
+  background: rgba(81,171,109, 0.95);
 }
 .alertify-notifier .ajs-message.ajs-error {
   color: #fff;
