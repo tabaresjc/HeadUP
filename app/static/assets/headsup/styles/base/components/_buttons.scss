@@ -13,7 +13,7 @@
   border: 1px solid $primary-color;
   background: linear-gradient(to bottom, $primary-color, darken($primary-color, 10));
 
-  &:hover {
+  &:hover, &:focus, &:active, &:active:focus {
     background: darken($primary-color, 10);
     border: 1px solid darken($primary-color, 10);
   }
@@ -23,7 +23,7 @@
   border: 1px solid #6cb9d3;
   background: linear-gradient(to bottom, #6cb9d3, darken(#6cb9d3, 10));
 
-  &:hover {
+  &:hover, &:focus, &:active, &:active:focus {
     background: darken(#6cb9d3, 10);
     border: 1px solid darken(#6cb9d3, 10);
   }
@@ -34,7 +34,7 @@
   border: 1px solid #9a9a90;
   background: linear-gradient(to bottom, #9a9a90, darken(#9a9a90, 10));
 
-  &:hover {
+  &:hover, &:focus, &:active, &:active:focus {
     color: #fff;
     background: darken(#9a9a90, 10);
     border: 1px solid darken(#9a9a90, 10);
@@ -45,7 +45,7 @@
   border: 1px solid #d8555e;
   background: linear-gradient(to bottom, #d8555e, darken(#d8555e, 10));
 
-  &:hover {
+  &:hover, &:focus, &:active, &:active:focus {
     background: darken(#d8555e, 10);
     border: 1px solid darken(#d8555e, 10);
   }
@@ -56,7 +56,7 @@
   border: 1px solid #2f343b;
   background: linear-gradient(to bottom, #2f343b, darken(#2f343b, 10));
 
-  &:hover {
+  &:hover, &:focus, &:active, &:active:focus {
     color: #fff;
     background: darken(#2f343b, 10);
     border: 1px solid darken(#2f343b, 10);
@@ -68,7 +68,7 @@
   border: 1px solid #8d5ca9;
   background: linear-gradient(to bottom, #8d5ca9, darken(#8d5ca9, 10));
 
-  &:hover {
+  &:hover, &:focus, &:active, &:active:focus {
     color: #fff;
     background: darken(#8d5ca9, 10);
     border: 1px solid darken(#8d5ca9, 10);
@@ -80,7 +80,7 @@
   border: 1px solid #efefeb;
   background: linear-gradient(to bottom, #efefeb, darken(#efefeb, 10));
 
-  &:hover {
+  &:hover, &:focus, &:active, &:active:focus {
     color: #9a9a90;
     background: darken(#efefeb, 10);
     border: 1px solid darken(#efefeb, 10);
@@ -91,7 +91,7 @@
   border: 1px solid #f58021;
   background: linear-gradient(to bottom, #f58021, darken(#f58021, 10));
 
-  &:hover {
+  &:hover, &:focus, &:active, &:active:focus {
     background: darken(#f58021, 10);
     border: 1px solid darken(#f58021, 10);
   }
@@ -143,7 +143,7 @@
   border: 1px solid #9a9a90;
   color: #dfe2e4;
 
-  &:hover {
+  &:hover, &:focus, &:active, &:active:focus {
     background-color: #dfe2e4;
     border: 1px solid #dfe2e4;
     color: $primary-color;
