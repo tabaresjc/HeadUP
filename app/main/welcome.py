@@ -23,7 +23,7 @@ def index(page=1):
 @app.route('/ranking')
 def ranking():
     page = 1
-    limit = 20
+    limit = 5
     posts, total = Feed.ranking(page=page, limit=limit)
     if not posts and page > 1:
         return redirect(url_for('index'))

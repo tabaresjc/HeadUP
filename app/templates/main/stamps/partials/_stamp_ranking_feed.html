@@ -1,0 +1,41 @@
+<div class="boxed  push-down-20">
+	<div class="meta">
+		<div class="main-post-image" style="background-image:url({% if post.cover_picture %}{{ post.cover_picture.image_url }}{%- else %}/static/assets/headsup/images/stamp-no-cover.jpg{%- endif %})"></div>
+		<q class="meta__quote">{{ post.title }}</q>
+		<div class="meta__container">
+			<div class="row">
+				<div class="col-xs-12  col-sm-12">
+					<div class="meta__info">
+						<span class="meta__author">
+						  {% if not post.anonymous -%}
+						  <img src="{{ post.user.avatar(144) }}" alt="{{ post.user.name }}" width="30" height="30">
+						  {% set user_name = '<a href="%s">%s</a>' % (url_for('stamp.show', id=post.id), post.user.name) %}
+						  {%- else %}
+						  <img src="/static/images/user.png" width="30" height="30"/>
+						  {% set user_name = _('Anonymous') %}
+						  {%- endif %}
+						  {{ _('Posted by %(user)s', user=user_name|safe) }}
+						  {% set category_name = '<a href="%s">%s</a>' % ('javascript:;', post.category.name) %}
+						  {{ _('in %(category)s', category=category_name|safe) }}
+						</span>
+						<span class="meta__date"><span class="glyphicon glyphicon-calendar"></span> &nbsp; {{ post.created_at|datetimeformat('EEE, d MMM yyyy') }}</span>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+    <!-- Start of the blogpost -->
+    <div class="row">
+        <div class="col-xs-10  col-xs-offset-1">
+            <!-- End of the content -->
+            <a href="{{ url_for('stamp.show', id=post.id) }}">
+                <div class="read-more">
+                    {{ _('Read More...') }}
+                    <div class="read-more__arrow">
+                        <span class="glyphicon  glyphicon-chevron-right"></span>
+                    </div>
+                </div>
+            </a>
+        </div>
+    </div>
+</div>

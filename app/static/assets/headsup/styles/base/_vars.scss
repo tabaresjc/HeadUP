@@ -29,9 +29,11 @@ $primary-transition: all .1s linear;
 $font-size-base: 13px;
 $line-height-base: 1.5;
 
-$primary-font: 'Ubuntu Condensed', sans-serif; // For content
-$secondary-font: 'PT Sans Narrow', sans-serif; // For headings and navigation
+$primary-font: 'Ubuntu', sans-serif; // For content
+$secondary-font: 'Ubuntu Condensed', sans-serif; // For headings and navigation
 $tertiary-font: 'Ubuntu Condensed', sans-serif; // For smaller text
+
+$font-family-sans-serif: 'Ubuntu Condensed', sans-serif;;
 
 $icon-font-path: "/static/assets/headsup/fonts/bootstrap/";
 $base-path: "/static/assets/headsup/";

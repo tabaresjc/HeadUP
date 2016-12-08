@@ -25,34 +25,31 @@
 		</div>
 	</div>
 	{% else %}
-    <div class="meta">
-        <div class="row">
-            <div class="col-xs-12  col-sm-10  col-sm-offset-1">
-                <div class="meta__container--without-image">
-                    <div class="row">
-                        <div class="col-xs-12  col-sm-12">
-                            <div class="meta__info">
-                                <span class="meta__author">
-                                  {% if not post.anonymous -%}
-                                  <img src="{{ post.user.avatar(144) }}" alt="{{ post.user.name }}" width="30" height="30">
-                                  {% set user_name = '<a href="%s">%s</a>' % (url_for('stamp.show', id=post.id), post.user.name) %}
-                                  {%- else %}
-                                  <img src="/static/images/user.png" width="30" height="30"/>
-                                  {% set user_name = _('Anonymous') %}
-                                  {%- endif %}
-                                  {{ _('Posted by %(user)s', user=user_name|safe) }}
-                                  {% set category_name = '<a href="%s">%s</a>' % ('javascript:;', post.category.name) %}
-                                  {{ _('in %(category)s', category=category_name|safe) }}
-                                </span>
-                                <span class="meta__date"><span class="glyphicon glyphicon-calendar"></span> &nbsp; {{ post.created_at|datetimeformat('EEE, d MMM yyyy') }}</span>
-                            </div>
-                        </div>
-                        <div class="col-xs-12  col-sm-4"></div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+	<div class="meta">
+		<div class="main-post-image" style="background-image:url(/static/assets/headsup/images/stamp-no-cover.jpg)"></div>
+		<q class="meta__quote">{{ post.title }}</q>
+		<div class="meta__container">
+			<div class="row">
+				<div class="col-xs-12  col-sm-12">
+					<div class="meta__info">
+						<span class="meta__author">
+						  {% if not post.anonymous -%}
+						  <img src="{{ post.user.avatar(144) }}" alt="{{ post.user.name }}" width="30" height="30">
+						  {% set user_name = '<a href="%s">%s</a>' % (url_for('stamp.show', id=post.id), post.user.name) %}
+						  {%- else %}
+						  <img src="/static/images/user.png" width="30" height="30"/>
+						  {% set user_name = _('Anonymous') %}
+						  {%- endif %}
+						  {{ _('Posted by %(user)s', user=user_name|safe) }}
+						  {% set category_name = '<a href="%s">%s</a>' % ('javascript:;', post.category.name) %}
+						  {{ _('in %(category)s', category=category_name|safe) }}
+						</span>
+						<span class="meta__date"><span class="glyphicon glyphicon-calendar"></span> &nbsp; {{ post.created_at|datetimeformat('EEE, d MMM yyyy') }}</span>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
 	{% endif %}
     <!-- Start of the blogpost -->
     <div class="row">
@@ -60,8 +57,8 @@
             <!-- Start of the content -->
             <div class="post-content--front-page">
                 <h2 class="front-page-title"><a href="{{ url_for('stamp.show', id=post.id) }}">{{ post.title }}</a></h2>
-                <h3>{{ post.body|safe }}</h3>
-                <p>{{ post.extra_body|htmltruncate(500)|safe }}</p>
+                <h3>{{ post.body|htmltruncate(150)|safe }}</h3>
+                <p>{{ post.extra_body|htmltruncate(200)|safe }}</p>
             </div>
             <!-- End of the content -->
             <a href="{{ url_for('stamp.show', id=post.id) }}">

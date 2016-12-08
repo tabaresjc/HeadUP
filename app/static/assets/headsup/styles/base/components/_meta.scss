@@ -239,9 +239,15 @@
   }
 
   .meta__quote {
-    top: 12%;
-    font-size: 15px;
+    top: 25%;
+    font-size: 18px;
     width: 90%;
     left: 5%;
   }
+
+  .title {margin: 0 0 15px 0;}
+
+  .ranking-item .main-post-image {height: 200px;}
+  .ranking-item:first-child .main-post-image {height: 300px;}
+  .ranking-item .meta {margin-bottom: 0;}
 }
