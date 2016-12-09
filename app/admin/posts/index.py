@@ -51,6 +51,7 @@ class PostsView(FlaskView):
                     picture.save_file(f, current_user)
                     post.cover_picture_id = picture.id if picture else 0
 
+                post.update_score(page_view=1)
                 post.save()
 
                 if form.remain.data:

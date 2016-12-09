@@ -247,7 +247,13 @@
 
   .title {margin: 0 0 15px 0;}
 
+  .ranking-item .meta {margin-bottom: 0;}
   .ranking-item .main-post-image {height: 200px;}
   .ranking-item:first-child .main-post-image {height: 300px;}
-  .ranking-item .meta {margin-bottom: 0;}
+  .ranking-item:first-child .meta__quote {
+      font-size: 3em;
+  }
+  .ranking-item .meta__quote {
+      font-size: 2em;
+  }
 }
