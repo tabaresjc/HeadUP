@@ -90,8 +90,13 @@ form div.upload-file-container input[name=file] {
 	color: #fff;
 }
 
-.panel-post .panel-heading {position: relative}
-.panel-post .panel-heading a:hover {text-decoration:none}
+.panel-post .panel-heading {
+	position: relative;
+}
+
+.panel-post .panel-heading a:hover {
+	text-decoration: none;
+}
 
 .panel .actions {
 	position: absolute;
@@ -107,17 +112,46 @@ form div.upload-file-container input[name=file] {
 .panel .actions i:hover {
 	cursor: pointer;
 }
-.pagination-page-info {margin-bottom: 20px}
+
+.pagination-page-info {
+	margin-bottom: 20px;
+}
 
 .no-post-message {
-  border: 1px solid #3289C7;
-  text-align: center;
-  display: inline-block;
-  width: 100%;
-  padding: 35px 20px;
-  border-radius: 6px;
+	border: 1px solid #3289C7;
+	text-align: center;
+	display: inline-block;
+	width: 100%;
+	padding: 35px 20px;
+	border-radius: 6px;
 }
-.no-post-message > * {display: block;margin: 0 auto;}
-.no-post-message > img {width: 200px;height: 200px;margin-bottom: 20px;}
-.no-post-message > span {font-size: 1.5em;}
-.no-post-message:hover {text-decoration: none;}
+
+.no-post-message > * {
+	display: block;
+	margin: 0 auto;
+}
+
+.no-post-message > img {
+	width: 200px;
+	height: 200px;
+	margin-bottom: 20px;
+}
+
+.no-post-message > span {
+	font-size: 1.5em;
+}
+
+.no-post-message:hover {
+	text-decoration: none;
+}
+
+.no-padding {
+	padding: 0 !important;
+}
+
+.push-down-15 {
+	margin-bottom: 15px;
+}
+.push-up-15 {
+	margin-bottom: 15px;
+}

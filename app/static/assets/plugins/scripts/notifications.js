@@ -3,8 +3,6 @@
 
 	var alertify = require('alertifyjs');
 
-	var pluginName = "huNotifications";
-
 	// Create the defaults options
 	var defaults = {
 		// message selectors
@@ -50,16 +48,37 @@
 			var duration = waitSeconds || main.options.notifyWaitSeconds;
 			var messageType = category !== undefined && typeof main.options.messageTypes[category] !== 'undefined' ? main.options.messageTypes[category] : 'success';
 			alertify.notify(text, messageType, duration);
+		},
+		alert: function(message, title, onClickButton) {
+			if (!message) {
+				return;
+			}
+			alertify.alert(title || 'Warning', message, function() {
+				if (typeof onClickButton === 'function') {
+					onClickButton();
+				}
+			});
 		}
 	};
 
 	var notification = new Notification();
 
-	window[pluginName] = notification;
-
 	$(function() {
 		// load & display the system messages once the page is ready
 		notification.loadFlashMessages();
 	});
+
+	// CommonJS
+	if (typeof module === 'object' && typeof module.exports === 'object') {
+		module.exports = notification;
+		// AMD
+	} else if (typeof define === 'function' && define.amd) {
+		define([], function() {
+			return notification;
+		});
+		// window
+	} else if (!window.notification) {
+		window.notification = notification;
+	}
 
 })(jQuery, document, window);

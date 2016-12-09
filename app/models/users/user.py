@@ -14,7 +14,7 @@ class User(db.Model, ModelBase, UserMixin):
 
     __tablename__ = 'users'
 
-    __json_meta__ = ['id', 'email', 'nickname', 'is_admin']
+    __json_meta__ = ['id', 'email', 'nickname', 'is_admin', 'profile_picture_url']
 
     id = db.Column(db.Integer, primary_key=True)
 
@@ -100,13 +100,34 @@ class User(db.Model, ModelBase, UserMixin):
     def lang(self):
         return self.get_attribute('lang')
 
-    @property
-    def role_desc(self):
-        return Role.ROLES.get(self.role_id, '')
-
     @lang.setter
     def lang(self, value):
         return self.set_attribute('lang', value)
+
+    @property
+    def profile_picture_id(self):
+        return self.get_attribute('profile_picture_id')
+
+    @profile_picture_id.setter
+    def profile_picture_id(self, value):
+        return self.set_attribute('profile_picture_id', value)
+
+    @property
+    def profile_picture(self):
+        if not self.profile_picture_id:
+            return None
+        from app.models import Picture
+        return Picture.get_by_id(self.profile_picture_id)
+
+    @property
+    def profile_picture_url(self):
+        if self.profile_picture:
+            return self.profile_picture.image_url
+        return None
+
+    @property
+    def role_desc(self):
+        return Role.ROLES.get(self.role_id, '')
 
     def set_password(self, password):
         self.password = unicode(generate_password_hash(password))
@@ -118,6 +139,7 @@ class User(db.Model, ModelBase, UserMixin):
     def is_admin(self):
         return self.role_id == Role.ROLE_ADMIN
 
+    @property
     def is_current(self):
         return self.id == current_user.id
 

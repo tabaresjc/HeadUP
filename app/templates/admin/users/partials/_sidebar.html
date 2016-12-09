@@ -1,0 +1,47 @@
+<div class="pop-dialog full">
+    <div class="body">
+        <div class="settings">
+            <div class="items">
+                {% if user %}
+                <div class="item no-padding">
+					<div class="user-profile-picture img-thumbnail push-down-15"
+						style="background-image:url({{ user.profile_picture_url or '/static/images/user-neutral.png' }})">
+					</div>
+                </div>
+                {% endif %}
+				{% if user.is_current %}
+				<div class="item">
+					<i class="icon-user icon-formatted"></i>
+					<a href="{{ url_for('UsersView:upload_profile_picture', id=user.id) }}" class="upload-profile-picture-btn" data-target=".user-profile-picture">
+						{{ _('Update Profile Picture') }}
+					</a>
+					<form class="upload-profile-picture-form" enctype="multipart/form-data">
+						{{ form.hidden_tag() }}
+						<input name="file" type="file" accept="image/jpeg,image/x-png"/>
+					</form>
+				</div>
+				{% endif %}
+				<div class="item">
+					<i class="icon-eye-open icon-formatted"></i>
+					<a href="{{ url_for('UsersView:get', id = user.id) }}">{{ _('Show User') }}</a>
+				</div>
+                {% if request.endpoint.startswith('UsersView:put') and current_user.is_admin %}
+				<div class="item">
+                    <i class="icon-reorder"></i>
+                    <a href="{{ url_for('UsersView:index') }}">{{ _('Users List') }}</a>
+                </div>
+                {% if not user.is_current  %}
+                <div class="item">
+                    <i class="icon-trash icon-formatted"></i>
+                    <a href="{{ url_for('UsersView:delete', id = user.id) }}" data-method="post" data-confirm="{{ _('This will remove \'%(name)s\', Are you sure?', name=user.name)}}">{{ _('Delete User') }}</a>
+                </div>
+                {% endif %}
+                <div class="item">
+                    <i class="icon-plus icon-formatted"></i>
+                    <a href="{{ url_for('UsersView:post') }}">{{ _('New User') }}</a>
+                </div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</div>

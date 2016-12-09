@@ -7,7 +7,7 @@ from flask_wtf import Form
 from flask_babel import lazy_gettext, gettext, refresh
 from app import app, login_manager
 from flask_paginate import Pagination
-from app.models import Post, User
+from app.models import Post, User, Picture
 from app.utils.response import resp
 from forms import EditUserForm, NewUserForm
 
@@ -104,6 +104,20 @@ class UsersView(FlaskView):
         except Exception as e:
             return resp(url_for('UsersView:index'), redirect=True,
                         message=gettext('Error while removing the user, %(error)s', error=e))
+
+    @route('/<int:id>/upload-profile-picture/', methods=['POST'])
+    def upload_profile_picture(self, id):
+        user = User.get_by_id(id)
+
+        f = request.files.get('file')
+
+        if f:
+            picture = Picture.create()
+            picture.save_file(f, current_user)
+            user.profile_picture_id = picture.id if picture else 0
+            user.save()
+
+        return resp('', user=user)
 
     @route('/<int:id>/posts/', endpoint='user_post')
     def user_post(self, id):

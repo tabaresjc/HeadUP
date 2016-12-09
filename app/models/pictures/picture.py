@@ -40,7 +40,7 @@ class Picture(db.Model, ModelBase):
             self.extension = extension.lower()
             self.name = u'%s.%s' % (h.hexdigest(), self.extension)
             # associate this picture with the user
-            self.user_id = user.id
+            self.user_id = user.id if user else None
             db.session.add(self)
 
             # attempt to save the file

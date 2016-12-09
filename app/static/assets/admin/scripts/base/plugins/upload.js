@@ -65,6 +65,6 @@ define(['jquery'], function($) {
 	$(function() {
 		// define the options used on the main script
 		var options = {}
-		window.mainScript = new Main(options);
+		var mainScript = new Main(options);
 	});
 });

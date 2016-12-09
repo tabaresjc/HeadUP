@@ -47,12 +47,12 @@
 					<td>{{ user.posts.count() }}</td>
 					<td>{{ user.role_desc }}</td>
 					<td>
-						{% if user.is_current() or current_user.is_admin %}
+						{% if user.is_current or current_user.is_admin %}
 						<div class="btn-group">
 							<a class="btn btn-primary" href="{{ url_for('UsersView:put', id=user.id) }}" title="Change user's settings">
 								<i class="glyphicon glyphicon-pencil"></i>
 							</a>
-							{% if not user.is_current() %}
+							{% if not user.is_current %}
 							<a class="btn btn-danger" data-confirm="This will remove {{ user.name}}, Are you sure?" data-method="post" href="{{ url_for('UsersView:delete', id=user.id)  }}"title="Remove this user">
 								<i class="glyphicon glyphicon-trash"></i>
 							</a>

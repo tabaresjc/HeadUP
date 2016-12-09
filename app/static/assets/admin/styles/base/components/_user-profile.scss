@@ -116,10 +116,25 @@
 	}
 }
 
+.upload-profile-picture-form {
+	input[type=file] {
+		display: none;
+	}
+}
+
+.user-profile-picture {
+	display: block;
+	background: no-repeat center;
+	background-size: cover;
+	position: relative;
+	width: 128px;
+	height: 128px;
+	margin: 0 auto;
+}
 
 /* responsive */
 
-@media (min-width: 768px) and (max-width: 979px) { 
+@media (min-width: 768px) and (max-width: 979px) {
 	.user-profile .address ul {
 		margin-left: 18px;
 		i {
@@ -182,6 +197,3 @@
 		}
 	}
 }
-
-
-

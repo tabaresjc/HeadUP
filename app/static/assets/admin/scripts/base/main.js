@@ -5,6 +5,7 @@ require.config({
 		jqueryVimeoEmbed: '../../../../lib/bower_components/jquery-smart-vimeo-embed/jquery-smartvimeoembed',
 		alertifyjs: '../../../../lib/node_modules/alertifyjs/build/alertify',
 		notification: '../../../../assets/plugins/scripts/notifications',
+		profileUploader: '../../../../assets/plugins/scripts/profile-uploader',
 		jquery_ujs: '../../../../assets/plugins/scripts/jquery_ujs'
 	},
 	shim: {
@@ -18,7 +19,10 @@ require.config({
 			deps: ['jquery']
 		},
 		notification: {
-			deps: ['jquery', 'alertifyjs']
+			deps: ['jquery', 'alertifyjs'],
+		},
+		profileUploader: {
+			deps: ['jquery', 'notification']
 		}
 	}
 });
@@ -30,6 +34,7 @@ require([
 	'alertifyjs',
 	'jqueryVimeoEmbed',
 	'notification',
+	'profileUploader',
 	'plugins/theme',
 	'plugins/upload'
 ]);
