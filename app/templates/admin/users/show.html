@@ -8,7 +8,7 @@
 <!-- header -->
 <div class="row header">
   <div class="col-md-9">
-    <img src="{{ user.profile_picture_url or '/static/images/user-neutral.png' }}" class="avatar img-circle">
+    <img src="{{ user.profile_picture_url or '/static/images/user-neutral.png' }}" width="128" class="avatar img-circle">
     <h3 class="name">{{ user.name }} ({{ user.nickname }})</h3>
     <span class="area">{{ user.email }}</span>
   </div>
