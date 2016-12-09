@@ -8,7 +8,7 @@
 			<div class="div panel-heading">{{ current_user.name }}</div>
 			<div class="div panel-body" style="text-align:center;">
 				<a href="{{ url_for('UsersView:get',id=current_user.id) }}">
-					<img alt="{{ current_user.name }}" class="img-thumbnail" src="{{ current_user.avatar(144) }}">
+					<img alt="{{ current_user.name }}" class="img-thumbnail" src="{{ current_user.profile_picture_url }}">
 				</a>
 				<div><strong>{{ _('Email')}}</strong><br/>{{ current_user.email  }}</div>
 				<div><strong>{{ _('Last login')}}</strong><br/>{{ current_user.last_seen|datetimeformat  }}</div>
