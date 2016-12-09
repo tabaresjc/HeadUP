@@ -12,7 +12,7 @@
 					<div class="meta__info">
 						<span class="meta__author">
 						  {% if not post.anonymous -%}
-						  <img src="{{ post.user.profile_picture_url }}" alt="{{ post.user.name }}" width="30" height="30">
+						  <img src="{{ post.user.profile_picture_url or '/static/images/user.png' }}" alt="{{ post.user.name }}" width="30" height="30">
 						  {% set user_name = '<a href="%s">%s</a>' % (url_for('stamp.show', id=post.id), post.user.name) %}
 						  {%- else %}
 						  <img src="/static/images/user.png" width="30" height="30"/>
@@ -37,7 +37,7 @@
 						<div class="col-xs-12  col-sm-12">
 							<div class="meta__info">
 								<span class="meta__author">
-									<img src="{{ post.user.profile_picture_url }}" alt="Meta avatar" width="30" height="30">
+									<img src="{{ post.user.profile_picture_url or '/static/images/user.png' }}" alt="Meta avatar" width="30" height="30">
 									<a href="javascript:void(0);">{{ post.user.name }}</a>  in <a href="javascript:void(0);">{{ post.category.name }}</a>
 								</span>
 								<span class="meta__date">

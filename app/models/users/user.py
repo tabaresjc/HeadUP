@@ -123,7 +123,7 @@ class User(db.Model, ModelBase, UserMixin):
     def profile_picture_url(self):
         if self.profile_picture:
             return self.profile_picture.image_url
-        return '/static/images/user.png'
+        return ''
 
     @property
     def role_desc(self):
