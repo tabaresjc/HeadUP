@@ -2,9 +2,11 @@
 {% set title = _('Home') %}
 
 {% block content %}
+	{% cache 3600, "welcome" %}
 	{% for post in posts %}
 		{% include 'main/stamp/partials/_stamp_single.html' %}
 	{% endfor %}
+	{% endcache %}
 {% endblock %}
 
 {% block sidebar %}

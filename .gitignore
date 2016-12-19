@@ -82,3 +82,6 @@ app/static/assets/admin/scripts/main*.js
 app/static/assets/admin/fonts/bootstrap/
 app/templates/admin/staging/
 app/templates/admin/layout/base.html
+
+# ignore cache folder
+/cache/

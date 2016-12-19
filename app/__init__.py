@@ -5,6 +5,7 @@ from flask_login import LoginManager, current_user
 from flask_wtf.csrf import CsrfProtect
 from flask_babel import Babel, lazy_gettext
 from flask_sqlalchemy import SQLAlchemy
+from flask_caching import Cache
 import flask
 import jinja2
 import os
@@ -33,6 +34,11 @@ babel = Babel(app)
 # Database Configuration
 # -------------------------------------------------------------------------
 db = SQLAlchemy(app)
+
+# -------------------------------------------------------------------------
+# Cache Configuration
+# -------------------------------------------------------------------------
+cache = Cache(app, config=config.CACHE_CONFIG)
 
 # -------------------------------------------------------------------------
 # Load the session controller
