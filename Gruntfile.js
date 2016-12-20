@@ -17,7 +17,7 @@ module.exports = function(grunt) {
 
 	require('load-grunt-config')(grunt, {
 		init: true,
-		configPath: path.join(process.cwd(), 'tasks'),
+		configPath: path.join(process.cwd(), 'grunt-tasks'),
 		config: config,
 		jitGrunt: {
 			staticMappings: {
