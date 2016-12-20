@@ -16,7 +16,7 @@ DEBUG = True
 # *************************************************
 # Site Configuration
 # *************************************************
-SITE_NAME = 'Headsup'
+SITE_NAME = 'HeadUp'
 DEFAULT_TIMEZONE = u'Asia/Tokyo'
 DEFAULT_USER_ROLES = [('1', 'Administrator'), ('2', 'Writer')]
 LANGUAGES_FORM = [(u'en', u'English'), (u'es', u'Español')]

@@ -8,10 +8,4 @@ from app import app
 @app.route('/page/<int:page>')
 def index(page=1):
 
-    return render_template("main/stamps/index.html", page=page)
-
-
-@app.route('/ranking')
-def ranking():
-
-    return render_template("main/stamps/ranking.html")
+    return render_template("main/index.html", page=page)

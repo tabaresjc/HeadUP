@@ -15,7 +15,7 @@
 						  {% set user_name = _('Anonymous') %}
 						  {%- endif %}
 						  {{ _('Posted by %(user)s', user=user_name|safe) }}
-						  {% set category_name = '<a href="%s">%s</a>' % ('javascript:;', post.category.name) %}
+						  {% set category_name = '<a href="%s">%s</a>' % (url_for('stamp.category', slug=post.category.slug), post.category.name) %}
 						  {{ _('in %(category)s', category=category_name|safe) }}
 						</span>
 						<span class="meta__date"><span class="glyphicon glyphicon-calendar"></span> &nbsp; {{ post.created_at|datetimeformat('EEE, d MMM yyyy') }}</span>
@@ -41,7 +41,7 @@
 						  {% set user_name = _('Anonymous') %}
 						  {%- endif %}
 						  {{ _('Posted by %(user)s', user=user_name|safe) }}
-						  {% set category_name = '<a href="%s">%s</a>' % ('javascript:;', post.category.name) %}
+						  {% set category_name = '<a href="%s">%s</a>' % (url_for('stamp.category', slug=post.category.slug), post.category.name) %}
 						  {{ _('in %(category)s', category=category_name|safe) }}
 						</span>
 						<span class="meta__date"><span class="glyphicon glyphicon-calendar"></span> &nbsp; {{ post.created_at|datetimeformat('EEE, d MMM yyyy') }}</span>

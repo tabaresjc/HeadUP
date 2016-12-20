@@ -1,0 +1,18 @@
+{% extends "main/layout/base.html" %}
+{% set title = _('Stamps for %(category)s', category=category.name) %}
+
+{% block wide_container %}
+<div class="row">
+	<div class="col-xs-12 col-md-12">
+		<h2 class="widget-title-box">{{ title }}</h2>
+	</div>
+</div>
+<div class="row">
+	<div class="col-xs-12  col-md-8">
+		{{ widget('stamps_category', category=category, page=page) }}
+	</div>
+	<div class="col-xs-12  col-md-4">
+		{% include 'main/common/_sidebar_user.html' %}
+	</div>
+</div>
+{% endblock %}

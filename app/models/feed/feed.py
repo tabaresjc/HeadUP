@@ -49,3 +49,15 @@ class Feed:
             offset = (page - 1) * limit
             records = query.order_by(order).limit(limit).offset(offset)
         return records, count
+
+    @classmethod
+    def category(cls, category, page=1, limit=20):
+        from app.models import Post
+        query = Post.query.filter_by(category_id=category.id)
+        count = query.count()
+        records = []
+        if count:
+            order = db.text('created_at DESC')
+            offset = (page - 1) * limit
+            records = query.order_by(order).limit(limit).offset(offset)
+        return records, count

@@ -1,7 +1,7 @@
 # -*- coding: utf8 -*-
 
 from app import app
-from . import welcome  # noqa
+from . import index  # noqa
 from . import stamp  # noqa
 
 # import route for stamp resource
