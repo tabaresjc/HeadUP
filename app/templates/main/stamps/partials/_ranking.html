@@ -1,0 +1,17 @@
+<div class="multi-columns">
+	<div class="container">
+		<div class="row">
+			<div class="col-xs-12 col-md-12">
+				<h2 class="title">{{ _('Most Popular') }}</h2>
+			</div>
+		</div>
+		<div class="row">
+			{% for post in posts %}
+			<div class="ranking-item col-xs-12  {% if loop.first %}col-md-12{% else %}col-md-6{% endif %}">
+				<!-- <span class="label label-danger">{{ loop.index }}</span> -->
+				{% include 'main/stamps/partials/_stamp_ranking_feed.html' %}
+			</div>
+			{% endfor %}
+		</div>
+	</div>
+</div>

@@ -4,3 +4,4 @@ from flask import Blueprint
 mod = Blueprint('stamp', __name__, url_prefix='/stamp')
 
 from . import view  # noqa
+from . import widgets  # noqa

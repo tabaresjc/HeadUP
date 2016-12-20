@@ -1,16 +1,10 @@
 # -*- coding: utf8 -*-
 
 from flask import Flask
-from flask_login import LoginManager, current_user
-from flask_wtf.csrf import CsrfProtect
-from flask_babel import Babel, lazy_gettext
-from flask_sqlalchemy import SQLAlchemy
-from flask_caching import Cache
 import flask
 import jinja2
 import os
 import config
-
 
 app = Flask(__name__)
 
@@ -20,34 +14,40 @@ app = Flask(__name__)
 app.config.from_object('config')
 
 # -------------------------------------------------------------------------
-# Load the CSRF Protection
-# -------------------------------------------------------------------------
-csrf = CsrfProtect()
-csrf.init_app(app)
-
-# -------------------------------------------------------------------------
-# Load the Babel extension for Internationalization
-# -------------------------------------------------------------------------
-babel = Babel(app)
-
-# -------------------------------------------------------------------------
 # Database Configuration
 # -------------------------------------------------------------------------
+from flask_sqlalchemy import SQLAlchemy  # noqa
 db = SQLAlchemy(app)
 
 # -------------------------------------------------------------------------
 # Cache Configuration
 # -------------------------------------------------------------------------
-cache = Cache(app, config=config.CACHE_CONFIG)
+from app.utils.cache import CacheBase  # noqa
+cache = CacheBase(app, config=config.CACHE_CONFIG)
+
+# -------------------------------------------------------------------------
+# Load the CSRF Protection
+# -------------------------------------------------------------------------
+from flask_wtf.csrf import CsrfProtect  # noqa
+csrf = CsrfProtect(app)
+
+# -------------------------------------------------------------------------
+# Load the Babel extension for Internationalization
+# -------------------------------------------------------------------------
+from flask_babel import Babel  # noqa
+babel = Babel(app)
+
+# -------------------------------------------------------------------------
+# Widget Configuration
+# -------------------------------------------------------------------------
+from flask_widgets import Widgets  # noqa
+widgets = Widgets(app)
 
 # -------------------------------------------------------------------------
 # Load the session controller
 # -------------------------------------------------------------------------
-login_manager = LoginManager()
-login_manager.init_app(app)
-# add our view as the login view to finish configuring the LoginManager
-login_manager.login_view = "sessions.login"
-login_manager.login_message = lazy_gettext('Please log in to access this page.')
+from flask_login import LoginManager  # noqa
+login_manager = LoginManager(app)
 
 # -------------------------------------------------------------------------
 # Register Controllers & Models
@@ -75,6 +75,7 @@ app.json_encoder = CustomJSONEncoder
 
 @babel.localeselector
 def get_locale():
+    from flask_login import current_user
     if current_user and current_user.is_authenticated:
         return current_user.lang
     return flask.request.accept_languages.best_match(config.LANGUAGES.keys())
@@ -82,6 +83,7 @@ def get_locale():
 
 @babel.timezoneselector
 def get_timezone():
+    from flask_login import current_user
     if current_user and current_user.is_authenticated:
         return current_user.timezone
     return "Asia/Tokyo"

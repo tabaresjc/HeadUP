@@ -12,6 +12,10 @@ import datetime
 
 mod = Blueprint('sessions', __name__)
 
+# add our view as the login view to finish configuring the LoginManager
+login_manager.login_view = "sessions.login"
+login_manager.login_message = lazy_gettext('Please log in to access this page.')
+
 
 @login_manager.user_loader
 def load_user(userid):
