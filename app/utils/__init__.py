@@ -9,6 +9,7 @@ from flask_paginate import Pagination
 from jinja2 import evalcontextfilter, Markup, escape
 import truncate
 import re
+import config
 
 _paragraph_re = re.compile(r'(?:\r\n|\r|\n){2,}')
 
@@ -57,6 +58,7 @@ def utility_processor():
 
     return dict(pag=pag,
                 today=today,
+                config=config,
                 site_name=SITE_NAME)
 
 
