@@ -35,6 +35,7 @@ SQLALCHEMY_ECHO = True
 # *************************************************
 # Cache Configuration
 # *************************************************
+CACHE_ENABLED = True
 CACHE_FOLDER = 'cache'
 CACHE_FOLDER_PATH=os.path.join(BASE_DIR, CACHE_FOLDER)
 CACHE_CONFIG = {'CACHE_TYPE': 'filesystem', 'CACHE_DIR': CACHE_FOLDER_PATH}
