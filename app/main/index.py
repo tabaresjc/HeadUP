@@ -9,3 +9,8 @@ from app import app
 def index(page=1):
 
     return render_template("main/index.html", page=page)
+
+
+@app.route('/policy')
+def privacy_policy():
+    return render_template("main/site/policy.html")
