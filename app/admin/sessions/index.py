@@ -33,7 +33,7 @@ def unauthorized():
 def login():
     if current_user.is_authenticated:
         flash(gettext('You are already signed in.'))
-        return redirect(url_for('index'))
+        return redirect(url_for('latest'))
 
     form = LoginForm()
     if form.validate_on_submit():
@@ -45,7 +45,7 @@ def login():
                 user.last_login = user.last_seen
                 user.last_seen = datetime.datetime.utcnow()
                 user.save()
-                redirect_to = url_for('index')
+                redirect_to = url_for('latest')
                 if 'redirect_to' in session:
                     redirect_to = session['redirect_to']
                     session.pop('redirect_to', None)
@@ -81,14 +81,14 @@ def logout():
     else:
         flash(gettext('Invalid Action'), 'error')
 
-    return redirect(url_for('index'))
+    return redirect(url_for('latest'))
 
 
 @mod.route('/signup', methods=['GET', 'POST'])
 def signup():
     if current_user.is_authenticated:
         flash(gettext('You are already signed in.'))
-        return redirect(url_for('index'))
+        return redirect(url_for('latest'))
 
     form = SignUpForm()
     if form.validate_on_submit():
@@ -105,7 +105,7 @@ def signup():
             # Login User
             login_user(user)
             flash(gettext('Welcome! You have signed up successfully.'))
-            return redirect(url_for('index'))
+            return redirect(url_for('latest'))
         except:
             flash(gettext('Error while saving the new user, please retry later'), 'error')
 

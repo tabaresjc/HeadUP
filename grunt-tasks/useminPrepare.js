@@ -2,7 +2,10 @@
 
 module.exports = {
 	frontend: {
-		src: '<%= pkg.app.templates %>/main/staging/base.html',
+		src: [
+			'<%= pkg.app.templates %>/main/staging/base.html',
+			'<%= pkg.app.templates %>/main/staging/home.html'
+		],
 		options: {
 			dest: 'app',
 			flow: {

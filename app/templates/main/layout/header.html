@@ -1,8 +1,8 @@
 <header class="header">
 	<div class="container">
 		<div class="logo  pull-left">
-			<a href="/">
-				<img src="/static/images/logo.png?v20161220" alt="{% trans %}Logo{% endtrans %}">
+			<a href="{{ url_for('latest') }}">
+				<img src="/static/images/logo.png?v20170101" alt="{% trans %}Logo{% endtrans %}">
 			</a>
 		</div>
 		<div class="navbar-header">
@@ -16,8 +16,8 @@
 		<nav class="navbar  navbar-default" role="navigation">
 			<div class="collapse  navbar-collapse" id="readable-navbar-collapse">
 				<ul class="navigation">
-					<li class="{% if request.endpoint=='index' %}active{% endif %}">
-						<a href="/" class="dropdown-toggle">{% trans%}Home{% endtrans %}</a>
+					<li class="{% if request.endpoint=='latest' %}active{% endif %}">
+						<a href="{{ url_for('latest') }}" class="dropdown-toggle">{% trans%}Latest{% endtrans %}</a>
 					</li>
 					<li class="{% if request.endpoint=='ranking' %}active{% endif %}">
 						<a href="{{ url_for('ranking') }}">{% trans%}H'UP{% endtrans %}</a>

@@ -11,6 +11,7 @@ module.exports = {
 	],
 	html: [
 		'<%= pkg.app.templates %>/main/staging/base.html',
+		'<%= pkg.app.templates %>/main/staging/home.html',
 		'<%= pkg.app.templates %>/admin/staging/base.html'
 	],
 	options: {

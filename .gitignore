@@ -70,11 +70,14 @@ node_modules/
 
 # ignore generated files
 app/static/assets/headsup/styles/main*.css
+app/static/assets/headsup/styles/home*.css
 app/static/assets/headsup/styles/base/main*.css
 app/static/assets/headsup/scripts/main*.js
+app/static/assets/headsup/scripts/home*.js
 app/static/assets/headsup/fonts/bootstrap/
 app/templates/main/staging/
 app/templates/main/layout/base.html
+app/templates/main/layout/home.html
 
 app/static/assets/admin/styles/main*.css
 app/static/assets/admin/styles/base/main*.css

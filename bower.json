@@ -19,6 +19,7 @@
   "dependencies": {
     "jquery": "^1.9.0",
     "jquery-smart-vimeo-embed": "^1.1.1",
-    "underscore": "^1.8.3"
+    "underscore": "^1.8.3",
+    "fullpage.js": "^2.9.2"
   }
 }

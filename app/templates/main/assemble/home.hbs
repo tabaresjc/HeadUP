@@ -8,11 +8,12 @@
     {% block meta_extra %}{% endblock %}
     {% include 'shared/icons.html' %}
 
-	<!-- build:css(app) /static/assets/headsup/styles/main.css -->
+	<!-- build:css(app) /static/assets/headsup/styles/home.css -->
     <link rel="stylesheet" href="/static/assets/headsup/styles/base/main.css"/>
 	<link rel="stylesheet" href="/static/lib/node_modules/alertifyjs/build/css/alertify.css"/>
 	<link rel="stylesheet" href="/static/assets/plugins/styles/alertify.css"/>
 	<link rel="stylesheet" href="/static/lib/bower_components/fullpage.js/jquery.fullPage.css"/>
+	<link rel="stylesheet" href="/static/assets/headsup/styles/extra/fullPage.css">
     <!-- endbuild -->
 
 	{% block custom_css %}{% endblock %}
@@ -58,7 +59,7 @@
 	};
 	</script>
 	<script src="https://ajax.googleapis.com/ajax/libs/webfont/1.6.16/webfont.js" onload="loadFont()"></script>
-	{{> main-js}}
+	{{> home-js}}
     {% block custom_js %}{% endblock %}
 </body>
 </html>

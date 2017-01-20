@@ -1,93 +1,93 @@
-    {% set navigation_bar = [
-        {
-            'name': 'Home',
-            'url': 'index',
-            'icon': 'glyphicon glyphicon-home',
-            'pattern': 'index'
-        },
-        {
-            'name': 'My Page',
-            'url': 'dashboard',
-            'icon': 'glyphicon glyphicon-leaf',
-            'pattern': 'dashboard'
-        },
-        {
-            'name': 'Stamps',
-            'url': '',
-            'icon': 'glyphicon glyphicon-edit',
-            'pattern': 'PostsView',
-            'sub-menu': {
-                'index': {
-                    'name': 'Stamp List',
-                    'url': 'PostsView:index'
-                },
-                'new': {
-                    'name': 'New Stamp',
-                    'url': 'PostsView:post'
-                }
-            }
-        },
-        {
-            'name': 'Categories',
-            'require_admin': True,
-            'url': 'CategoriesView:index',
-            'icon': 'glyphicon glyphicon-bookmark',
-            'pattern': 'CategoriesView'
-        },
-        {
-            'name': 'Users',
-            'require_admin': True,
-            'url': '',
-            'icon': 'glyphicon glyphicon-user',
-            'pattern': 'UsersView',
-            'sub-menu': {
-                'index': {
-                    'name': 'User List',
-                    'url': 'UsersView:index'
-                },
-                'new': {
-                    'name': 'New User',
-                    'url': 'UsersView:post'
-                }
-            }
-        }
-    ] -%}
-    <div id="sidebar-nav">
-        <ul id="dashboard-menu">
-            {% for item in navigation_bar -%}
-            {% if not item.get('require_admin') or (current_user.is_admin and item.get('require_admin')) -%}
-            <li class="element">
-                {% if request.endpoint.startswith(item['pattern'])  %}
-                <div class="pointer">
-                    <div class="arrow"></div>
-                    <div class="arrow_border"></div>
-                </div>
-                {% endif %}
-                {% if 'sub-menu' in item  %}
-                <a class="dropdown-toggle{% if request.endpoint.startswith(item['pattern'])  %} current{% endif %}" href="javascript:void(0);">
-                    <i class="{{ item['icon'] }}"></i>
-                    <span>{{ item['name'] }}</span>
-                    <i class="icon-chevron-down"></i>
-                </a>
-                <ul class="submenu"{% if request.endpoint.startswith(item['pattern'])  %} style="display: block;"{% endif %}>
-                    {% for key, submnenu in item['sub-menu'].iteritems() %}
-                    <li><a href="{{ url_for(submnenu['url']) }}">{{ submnenu['name'] }}</a></li>
-                    {% endfor %}
-                </ul>
-                {% else %}
-                <a href="{{ url_for(item['url']) }}" >
-                    <i class="{{ item['icon'] }}"></i>
-                    <span>{{ item['name'] }}</span>
-                </a>
-                {% endif %}
-            </li>
-            {%- endif %}
-            {%- endfor %}
-            <li>
-                <a href="{{ url_for('sessions.logout') }}" data-method="post" >
-                    <i class="glyphicon glyphicon-log-out"></i>
-                    <span>{{ _('Sign Out') }}</span>
-                </a>
-            </li>
-        </ul>
-    </div>
+{% set navigation_bar = [
+	{
+		'name': 'Home',
+		'url': 'latest',
+		'icon': 'glyphicon glyphicon-home',
+		'pattern': 'latest'
+	},
+	{
+		'name': 'My Page',
+		'url': 'dashboard',
+		'icon': 'glyphicon glyphicon-leaf',
+		'pattern': 'dashboard'
+	},
+	{
+		'name': 'Stamps',
+		'url': '',
+		'icon': 'glyphicon glyphicon-edit',
+		'pattern': 'PostsView',
+		'sub-menu': {
+			'index': {
+				'name': 'Stamp List',
+				'url': 'PostsView:index'
+			},
+			'new': {
+				'name': 'New Stamp',
+				'url': 'PostsView:post'
+			}
+		}
+	},
+	{
+		'name': 'Categories',
+		'require_admin': True,
+		'url': 'CategoriesView:index',
+		'icon': 'glyphicon glyphicon-bookmark',
+		'pattern': 'CategoriesView'
+	},
+	{
+		'name': 'Users',
+		'require_admin': True,
+		'url': '',
+		'icon': 'glyphicon glyphicon-user',
+		'pattern': 'UsersView',
+		'sub-menu': {
+			'index': {
+				'name': 'User List',
+				'url': 'UsersView:index'
+			},
+			'new': {
+				'name': 'New User',
+				'url': 'UsersView:post'
+			}
+		}
+	}
+	] -%}
+	<div id="sidebar-nav">
+		<ul id="dashboard-menu">
+			{% for item in navigation_bar -%}
+			{% if not item.get('require_admin') or (current_user.is_admin and item.get('require_admin')) -%}
+			<li class="element">
+				{% if request.endpoint.startswith(item['pattern'])  %}
+				<div class="pointer">
+					<div class="arrow"></div>
+					<div class="arrow_border"></div>
+				</div>
+				{% endif %}
+				{% if 'sub-menu' in item  %}
+				<a class="dropdown-toggle{% if request.endpoint.startswith(item['pattern'])  %} current{% endif %}" href="javascript:void(0);">
+					<i class="{{ item['icon'] }}"></i>
+					<span>{{ item['name'] }}</span>
+					<i class="icon-chevron-down"></i>
+				</a>
+				<ul class="submenu"{% if request.endpoint.startswith(item['pattern'])  %} style="display: block;"{% endif %}>
+					{% for key, submnenu in item['sub-menu'].iteritems() %}
+					<li><a href="{{ url_for(submnenu['url']) }}">{{ submnenu['name'] }}</a></li>
+					{% endfor %}
+				</ul>
+				{% else %}
+				<a href="{{ url_for(item['url']) }}" >
+					<i class="{{ item['icon'] }}"></i>
+					<span>{{ item['name'] }}</span>
+				</a>
+				{% endif %}
+			</li>
+			{%- endif %}
+			{%- endfor %}
+			<li>
+				<a href="{{ url_for('sessions.logout') }}" data-method="post" >
+					<i class="glyphicon glyphicon-log-out"></i>
+					<span>{{ _('Sign Out') }}</span>
+				</a>
+			</li>
+		</ul>
+	</div>

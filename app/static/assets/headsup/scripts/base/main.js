@@ -6,7 +6,8 @@ require.config({
 		jqueryVimeoEmbed: '../../../../lib/bower_components/jquery-smart-vimeo-embed/jquery-smartvimeoembed',
 		alertifyjs: '../../../../lib/node_modules/alertifyjs/build/alertify',
 		notification: '../../../../assets/plugins/scripts/notifications',
-		jquery_ujs: '../../../../assets/plugins/scripts/jquery_ujs'
+		jquery_ujs: '../../../../assets/plugins/scripts/jquery_ujs',
+		fullPage: '../../../../lib/bower_components/fullpage.js/dist/jquery.fullpage'
 	},
 	shim: {
 		bootstrap: {
@@ -21,6 +22,9 @@ require.config({
 		jquery_ujs: {
 			deps: ['jquery']
 		},
+		fullPage: {
+			deps: ['jquery']
+		}
 	}
 });
 
@@ -32,5 +36,7 @@ require([
 	'alertifyjs',
 	'jqueryVimeoEmbed',
 	'notification',
-	'plugins/miscellaneous'
+	'fullPage',
+	'plugins/miscellaneous',
+	'plugins/fullPage'
 ]);

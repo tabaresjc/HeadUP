@@ -12,7 +12,7 @@ module.exports = {
 			{
 				expand: true,
 				cwd: '<%= pkg.app.templates %>/main/staging',
-				src: ['base.html'],
+				src: ['base.html', 'home.html'],
 				dest: '<%= pkg.app.templates %>/main/layout'
 			}
 		]
