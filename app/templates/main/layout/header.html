@@ -25,15 +25,12 @@
 					<li class="{% if request.endpoint=='show_mypage' %}active{% endif %}">
 						<a href="{{ url_for('dashboard') }}" rel="nofollow">{% trans%}My Page{% endtrans %}</a>
 					</li>
-					<li role="separator" class="visible-xs-block visible-sm-block divider">
-					</li>
 					<li class="visible-xs-block visible-sm-block {% if request.endpoint=='privacy_policy' %}active{% endif %}">
 						<a href="{{ url_for('privacy_policy') }}">{% trans%}Terms of Service{% endtrans %}</a>
 					</li>
 					<li class="visible-xs-block visible-sm-block {% if request.endpoint=='code_of_conduct' %}active{% endif %}">
 						<a href="{{ url_for('code_of_conduct') }}">{% trans%}Code of conduct{% endtrans %}</a>
 					</li>
-
 				</ul>
 			</div>
 		</nav>
