@@ -19,3 +19,8 @@ def latest(page=1):
 @app.route('/policy')
 def privacy_policy():
     return render_template("main/site/policy.html")
+
+
+@app.route('/conduct')
+def code_of_conduct():
+    return render_template("main/site/conduct.html")
