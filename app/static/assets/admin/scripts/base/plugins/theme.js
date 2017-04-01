@@ -130,5 +130,21 @@ define(['jquery'], function($) {
 		if ($("#sidebar-nav").height() > $(".content").height()) {
 			$("html").addClass("small");
 		}
+
+		function checkTos() {
+			if($("#check_tos").is(":checked")) {
+				$('#submit-signup').removeAttr('disabled');
+			} else {
+				$('#submit-signup').attr('disabled', 'disabled');
+			}
+		}
+
+		// quirk to fix dark skin sidebar menu because of B3 border-box
+		if ($("#check_tos").length) {
+			$('#check_tos').change(function() {
+				checkTos();
+			});
+			checkTos();
+		}
 	});
 });

@@ -26,6 +26,8 @@ class SignUpForm(Form):
     ])
     confirm_password = PasswordField(
         lazy_gettext('Confirm'), [validators.Required()])
+    check_tos = BooleanField('check_tos', default=False)
+
 
     def validate(self):
         valid = True

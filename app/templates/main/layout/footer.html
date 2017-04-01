@@ -1,9 +1,16 @@
   <footer class="copyrights site-footer">
     <div class="container">
       <div class="row">
-        <div class="col-xs-12  col-sm-6">
+        <div class="col-xs-12 col-sm-6">
           Copyright ©{{ today.year if today.year == 2016 else '2016-%s' % today.year  }} {{ config.SITE_NAME }}. All rights reserved.
         </div>
+		<div class="col-xs-12 col-sm-6">
+			<div class="text-right">
+				<a href="{{ url_for('code_of_conduct') }}">{{ _('Code of conduct') }}</a>
+				<span> | </span>
+				<a href="{{ url_for('privacy_policy') }}">{{ _('Privacy policy') }}</a>
+			</div>
+		</div>
       </div>
     </div>
   </footer>
