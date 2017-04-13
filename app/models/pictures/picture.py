@@ -1,9 +1,10 @@
 # -*- coding: utf8 -*-
 
 from flask_login import current_user
+from flask import url_for
 from app import db
 from app.utils.db import ModelBase, MutableDict
-from config import UPLOAD_MEDIA_PICTURES, UPLOAD_MEDIA_PICTURES_PATH
+from config import UPLOAD_MEDIA_PICTURES_PATH
 import datetime
 import os
 
@@ -58,7 +59,7 @@ class Picture(db.Model, ModelBase):
 
     @property
     def image_url(self):
-        return u'/%s/%s' % (UPLOAD_MEDIA_PICTURES, self.name)
+        return url_for('pictures', name=self.name)
 
     @property
     def name(self):

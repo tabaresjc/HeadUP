@@ -1,5 +1,17 @@
 {% extends "main/layout/base.html" %}
 {% set title = _('Ranking') %}
+{% set description = '' %}
+
+{% block meta_extra %}
+	{% if config.FB_APPID %}
+	<meta property="fb:app_id" content="{{ config.FB_APPID }}" />
+	{% endif %}
+	<meta property="og:type" content="blog" />
+	<meta property="og:url" content="{{ url_for('latest', _external=true) }}" />
+	<meta property="og:title" content="{{ title }}" />
+	<meta property="og:description" content="{{ description }}">
+	<meta property="og:image" content="{{ url_for('static', filename='assets/headsup/images/lp-home/screen-bg_1.jpg', _external=true) }}" />
+{% endblock %}
 
 {% block container %}
 	{{ widget('stamps_ranking') }}

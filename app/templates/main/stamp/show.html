@@ -1,5 +1,20 @@
 {% extends "main/layout/base.html" %}
-{% set title = _('Stamp | %(title)s', title=post.title) %}
+{% set title = post.title %}
+
+{% block meta_extra %}
+	{% if config.FB_APPID %}
+	<meta property="fb:app_id" content="{{ config.FB_APPID }}" />
+	{% endif %}
+	<meta property="og:type" content="article" />
+	<meta property="og:url" content="{{ url_for('stamp.show', id=post.id, _external=true) }}" />
+	<meta property="og:title" content="{{ title }}" />
+	<meta property="og:description" content="{{ description }}">
+	{% if post.cover_picture %}
+	<meta property="og:image" content="{{ url_for('pictures', name=post.cover_picture.name, _external=true) }}" />
+	{% else %}
+	<meta property="og:image" content="{{ url_for('static', filename='assets/headsup/images/lp-home/screen-bg_1.jpg', _external=true) }}" />
+	{% endif %}
+{% endblock %}
 
 {% block content %}
 <div class="boxed push-down-30">

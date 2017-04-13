@@ -13,6 +13,9 @@ app = Flask(__name__)
 # -------------------------------------------------------------------------
 app.config.from_object('config')
 
+app.add_url_rule('/' + config.UPLOAD_MEDIA_PICTURES + '/<path:name>',
+                 endpoint='pictures')
+
 # -------------------------------------------------------------------------
 # Database Configuration
 # -------------------------------------------------------------------------
