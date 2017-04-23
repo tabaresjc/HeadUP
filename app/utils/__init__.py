@@ -137,5 +137,6 @@ class Utilities(object):
         for domain in config.OTHER_DOMAINS:
             if domain in inputstr:
                 inputstr = inputstr.replace(domain, config.MAIN_DOMAIN)
+                break
 
         return inputstr

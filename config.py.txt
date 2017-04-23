@@ -59,4 +59,4 @@ ADDTHIS_LINK_STAMP = None
 # Domain Replacement
 # *************************************************
 MAIN_DOMAIN = 'headup.space'
-OTHER_DOMAINS = ['headup.world', 'hup.space']
+OTHER_DOMAINS = ['www.headup.space', 'www.headup.world', 'headup.world', 'www.hup.space', 'hup.space']
