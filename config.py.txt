@@ -44,3 +44,8 @@ CACHE_CONFIG = {'CACHE_TYPE': 'filesystem', 'CACHE_DIR': CACHE_FOLDER_PATH}
 # Google Analytics
 # *************************************************
 GA_TRACKING_ID = None
+
+# *************************************************
+# Facebook APP ID
+# *************************************************
+FB_APPID = None

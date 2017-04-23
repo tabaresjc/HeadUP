@@ -1,11 +1,14 @@
 # -*- coding: utf8 -*-
 
-from app import db
+from app import db, cache
 from math import log
 import datetime
 
 
 class Feed:
+    CACHE_INDEX_NAME = 'stamps/welcome.v1.%s.%s'
+    FEED_DEFAULT_LIMIT = 20
+
     vote_factor = 10
     epoch = datetime.datetime(1970, 1, 1)
 
@@ -25,6 +28,21 @@ class Feed:
         sign = 1 if s > 0 else -1 if s < 0 else 0
         seconds = cls.epoch_seconds(date) - 1134028003
         return round((sign * order) + (seconds / 45000), 7)
+
+    @classmethod
+    def get_feed_cache(cls, page=1, limit=FEED_DEFAULT_LIMIT):
+        key = cls.CACHE_INDEX_NAME % (page, limit)
+        return cache.get(key)
+
+    @classmethod
+    def set_feed_cache(cls, data, page=1, limit=FEED_DEFAULT_LIMIT, duration=3600):
+        key = cls.CACHE_INDEX_NAME % (page, limit)
+        cache.set(key, data, duration)
+
+    @classmethod
+    def clear_feed_cache(cls, page=1, limit=FEED_DEFAULT_LIMIT):
+        key = cls.CACHE_INDEX_NAME % (page, limit)
+        cache.set(key, None)
 
     @classmethod
     def posts(cls, page=1, limit=10):

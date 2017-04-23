@@ -1,12 +1,12 @@
 <div class="boxed  push-down-20">
 	<div class="meta">
 		<div class="main-post-image" style="background-image:url({% if post.cover_picture %}{{ post.cover_picture.image_url }}{%- else %}/static/assets/headsup/images/stamp-no-cover.jpg{%- endif %})"></div>
-		<q class="meta__quote">{{ post.title }}</q>
 		{% if loop.index < 4 %}<span class="rank position{{ loop.index }}"></span>{% endif %}
 		<div class="meta__container">
 			<div class="row">
 				<div class="col-xs-12  col-sm-12">
 					<div class="meta__info">
+						<h2>{{ post.title }}</h2>
 						<span class="meta__author">
 						  {% if not post.anonymous -%}
 						  <img src="{{ post.user.profile_picture_url or '/static/images/user.png' }}" alt="{{ post.user.name }}" width="30" height="30">

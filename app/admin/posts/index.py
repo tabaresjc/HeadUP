@@ -5,7 +5,7 @@ from flask_login import current_user, login_required
 from flask_classy import FlaskView, route
 from flask_babel import gettext
 from flask_paginate import Pagination
-from app.models import Post, Picture
+from app.models import Post, Picture, Feed
 from app.utils.response import resp
 from forms import PostForm
 
@@ -53,6 +53,7 @@ class PostsView(FlaskView):
 
                 post.update_score(page_view=1)
                 post.save()
+                Feed.clear_feed_cache()
 
                 if form.remain.data:
                     url = url_for('PostsView:put', id=post.id)
@@ -96,6 +97,7 @@ class PostsView(FlaskView):
                     post.cover_picture_id = picture.id if picture else 0
 
                 post.save()
+                Feed.clear_feed_cache()
                 message = gettext('Stamp was succesfully saved')
 
                 if remain:

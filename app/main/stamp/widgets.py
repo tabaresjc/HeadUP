@@ -6,20 +6,20 @@ from app.models import Feed
 
 
 @widgets.widget('stamps_welcome')
-def stamps_welcome(page=1, limit=20):
-    key = 'stamps/welcome.v1.%s.%s' % (page, limit)
-    obj = cache.get(key)
+def stamps_welcome(page=1):
+    obj = Feed.get_feed_cache(page=page)
 
     if obj is None:
-        posts, total = Feed.posts(page=page, limit=limit)
+        posts, total = Feed.posts(page=page, limit=Feed.FEED_DEFAULT_LIMIT)
 
         obj = render_template('main/stamp/partials/_index.html',
                               posts=posts,
                               page=page,
-                              limit=limit,
+                              limit=Feed.FEED_DEFAULT_LIMIT,
                               total=total)
 
-        cache.set(key, obj, 3600)
+        Feed.set_feed_cache(obj, page=page)
+
     return obj
 
 

@@ -236,7 +236,7 @@ h2 + h3 {
 // Title on front page is pushed up 30px;
 .front-page-title {
   @media (min-width: $screen-sm-min) {
-    margin-top: -30px;
+    margin-top: 0;
   }
 }
 
