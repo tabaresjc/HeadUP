@@ -1,5 +1,6 @@
 {% extends "main/layout/base.html" %}
 {% set title = post.title %}
+{% set description = post.extra_body | striptags | limit(300) %}
 
 {% block meta_extra %}
 	{% if config.FB_APPID %}

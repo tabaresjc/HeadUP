@@ -17,6 +17,7 @@ _paragraph_re = re.compile(r'(?:\r\n|\r|\n){2,}')
 def init_jinja_filters(app):
     app.jinja_env.filters['datetimeformat'] = Utilities.datetimeformat
     app.jinja_env.filters['humanformat'] = Utilities.humanformat
+    app.jinja_env.filters['limit'] = Utilities.limit
     app.jinja_env.filters['htmltruncate'] = truncate.html_truncate
     app.jinja_env.trim_blocks = True
     app.jinja_env.lstrip_blocks = True
@@ -108,3 +109,18 @@ class Utilities(object):
     def humanformat(value):
         # return human(value, precision=1)
         return gettext('Posted %(ago)s ago', ago=format_timedelta(value, granularity='second'))
+
+    @staticmethod
+    def limit(inputstr, total, ellipsis='...'):
+        if not inputstr:
+            return inputstr
+
+        if not isinstance(inputstr, basestring):
+            inputstr = unicode(inputstr)
+        elif not isinstance(inputstr, unicode):
+            inputstr = unicode(inputstr, 'utf-8', 'strict')
+
+        if total >= len(inputstr):
+            return inputstr
+
+        return u''.join([inputstr[:total], ellipsis])
