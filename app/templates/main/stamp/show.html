@@ -85,3 +85,10 @@
 {% block sidebar %}
 	{% include 'main/common/_sidebar_user.html' %}
 {% endblock %}
+
+
+{% block custom_js %}
+	{% if config.ADDTHIS_LINK_STAMP %}
+	<script type="text/javascript" src="{{ config.ADDTHIS_LINK_STAMP }}"></script>
+	{% endif %}
+{% endblock %}
