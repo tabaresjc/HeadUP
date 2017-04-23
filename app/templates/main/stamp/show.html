@@ -3,6 +3,7 @@
 {% set description = post.extra_body | striptags | limit(300) %}
 
 {% block meta_extra %}
+	<link rel="canonical" href="{{ url_for('stamp.show', id=post.id, _external=true) | replace_host_name }}">
 	{% if config.FB_APPID %}
 	<meta property="fb:app_id" content="{{ config.FB_APPID }}" />
 	{% endif %}

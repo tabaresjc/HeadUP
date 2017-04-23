@@ -54,3 +54,9 @@ FB_APPID = None
 # Addthis
 # *************************************************
 ADDTHIS_LINK_STAMP = None
+
+# *************************************************
+# Domain Replacement
+# *************************************************
+MAIN_DOMAIN = 'headup.space'
+OTHER_DOMAINS = ['headup.world', 'hup.space']

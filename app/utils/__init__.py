@@ -18,6 +18,7 @@ def init_jinja_filters(app):
     app.jinja_env.filters['datetimeformat'] = Utilities.datetimeformat
     app.jinja_env.filters['humanformat'] = Utilities.humanformat
     app.jinja_env.filters['limit'] = Utilities.limit
+    app.jinja_env.filters['replace_host_name'] = Utilities.replace_host_name
     app.jinja_env.filters['htmltruncate'] = truncate.html_truncate
     app.jinja_env.trim_blocks = True
     app.jinja_env.lstrip_blocks = True
@@ -124,3 +125,17 @@ class Utilities(object):
             return inputstr
 
         return u''.join([inputstr[:total], ellipsis])
+
+    @staticmethod
+    def replace_host_name(inputstr):
+        if not inputstr or not config.MAIN_DOMAIN:
+            return inputstr
+
+        if config.MAIN_DOMAIN in inputstr:
+            return inputstr
+
+        for domain in config.OTHER_DOMAINS:
+            if domain in inputstr:
+                inputstr = inputstr.replace(domain, config.MAIN_DOMAIN)
+
+        return inputstr
