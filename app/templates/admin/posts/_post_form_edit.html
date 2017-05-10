@@ -25,7 +25,8 @@
 		<label style="float:right">{{ form.anonymous()|safe }} {{ _('Make this Post Anonymous') }}</label>
 	</div>
 	<div class="actions clearfix">
-		<input type="submit" value="{{ _('Save') }}" class="btn btn-large btn-primary pull-right">
-		<input id="btn_editor_clear" type="reset" value="{{ _('Clear') }}" class="btn btn-large btn-danger">
+		<input type="submit" name="public" value="{{ _('Save') }}" class="btn btn-large btn-primary btn-lg pull-right">
+		<input type="submit" name="draft" value="{{ _('Draft') }}" class="btn btn-large btn-default btn-lg pull-right margin-right">
+		<input id="btn_editor_clear" type="reset" value="{{ _('Clear') }}" class="btn btn-large btn-danger btn-lg">
 	</div>
 </form>

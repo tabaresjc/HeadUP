@@ -1,0 +1,28 @@
+{% extends "admin/layout/base.html" %}
+
+{% set title = _('Draft | %(page)s', page=page) %}
+
+{% block main %}
+<div class="row head">
+  <div class="col-md-12">
+    <h4>{{ _('Drafts') }}</h4>
+  </div>
+</div>
+<br/>
+<div class="row">
+  <div class="col-md-9">
+    {% if posts and posts.count() -%}
+	    {{ pag('admin.posts.draft_list', page, limit, total, _('stamps'), kind='info')|safe }}
+	    {{ pag('admin.posts.draft_list', page, limit, total, _('stamps'), kind='links')|safe }}
+	    <div class="clearfix"></div>
+	    {% for post in posts %}
+	    	{% include 'admin/posts/_post_item.html' %}
+	    {% endfor %}
+	    {{ pag('admin.posts.draft_list', page, limit, total, _('stamps'), kind='links')|safe }}
+    {%- endif %}
+  </div>
+  <div class="col-md-3">
+    {% include 'admin/posts/_sidebar.html' %}
+  </div>
+</div>
+{% endblock %}

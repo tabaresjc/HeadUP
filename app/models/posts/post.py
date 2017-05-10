@@ -14,6 +14,10 @@ class Post(db.Model, ModelBase):
     __json_meta__ = ['id', 'title', 'body', 'extra_body',
                      'user', 'cover_picture', 'category', 'anonymous']
 
+
+    POST_PUBLIC = 0x001
+    POST_DRAFT  = 0x100
+
     id = db.Column(db.Integer, primary_key=True)
 
     title = db.Column(db.String(255))
@@ -21,6 +25,8 @@ class Post(db.Model, ModelBase):
         'users.id', ondelete='CASCADE', onupdate='NO ACTION'))
     category_id = db.Column(db.Integer, db.ForeignKey(
         'categories.id', ondelete='CASCADE', onupdate='NO ACTION'))
+
+    status = db.Column(db.Integer, default=1, index=True)
 
     anonymous = db.Column(db.SmallInteger)
     score = db.Column(db.Numeric(20, 7), default=0, server_default='0', nullable=False)
@@ -70,6 +76,14 @@ class Post(db.Model, ModelBase):
         return self.set_attribute('page_views', value)
 
     @property
+    def save_count(self):
+        return self.get_attribute('save_count', 1)
+
+    @save_count.setter
+    def save_count(self, value):
+        return self.set_attribute('save_count', value)
+
+    @property
     def votes(self):
         return self.get_attribute('votes', 0)
 
@@ -113,12 +127,21 @@ class Post(db.Model, ModelBase):
         return base64.b64encode(bytes('%s' % self.id)).encode('hex')
 
     @classmethod
-    def decode_id(self, encodedValue):
+    def decode_id(cls, encodedValue):
         return long(base64.b64decode(encodedValue.decode('hex')))
 
     @classmethod
-    def posts_by_user(cls, user_id, limit=10, page=1, orderby='id', desc=True):
-        query = cls.query.filter_by(user_id=user_id)
+    def minimun_date(cls):
+        return datetime.datetime(1, 1, 1, 0, 0, 0, 0)
+
+    @classmethod
+    def current_date(cls):
+        return datetime.datetime.utcnow
+
+    @classmethod
+    def posts_by_user(cls, user_id, limit=10, page=1, status=POST_PUBLIC, orderby='id', desc=True):
+        query = cls.query.filter_by(user_id=user_id, status=status)
+
         count = query.count()
         records = []
         if count:

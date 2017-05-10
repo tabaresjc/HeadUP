@@ -25,6 +25,18 @@ class PostsView(FlaskView):
                     limit=limit,
                     total=total)
 
+    @route('/drafts', methods=['GET'])
+    def draft_list(self):
+        page = request.values.get('page', 1, type=int)
+        limit = 10
+        posts, total = Post.posts_by_user(current_user.id, page=page,
+            limit=limit, status=Post.POST_DRAFT)
+        return resp('admin/posts/drafts.html',
+                    posts=posts,
+                    page=page,
+                    limit=limit,
+                    total=total)
+
     def get(self, id):
         post = Post.get_by_id(id)
 
@@ -40,6 +52,7 @@ class PostsView(FlaskView):
     def post(self):
         form = PostForm()
         if request.method == 'POST':
+            is_draft = not request.values.get('draft') is None
             if form.validate_on_submit():
                 post = Post.create()
                 form.populate_obj(post)
@@ -52,8 +65,14 @@ class PostsView(FlaskView):
                     post.cover_picture_id = picture.id if picture else 0
 
                 post.update_score(page_view=1)
+
+                if is_draft:
+                    post.status = Post.POST_DRAFT
+
                 post.save()
-                Feed.clear_feed_cache()
+
+                if not is_draft:
+                    Feed.clear_feed_cache()
 
                 if form.remain.data:
                     url = url_for('PostsView:put', id=post.id)
@@ -76,6 +95,8 @@ class PostsView(FlaskView):
             flash(gettext('The requested stamp was not found'), 'error')
             return redirect(url_for('PostsView:index'))
 
+        is_draft = not request.values.get('draft') is None
+
         if request.method in ['POST']:
             form = PostForm()
             if form.validate_on_submit():
@@ -96,9 +117,22 @@ class PostsView(FlaskView):
                     picture.save_file(f, current_user)
                     post.cover_picture_id = picture.id if picture else 0
 
+                if is_draft:
+                    post.status = Post.POST_DRAFT
+                else:
+                    if post.save_count == 1:
+                        post.created_at = Post.current_date()
+                    post.status = Post.POST_PUBLIC
+                    post.save_count += 1
+
+                post.status = Post.POST_DRAFT if is_draft else Post.POST_PUBLIC
                 post.save()
-                Feed.clear_feed_cache()
-                message = gettext('Stamp was succesfully saved')
+
+                if is_draft:
+                    message = gettext('Draft was succesfully saved')
+                else:
+                    Feed.clear_feed_cache()
+                    message = gettext('Stamp was succesfully saved')
 
                 if remain:
                     return resp('admin/posts/edit.html', form=form, post=post, message=message)
@@ -126,8 +160,14 @@ class PostsView(FlaskView):
         try:
             title = post.title
             Post.delete(post.id)
-            return resp(url_for('PostsView:index'), redirect=True,
-                        message=gettext('The stamp "%(title)s" was removed', title=title))
+
+            ret = request.values.get('return')
+            message = gettext('The stamp "%(title)s" was removed', title=title)
+            if ret:
+                return resp(ret, redirect=True, message=message)
+
+            return resp(url_for('PostsView:index'), redirect=True, message=message)
+
         except Exception as e:
             return resp(url_for('PostsView:index'), status=False, redirect=True,
                         message=gettext('Error while removing the stamp, %(error)s', error=e))

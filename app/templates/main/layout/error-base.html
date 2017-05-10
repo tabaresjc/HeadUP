@@ -28,6 +28,7 @@
         <ul>
           <li><a href="{{ url_for('dashboard') }}">{{ _('Dashboard') }}</a></li>
           <li><a href="{{ url_for('PostsView:index') }}">{{ _('Posts') }}</a></li>
+          <li><a href="{{ url_for('PostsView:draft_list') }}">{{ _('Drafts') }}</a></li>
           <li><a href="{{ url_for('PostsView:post') }}">{{ _('New Post') }}</a></li>
           <li><a href="{{ url_for('UsersView:get', id = current_user.id) }}">{{ _('Profile') }}</a></li>
         </ul>

@@ -10,9 +10,13 @@
         {% else %}
         <div class="item">
           <i class="icon-reorder"></i>
-          <a href="{{ url_for('PostsView:index') }}">{{ _('Stamp List') }}</a>
+          <a href="{{ url_for('PostsView:index') }}">{{ _('Stamps') }}</a>
         </div>
         {% endif %}
+		<div class="item">
+		  <i class="icon-reorder"></i>
+		  <a href="{{ url_for('PostsView:draft_list') }}">{{ _('Drafts') }}</a>
+		</div>
         {% if request.endpoint.startswith('PostsView:put') %}
         <div class="item">
           <i class="icon-eye-open icon-formatted"></i>

@@ -22,6 +22,7 @@
                 </a>
                 <ul class="dropdown-menu">
                     <li><a href="{{ url_for('PostsView:index') }}">{{ _('Posts') }}</a></li>
+                    <li><a href="{{ url_for('PostsView:draft_list') }}">{{ _('Drafts') }}</a></li>
                     <li><a href="{{ url_for('PostsView:post') }}">{{ _('Add new Post') }}</a></li>
                     <li class="divider"></li>
                     <li><a href="{{ url_for('UsersView:get', id=current_user.id) }}">{{ _('Profile') }}</a></li>
