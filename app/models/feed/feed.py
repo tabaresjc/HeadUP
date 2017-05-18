@@ -47,7 +47,7 @@ class Feed:
     @classmethod
     def posts(cls, page=1, limit=10):
         from app.models import Post
-        query = Post.query
+        query = Post.query.filter_by(status=Post.POST_PUBLIC)
         count = query.count()
         records = []
         if count:
@@ -59,7 +59,7 @@ class Feed:
     @classmethod
     def ranking(cls, page=1, limit=20):
         from app.models import Post
-        query = Post.query
+        query = Post.query.filter_by(status=Post.POST_PUBLIC)
         count = query.count()
         records = []
         if count:
@@ -71,7 +71,7 @@ class Feed:
     @classmethod
     def category(cls, category, page=1, limit=20):
         from app.models import Post
-        query = Post.query.filter_by(category_id=category.id)
+        query = Post.query.filter_by(category_id=category.id, status=Post.POST_PUBLIC)
         count = query.count()
         records = []
         if count:
