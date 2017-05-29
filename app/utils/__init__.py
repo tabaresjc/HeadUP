@@ -109,6 +109,8 @@ class Utilities(object):
     @staticmethod
     def humanformat(value):
         # return human(value, precision=1)
+        if not value:
+            return ''
         return gettext('Posted %(ago)s ago', ago=format_timedelta(value, granularity='second'))
 
     @staticmethod

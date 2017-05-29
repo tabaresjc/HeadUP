@@ -39,14 +39,6 @@ class Post(db.Model, ModelBase):
         return '<Post %r>' % (self.title)
 
     @property
-    def editor_version(self):
-        return self.get_attribute('editor_version', 0)
-
-    @editor_version.setter
-    def editor_version(self, value):
-        return self.set_attribute('editor_version', value)
-
-    @property
     def body(self):
         return self.get_attribute('body')
 
@@ -106,6 +98,14 @@ class Post(db.Model, ModelBase):
     @down_votes.setter
     def down_votes(self, value):
         return self.set_attribute('down_votes', value)
+
+    @property
+    def editor_version(self):
+        return self.get_attribute('editor_version', 0)
+
+    @editor_version.setter
+    def editor_version(self, value):
+        return self.set_attribute('editor_version', value)
 
     def is_mine(self):
         return current_user.is_authenticated and self.user.id == current_user.id
