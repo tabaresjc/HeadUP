@@ -121,8 +121,9 @@ class PostsView(FlaskView):
                 if is_draft:
                     post.status = Post.POST_DRAFT
                 else:
-                    if post.save_count == 1:
+                    if post.save_count == 1 or post.created_at is None:
                         post.created_at = Post.current_date()
+                        post.save_count = 1
                     post.status = Post.POST_PUBLIC
                     post.save_count += 1
 

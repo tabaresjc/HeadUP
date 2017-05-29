@@ -144,7 +144,7 @@ class Post(db.Model, ModelBase):
 
     @classmethod
     def current_date(cls):
-        return datetime.datetime.utcnow
+        return datetime.datetime.utcnow()
 
     @classmethod
     def posts_by_user(cls, user_id, limit=10, page=1, status=POST_PUBLIC, orderby='id', desc=True):
