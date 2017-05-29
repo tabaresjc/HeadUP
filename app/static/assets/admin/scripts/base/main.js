@@ -36,5 +36,6 @@ require([
 	'notification',
 	'profileUploader',
 	'plugins/theme',
-	'plugins/upload'
+	'plugins/upload',
+	'plugins/editor'
 ]);

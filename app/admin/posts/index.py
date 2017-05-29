@@ -69,6 +69,7 @@ class PostsView(FlaskView):
                 if is_draft:
                     post.status = Post.POST_DRAFT
 
+                post.editor_version = 1
                 post.save()
 
                 if not is_draft:
@@ -126,6 +127,7 @@ class PostsView(FlaskView):
                     post.save_count += 1
 
                 post.status = Post.POST_DRAFT if is_draft else Post.POST_PUBLIC
+                post.editor_version = 1
                 post.save()
 
                 if is_draft:

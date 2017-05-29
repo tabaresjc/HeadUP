@@ -16,6 +16,7 @@ class PostForm(Form):
     anonymous = BooleanField(lazy_gettext('Anonymous'), default=0)
     remain = BooleanField(lazy_gettext('Show Post'), default=False)
     cover_picture_id = HiddenField()
+    editor_version = HiddenField()
 
     def __init__(self, post=None, *args, **kwargs):
         Form.__init__(self, *args, **kwargs)
@@ -28,3 +29,4 @@ class PostForm(Form):
             self.anonymous.data = post.anonymous
             self.category_id.data = post.category_id
             self.cover_picture_id.data = post.cover_picture_id
+            self.editor_version.data = post.editor_version

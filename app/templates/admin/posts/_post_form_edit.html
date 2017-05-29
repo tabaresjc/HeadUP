@@ -20,6 +20,7 @@
 	{{ render_inline_field(form.extra_body, id="txt_solution", placeholder=_('Your Solution – Description of what you did (150 words)'), rows="8", style="width:100%; padding: 8px;") }}
 	{{ render_inline_field(form.category_id, class="form-control") }}
 	{{ render_inline_field(form.cover_picture_id) }}
+	{{ render_inline_field(form.editor_version) }}
 	<div class="checkbox clearfix">
 		{% if post %}<label>{{ form.remain()|safe }} {{ _('Keep working on the stamp') }}</label>{% endif %}
 		<label style="float:right">{{ form.anonymous()|safe }} {{ _('Make this Post Anonymous') }}</label>

@@ -75,7 +75,11 @@
 					<a href="{{ url_for('stamp.show', id=post.id) }}">{{ post.title }}</a>
 				</h1>
 				<h3>{{ post.body|safe }}</h3>
-				{{ post.extra_body|nl2br|safe }}
+				{% if post.editor_version %}
+					{{ post.extra_body|safe }}
+				{% else %}
+					{{ post.extra_body|nl2br|safe }}
+				{% endif %}
 			</div>
 		</div>
 	</div>

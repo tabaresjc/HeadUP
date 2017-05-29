@@ -39,6 +39,14 @@ class Post(db.Model, ModelBase):
         return '<Post %r>' % (self.title)
 
     @property
+    def editor_version(self):
+        return self.get_attribute('editor_version', 0)
+
+    @editor_version.setter
+    def editor_version(self, value):
+        return self.set_attribute('editor_version', value)
+
+    @property
     def body(self):
         return self.get_attribute('body')
 
