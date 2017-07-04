@@ -1,6 +1,6 @@
 define(['jquery', 'fullPage'], function ($) {
 	$('#fullpage').fullpage({
-		sectionsColor: ['#1bbc9b', '#4BBFC3', '#7BAABE', 'whitesmoke', '#ccddff'],
+		sectionsColor: ['#ffffff', '#ffffff', '#ffffff', '#ffffff', '#ffffff'],
 		scrollingSpeed: 500,
 		slidesNavigation: 'true'
 	});
