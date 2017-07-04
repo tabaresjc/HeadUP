@@ -1,3 +1,8 @@
+.fp-slide,
+.fp-slidesContainer,
+.slide {
+    height: 100vh;
+}
 .section {
 	text-align: center;
 	color: #fff
@@ -45,31 +50,32 @@
 .sliding-image .slide {
 	background-position: top left, center center;
 	background-size: auto, cover;
-	background-repeat: repeat, no-repeat
+	background-repeat: repeat, no-repeat;
 	display: none;
+	background-image: none;
 }
 
 .sliding-image .slide.active {
 	display: table;
 }
 
-.slide_1 {
+.slide_1.active {
 	background-image: url(/static/assets/headsup/images/lp-home/bg-pattern4.png), url(/static/assets/headsup/images/lp-home/screen-bg_1.jpg)
 }
 
-.slide_2 {
+.slide_2.active {
 	background-image: url(/static/assets/headsup/images/lp-home/bg-pattern4.png), url(/static/assets/headsup/images/lp-home/screen-bg_2.jpg)
 }
 
-.slide_3 {
+.slide_3.active {
 	background-image: url(/static/assets/headsup/images/lp-home/bg-pattern4.png), url(/static/assets/headsup/images/lp-home/screen-bg_3.jpg)
 }
 
-.slide_4 {
+.slide_4.active {
 	background-image: url(/static/assets/headsup/images/lp-home/bg-pattern4.png), url(/static/assets/headsup/images/lp-home/screen-bg_4.jpg)
 }
 
-.slide_5 {
+.slide_5.active {
 	background-image: url(/static/assets/headsup/images/lp-home/bg-pattern4.png), url(/static/assets/headsup/images/lp-home/screen-bg_5.jpg)
 }
 
