@@ -7,7 +7,7 @@ from flask_wtf import Form
 from flask_babel import lazy_gettext, gettext
 from app import app, login_manager
 from forms import LoginForm, SignUpForm
-from app.models import User
+from app.models import User, GuestUser
 import datetime
 
 mod = Blueprint('sessions', __name__)
@@ -15,7 +15,7 @@ mod = Blueprint('sessions', __name__)
 # add our view as the login view to finish configuring the LoginManager
 login_manager.login_view = "sessions.login"
 login_manager.login_message = lazy_gettext('Please log in to access this page.')
-
+login_manager.anonymous_user = GuestUser
 
 @login_manager.user_loader
 def load_user(userid):

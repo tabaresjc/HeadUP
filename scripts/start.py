@@ -2,10 +2,14 @@
 
 import click
 from flask import Flask
-from . import app
+from app import app
 
 
-@app.cli.command()
+@click.group()
+def cli():
+    pass
+
+@cli.command()
 def db_init():
     """Initialize the database."""
     from app import db
@@ -19,7 +23,7 @@ def db_init():
     c2.save()
 
 
-@app.cli.command()
+@cli.command()
 def db_update():
     """Update Database."""
     click.echo('Update Database.')
@@ -27,7 +31,7 @@ def db_update():
     db.create_all()
 
 
-@app.cli.command()
+@cli.command()
 @click.option('--name', default=None, help='User\'s name')
 @click.option('--email', default='', help='User\'s email')
 @click.option('--password', default=None, help='User\'s password')

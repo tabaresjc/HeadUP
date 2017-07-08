@@ -79,7 +79,7 @@ app.json_encoder = CustomJSONEncoder
 @babel.localeselector
 def get_locale():
     from flask_login import current_user
-    if current_user and current_user.is_authenticated:
+    if current_user and current_user.lang:
         return current_user.lang
     return flask.request.accept_languages.best_match(config.LANGUAGES.keys())
 
@@ -87,9 +87,9 @@ def get_locale():
 @babel.timezoneselector
 def get_timezone():
     from flask_login import current_user
-    if current_user and current_user.is_authenticated:
+    if current_user and current_user.timezone:
         return current_user.timezone
-    return "Asia/Tokyo"
+    return config.DEFAULT_TIMEZONE
 
 
 @app.errorhandler(401)
