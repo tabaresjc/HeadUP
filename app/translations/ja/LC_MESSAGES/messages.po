@@ -1,14 +1,14 @@
 # Japanese translations for PROJECT.
-# Copyright (C) 2016 ORGANIZATION
+# Copyright (C) 2017 ORGANIZATION
 # This file is distributed under the same license as the PROJECT project.
-# FIRST AUTHOR <EMAIL@ADDRESS>, 2016.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2017.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2016-11-15 12:18+0900\n"
-"PO-Revision-Date: 2016-11-15 12:22+0900\n"
+"POT-Creation-Date: 2017-07-08 18:14+0900\n"
+"PO-Revision-Date: 2017-07-08 18:14+0900\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: ja\n"
 "Language-Team: ja <LL@li.org>\n"
@@ -16,22 +16,22 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Generated-By: Babel 2.3.4\n"
-
-#: app/__init__.py:53
-msgid "Please log in to access this page."
-msgstr ""
+"Generated-By: Babel 2.4.0\n"
 
 #: app/admin/categories/forms.py:10 app/admin/sessions/forms.py:19
-#: app/admin/users/forms.py:25
+#: app/admin/users/forms.py:25 app/templates/admin/categories/index.html:21
+#: app/templates/admin/signup.html:20 app/templates/admin/users/index.html:21
+#: app/templates/admin/users/show.html:59
 msgid "Name"
 msgstr ""
 
 #: app/admin/categories/forms.py:11
+#: app/templates/admin/categories/index.html:22
 msgid "Slug"
 msgstr ""
 
 #: app/admin/categories/forms.py:12
+#: app/templates/admin/categories/index.html:23
 msgid "Description"
 msgstr ""
 
@@ -47,7 +47,11 @@ msgstr ""
 msgid "Please select a different category"
 msgstr ""
 
-#: app/admin/categories/index.py:31
+#: app/admin/categories/index.py:31 app/templates/admin/index.html:27
+#: app/templates/admin/index.html:28 app/templates/admin/index.html:33
+#: app/templates/admin/users/user_posts.html:8
+#: app/templates/admin/users/user_posts.html:9
+#: app/templates/admin/users/user_posts.html:14
 msgid "posts"
 msgstr ""
 
@@ -74,8 +78,8 @@ msgid "Error while creating the category"
 msgstr ""
 
 #: app/admin/categories/index.py:78 app/admin/categories/index.py:105
-#: app/admin/categories/index.py:108 app/admin/posts/index.py:65
-#: app/admin/posts/index.py:106
+#: app/admin/categories/index.py:108 app/admin/posts/index.py:87
+#: app/admin/posts/index.py:146
 msgid "Invalid submission, please check the message below"
 msgstr ""
 
@@ -113,7 +117,7 @@ msgstr ""
 msgid "Error while removing the category"
 msgstr ""
 
-#: app/admin/posts/forms.py:10
+#: app/admin/posts/forms.py:10 app/templates/admin/users/show.html:103
 msgid "Title"
 msgstr ""
 
@@ -126,6 +130,10 @@ msgid "Your Solution"
 msgstr ""
 
 #: app/admin/posts/forms.py:16
+#: app/templates/main/stamp/partials/_stamp_ranking_feed.html:18
+#: app/templates/main/stamp/partials/_stamp_single.html:15
+#: app/templates/main/stamp/partials/_stamp_single.html:41
+#: app/templates/main/stamp/show.html:36
 msgid "Anonymous"
 msgstr ""
 
@@ -133,43 +141,49 @@ msgstr ""
 msgid "Show Post"
 msgstr ""
 
-#: app/admin/posts/index.py:33 app/admin/posts/index.py:74
+#: app/admin/posts/index.py:45 app/admin/posts/index.py:96
 msgid "The requested stamp was not found"
 msgstr ""
 
-#: app/admin/posts/index.py:62
+#: app/admin/posts/index.py:84
 msgid "Stamp succesfully created"
 msgstr ""
 
-#: app/admin/posts/index.py:98
+#: app/admin/posts/index.py:135
+msgid "Draft was succesfully saved"
+msgstr ""
+
+#: app/admin/posts/index.py:138
 msgid "Stamp was succesfully saved"
 msgstr ""
 
-#: app/admin/posts/index.py:117
+#: app/admin/posts/index.py:157
 msgid "The stamp was not found"
 msgstr ""
 
-#: app/admin/posts/index.py:127
+#: app/admin/posts/index.py:168
 #, python-format
 msgid "The stamp \"%(title)s\" was removed"
 msgstr ""
 
-#: app/admin/posts/index.py:130
+#: app/admin/posts/index.py:176
 #, python-format
 msgid "Error while removing the stamp, %(error)s"
 msgstr ""
 
 #: app/admin/sessions/forms.py:10 app/admin/sessions/forms.py:17
-#: app/admin/users/forms.py:20
+#: app/admin/users/forms.py:20 app/templates/admin/index.html:13
 msgid "Email"
 msgstr ""
 
 #: app/admin/sessions/forms.py:12 app/admin/sessions/forms.py:21
 #: app/admin/users/forms.py:36 app/admin/users/forms.py:62
+#: app/templates/admin/signin.html:15 app/templates/admin/signup.html:22
 msgid "Password"
 msgstr ""
 
 #: app/admin/sessions/forms.py:20 app/admin/users/forms.py:29
+#: app/templates/admin/signup.html:21 app/templates/admin/users/show.html:63
 msgid "Nickname"
 msgstr ""
 
@@ -181,67 +195,73 @@ msgstr ""
 msgid "Confirm"
 msgstr ""
 
-#: app/admin/sessions/forms.py:37
+#: app/admin/sessions/forms.py:39
 msgid "This name has invalid characters"
 msgstr ""
 
-#: app/admin/sessions/forms.py:42
+#: app/admin/sessions/forms.py:44
 msgid "This nickname has invalid characters"
 msgstr ""
 
-#: app/admin/sessions/forms.py:47
+#: app/admin/sessions/forms.py:49
 msgid "This email is already in use. Please choose another one."
 msgstr ""
 
-#: app/admin/sessions/forms.py:52
+#: app/admin/sessions/forms.py:54
 msgid "This nickname is already in use. Please choose another one."
 msgstr ""
 
-#: app/admin/sessions/index.py:24
+#: app/admin/sessions/index.py:17
+msgid "Please log in to access this page."
+msgstr ""
+
+#: app/admin/sessions/index.py:28
 msgid "You need to sign in or sign up before continuing."
 msgstr ""
 
-#: app/admin/sessions/index.py:31 app/admin/sessions/index.py:86
+#: app/admin/sessions/index.py:35 app/admin/sessions/index.py:90
 msgid "You are already signed in."
 msgstr ""
 
-#: app/admin/sessions/index.py:48
+#: app/admin/sessions/index.py:52
 msgid "Signed in successfully."
 msgstr ""
 
-#: app/admin/sessions/index.py:51
+#: app/admin/sessions/index.py:55
 msgid "User not found or invalid password"
 msgstr ""
 
-#: app/admin/sessions/index.py:53
+#: app/admin/sessions/index.py:57
 msgid "Invalid email or password"
 msgstr ""
 
-#: app/admin/sessions/index.py:56
+#: app/admin/sessions/index.py:60 app/templates/admin/signin.html:20
 msgid "Sign In"
 msgstr ""
 
-#: app/admin/sessions/index.py:76
+#: app/admin/sessions/index.py:80
 msgid "Signed out successfully."
 msgstr ""
 
-#: app/admin/sessions/index.py:78
+#: app/admin/sessions/index.py:82
 msgid "Invalid Action"
 msgstr ""
 
-#: app/admin/sessions/index.py:103
+#: app/admin/sessions/index.py:107
 msgid "Welcome! You have signed up successfully."
 msgstr ""
 
-#: app/admin/sessions/index.py:106
+#: app/admin/sessions/index.py:110
 msgid "Error while saving the new user, please retry later"
 msgstr ""
 
-#: app/admin/sessions/index.py:109
+#: app/admin/sessions/index.py:113 app/templates/admin/signup.html:15
+#: app/templates/admin/signup.html:31
 msgid "Sign Up"
 msgstr ""
 
-#: app/admin/users/forms.py:32
+#: app/admin/users/forms.py:32 app/templates/admin/users/index.html:30
+#: app/templates/admin/users/show.html:75
 msgid "Role"
 msgstr ""
 
@@ -249,11 +269,11 @@ msgstr ""
 msgid "Please repeat the password"
 msgstr ""
 
-#: app/admin/users/forms.py:46
+#: app/admin/users/forms.py:46 app/templates/admin/users/show.html:67
 msgid "Address"
 msgstr ""
 
-#: app/admin/users/forms.py:49
+#: app/admin/users/forms.py:49 app/templates/admin/users/show.html:71
 msgid "Phone"
 msgstr ""
 
@@ -269,7 +289,7 @@ msgstr ""
 msgid "Invalid submission, please check the messages below"
 msgstr ""
 
-#: app/admin/users/index.py:66 app/admin/users/index.py:114
+#: app/admin/users/index.py:66 app/admin/users/index.py:128
 msgid "The user was not found"
 msgstr ""
 
@@ -292,10 +312,602 @@ msgid "Writer"
 msgstr ""
 
 #: app/models/users/role.py:9 app/models/users/role.py:12
+#: app/templates/admin/layout/navbar.html:11
 msgid "Admin"
 msgstr ""
 
-#: app/utils/__init__.py:108
+#: app/templates/admin/index.html:2
+msgid "Blog Administration"
+msgstr ""
+
+#: app/templates/admin/index.html:14
+msgid "Last login"
+msgstr ""
+
+#: app/templates/admin/index.html:37 app/templates/admin/posts/index.html:25
+msgid ""
+"You don't have any stamps yet<br/>Participate in this comunity by "
+"writting stamps!!"
+msgstr ""
+
+#: app/templates/admin/categories/index.html:24
+#: app/templates/admin/index.html:50 app/templates/admin/layout/navbar.html:24
+#: app/templates/main/layout/error-base.html:30
+msgid "Posts"
+msgstr ""
+
+#: app/templates/admin/signin.html:3
+msgid "Signin"
+msgstr ""
+
+#: app/templates/admin/signin.html:13
+msgid "Log in"
+msgstr ""
+
+#: app/templates/admin/signin.html:15
+msgid "E-mail address"
+msgstr ""
+
+#: app/templates/admin/signin.html:26
+msgid "Don't have an account?"
+msgstr ""
+
+#: app/templates/admin/signin.html:27
+msgid "Sign up"
+msgstr ""
+
+#: app/templates/admin/signup.html:3
+#: app/templates/main/common/_sidebar_user.html:23
+#: app/templates/main/site/home.html:22
+msgid "Signup"
+msgstr ""
+
+#: app/templates/admin/signup.html:19
+msgid "E-mail"
+msgstr ""
+
+#: app/templates/admin/signup.html:23
+msgid "Confirm Password"
+msgstr ""
+
+#: app/templates/admin/signup.html:37
+msgid "Already have an account?"
+msgstr ""
+
+#: app/templates/admin/signup.html:38
+msgid "Sign in"
+msgstr ""
+
+#: app/templates/admin/categories/_category_form_add.html:4
+#: app/templates/admin/categories/_category_form_edit.html:4
+msgid "Insert Name"
+msgstr ""
+
+#: app/templates/admin/categories/_category_form_add.html:5
+#: app/templates/admin/categories/_category_form_edit.html:5
+msgid "Insert Slug"
+msgstr ""
+
+#: app/templates/admin/categories/_category_form_add.html:6
+#: app/templates/admin/categories/_category_form_edit.html:6
+msgid "Describe the category..."
+msgstr ""
+
+#: app/templates/admin/categories/_category_form_add.html:8
+#: app/templates/admin/categories/_category_form_edit.html:8
+#: app/templates/admin/comments/_comment_form_edit.html:13
+#: app/templates/admin/posts/_post_form_edit.html:29
+msgid "Save"
+msgstr ""
+
+#: app/templates/admin/categories/_category_form_add.html:9
+#: app/templates/admin/categories/_category_form_edit.html:9
+#: app/templates/admin/categories/index.html:67
+#: app/templates/admin/comments/_comment_form_edit.html:14
+#: app/templates/admin/posts/_post_form_edit.html:31
+#: app/templates/admin/users/edit.html:29
+msgid "Clear"
+msgstr ""
+
+#: app/templates/admin/categories/_sidebar.html:6
+#: app/templates/admin/comments/_sidebar.html:6
+msgid "Go to"
+msgstr ""
+
+#: app/templates/admin/categories/_sidebar.html:10
+msgid "Categories List"
+msgstr ""
+
+#: app/templates/admin/categories/_sidebar.html:17
+msgid "Delete Category"
+msgstr ""
+
+#: app/templates/admin/categories/_sidebar.html:21
+#: app/templates/admin/categories/add.html:6
+msgid "New Category"
+msgstr ""
+
+#: app/templates/admin/categories/edit.html:6
+msgid "Edit Category"
+msgstr ""
+
+#: app/templates/admin/categories/index.html:6
+msgid "Categories"
+msgstr ""
+
+#: app/templates/admin/categories/index.html:25
+msgid "Actions"
+msgstr ""
+
+#: app/templates/admin/categories/index.html:57
+msgid "Transfer Posts"
+msgstr ""
+
+#: app/templates/admin/categories/index.html:68
+msgid "Transfer"
+msgstr ""
+
+#: app/templates/admin/comments/_comment_form_edit.html:4
+msgid "Edit comment..."
+msgstr ""
+
+#: app/templates/admin/comments/_comment_form_edit.html:8
+msgid "View comment after save"
+msgstr ""
+
+#: app/templates/admin/comments/_comment_item.html:6
+#: app/templates/admin/comments/_comment_item.html:9
+#, python-format
+msgid "Posted by %(name)s"
+msgstr ""
+
+#: app/templates/admin/comments/_comment_item.html:12
+#, python-format
+msgid "In response to the user %(name)s"
+msgstr ""
+
+#: app/templates/admin/comments/_comment_item.html:40
+#, python-format
+msgid "This will remove the comment '%(title)s', Are you sure?"
+msgstr ""
+
+#: app/templates/admin/comments/_sidebar.html:10
+msgid "Comments List"
+msgstr ""
+
+#: app/templates/admin/comments/_sidebar.html:15
+msgid "Show Comment"
+msgstr ""
+
+#: app/templates/admin/comments/_sidebar.html:20
+#: app/templates/admin/comments/_sidebar.html:32
+msgid "Delete Comment"
+msgstr ""
+
+#: app/templates/admin/comments/_sidebar.html:28
+#: app/templates/admin/comments/edit.html:6
+msgid "Edit Comment"
+msgstr ""
+
+#: app/templates/admin/comments/edit.html:8
+#, python-format
+msgid "Comment by %(name)s"
+msgstr ""
+
+#: app/templates/admin/comments/edit.html:13
+#, python-format
+msgid "Posted at \"%(title)s\""
+msgstr ""
+
+#: app/templates/admin/comments/index.html:6
+msgid "Comments"
+msgstr ""
+
+#: app/templates/admin/comments/show.html:6
+msgid "Show comment"
+msgstr ""
+
+#: app/templates/admin/layout/navbar.html:11
+#: app/templates/main/layout/header-no-menu.html:31
+#: app/templates/main/layout/header.html:26
+msgid "My Page"
+msgstr ""
+
+#: app/templates/admin/layout/navbar.html:16
+#, python-format
+msgid "Welcome, %(name)s"
+msgstr ""
+
+#: app/templates/admin/layout/navbar.html:20
+msgid "Your account"
+msgstr ""
+
+#: app/templates/admin/layout/navbar.html:25
+#: app/templates/admin/posts/_sidebar.html:18
+#: app/templates/admin/posts/drafts.html:8
+#: app/templates/main/layout/error-base.html:31
+msgid "Drafts"
+msgstr ""
+
+#: app/templates/admin/layout/navbar.html:26
+msgid "Add new Post"
+msgstr ""
+
+#: app/templates/admin/layout/navbar.html:28
+#: app/templates/main/layout/error-base.html:33
+msgid "Profile"
+msgstr ""
+
+#: app/templates/admin/layout/navbar.html:32
+msgid "Top"
+msgstr ""
+
+#: app/templates/admin/layout/navbar.html:37
+#: app/templates/admin/layout/sidebar.html:93
+msgid "Sign Out"
+msgstr ""
+
+#: app/templates/admin/posts/_post_form_edit.html:12
+msgid "Click here to upload a new cover picture"
+msgstr ""
+
+#: app/templates/admin/posts/_post_form_edit.html:18
+msgid "Title – Best description of your post (30 words)"
+msgstr ""
+
+#: app/templates/admin/posts/_post_form_edit.html:19
+msgid "Your Challenge – Description of what you had to cope with (150 words)"
+msgstr ""
+
+#: app/templates/admin/posts/_post_form_edit.html:20
+msgid "Your Solution – Description of what you did (150 words)"
+msgstr ""
+
+#: app/templates/admin/posts/_post_form_edit.html:25
+msgid "Keep working on the stamp"
+msgstr ""
+
+#: app/templates/admin/posts/_post_form_edit.html:26
+msgid "Make this Post Anonymous"
+msgstr ""
+
+#: app/templates/admin/posts/_post_form_edit.html:30
+msgid "Draft"
+msgstr ""
+
+#: app/templates/admin/posts/_post_item.html:31
+#, python-format
+msgid "This will remove '%(title)s', Are you sure?"
+msgstr ""
+
+#: app/templates/admin/posts/_sidebar.html:8
+#: app/templates/admin/posts/_sidebar.html:33
+#: app/templates/admin/posts/_sidebar.html:49
+#: app/templates/admin/posts/edit.html:8
+#: app/templates/main/common/_sidebar_user.html:37
+msgid "New Stamp"
+msgstr ""
+
+#: app/templates/admin/posts/_sidebar.html:13
+#: app/templates/admin/posts/index.html:8
+msgid "Stamps"
+msgstr ""
+
+#: app/templates/admin/posts/_sidebar.html:23
+msgid "Show Stamp"
+msgstr ""
+
+#: app/templates/admin/posts/_sidebar.html:28
+#: app/templates/admin/posts/_sidebar.html:44
+msgid "Delete Stamp"
+msgstr ""
+
+#: app/templates/admin/posts/_sidebar.html:40
+#: app/templates/admin/posts/edit.html:3 app/templates/admin/posts/edit.html:8
+#: app/templates/main/common/_sidebar_user.html:35
+msgid "Edit Stamp"
+msgstr ""
+
+#: app/templates/admin/posts/drafts.html:3
+#, python-format
+msgid "Draft | %(page)s"
+msgstr ""
+
+#: app/templates/admin/posts/drafts.html:15
+#: app/templates/admin/posts/drafts.html:16
+#: app/templates/admin/posts/drafts.html:21
+#: app/templates/admin/posts/index.html:15
+#: app/templates/admin/posts/index.html:16
+#: app/templates/admin/posts/index.html:21
+msgid "stamps"
+msgstr ""
+
+#: app/templates/admin/posts/index.html:3
+#, python-format
+msgid "Stamps | %(page)s"
+msgstr ""
+
+#: app/templates/admin/users/add.html:3
+msgid "Create new user"
+msgstr ""
+
+#: app/templates/admin/users/edit.html:1
+#, python-format
+msgid "Edit User's Profile | %(name)s"
+msgstr ""
+
+#: app/templates/admin/users/edit.html:8
+msgid "Edit User Info"
+msgstr ""
+
+#: app/templates/admin/users/edit.html:30
+msgid "Save Changes"
+msgstr ""
+
+#: app/templates/admin/users/index.html:2
+#, python-format
+msgid "Users | Page %(page)s"
+msgstr ""
+
+#: app/templates/admin/users/index.html:9
+msgid "Users"
+msgstr ""
+
+#: app/templates/admin/users/index.html:13
+#: app/templates/admin/users/index.html:14
+#: app/templates/admin/users/index.html:72
+msgid "users"
+msgstr ""
+
+#: app/templates/admin/users/index.html:24
+msgid "Signed up"
+msgstr ""
+
+#: app/templates/admin/users/index.html:27
+msgid "Total Posts"
+msgstr ""
+
+#: app/templates/admin/users/show.html:3
+#, python-format
+msgid "User's Profile | %(name)s"
+msgstr ""
+
+#: app/templates/admin/users/show.html:20
+msgid "User List"
+msgstr ""
+
+#: app/templates/admin/users/partials/_sidebar.html:36
+#: app/templates/admin/users/show.html:29
+#, python-format
+msgid "This will remove '%(name)s', Are you sure?"
+msgstr ""
+
+#: app/templates/admin/users/show.html:31
+msgid "Remove"
+msgstr ""
+
+#: app/templates/admin/users/show.html:37
+msgid "Edit"
+msgstr ""
+
+#: app/templates/admin/users/show.html:47
+msgid "User's Info"
+msgstr ""
+
+#: app/templates/admin/users/show.html:51
+msgid "Id"
+msgstr ""
+
+#: app/templates/admin/users/show.html:55
+msgid "Last seen"
+msgstr ""
+
+#: app/templates/admin/users/show.html:79
+msgid "Created at"
+msgstr ""
+
+#: app/templates/admin/users/show.html:95
+msgid "Recent posts"
+msgstr ""
+
+#: app/templates/admin/users/show.html:101
+msgid "Posted at"
+msgstr ""
+
+#: app/templates/admin/users/show.html:102
+msgid "Updated at"
+msgstr ""
+
+#: app/templates/admin/users/user_posts.html:3
+#, python-format
+msgid "User's Posts | %(name)s"
+msgstr ""
+
+#: app/templates/admin/users/partials/_sidebar.html:16
+msgid "Update Profile Picture"
+msgstr ""
+
+#: app/templates/admin/users/partials/_sidebar.html:26
+msgid "Show User"
+msgstr ""
+
+#: app/templates/admin/users/partials/_sidebar.html:31
+msgid "Users List"
+msgstr ""
+
+#: app/templates/admin/users/partials/_sidebar.html:36
+msgid "Delete User"
+msgstr ""
+
+#: app/templates/admin/users/partials/_sidebar.html:41
+msgid "New User"
+msgstr ""
+
+#: app/templates/main/index.html:2
+msgid "Home"
+msgstr ""
+
+#: app/templates/main/post-search.html:7
+msgid "Search posts with the following keyword"
+msgstr ""
+
+#: app/templates/main/post-search.html:10
+msgid "Search"
+msgstr ""
+
+#: app/templates/main/common/401.html:13
+msgid "Ackward... Apparently you are not authorized to perform this action."
+msgstr ""
+
+#: app/templates/main/common/403.html:13
+msgid "Ackward... Apparently you don't have permission to access this resource."
+msgstr ""
+
+#: app/templates/main/common/404.html:13
+msgid "Well... The page you are looking for can't be found!"
+msgstr ""
+
+#: app/templates/main/common/500.html:13
+msgid "The administrator has been notified. Sorry for the inconvenience!"
+msgstr ""
+
+#: app/templates/main/common/_sidebar_user.html:21
+msgid "Would you like to be part of this community?"
+msgstr ""
+
+#: app/templates/main/common/_sidebar_user.html:22
+#: app/templates/main/site/home.html:21
+msgid "Login"
+msgstr ""
+
+#: app/templates/main/common/_sidebar_user.html:33
+msgid "Start here!"
+msgstr ""
+
+#: app/templates/main/layout/error-base.html:12
+msgid "Headsup"
+msgstr ""
+
+#: app/templates/main/layout/error-base.html:15
+msgid "Home Page"
+msgstr ""
+
+#: app/templates/main/layout/error-base.html:27
+msgid "MyPage"
+msgstr ""
+
+#: app/templates/main/layout/error-base.html:29
+#: app/templates/main/site/home.html:18
+msgid "Dashboard"
+msgstr ""
+
+#: app/templates/main/layout/error-base.html:32
+msgid "New Post"
+msgstr ""
+
+#: app/templates/main/layout/footer.html:8
+#: app/templates/main/layout/header.html:32
+msgid "Code of conduct"
+msgstr ""
+
+#: app/templates/main/layout/footer.html:10
+#: app/templates/main/site/policy.html:2
+msgid "Terms of service"
+msgstr ""
+
+#: app/templates/main/layout/header-no-menu.html:5
+#: app/templates/main/layout/header.html:5
+msgid "Logo"
+msgstr ""
+
+#: app/templates/main/layout/header-no-menu.html:11
+#: app/templates/main/layout/header.html:10
+msgid "Toggle navigation"
+msgstr ""
+
+#: app/templates/main/layout/header-no-menu.html:22
+#: app/templates/main/layout/header-no-menu.html:25
+#: app/templates/main/layout/header.html:20
+msgid "Latest"
+msgstr ""
+
+#: app/templates/main/layout/header-no-menu.html:28
+#: app/templates/main/layout/header.html:23
+msgid "H'UP"
+msgstr ""
+
+#: app/templates/main/layout/header.html:29
+msgid "Terms of Service"
+msgstr ""
+
+#: app/templates/main/site/conduct.html:2
+msgid "Code of Conduct"
+msgstr ""
+
+#: app/templates/main/site/home.html:2
+msgid "Social Storytelling Network to keep it up"
+msgstr ""
+
+#: app/templates/main/site/home.html:3
+msgid ""
+"HeadUP is your Social Storytelling Network, a problem-and-solution "
+"website where you can transmit your optimism, tell how you keep or kept "
+"your head up. Share positive and fun experiences, write personal "
+"achievements or read remarkable success stories. Tell the world about a "
+"solution you found to a challenging situation or a difficulty you once "
+"faced. Speak up, HeadUP."
+msgstr ""
+
+#: app/templates/main/site/home.html:13
+msgid "Tell the World and beyond what was your solution…<br/>Speak up, HeadUp!"
+msgstr ""
+
+#: app/templates/main/site/home.html:14
+msgid "Stories"
+msgstr ""
+
+#: app/templates/main/site/home.html:20
+msgid "Would you like to be part of it?"
+msgstr ""
+
+#: app/templates/main/stamp/category.html:2
+#, python-format
+msgid "Stamps for %(category)s"
+msgstr ""
+
+#: app/templates/main/stamp/ranking.html:2
+msgid "Ranking"
+msgstr ""
+
+#: app/templates/main/stamp/partials/_stamp_ranking_feed.html:20
+#: app/templates/main/stamp/partials/_stamp_single.html:17
+#: app/templates/main/stamp/partials/_stamp_single.html:43
+#: app/templates/main/stamp/show.html:38
+#, python-format
+msgid "Posted by %(user)s"
+msgstr ""
+
+#: app/templates/main/stamp/partials/_stamp_ranking_feed.html:22
+#: app/templates/main/stamp/partials/_stamp_single.html:19
+#: app/templates/main/stamp/partials/_stamp_single.html:45
+#: app/templates/main/stamp/show.html:40
+#, python-format
+msgid "in %(category)s"
+msgstr ""
+
+#: app/templates/main/stamp/partials/_ranking.html:5
+msgid "Most Popular"
+msgstr ""
+
+#: app/templates/main/stamp/partials/_stamp_ranking_feed.html:36
+msgid "Read More..."
+msgstr ""
+
+#: app/templates/main/stamp/partials/_stamp_single.html:66
+msgid "Continue Reading..."
+msgstr ""
+
+#: app/utils/__init__.py:114
 #, python-format
 msgid "Posted %(ago)s ago"
 msgstr ""

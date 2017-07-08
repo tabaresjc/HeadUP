@@ -20,7 +20,6 @@ def translation_init(language='en'):
         return
     try:
         os.system('pybabel init -i scripts/translation/messages.pot -d app/translations -l ' + language)
-        os.unlink('scripts/translation/messages.pot')
     except Exception as e:
         click.echo('Error: %s' % e)
 
@@ -29,7 +28,11 @@ def translation_init(language='en'):
 def translation_compile():
     """Compile the translatable strings from the app and dump into translations folder."""
     try:
-        os.system('pybabel extract -F scripts/translation/babel.cfg -k lazy_gettext -o scripts/translation/messages.pot app')
+        try:
+            os.unlink('scripts/translation/messages.pot')
+        except:
+            pass
+        os.system('pybabel extract -F scripts/translation/babel.cfg -k lazy_gettext -o scripts/translation/messages.pot .')
         os.system('pybabel compile -f -d app/translations')
     except Exception as e:
         click.echo('Error: %s' % e)
@@ -38,16 +41,11 @@ def translation_compile():
 def translation_update():
     """Update the translation file."""
     try:
-        os.system('pybabel update -i messages.pot -d translations')
-    except Exception as e:
-        click.echo('Error: %s' % e)
-
-
-@cli.command()
-def translation_update():
-    try:
-        os.system('pybabel extract -F scripts/translation/babel.cfg -k lazy_gettext -o scripts/translation/messages.pot app')
+        try:
+            os.unlink('scripts/translation/messages.pot')
+        except:
+            pass
+        os.system('pybabel extract -F scripts/translation/babel.cfg -k lazy_gettext -o scripts/translation/messages.pot .')
         os.system('pybabel update -i scripts/translation/messages.pot -d app/translations')
-        os.unlink('scripts/translation/messages.pot')
     except Exception as e:
         click.echo('Error: %s' % e)
