@@ -9,14 +9,15 @@ from app import app
 def cli():
     pass
 
+
 @cli.command()
 def db_init():
     """Initialize the database."""
     from app import db
+    from app.models import Category
     db.create_all()
     click.echo('Initialize the database.')
 
-    from app.models import Category
     c1 = Category.create(name=u'Uncategorized', slug=u'uncategorized')
     c1.save()
     c2 = Category.create(name=u'News', slug=u'news')

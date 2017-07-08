@@ -32,10 +32,12 @@ def translation_compile():
             os.unlink('scripts/translation/messages.pot')
         except:
             pass
-        os.system('pybabel extract -F scripts/translation/babel.cfg -k lazy_gettext -o scripts/translation/messages.pot .')
+        os.system(
+            'pybabel extract -F scripts/translation/babel.cfg -k lazy_gettext -o scripts/translation/messages.pot .')
         os.system('pybabel compile -f -d app/translations')
     except Exception as e:
         click.echo('Error: %s' % e)
+
 
 @cli.command()
 def translation_update():
@@ -45,7 +47,8 @@ def translation_update():
             os.unlink('scripts/translation/messages.pot')
         except:
             pass
-        os.system('pybabel extract -F scripts/translation/babel.cfg -k lazy_gettext -o scripts/translation/messages.pot .')
+        os.system(
+            'pybabel extract -F scripts/translation/babel.cfg -k lazy_gettext -o scripts/translation/messages.pot .')
         os.system('pybabel update -i scripts/translation/messages.pot -d app/translations')
     except Exception as e:
         click.echo('Error: %s' % e)

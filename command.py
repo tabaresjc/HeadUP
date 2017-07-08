@@ -20,7 +20,12 @@ class MyScripts(click.MultiCommand):
         with open(fn) as f:
             code = compile(f.read(), fn, 'exec')
             eval(code, ns, ns)
-        return ns['cli']
+        if 'cli' in ns:
+            return ns['cli']
+        if 'main' in ns:
+            return ns['main']
+        else:
+            None
 
 
 cli = MyScripts(help='Options avalaible for this project')

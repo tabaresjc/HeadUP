@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/jctt1983/HeadsUp.svg?branch=master)](https://travis-ci.org/jctt1983/HeadsUp)
+
 # HeadsUp (Web)
 
 Web Application built with python and Flask Framework to host a super awesome Blogging site.
