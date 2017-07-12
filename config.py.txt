@@ -41,11 +41,6 @@ CACHE_FOLDER_PATH=os.path.join(BASE_DIR, CACHE_FOLDER)
 CACHE_CONFIG = {'CACHE_TYPE': 'filesystem', 'CACHE_DIR': CACHE_FOLDER_PATH}
 
 # *************************************************
-# Google Analytics
-# *************************************************
-GA_TRACKING_ID = None
-
-# *************************************************
 # Facebook APP ID
 # *************************************************
 FB_APPID = None
@@ -60,3 +55,9 @@ ADDTHIS_LINK_STAMP = None
 # *************************************************
 MAIN_DOMAIN = 'headup.space'
 OTHER_DOMAINS = ['www.headup.space', 'www.headup.world', 'headup.world', 'www.hup.space', 'hup.space']
+
+# *************************************************
+# Google Analytics
+# *************************************************
+GA_TRACKING_ID = None
+GA_TRACKINGS = {}
