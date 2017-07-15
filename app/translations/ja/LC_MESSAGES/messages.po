@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-07-08 18:14+0900\n"
+"POT-Creation-Date: 2017-07-23 00:39+0900\n"
 "PO-Revision-Date: 2017-07-08 18:14+0900\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: ja\n"
@@ -79,7 +79,7 @@ msgstr ""
 
 #: app/admin/categories/index.py:78 app/admin/categories/index.py:105
 #: app/admin/categories/index.py:108 app/admin/posts/index.py:87
-#: app/admin/posts/index.py:146
+#: app/admin/posts/index.py:148
 msgid "Invalid submission, please check the message below"
 msgstr ""
 
@@ -130,10 +130,7 @@ msgid "Your Solution"
 msgstr ""
 
 #: app/admin/posts/forms.py:16
-#: app/templates/main/stamp/partials/_stamp_ranking_feed.html:18
-#: app/templates/main/stamp/partials/_stamp_single.html:15
-#: app/templates/main/stamp/partials/_stamp_single.html:41
-#: app/templates/main/stamp/show.html:36
+#: app/templates/main/stamp/partials/_stamp_single.html:44
 msgid "Anonymous"
 msgstr ""
 
@@ -153,20 +150,20 @@ msgstr ""
 msgid "Draft was succesfully saved"
 msgstr ""
 
-#: app/admin/posts/index.py:138
+#: app/admin/posts/index.py:140
 msgid "Stamp was succesfully saved"
 msgstr ""
 
-#: app/admin/posts/index.py:157
+#: app/admin/posts/index.py:159
 msgid "The stamp was not found"
 msgstr ""
 
-#: app/admin/posts/index.py:168
+#: app/admin/posts/index.py:170
 #, python-format
 msgid "The stamp \"%(title)s\" was removed"
 msgstr ""
 
-#: app/admin/posts/index.py:176
+#: app/admin/posts/index.py:178
 #, python-format
 msgid "Error while removing the stamp, %(error)s"
 msgstr ""
@@ -177,7 +174,7 @@ msgid "Email"
 msgstr ""
 
 #: app/admin/sessions/forms.py:12 app/admin/sessions/forms.py:21
-#: app/admin/users/forms.py:36 app/admin/users/forms.py:62
+#: app/admin/users/forms.py:36 app/admin/users/forms.py:60
 #: app/templates/admin/signin.html:15 app/templates/admin/signup.html:22
 msgid "Password"
 msgstr ""
@@ -265,7 +262,7 @@ msgstr ""
 msgid "Role"
 msgstr ""
 
-#: app/admin/users/forms.py:38 app/admin/users/forms.py:64
+#: app/admin/users/forms.py:38 app/admin/users/forms.py:62
 msgid "Please repeat the password"
 msgstr ""
 
@@ -332,7 +329,6 @@ msgstr ""
 
 #: app/templates/admin/categories/index.html:24
 #: app/templates/admin/index.html:50 app/templates/admin/layout/navbar.html:24
-#: app/templates/main/layout/error-base.html:30
 msgid "Posts"
 msgstr ""
 
@@ -357,8 +353,6 @@ msgid "Sign up"
 msgstr ""
 
 #: app/templates/admin/signup.html:3
-#: app/templates/main/common/_sidebar_user.html:23
-#: app/templates/main/site/home.html:22
 msgid "Signup"
 msgstr ""
 
@@ -395,7 +389,6 @@ msgstr ""
 
 #: app/templates/admin/categories/_category_form_add.html:8
 #: app/templates/admin/categories/_category_form_edit.html:8
-#: app/templates/admin/comments/_comment_form_edit.html:13
 #: app/templates/admin/posts/_post_form_edit.html:29
 msgid "Save"
 msgstr ""
@@ -403,14 +396,12 @@ msgstr ""
 #: app/templates/admin/categories/_category_form_add.html:9
 #: app/templates/admin/categories/_category_form_edit.html:9
 #: app/templates/admin/categories/index.html:67
-#: app/templates/admin/comments/_comment_form_edit.html:14
 #: app/templates/admin/posts/_post_form_edit.html:31
-#: app/templates/admin/users/edit.html:29
+#: app/templates/admin/users/edit.html:28
 msgid "Clear"
 msgstr ""
 
 #: app/templates/admin/categories/_sidebar.html:6
-#: app/templates/admin/comments/_sidebar.html:6
 msgid "Go to"
 msgstr ""
 
@@ -447,69 +438,7 @@ msgstr ""
 msgid "Transfer"
 msgstr ""
 
-#: app/templates/admin/comments/_comment_form_edit.html:4
-msgid "Edit comment..."
-msgstr ""
-
-#: app/templates/admin/comments/_comment_form_edit.html:8
-msgid "View comment after save"
-msgstr ""
-
-#: app/templates/admin/comments/_comment_item.html:6
-#: app/templates/admin/comments/_comment_item.html:9
-#, python-format
-msgid "Posted by %(name)s"
-msgstr ""
-
-#: app/templates/admin/comments/_comment_item.html:12
-#, python-format
-msgid "In response to the user %(name)s"
-msgstr ""
-
-#: app/templates/admin/comments/_comment_item.html:40
-#, python-format
-msgid "This will remove the comment '%(title)s', Are you sure?"
-msgstr ""
-
-#: app/templates/admin/comments/_sidebar.html:10
-msgid "Comments List"
-msgstr ""
-
-#: app/templates/admin/comments/_sidebar.html:15
-msgid "Show Comment"
-msgstr ""
-
-#: app/templates/admin/comments/_sidebar.html:20
-#: app/templates/admin/comments/_sidebar.html:32
-msgid "Delete Comment"
-msgstr ""
-
-#: app/templates/admin/comments/_sidebar.html:28
-#: app/templates/admin/comments/edit.html:6
-msgid "Edit Comment"
-msgstr ""
-
-#: app/templates/admin/comments/edit.html:8
-#, python-format
-msgid "Comment by %(name)s"
-msgstr ""
-
-#: app/templates/admin/comments/edit.html:13
-#, python-format
-msgid "Posted at \"%(title)s\""
-msgstr ""
-
-#: app/templates/admin/comments/index.html:6
-msgid "Comments"
-msgstr ""
-
-#: app/templates/admin/comments/show.html:6
-msgid "Show comment"
-msgstr ""
-
 #: app/templates/admin/layout/navbar.html:11
-#: app/templates/main/layout/header-no-menu.html:31
-#: app/templates/main/layout/header.html:26
 msgid "My Page"
 msgstr ""
 
@@ -525,7 +454,6 @@ msgstr ""
 #: app/templates/admin/layout/navbar.html:25
 #: app/templates/admin/posts/_sidebar.html:18
 #: app/templates/admin/posts/drafts.html:8
-#: app/templates/main/layout/error-base.html:31
 msgid "Drafts"
 msgstr ""
 
@@ -534,7 +462,6 @@ msgid "Add new Post"
 msgstr ""
 
 #: app/templates/admin/layout/navbar.html:28
-#: app/templates/main/layout/error-base.html:33
 msgid "Profile"
 msgstr ""
 
@@ -584,7 +511,6 @@ msgstr ""
 #: app/templates/admin/posts/_sidebar.html:33
 #: app/templates/admin/posts/_sidebar.html:49
 #: app/templates/admin/posts/edit.html:8
-#: app/templates/main/common/_sidebar_user.html:37
 msgid "New Stamp"
 msgstr ""
 
@@ -604,7 +530,6 @@ msgstr ""
 
 #: app/templates/admin/posts/_sidebar.html:40
 #: app/templates/admin/posts/edit.html:3 app/templates/admin/posts/edit.html:8
-#: app/templates/main/common/_sidebar_user.html:35
 msgid "Edit Stamp"
 msgstr ""
 
@@ -640,7 +565,7 @@ msgstr ""
 msgid "Edit User Info"
 msgstr ""
 
-#: app/templates/admin/users/edit.html:30
+#: app/templates/admin/users/edit.html:29
 msgid "Save Changes"
 msgstr ""
 
@@ -744,7 +669,11 @@ msgid "New User"
 msgstr ""
 
 #: app/templates/main/index.html:2
-msgid "Home"
+msgid "LATEST_TITLE"
+msgstr ""
+
+#: app/templates/main/index.html:3
+msgid "LATEST_DESCRIPTION"
 msgstr ""
 
 #: app/templates/main/post-search.html:7
@@ -772,16 +701,30 @@ msgid "The administrator has been notified. Sorry for the inconvenience!"
 msgstr ""
 
 #: app/templates/main/common/_sidebar_user.html:21
-msgid "Would you like to be part of this community?"
+msgid "SIDEBAR_USER_TITLE"
 msgstr ""
 
-#: app/templates/main/common/_sidebar_user.html:22
+#: app/templates/main/common/_sidebar_user.html:23
 #: app/templates/main/site/home.html:21
-msgid "Login"
+msgid "LOGIN_BTN"
 msgstr ""
 
-#: app/templates/main/common/_sidebar_user.html:33
-msgid "Start here!"
+#: app/templates/main/common/_sidebar_user.html:26
+#: app/templates/main/site/home.html:22
+msgid "REGISTER_BTN"
+msgstr ""
+
+#: app/templates/main/common/_sidebar_user.html:37
+msgid "SIDEBAR_STAMP_TITLE"
+msgstr ""
+
+#: app/templates/main/common/_sidebar_user.html:40
+msgid "EDIT_STAMP_LBL"
+msgstr ""
+
+#: app/templates/main/common/_sidebar_user.html:44
+#: app/templates/main/layout/error-base.html:32
+msgid "NEW_STAMP_BTN"
 msgstr ""
 
 #: app/templates/main/layout/error-base.html:12
@@ -789,30 +732,44 @@ msgid "Headsup"
 msgstr ""
 
 #: app/templates/main/layout/error-base.html:15
-msgid "Home Page"
+#: app/templates/main/layout/header-no-menu.html:22
+#: app/templates/main/layout/header.html:20
+msgid "LATEST_LBL"
 msgstr ""
 
 #: app/templates/main/layout/error-base.html:27
-msgid "MyPage"
+#: app/templates/main/layout/header-no-menu.html:28
+#: app/templates/main/layout/header.html:26
+msgid "MYPAGE_LBL"
 msgstr ""
 
 #: app/templates/main/layout/error-base.html:29
 #: app/templates/main/site/home.html:18
-msgid "Dashboard"
+msgid "DASHBOARD_BTN"
 msgstr ""
 
-#: app/templates/main/layout/error-base.html:32
-msgid "New Post"
+#: app/templates/main/layout/error-base.html:30
+msgid "POSTS_BTN"
+msgstr ""
+
+#: app/templates/main/layout/error-base.html:31
+msgid "DRAFT_BTN"
+msgstr ""
+
+#: app/templates/main/layout/error-base.html:33
+msgid "PROFILE_BTN"
 msgstr ""
 
 #: app/templates/main/layout/footer.html:8
 #: app/templates/main/layout/header.html:32
-msgid "Code of conduct"
+#: app/templates/main/site/conduct.html:2
+msgid "CODE_CONDUCT_LBL"
 msgstr ""
 
 #: app/templates/main/layout/footer.html:10
+#: app/templates/main/layout/header.html:29
 #: app/templates/main/site/policy.html:2
-msgid "Terms of service"
+msgid "TOS_LBL"
 msgstr ""
 
 #: app/templates/main/layout/header-no-menu.html:5
@@ -822,52 +779,52 @@ msgstr ""
 
 #: app/templates/main/layout/header-no-menu.html:11
 #: app/templates/main/layout/header.html:10
-msgid "Toggle navigation"
+msgid "TOGGLE_NAVIGATION_LBL"
 msgstr ""
 
-#: app/templates/main/layout/header-no-menu.html:22
 #: app/templates/main/layout/header-no-menu.html:25
-#: app/templates/main/layout/header.html:20
-msgid "Latest"
-msgstr ""
-
-#: app/templates/main/layout/header-no-menu.html:28
 #: app/templates/main/layout/header.html:23
-msgid "H'UP"
-msgstr ""
-
-#: app/templates/main/layout/header.html:29
-msgid "Terms of Service"
-msgstr ""
-
-#: app/templates/main/site/conduct.html:2
-msgid "Code of Conduct"
+msgid "RANKING_LBL"
 msgstr ""
 
 #: app/templates/main/site/home.html:2
-msgid "Social Storytelling Network to keep it up"
+msgid "HOME_TITLE"
 msgstr ""
 
 #: app/templates/main/site/home.html:3
-msgid ""
-"HeadUP is your Social Storytelling Network, a problem-and-solution "
-"website where you can transmit your optimism, tell how you keep or kept "
-"your head up. Share positive and fun experiences, write personal "
-"achievements or read remarkable success stories. Tell the world about a "
-"solution you found to a challenging situation or a difficulty you once "
-"faced. Speak up, HeadUP."
+msgid "HOME_DESCRIPTION"
+msgstr ""
+
+#: app/templates/main/site/home.html:11
+msgid "WELCOME_TITLE_LBL"
 msgstr ""
 
 #: app/templates/main/site/home.html:13
-msgid "Tell the World and beyond what was your solution…<br/>Speak up, HeadUp!"
+msgid "WELCOME_SUBTITLE_LBL"
 msgstr ""
 
 #: app/templates/main/site/home.html:14
-msgid "Stories"
+msgid "GO_TO_STORIES_BTN"
 msgstr ""
 
 #: app/templates/main/site/home.html:20
-msgid "Would you like to be part of it?"
+msgid "WELCOME_SUBTITLE_EXTRA_LBL"
+msgstr ""
+
+#: app/templates/main/site/home.html:30
+msgid "INTRO1_LBL"
+msgstr ""
+
+#: app/templates/main/site/home.html:36
+msgid "INTRO2_LBL"
+msgstr ""
+
+#: app/templates/main/site/home.html:42
+msgid "INTRO3_LBL"
+msgstr ""
+
+#: app/templates/main/site/home.html:48
+msgid "INTRO4_LBL"
 msgstr ""
 
 #: app/templates/main/stamp/category.html:2
@@ -881,34 +838,710 @@ msgstr ""
 
 #: app/templates/main/stamp/partials/_stamp_ranking_feed.html:20
 #: app/templates/main/stamp/partials/_stamp_single.html:17
-#: app/templates/main/stamp/partials/_stamp_single.html:43
 #: app/templates/main/stamp/show.html:38
-#, python-format
-msgid "Posted by %(user)s"
+msgid "ANONYMOUS_LBL"
 msgstr ""
 
-#: app/templates/main/stamp/partials/_stamp_ranking_feed.html:22
-#: app/templates/main/stamp/partials/_stamp_single.html:19
-#: app/templates/main/stamp/partials/_stamp_single.html:45
+#: app/templates/main/stamp/partials/_stamp_ranking_feed.html:23
+#: app/templates/main/stamp/partials/_stamp_single.html:20
+#: app/templates/main/stamp/partials/_stamp_single.html:47
 #: app/templates/main/stamp/show.html:40
-#, python-format
-msgid "in %(category)s"
+msgid "POSTED_BY_USER_LBL"
 msgstr ""
 
 #: app/templates/main/stamp/partials/_ranking.html:5
-msgid "Most Popular"
+msgid "RANKING_TITLE"
 msgstr ""
 
-#: app/templates/main/stamp/partials/_stamp_ranking_feed.html:36
-msgid "Read More..."
-msgstr ""
-
-#: app/templates/main/stamp/partials/_stamp_single.html:66
-msgid "Continue Reading..."
+#: app/templates/main/stamp/partials/_stamp_ranking_feed.html:37
+#: app/templates/main/stamp/partials/_stamp_single.html:68
+msgid "READ_MORE_LBL"
 msgstr ""
 
 #: app/utils/__init__.py:114
 #, python-format
 msgid "Posted %(ago)s ago"
 msgstr ""
+
+#~ msgid "Home"
+#~ msgstr ""
+
+#~ msgid "Terms of Service"
+#~ msgstr ""
+
+#~ msgid "Latest"
+#~ msgstr ""
+
+#~ msgid "H'UP"
+#~ msgstr ""
+
+#~ msgid "Code of conduct"
+#~ msgstr ""
+
+#~ msgid "Terms of service"
+#~ msgstr ""
+
+#~ msgid "Code of Conduct"
+#~ msgstr ""
+
+#~ msgid "Tell the World and beyond what was your solution…<br/>Speak up, HeadUp!"
+#~ msgstr ""
+
+#~ msgid "Stories"
+#~ msgstr ""
+
+#~ msgid "Would you like to be part of it?"
+#~ msgstr ""
+
+#~ msgid "Social Storytelling Network to keep it up"
+#~ msgstr ""
+
+#~ msgid "Latest | Social Storytelling Network to keep it up"
+#~ msgstr ""
+
+#~ msgid ""
+#~ "HeadUP is your Social Storytelling "
+#~ "Network, a problem-and-solution website"
+#~ " where you can transmit your "
+#~ "optimism, tell how you keep or "
+#~ "kept your head up. Share positive "
+#~ "and fun experiences, write personal "
+#~ "achievements or read remarkable success "
+#~ "stories. Tell the world about a "
+#~ "solution you found to a challenging "
+#~ "situation or a difficulty you once "
+#~ "faced. Speak up, HeadUP."
+#~ msgstr ""
+
+#~ msgid "Edit comment..."
+#~ msgstr ""
+
+#~ msgid "View comment after save"
+#~ msgstr ""
+
+#~ msgid "Posted by %(name)s"
+#~ msgstr ""
+
+#~ msgid "In response to the user %(name)s"
+#~ msgstr ""
+
+#~ msgid "This will remove the comment '%(title)s', Are you sure?"
+#~ msgstr ""
+
+#~ msgid "Comments List"
+#~ msgstr ""
+
+#~ msgid "Show Comment"
+#~ msgstr ""
+
+#~ msgid "Delete Comment"
+#~ msgstr ""
+
+#~ msgid "Edit Comment"
+#~ msgstr ""
+
+#~ msgid "Comment by %(name)s"
+#~ msgstr ""
+
+#~ msgid "Posted at \"%(title)s\""
+#~ msgstr ""
+
+#~ msgid "Comments"
+#~ msgstr ""
+
+#~ msgid "Show comment"
+#~ msgstr ""
+
+#~ msgid "in %(category)s"
+#~ msgstr ""
+
+#~ msgid "Read More..."
+#~ msgstr ""
+
+#~ msgid "Posted by %(user)s"
+#~ msgstr ""
+
+#~ msgid "Continue Reading..."
+#~ msgstr ""
+
+#~ msgid "POSTED_CATEGORY_LBL"
+#~ msgstr ""
+
+#~ msgid "Name"
+#~ msgstr ""
+
+#~ msgid "Slug"
+#~ msgstr ""
+
+#~ msgid "Description"
+#~ msgstr ""
+
+#~ msgid "From"
+#~ msgstr ""
+
+#~ msgid "To"
+#~ msgstr ""
+
+#~ msgid "Please select a different category"
+#~ msgstr ""
+
+#~ msgid "posts"
+#~ msgstr ""
+
+#~ msgid "Categories | %(page)s"
+#~ msgstr ""
+
+#~ msgid "The posts were transfered from %(from_name)s to %(to_name)s"
+#~ msgstr ""
+
+#~ msgid "Either category was not found"
+#~ msgstr ""
+
+#~ msgid "Category succesfully created"
+#~ msgstr ""
+
+#~ msgid "Error while creating the category"
+#~ msgstr ""
+
+#~ msgid "Invalid submission, please check the message below"
+#~ msgstr ""
+
+#~ msgid "Create Category"
+#~ msgstr ""
+
+#~ msgid "The category was not found"
+#~ msgstr ""
+
+#~ msgid "Category was succesfully saved"
+#~ msgstr ""
+
+#~ msgid "Error while updating the category"
+#~ msgstr ""
+
+#~ msgid "Edit Category: %(name)s"
+#~ msgstr ""
+
+#~ msgid "Sorry, the last category can not be removed"
+#~ msgstr ""
+
+#~ msgid "The category \"%(name)s\" was removed"
+#~ msgstr ""
+
+#~ msgid "Error while removing the category"
+#~ msgstr ""
+
+#~ msgid "Title"
+#~ msgstr ""
+
+#~ msgid "Your Challenge"
+#~ msgstr ""
+
+#~ msgid "Your Solution"
+#~ msgstr ""
+
+#~ msgid "Anonymous"
+#~ msgstr ""
+
+#~ msgid "Show Post"
+#~ msgstr ""
+
+#~ msgid "The requested stamp was not found"
+#~ msgstr ""
+
+#~ msgid "Stamp succesfully created"
+#~ msgstr ""
+
+#~ msgid "Draft was succesfully saved"
+#~ msgstr ""
+
+#~ msgid "Stamp was succesfully saved"
+#~ msgstr ""
+
+#~ msgid "The stamp was not found"
+#~ msgstr ""
+
+#~ msgid "The stamp \"%(title)s\" was removed"
+#~ msgstr ""
+
+#~ msgid "Error while removing the stamp, %(error)s"
+#~ msgstr ""
+
+#~ msgid "Email"
+#~ msgstr ""
+
+#~ msgid "Password"
+#~ msgstr ""
+
+#~ msgid "Nickname"
+#~ msgstr ""
+
+#~ msgid "Passwords must match"
+#~ msgstr ""
+
+#~ msgid "Confirm"
+#~ msgstr ""
+
+#~ msgid "This name has invalid characters"
+#~ msgstr ""
+
+#~ msgid "This nickname has invalid characters"
+#~ msgstr ""
+
+#~ msgid "This email is already in use. Please choose another one."
+#~ msgstr ""
+
+#~ msgid "This nickname is already in use. Please choose another one."
+#~ msgstr ""
+
+#~ msgid "Please log in to access this page."
+#~ msgstr ""
+
+#~ msgid "You need to sign in or sign up before continuing."
+#~ msgstr ""
+
+#~ msgid "You are already signed in."
+#~ msgstr ""
+
+#~ msgid "Signed in successfully."
+#~ msgstr ""
+
+#~ msgid "User not found or invalid password"
+#~ msgstr ""
+
+#~ msgid "Invalid email or password"
+#~ msgstr ""
+
+#~ msgid "Sign In"
+#~ msgstr ""
+
+#~ msgid "Signed out successfully."
+#~ msgstr ""
+
+#~ msgid "Invalid Action"
+#~ msgstr ""
+
+#~ msgid "Welcome! You have signed up successfully."
+#~ msgstr ""
+
+#~ msgid "Error while saving the new user, please retry later"
+#~ msgstr ""
+
+#~ msgid "Sign Up"
+#~ msgstr ""
+
+#~ msgid "Role"
+#~ msgstr ""
+
+#~ msgid "Please repeat the password"
+#~ msgstr ""
+
+#~ msgid "Address"
+#~ msgstr ""
+
+#~ msgid "Phone"
+#~ msgstr ""
+
+#~ msgid "The requested user was not found"
+#~ msgstr ""
+
+#~ msgid "User was succesfully saved"
+#~ msgstr ""
+
+#~ msgid "Invalid submission, please check the messages below"
+#~ msgstr ""
+
+#~ msgid "The user was not found"
+#~ msgstr ""
+
+#~ msgid "User was succesfully updated"
+#~ msgstr ""
+
+#~ msgid "The user \"%(name)s\" was removed"
+#~ msgstr ""
+
+#~ msgid "Error while removing the user, %(error)s"
+#~ msgstr ""
+
+#~ msgid "Writer"
+#~ msgstr ""
+
+#~ msgid "Admin"
+#~ msgstr ""
+
+#~ msgid "Blog Administration"
+#~ msgstr ""
+
+#~ msgid "Last login"
+#~ msgstr ""
+
+#~ msgid ""
+#~ "You don't have any stamps "
+#~ "yet<br/>Participate in this comunity by "
+#~ "writting stamps!!"
+#~ msgstr ""
+
+#~ msgid "Posts"
+#~ msgstr ""
+
+#~ msgid "Signin"
+#~ msgstr ""
+
+#~ msgid "Log in"
+#~ msgstr ""
+
+#~ msgid "E-mail address"
+#~ msgstr ""
+
+#~ msgid "Don't have an account?"
+#~ msgstr ""
+
+#~ msgid "Sign up"
+#~ msgstr ""
+
+#~ msgid "Signup"
+#~ msgstr ""
+
+#~ msgid "E-mail"
+#~ msgstr ""
+
+#~ msgid "Confirm Password"
+#~ msgstr ""
+
+#~ msgid "Already have an account?"
+#~ msgstr ""
+
+#~ msgid "Sign in"
+#~ msgstr ""
+
+#~ msgid "Insert Name"
+#~ msgstr ""
+
+#~ msgid "Insert Slug"
+#~ msgstr ""
+
+#~ msgid "Describe the category..."
+#~ msgstr ""
+
+#~ msgid "Save"
+#~ msgstr ""
+
+#~ msgid "Clear"
+#~ msgstr ""
+
+#~ msgid "Go to"
+#~ msgstr ""
+
+#~ msgid "Categories List"
+#~ msgstr ""
+
+#~ msgid "Delete Category"
+#~ msgstr ""
+
+#~ msgid "New Category"
+#~ msgstr ""
+
+#~ msgid "Edit Category"
+#~ msgstr ""
+
+#~ msgid "Categories"
+#~ msgstr ""
+
+#~ msgid "Actions"
+#~ msgstr ""
+
+#~ msgid "Transfer Posts"
+#~ msgstr ""
+
+#~ msgid "Transfer"
+#~ msgstr ""
+
+#~ msgid "My Page"
+#~ msgstr ""
+
+#~ msgid "Welcome, %(name)s"
+#~ msgstr ""
+
+#~ msgid "Your account"
+#~ msgstr ""
+
+#~ msgid "Drafts"
+#~ msgstr ""
+
+#~ msgid "Add new Post"
+#~ msgstr ""
+
+#~ msgid "Profile"
+#~ msgstr ""
+
+#~ msgid "Top"
+#~ msgstr ""
+
+#~ msgid "Sign Out"
+#~ msgstr ""
+
+#~ msgid "Click here to upload a new cover picture"
+#~ msgstr ""
+
+#~ msgid "Title – Best description of your post (30 words)"
+#~ msgstr ""
+
+#~ msgid "Your Challenge – Description of what you had to cope with (150 words)"
+#~ msgstr ""
+
+#~ msgid "Your Solution – Description of what you did (150 words)"
+#~ msgstr ""
+
+#~ msgid "Keep working on the stamp"
+#~ msgstr ""
+
+#~ msgid "Make this Post Anonymous"
+#~ msgstr ""
+
+#~ msgid "Draft"
+#~ msgstr ""
+
+#~ msgid "This will remove '%(title)s', Are you sure?"
+#~ msgstr ""
+
+#~ msgid "New Stamp"
+#~ msgstr ""
+
+#~ msgid "Stamps"
+#~ msgstr ""
+
+#~ msgid "Show Stamp"
+#~ msgstr ""
+
+#~ msgid "Delete Stamp"
+#~ msgstr ""
+
+#~ msgid "Edit Stamp"
+#~ msgstr ""
+
+#~ msgid "Draft | %(page)s"
+#~ msgstr ""
+
+#~ msgid "stamps"
+#~ msgstr ""
+
+#~ msgid "Stamps | %(page)s"
+#~ msgstr ""
+
+#~ msgid "Create new user"
+#~ msgstr ""
+
+#~ msgid "Edit User's Profile | %(name)s"
+#~ msgstr ""
+
+#~ msgid "Edit User Info"
+#~ msgstr ""
+
+#~ msgid "Save Changes"
+#~ msgstr ""
+
+#~ msgid "Users | Page %(page)s"
+#~ msgstr ""
+
+#~ msgid "Users"
+#~ msgstr ""
+
+#~ msgid "users"
+#~ msgstr ""
+
+#~ msgid "Signed up"
+#~ msgstr ""
+
+#~ msgid "Total Posts"
+#~ msgstr ""
+
+#~ msgid "User's Profile | %(name)s"
+#~ msgstr ""
+
+#~ msgid "User List"
+#~ msgstr ""
+
+#~ msgid "This will remove '%(name)s', Are you sure?"
+#~ msgstr ""
+
+#~ msgid "Remove"
+#~ msgstr ""
+
+#~ msgid "Edit"
+#~ msgstr ""
+
+#~ msgid "User's Info"
+#~ msgstr ""
+
+#~ msgid "Id"
+#~ msgstr ""
+
+#~ msgid "Last seen"
+#~ msgstr ""
+
+#~ msgid "Created at"
+#~ msgstr ""
+
+#~ msgid "Recent posts"
+#~ msgstr ""
+
+#~ msgid "Posted at"
+#~ msgstr ""
+
+#~ msgid "Updated at"
+#~ msgstr ""
+
+#~ msgid "User's Posts | %(name)s"
+#~ msgstr ""
+
+#~ msgid "Update Profile Picture"
+#~ msgstr ""
+
+#~ msgid "Show User"
+#~ msgstr ""
+
+#~ msgid "Users List"
+#~ msgstr ""
+
+#~ msgid "Delete User"
+#~ msgstr ""
+
+#~ msgid "New User"
+#~ msgstr ""
+
+#~ msgid "LATEST_TITLE"
+#~ msgstr ""
+
+#~ msgid "LATEST_DESCRIPTION"
+#~ msgstr ""
+
+#~ msgid "Search posts with the following keyword"
+#~ msgstr ""
+
+#~ msgid "Search"
+#~ msgstr ""
+
+#~ msgid "Ackward... Apparently you are not authorized to perform this action."
+#~ msgstr ""
+
+#~ msgid ""
+#~ "Ackward... Apparently you don't have "
+#~ "permission to access this resource."
+#~ msgstr ""
+
+#~ msgid "Well... The page you are looking for can't be found!"
+#~ msgstr ""
+
+#~ msgid "The administrator has been notified. Sorry for the inconvenience!"
+#~ msgstr ""
+
+#~ msgid "Would you like to be part of this community?"
+#~ msgstr ""
+
+#~ msgid "Login"
+#~ msgstr ""
+
+#~ msgid "Start here!"
+#~ msgstr ""
+
+#~ msgid "Headsup"
+#~ msgstr ""
+
+#~ msgid "Home Page"
+#~ msgstr ""
+
+#~ msgid "MyPage"
+#~ msgstr ""
+
+#~ msgid "Dashboard"
+#~ msgstr ""
+
+#~ msgid "New Post"
+#~ msgstr ""
+
+#~ msgid "CODE_CONDUCT_LBL"
+#~ msgstr ""
+
+#~ msgid "TOS_LBL"
+#~ msgstr ""
+
+#~ msgid "Logo"
+#~ msgstr ""
+
+#~ msgid "Toggle navigation"
+#~ msgstr ""
+
+#~ msgid "LATEST_LBL"
+#~ msgstr ""
+
+#~ msgid "RANKING_LBL"
+#~ msgstr ""
+
+#~ msgid "MYPAGE_LBL"
+#~ msgstr ""
+
+#~ msgid "TOGGLE_NAVIGATION_LBL"
+#~ msgstr ""
+
+#~ msgid "HOME_TITLE"
+#~ msgstr ""
+
+#~ msgid "HOME_DESCRIPTION"
+#~ msgstr ""
+
+#~ msgid "WELCOME_TITLE_LBL"
+#~ msgstr ""
+
+#~ msgid "WELCOME_SUBTITLE_LBL"
+#~ msgstr ""
+
+#~ msgid "GO_TO_STORIES_BTN"
+#~ msgstr ""
+
+#~ msgid "DASHBOARD_BTN"
+#~ msgstr ""
+
+#~ msgid "WELCOME_SUBTITLE_EXTRA_LBL"
+#~ msgstr ""
+
+#~ msgid "LOGIN_BTN"
+#~ msgstr ""
+
+#~ msgid "REGISTER_BTN"
+#~ msgstr ""
+
+#~ msgid "INTRO1_LBL"
+#~ msgstr ""
+
+#~ msgid "INTRO2_LBL"
+#~ msgstr ""
+
+#~ msgid "INTRO3_LBL"
+#~ msgstr ""
+
+#~ msgid "INTRO4_LBL"
+#~ msgstr ""
+
+#~ msgid "Stamps for %(category)s"
+#~ msgstr ""
+
+#~ msgid "Ranking"
+#~ msgstr ""
+
+#~ msgid "ANONYMOUS_LBL"
+#~ msgstr ""
+
+#~ msgid "POSTED_BY_USER_LBL"
+#~ msgstr ""
+
+#~ msgid "Most Popular"
+#~ msgstr ""
+
+#~ msgid "READ_MORE_LBL"
+#~ msgstr ""
+
+#~ msgid "Posted %(ago)s ago"
+#~ msgstr ""
+
+#~ msgid "EDIT_STAMP"
+#~ msgstr ""
 

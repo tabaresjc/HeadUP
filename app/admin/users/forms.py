@@ -50,8 +50,6 @@ class UserForm(Form):
 
     timezone = SelectField(u'Timezone', choices=get_timezones())
 
-    lang = SelectField(u'language', choices=config.LANGUAGES_FORM)
-
     def __init__(self, *args, **kwargs):
         Form.__init__(self, *args, **kwargs)
         self.timezone.data = config.DEFAULT_TIMEZONE
@@ -79,4 +77,3 @@ class EditUserForm(UserForm):
             self.address.data = user.address
             self.phone.data = user.phone
             self.timezone.data = user.timezone
-            self.lang.data = user.lang

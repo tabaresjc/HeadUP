@@ -1,6 +1,6 @@
 {% extends "main/layout/home.html" %}
-{% set title = _('Social Storytelling Network to keep it up') %}
-{% set description = _('HeadUP is your Social Storytelling Network, a problem-and-solution website where you can transmit your optimism, tell how you keep or kept your head up. Share positive and fun experiences, write personal achievements or read remarkable success stories. Tell the world about a solution you found to a challenging situation or a difficulty you once faced. Speak up, HeadUP.') %}
+{% set title = _('HOME_TITLE') %}
+{% set description = _('HOME_DESCRIPTION') %}
 
 {% block full_page %}
 <div class="sliding-image">
@@ -8,18 +8,18 @@
 		<div id="slide__1" class="section">
 			<div id="slide1" class="slide slide_1">
 				<div class="intro">
-					<h1>Welcome to {{ config.SITE_NAME }}!</h1>
+					<h1>{{ _('WELCOME_TITLE_LBL', name=config.SITE_NAME) }}</h1>
 					<div class="panel-welcome">
-						<h6>{{ _('Tell the World and beyond what was your solution…<br/>Speak up, HeadUp!') }}</h6>
-						<a href="{{ url_for('latest') }}" class="btn btn-info">{{ _('Stories') }}</a>
+						<h6>{{ _('WELCOME_SUBTITLE_LBL') }}</h6>
+						<a href="{{ url_for('latest') }}" class="btn btn-info">{{ _('GO_TO_STORIES_BTN') }}</a>
 					</div>
 					<div class="panel-welcome">
 						{% if current_user and current_user.is_authenticated -%}
-						<a href="{{ url_for('dashboard') }}" rel="nofollow" class="btn btn-primary">{{ _('Dashboard') }}</a>
+						<a href="{{ url_for('dashboard') }}" rel="nofollow" class="btn btn-primary">{{ _('DASHBOARD_BTN') }}</a>
 						{%- else %}
-						<h6>{{ _('Would you like to be part of it?') }}</h6>
-						<a href="{{ url_for('sessions.login') }}" rel="nofollow" class="btn btn-primary">{{ _('Login') }}</a>
-						<a href="{{ url_for('sessions.signup') }}" rel="nofollow" class="btn btn-gray">{{ _('Signup') }}</a>
+						<h6>{{ _('WELCOME_SUBTITLE_EXTRA_LBL') }}</h6>
+						<a href="{{ url_for('sessions.login') }}" rel="nofollow" class="btn btn-primary">{{ _('LOGIN_BTN') }}</a>
+						<a href="{{ url_for('sessions.signup') }}" rel="nofollow" class="btn btn-gray">{{ _('REGISTER_BTN') }}</a>
 						{%- endif %}
 					</div>
 				</div>
@@ -27,25 +27,25 @@
 			<div id="slide2" class="slide slide_2">
 				<div class="intro">
 					<h1>{{ config.SITE_NAME }}</h1>
-					<p>Share a positive experience</p>
+					<p>{% trans %}INTRO1_LBL{% endtrans %}</p>
 				</div>
 			</div>
 			<div id="slide3" class="slide slide_3">
 				<div class="intro">
 					<h1>{{ config.SITE_NAME }}</h1>
-					<p>Inspire people with a personal achievement you are proud of</p>
+					<p>{% trans %}INTRO2_LBL{% endtrans %}</p>
 				</div>
 			</div>
 			<div id="slide4" class="slide slide_4">
 				<div class="intro">
 					<h1>{{ config.SITE_NAME }}</h1>
-					<p>Express yourself and tell us how you are keeping your head up</p>
+					<p>{% trans %}INTRO3_LBL{% endtrans %}</p>
 				</div>
 			</div>
 			<div id="slide5" class="slide slide_5">
 				<div class="intro">
 					<h1>{{ config.SITE_NAME }}</h1>
-					<p>Transmit your optimism by writing remarkable success stories</p>
+					<p>{% trans %}INTRO4_LBL{% endtrans %}</p>
 				</div>
 			</div>
 		</div>

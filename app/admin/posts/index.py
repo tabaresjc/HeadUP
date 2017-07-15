@@ -134,7 +134,9 @@ class PostsView(FlaskView):
                 if is_draft:
                     message = gettext('Draft was succesfully saved')
                 else:
-                    Feed.clear_feed_cache()
+                    from flask_babel import get_locale
+                    lang = str(get_locale())
+                    Feed.clear_feed_cache(lang=lang)
                     message = gettext('Stamp was succesfully saved')
 
                 if remain:

@@ -5,9 +5,9 @@
     		Copyright ©{{ today.year if today.year == 2016 else '2016-%s' % today.year  }} {{ config.SITE_NAME }}. All rights reserved.
         </div>
 		<div class="col-xs-12 col-sm-6 copyrights--right">
-			<a href="{{ url_for('code_of_conduct') }}">{{ _('Code of conduct') }}</a>
+			<a href="{{ url_for('code_of_conduct') }}">{{ _('CODE_CONDUCT_LBL') }}</a>
 			<span>&nbsp;|&nbsp;</span>
-			<a href="{{ url_for('privacy_policy') }}">{{ _('Terms of service') }}</a>
+			<a href="{{ url_for('privacy_policy') }}">{{ _('TOS_LBL') }}</a>
 		</div>
       </div>
     </div>

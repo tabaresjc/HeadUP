@@ -10,16 +10,17 @@
 							<h2>{{ post.title }}</h2>
 						</a>
 						<span class="meta__author">
+						  {% set category_name = '<a href="%s" class="custom-link">%s</a>' % (url_for('stamp.category', slug=post.category.slug), post.category.name) %}
+
 						  {% if not post.anonymous -%}
-						  <img src="{{ post.user.profile_picture_url or '/static/images/user.png' }}" alt="{{ post.user.name }}" width="30" height="30">
-						  {% set user_name = '<a href="%s">%s</a>' % (url_for('stamp.show', id=post.id), post.user.name) %}
+						  	<img src="{{ post.user.profile_picture_url or '/static/images/user.png' }}" alt="{{ post.user.name }}" width="30" height="30">
+						  	{% set user_name = '<a href="%s" class="custom-link">%s</a>' % (url_for('stamp.show', id=post.id), post.user.name) %}
 						  {%- else %}
-						  <img src="/static/images/user.png" width="30" height="30"/>
-						  {% set user_name = _('Anonymous') %}
+						  	<img src="/static/images/user.png" width="30" height="30"/>
+						  	{% set user_name = _('ANONYMOUS_LBL') %}
 						  {%- endif %}
-						  {{ _('Posted by %(user)s', user=user_name|safe) }}
-						  {% set category_name = '<a href="%s">%s</a>' % (url_for('stamp.category', slug=post.category.slug), post.category.name) %}
-						  {{ _('in %(category)s', category=category_name|safe) }}
+
+						  {{ _('POSTED_BY_USER_LBL', user=user_name|safe, category=category_name|safe) }}
 						</span>
 						<span class="meta__date"><span class="glyphicon glyphicon-calendar"></span> &nbsp; {{ post.created_at|datetimeformat('EEE, d MMM yyyy') }}</span>
 					</div>
@@ -33,7 +34,7 @@
             <!-- End of the content -->
             <a href="{{ url_for('stamp.show', id=post.id) }}">
                 <div class="read-more">
-                    {{ _('Read More...') }}
+                    {{ _('READ_MORE_LBL') }}
                     <div class="read-more__arrow">
                         <span class="glyphicon  glyphicon-chevron-right"></span>
                     </div>

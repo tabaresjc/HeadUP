@@ -9,10 +9,10 @@
   <div class="row">
     <div class="col-xs-10  col-xs-offset-1">
       <div class="widget-categories  push-down-30">
-        <h6>{{ _('Headsup') }}</h6>
+        <h6>{{ config.SITE_NAME }}</h6>
         <ul>
           <li>
-            <a href="{{ url_for('latest') }}">{{ _('Home Page') }}</a>
+            <a href="{{ url_for('latest') }}">{{ _('LATEST_LBL') }}</a>
           </li>
         </ul>
       </div>
@@ -24,13 +24,13 @@
   <div class="row">
     <div class="col-xs-10  col-xs-offset-1">
       <div class="widget-categories  push-down-30">
-        <h6>{{ _('MyPage') }}</h6>
+        <h6>{{ _('MYPAGE_LBL') }}</h6>
         <ul>
-          <li><a href="{{ url_for('dashboard') }}">{{ _('Dashboard') }}</a></li>
-          <li><a href="{{ url_for('PostsView:index') }}">{{ _('Posts') }}</a></li>
-          <li><a href="{{ url_for('PostsView:draft_list') }}">{{ _('Drafts') }}</a></li>
-          <li><a href="{{ url_for('PostsView:post') }}">{{ _('New Post') }}</a></li>
-          <li><a href="{{ url_for('UsersView:get', id = current_user.id) }}">{{ _('Profile') }}</a></li>
+          <li><a href="{{ url_for('dashboard') }}">{{ _('DASHBOARD_BTN') }}</a></li>
+          <li><a href="{{ url_for('PostsView:index') }}">{{ _('POSTS_BTN') }}</a></li>
+          <li><a href="{{ url_for('PostsView:draft_list') }}">{{ _('DRAFT_BTN') }}</a></li>
+          <li><a href="{{ url_for('PostsView:post') }}">{{ _('NEW_STAMP_BTN') }}</a></li>
+          <li><a href="{{ url_for('UsersView:get', id = current_user.id) }}">{{ _('PROFILE_BTN') }}</a></li>
         </ul>
       </div>
     </div>

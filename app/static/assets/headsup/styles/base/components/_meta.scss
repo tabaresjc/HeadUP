@@ -43,12 +43,14 @@
 		@media (min-width: $screen-sm-min) {
 			color: #e4e4e4;
 		}
+	}
 
-		&:hover {
-			border-bottom: 1px dotted #999;
-			@media (min-width: $screen-sm-min) {
-				border-bottom: 1px dotted #e4e4e4;
-			}
+	.custom-link {
+		text-decoration: none;
+		&:hover,
+		&:focus {
+			color:#51ab6d;
+			text-decoration: none;
 		}
 	}
 
@@ -196,12 +198,15 @@
 
 		a {
 			color: #999;
-
-			&:hover {
-				border-bottom: 1px dotted #999;
+		}
+		.custom-link {
+			text-decoration: none;
+			&:hover,
+			&:focus {
+				color:#51ab6d;
+				text-decoration: none;
 			}
 		}
-
 		.meta__info {
 			.meta__date {
 				display: block;

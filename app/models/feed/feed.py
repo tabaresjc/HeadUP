@@ -6,7 +6,7 @@ import datetime
 
 
 class Feed:
-    CACHE_INDEX_NAME = 'stamps/welcome.v1.%s.%s'
+    CACHE_INDEX_NAME = 'stamps/welcome.v1.%s.%s.%s'
     FEED_DEFAULT_LIMIT = 20
 
     vote_factor = 10
@@ -30,18 +30,18 @@ class Feed:
         return round((sign * order) + (seconds / 45000), 7)
 
     @classmethod
-    def get_feed_cache(cls, page=1, limit=FEED_DEFAULT_LIMIT):
-        key = cls.CACHE_INDEX_NAME % (page, limit)
+    def get_feed_cache(cls, page=1, limit=FEED_DEFAULT_LIMIT, lang='en'):
+        key = cls.CACHE_INDEX_NAME % (page, limit, lang)
         return cache.get(key)
 
     @classmethod
-    def set_feed_cache(cls, data, page=1, limit=FEED_DEFAULT_LIMIT, duration=3600):
-        key = cls.CACHE_INDEX_NAME % (page, limit)
+    def set_feed_cache(cls, data, page=1, limit=FEED_DEFAULT_LIMIT, duration=3600, lang='en'):
+        key = cls.CACHE_INDEX_NAME % (page, limit, lang)
         cache.set(key, data, duration)
 
     @classmethod
-    def clear_feed_cache(cls, page=1, limit=FEED_DEFAULT_LIMIT):
-        key = cls.CACHE_INDEX_NAME % (page, limit)
+    def clear_feed_cache(cls, page=1, limit=FEED_DEFAULT_LIMIT, lang='en'):
+        key = cls.CACHE_INDEX_NAME % (page, limit, lang)
         cache.set(key, None)
 
     @classmethod

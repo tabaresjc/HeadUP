@@ -79,8 +79,13 @@ app.json_encoder = CustomJSONEncoder
 @babel.localeselector
 def get_locale():
     from flask_login import current_user
-    if current_user and current_user.lang:
-        return current_user.lang
+    from flask import request
+    host = request.headers.get('HOST')
+
+    for key, value in config.LANGUAGES.iteritems():
+        if host.startswith(key):
+            return key
+
     return flask.request.accept_languages.best_match(config.LANGUAGES.keys())
 
 
