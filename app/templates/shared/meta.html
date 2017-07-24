@@ -1,8 +1,8 @@
   <meta charset="utf-8">
   {% if title -%}
-  <title>Headsup | {{ title }}</title>
+  <title>{{ config.SITE_NAME }} | {{ title }}</title>
   {%- else %}
-  <title>Headsup</title>
+  <title>{{ config.SITE_NAME }}</title>
   {%- endif %}
   <meta name="description" content="{{ description if description else '' }}">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">

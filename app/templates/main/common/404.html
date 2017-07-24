@@ -1,5 +1,5 @@
 {% extends "main/layout/error-base.html" %}
-{% set title = title|default('File Not Found') %}
+{% set title = _('ERROR_404_TITLE') %}
 
 {% block content %}
 <div class="boxed  push-down-30">
@@ -10,7 +10,7 @@
     <div class="col-xs-10  col-xs-offset-1">
       <div class="post-content--front-page">
         <h2 class="front-page-title">{{ title }}</h2>
-        <p>{{ _('Well... The page you are looking for can\'t be found!') }}</p>
+        <p>{{ _('ERROR_404_DESCRIPTION') }}</p>
       </div>
     </div>
   </div>

@@ -1,5 +1,5 @@
 {% extends "main/layout/error-base.html" %}
-{% set title = title|default('401 Forbidden') %}
+{% set title = _('ERROR_403_TITLE') %}
 
 {% block content %}
 <div class="boxed  push-down-30">
@@ -10,7 +10,7 @@
     <div class="col-xs-10  col-xs-offset-1">
       <div class="post-content--front-page">
         <h2 class="front-page-title">{{ title }}</h2>
-        <p>{{ _('Ackward... Apparently you don\'t have permission to access this resource.') }}</p>
+        <p>{{ _('ERROR_403_DESCRIPTION') }}</p>
       </div>
     </div>
   </div>

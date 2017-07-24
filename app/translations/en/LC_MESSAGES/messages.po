@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-07-23 00:39+0900\n"
+"POT-Creation-Date: 2017-07-25 00:09+0900\n"
 "PO-Revision-Date: 2017-07-15 18:02+0900\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: en\n"
@@ -20,7 +20,7 @@ msgstr ""
 
 #: app/admin/categories/forms.py:10 app/admin/sessions/forms.py:19
 #: app/admin/users/forms.py:25 app/templates/admin/categories/index.html:21
-#: app/templates/admin/signup.html:20 app/templates/admin/users/index.html:21
+#: app/templates/admin/users/index.html:21
 #: app/templates/admin/users/show.html:59
 msgid "Name"
 msgstr ""
@@ -175,12 +175,11 @@ msgstr ""
 
 #: app/admin/sessions/forms.py:12 app/admin/sessions/forms.py:21
 #: app/admin/users/forms.py:36 app/admin/users/forms.py:60
-#: app/templates/admin/signin.html:15 app/templates/admin/signup.html:22
 msgid "Password"
 msgstr ""
 
 #: app/admin/sessions/forms.py:20 app/admin/users/forms.py:29
-#: app/templates/admin/signup.html:21 app/templates/admin/users/show.html:63
+#: app/templates/admin/users/show.html:63
 msgid "Nickname"
 msgstr ""
 
@@ -232,7 +231,7 @@ msgstr ""
 msgid "Invalid email or password"
 msgstr ""
 
-#: app/admin/sessions/index.py:60 app/templates/admin/signin.html:20
+#: app/admin/sessions/index.py:60
 msgid "Sign In"
 msgstr ""
 
@@ -252,8 +251,7 @@ msgstr ""
 msgid "Error while saving the new user, please retry later"
 msgstr ""
 
-#: app/admin/sessions/index.py:113 app/templates/admin/signup.html:15
-#: app/templates/admin/signup.html:31
+#: app/admin/sessions/index.py:113
 msgid "Sign Up"
 msgstr ""
 
@@ -332,45 +330,61 @@ msgstr ""
 msgid "Posts"
 msgstr ""
 
-#: app/templates/admin/signin.html:3
-msgid "Signin"
-msgstr ""
+#: app/templates/admin/signin.html:3 app/templates/admin/signin.html:13
+#: app/templates/admin/signin.html:23 app/templates/admin/signup.html:39
+#: app/templates/main/common/_sidebar_user.html:23
+#: app/templates/main/site/home.html:21
+msgid "LOGIN_BTN"
+msgstr "Login"
 
-#: app/templates/admin/signin.html:13
-msgid "Log in"
-msgstr ""
+#: app/templates/admin/signin.html:17 app/templates/admin/signup.html:19
+msgid "MAIL_LBL"
+msgstr "Email"
 
-#: app/templates/admin/signin.html:15
-msgid "E-mail address"
-msgstr ""
+#: app/templates/admin/signin.html:18 app/templates/admin/signup.html:22
+msgid "PASSWORD_LBL"
+msgstr "Password"
 
-#: app/templates/admin/signin.html:26
-msgid "Don't have an account?"
-msgstr ""
+#: app/templates/admin/signin.html:21
+msgid "REMEMBER_ME_BTN"
+msgstr "Remember me"
 
-#: app/templates/admin/signin.html:27
-msgid "Sign up"
-msgstr ""
+#: app/templates/admin/signin.html:29
+msgid "SIGNUP_ACTION_LBL"
+msgstr "Don't have an account?"
 
-#: app/templates/admin/signup.html:3
-msgid "Signup"
-msgstr ""
+#: app/templates/admin/signin.html:30 app/templates/admin/signup.html:3
+#: app/templates/admin/signup.html:15 app/templates/admin/signup.html:32
+#: app/templates/main/common/_sidebar_user.html:26
+#: app/templates/main/site/home.html:22
+msgid "REGISTER_BTN"
+msgstr "Register"
 
-#: app/templates/admin/signup.html:19
-msgid "E-mail"
-msgstr ""
+#: app/templates/admin/signup.html:20
+msgid "NAME_LBL"
+msgstr "Name"
+
+#: app/templates/admin/signup.html:21
+msgid "NICKNAME_LBL"
+msgstr "Nickname"
 
 #: app/templates/admin/signup.html:23
-msgid "Confirm Password"
-msgstr ""
+msgid "CONFIRM_PASSWORD_LBL"
+msgstr "Confirm password"
 
-#: app/templates/admin/signup.html:37
-msgid "Already have an account?"
-msgstr ""
+#: app/templates/admin/signup.html:27 app/templates/main/layout/footer.html:10
+#: app/templates/main/layout/header.html:29
+#: app/templates/main/site/policy.html:2
+msgid "TOS_LBL"
+msgstr "Terms of Service"
+
+#: app/templates/admin/signup.html:28
+msgid "TOS_CHECK_LBL"
+msgstr "I have read and agree to the %(link)s"
 
 #: app/templates/admin/signup.html:38
-msgid "Sign in"
-msgstr ""
+msgid "SIGNIN_ACTION_LBL"
+msgstr "Already have an account?"
 
 #: app/templates/admin/categories/_category_form_add.html:4
 #: app/templates/admin/categories/_category_form_edit.html:4
@@ -682,43 +696,43 @@ msgstr ""
 "solution you found to a challenging situation or a difficulty you once "
 "faced. Speak up, HeadUP"
 
-#: app/templates/main/post-search.html:7
-msgid "Search posts with the following keyword"
-msgstr ""
-
-#: app/templates/main/post-search.html:10
-msgid "Search"
-msgstr ""
+#: app/templates/main/common/401.html:2
+msgid "ERROR_401_TITLE"
+msgstr "Unauthorized"
 
 #: app/templates/main/common/401.html:13
-msgid "Ackward... Apparently you are not authorized to perform this action."
-msgstr ""
+msgid "ERROR_401_DESCRIPTION"
+msgstr "Ackward... Apparently you are not authorized to perform this action."
+
+#: app/templates/main/common/403.html:2
+msgid "ERROR_403_TITLE"
+msgstr "Forbidden"
 
 #: app/templates/main/common/403.html:13
-msgid "Ackward... Apparently you don't have permission to access this resource."
-msgstr ""
+msgid "ERROR_403_DESCRIPTION"
+msgstr "Ackward... Apparently you don't have permission to access this resource."
+
+#: app/templates/main/common/404.html:2
+msgid "ERROR_404_TITLE"
+msgstr "Not Found"
 
 #: app/templates/main/common/404.html:13
-msgid "Well... The page you are looking for can't be found!"
-msgstr ""
+msgid "ERROR_404_DESCRIPTION"
+msgstr "Well... The page you are looking for can't be found!"
+
+#: app/templates/main/common/500.html:2
+msgid "ERROR_500_TITLE"
+msgstr "Server Error"
 
 #: app/templates/main/common/500.html:13
-msgid "The administrator has been notified. Sorry for the inconvenience!"
+msgid "ERROR_500_DESCRIPTION"
 msgstr ""
+"Sorry... this one is on us. The administrator has been notified. Sorry "
+"for the inconvenience!"
 
 #: app/templates/main/common/_sidebar_user.html:21
 msgid "SIDEBAR_USER_TITLE"
 msgstr "Would you like to be part of this community?"
-
-#: app/templates/main/common/_sidebar_user.html:23
-#: app/templates/main/site/home.html:21
-msgid "LOGIN_BTN"
-msgstr "Login"
-
-#: app/templates/main/common/_sidebar_user.html:26
-#: app/templates/main/site/home.html:22
-msgid "REGISTER_BTN"
-msgstr "Register"
 
 #: app/templates/main/common/_sidebar_user.html:37
 msgid "SIDEBAR_STAMP_TITLE"
@@ -732,10 +746,6 @@ msgstr ""
 #: app/templates/main/layout/error-base.html:32
 msgid "NEW_STAMP_BTN"
 msgstr "New stamp"
-
-#: app/templates/main/layout/error-base.html:12
-msgid "Headsup"
-msgstr ""
 
 #: app/templates/main/layout/error-base.html:15
 #: app/templates/main/layout/header-no-menu.html:22
@@ -771,12 +781,6 @@ msgstr "Profile"
 #: app/templates/main/site/conduct.html:2
 msgid "CODE_CONDUCT_LBL"
 msgstr "Code of conduct"
-
-#: app/templates/main/layout/footer.html:10
-#: app/templates/main/layout/header.html:29
-#: app/templates/main/site/policy.html:2
-msgid "TOS_LBL"
-msgstr "Terms of Service"
 
 #: app/templates/main/layout/header-no-menu.html:5
 #: app/templates/main/layout/header.html:5
@@ -840,13 +844,13 @@ msgid "INTRO4_LBL"
 msgstr "Transmit your optimism by writing remarkable success stories"
 
 #: app/templates/main/stamp/category.html:2
-#, python-format
-msgid "Stamps for %(category)s"
-msgstr ""
+msgid "CATEGORY_LIST_TITLE"
+msgstr "Stamps for %(category)s"
 
+#: app/templates/main/stamp/partials/_ranking.html:5
 #: app/templates/main/stamp/ranking.html:2
-msgid "Ranking"
-msgstr ""
+msgid "RANKING_TITLE"
+msgstr "Most populars stamps"
 
 #: app/templates/main/stamp/partials/_stamp_ranking_feed.html:20
 #: app/templates/main/stamp/partials/_stamp_single.html:17
@@ -860,10 +864,6 @@ msgstr "Anonymous"
 #: app/templates/main/stamp/show.html:40
 msgid "POSTED_BY_USER_LBL"
 msgstr "Posted by %(user)s in %(category)s"
-
-#: app/templates/main/stamp/partials/_ranking.html:5
-msgid "RANKING_TITLE"
-msgstr "Most populars stamps"
 
 #: app/templates/main/stamp/partials/_stamp_ranking_feed.html:37
 #: app/templates/main/stamp/partials/_stamp_single.html:68
