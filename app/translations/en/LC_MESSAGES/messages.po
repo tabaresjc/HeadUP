@@ -23,11 +23,11 @@ msgstr ""
 #: app/templates/admin/users/index.html:21
 #: app/templates/admin/users/show.html:59
 msgid "Name"
-msgstr ""
+msgstr "nom"
 
 #: app/admin/categories/forms.py:11
 #: app/templates/admin/categories/index.html:22
-msgid "Slug"
+msgid "Alias"
 msgstr ""
 
 #: app/admin/categories/forms.py:12
