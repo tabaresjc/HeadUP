@@ -6,7 +6,11 @@ import datetime
 
 
 class Feed:
-    CACHE_INDEX_NAME = 'stamps/welcome.v1.%s.%s.%s'
+    CACHE_WELCOME_PAGE = 'stamps/welcome'
+    CACHE_RANKING_PAGE = 'stamps/ranking'
+    CACHE_CATEGORY_PAGE = 'stamps/category'
+
+    CACHE_FEED_LIST = 'stamps/feeds.v1'
     FEED_DEFAULT_LIMIT = 20
 
     vote_factor = 10
@@ -30,19 +34,26 @@ class Feed:
         return round((sign * order) + (seconds / 45000), 7)
 
     @classmethod
-    def get_feed_cache(cls, page=1, limit=FEED_DEFAULT_LIMIT, lang='en'):
-        key = cls.CACHE_INDEX_NAME % (page, limit, lang)
+    def get_feed_cache(cls, name, page=1, limit=FEED_DEFAULT_LIMIT, lang='en'):
+        key = u'%s.%s.%s.%s' % (name, page, limit, lang)
         return cache.get(key)
 
     @classmethod
-    def set_feed_cache(cls, data, page=1, limit=FEED_DEFAULT_LIMIT, duration=3600, lang='en'):
-        key = cls.CACHE_INDEX_NAME % (page, limit, lang)
+    def set_feed_cache(cls, name, data, page=1, limit=FEED_DEFAULT_LIMIT, duration=3600, lang='en'):
+        key = u'%s.%s.%s.%s' % (name, page, limit, lang)
         cache.set(key, data, duration)
 
+        feed_list = cache.get(cls.CACHE_FEED_LIST) or []
+
+        if key not in feed_list:
+            feed_list.append(key)
+            cache.set(cls.CACHE_FEED_LIST, feed_list, 3600 * 24)
+
     @classmethod
-    def clear_feed_cache(cls, page=1, limit=FEED_DEFAULT_LIMIT, lang='en'):
-        key = cls.CACHE_INDEX_NAME % (page, limit, lang)
-        cache.set(key, None)
+    def clear_feed_cache(cls):
+        keys = cache.get(cls.CACHE_FEED_LIST) or []
+        for key in keys:
+            cache.set(key, None)
 
     @classmethod
     def posts(cls, page=1, limit=10):

@@ -14,9 +14,9 @@ class Post(db.Model, ModelBase):
     __json_meta__ = ['id', 'title', 'body', 'extra_body',
                      'user', 'cover_picture', 'category', 'anonymous']
 
-
     POST_PUBLIC = 0x001
     POST_DRAFT  = 0x100
+    POST_HIDDEN = 0x800
 
     id = db.Column(db.Integer, primary_key=True)
 
@@ -106,6 +106,18 @@ class Post(db.Model, ModelBase):
     @editor_version.setter
     def editor_version(self, value):
         return self.set_attribute('editor_version', value)
+
+    @property
+    def old_status(self):
+        return self.get_attribute('old_status', self.POST_DRAFT)
+
+    @old_status.setter
+    def old_status(self, value):
+        return self.set_attribute('old_status', value)
+
+    @property
+    def is_hidden(self):
+        return self.status == self.POST_HIDDEN
 
     def is_mine(self):
         return current_user.is_authenticated and self.user.id == current_user.id

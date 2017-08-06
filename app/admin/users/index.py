@@ -7,7 +7,7 @@ from flask_wtf import Form
 from flask_babel import lazy_gettext, gettext, refresh
 from app import app, login_manager
 from flask_paginate import Pagination
-from app.models import Post, User, Picture
+from app.models import Post, User, Picture, Feed
 from app.utils.response import resp
 from forms import EditUserForm, NewUserForm
 
@@ -138,3 +138,40 @@ class UsersView(FlaskView):
                     page=page,
                     limit=limit,
                     total=total)
+
+    @route('/<int:id>/stamp/hide/<int:stamp_id>', methods=['POST'])
+    def hide_stamp(self, id, stamp_id):
+        user = User.get_by_id(id)
+
+        if user is None or not user.is_admin:
+            abort(403)
+
+        post = Post.get_by_id(stamp_id)
+
+        if post is None:
+            abort(401)
+
+        try:
+            if post.is_hidden:
+                # unblock the post
+                post.status = post.old_status
+            else:
+                # save current status and block the post
+                post.old_status = post.status
+                post.status = Post.POST_HIDDEN
+
+            post.save()
+
+            Feed.clear_feed_cache()
+
+            if post.is_hidden:
+                return resp(url_for('UsersView:get', id=id),
+                        redirect=True,
+                        message=gettext('The stamp was hidden'))
+            else:
+                return resp(url_for('UsersView:get', id=id),
+                        redirect=True,
+                        message=gettext('The stamp was restored'))
+        except Exception as e:
+            return resp(url_for('UsersView:get', id=id), redirect=True,
+                        message=gettext('Error while processing the stamp, %(error)s', error=e))

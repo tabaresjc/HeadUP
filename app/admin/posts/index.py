@@ -118,6 +118,11 @@ class PostsView(FlaskView):
                     picture.save_file(f, current_user)
                     post.cover_picture_id = picture.id if picture else 0
 
+                if post.is_hidden:
+                    return resp(url_for('PostsView:get', id=post.id),
+                        redirect=True,
+                        message=gettext('You are not allowed to make changes to this post'))
+
                 if is_draft:
                     post.status = Post.POST_DRAFT
                 else:
@@ -134,9 +139,7 @@ class PostsView(FlaskView):
                 if is_draft:
                     message = gettext('Draft was succesfully saved')
                 else:
-                    from flask_babel import get_locale
-                    lang = str(get_locale())
-                    Feed.clear_feed_cache(lang=lang)
+                    Feed.clear_feed_cache()
                     message = gettext('Stamp was succesfully saved')
 
                 if remain:
