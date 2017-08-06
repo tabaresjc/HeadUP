@@ -141,10 +141,14 @@ class UsersView(FlaskView):
 
     @route('/<int:id>/stamp/hide/<int:stamp_id>', methods=['POST'])
     def hide_stamp(self, id, stamp_id):
+
+        if not current_user.is_admin:
+            abort(403)
+
         user = User.get_by_id(id)
 
-        if user is None or not user.is_admin:
-            abort(403)
+        if user is None:
+            abort(401)
 
         post = Post.get_by_id(stamp_id)
 

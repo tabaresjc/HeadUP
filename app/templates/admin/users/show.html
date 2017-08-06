@@ -115,11 +115,11 @@
 							<td>
 								<div class="btn-group" role="group">
 									{% if post.is_hidden -%}
-									<a href="{{ url_for('UsersView:hide_stamp', id=current_user.id, stamp_id=post.id) }}" data-method="post" class="btn btn-danger">
+									<a href="{{ url_for('UsersView:hide_stamp', id=post.user_id, stamp_id=post.id) }}" data-method="post" class="btn btn-danger">
 										<i class="glyphicon glyphicon-eye-close"></i>
 									</a>
 									{% else %}
-									<a href="{{ url_for('UsersView:hide_stamp', id=current_user.id, stamp_id=post.id) }}" data-method="post" class="btn btn-primary">
+									<a href="{{ url_for('UsersView:hide_stamp', id=post.user_id, stamp_id=post.id) }}" data-method="post" class="btn btn-primary">
 										<i class="glyphicon glyphicon-eye-close"></i>
 									</a>
 									{% endif %}
