@@ -740,7 +740,7 @@ msgstr "Start here!"
 
 #: app/templates/main/common/_sidebar_user.html:40
 msgid "EDIT_STAMP_LBL"
-msgstr ""
+msgstr "Edit stamp"
 
 #: app/templates/main/common/_sidebar_user.html:44
 #: app/templates/main/layout/error-base.html:32

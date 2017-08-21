@@ -17,7 +17,11 @@ depends_on = None
 
 
 def upgrade():
-    op.add_column('posts', sa.Column('score', sa.Numeric(20, 7), default=0, server_default='0', nullable=False))
+    op.add_column('posts', sa.Column('score',
+                                     sa.Numeric(20, 7),
+                                     default=0,
+                                     server_default='0',
+                                     nullable=False))
     op.create_index('idx_score', 'posts', ['score'])
 
 
@@ -25,5 +29,5 @@ def downgrade():
     try:
         op.drop_column('posts', 'score')
         op.drop_index('idx_score', 'posts')
-    except:
+    except Exception as e:
         pass

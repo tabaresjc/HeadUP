@@ -28,18 +28,19 @@
 			</div>
 		</div>
 	</div>
-    <!-- Start of the blogpost -->
-    <div class="row">
-        <div class="col-xs-10  col-xs-offset-1">
-            <!-- End of the content -->
-            <a href="{{ url_for('stamp.show', id=post.id) }}">
-                <div class="read-more">
-                    {{ _('READ_MORE_LBL') }}
-                    <div class="read-more__arrow">
-                        <span class="glyphicon  glyphicon-chevron-right"></span>
-                    </div>
-                </div>
-            </a>
+    <div class="panel-container">
+        <div class="row">
+			<div class="col-xs-10  col-xs-offset-1">
+	            <!-- End of the content -->
+	            <a href="{{ url_for('stamp.show', id=post.id) }}">
+	                <div class="read-more">
+	                    {{ _('READ_MORE_LBL') }}
+	                    <div class="read-more__arrow">
+	                        <span class="glyphicon  glyphicon-chevron-right"></span>
+	                    </div>
+	                </div>
+	            </a>
+	        </div>
         </div>
     </div>
 </div>

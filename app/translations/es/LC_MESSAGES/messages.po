@@ -741,7 +741,7 @@ msgstr "Empieza aqui!"
 
 #: app/templates/main/common/_sidebar_user.html:40
 msgid "EDIT_STAMP_LBL"
-msgstr ""
+msgstr "Editar historia"
 
 #: app/templates/main/common/_sidebar_user.html:44
 #: app/templates/main/layout/error-base.html:32

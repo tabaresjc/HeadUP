@@ -13,8 +13,8 @@ class Category(db.Model, ModelBase):
     __json_meta__ = ['id', 'name', 'slug']
 
     id = db.Column(db.Integer, primary_key=True)
-    name = db.Column(db.String(255), index=True, unique=True)
-    slug = db.Column(db.String(255), index=True, unique=True)
+    name = db.Column(db.String(128), index=True, unique=True)
+    slug = db.Column(db.String(128), index=True, unique=True)
     posts = db.relationship('Post', backref='category', lazy='dynamic')
     attributes = db.Column(MutableDict.as_mutable(db.PickleType))
 

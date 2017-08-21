@@ -15,8 +15,14 @@ down_revision = '1fa6e8033add'
 branch_labels = None
 depends_on = None
 
+
 def upgrade():
-    op.add_column('posts', sa.Column('status', sa.Integer, default=1, server_default='1', nullable=False))
+    op.add_column('posts', sa.Column('status',
+                                     sa.Integer,
+                                     default=1,
+                                     server_default='1',
+                                     nullable=False))
+
     op.create_index('idx_status', 'posts', ['status'])
 
 
@@ -24,5 +30,5 @@ def downgrade():
     try:
         op.drop_column('posts', 'status')
         op.drop_index('idx_status', 'status')
-    except:
+    except Exception as e:
         pass
