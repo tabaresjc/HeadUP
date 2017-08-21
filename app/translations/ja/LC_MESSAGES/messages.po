@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-07-25 00:09+0900\n"
+"POT-Creation-Date: 2017-08-22 01:00+0900\n"
 "PO-Revision-Date: 2017-07-08 18:14+0900\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: ja\n"
@@ -21,7 +21,7 @@ msgstr ""
 #: app/admin/categories/forms.py:10 app/admin/sessions/forms.py:19
 #: app/admin/users/forms.py:25 app/templates/admin/categories/index.html:21
 #: app/templates/admin/users/index.html:21
-#: app/templates/admin/users/show.html:59
+#: app/templates/admin/users/show.html:52
 msgid "Name"
 msgstr ""
 
@@ -79,7 +79,7 @@ msgstr ""
 
 #: app/admin/categories/index.py:78 app/admin/categories/index.py:105
 #: app/admin/categories/index.py:108 app/admin/posts/index.py:87
-#: app/admin/posts/index.py:148
+#: app/admin/posts/index.py:151
 msgid "Invalid submission, please check the message below"
 msgstr ""
 
@@ -117,7 +117,7 @@ msgstr ""
 msgid "Error while removing the category"
 msgstr ""
 
-#: app/admin/posts/forms.py:10 app/templates/admin/users/show.html:103
+#: app/admin/posts/forms.py:10 app/templates/admin/users/show.html:97
 msgid "Title"
 msgstr ""
 
@@ -146,24 +146,28 @@ msgstr ""
 msgid "Stamp succesfully created"
 msgstr ""
 
-#: app/admin/posts/index.py:135
-msgid "Draft was succesfully saved"
+#: app/admin/posts/index.py:124
+msgid "You are not allowed to make changes to this post"
 msgstr ""
 
 #: app/admin/posts/index.py:140
+msgid "Draft was succesfully saved"
+msgstr ""
+
+#: app/admin/posts/index.py:143
 msgid "Stamp was succesfully saved"
 msgstr ""
 
-#: app/admin/posts/index.py:159
+#: app/admin/posts/index.py:162
 msgid "The stamp was not found"
 msgstr ""
 
-#: app/admin/posts/index.py:170
+#: app/admin/posts/index.py:173
 #, python-format
 msgid "The stamp \"%(title)s\" was removed"
 msgstr ""
 
-#: app/admin/posts/index.py:178
+#: app/admin/posts/index.py:181
 #, python-format
 msgid "Error while removing the stamp, %(error)s"
 msgstr ""
@@ -179,7 +183,7 @@ msgid "Password"
 msgstr ""
 
 #: app/admin/sessions/forms.py:20 app/admin/users/forms.py:29
-#: app/templates/admin/users/show.html:63
+#: app/templates/admin/users/show.html:56
 msgid "Nickname"
 msgstr ""
 
@@ -256,7 +260,7 @@ msgid "Sign Up"
 msgstr ""
 
 #: app/admin/users/forms.py:32 app/templates/admin/users/index.html:30
-#: app/templates/admin/users/show.html:75
+#: app/templates/admin/users/show.html:68
 msgid "Role"
 msgstr ""
 
@@ -264,11 +268,11 @@ msgstr ""
 msgid "Please repeat the password"
 msgstr ""
 
-#: app/admin/users/forms.py:46 app/templates/admin/users/show.html:67
+#: app/admin/users/forms.py:46 app/templates/admin/users/show.html:60
 msgid "Address"
 msgstr ""
 
-#: app/admin/users/forms.py:49 app/templates/admin/users/show.html:71
+#: app/admin/users/forms.py:49 app/templates/admin/users/show.html:64
 msgid "Phone"
 msgstr ""
 
@@ -300,6 +304,19 @@ msgstr ""
 #: app/admin/users/index.py:106
 #, python-format
 msgid "Error while removing the user, %(error)s"
+msgstr ""
+
+#: app/admin/users/index.py:174
+msgid "The stamp was hidden"
+msgstr ""
+
+#: app/admin/users/index.py:178
+msgid "The stamp was restored"
+msgstr ""
+
+#: app/admin/users/index.py:181
+#, python-format
+msgid "Error while processing the stamp, %(error)s"
 msgstr ""
 
 #: app/models/users/role.py:9 app/models/users/role.py:13
@@ -606,54 +623,54 @@ msgstr ""
 msgid "Total Posts"
 msgstr ""
 
-#: app/templates/admin/users/show.html:3
+#: app/templates/admin/users/show.html:1
 #, python-format
 msgid "User's Profile | %(name)s"
 msgstr ""
 
-#: app/templates/admin/users/show.html:20
+#: app/templates/admin/users/show.html:14
 msgid "User List"
 msgstr ""
 
 #: app/templates/admin/users/partials/_sidebar.html:36
-#: app/templates/admin/users/show.html:29
+#: app/templates/admin/users/show.html:23
 #, python-format
 msgid "This will remove '%(name)s', Are you sure?"
 msgstr ""
 
-#: app/templates/admin/users/show.html:31
+#: app/templates/admin/users/show.html:25
 msgid "Remove"
 msgstr ""
 
-#: app/templates/admin/users/show.html:37
+#: app/templates/admin/users/show.html:30
 msgid "Edit"
 msgstr ""
 
-#: app/templates/admin/users/show.html:47
+#: app/templates/admin/users/show.html:40
 msgid "User's Info"
 msgstr ""
 
-#: app/templates/admin/users/show.html:51
+#: app/templates/admin/users/show.html:44
 msgid "Id"
 msgstr ""
 
-#: app/templates/admin/users/show.html:55
+#: app/templates/admin/users/show.html:48
 msgid "Last seen"
 msgstr ""
 
-#: app/templates/admin/users/show.html:79
+#: app/templates/admin/users/show.html:72
 msgid "Created at"
 msgstr ""
 
-#: app/templates/admin/users/show.html:95
+#: app/templates/admin/users/show.html:88
 msgid "Recent posts"
 msgstr ""
 
-#: app/templates/admin/users/show.html:101
+#: app/templates/admin/users/show.html:95
 msgid "Posted at"
 msgstr ""
 
-#: app/templates/admin/users/show.html:102
+#: app/templates/admin/users/show.html:96
 msgid "Updated at"
 msgstr ""
 

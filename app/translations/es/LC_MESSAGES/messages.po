@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-07-25 00:09+0900\n"
+"POT-Creation-Date: 2017-08-22 01:00+0900\n"
 "PO-Revision-Date: 2017-07-15 16:34+0900\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: es\n"
@@ -21,31 +21,31 @@ msgstr ""
 #: app/admin/categories/forms.py:10 app/admin/sessions/forms.py:19
 #: app/admin/users/forms.py:25 app/templates/admin/categories/index.html:21
 #: app/templates/admin/users/index.html:21
-#: app/templates/admin/users/show.html:59
+#: app/templates/admin/users/show.html:52
 msgid "Name"
-msgstr ""
+msgstr "Nombre"
 
 #: app/admin/categories/forms.py:11
 #: app/templates/admin/categories/index.html:22
 msgid "Slug"
-msgstr ""
+msgstr "Alias"
 
 #: app/admin/categories/forms.py:12
 #: app/templates/admin/categories/index.html:23
 msgid "Description"
-msgstr ""
+msgstr "Descripción"
 
 #: app/admin/categories/forms.py:27 app/admin/categories/forms.py:28
 msgid "From"
-msgstr ""
+msgstr "De"
 
 #: app/admin/categories/forms.py:29 app/admin/categories/forms.py:30
 msgid "To"
-msgstr ""
+msgstr "Hacia"
 
 #: app/admin/categories/forms.py:45
 msgid "Please select a different category"
-msgstr ""
+msgstr "Por favor seleccione una categoria diferente"
 
 #: app/admin/categories/index.py:31 app/templates/admin/index.html:27
 #: app/templates/admin/index.html:28 app/templates/admin/index.html:33
@@ -53,282 +53,311 @@ msgstr ""
 #: app/templates/admin/users/user_posts.html:9
 #: app/templates/admin/users/user_posts.html:14
 msgid "posts"
-msgstr ""
+msgstr "Publicaciones"
 
 #: app/admin/categories/index.py:36
 #, python-format
 msgid "Categories | %(page)s"
-msgstr ""
+msgstr "Categorías | %(page)s"
 
 #: app/admin/categories/index.py:52
 #, python-format
 msgid "The posts were transfered from %(from_name)s to %(to_name)s"
 msgstr ""
+"Las publicaciones fueron transferidas desde %(from_name)s hacia "
+"%(to_name)s"
 
 #: app/admin/categories/index.py:55
 msgid "Either category was not found"
-msgstr ""
+msgstr "La categoría seleccopmada no fue encontrada"
 
 #: app/admin/categories/index.py:72
 msgid "Category succesfully created"
-msgstr ""
+msgstr "Categoría fue creada exitosamente"
 
 #: app/admin/categories/index.py:75
 msgid "Error while creating the category"
-msgstr ""
+msgstr "Ocurrió un error al momento de crear la categoría"
 
 #: app/admin/categories/index.py:78 app/admin/categories/index.py:105
 #: app/admin/categories/index.py:108 app/admin/posts/index.py:87
-#: app/admin/posts/index.py:148
+#: app/admin/posts/index.py:151
 msgid "Invalid submission, please check the message below"
 msgstr ""
+"Formulario no válido, por favor compruebe los mensajes quer aparecen a "
+"continuación"
 
 #: app/admin/categories/index.py:80
 msgid "Create Category"
-msgstr ""
+msgstr "Crear categoría"
 
 #: app/admin/categories/index.py:88 app/admin/categories/index.py:122
 msgid "The category was not found"
-msgstr ""
+msgstr "La categoría seleccionada no fue encontrada"
 
 #: app/admin/categories/index.py:99
 msgid "Category was succesfully saved"
-msgstr ""
+msgstr "La categoría fue creada exitosamente"
 
 #: app/admin/categories/index.py:102
 msgid "Error while updating the category"
-msgstr ""
+msgstr "Ocurrió un error al momento de actualizar la categoría"
 
 #: app/admin/categories/index.py:112
 #, python-format
 msgid "Edit Category: %(name)s"
-msgstr ""
+msgstr "Actulizar categoría: %(name)s"
 
 #: app/admin/categories/index.py:131
 msgid "Sorry, the last category can not be removed"
-msgstr ""
+msgstr "Lo siento, la categoría seleccionada no pudo ser eliminada"
 
 #: app/admin/categories/index.py:135
 #, python-format
 msgid "The category \"%(name)s\" was removed"
-msgstr ""
+msgstr "La categoría \"%(name)s\" fue removida"
 
 #: app/admin/categories/index.py:139
 msgid "Error while removing the category"
-msgstr ""
+msgstr "Ocurrió un error al momento de actualizar la categoría"
 
-#: app/admin/posts/forms.py:10 app/templates/admin/users/show.html:103
+#: app/admin/posts/forms.py:10 app/templates/admin/users/show.html:97
 msgid "Title"
-msgstr ""
+msgstr "Titulo"
 
 #: app/admin/posts/forms.py:11
 msgid "Your Challenge"
-msgstr ""
+msgstr "Tu desafio"
 
 #: app/admin/posts/forms.py:13
 msgid "Your Solution"
-msgstr ""
+msgstr "Tu solución"
 
 #: app/admin/posts/forms.py:16
 #: app/templates/main/stamp/partials/_stamp_single.html:44
 msgid "Anonymous"
-msgstr ""
+msgstr "Anonimo"
 
 #: app/admin/posts/forms.py:17
 msgid "Show Post"
-msgstr ""
+msgstr "Mostrar publicación"
 
 #: app/admin/posts/index.py:45 app/admin/posts/index.py:96
 msgid "The requested stamp was not found"
-msgstr ""
+msgstr "La publicación seleccionada no fue encontrado"
 
 #: app/admin/posts/index.py:84
 msgid "Stamp succesfully created"
-msgstr ""
+msgstr "La publicación fue guardada exitosamente"
 
-#: app/admin/posts/index.py:135
-msgid "Draft was succesfully saved"
+#: app/admin/posts/index.py:124
+msgid "You are not allowed to make changes to this post"
 msgstr ""
 
 #: app/admin/posts/index.py:140
+msgid "Draft was succesfully saved"
+msgstr "El borrador ha sido guardado exitosamente"
+
+#: app/admin/posts/index.py:143
 msgid "Stamp was succesfully saved"
-msgstr ""
+msgstr "La publicación fue guardada exitosamente"
 
-#: app/admin/posts/index.py:159
+#: app/admin/posts/index.py:162
 msgid "The stamp was not found"
-msgstr ""
+msgstr "La publicación no fue encontrada"
 
-#: app/admin/posts/index.py:170
+#: app/admin/posts/index.py:173
 #, python-format
 msgid "The stamp \"%(title)s\" was removed"
-msgstr ""
+msgstr "La publicacion \"%(title)s\" fue eliminada"
 
-#: app/admin/posts/index.py:178
+#: app/admin/posts/index.py:181
 #, python-format
 msgid "Error while removing the stamp, %(error)s"
-msgstr ""
+msgstr "Ocurrió un error al momento de eliminar la categoría, %(error)s"
 
 #: app/admin/sessions/forms.py:10 app/admin/sessions/forms.py:17
 #: app/admin/users/forms.py:20 app/templates/admin/index.html:13
 msgid "Email"
-msgstr ""
+msgstr "Correo electronico"
 
 #: app/admin/sessions/forms.py:12 app/admin/sessions/forms.py:21
 #: app/admin/users/forms.py:36 app/admin/users/forms.py:60
 msgid "Password"
-msgstr ""
+msgstr "Contraseña"
 
 #: app/admin/sessions/forms.py:20 app/admin/users/forms.py:29
-#: app/templates/admin/users/show.html:63
+#: app/templates/admin/users/show.html:56
 msgid "Nickname"
-msgstr ""
+msgstr "Apodo"
 
 #: app/admin/sessions/forms.py:24
 msgid "Passwords must match"
-msgstr ""
+msgstr "Las contraseñas deben coincidir"
 
 #: app/admin/sessions/forms.py:28 app/admin/users/forms.py:44
 msgid "Confirm"
-msgstr ""
+msgstr "Confirmar"
 
 #: app/admin/sessions/forms.py:39
 msgid "This name has invalid characters"
-msgstr ""
+msgstr "Este nombre tiene caracteres invalidos"
 
 #: app/admin/sessions/forms.py:44
 msgid "This nickname has invalid characters"
-msgstr ""
+msgstr "Este apodo tiene caracteres invalidos"
 
 #: app/admin/sessions/forms.py:49
 msgid "This email is already in use. Please choose another one."
 msgstr ""
+"Este correo electronico esta en uso, por favor seleccione otro correo "
+"electronico."
 
 #: app/admin/sessions/forms.py:54
 msgid "This nickname is already in use. Please choose another one."
-msgstr ""
+msgstr "Este apodo esta en uso, por favor seleccione otro apodo."
 
 #: app/admin/sessions/index.py:17
 msgid "Please log in to access this page."
-msgstr ""
+msgstr "Por favor ingrese su cuenta y clave para acceder esta pagina"
 
 #: app/admin/sessions/index.py:28
 msgid "You need to sign in or sign up before continuing."
-msgstr ""
+msgstr "Necesita ingresar su cuenta y clave para poder continuar"
 
 #: app/admin/sessions/index.py:35 app/admin/sessions/index.py:90
 msgid "You are already signed in."
-msgstr ""
+msgstr "Usted ya ha ingresado a nuestro sistema"
 
 #: app/admin/sessions/index.py:52
 msgid "Signed in successfully."
-msgstr ""
+msgstr "Usted ha ingresado exitosamente"
 
 #: app/admin/sessions/index.py:55
 msgid "User not found or invalid password"
-msgstr ""
+msgstr "Usuario o contraseña no encontrada"
 
 #: app/admin/sessions/index.py:57
 msgid "Invalid email or password"
-msgstr ""
+msgstr "Correo electronico o contraseña invalida"
 
 #: app/admin/sessions/index.py:60
 msgid "Sign In"
-msgstr ""
+msgstr "Ingresar"
 
 #: app/admin/sessions/index.py:80
 msgid "Signed out successfully."
-msgstr ""
+msgstr "La sesión ha sido terminada"
 
 #: app/admin/sessions/index.py:82
 msgid "Invalid Action"
-msgstr ""
+msgstr "Acción invalida"
 
 #: app/admin/sessions/index.py:107
 msgid "Welcome! You have signed up successfully."
-msgstr ""
+msgstr "Bienvenido! Usted ha ingresado exitosamente"
 
 #: app/admin/sessions/index.py:110
 msgid "Error while saving the new user, please retry later"
 msgstr ""
+"Ocurrió un error al momento de guardar un nuevo usuario, favor reintentar"
+" nuevamente"
 
 #: app/admin/sessions/index.py:113
 msgid "Sign Up"
-msgstr ""
+msgstr "Registrar"
 
 #: app/admin/users/forms.py:32 app/templates/admin/users/index.html:30
-#: app/templates/admin/users/show.html:75
+#: app/templates/admin/users/show.html:68
 msgid "Role"
-msgstr ""
+msgstr "Rol"
 
 #: app/admin/users/forms.py:38 app/admin/users/forms.py:62
 msgid "Please repeat the password"
-msgstr ""
+msgstr "Por favor repita la contraseña"
 
-#: app/admin/users/forms.py:46 app/templates/admin/users/show.html:67
+#: app/admin/users/forms.py:46 app/templates/admin/users/show.html:60
 msgid "Address"
-msgstr ""
+msgstr "Dirección"
 
-#: app/admin/users/forms.py:49 app/templates/admin/users/show.html:71
+#: app/admin/users/forms.py:49 app/templates/admin/users/show.html:64
 msgid "Phone"
-msgstr ""
+msgstr "Teléfono"
 
 #: app/admin/users/index.py:37
 msgid "The requested user was not found"
-msgstr ""
+msgstr "El usuario solicitado no ha sido encontrado"
 
 #: app/admin/users/index.py:54
 msgid "User was succesfully saved"
-msgstr ""
+msgstr "Usuario ha sido guardado exitosamente"
 
 #: app/admin/users/index.py:57 app/admin/users/index.py:82
 msgid "Invalid submission, please check the messages below"
 msgstr ""
+"Formulario no válido, por favor compruebe los mensajes quer aparecen a "
+"continuación"
 
 #: app/admin/users/index.py:66 app/admin/users/index.py:128
 msgid "The user was not found"
-msgstr ""
+msgstr "El usuario no ha sido encontrado"
 
 #: app/admin/users/index.py:79
 msgid "User was succesfully updated"
-msgstr ""
+msgstr "El usuario ha sido guardado exitosamente"
 
 #: app/admin/users/index.py:103
 #, python-format
 msgid "The user \"%(name)s\" was removed"
-msgstr ""
+msgstr "El usuario con nombre \"%(name)s\" ha sido eliminado"
 
 #: app/admin/users/index.py:106
 #, python-format
 msgid "Error while removing the user, %(error)s"
+msgstr "Ocurrió un error al momento de remover el usuario, %(error)s"
+
+#: app/admin/users/index.py:174
+msgid "The stamp was hidden"
+msgstr ""
+
+#: app/admin/users/index.py:178
+msgid "The stamp was restored"
+msgstr ""
+
+#: app/admin/users/index.py:181
+#, python-format
+msgid "Error while processing the stamp, %(error)s"
 msgstr ""
 
 #: app/models/users/role.py:9 app/models/users/role.py:13
 msgid "Writer"
-msgstr ""
+msgstr "Escritor"
 
 #: app/models/users/role.py:9 app/models/users/role.py:12
 #: app/templates/admin/layout/navbar.html:11
 msgid "Admin"
-msgstr ""
+msgstr "Administrador"
 
 #: app/templates/admin/index.html:2
 msgid "Blog Administration"
-msgstr ""
+msgstr "Blog Administration"
 
 #: app/templates/admin/index.html:14
 msgid "Last login"
-msgstr ""
+msgstr "Último acceso "
 
 #: app/templates/admin/index.html:37 app/templates/admin/posts/index.html:25
 msgid ""
 "You don't have any stamps yet<br/>Participate in this comunity by "
 "writting stamps!!"
 msgstr ""
+"Usted no tiene ninguna publicación! <br/>Que espera, participe y escriba "
+"su primera historia!!"
 
 #: app/templates/admin/categories/index.html:24
 #: app/templates/admin/index.html:50 app/templates/admin/layout/navbar.html:24
 msgid "Posts"
-msgstr ""
+msgstr "Publicaciones"
 
 #: app/templates/admin/signin.html:3 app/templates/admin/signin.html:13
 #: app/templates/admin/signin.html:23 app/templates/admin/signup.html:39
@@ -389,23 +418,23 @@ msgstr "Ya tienes una cuenta?"
 #: app/templates/admin/categories/_category_form_add.html:4
 #: app/templates/admin/categories/_category_form_edit.html:4
 msgid "Insert Name"
-msgstr ""
+msgstr "Inserte nombre"
 
 #: app/templates/admin/categories/_category_form_add.html:5
 #: app/templates/admin/categories/_category_form_edit.html:5
 msgid "Insert Slug"
-msgstr ""
+msgstr "Inserte Alias"
 
 #: app/templates/admin/categories/_category_form_add.html:6
 #: app/templates/admin/categories/_category_form_edit.html:6
 msgid "Describe the category..."
-msgstr ""
+msgstr "Decriba la categoría"
 
 #: app/templates/admin/categories/_category_form_add.html:8
 #: app/templates/admin/categories/_category_form_edit.html:8
 #: app/templates/admin/posts/_post_form_edit.html:29
 msgid "Save"
-msgstr ""
+msgstr "Guardar"
 
 #: app/templates/admin/categories/_category_form_add.html:9
 #: app/templates/admin/categories/_category_form_edit.html:9
@@ -413,144 +442,146 @@ msgstr ""
 #: app/templates/admin/posts/_post_form_edit.html:31
 #: app/templates/admin/users/edit.html:28
 msgid "Clear"
-msgstr ""
+msgstr "Reiniciar"
 
 #: app/templates/admin/categories/_sidebar.html:6
 msgid "Go to"
-msgstr ""
+msgstr "Ir hacia"
 
 #: app/templates/admin/categories/_sidebar.html:10
 msgid "Categories List"
-msgstr ""
+msgstr "Lista de categorías"
 
 #: app/templates/admin/categories/_sidebar.html:17
 msgid "Delete Category"
-msgstr ""
+msgstr "Eliminar categoría"
 
 #: app/templates/admin/categories/_sidebar.html:21
 #: app/templates/admin/categories/add.html:6
 msgid "New Category"
-msgstr ""
+msgstr "Nueva categoría"
 
 #: app/templates/admin/categories/edit.html:6
 msgid "Edit Category"
-msgstr ""
+msgstr "Actualizar categoría"
 
 #: app/templates/admin/categories/index.html:6
 msgid "Categories"
-msgstr ""
+msgstr "Categorías"
 
 #: app/templates/admin/categories/index.html:25
 msgid "Actions"
-msgstr ""
+msgstr "Acciones"
 
 #: app/templates/admin/categories/index.html:57
 msgid "Transfer Posts"
-msgstr ""
+msgstr "Transferir publicaciones"
 
 #: app/templates/admin/categories/index.html:68
 msgid "Transfer"
-msgstr ""
+msgstr "Transferir"
 
 #: app/templates/admin/layout/navbar.html:11
 msgid "My Page"
-msgstr ""
+msgstr "Mi Pagina"
 
 #: app/templates/admin/layout/navbar.html:16
 #, python-format
 msgid "Welcome, %(name)s"
-msgstr ""
+msgstr "Bienvenido, %(name)s"
 
 #: app/templates/admin/layout/navbar.html:20
 msgid "Your account"
-msgstr ""
+msgstr "Tu cuenta"
 
 #: app/templates/admin/layout/navbar.html:25
 #: app/templates/admin/posts/_sidebar.html:18
 #: app/templates/admin/posts/drafts.html:8
 msgid "Drafts"
-msgstr ""
+msgstr "Borradores"
 
 #: app/templates/admin/layout/navbar.html:26
 msgid "Add new Post"
-msgstr ""
+msgstr "Añadir nueva publicación"
 
 #: app/templates/admin/layout/navbar.html:28
 msgid "Profile"
-msgstr ""
+msgstr "Perfil"
 
 #: app/templates/admin/layout/navbar.html:32
 msgid "Top"
-msgstr ""
+msgstr "Top"
 
 #: app/templates/admin/layout/navbar.html:37
 #: app/templates/admin/layout/sidebar.html:93
 msgid "Sign Out"
-msgstr ""
+msgstr "Salir"
 
 #: app/templates/admin/posts/_post_form_edit.html:12
 msgid "Click here to upload a new cover picture"
-msgstr ""
+msgstr "Haga clic aquí para subir una nueva imagen de la publicación"
 
 #: app/templates/admin/posts/_post_form_edit.html:18
 msgid "Title – Best description of your post (30 words)"
 msgstr ""
+"Titulo - Inserte el nombre que mejor define a la publicación (30 palabras"
+" maximo)"
 
 #: app/templates/admin/posts/_post_form_edit.html:19
 msgid "Your Challenge – Description of what you had to cope with (150 words)"
-msgstr ""
+msgstr "Tu desafío - Describa la situación o el problema que se presentó"
 
 #: app/templates/admin/posts/_post_form_edit.html:20
 msgid "Your Solution – Description of what you did (150 words)"
-msgstr ""
+msgstr "Tu solución - Describa lo que hicistes para solucionar el desafio"
 
 #: app/templates/admin/posts/_post_form_edit.html:25
 msgid "Keep working on the stamp"
-msgstr ""
+msgstr "Guardar y seguir"
 
 #: app/templates/admin/posts/_post_form_edit.html:26
 msgid "Make this Post Anonymous"
-msgstr ""
+msgstr "Guardar como anonimo"
 
 #: app/templates/admin/posts/_post_form_edit.html:30
 msgid "Draft"
-msgstr ""
+msgstr "Borrador"
 
 #: app/templates/admin/posts/_post_item.html:31
 #, python-format
 msgid "This will remove '%(title)s', Are you sure?"
-msgstr ""
+msgstr "Esta seguro que desea eliminar la publicación '%(title)s'?"
 
 #: app/templates/admin/posts/_sidebar.html:8
 #: app/templates/admin/posts/_sidebar.html:33
 #: app/templates/admin/posts/_sidebar.html:49
 #: app/templates/admin/posts/edit.html:8
 msgid "New Stamp"
-msgstr ""
+msgstr "Nueva publicación"
 
 #: app/templates/admin/posts/_sidebar.html:13
 #: app/templates/admin/posts/index.html:8
 msgid "Stamps"
-msgstr ""
+msgstr "Publicaciones"
 
 #: app/templates/admin/posts/_sidebar.html:23
 msgid "Show Stamp"
-msgstr ""
+msgstr "Mostrar publicación"
 
 #: app/templates/admin/posts/_sidebar.html:28
 #: app/templates/admin/posts/_sidebar.html:44
 msgid "Delete Stamp"
-msgstr ""
+msgstr "Eliminar publicación"
 
 #: app/templates/admin/posts/_sidebar.html:40
 #: app/templates/admin/posts/edit.html:3 app/templates/admin/posts/edit.html:8
 msgid "Edit Stamp"
-msgstr ""
+msgstr "Actualizar publicación"
 
 #: app/templates/admin/posts/drafts.html:3
 #, python-format
 msgid "Draft | %(page)s"
-msgstr ""
+msgstr "Borrador | %(page)s"
 
 #: app/templates/admin/posts/drafts.html:15
 #: app/templates/admin/posts/drafts.html:16
@@ -559,128 +590,128 @@ msgstr ""
 #: app/templates/admin/posts/index.html:16
 #: app/templates/admin/posts/index.html:21
 msgid "stamps"
-msgstr ""
+msgstr "publicaciones"
 
 #: app/templates/admin/posts/index.html:3
 #, python-format
 msgid "Stamps | %(page)s"
-msgstr ""
+msgstr "Publicaciones | %(page)s"
 
 #: app/templates/admin/users/add.html:3
 msgid "Create new user"
-msgstr ""
+msgstr "Crear usuario nuevo"
 
 #: app/templates/admin/users/edit.html:1
 #, python-format
 msgid "Edit User's Profile | %(name)s"
-msgstr ""
+msgstr "Actualizar perfil | %(name)s"
 
 #: app/templates/admin/users/edit.html:8
 msgid "Edit User Info"
-msgstr ""
+msgstr "Actualizar información del usuario"
 
 #: app/templates/admin/users/edit.html:29
 msgid "Save Changes"
-msgstr ""
+msgstr "Guardar cambios"
 
 #: app/templates/admin/users/index.html:2
 #, python-format
 msgid "Users | Page %(page)s"
-msgstr ""
+msgstr "Usuarios | Page %(page)s"
 
 #: app/templates/admin/users/index.html:9
 msgid "Users"
-msgstr ""
+msgstr "Usuarios"
 
 #: app/templates/admin/users/index.html:13
 #: app/templates/admin/users/index.html:14
 #: app/templates/admin/users/index.html:72
 msgid "users"
-msgstr ""
+msgstr "usuarios"
 
 #: app/templates/admin/users/index.html:24
 msgid "Signed up"
-msgstr ""
+msgstr "Registrado"
 
 #: app/templates/admin/users/index.html:27
 msgid "Total Posts"
-msgstr ""
+msgstr "Cantidad de publicaciones"
 
-#: app/templates/admin/users/show.html:3
+#: app/templates/admin/users/show.html:1
 #, python-format
 msgid "User's Profile | %(name)s"
-msgstr ""
+msgstr "Perfil de usuario | %(name)s"
 
-#: app/templates/admin/users/show.html:20
+#: app/templates/admin/users/show.html:14
 msgid "User List"
-msgstr ""
+msgstr "Lista de usuarios"
 
 #: app/templates/admin/users/partials/_sidebar.html:36
-#: app/templates/admin/users/show.html:29
+#: app/templates/admin/users/show.html:23
 #, python-format
 msgid "This will remove '%(name)s', Are you sure?"
-msgstr ""
+msgstr "Esta seguro que desea eliminar al usuario '%(name)s'?"
 
-#: app/templates/admin/users/show.html:31
+#: app/templates/admin/users/show.html:25
 msgid "Remove"
-msgstr ""
+msgstr "Eliminar"
 
-#: app/templates/admin/users/show.html:37
+#: app/templates/admin/users/show.html:30
 msgid "Edit"
-msgstr ""
+msgstr "Actualizar"
 
-#: app/templates/admin/users/show.html:47
+#: app/templates/admin/users/show.html:40
 msgid "User's Info"
-msgstr ""
+msgstr "Información del usuario"
 
-#: app/templates/admin/users/show.html:51
+#: app/templates/admin/users/show.html:44
 msgid "Id"
-msgstr ""
+msgstr "Id"
 
-#: app/templates/admin/users/show.html:55
+#: app/templates/admin/users/show.html:48
 msgid "Last seen"
-msgstr ""
+msgstr "Ultima visita"
 
-#: app/templates/admin/users/show.html:79
+#: app/templates/admin/users/show.html:72
 msgid "Created at"
-msgstr ""
+msgstr "Creado"
+
+#: app/templates/admin/users/show.html:88
+msgid "Recent posts"
+msgstr "Publicaciones recientes"
 
 #: app/templates/admin/users/show.html:95
-msgid "Recent posts"
-msgstr ""
-
-#: app/templates/admin/users/show.html:101
 msgid "Posted at"
-msgstr ""
+msgstr "Publicado"
 
-#: app/templates/admin/users/show.html:102
+#: app/templates/admin/users/show.html:96
 msgid "Updated at"
-msgstr ""
+msgstr "Actualizado"
 
 #: app/templates/admin/users/user_posts.html:3
 #, python-format
 msgid "User's Posts | %(name)s"
-msgstr ""
+msgstr "Publicaciones del usuario | %(name)s"
 
 #: app/templates/admin/users/partials/_sidebar.html:16
 msgid "Update Profile Picture"
-msgstr ""
+msgstr "Cambiar imagen de perfil"
 
 #: app/templates/admin/users/partials/_sidebar.html:26
 msgid "Show User"
-msgstr ""
+msgstr "Mostrar usuario"
 
 #: app/templates/admin/users/partials/_sidebar.html:31
 msgid "Users List"
-msgstr ""
+msgstr "Lista de usuarios"
 
 #: app/templates/admin/users/partials/_sidebar.html:36
 msgid "Delete User"
-msgstr ""
+msgstr "Borrar usuario"
 
 #: app/templates/admin/users/partials/_sidebar.html:41
 msgid "New User"
-msgstr ""
+msgstr "Usuario nuevo"
 
 #: app/templates/main/index.html:2
 msgid "LATEST_TITLE"
@@ -741,12 +772,12 @@ msgstr "Empieza aqui!"
 
 #: app/templates/main/common/_sidebar_user.html:40
 msgid "EDIT_STAMP_LBL"
-msgstr "Editar historia"
+msgstr "Actualizar publicación"
 
 #: app/templates/main/common/_sidebar_user.html:44
 #: app/templates/main/layout/error-base.html:32
 msgid "NEW_STAMP_BTN"
-msgstr "Crear historia"
+msgstr "Crear publicación"
 
 #: app/templates/main/layout/error-base.html:15
 #: app/templates/main/layout/header-no-menu.html:22
@@ -767,7 +798,7 @@ msgstr "Dashboard"
 
 #: app/templates/main/layout/error-base.html:30
 msgid "POSTS_BTN"
-msgstr "Historias"
+msgstr "Publicaciones"
 
 #: app/templates/main/layout/error-base.html:31
 msgid "DRAFT_BTN"
@@ -786,7 +817,7 @@ msgstr "Codigo de conducta"
 #: app/templates/main/layout/header-no-menu.html:5
 #: app/templates/main/layout/header.html:5
 msgid "Logo"
-msgstr ""
+msgstr "Logo"
 
 #: app/templates/main/layout/header-no-menu.html:11
 #: app/templates/main/layout/header.html:10
@@ -876,4 +907,5 @@ msgstr "Leer mas..."
 #: app/utils/__init__.py:114
 #, python-format
 msgid "Posted %(ago)s ago"
-msgstr ""
+msgstr "Publicado hace %(ago)s"
+
