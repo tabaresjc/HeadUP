@@ -60,4 +60,4 @@ OTHER_DOMAINS = ['www.headup.space', 'www.headup.world', 'headup.world', 'www.hu
 # Google Analytics
 # *************************************************
 GA_TRACKING_ID = None
-GA_TRACKINGS = {}
+GA_TRACKINGS = []
