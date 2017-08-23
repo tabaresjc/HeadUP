@@ -15,7 +15,7 @@ def ga_autolinks(eval_ctx, items):
     result = []
 
     for item in items:
-        if item != domain_name:
+        if item not in domain_name:
             result.append(u'"%s"' % item)
 
     return u','.join(result)
