@@ -3,7 +3,6 @@
 from flask_login import current_user
 from app import db
 from app.helpers import ModelHelper, MutableObject
-from app.utils.db import MutableDict
 import datetime
 
 
@@ -17,7 +16,6 @@ class Category(db.Model, ModelHelper):
     name = db.Column(db.String(128), index=True, unique=True)
     slug = db.Column(db.String(128), index=True, unique=True)
     posts = db.relationship('Post', backref='category', lazy='dynamic')
-    attributes = db.Column(MutableDict.as_mutable(db.PickleType))
     attr = db.Column(MutableObject.get_column())
 
     created_at = db.Column(db.DateTime, default=datetime.datetime.utcnow)

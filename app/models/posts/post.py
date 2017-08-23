@@ -3,7 +3,6 @@
 from flask_login import current_user
 from app import db
 from app.helpers import ModelHelper, MutableObject
-from app.utils.db import MutableDict
 import datetime
 import base64
 
@@ -32,7 +31,6 @@ class Post(db.Model, ModelHelper):
     anonymous = db.Column(db.SmallInteger)
     score = db.Column(db.Numeric(20, 7), default=0,
                       server_default='0', nullable=False)
-    attributes = db.Column(MutableDict.as_mutable(db.PickleType))
     attr = db.Column(MutableObject.get_column())
 
     created_at = db.Column(db.DateTime, default=datetime.datetime.utcnow)

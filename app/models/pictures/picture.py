@@ -4,7 +4,6 @@ from flask_login import current_user
 from flask import url_for
 from app import db
 from app.helpers import ModelHelper, MutableObject
-from app.utils.db import MutableDict
 from config import UPLOAD_MEDIA_PICTURES_PATH
 import datetime
 import os
@@ -21,7 +20,6 @@ class Picture(db.Model, ModelHelper):
     user_id = db.Column(db.Integer, db.ForeignKey(
         'users.id', ondelete='CASCADE', onupdate='NO ACTION'))
 
-    attributes = db.Column(MutableDict.as_mutable(db.PickleType))
     attr = db.Column(MutableObject.get_column())
 
     created_at = db.Column(db.DateTime, default=datetime.datetime.utcnow)
