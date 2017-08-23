@@ -17,7 +17,8 @@ DEBUG = True
 # Site Configuration
 # *************************************************
 SITE_NAME = 'HeadUP'
-DEFAULT_TIMEZONE = u'Asia/Tokyo'
+DEFAULT_TIMEZONE = 'Asia/Tokyo'
+DEFAULT_LANGUAGE = 'en'
 DEFAULT_USER_ROLES = [('1', 'Administrator'), ('2', 'Writer')]
 LANGUAGES_FORM = [(u'en', u'English'), (u'es', u'Español')]
 LANGUAGES = {'en': u'English', 'es': u'Español', 'fr': u'Français'}

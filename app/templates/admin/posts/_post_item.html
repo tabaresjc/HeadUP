@@ -6,9 +6,9 @@
 				{% if post.category %}<span>({{ post.category.name }})</span>{% endif %}
 			</a>
 		</h3>
-		<div class="actions pull-right">
+		<div class="btn-group" role="group">
 			{% if post.can_edit() %}
-			<a class="btn btn-success btn-sm pull-right" href="{{ url_for('PostsView:put', id=post.id) }}">
+			<a href="{{ url_for('PostsView:put', id=post.id) }}" class="btn btn-success btn-sm pull-right">
 				<i class="icon-edit"></i>
 			</a>
 			{% endif %}

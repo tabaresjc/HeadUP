@@ -1,12 +1,12 @@
 # -*- coding: utf8 -*-
 
-from flask import render_template, flash, redirect, url_for, request, jsonify, abort
+from flask import flash, redirect, url_for, request, jsonify, abort
 from flask_login import current_user, login_required
 from flask_classy import FlaskView, route
 from flask_babel import gettext
 from flask_paginate import Pagination
 from app.models import Post, Picture, Feed
-from app.utils.response import resp
+from app.helpers import render_template
 from forms import PostForm
 
 
@@ -17,36 +17,45 @@ class PostsView(FlaskView):
     def index(self):
         page = request.values.get('page', 1, type=int)
         limit = 10
-        posts, total = Post.posts_by_user(
-            current_user.id, page=page, limit=limit)
-        return resp('admin/posts/index.html',
-                    posts=posts,
-                    page=page,
-                    limit=limit,
-                    total=total)
+
+        posts, total = Post.posts_by_user(current_user.id,
+                                          page=page, limit=limit)
+
+        return render_template('admin/posts/index.html',
+                               posts=posts,
+                               page=page,
+                               limit=limit,
+                               total=total)
 
     @route('/drafts', methods=['GET'])
     def draft_list(self):
         page = request.values.get('page', 1, type=int)
         limit = 10
-        posts, total = Post.posts_by_user(current_user.id, page=page,
-            limit=limit, status=Post.POST_DRAFT)
-        return resp('admin/posts/drafts.html',
-                    posts=posts,
-                    page=page,
-                    limit=limit,
-                    total=total)
+
+        posts, total = Post.posts_by_user(current_user.id,
+                                          page=page,
+                                          limit=limit,
+                                          status=Post.POST_DRAFT)
+
+        return render_template('admin/posts/drafts.html',
+                               posts=posts,
+                               page=page,
+                               limit=limit,
+                               total=total)
 
     def get(self, id):
         post = Post.get_by_id(id)
 
         if post is None or not post.can_edit():
-            return resp(url_for('PostsView:index'), status=False, redirect=True,
-                        message=gettext('The requested stamp was not found'))
+            message = gettext('The requested stamp was not found')
+            return render_template(url_for('PostsView:index'),
+                                   status=False,
+                                   redirect=True,
+                                   message=message)
 
-        return resp('admin/posts/show.html',
-                    title=post.title,
-                    post=post)
+        return render_template('admin/posts/show.html',
+                               title=post.title,
+                               post=post)
 
     @route('/new', methods=['GET', 'POST'])
     def post(self):
@@ -80,13 +89,16 @@ class PostsView(FlaskView):
                 else:
                     url = url_for('PostsView:get', id=post.id)
 
-                return resp(url, redirect=True,
-                            message=gettext('Stamp succesfully created'))
+                message = gettext('Stamp succesfully created')
+                return render_template(url, redirect=True, message=message)
             else:
-                return resp('admin/posts/edit.html', status=False, form=form,
-                            message=gettext('Invalid submission, please check the message below'))
+                message = gettext('Invalid submission, please check the message below')
+                return render_template('admin/posts/edit.html',
+                                       status=False,
+                                       form=form,
+                                       message=message)
 
-        return resp('admin/posts/edit.html', form=form)
+        return render_template('admin/posts/edit.html', form=form)
 
     @route('/edit/<int:id>', methods=['GET', 'POST'])
     def put(self, id):
@@ -119,9 +131,9 @@ class PostsView(FlaskView):
                     post.cover_picture_id = picture.id if picture else 0
 
                 if post.is_hidden:
-                    return resp(url_for('PostsView:get', id=post.id),
-                        redirect=True,
-                        message=gettext('You are not allowed to make changes to this post'))
+                    return render_template(url_for('PostsView:get', id=post.id),
+                                           redirect=True,
+                                           message=gettext('You are not allowed to make changes to this post'))
 
                 if is_draft:
                     post.status = Post.POST_DRAFT
@@ -143,16 +155,24 @@ class PostsView(FlaskView):
                     message = gettext('Stamp was succesfully saved')
 
                 if remain:
-                    return resp('admin/posts/edit.html', form=form, post=post, message=message)
+                    return render_template('admin/posts/edit.html',
+                                           form=form,
+                                           post=post,
+                                           message=message)
 
-                return resp(url_for('PostsView:get', id=post.id), redirect=True, message=message)
+                return render_template(url_for('PostsView:get', id=post.id),
+                                       redirect=True,
+                                       message=message)
             else:
-                return resp('admin/posts/edit.html', status=False, form=form, post=post,
-                            message=gettext('Invalid submission, please check the message below'))
+                return render_template('admin/posts/edit.html',
+                                       status=False,
+                                       form=form,
+                                       post=post,
+                                       message=gettext('Invalid submission, please check the message below'))
         else:
             form = PostForm(post)
 
-        return resp('admin/posts/edit.html', form=form, post=post)
+        return render_template('admin/posts/edit.html', form=form, post=post)
 
     @route('/remove/<int:id>', methods=['POST'])
     def delete(self, id):
@@ -172,10 +192,15 @@ class PostsView(FlaskView):
             ret = request.values.get('return')
             message = gettext('The stamp "%(title)s" was removed', title=title)
             if ret:
-                return resp(ret, redirect=True, message=message)
+                return render_template(ret, redirect=True, message=message)
 
-            return resp(url_for('PostsView:index'), redirect=True, message=message)
-
+            return render_template(url_for('PostsView:index'),
+                                   redirect=True,
+                                   message=message)
         except Exception as e:
-            return resp(url_for('PostsView:index'), status=False, redirect=True,
-                        message=gettext('Error while removing the stamp, %(error)s', error=e))
+            message = gettext('Error while removing the stamp, %(error)s',
+                              error=e)
+            return render_template(url_for('PostsView:index'),
+                                   status=False,
+                                   redirect=True,
+                                   message=message)

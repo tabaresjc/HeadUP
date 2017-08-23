@@ -5,7 +5,7 @@ from flask_login import login_required
 from flask_classy import FlaskView, route
 from flask_babel import gettext
 from flask_paginate import Pagination
-from app.utils import Utilities as util
+from app.helpers import JsonHelper
 from forms import CategoryForm, NewCategoryForm, TranferCatForm
 from app.models import Category
 
@@ -70,7 +70,7 @@ class CategoriesView(FlaskView):
                     category.save()
 
                     flash(gettext('Category succesfully created'))
-                    return util.redirect_json_or_html(url_for('CategoriesView:index'), 'category')
+                    return JsonHelper.redirect_or_json(url_for('CategoriesView:index'), 'category')
                 except:
                     flash(gettext('Error while creating the category'), 'error')
             else:
@@ -97,12 +97,12 @@ class CategoriesView(FlaskView):
                     form.populate_obj(category)
                     category.save()
                     flash(gettext('Category was succesfully saved'))
-                    return util.redirect_json_or_html(url_for('CategoriesView:index'), 'category')
+                    return JsonHelper.redirect_or_json(url_for('CategoriesView:index'), 'category')
                 except:
-                    return util.redirect_json_or_html(url_for('CategoriesView:index'), 'category', gettext('Error while updating the category'))
+                    return JsonHelper.redirect_or_json(url_for('CategoriesView:index'), 'category', gettext('Error while updating the category'))
             else:
                 if request.is_xhr:
-                    return util.redirect_json_or_html(url_for('CategoriesView:index'), 'category', gettext('Invalid submission, please check the message below'))
+                    return JsonHelper.redirect_or_json(url_for('CategoriesView:index'), 'category', gettext('Invalid submission, please check the message below'))
                 else:
                     flash(
                         gettext('Invalid submission, please check the message below'), 'error')
@@ -126,16 +126,16 @@ class CategoriesView(FlaskView):
 
         try:
             if not Category.transfer_posts(category):
-                return util.redirect_json_or_html(url_for('CategoriesView:index'),
-                                                  'category',
-                                                  gettext('Sorry, the last category can not be removed'))
+                return JsonHelper.redirect_or_json(url_for('CategoriesView:index'),
+                                                   'category',
+                                                   gettext('Sorry, the last category can not be removed'))
 
             name = category.name
             Category.delete(category.id)
             flash(gettext('The category "%(name)s" was removed', name=name))
         except:
-            return util.redirect_json_or_html(url_for('CategoriesView:index'),
-                                              'category',
-                                              gettext('Error while removing the category'))
+            return JsonHelper.redirect_or_json(url_for('CategoriesView:index'),
+                                               'category',
+                                               gettext('Error while removing the category'))
 
-        return util.redirect_json_or_html(url_for('CategoriesView:index'), 'category')
+        return JsonHelper.redirect_or_json(url_for('CategoriesView:index'), 'category')

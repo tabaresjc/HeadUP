@@ -1,25 +1,25 @@
 {
-  "name": "headsup",
-  "description": "Your site to share a positive experience",
-  "homepage": "http://hup.space/",
-  "authors": [
-    "Juan Tabares <juan.ctt@live.com>",
-    "Thibault Defrance <thibault.defrance@gmx.fr>"
-  ],
-  "license": "MIT",
-  "private": true,
-  "keywords": [
-    "headsup"
-  ],
-  "devDependencies": {
-    "requirejs": "^2.3.2",
-    "almond": "^0.3.3",
-    "bootstrap-sass": "^3.3.7"
-  },
-  "dependencies": {
-    "jquery": "^1.9.0",
-    "jquery-smart-vimeo-embed": "^1.1.1",
-    "underscore": "^1.8.3",
-    "fullpage.js": "^2.9.2"
-  }
+	"name": "headsup",
+	"description": "Your site to share a positive experience",
+	"homepage": "http://hup.space/",
+	"authors": [
+		"Juan Tabares <juan.ctt@live.com>",
+		"Thibault Defrance <thibault.defrance@gmx.fr>"
+	],
+	"license": "MIT",
+	"private": true,
+	"keywords": [
+		"headsup"
+	],
+	"devDependencies": {
+		"requirejs": "^2.3.2",
+		"almond": "^0.3.3",
+		"bootstrap-sass": "^3.3.7"
+	},
+	"dependencies": {
+		"jquery": "^1.9.0",
+		"jquery-smart-vimeo-embed": "^1.1.1",
+		"underscore": "^1.8.3",
+		"fullpage.js": "^2.9.2"
+	}
 }

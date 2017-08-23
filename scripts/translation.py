@@ -40,6 +40,7 @@ def update():
             pass
         os.system(
             'pybabel extract -F scripts/translation/babel.cfg -k lazy_gettext -o scripts/translation/messages.pot .')
-        os.system('pybabel update -i scripts/translation/messages.pot -d app/translations')
+        os.system(
+            'pybabel update -i scripts/translation/messages.pot -d app/translations')
     except Exception as e:
         click.echo('Error: %s' % e)

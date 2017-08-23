@@ -2,7 +2,7 @@
 
 from flask import render_template, abort
 from app import app
-from app.main.stamp import mod
+from . import mod
 from app.models import Category
 
 

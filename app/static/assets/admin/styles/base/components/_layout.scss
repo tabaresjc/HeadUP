@@ -52,6 +52,7 @@ input.search{
 		float: left;
 		margin-top: 5px;
 	}
+	margin-bottom: 10px;
 }
 
 /* Custom navbar stuff */
@@ -276,14 +277,14 @@ input.search{
 
 	#dashboard-menu {
 		list-style: none;
-		padding-right: 15px;
-		padding-left: 15px;
+		padding-right: 5px;
+		padding-left: 0;
 		margin-bottom: 0;
-		margin-left: 20px;
+		margin-left: 10px;
 
 		> li > a {
 			display: block;
-			padding: 19px 14px 15px 14px;
+			padding: 10px 20px 10px 10px;
 			margin-left: -15px;
 			margin-bottom: 5px;
 			border-bottom: 1px solid #dae1e8;
@@ -292,38 +293,29 @@ input.search{
 			outline: 0px;
 			line-height: 21px;
 		}
+
 		> li {
 			position: relative;
 			/* font awesome icon */
 			.icon-group {
 				font-size: 22px;
 			}
-			i {
-				font-size: 23px;
-				top: 17px;
-			}
-			&:hover i{
-				opacity: 1;
-			}
+
 			&.active > a,
-			> a:hover {
+			& > a:hover {
 				color: rgba(51, 69, 90, 1);
-				text-decoration: none;
 			}
+
 			&.active {
 				a {
 					font-weight: 600;
-					text-shadow: 1px 1px 1px #fff;
-				}
-				i {
-					opacity: 1;
 				}
 			}
 		}
 		.pointer {
 			position: absolute;
-			right: 9px;
-			top: 20px;
+			right: 21px;
+			top: 8px;
 			.arrow,
 			.arrow_border {
 				border-color: transparent #fff transparent transparent;
@@ -350,36 +342,42 @@ input.search{
 			}
 		}
 		a {
+			display: table;
+
+			i, span {
+				display: table-cell;
+				vertical-align: middle;
+			}
+
+			font-size: 1.0em;
+			text-decoration:  none;
+
 			span {
-				margin-left: 35px;
 				transition: color .1s linear;
-				-moz-transition: color .1s linear;
-				-webkit-transition: color .1s linear;
-				-o-transition: color .1s linear;
+				padding-left: 8px;
+				width: 100%;
 			}
+
 			&.ui-elements span {
-				margin-left: 25px;
+				margin-left: 30px;
 			}
+
 			i {
-				position: absolute;
-				left: 0;
-				height: 24px;
-				width: 24px;
 				opacity: 0.7;
 				transition: opacity .1s ease;
-				-moz-transition: opacity .1s ease;
-				-webkit-transition: opacity .1s ease;
-				-o-transition: opacity .1s ease;
+
+				&.glyphicon {
+					font-size: 1.3em;
+				}
 
 				&.icon-chevron-down {
-					position: relative;
-					float: right;
-					top: 5px;
-					font-size: 11px;
+					font-size: 1.0em;
 					color: rgb(104, 104, 104);
-					width: initial;
-					height: initial;
 				}
+			}
+
+			i + span {
+				margin-left: 5px;
 			}
 		}
 
@@ -391,6 +389,7 @@ input.search{
 				box-shadow: none;
 			}
 		}
+
 		ul.submenu {
 			list-style-type: none;
 			display: none;
@@ -398,24 +397,27 @@ input.search{
 			margin-bottom: 15px;
 			margin-right: 5px;
 			margin-left: -15px;
-			padding-left: 15px;
+			padding-left: 25px;
 			border-bottom: 1px solid #dae1e8;
 			box-shadow: 0 2px 1px -1px #FFFFFF;
 			padding-bottom: 10px;
+
 			&.active {
 				display: block;
 			}
+
 			a {
 				font-weight: normal;
 				font-size: 13px;
-				color: rgb(76, 83, 90);
+				color: #f1f1f1;
 				text-decoration: none;
 				display: block;
 				margin-bottom: 7px;
-				&:hover {
-					text-decoration: underline;
-				}
-				&.active {
+			}
+
+			li.active,
+			li:hover {
+				a {
 					font-weight: bold;
 					text-shadow: none;
 				}

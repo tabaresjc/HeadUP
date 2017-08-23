@@ -56,3 +56,15 @@
   background: rgba(252, 248, 215, 0.95);
   border-color: #999;
 }
+.alertify-notifier.ajs-top {
+  top: 50px;
+}
+.alertify-notifier.ajs-bottom {
+  bottom: 10px;
+}
+.alertify-notifier.ajs-right {
+  right: 10px;
+}
+.alertify-notifier.ajs-left {
+  left: 10px;
+}

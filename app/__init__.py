@@ -13,9 +13,6 @@ app = Flask(__name__)
 # -------------------------------------------------------------------------
 app.config.from_object('config')
 
-app.add_url_rule('/' + config.UPLOAD_MEDIA_PICTURES + '/<path:name>',
-                 endpoint='pictures')
-
 # -------------------------------------------------------------------------
 # Database Configuration
 # -------------------------------------------------------------------------
@@ -25,8 +22,8 @@ db = SQLAlchemy(app)
 # -------------------------------------------------------------------------
 # Cache Configuration
 # -------------------------------------------------------------------------
-from app.utils.cache import CacheBase  # noqa
-cache = CacheBase(app, config=config.CACHE_CONFIG)
+from app.helpers import CacheHelper  # noqa
+cache = CacheHelper(app, config=config.CACHE_CONFIG)
 
 # -------------------------------------------------------------------------
 # Load the CSRF Protection
@@ -53,65 +50,10 @@ from flask_login import LoginManager  # noqa
 login_manager = LoginManager(app)
 
 # -------------------------------------------------------------------------
-# Register Controllers & Models
+# Register modules of the application
 # -------------------------------------------------------------------------
+import configuration  # noqa
+import helpers  # noqa
+import filters  # noqa
 import models  # noqa
-import main  # noqa
-import admin  # noqa
-
-# -------------------------------------------------------------------------
-# Register the filters
-# -------------------------------------------------------------------------
-from utils import init_jinja_filters  # noqa
-init_jinja_filters(app)
-
-# -------------------------------------------------------------------------
-# JSON Encoder
-# -------------------------------------------------------------------------
-from utils.response import CustomJSONEncoder  # noqa
-app.json_encoder = CustomJSONEncoder
-
-# -------------------------------------------------------------------------
-# Application's event handlers
-# -------------------------------------------------------------------------
-
-
-@babel.localeselector
-def get_locale():
-    from flask_login import current_user
-    from flask import request
-    host = request.headers.get('HOST')
-
-    for key, value in config.LANGUAGES.iteritems():
-        if host.startswith(key):
-            return key
-
-    return flask.request.accept_languages.best_match(config.LANGUAGES.keys())
-
-
-@babel.timezoneselector
-def get_timezone():
-    from flask_login import current_user
-    if current_user and current_user.timezone:
-        return current_user.timezone
-    return config.DEFAULT_TIMEZONE
-
-
-@app.errorhandler(401)
-def internal_error_401(error):
-    return flask.render_template('main/common/401.html', title=error), 401
-
-
-@app.errorhandler(403)
-def internal_error_403(error):
-    return flask.render_template('main/common/403.html', title=error), 403
-
-
-@app.errorhandler(404)
-def internal_error_404(error):
-    return flask.render_template('main/common/404.html', title=error), 404
-
-
-@app.errorhandler(500)
-def internal_error_500(error):
-    return flask.render_template('main/common/500.html', title=error), 500
+import web  # noqa

@@ -2,12 +2,13 @@
 
 from flask_login import current_user
 from app import db
-from app.utils.db import ModelBase, MutableDict
+from app.helpers import ModelHelper, MutableObject
+from app.utils.db import MutableDict
 import datetime
 import base64
 
 
-class Post(db.Model, ModelBase):
+class Post(db.Model, ModelHelper):
 
     __tablename__ = 'posts'
 
@@ -15,7 +16,7 @@ class Post(db.Model, ModelBase):
                      'user', 'cover_picture', 'category', 'anonymous']
 
     POST_PUBLIC = 0x001
-    POST_DRAFT  = 0x100
+    POST_DRAFT = 0x100
     POST_HIDDEN = 0x800
 
     id = db.Column(db.Integer, primary_key=True)
@@ -29,8 +30,10 @@ class Post(db.Model, ModelBase):
     status = db.Column(db.Integer, default=1, index=True)
 
     anonymous = db.Column(db.SmallInteger)
-    score = db.Column(db.Numeric(20, 7), default=0, server_default='0', nullable=False)
+    score = db.Column(db.Numeric(20, 7), default=0,
+                      server_default='0', nullable=False)
     attributes = db.Column(MutableDict.as_mutable(db.PickleType))
+    attr = db.Column(MutableObject.get_column())
 
     created_at = db.Column(db.DateTime, default=datetime.datetime.utcnow)
     modified_at = db.Column(db.DateTime, default=datetime.datetime.utcnow)

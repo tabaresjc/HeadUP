@@ -11,9 +11,9 @@ def stamps_welcome(page=1, limit=Feed.FEED_DEFAULT_LIMIT):
     lang = str(get_locale())
 
     obj = Feed.get_feed_cache(name=Feed.CACHE_WELCOME_PAGE,
-        page=page,
-        limit=limit,
-        lang=lang)
+                              page=page,
+                              limit=limit,
+                              lang=lang)
 
     if obj is None:
         posts, total = Feed.posts(page=page, limit=Feed.FEED_DEFAULT_LIMIT)
@@ -25,10 +25,10 @@ def stamps_welcome(page=1, limit=Feed.FEED_DEFAULT_LIMIT):
                               total=total)
 
         Feed.set_feed_cache(name=Feed.CACHE_WELCOME_PAGE,
-            data=obj,
-            page=page,
-            limit=limit,
-            lang=lang)
+                            data=obj,
+                            page=page,
+                            limit=limit,
+                            lang=lang)
 
     return obj
 
@@ -38,9 +38,9 @@ def stamps_ranking(page=1, limit=5):
     lang = str(get_locale())
 
     obj = Feed.get_feed_cache(name=Feed.CACHE_RANKING_PAGE,
-        page=page,
-        limit=limit,
-        lang=lang)
+                              page=page,
+                              limit=limit,
+                              lang=lang)
 
     if obj is None:
         posts, total = Feed.ranking(page=page, limit=limit)
@@ -52,10 +52,10 @@ def stamps_ranking(page=1, limit=5):
                               total=total)
 
         Feed.set_feed_cache(name=Feed.CACHE_RANKING_PAGE,
-            data=obj,
-            page=page,
-            limit=limit,
-            lang=lang)
+                            data=obj,
+                            page=page,
+                            limit=limit,
+                            lang=lang)
 
     return obj
 
@@ -65,9 +65,9 @@ def stamps_category(category, page=1, limit=20):
     lang = str(get_locale())
 
     obj = Feed.get_feed_cache(name=Feed.CACHE_CATEGORY_PAGE,
-        page=page,
-        limit=limit,
-        lang=lang)
+                              page=page,
+                              limit=limit,
+                              lang=lang)
 
     if obj is None:
         posts, total = Feed.category(category, page=page, limit=limit)
@@ -80,8 +80,8 @@ def stamps_category(category, page=1, limit=20):
                               total=total)
 
         Feed.set_feed_cache(name=Feed.CACHE_CATEGORY_PAGE,
-            data=obj,
-            page=page,
-            limit=limit,
-            lang=lang)
+                            data=obj,
+                            page=page,
+                            limit=limit,
+                            lang=lang)
     return obj

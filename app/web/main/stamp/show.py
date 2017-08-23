@@ -3,8 +3,8 @@
 from flask import render_template, redirect, url_for, abort, send_file, session
 from app import app
 from app.models import Post
-from app.main.stamp import mod
-from app.utils.response import nocache
+from . import mod
+from app.helpers import nocache
 
 
 @mod.route('/<int:id>')
@@ -46,7 +46,8 @@ def count_page_view(post_id):
             post.update_score(page_view=1)
             post.save()
             Post.commit_transaction()
-            session[key] = Feed.epoch_seconds(datetime.datetime.now() + datetime.timedelta(hours=8))
+            session[key] = Feed.epoch_seconds(
+                datetime.datetime.now() + datetime.timedelta(hours=8))
 
     except Exception as e:
         Post.rollback_transaction()

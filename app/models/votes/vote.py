@@ -2,13 +2,13 @@
 
 from flask_login import current_user
 from app import db
-from app.utils.db import ModelBase, MutableDict
+from app.helpers import ModelHelper
 from config import UPLOAD_MEDIA_PICTURES, UPLOAD_MEDIA_PICTURES_PATH
 import datetime
 import os
 
 
-class Vote(db.Model, ModelBase):
+class Vote(db.Model, ModelHelper):
 
     __tablename__ = 'votes'
     __table_args__ = (
@@ -20,7 +20,8 @@ class Vote(db.Model, ModelBase):
 
     object_id = db.Column(db.Integer)
     object_kind = db.Column(db.Integer)
-    user_id = db.Column(db.Integer, db.ForeignKey('users.id', ondelete='CASCADE', onupdate='NO ACTION'))
+    user_id = db.Column(db.Integer, db.ForeignKey(
+        'users.id', ondelete='CASCADE', onupdate='NO ACTION'))
 
     created_at = db.Column(db.DateTime, default=datetime.datetime.utcnow)
     modified_at = db.Column(db.DateTime, default=datetime.datetime.utcnow)

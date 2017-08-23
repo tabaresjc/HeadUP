@@ -90,27 +90,22 @@ form div.upload-file-container input[name=file] {
 	color: #fff;
 }
 
-.panel-post .panel-heading {
-	position: relative;
-}
+.panel-post {
+	a, a:hover, a:focus {
+		text-decoration: none;
+	}
+	.panel-heading {
+		width: 100%;
+		display: table;
+		.panel-title, .btn-group {
+			display: table-cell;
+			vertical-align: top;
+		}
 
-.panel-post .panel-heading a:hover {
-	text-decoration: none;
-}
-
-.panel .actions {
-	position: absolute;
-	right: 16px;
-	top: 6px;
-}
-
-.panel .actions i {
-	font-size: 0.875em;
-	margin: 0 3px;
-}
-
-.panel .actions i:hover {
-	cursor: pointer;
+		.panel-title {
+			padding-right: 10px;
+		}
+	}
 }
 
 .pagination-page-info {

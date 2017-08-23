@@ -4,13 +4,14 @@ from flask_login import UserMixin, current_user
 from werkzeug.security import generate_password_hash, check_password_hash
 from app import db
 from .role import Role
-from app.utils.db import ModelBase, MutableDict
+from app.helpers import ModelHelper, MutableObject
+from app.utils.db import MutableDict
 from hashlib import md5
 import datetime
 import re
 
 
-class User(db.Model, ModelBase, UserMixin):
+class User(db.Model, ModelHelper, UserMixin):
 
     __tablename__ = 'users'
 
@@ -24,6 +25,7 @@ class User(db.Model, ModelBase, UserMixin):
     password = db.Column(db.String(128))
     role_id = db.Column(db.Integer)
     attributes = db.Column(MutableDict.as_mutable(db.PickleType))
+    attr = db.Column(MutableObject.get_column())
 
     created_at = db.Column(db.DateTime, default=datetime.datetime.utcnow)
     modified_at = db.Column(db.DateTime, default=datetime.datetime.utcnow)

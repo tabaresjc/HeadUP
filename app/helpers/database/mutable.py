@@ -3,14 +3,20 @@
 from sqlalchemy.ext.mutable import Mutable
 
 
-class MutableDict(Mutable, dict):
+class MutableObject(Mutable, dict):
+    @classmethod
+    def get_column(cls):
+        from app.helpers import DatabaseJSONEncoder
+        return cls.as_mutable(DatabaseJSONEncoder)
 
     @classmethod
     def coerce(cls, key, value):
-        "Convert plain dictionaries to MutableDict."
-        if not isinstance(value, MutableDict):
+        "Convert plain dictionaries to MutableObject."
+
+        if not isinstance(value, MutableObject):
             if isinstance(value, dict):
-                return MutableDict(value)
+                return MutableObject(value)
+
             # this call will raise ValueError
             return Mutable.coerce(key, value)
         else:
@@ -18,16 +24,12 @@ class MutableDict(Mutable, dict):
 
     def __setitem__(self, key, value):
         "Detect dictionary set events and emit change events."
+
         dict.__setitem__(self, key, value)
         self.changed()
 
     def __delitem__(self, key):
         "Detect dictionary del events and emit change events."
+
         dict.__delitem__(self, key)
         self.changed()
-
-    def __getstate__(self):
-        return dict(self)
-
-    def __setstate__(self, state):
-        self.update(state)

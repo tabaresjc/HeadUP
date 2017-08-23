@@ -57,6 +57,13 @@ body {
 				text-shadow: none;
 				color: rgb(211, 211, 211);
 			}
+
+			li.active,
+			li:hover {
+				a {
+					color: #fff;
+				}
+			}
 		}
 	}
 }
