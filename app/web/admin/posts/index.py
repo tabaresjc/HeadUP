@@ -188,7 +188,7 @@ class PostsView(FlaskView):
         try:
             title = post.title
             Post.delete(post.id)
-
+            Feed.clear_feed_cache()
             ret = request.values.get('return')
             message = gettext('The stamp "%(title)s" was removed', title=title)
             if ret:
