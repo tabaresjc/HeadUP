@@ -1,4 +1,8 @@
-{% set container_class = 'user-profile' %} {% set title = _('User\'s Profile | %(name)s', name=user.name) %} {% extends "admin/layout/base.html" %} {% block main %}
+{% set container_class = 'user-profile' %}
+{% set title = _('User\'s Profile | %(name)s', name=user.name) %}
+{% extends "admin/layout/base.html" %}
+
+{% block main %}
 <!-- header -->
 <div class="row header">
 	<div class="col-md-9">

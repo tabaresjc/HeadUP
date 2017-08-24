@@ -7,11 +7,13 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	{% include 'shared/icons.html' %}
 
-	<!-- build:css(app) /static/assets/admin/styles/main.css -->
+	<!-- build:css(.) /static/assets/admin/styles/vendors.css -->
+	<link rel="stylesheet" href="/node_modules/alertifyjs/build/css/alertify.css"/>
+	<!-- endbuild -->
+
+	<!-- build:css(.) /static/assets/admin/styles/main.css -->
 	<link rel="stylesheet" href="/static/assets/admin/styles/base/main.css">
-	<link rel="stylesheet" href="/static/assets/admin/styles/lib/font-awesome.css">
-	<link rel="stylesheet" href="/static/lib/node_modules/alertifyjs/build/css/alertify.css"/>
-	<link rel="stylesheet" href="/static/assets/plugins/styles/alertify.css"/>
+	<link rel="stylesheet" href="/static/assets/lib/styles/alertify.css"/>
 	<!-- endbuild -->
 
 	{% block custom_css %}{% endblock %}

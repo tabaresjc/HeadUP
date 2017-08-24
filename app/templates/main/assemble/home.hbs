@@ -8,12 +8,15 @@
     {% block meta_extra %}{% endblock %}
     {% include 'shared/icons.html' %}
 
-	<!-- build:css(app) /static/assets/headsup/styles/home.css -->
+	<!-- build:css(.) /static/assets/headsup/styles/vendors.css -->
+	<link rel="stylesheet" href="/node_modules/alertifyjs/build/css/alertify.css"/>
+	<link rel="stylesheet" href="/bower_components/fullpage.js/jquery.fullPage.css"/>
+    <!-- endbuild -->
+
+	<!-- build:css(.) /static/assets/headsup/styles/home.css -->
     <link rel="stylesheet" href="/static/assets/headsup/styles/base/main.css"/>
-	<link rel="stylesheet" href="/static/lib/node_modules/alertifyjs/build/css/alertify.css"/>
-	<link rel="stylesheet" href="/static/assets/plugins/styles/alertify.css"/>
-	<link rel="stylesheet" href="/static/lib/bower_components/fullpage.js/jquery.fullPage.css"/>
-	<link rel="stylesheet" href="/static/assets/headsup/styles/extra/fullPage.css">
+	<link rel="stylesheet" href="/static/assets/lib/styles/alertify.css"/>
+	<link rel="stylesheet" href="/static/assets/lib/styles/fullPage.css">
     <!-- endbuild -->
 
 	{% block custom_css %}{% endblock %}

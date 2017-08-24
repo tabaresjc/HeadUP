@@ -7,6 +7,13 @@ module.exports = function(grunt, options) {
 			tasks: [
 				'frontend-dev',
 				'backend-dev',
+			]
+		},
+		'dev': {
+			description: 'Generate the assets files for Development mode (Default)',
+			tasks: [
+				'frontend-dev',
+				'backend-dev',
 				'watch'
 			]
 		},

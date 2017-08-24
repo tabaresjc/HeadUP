@@ -56,4 +56,4 @@ import configuration  # noqa
 import helpers  # noqa
 import filters  # noqa
 import models  # noqa
-import web  # noqa
+import views  # noqa

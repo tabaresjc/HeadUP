@@ -6,7 +6,8 @@ module.exports = {
 			'<%= pkg.app.assets %>/headsup/styles/main.css',
 			'<%= pkg.app.assets %>/headsup/scripts/main.js',
 			'<%= pkg.app.assets %>/headsup/styles/home.css',
-			'<%= pkg.app.assets %>/headsup/scripts/home.js'
+			'<%= pkg.app.assets %>/headsup/scripts/home.js',
+			'<%= pkg.app.assets %>/headsup/styles/vendors.css',
 		]
 	},
 	backend: {

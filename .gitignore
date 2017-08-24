@@ -62,27 +62,30 @@ media/
 /config.py
 
 # ignore npm & grunt dependencies
-app/static/lib/bower_components
-app/static/lib/node_modules
+/static/lib/bower_components
+/static/lib/node_modules
 node_modules/
 .sass-cache/
 /tmp/
 
 # ignore generated files
-app/static/assets/headsup/styles/main*.css
-app/static/assets/headsup/styles/home*.css
-app/static/assets/headsup/styles/base/main*.css
-app/static/assets/headsup/scripts/main*.js
-app/static/assets/headsup/scripts/home*.js
-app/static/assets/headsup/fonts/bootstrap/
+/static/assets/headsup/styles/main*.css
+/static/assets/headsup/styles/home*.css
+/static/assets/headsup/styles/vendor*.css
+/static/assets/headsup/styles/base/main*.css
+/static/assets/headsup/scripts/main*.js
+/static/assets/headsup/scripts/home*.js
+/static/assets/headsup/fonts/bootstrap/
 app/templates/main/staging/
 app/templates/main/layout/base.html
 app/templates/main/layout/home.html
 
-app/static/assets/admin/styles/main*.css
-app/static/assets/admin/styles/base/main*.css
-app/static/assets/admin/scripts/main*.js
-app/static/assets/admin/fonts/bootstrap/
+/static/assets/admin/styles/main*.css
+/static/assets/admin/styles/vendor*.css
+/static/assets/admin/styles/base/main*.css
+/static/assets/admin/styles/base/vendor*.css
+/static/assets/admin/scripts/main*.js
+/static/assets/admin/fonts/bootstrap/
 app/templates/admin/staging/
 app/templates/admin/layout/base.html
 

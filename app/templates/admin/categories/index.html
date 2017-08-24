@@ -1,4 +1,5 @@
 {% extends "admin/layout/base.html" %}
+{% set title = _('Categories | %(page)s', page=page) %}
 
 {% block main %}
     <div class="row head">
@@ -12,8 +13,8 @@
             <div class="well">
                 {% include 'admin/categories/_category_form_add.html' %}
             </div>
-            {{ pagination.info|safe }}
-            {{ pagination.links|safe }}
+			{{ pag('CategoriesView:index', page, limit, total, _('categories'), kind='info')|safe }}
+			{{ pag('CategoriesView:index', page, limit, total, _('categories'), kind='links')|safe }}
             <div class="clearfix"></div>
             <table class="table table-bordered">
                 <thead>
@@ -48,7 +49,7 @@
                 {% endfor %}
                 </tbody>
             </table>
-            {{ pagination.links|safe }}
+            {{ pag('CategoriesView:index', page, limit, total, _('categories'), kind='links')|safe }}
         </div>
         <div class="col-md-3">
             {% from "shared/_bootstrap_forms.html" import render_normal_field %}
@@ -57,11 +58,10 @@
                     <h3 class="panel-title">{{ _('Transfer Posts')}}</h3>
                 </div>
                 <form action="{{ url_for('CategoriesView:transfer_post') }}" method="post" name="TransferPosts" class="form-horizontal" role="form">
-                    {{ form.hidden_tag() }}
+                    {{ transferForm.hidden_tag() }}
                     <div class="panel-body">
-                        {{ form.hidden_tag() }}
-                        {{ render_normal_field(trans.from_id, class="form-control")}}
-                        {{ render_normal_field(trans.to_id, class="form-control")}}
+                        {{ render_normal_field(transferForm.from_id, class="form-control")}}
+                        {{ render_normal_field(transferForm.to_id, class="form-control")}}
                     </div>
                     <div class="panel-footer">
                         <button type="reset" class="btn btn-large btn-danger">{{ _('Clear') }}</button>

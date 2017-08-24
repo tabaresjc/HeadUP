@@ -41,7 +41,7 @@ class Category(db.Model, ModelHelper):
 
     @classmethod
     def transfer_posts(cls, from_category, to_category=None):
-        from app.posts.models import Post
+        from app.models import Post
         result, count = cls.pagination(limit=1, desc=False)
         if count <= 1:
             return False

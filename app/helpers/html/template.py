@@ -6,7 +6,7 @@ from flask_wtf import Form
 _json_header = 'application/json'
 
 
-def render_template(template, status=True, message=None, **context):
+def render_view(path_url, status=True, message=None, **context):
     """Renders a template from the template folder with the given arguments."""
 
     is_content_json = (request.headers.get('Accept') == _json_header or
@@ -32,6 +32,6 @@ def render_template(template, status=True, message=None, **context):
         flash(message, 'error' if not status else 'message')
 
     if context.get("redirect"):
-        return redirect(template)
+        return redirect(path_url)
 
-    return rt(template, **context)
+    return rt(path_url, **context)

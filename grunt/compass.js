@@ -8,22 +8,22 @@ module.exports = {
 	},
 	frontend: {
 		options: {
-			importPath: '<%= pkg.app.lib %>/bower_components',
+			importPath: '<%= pkg.app.bower_components %>',
 			javascriptsDir: '<%= pkg.app.assets %>/headsup/scripts',
 			sassDir: '<%= pkg.app.assets %>/headsup/styles/base',
 			cssDir: '<%= pkg.app.assets %>/headsup/styles/base',
-			imagesDir: 'app/static/images',
+			imagesDir: '<%= pkg.app.images %>',
 			noLineComments: true,
 			watch: false
 		}
 	},
 	backend: {
 		options: {
-			importPath: '<%= pkg.app.lib %>/bower_components',
+			importPath: 'bower_components',
 			javascriptsDir: '<%= pkg.app.assets %>/admin/scripts',
 			sassDir: '<%= pkg.app.assets %>/admin/styles/base',
 			cssDir: '<%= pkg.app.assets %>/admin/styles/base',
-			imagesDir: 'app/static/images',
+			imagesDir: '<%= pkg.app.images %>',
 			noLineComments: true,
 			watch: false
 		}

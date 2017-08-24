@@ -7,7 +7,7 @@ module.exports = {
 			'<%= pkg.app.templates %>/main/staging/home.html'
 		],
 		options: {
-			dest: 'app',
+			dest: './',
 			flow: {
 				html: {
 					steps: {
@@ -23,7 +23,7 @@ module.exports = {
 	backend: {
 		src: '<%= pkg.app.templates %>/admin/staging/base.html',
 		options: {
-			dest: 'app',
+			dest: './',
 			flow: {
 				html: {
 					steps: {

@@ -31,16 +31,19 @@
 	],
 	"license": "MIT",
 	"dependencies": {
+		"alertifyjs": "^1.11.0",
 		"autoprefixer": "^6.5.3",
 		"jit-grunt": "^0.10.0",
 		"load-grunt-config": "^0.19.2",
 		"time-grunt": "^1.4.0"
 	},
 	"app": {
+		"bower_components": "bower_components",
+		"node_modules": "node_modules",
 		"templates": "app/templates",
-		"assets": "app/static/assets",
-		"images": "app/static/images",
-		"lib": "app/static/lib",
+		"assets": "static/assets",
+		"images": "static/images",
+		"lib": "static/lib",
 		"tmp": "tmp"
 	}
 }
