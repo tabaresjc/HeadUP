@@ -1,20 +1,21 @@
 {% extends "admin/layout/base.html" %}
+{% set title = _('Edit Category: %(name)s', name=category.name) %}
 
 {% block main %}
-    <div class="row head">
-        <div class="col-md-12">
-            <h4>{{ _('Edit Category') }}</h4>
-        </div>
-    </div>
-    <br/>
-    <div class="row">
-        <div class="col-md-9">
-            <div class="well">
-                {% include 'admin/categories/_category_form_edit.html' %}
-            </div>
-        </div>
-        <div class="col-md-3">
-            {% include 'admin/categories/_sidebar.html' %}
-        </div>
-    </div>
+<div class="row head">
+	<div class="col-md-12">
+		<h4>{{ _('Edit Category') }}</h4>
+	</div>
+</div>
+<br/>
+<div class="row">
+	<div class="col-md-9">
+		<div class="well">
+			{% include 'admin/categories/partials/_category_form_edit.html' %}
+		</div>
+	</div>
+	<div class="col-md-3">
+		{% include 'admin/categories/partials/_sidebar.html' %}
+	</div>
+</div>
 {% endblock %}

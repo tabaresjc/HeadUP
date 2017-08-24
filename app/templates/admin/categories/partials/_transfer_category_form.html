@@ -1,0 +1,17 @@
+{% from "shared/_bootstrap_forms.html" import render_normal_field %}
+<div class="panel panel-primary">
+	<div class="panel-heading">
+		<h3 class="panel-title">{{ _('Transfer Posts')}}</h3>
+	</div>
+	<form action="{{ url_for('CategoriesView:transfer_post') }}" method="post" name="TransferPosts" class="form-horizontal" role="form">
+		{{ transferForm.hidden_tag() }}
+		<div class="panel-body">
+			{{ render_normal_field(transferForm.from_id, class="form-control")}}
+			{{ render_normal_field(transferForm.to_id, class="form-control")}}
+		</div>
+		<div class="panel-footer">
+			<button type="reset" class="btn btn-large btn-danger">{{ _('Clear') }}</button>
+			<button type="submit" class="btn btn-primary pull-right">{{ _('Transfer') }}</button>
+		</div>
+	</form>
+</div>

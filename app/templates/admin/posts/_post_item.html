@@ -9,7 +9,7 @@
 		<div class="btn-group" role="group">
 			{% if post.can_edit() %}
 			<a href="{{ url_for('PostsView:put', id=post.id) }}" class="btn btn-success btn-sm pull-right">
-				<i class="icon-edit"></i>
+				<i class="glyphicon glyphicon-edit"></i>
 			</a>
 			{% endif %}
 		</div>
@@ -29,7 +29,7 @@
 		<div>
 			{% if post.can_edit() %}
 			<a href="{{ url_for('PostsView:delete', id=post.id, return=request.path) }}" data-method="post" rel="nofollow" data-confirm="{{ _('This will remove \'%(title)s\', Are you sure?', title=post.title) }}">
-				<i class="icon-trash"></i>
+				<i class="glyphicon glyphicon-trash"></i>
 			</a>
 			{% endif %}
 

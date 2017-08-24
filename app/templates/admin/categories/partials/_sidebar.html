@@ -1,0 +1,24 @@
+<div class="list-group">
+	{% if not request.endpoint.startswith('CategoriesView:index') %}
+	<a href="{{ url_for('CategoriesView:index') }}" class="list-group-item">
+		<i class="glyphicon glyphicon-list"></i>
+		{{ _('Categories List') }}
+	</a>
+	{% endif %}
+	{% if not request.endpoint.startswith('CategoriesView:post') %}
+	<a href="{{ url_for('CategoriesView:post') }}" class="list-group-item">
+		<i class="glyphicon glyphicon-plus"></i>
+		{{ _('Create Category') }}
+	</a>
+	{% endif %}
+	{% if category and category.can_edit() %}
+	<a href="{{ url_for('CategoriesView:delete', id=category.id)  }}"
+		class="list-group-item"
+		data-confirm="{{ _('This will remove %(name)s, Are you sure?', name=category.name) }}"
+		data-method="post"
+		title="{{ _('Delete category') }}">
+		<i class="glyphicon glyphicon-trash"></i>
+		{{ _('Delete Category') }}
+	</a>
+	{% endif %}
+</div>

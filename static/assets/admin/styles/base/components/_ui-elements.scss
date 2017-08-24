@@ -144,7 +144,7 @@
 	.items {
 		.item {
 			display: block;
-			padding: 7px 0px 7px 45px;
+			padding: 7px 0px 7px 25px;
 			color: #333;
 			font-size: 13px;
 			font-weight: 600;
@@ -161,11 +161,7 @@
 				margin-right: 30px;
 			}
 			i {
-				position: absolute;
-				left: 20px;
-				color: #d9e4ee;
-				font-size: 18px;
-				margin-right: 13px;
+				width: 20px;
 			}
 		}
 	}

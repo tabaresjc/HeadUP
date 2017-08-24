@@ -3,20 +3,16 @@
 
 {% block main %}
     <div class="row head">
-        <div class="col-md-12">
+        <div class="col-md-12 col-sm-12 col-xs-12">
             <h4>{{ _('Categories') }}</h4>
         </div>
     </div>
     <br/>
     <div class="row">
-        <div class="col-md-9">
-            <div class="well">
-                {% include 'admin/categories/_category_form_add.html' %}
-            </div>
+        <div class="col-md-9 col-sm-12 col-xs-12">
 			{{ pag('CategoriesView:index', page, limit, total, _('categories'), kind='info')|safe }}
 			{{ pag('CategoriesView:index', page, limit, total, _('categories'), kind='links')|safe }}
-            <div class="clearfix"></div>
-            <table class="table table-bordered">
+            <table class="table table-bordered clearfix">
                 <thead>
                     <tr>
                         <th>{{ _('Name')}} </th>
@@ -36,10 +32,16 @@
                         <td>
                             {% if category.can_edit() %}
                             <div class="btn-group">
-                                <a class="btn btn-primary" href="{{ url_for('CategoriesView:put_0', id=category.id) }}" title="Change category's settings">
+                                <a class="btn btn-primary"
+									href="{{ url_for('CategoriesView:put', id=category.id) }}"
+									title="{{ _('Update category') }}">
                                     <i class="glyphicon glyphicon-pencil"></i>
                                 </a>
-                                <a class="btn btn-danger" data-confirm="This will remove {{ category.name}}, Are you sure?" data-method="post" href="{{ url_for('CategoriesView:delete_0', id=category.id)  }}"title="Remove this category">
+                                <a class="btn btn-danger"
+									data-confirm="{{ _('This will remove %(name)s, Are you sure?', name=category.name) }}"
+									data-method="post"
+									href="{{ url_for('CategoriesView:delete', id=category.id)  }}"
+									title="{{ _('Delete category') }}">
                                     <i class="glyphicon glyphicon-trash"></i>
                                 </a>
                             </div>
@@ -50,25 +52,10 @@
                 </tbody>
             </table>
             {{ pag('CategoriesView:index', page, limit, total, _('categories'), kind='links')|safe }}
+			{% include 'admin/categories/partials/_transfer_category_form.html' %}
         </div>
-        <div class="col-md-3">
-            {% from "shared/_bootstrap_forms.html" import render_normal_field %}
-            <div class="panel panel-primary">
-                <div class="panel-heading">
-                    <h3 class="panel-title">{{ _('Transfer Posts')}}</h3>
-                </div>
-                <form action="{{ url_for('CategoriesView:transfer_post') }}" method="post" name="TransferPosts" class="form-horizontal" role="form">
-                    {{ transferForm.hidden_tag() }}
-                    <div class="panel-body">
-                        {{ render_normal_field(transferForm.from_id, class="form-control")}}
-                        {{ render_normal_field(transferForm.to_id, class="form-control")}}
-                    </div>
-                    <div class="panel-footer">
-                        <button type="reset" class="btn btn-large btn-danger">{{ _('Clear') }}</button>
-                        <button type="submit" class="btn btn-primary pull-right">{{ _('Transfer') }}</button>
-                    </div>
-                </form>
-            </div>
+        <div class="col-md-3 col-sm-12 col-xs-12">
+			{% include 'admin/categories/partials/_sidebar.html' %}
         </div>
     </div>
 {% endblock %}

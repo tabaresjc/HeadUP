@@ -25,7 +25,7 @@
 		<div class="div pull-right">
 			{% if not user.is_current and current_user.is_admin %}
 			<a class="btn btn-danger" title="Delete user" href="{{ url_for('UsersView:delete',id=user.id) }}" data-method="post" data-confirm="{{ _('This will remove \'%(name)s\', Are you sure?',name=user.name) }}">
-				<i class="icon-trash"></i>
+				<i class="glyphicon glyphicon-trash"></i>
 				<span>{{ _('Remove') }}</span>
 			</a>
 			{% endif %} {% if user.is_current or current_user.is_admin %}
