@@ -3,7 +3,7 @@
 
 {% block main %}
 <div class="row">
-	<div class="col-md-3">
+	<div class="col-md-3 col-sm-12 col-xs-12">
 		<div class="div panel panel-primary">
 			<div class="div panel-heading">{{ current_user.name }}</div>
 			<div class="div panel-body" style="text-align:center;">
@@ -22,21 +22,20 @@
 			</div>
 		</div>
 	</div>
-	<div class="col-md-9">
+	<div class="col-md-9 col-sm-12 col-xs-12">
 		{% if posts and posts.count() -%}
-    {{ pag('admin.index', page, limit, total, _('posts'), kind='info')|safe }}
-    {{ pag('admin.index', page, limit, total, _('posts'), kind='links')|safe }}
-    <div class="clearfix"></div>
-    {% for post in posts -%}
-      {% include 'admin/posts/_post_item.html' %}
-    {% endfor %}
-    {{ pag('admin.index', page, limit, total, _('posts'), kind='links')|safe }}
-    {%- else %}
-    <a href="{{ url_for('stamp.new') }}" class="no-post-message">
-      <img src="/static/assets/admin/images/Logo/feather-blue-256.png" alt="{{ site_name }}" />
-      <span>{{ _('You don\'t have any stamps yet<br/>Participate in this comunity by writting stamps!!')|safe }}</span>
-    </a>
-    {%- endif %}
+    		{{ pag('admin.index', page, limit, total, _('posts'), kind='info')|safe }}
+    		{{ pag('admin.index', page, limit, total, _('posts'), kind='links')|safe }}
+		    {% for post in posts -%}
+		      {% include 'admin/posts/partials/_post_item.html' %}
+		    {% endfor %}
+    		{{ pag('admin.index', page, limit, total, _('posts'), kind='links')|safe }}
+	    {%- else %}
+	    <a href="{{ url_for('stamp.new') }}" class="no-post-message">
+	      <img src="/static/assets/admin/images/Logo/feather-blue-256.png" alt="{{ site_name }}" />
+	      <span>{{ _('You don\'t have any stamps yet<br/>Participate in this comunity by writting stamps!!')|safe }}</span>
+	    </a>
+	    {%- endif %}
 	</div>
 </div>
 {% endblock %}

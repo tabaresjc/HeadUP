@@ -5,7 +5,7 @@ from flask_login import login_required
 from flask_classy import FlaskView, route
 from flask_babel import gettext
 from flask_paginate import Pagination
-from app.helpers import redirect_or_json, render_view
+from app.helpers import render_view
 from forms import CategoryForm, TranferCatForm
 from app.models import Category
 
@@ -84,7 +84,7 @@ class CategoriesView(FlaskView):
                                    message=message,
                                    redirect=True)
             else:
-                form.set_category(category=category)
+                form.set_values(category=category)
 
             return render_view('admin/categories/edit.html',
                                form=form,
@@ -122,8 +122,6 @@ class CategoriesView(FlaskView):
                                message=str(e),
                                redirect=True,
                                status=False)
-
-        return redirect_or_json(url_for('CategoriesView:index'), 'category')
 
     @route('/transfer', methods=['POST'])
     def transfer_post(self):

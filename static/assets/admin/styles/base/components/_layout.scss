@@ -432,10 +432,15 @@ input.search{
 
 #pad-wrapper {
 	padding: 0px 40px;
-	margin: 40px 0 10px 0;
+	margin: 20px 0 20px 0;
 	h4 {
+		line-height: 1.2;
 		color: #696d73;
-		font-style: italic;
+		margin-bottom: 20px;
+		span.label {
+			line-height: 1.2;
+			padding: 0.2em 0.8em;
+		}
 	}
 }
 

@@ -1,28 +1,25 @@
 {% extends "admin/layout/base.html" %}
-
 {% set title = _('Draft | %(page)s', page=page) %}
 
 {% block main %}
-<div class="row head">
-  <div class="col-md-12">
-    <h4>{{ _('Drafts') }}</h4>
-  </div>
-</div>
-<br/>
-<div class="row">
-  <div class="col-md-9">
-    {% if posts and posts.count() -%}
-	    {{ pag('admin.posts.draft_list', page, limit, total, _('stamps'), kind='info')|safe }}
-	    {{ pag('admin.posts.draft_list', page, limit, total, _('stamps'), kind='links')|safe }}
-	    <div class="clearfix"></div>
-	    {% for post in posts %}
-	    	{% include 'admin/posts/_post_item.html' %}
-	    {% endfor %}
-	    {{ pag('admin.posts.draft_list', page, limit, total, _('stamps'), kind='links')|safe }}
-    {%- endif %}
-  </div>
-  <div class="col-md-3">
-    {% include 'admin/posts/_sidebar.html' %}
-  </div>
-</div>
+	<div id="page-title" class="row">
+		<div class="col-md-12 col-sm-12 col-xs-12">
+			<h4>{{ _('Drafts') }}</h4>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-9 col-sm-12 col-xs-12">
+			{{ pag('admin.posts.draft_list', page, limit, total, _('stamps'), kind='info')|safe }}
+			{% if posts and posts.count() -%}
+				{{ pag('admin.posts.draft_list', page, limit, total, _('stamps'), kind='links')|safe }}
+				{% for post in posts %}
+					{% include 'admin/posts/partials/_post_item.html' %}
+				{% endfor %}
+				{{ pag('admin.posts.draft_list', page, limit, total, _('stamps'), kind='links')|safe }}
+			{%- endif %}
+		</div>
+		<div class="col-md-3 col-sm-12 col-xs-12">
+			{% include 'admin/posts/partials/_sidebar.html' %}
+		</div>
+	</div>
 {% endblock %}

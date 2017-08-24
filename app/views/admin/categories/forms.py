@@ -23,9 +23,9 @@ class CategoryForm(Form):
 
     def __init__(self, category=None, *args, **kwargs):
         super(CategoryForm, self).__init__(*args, **kwargs)
-        self.set_category(category)
+        self.set_values(category)
 
-    def set_category(self, category=None):
+    def set_values(self, category=None):
         if category:
             self.name.data = category.name
             self.slug.data = category.slug

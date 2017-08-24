@@ -54,88 +54,102 @@ class PostsView(FlaskView):
                                message=message)
 
         return render_view('admin/posts/show.html',
-                           title=post.title,
                            post=post)
 
     @route('/new', methods=['GET', 'POST'])
     def post(self):
         form = PostForm()
-        if request.method == 'POST':
-            is_draft = not request.values.get('draft') is None
-            if form.validate_on_submit():
+        try:
+            if request.method == 'POST':
+                if not form.validate():
+                    raise Exception(gettext('Invalid submission, please check the message below'))
+
+                is_draft = request.values.get('draft', 0, int)
+                remain = request.values.get('remain', False, bool)
+
                 post = Post.create()
                 form.populate_obj(post)
-                f = request.files.get('file')
                 post.user = current_user
+
+                f = request.files.get('file')
 
                 if f:
                     picture = Picture.create()
                     picture.save_file(f, current_user)
                     post.cover_picture_id = picture.id if picture else 0
 
+                # init the score
                 post.update_score(page_view=1)
 
                 if is_draft:
                     post.status = Post.POST_DRAFT
+                else:
+                    post.status = Post.POST_PUBLIC
 
                 post.editor_version = 1
                 post.save()
 
-                if not is_draft:
+                if not post.is_draft:
                     Feed.clear_feed_cache()
 
-                if form.remain.data:
-                    url = url_for('PostsView:put', id=post.id)
+                if post.is_draft:
+                    message = gettext('Draft was succesfully saved')
+                else:
+                    message = gettext('Stamp was succesfully saved')
+
+                if remain:
+                    url = url_for('PostsView:put', id=post.id, remain='y')
                 else:
                     url = url_for('PostsView:get', id=post.id)
 
-                message = gettext('Stamp succesfully created')
                 return render_view(url, redirect=True, message=message)
             else:
-                message = gettext(
-                    'Invalid submission, please check the message below')
-                return render_view('admin/posts/edit.html',
-                                   status=False,
-                                   form=form,
-                                   message=message)
+                message = None
 
-        return render_view('admin/posts/edit.html', form=form)
+            return render_view('admin/posts/edit.html',
+                               form=form,
+                               message=message)
+        except Exception as e:
+            return render_view('admin/posts/edit.html',
+                               form=form,
+                               message=str(e),
+                               status=False)
 
     @route('/edit/<int:id>', methods=['GET', 'POST'])
     def put(self, id):
         post = Post.get_by_id(id)
 
-        if post is None or not post.can_edit():
-            flash(gettext('The requested stamp was not found'), 'error')
-            return redirect(url_for('PostsView:index'))
-
-        is_draft = not request.values.get('draft') is None
-
-        if request.method in ['POST']:
+        if post is None or not post.can_edit() or post.is_hidden:
+            message = gettext('The requested stamp was not found')
+            return render_view(url_for('PostsView:index'),
+                               redirect=True,
+                               message=message,
+                               status=False)
+        try:
             form = PostForm()
-            if form.validate_on_submit():
-                cover_picture_id = request.values.get(
-                    'cover_picture_id', 0, int)
-                remain = request.values.get('remain', False, bool)
+            remain = request.values.get('remain', False, bool)
+
+            if request.method == 'POST':
+                if not form.validate():
+                    raise Exception(gettext('Invalid submission, please check the message below'))
+
+                cover_picture_id = request.values.get('cover_picture_id', 0, int)
+                is_draft = not (request.values.get('draft') is None)
 
                 if post.cover_picture and cover_picture_id == 0:
                     # remove the picture, when user request its deletion
                     post.cover_picture.remove()
-                c = form.category_id.data
+
                 form.populate_obj(post)
 
                 f = request.files.get('file')
+
                 if f:
                     if post.cover_picture:
                         post.cover_picture.remove()
                     picture = Picture.create()
                     picture.save_file(f, current_user)
                     post.cover_picture_id = picture.id if picture else 0
-
-                if post.is_hidden:
-                    return render_view(url_for('PostsView:get', id=post.id),
-                                       redirect=True,
-                                       message=gettext('You are not allowed to make changes to this post'))
 
                 if is_draft:
                     post.status = Post.POST_DRAFT
@@ -146,35 +160,35 @@ class PostsView(FlaskView):
                     post.status = Post.POST_PUBLIC
                     post.save_count += 1
 
-                post.status = Post.POST_DRAFT if is_draft else Post.POST_PUBLIC
                 post.editor_version = 1
                 post.save()
 
-                if is_draft:
+                Feed.clear_feed_cache()
+
+                if post.is_draft:
                     message = gettext('Draft was succesfully saved')
                 else:
-                    Feed.clear_feed_cache()
                     message = gettext('Stamp was succesfully saved')
 
-                if remain:
-                    return render_view('admin/posts/edit.html',
-                                       form=form,
-                                       post=post,
+                if not remain:
+                    return render_view(url_for('PostsView:get', id=post.id),
+                                       redirect=True,
                                        message=message)
-
-                return render_view(url_for('PostsView:get', id=post.id),
-                                   redirect=True,
-                                   message=message)
             else:
-                return render_view('admin/posts/edit.html',
-                                   status=False,
-                                   form=form,
-                                   post=post,
-                                   message=gettext('Invalid submission, please check the message below'))
-        else:
-            form = PostForm(post)
+                form.set_values(post)
+                form.remain.data = remain
+                message = None
 
-        return render_view('admin/posts/edit.html', form=form, post=post)
+            return render_view('admin/posts/edit.html',
+                               form=form,
+                               post=post,
+                               message=message)
+        except Exception as e:
+            return render_view('admin/posts/edit.html',
+                               form=form,
+                               post=post,
+                               message=str(e),
+                               status=False)
 
     @route('/remove/<int:id>', methods=['POST'])
     def delete(self, id):

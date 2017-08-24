@@ -1,0 +1,39 @@
+<div class="list-group">
+	<a href="{{ url_for('PostsView:post') }}" class="list-group-item">
+		<i class="glyphicon glyphicon-plus"></i>
+		{{ _('New Stamp') }}
+	</a>
+
+	<a href="{{ url_for('PostsView:index') }}" class="list-group-item">
+		<i class="glyphicon glyphicon-list"></i>
+		{{ _('Stamps') }}
+	</a>
+
+	<a href="{{ url_for('PostsView:draft_list') }}" class="list-group-item">
+		<i class="glyphicon glyphicon-list-alt"></i>
+		{{ _('Drafts') }}
+	</a>
+
+	{% if post and request.endpoint.startswith('PostsView:put') %}
+	<a href="{{ url_for('PostsView:get', id = post.id) }}" class="list-group-item">
+		<i class="glyphicon glyphicon-eye-open"></i>
+		{{ _('Show Stamp') }}
+	</a>
+	{% endif %}
+
+	{% if post and post.can_edit() and request.endpoint.startswith('PostsView:get') %}
+	<a href="{{ url_for('PostsView:put', id = post.id) }}" class="list-group-item">
+		<i class="glyphicon glyphicon-edit"></i>
+		{{ _('Edit Stamp') }}
+	</a>
+	{% endif %}
+
+	{% if post and post.can_edit() %}
+	<a href="{{ url_for('PostsView:delete', id = post.id) }}" class="list-group-item"
+		data-method="post"
+		data-confirm="{{ _('This will remove %(name)s, Are you sure?', name=post.title) }}">
+		<i class="glyphicon glyphicon-trash"></i>
+		{{ _('Delete Stamp') }}
+	</a>
+	{% endif %}
+</div>

@@ -62,9 +62,8 @@ media/
 /config.py
 
 # ignore npm & grunt dependencies
-/static/lib/bower_components
-/static/lib/node_modules
-node_modules/
+/bower_components/
+/node_modules/
 .sass-cache/
 /tmp/
 

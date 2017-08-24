@@ -91,19 +91,9 @@ form div.upload-file-container input[name=file] {
 }
 
 .panel-post {
-	a, a:hover, a:focus {
-		text-decoration: none;
-	}
 	.panel-heading {
-		width: 100%;
-		display: table;
-		.panel-title, .btn-group {
-			display: table-cell;
-			vertical-align: top;
-		}
-
 		.panel-title {
-			padding-right: 10px;
+			display: inline-block;
 		}
 	}
 }

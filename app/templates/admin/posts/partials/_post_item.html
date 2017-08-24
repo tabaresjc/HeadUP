@@ -1,17 +1,24 @@
 <div class="panel panel-primary panel-post">
-	<div class="panel-heading">
+	<div class="panel-heading clearfix">
 		<h3 class="panel-title">
 			<a href="{{ url_for('PostsView:get', id=post.id) }}">
+				{% if post.is_draft %}
+				<span class="label label-danger">
+					{{ _('Draft') }}
+				</span>&nbsp;
+				{% endif %}
 				{{ post.title }}
 				{% if post.category %}<span>({{ post.category.name }})</span>{% endif %}
 			</a>
 		</h3>
-		<div class="btn-group" role="group">
-			{% if post.can_edit() %}
-			<a href="{{ url_for('PostsView:put', id=post.id) }}" class="btn btn-success btn-sm pull-right">
-				<i class="glyphicon glyphicon-edit"></i>
-			</a>
-			{% endif %}
+		<div class="pull-right">
+			<div class="btn-group" role="group">
+				{% if post.can_edit() %}
+				<a href="{{ url_for('PostsView:put', id=post.id) }}" class="btn btn-success btn-xs pull-right">
+					<i class="glyphicon glyphicon-edit"></i>
+				</a>
+				{% endif %}
+			</div>
 		</div>
 	</div>
 	<div class="panel-body">

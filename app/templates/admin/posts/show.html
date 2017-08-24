@@ -1,45 +1,52 @@
 {% extends "admin/layout/base.html" %}
+{% set title = post.title %}
 
 {% block main %}
-<div class="row head">
-  <div class="col-md-12">
-    <h4>
-		{{ post.title }}
-		{% if post.category %}<span>({{ post.category.name }})</span>{% endif %}
-	</h4>
-  </div>
-</div>
-<br/>
-<div class="row">
-  <div class="col-md-9">
-    <div class="panel panel-primary">
-    	<div class="panel-body">
-    		{% if post.cover_picture %}
-    		<div class="img-post" style="background-image:url({{ post.cover_picture.image_url }})"></div>
-    		{% endif %}
-    		<div class="row">
-    			<div class="col-md-12">
-    				<p><strong>{{ post.body|nl2br|safe }}</strong></p>
-					{% if post.editor_version %}
-						{{ post.extra_body|safe }}
-					{% else %}
-						{{ post.extra_body|nl2br|safe }}
+	<div id="page-title" class="row">
+		<div class="col-md-12 col-sm-12 col-xs-12">
+			<h4>
+				{% if post.is_draft %}
+				<span class="label label-danger">
+					{{ _('Draft') }}
+				</span>&nbsp;
+				{% endif %}
+				{{ post.title }}
+				{% if post.category %}
+				<span>({{ post.category.name }})</span>
+				{% endif %}
+			</h4>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-9 col-sm-12 col-xs-12">
+			<div class="panel panel-primary">
+				<div class="panel-body">
+					{% if post.cover_picture %}
+					<div class="img-post" style="background-image:url({{ post.cover_picture.image_url }})"></div>
 					{% endif %}
-    			</div>
-    		</div>
-    	</div>
-    	<div class="panel-footer">
-    		<div>
-    			<div class="pull-right">
-    				<strong>{{ post.created_at | humanformat }}</strong>
-    			</div>
-    		</div>
-    		<div class="clearfix"></div>
-    	</div>
-    </div>
-  </div>
-  <div class="col-md-3">
-    {% include 'admin/posts/_sidebar.html' %}
-  </div>
-</div>
+					<div class="row">
+						<div class="col-md-12">
+							<p><strong>{{ post.body|nl2br|safe }}</strong></p>
+							{% if post.editor_version %}
+							{{ post.extra_body|safe }}
+							{% else %}
+							{{ post.extra_body|nl2br|safe }}
+							{% endif %}
+						</div>
+					</div>
+				</div>
+				<div class="panel-footer">
+					<div>
+						<div class="pull-right">
+							<strong>{{ post.created_at | humanformat }}</strong>
+						</div>
+					</div>
+					<div class="clearfix"></div>
+				</div>
+			</div>
+		</div>
+		<div class="col-md-3 col-sm-12 col-xs-12">
+			{% include 'admin/posts/partials/_sidebar.html' %}
+		</div>
+	</div>
 {% endblock %}

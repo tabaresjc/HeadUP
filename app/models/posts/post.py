@@ -120,6 +120,10 @@ class Post(db.Model, ModelHelper):
     def is_hidden(self):
         return self.status == self.POST_HIDDEN
 
+    @property
+    def is_draft(self):
+        return self.status == self.POST_DRAFT
+
     def is_mine(self):
         return current_user.is_authenticated and self.user.id == current_user.id
 
