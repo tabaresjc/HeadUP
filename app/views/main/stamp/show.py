@@ -5,6 +5,7 @@ from app import app
 from app.models import Post
 from . import mod
 from app.helpers import nocache
+from config import BASE_DIR
 
 
 @mod.route('/<int:id>')
@@ -52,4 +53,4 @@ def count_page_view(post_id):
     except Exception as e:
         Post.rollback_transaction()
         raise e
-    return send_file('static/images/counter.gif', mimetype='image/gif')
+    return send_file(BASE_DIR + '/static/images/counter.gif', mimetype='image/gif')
