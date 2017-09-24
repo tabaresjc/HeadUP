@@ -272,9 +272,9 @@ input.search{
 /* Sidebar */
 #sidebar-nav {
 	position: absolute;
-	width: 180px;
+	width: 178px;
 	float: left;
-	margin: 0em;
+	margin: 0px;
 	padding-top: 20px;
 
 	#dashboard-menu {
@@ -331,7 +331,7 @@ input.search{
 				top: 0;
 				width: 0;
 				z-index: 1002;
-				left: 2px;
+				left: 4px;
 				margin-left: 45%;
 			}
 			.arrow_border {
