@@ -4,14 +4,17 @@ module.exports = function(grunt) {
 
 	require('time-grunt')(grunt);
 
+	var pkg = grunt.file.readJSON('package.json');
+
 	var config = {
-		pkg: 		grunt.file.readJSON('package.json'),
+		pkg: 		pkg,
+		basePath:	__dirname,
 		banner: 	'/*! <%= pkg.name %> - v<%= pkg.version %>\n' +
 					' *  Release on: <%= grunt.template.today("yyyy-mm-dd") %>\n' +
 					'<%= pkg.homepage ? " *  " + pkg.homepage + "\\n" : "" %>' +
 					' *  Copyright (c) <%= grunt.template.today("yyyy") %> \n' +
 					' *  Licensed <%= pkg.license %> */\n'
-    }
+    };
 
 	var path = require('path');
 

@@ -4,28 +4,24 @@ module.exports = {
 	options: {
 		relativeAssets: true,
 		debugInfo: false,
-		cacheDir: '<%= pkg.app.tmp %>/sass-cache'
+		cacheDir: '<%= pkg.app.tmp %>/sass-cache',
+		noLineComments: true,
+		watch: false
 	},
 	frontend: {
 		options: {
-			importPath: '<%= pkg.app.bower_components %>',
-			javascriptsDir: '<%= pkg.app.assets %>/headsup/scripts',
-			sassDir: '<%= pkg.app.assets %>/headsup/styles/base',
-			cssDir: '<%= pkg.app.assets %>/headsup/styles/base',
-			imagesDir: '<%= pkg.app.images %>',
-			noLineComments: true,
-			watch: false
+			importPath: '<%= basePath %>/<%= pkg.app.bower_components %>',
+			sassDir: '<%= basePath %>/<%= pkg.app.assets %>/headsup/styles/base',
+			cssDir: '<%= basePath %>/<%= pkg.app.assets %>/headsup/styles/base',
+			imagesDir: '<%= basePath %>/<%= pkg.app.images %>',
 		}
 	},
 	backend: {
 		options: {
-			importPath: 'bower_components',
-			javascriptsDir: '<%= pkg.app.assets %>/admin/scripts',
-			sassDir: '<%= pkg.app.assets %>/admin/styles/base',
-			cssDir: '<%= pkg.app.assets %>/admin/styles/base',
-			imagesDir: '<%= pkg.app.images %>',
-			noLineComments: true,
-			watch: false
+			importPath: '<%= basePath %>/<%= pkg.app.bower_components %>',
+			sassDir: '<%= basePath %>/<%= pkg.app.assets %>/admin/styles/base',
+			cssDir: '<%= basePath %>/<%= pkg.app.assets %>/admin/styles/base',
+			imagesDir: '<%= basePath %>/<%= pkg.app.images %>',
 		}
 	}
 }
