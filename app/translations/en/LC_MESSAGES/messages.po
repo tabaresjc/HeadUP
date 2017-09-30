@@ -632,7 +632,7 @@ msgstr ""
 
 #: app/templates/main/site/home.html:11
 msgid "WELCOME_TITLE_LBL"
-msgstr "Welcome to %(name)s!"
+msgstr "%(name)s - Storytelling Club<br/>your space to express yourself freely"
 
 #: app/templates/main/site/home.html:13
 msgid "WELCOME_SUBTITLE_LBL"
@@ -922,4 +922,3 @@ msgstr ""
 
 #~ msgid "Go to"
 #~ msgstr ""
-

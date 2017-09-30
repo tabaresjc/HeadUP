@@ -71,7 +71,7 @@ msgstr "Publications"
 #: app/templates/main/common/_sidebar_user.html:23
 #: app/templates/main/site/home.html:21
 msgid "LOGIN_BTN"
-msgstr "Identifiant"
+msgstr "S'identifier"
 
 #: app/templates/admin/signin.html:17 app/templates/admin/signup.html:19
 msgid "MAIL_LBL"
@@ -556,7 +556,7 @@ msgstr ""
 
 #: app/templates/main/common/_sidebar_user.html:21
 msgid "SIDEBAR_USER_TITLE"
-msgstr "Voudrais-tu faire partie de cette communauté?"
+msgstr "Rejoindre le Club?"
 
 #: app/templates/main/common/_sidebar_user.html:37
 msgid "SIDEBAR_STAMP_TITLE"
@@ -638,13 +638,12 @@ msgstr ""
 
 #: app/templates/main/site/home.html:11
 msgid "WELCOME_TITLE_LBL"
-msgstr "HeadUP ... Ton nouveau réseau social narratif - espace d'expression libre et gratuit"
+msgstr "%(name)s - Storytelling Club<br/>Ton espace d'expression libre et gratuit"
 
 #: app/templates/main/site/home.html:13
 msgid "WELCOME_SUBTITLE_LBL"
 msgstr ""
-"Révèle au monde et par-delà quelle a été ta solution…<br/>Speak up, HeadUp!"
-
+"Révèle au monde et par-delà tes histoires & tes solutions…<br/>Speak up, HeadUp!"
 
 #: app/templates/main/site/home.html:14
 msgid "GO_TO_STORIES_BTN"
@@ -652,7 +651,7 @@ msgstr "Histoires"
 
 #: app/templates/main/site/home.html:20
 msgid "WELCOME_SUBTITLE_EXTRA_LBL"
-msgstr "Voudrais-tu en faire partie?"
+msgstr "Rejoindre le club?"
 
 #: app/templates/main/site/home.html:30
 msgid "INTRO1_LBL"
@@ -660,15 +659,15 @@ msgstr "Partage une expérience positive"
 
 #: app/templates/main/site/home.html:36
 msgid "INTRO2_LBL"
-msgstr "Inspire les autres avec une réussite personnelle dont tu es fière"
+msgstr "Inspire les autres avec une réussite personnelle dont tu es fier"
 
 #: app/templates/main/site/home.html:42
 msgid "INTRO3_LBL"
-msgstr "Exprime toi et raconte comment tu gardes la tête haute"
+msgstr "Exprime-toi et raconte comment tu gardes la tête haute"
 
 #: app/templates/main/site/home.html:48
 msgid "INTRO4_LBL"
-msgstr "Transmet ton optimisme en écrivant des succès remarquables"
+msgstr "Transmet ton optimisme en partageant petits et grands succès"
 
 #: app/templates/main/stamp/category.html:2
 msgid "CATEGORY_LIST_TITLE"
