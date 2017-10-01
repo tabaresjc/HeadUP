@@ -551,7 +551,7 @@ msgstr ""
 
 #: app/templates/main/common/_sidebar_user.html:21
 msgid "SIDEBAR_USER_TITLE"
-msgstr "Would you like to be part of this community?"
+msgstr "Join the network?"
 
 #: app/templates/main/common/_sidebar_user.html:37
 msgid "SIDEBAR_STAMP_TITLE"
@@ -632,7 +632,7 @@ msgstr ""
 
 #: app/templates/main/site/home.html:11
 msgid "WELCOME_TITLE_LBL"
-msgstr "%(name)s - Storytelling Club<br/>your space to express yourself freely"
+msgstr "%(name)s - Storytelling Network<br/>your space to express yourself freely"
 
 #: app/templates/main/site/home.html:13
 msgid "WELCOME_SUBTITLE_LBL"

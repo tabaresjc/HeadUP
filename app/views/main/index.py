@@ -12,8 +12,12 @@ def index():
 @app.route('/latest', defaults={'page': 1})
 @app.route('/latest/page/<int:page>')
 def latest(page=1):
-
     return render_template("main/index.html", page=page)
+
+
+@app.route('/lp/campaign')
+def campaign():
+    return render_template("main/lp/campaign.html")
 
 
 @app.route('/policy')
