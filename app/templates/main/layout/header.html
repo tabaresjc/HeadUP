@@ -35,18 +35,64 @@
 			</div>
 		</nav>
 		<div class="hidden-xs hidden-sm">
-			{% if current_user and current_user.is_authenticated -%}
-			<a href="{{ url_for('sessions.logout') }}" data-method="post" rel="nofollow" class="btn_container">
-				<span class="glyphicon glyphicon-log-out"></span>
-			</a>
-			{%- else %}
-			<a href="{{ url_for('sessions.signup') }}" rel="nofollow" class="btn_container">
-				<span class="glyphicon glyphicon-plus"></span>
-			</a>
-			<a href="{{ url_for('sessions.login') }}" rel="nofollow" class="btn_container">
-				<span class="glyphicon glyphicon-log-in"></span>
-			</a>
-			{%- endif %}
+			<div class="session">
+				{% if current_user and current_user.is_authenticated -%}
+				<a href="{{ url_for('sessions.logout') }}" data-method="post" rel="nofollow" class="btn_container" title="{% trans%}Sign Out{% endtrans %}">
+					<span class="glyphicon glyphicon-log-out"></span>
+				</a>
+				{%- else %}
+				<a href="{{ url_for('sessions.signup') }}" rel="nofollow" class="btn_container" title="{{ _('REGISTER_BTN') }}">
+					<span class="glyphicon glyphicon-plus"></span>
+				</a>
+				<a href="{{ url_for('sessions.login') }}" rel="nofollow" class="btn_container" title="{{ _('LOGIN_BTN') }}">
+					<span class="glyphicon glyphicon-log-in"></span>
+				</a>
+				{%- endif %}
+			</div>
+			<div class="custom_menu">
+				<a href="#" class="custom_menu__container">
+					<span class="glyphicon glyphicon-heart"></span>
+				</a>
+				<ul class="custom_menu__dropdown">
+					<li>
+						<a href="https://www.facebook.com/headupspace/" target="_blank" class="custom_menu__container">
+							<img src="/static/images/sns/facebook.svg" class="img-rounded" width="32" height="32">
+						</a>
+					</li>
+					<li>
+						<a href="https://www.pinterest.com/headupspace/" target="_blank" class="custom_menu__container">
+							<img src="/static/images/sns/pinterest.svg" class="img-rounded" width="32" height="32">
+						</a>
+					</li>
+					<li>
+						<a href="https://www.youtube.com/channel/UCI7kUURMQab8RzK3OoJeasQ" target="_blank" class="custom_menu__container">
+							<img src="/static/images/sns/youtube.svg" class="img-rounded" width="32" height="32">
+						</a>
+					</li>
+				</ul>
+			</div>
+			<div class="custom_menu">
+				<a href="javascript:;" class="custom_menu__container">
+					<img src="/static/images/flags/{{ language }}.svg" width="28" height="28">
+				</a>
+				<ul class="custom_menu__dropdown {{ language }}">
+					<li class="li-lang-en">
+						<a href="http://{{ config.MAIN_DOMAIN }}{{ request.path }}" class="custom_menu__container">
+							<img src="/static/images/flags/en.svg" width="28" height="28">
+						</a>
+					</li>
+					<li class="li-lang-fr">
+						<a href="http://fr.{{ config.MAIN_DOMAIN }}{{ request.path }}" class="custom_menu__container">
+							<img src="/static/images/flags/fr.svg" width="28" height="28">
+						</a>
+					</li>
+					<li class="li-lang-es">
+						<a href="http://es.{{ config.MAIN_DOMAIN }}{{ request.path }}" class="custom_menu__container">
+							<img src="/static/images/flags/es.svg" width="28" height="28">
+						</a>
+					</li>
+				</ul>
+			</div>
 		</div>
 	</div>
 </header>
