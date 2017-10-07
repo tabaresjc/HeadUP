@@ -6,7 +6,7 @@
 <div class="sliding-image">
 	<div id="fullpage">
 		<div id="slide__1" class="section">
-			<div id="slide1" class="slide slide_1">
+			<div id="c" class="slide slide_1">
 				<div class="intro">
 					<h1>{{ _('WELCOME_TITLE_LBL', name=config.SITE_NAME) }}</h1>
 					<div class="panel-welcome">
@@ -21,6 +21,20 @@
 						<a href="{{ url_for('sessions.login') }}" rel="nofollow" class="btn btn-primary">{{ _('LOGIN_BTN') }}</a>
 						<a href="{{ url_for('sessions.signup') }}" rel="nofollow" class="btn btn-gray">{{ _('REGISTER_BTN') }}</a>
 						{%- endif %}
+					</div>
+					<div class="panel-share">
+						<h5>Follow us & share on</h5>
+						<div class="sns-links">
+							<a href="https://www.facebook.com/headupspace/" target="_blank">
+								<img src="/static/images/sns/facebook.svg" class="img-rounded" width="48" height="48" style="background-color:#fff;">
+							</a>
+							<a href="https://www.pinterest.com/headupspace/" target="_blank">
+								<img src="/static/images/sns/pinterest.svg" class="img-rounded" width="48" height="48" style="background-color:#fff;">
+							</a>
+							<a href="https://www.youtube.com/channel/UCI7kUURMQab8RzK3OoJeasQ" target="_blank">
+								<img src="/static/images/sns/youtube.svg" class="img-rounded" width="48" height="48" style="background-color:#fff;">
+							</a>
+						</div>
 					</div>
 				</div>
 			</div>
