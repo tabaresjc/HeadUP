@@ -29,7 +29,7 @@
 
 .slide .intro {
 	max-width: 70%;
-	margin: 0 auto
+	margin: 0 auto;
 }
 
 .slide .intro p {
@@ -137,6 +137,10 @@
 	}
 	.slide p {
 		font-size: 1.8em
+	}
+	.slide.slide_1 .intro {
+		margin-top: -60px;
+		max-width: 90%;
 	}
 	.slide .intro .panel-welcome {
 		margin-top: 1em
