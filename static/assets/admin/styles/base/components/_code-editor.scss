@@ -1,12 +1,38 @@
-.editor-header {
-	margin-top: -10px;
+
+#txt_challenge {
+	font-size: 1.25em;
+	line-height: 1.5;
+	margin-bottom: 15px;
 }
-#editor { 
-    height: 525px;
-    width: 100%;
-	border: 1px solid #DDD;
-	border-radius: 4px;
-	border-bottom-right-radius: 0px;
-	margin-bottom: 100px;
-	margin-top: 25px;
+
+#cke_txt_solution {
+	.cke_wysiwyg_div {
+		padding: 15px;
+
+		h1, h2, h3, h4 {
+			margin: 0 0 15px 0;
+		}
+
+		p {
+			font-size: 16px;
+			line-height: 1.5;
+			margin: 0;
+		}
+
+		p + p {
+			margin-top: 15px;
+		}
+
+		p + h1, p + h2, p + h3, p + h4 {
+			margin-top: 15px;
+		}
+
+		ul, ol {
+			margin: 3.5% 0;
+
+			ul, ol {
+				margin: 1% 0 2% 0;
+			}
+		}
+	}
 }

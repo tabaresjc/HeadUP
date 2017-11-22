@@ -6,7 +6,7 @@ define(['jquery'], function($) {
 
 		if (txtSolutionEditor.length) {
 			var txtSolutionEditorVersion = parseInt($('#editor_version').val());
-			console.log(txtSolutionEditorVersion);
+
 			if (txtSolutionEditorVersion === 0) {
 				var text = txtSolutionEditor.text();
 
@@ -17,8 +17,11 @@ define(['jquery'], function($) {
 				);
 			}
 
+			var language = $('#form-editor').data('language') || 'en';
+
 			CKEDITOR.replace('txt_solution', {
 				height: 250,
+				language: language,
 				extraPlugins: 'divarea',
 				toolbarGroups: [{
 					"name": "basicstyles",
@@ -37,7 +40,7 @@ define(['jquery'], function($) {
 					"groups": ["styles"]
 				}],
 				// Remove the redundant buttons from toolbar groups defined above.
-				removeButtons: 'Underline,Strike,Subscript,Superscript,Anchor,Styles,Specialchar,About,Image,Table'
+				removeButtons: 'Underline,Strike,Subscript,Superscript,Anchor,Styles,Specialchar,About,Image,Table',
 			});
 		}
 
