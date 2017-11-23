@@ -64,7 +64,7 @@ class PostsView(FlaskView):
                 if not form.validate():
                     raise Exception(gettext('Invalid submission, please check the message below'))
 
-                is_draft = request.values.get('draft', 0, int)
+                is_draft = not (request.values.get('draft') is None)
                 remain = request.values.get('remain', False, bool)
 
                 post = Post.create()
