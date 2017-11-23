@@ -13,6 +13,10 @@ def show(id):
     post = Post.get_by_id(id)
     if post is None:
         abort(404)
+
+    if post.is_hidden:
+        abort(404)
+
     return render_template("main/stamp/show.html",
                            post=post)
 
