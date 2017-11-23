@@ -40,9 +40,9 @@
         {% block container %}
         <div class="container">
             {% block wide_container %}
-            <div class="row">
-                <div class="col-xs-12  col-md-8">{% block content %}{% endblock %}</div>
-                <div class="col-xs-12  col-md-4">{% block sidebar %}{% endblock %}</div>
+			<div class="row">
+				<div class="block-main col-xs-12 col-sm-8 col-md-8">{% block content %}{% endblock %}</div>
+                <div class="block-side col-xs-12 col-sm-4 col-md-4">{% block sidebar %}{% endblock %}</div>
             </div>
             {% endblock %}
         </div>
