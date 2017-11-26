@@ -24,7 +24,7 @@ LANGUAGES_FORM = [(u'en', u'English'), (u'es', u'Español')]
 LANGUAGES = {'en': u'English', 'es': u'Español', 'fr': u'Français'}
 UPLOAD_MEDIA_FOLDER = 'media'
 UPLOAD_MEDIA_PICTURES = 'media/pictures'
-UPLOAD_MEDIA_PICTURES_PATH=os.path.join(BASE_DIR, UPLOAD_MEDIA_PICTURES)
+UPLOAD_MEDIA_PICTURES_PATH = os.path.join(BASE_DIR, UPLOAD_MEDIA_PICTURES)
 
 # *************************************************
 # SQLAlchemy Configuration
@@ -38,7 +38,7 @@ SQLALCHEMY_ECHO = True
 # *************************************************
 CACHE_ENABLED = True
 CACHE_FOLDER = 'cache'
-CACHE_FOLDER_PATH=os.path.join(BASE_DIR, CACHE_FOLDER)
+CACHE_FOLDER_PATH = os.path.join(BASE_DIR, CACHE_FOLDER)
 CACHE_CONFIG = {'CACHE_TYPE': 'filesystem', 'CACHE_DIR': CACHE_FOLDER_PATH}
 
 # *************************************************
@@ -55,10 +55,23 @@ ADDTHIS_LINK_STAMP = None
 # Domain Replacement
 # *************************************************
 MAIN_DOMAIN = 'headup.space'
-OTHER_DOMAINS = ['www.headup.space', 'www.headup.world', 'headup.world', 'www.hup.space', 'hup.space']
+OTHER_DOMAINS = []
+
+# *************************************************
+# Mail Function
+# *************************************************
+MAIL_SERVER = 'localhost'
+MAIL_PORT = 25
+MAIL_USERNAME = None
+MAIL_PASSWORD = None
 
 # *************************************************
 # Google Analytics
 # *************************************************
 GA_TRACKING_ID = None
 GA_TRACKINGS = []
+
+# *************************************************
+# MQ Service
+# *************************************************
+BROKER_URL = 'amqp://headupuser:headup123456@localhost:5672/headup'

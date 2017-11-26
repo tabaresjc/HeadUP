@@ -34,5 +34,6 @@ require([
 	'alertifyjs',
 	'jqueryVimeoEmbed',
 	'notification',
-	'plugins/miscellaneous'
+	'plugins/miscellaneous',
+	'plugins/upvote'
 ]);

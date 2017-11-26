@@ -28,8 +28,8 @@ cache = CacheHelper(app, config=config.CACHE_CONFIG)
 # -------------------------------------------------------------------------
 # Load the CSRF Protection
 # -------------------------------------------------------------------------
-from flask_wtf.csrf import CsrfProtect  # noqa
-csrf = CsrfProtect(app)
+from flask_wtf.csrf import CSRFProtect  # noqa
+csrf = CSRFProtect(app)
 
 # -------------------------------------------------------------------------
 # Load the Babel extension for Internationalization
@@ -48,6 +48,18 @@ widgets = Widgets(app)
 # -------------------------------------------------------------------------
 from flask_login import LoginManager  # noqa
 login_manager = LoginManager(app)
+
+# -------------------------------------------------------------------------
+# Load flask mail
+# -------------------------------------------------------------------------
+from flask_mail import Mail  # noqa
+mail = Mail(app)
+
+# -------------------------------------------------------------------------
+# Load celery
+# -------------------------------------------------------------------------
+from celery import Celery  # noqa
+mq = Celery('tasks', broker=config.BROKER_URL)
 
 # -------------------------------------------------------------------------
 # Register modules of the application

@@ -1,13 +1,16 @@
 # -*- coding: utf-8 -*-
 
-from flask import Blueprint, render_template, flash, redirect, session, url_for, request, g, jsonify
-from flask_login import login_user, logout_user, current_user, login_required, user_logged_in, user_logged_out
+from flask import Blueprint, render_template, flash, redirect, session, \
+    url_for, request, g, jsonify
+from flask_login import login_user, logout_user, current_user, \
+    login_required, user_logged_in, user_logged_out
 from flask_classy import FlaskView, route
 from flask_wtf import Form
 from flask_babel import lazy_gettext, gettext
 from app import app, login_manager
 from forms import LoginForm, SignUpForm
 from app.models import User, GuestUser
+from app.helpers.tasks import register_notification
 import datetime
 
 mod = Blueprint('sessions', __name__)
@@ -16,6 +19,7 @@ mod = Blueprint('sessions', __name__)
 login_manager.login_view = "sessions.login"
 login_manager.login_message = lazy_gettext('Please log in to access this page.')
 login_manager.anonymous_user = GuestUser
+
 
 @login_manager.user_loader
 def load_user(userid):
@@ -45,7 +49,9 @@ def login():
                 user.last_login = user.last_seen
                 user.last_seen = datetime.datetime.utcnow()
                 user.save()
+
                 redirect_to = url_for('latest')
+
                 if 'redirect_to' in session:
                     redirect_to = session['redirect_to']
                     session.pop('redirect_to', None)
@@ -105,6 +111,14 @@ def signup():
             # Login User
             login_user(user)
             flash(gettext('Welcome! You have signed up successfully.'))
+
+            register_notification.delay(
+                gettext('Welcome to Headup!'),
+                user.email,
+                render_template(
+                    'emails/users/registration.html',
+                    user=user))
+
             return redirect(url_for('latest'))
         except:
             flash(gettext('Error while saving the new user, please retry later'), 'error')
