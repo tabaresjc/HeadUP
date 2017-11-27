@@ -164,6 +164,10 @@ class Post(db.Model, ModelHelper):
         return datetime.datetime.utcnow()
 
     @classmethod
+    def get_status_list(cls):
+        return [(cls.POST_DRAFT, "Private"), (cls.POST_PUBLIC, "Public")]
+
+    @classmethod
     def posts_by_user(cls, user_id, limit=10, page=1, status=POST_PUBLIC, orderby='id', desc=True):
         query = cls.query.filter_by(user_id=user_id, status=status)
 

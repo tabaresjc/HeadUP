@@ -1,30 +1,30 @@
 <div class="list-group">
 	<a href="{{ url_for('PostsView:post') }}" class="list-group-item">
 		<i class="glyphicon glyphicon-plus"></i>
-		{{ _('New Stamp') }}
+		{{ _('NEW_STAMP_LBL') }}
 	</a>
 
 	<a href="{{ url_for('PostsView:index') }}" class="list-group-item">
 		<i class="glyphicon glyphicon-list"></i>
-		{{ _('Stamps') }}
+		{{ _('STAMPS_LBL') }}
 	</a>
 
 	<a href="{{ url_for('PostsView:draft_list') }}" class="list-group-item">
 		<i class="glyphicon glyphicon-list-alt"></i>
-		{{ _('Drafts') }}
+		{{ _('DRAFTS_LBL') }}
 	</a>
 
 	{% if post and request.endpoint.startswith('PostsView:put') %}
 	<a href="{{ url_for('PostsView:get', id = post.id) }}" class="list-group-item">
 		<i class="glyphicon glyphicon-eye-open"></i>
-		{{ _('Show Stamp') }}
+		{{ _('STAMP_SHOW_LBL') }}
 	</a>
 	{% endif %}
 
 	{% if post and post.can_edit() and request.endpoint.startswith('PostsView:get') %}
 	<a href="{{ url_for('PostsView:put', id = post.id) }}" class="list-group-item">
 		<i class="glyphicon glyphicon-edit"></i>
-		{{ _('Edit Stamp') }}
+		{{ _('STAMP_EDIT_LBL') }}
 	</a>
 	{% endif %}
 
@@ -33,7 +33,15 @@
 		data-method="post"
 		data-confirm="{{ _('This will remove %(name)s, Are you sure?', name=post.title) }}">
 		<i class="glyphicon glyphicon-trash"></i>
-		{{ _('Delete Stamp') }}
+		{{ _('STAMP_REMOVE_LBL') }}
 	</a>
 	{% endif %}
 </div>
+
+{% if request.endpoint.startswith('PostsView:put') or request.endpoint.startswith('PostsView:post') %}
+{% from "shared/_bootstrap_forms.html" import render_inline_field %}
+<div class="sidebar-edit-post clearfix">
+	{{ render_inline_field(form.status, id="sidebar-status", class="form-control") }}
+	<button type="button" class="btn-save btn btn-primary btn-block">{{ _('BTN_SAVE_LBL') }}</button>
+</div>
+{% endif %}

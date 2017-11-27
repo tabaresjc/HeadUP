@@ -39,7 +39,7 @@
 				{% for user in users %}
 				<tr {% if loop.first %}class="first"{% endif %}>
 					<td>
-						<img src="{{ user.profile_picture_url or '/static/images/user.png' }}" class="img-circle avatar hidden-phone" />
+						<img src="{{ user.profile_picture_url or '/static/images/user.png' }}" class="img-rounded avatar" />
 						<a href="{{ url_for('UsersView:get', id=user.id) }}" class="name">{{ user.name }}</a>
 						<span class="subtext">{{ user.email }}</span>
 					</td>

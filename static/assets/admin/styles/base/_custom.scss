@@ -1,82 +1,3 @@
-/* cover picture */
-.cover-picture {
-	border: 1px dotted #ccc;
-	width: 100%;
-	height: 150px;
-	margin-bottom: 15px;
-	border-radius: 3px;
-	background: no-repeat center;
-	background-size: cover;
-	position: relative;
-
-	span {
-		cursor: pointer;
-	}
-
-	&.with-picture {
-		border: none;
-	}
-}
-
-.cover-picture-edit-button,
-.cover-picture-edit-menu {
-	position: absolute;
-	left: 0;
-	top: 0;
-	width: 100%;
-	height: 100%;
-	border-radius: 4px;
-	background: rgba(0, 0, 0, 0.5);
-	transition: all 300ms ease;
-	text-shadow: 0 1px 0 #000;
-	display: none;
-}
-
-.cover-picture-edit-menu > span {
-	position: absolute;
-	font-size: 1.7em;
-	color: #fff;
-	border: 3px solid #fff;
-	border-radius: 20px;
-	padding: 5px 8px 0;
-}
-
-.cover-picture-edit-button > span {
-	position: absolute;
-	font-size: 1.2em;
-	color: #fff;
-	left: 27%;
-	top: 33%;
-	padding: 5px 25px;
-}
-
-.cover-picture-edit-menu {
-	.update {
-		left: 10px;
-		top: 10px;
-	}
-
-	.delete {
-		right: 10px;
-		top: 10px;
-	}
-}
-
-.cover-picture {
-	&.with-picture:hover .cover-picture-edit-menu {
-		display: block;
-	}
-
-	&.without-picture .cover-picture-edit-button {
-		display: block;
-		background-image: none;
-	}
-}
-
-form div.upload-file-container input[name=file] {
-	display: none;
-}
-
 .img-post {
 	width: 100%;
 	height: 200px;
@@ -88,14 +9,6 @@ form div.upload-file-container input[name=file] {
 
 .panel-primary .panel-title {
 	color: #fff;
-}
-
-.panel-post {
-	.panel-heading {
-		.panel-title {
-			display: inline-block;
-		}
-	}
 }
 
 .pagination-page-info {
@@ -137,10 +50,10 @@ form div.upload-file-container input[name=file] {
 .push-down-15 {
 	margin-bottom: 15px;
 }
+
 .push-up-15 {
 	margin-bottom: 15px;
 }
-
 
 .margin-right {
 	margin-right: 10px;
@@ -148,32 +61,4 @@ form div.upload-file-container input[name=file] {
 
 .margin-left {
 	margin-left: 10px;
-}
-
-.post-body {
-	h1, h2, h3, h4 {
-		margin: 0 0 15px 0;
-	}
-
-	p {
-		font-size: 16px;
-		line-height: 1.5;
-		margin: 0;
-	}
-
-	p + p {
-		margin-top: 15px;
-	}
-
-	p + h1, p + h2, p + h3, p + h4 {
-		margin-top: 15px;
-	}
-
-	ul, ol {
-		margin: 3.5% 0;
-
-		ul, ol {
-			margin: 1% 0 2% 0;
-		}
-	}
 }

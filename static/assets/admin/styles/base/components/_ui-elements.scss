@@ -2,6 +2,7 @@
 	.title {
 		margin-bottom: 30px;
 	}
+
 	.section {
 		margin-bottom: 40px;
 
@@ -9,49 +10,62 @@
 		a.btn-glow {
 			margin-right: 5px;
 		}
+
 		&.btns {
 			a.btn-flat,
 			a.btn-glow {
 				margin-bottom: 12px;
 			}
 		}
+
 		code {
 			margin-right: 25px;
 		}
+
 		.btn-group i {
 			color: rgb(125, 136, 146);
 		}
+
 		.btn-group.audio i {
 			color: #96a9b8;
 			font-size: 12px;
 		}
 	}
+
 	.ctrls {
 		margin-bottom: 20px;
+
 		.btn-glow {
 			margin-right: 8px;
 		}
+
 		.btn-flat.icon {
 			margin-right: 8px;
 		}
+
 		.btn-group.settings {
 			margin-left: 20px;
 		}
+
 		.btn-group.settings i {
 			font-size: 13px;
 			color: #444;
 		}
+
 		.slider-frame {
 			margin-right: 10px;
 		}
+
 		.pagination {
-			margin: 5px 0px;
+			margin: 5px 0;
+
 			&.inverse {
 				margin-left: 25px;
 			}
 		}
+
 		h4 {
-			margin: 20px 0px 20px 0px;
+			margin: 20px 0;
 		}
 
 		.dropdown {
@@ -61,42 +75,42 @@
 				display: block;
 			}
 		}
+
 		.nav-tabs {
 			margin-bottom: 15px;
 		}
+
 		.tab-content {
-			padding: 0px 10px;
+			padding: 0 10px;
 			margin-bottom: 20px;
 		}
 	}
+
 	.sliders .slider {
 		margin-bottom: 20px;
 	}
-
 	/* separator */
 	.separator {
 		border-top: 1px solid #edeff1;
 		margin-top: 100px;
 		padding-top: 45px;
-		box-shadow: inset 0px 3px 4px -1px #fafafa;
+		box-shadow: inset 0 3px 4px -1px #fafafa;
 	}
-
 	/* pop dialogs specific styles */
 	.section.dialogs h4 {
 		margin-bottom: 30px;
 	}
 }
 
-
-
 /* for menu dialog sample */
 .pop-dialog {
 	.menu {
 		width: 200px;
-		margin: 5px -10px 0px -10px;
+		margin: 5px -10px 0;
+
 		.item {
 			display: block;
-			padding: 5px 0px 5px 20px;
+			padding: 5px 0 5px 20px;
 			font-weight: 600;
 			color: #333;
 			text-decoration: none;
@@ -107,69 +121,126 @@
 				color: #fff;
 			}
 		}
+
 		.footer {
 			border-top: 1px solid #e6e8e9;
 			background-color: #eff4f7;
-			margin: 15px 0px -10px 0px;
-			border-radius: 0px 0px 5px 5px;
+			margin: 15px 0 -10px;
+			border-radius: 0 0 5px 5px;
 			padding: 12px 20px;
+
 			.logout {
 				font-weight: 600;
 				color: #7d91a8;
 			}
 		}
 	}
-}
 
+	&.full {
+		width: 100%;
+	}
 
-/* styles for settings dialog sample */
-.pop-dialog.full {
-	width: 100%;
-}
-.pop-dialog .settings {
-	width: auto;
-	margin: 5px -10px 0px -10px;
-	position: relative;
-	.close-icon {
-		text-decoration: none;
-		position: absolute;
-		top: -18px;
-		right: 10px;
-	}
-	.icon-remove-sign {
-		font-size: 15px;
-		color: #95a8b7;
-		cursor: pointer;
-	}
-	.items {
-		.item {
-			display: block;
-			padding: 7px 0px 7px 25px;
-			color: #333;
-			font-size: 13px;
-			font-weight: 600;
-			border-top: 1px solid #e6e8e9;
-			position: relative;
-			&:hover {
-				color: rgb(97, 135, 192);
-			}
-			&:first-child {
-				border-top: 0px;
-			}
-			.check {
-				float: right;
-				margin-right: 30px;
-			}
-			i {
-				width: 20px;
+	.settings {
+		width: auto;
+		margin: 5px -10px 0;
+		position: relative;
+
+		.close-icon {
+			text-decoration: none;
+			position: absolute;
+			top: -18px;
+			right: 10px;
+		}
+
+		.icon-remove-sign {
+			font-size: 15px;
+			color: #95a8b7;
+			cursor: pointer;
+		}
+
+		.items {
+			.item {
+				display: block;
+				padding: 7px 0 7px 25px;
+				color: #333;
+				font-size: 13px;
+				font-weight: 600;
+				border-top: 1px solid #e6e8e9;
+				position: relative;
+
+				&:hover {
+					color: rgb(97, 135, 192);
+				}
+
+				&:first-child {
+					border-top: 0;
+				}
+
+				.check {
+					float: right;
+					margin-right: 30px;
+				}
+
+				i {
+					width: 20px;
+				}
 			}
 		}
 	}
 }
 
-@media (min-width: 768px) and (max-width: 979px) {
-	#pad-wrapper .section.dialogs > .span4 {
-		width: 100%;
-		margin-bottom: 30px;
+.post-body {
+	h1,
+	h2,
+	h3,
+	h4 {
+		margin: 0 0 15px;
+	}
+
+	p {
+		font-size: 16px;
+		line-height: 1.5;
+		margin: 0;
+	}
+
+	p + p {
+		margin-top: 15px;
+	}
+
+	p + h1,
+	p + h2,
+	p + h3,
+	p + h4 {
+		margin-top: 15px;
+	}
+
+	ol,
+	ul {
+		margin: 3.5% 0;
+
+		ol,
+		ul {
+			margin: 1% 0 2%;
+		}
+	}
+}
+
+.btn-lock {
+	margin-left: 5px;
+	background-color: $brand-danger;
+}
+
+.col-sidebar-container {
+	@media (max-width: $screen-xs-max) {
+		.sidebar-edit-post {
+			display: none;
+		}
+	}
+
+	@media (min-width: $screen-sm-min) {
+		#page-content {
+			position: relative;
+		}
+
 	}
 }

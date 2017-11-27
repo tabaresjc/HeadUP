@@ -19,6 +19,8 @@ class PostForm(Form):
 
     category_id = SelectField(u'Category', coerce=int)
 
+    status = SelectField(u'Status', coerce=int)
+
     anonymous = BooleanField(lazy_gettext('Anonymous'), default=0)
 
     remain = BooleanField(lazy_gettext('Show Post'), default=False)
@@ -30,6 +32,7 @@ class PostForm(Form):
     def __init__(self, post=None, *args, **kwargs):
         super(PostForm, self).__init__(*args, **kwargs)
         self.category_id.choices = Category.get_list()
+        self.status.choices = Post.get_status_list()
         self.set_values(post)
 
     def set_values(self, post):
@@ -40,5 +43,6 @@ class PostForm(Form):
         self.extra_body.data = post.extra_body
         self.anonymous.data = post.anonymous
         self.category_id.data = post.category_id
+        self.status.data = post.status
         self.cover_picture_id.data = post.cover_picture_id
         self.editor_version.data = post.editor_version

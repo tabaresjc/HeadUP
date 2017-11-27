@@ -64,7 +64,6 @@ class PostsView(FlaskView):
                 if not form.validate():
                     raise Exception(gettext('Invalid submission, please check the message below'))
 
-                is_draft = not (request.values.get('draft') is None)
                 remain = request.values.get('remain', False, bool)
 
                 post = Post.create()
@@ -81,16 +80,10 @@ class PostsView(FlaskView):
                 # init the score
                 post.update_score(page_view=1)
 
-                if is_draft:
-                    post.status = Post.POST_DRAFT
-                else:
-                    post.status = Post.POST_PUBLIC
-
                 post.editor_version = 1
                 post.save()
 
-                if not post.is_draft:
-                    Feed.clear_feed_cache()
+                Feed.clear_feed_cache()
 
                 if post.is_draft:
                     message = gettext('Draft was succesfully saved')
@@ -134,7 +127,7 @@ class PostsView(FlaskView):
                     raise Exception(gettext('Invalid submission, please check the message below'))
 
                 cover_picture_id = request.values.get('cover_picture_id', 0, int)
-                is_draft = not (request.values.get('draft') is None)
+                is_draft = request.values.get('status', 0, int) == Post.POST_DRAFT
 
                 if post.cover_picture and cover_picture_id == 0:
                     # remove the picture, when user request its deletion

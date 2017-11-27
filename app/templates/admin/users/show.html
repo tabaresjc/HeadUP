@@ -4,20 +4,17 @@
 
 {% block main %}
 <!-- header -->
-<div class="row header">
-	<div class="col-md-9">
-		<img src="{{ user.profile_picture_url or '/static/images/user-neutral.png' }}" width="128" class="avatar img-circle">
-		<h3 class="name">{{ user.name }} ({{ user.nickname }})</h3>
-		<span class="area">{{ user.email }}</span>
-	</div>
-
-	<div class="col-md-3">
-		{% if current_user.is_admin -%}
-		<a class="btn btn-success pull-right" href="{{ url_for('UsersView:index') }}">
-			<i class="glyphicon glyphicon-th-list"></i>
-			<span>{{ _('User List') }}</span>
-		</a>
-		{%- endif %}
+<div class="row">
+	<div class="col-xx-12 col-sm-12 col-md-12">
+		<div class="media">
+			<div class="media-left">
+				<img src="{{ user.profile_picture_url or '/static/images/user-neutral.png' }}" width="64" height="64" class="img-rounded">
+			</div>
+			<div class="media-body">
+				<h3 class="media-heading">{{ user.name }} ({{ user.nickname }})</h3>
+				{{ user.email }}
+			</div>
+		</div>
 	</div>
 </div>
 <div class="row header">

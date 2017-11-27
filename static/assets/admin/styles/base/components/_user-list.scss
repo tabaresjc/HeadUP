@@ -31,42 +31,12 @@
 			margin-right: 4px;
 		}
 	}
-	.table {
-		td {
-			vertical-align: middle;
-			font-size: 13px;
-		}
-		img.avatar {
-			float: left;
-			margin-right: 14px;
-			max-width: 45px;
-			position: relative;
-			top: 8px;
-		}
-		a.name {
-			color: #3389d1;
-			display: block;
-			font-weight: 600;
-			font-size: 14px;
-			margin: 15px 0 0 0;
-		}
-		.subtext {
-			font-size: 12px;
-			margin-left: 0;
-			color: #778391;
-			font-style: italic;
-			margin-top: 0;
-		}
-	}
 	.pagination {
 		margin-top: 25px;
 	}
 }
 
-
-
 /* responsive */
-
 @media (max-width: 767px) {
 	.ui-dropdown .dialog .body{
 		width: 250px;
@@ -109,4 +79,3 @@
 		margin-left: 18px;
 	}
 }
-

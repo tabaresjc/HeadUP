@@ -1,16 +1,107 @@
+#form-editor {
+	.cover-picture {
+		border: 1px dotted #ccc;
+		width: 100%;
+		height: 150px;
+		margin-bottom: 15px;
+		border-radius: 3px;
+		background: no-repeat center;
+		background-size: cover;
+		position: relative;
 
-#txt_challenge {
-	font-size: 1.25em;
-	line-height: 1.5;
-	margin-bottom: 15px;
-}
+		span {
+			cursor: pointer;
+		}
 
-#cke_txt_solution {
-	.cke_wysiwyg_div {
-		padding: 15px;
+		&.with-picture {
+			border: none;
+		}
+	}
 
-		h1, h2, h3, h4 {
-			margin: 0 0 15px 0;
+	.cover-picture-edit-button,
+	.cover-picture-edit-menu {
+		position: absolute;
+		left: 0;
+		top: 0;
+		width: 100%;
+		height: 100%;
+		border-radius: 4px;
+		background: rgba(0, 0, 0, 0.5);
+		transition: all 300ms ease;
+		text-shadow: 0 1px 0 #000;
+		display: none;
+	}
+
+	.cover-picture-edit-menu > span {
+		position: absolute;
+		font-size: 1.7em;
+		color: #fff;
+		border: 3px solid #fff;
+		border-radius: 20px;
+		padding: 5px 8px 0;
+	}
+
+	.cover-picture-edit-button > span {
+		position: absolute;
+		font-size: 1.2em;
+		color: #fff;
+		top: 33%;
+		padding: 5px 25px;
+		text-align: center;
+		width: 100%;
+	}
+
+	.cover-picture-edit-menu {
+		.update {
+			left: 10px;
+			top: 10px;
+		}
+
+		.delete {
+			right: 10px;
+			top: 10px;
+		}
+	}
+
+	.cover-picture {
+		&.with-picture:hover .cover-picture-edit-menu {
+			display: block;
+		}
+
+		&.without-picture .cover-picture-edit-button {
+			display: block;
+			background-image: none;
+		}
+	}
+
+	.upload-file-container input[name=file] {
+		display: none;
+	}
+
+	#body {
+		font-size: 1.25em;
+		line-height: 1.5;
+		border-radius: 4px;
+		width: 100%;
+		padding: 8px 15px;
+	}
+
+	#extra_body {
+		display: none;
+	}
+
+	.cke_editable_inline {
+		background: #fff;
+		border: 1px solid #dee3ea;
+		border-radius: 4px;
+		padding: 8px 15px;
+		min-height: 250px;
+
+		h1,
+		h2,
+		h3,
+		h4 {
+			margin: 0 0 15px;
 		}
 
 		p {
@@ -23,15 +114,20 @@
 			margin-top: 15px;
 		}
 
-		p + h1, p + h2, p + h3, p + h4 {
+		p + h1,
+		p + h2,
+		p + h3,
+		p + h4 {
 			margin-top: 15px;
 		}
 
-		ul, ol {
+		ol,
+		ul {
 			margin: 3.5% 0;
 
-			ul, ol {
-				margin: 1% 0 2% 0;
+			ol,
+			ul {
+				margin: 1% 0 2%;
 			}
 		}
 	}

@@ -280,7 +280,7 @@ input.search{
 	#dashboard-menu {
 		list-style: none;
 		padding-right: 5px;
-		padding-left: 0;
+		padding-left: 5px;
 		margin-bottom: 0;
 		margin-left: 20px;
 
@@ -437,10 +437,6 @@ input.search{
 		line-height: 1.2;
 		color: #696d73;
 		margin-bottom: 20px;
-		span.label {
-			line-height: 1.2;
-			padding: 0.2em 0.8em;
-		}
 	}
 }
 

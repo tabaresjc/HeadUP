@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-09-24 18:15+0900\n"
+"POT-Creation-Date: 2017-11-28 13:15+0900\n"
 "PO-Revision-Date: 2017-07-15 16:34+0900\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: fr\n"
@@ -16,7 +16,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Generated-By: Babel 2.4.0\n"
+"Generated-By: Babel 2.5.1\n"
 
 #: app/filters/formats.py:23
 #, python-format
@@ -53,13 +53,11 @@ msgstr "Dernière connexion"
 msgid "posts"
 msgstr "publications"
 
-#: app/templates/admin/index.html:36 app/templates/admin/posts/index.html:22
+#: app/templates/admin/index.html:36
 msgid ""
 "You don't have any stamps yet<br/>Participate in this comunity by "
 "writting stamps!!"
 msgstr ""
-"Vous n'avez encore aucune estampille<br/>Faites partie de la communauté "
-"en estampillant vos histoires!!"
 
 #: app/templates/admin/categories/index.html:20
 #: app/templates/admin/index.html:49 app/templates/admin/layout/navbar.html:24
@@ -68,7 +66,8 @@ msgstr "Publications"
 
 #: app/templates/admin/signin.html:3 app/templates/admin/signin.html:13
 #: app/templates/admin/signin.html:23 app/templates/admin/signup.html:39
-#: app/templates/main/common/_sidebar_user.html:23
+#: app/templates/main/common/_sidebar_user.html:24
+#: app/templates/main/layout/header.html:47
 #: app/templates/main/site/home.html:21
 msgid "LOGIN_BTN"
 msgstr "S'identifier"
@@ -91,7 +90,8 @@ msgstr "Pas encore de compte?"
 
 #: app/templates/admin/signin.html:30 app/templates/admin/signup.html:3
 #: app/templates/admin/signup.html:15 app/templates/admin/signup.html:32
-#: app/templates/main/common/_sidebar_user.html:26
+#: app/templates/main/common/_sidebar_user.html:27
+#: app/templates/main/layout/header.html:44
 #: app/templates/main/site/home.html:22
 msgid "REGISTER_BTN"
 msgstr "S'enregistrer"
@@ -108,7 +108,9 @@ msgstr "Surnom / Nom de plûme"
 msgid "CONFIRM_PASSWORD_LBL"
 msgstr "Confirmer mot de passe"
 
-#: app/templates/admin/signup.html:27 app/templates/main/layout/footer.html:10
+#: app/templates/admin/signup.html:27
+#: app/templates/emails/users/registration.html:168
+#: app/templates/main/layout/footer.html:10
 #: app/templates/main/layout/header.html:29
 #: app/templates/main/site/policy.html:2
 msgid "TOS_LBL"
@@ -211,14 +213,12 @@ msgstr "Décris la catégorie..."
 
 #: app/templates/admin/categories/partials/_category_form_add.html:8
 #: app/templates/admin/categories/partials/_category_form_edit.html:8
-#: app/templates/admin/posts/partials/_post_form_edit.html:34
 msgid "Save"
 msgstr "Sauvegarder"
 
 #: app/templates/admin/categories/partials/_category_form_add.html:9
 #: app/templates/admin/categories/partials/_category_form_edit.html:9
 #: app/templates/admin/categories/partials/_transfer_category_form.html:13
-#: app/templates/admin/posts/partials/_post_form_edit.html:36
 #: app/templates/admin/users/edit.html:28
 msgid "Clear"
 msgstr "Supprimer"
@@ -257,7 +257,7 @@ msgstr "Ton compte"
 #: app/templates/admin/layout/sidebar.html:25
 #: app/templates/admin/posts/drafts.html:7
 #: app/templates/admin/posts/partials/_sidebar.html:14
-msgid "Drafts"
+msgid "DRAFTS_LBL"
 msgstr "Brouillon"
 
 #: app/templates/admin/layout/navbar.html:26
@@ -274,6 +274,7 @@ msgstr "Top"
 
 #: app/templates/admin/layout/navbar.html:37
 #: app/templates/admin/layout/sidebar.html:96
+#: app/templates/main/layout/header.html:40
 msgid "Sign Out"
 msgstr "Se déconnecter"
 
@@ -283,16 +284,17 @@ msgstr ""
 
 #: app/templates/admin/layout/sidebar.html:15
 #: app/templates/admin/layout/sidebar.html:21
-#: app/templates/admin/posts/index.html:7
 #: app/templates/admin/posts/partials/_sidebar.html:9
-msgid "Stamps"
+msgid "STAMPS_LBL"
 msgstr "Estampilles"
 
 #: app/templates/admin/layout/sidebar.html:29
-#: app/templates/admin/posts/edit.html:8
+#: app/templates/admin/posts/edit.html:2 app/templates/admin/posts/index.html:7
 #: app/templates/admin/posts/partials/_sidebar.html:4
-msgid "New Stamp"
-msgstr "Nouvelle Estampille"
+#: app/templates/main/common/_sidebar_user.html:45
+#: app/templates/main/layout/error-base.html:32
+msgid "NEW_STAMP_LBL"
+msgstr "Nouvelle"
 
 #: app/templates/admin/layout/sidebar.html:42
 #: app/templates/admin/users/index.html:9
@@ -310,74 +312,90 @@ msgid "New User"
 msgstr "Nouvel Utilisateur"
 
 #: app/templates/admin/posts/drafts.html:2
-#, python-format
-msgid "Draft | %(page)s"
+msgid "PAGE_DRAFT_TITLE"
 msgstr "Brouillon | %(page)s"
 
-#: app/templates/admin/posts/drafts.html:12
-#: app/templates/admin/posts/drafts.html:14
-#: app/templates/admin/posts/drafts.html:18
-#: app/templates/admin/posts/index.html:13
-#: app/templates/admin/posts/index.html:14
-#: app/templates/admin/posts/index.html:18
+#: app/templates/admin/posts/drafts.html:10
+#: app/templates/admin/posts/drafts.html:19
+#: app/templates/admin/posts/index.html:10
+#: app/templates/admin/posts/index.html:19
 msgid "stamps"
 msgstr "estampilles"
 
-#: app/templates/admin/posts/edit.html:2 app/templates/admin/posts/edit.html:8
-#: app/templates/admin/posts/partials/_sidebar.html:27
-msgid "Edit Stamp"
-msgstr "Modifier Estampille"
+#: app/templates/admin/posts/drafts.html:23
+#: app/templates/admin/posts/index.html:23
+msgid "WELCOME_MESSAGE_LBL"
+msgstr ""
+"Vous n'avez encore aucune estampille<br/>Faites partie de la communauté "
+"en estampillant vos histoires!!"
 
-#: app/templates/admin/posts/edit.html:11
-#: app/templates/admin/posts/partials/_post_form_edit.html:35
-#: app/templates/admin/posts/partials/_post_item.html:7
-#: app/templates/admin/posts/show.html:10
-msgid "Draft"
-msgstr "Brouillon"
+#: app/templates/admin/posts/edit.html:15
+#: app/templates/admin/posts/partials/_post_item.html:14
+#: app/templates/admin/posts/show.html:15
+msgid "POST_STATUS_DRAFT_LABEL"
+msgstr "Privé: vous seul pouvez voir le document"
 
 #: app/templates/admin/posts/index.html:2
-#, python-format
-msgid "Stamps | %(page)s"
+msgid "PAGE_STAMPS_TITLE"
 msgstr "Estampilles | %(page)s"
 
-#: app/templates/admin/posts/partials/_post_form_edit.html:14
-msgid "Click here to upload a new cover picture"
-msgstr "Cliquer ici pour mettre en ligne une nouvelle image de couverture"
+#: app/templates/admin/posts/partials/_post_form_edit.html:15
+msgid "BTN_UPLOAD_COVER_PICTURE_LBL"
+msgstr "Cliquer ici pour mettre en ligne<br/>une nouvelle image de couverture"
 
-#: app/templates/admin/posts/partials/_post_form_edit.html:21
-msgid "Title – Best description of your post (30 words)"
+#: app/templates/admin/posts/partials/_post_form_edit.html:24
+msgid "FRM_INPUT_TITLE_DESCRIPTION"
 msgstr "Titre - Meilleure description de ta publication (300 words)"
 
-#: app/templates/admin/posts/partials/_post_form_edit.html:22
-msgid "Your Challenge – Description of what you had to cope with (150 words)"
+#: app/templates/admin/posts/partials/_post_form_edit.html:25
+msgid "FRM_INPUT_CHALLENGE_DESCRIPTION"
 msgstr ""
 "Ton défi ou problème rencontré - Description de ce à quoi tu as dû faire "
 "face (150 words)"
 
-#: app/templates/admin/posts/partials/_post_form_edit.html:23
-msgid "Your Solution – Description of what you did (150 words)"
+#: app/templates/admin/posts/partials/_post_form_edit.html:26
+msgid "FRM_INPUT_SOLUTION_DESCRIPTION"
 msgstr "Ta Solution - Description de ce que tu as fais (150 words)"
 
-#: app/templates/admin/posts/partials/_post_form_edit.html:29
-msgid "Keep working on the stamp"
-msgstr "Continue à améliorer ton estampille"
-
-#: app/templates/admin/posts/partials/_post_form_edit.html:30
-msgid "Make this Post Anonymous"
+#: app/templates/admin/posts/partials/_post_form_edit.html:31
+msgid "CB_ANONYMOUS_LBL"
 msgstr "Rendre cette publication anonyme"
 
-#: app/templates/admin/posts/partials/_post_item.html:38
+#: app/templates/admin/posts/partials/_post_form_edit.html:37
+#: app/templates/admin/posts/partials/_sidebar.html:45
+msgid "BTN_SAVE_LBL"
+msgstr "Enregistrer"
+
+#: app/templates/admin/posts/partials/_post_form_edit.html:43
+msgid "ERROR_STAMP_TITLE_EMPTY"
+msgstr "Veuillez saisir un titre."
+
+#: app/templates/admin/posts/partials/_post_form_edit.html:44
+msgid "ERROR_STAMP_CHALLENGE_EMPTY"
+msgstr ""
+"Veuillez entrer votre problème - Description de ce à quoi tu as dû faire "
+"face (150 words)"
+
+#: app/templates/admin/posts/partials/_post_form_edit.html:45
+msgid "ERROR_STAMP_SOLUTION_EMPTY"
+msgstr "Veuillez entrer votre solution"
+
+#: app/templates/admin/posts/partials/_post_item.html:48
 #, python-format
 msgid "This will remove '%(title)s', Are you sure?"
 msgstr "Cela va supprimer '%(title)s', Voulez-vous continuer?"
 
 #: app/templates/admin/posts/partials/_sidebar.html:20
-msgid "Show Stamp"
-msgstr "Montrer Estampille"
+msgid "STAMP_SHOW_LBL"
+msgstr "Montrer"
+
+#: app/templates/admin/posts/partials/_sidebar.html:27
+msgid "STAMP_EDIT_LBL"
+msgstr "Modifier"
 
 #: app/templates/admin/posts/partials/_sidebar.html:36
-msgid "Delete Stamp"
-msgstr "Delete Stamp"
+msgid "STAMP_REMOVE_LBL"
+msgstr "Supprimer"
 
 #: app/templates/admin/users/add.html:3
 msgid "Create new user"
@@ -505,6 +523,18 @@ msgstr "Liste Utilisateurs"
 msgid "Delete User"
 msgstr "Supprimer Utilisateur"
 
+#: app/templates/emails/users/registration.html:120
+#, python-format
+msgid "Welcome to %(name)s!"
+msgstr ""
+
+#: app/templates/emails/users/registration.html:166
+#: app/templates/main/layout/footer.html:8
+#: app/templates/main/layout/header.html:32
+#: app/templates/main/site/conduct.html:2
+msgid "CODE_CONDUCT_LBL"
+msgstr "Code de conduite"
+
 #: app/templates/main/index.html:2
 msgid "LATEST_TITLE"
 msgstr "Nouveautés | Réseau social de narration pour garder la tête haute"
@@ -513,12 +543,12 @@ msgstr "Nouveautés | Réseau social de narration pour garder la tête haute"
 msgid "LATEST_DESCRIPTION"
 msgstr ""
 "HeadUP est votre Réseau Social de Narration, un site internet au format "
-"Problème-Solution au travers duquel vous pouvez transmettre votre optimisme "
-"et raconter comment vous gardez (ou avez gardé) la tête haute. Partagez vos "
-"expériences positives et drôles, écrivez vos succès personnels ou encore "
-"lisez des histoires remarquables. Dites qu monde la solution que vous avez "
-"trouvez pour relever un défi ou une difficulté auxquels vous avez fait face. "
-"Speak up, HeadUP"
+"Problème-Solution au travers duquel vous pouvez transmettre votre "
+"optimisme et raconter comment vous gardez (ou avez gardé) la tête haute. "
+"Partagez vos expériences positives et drôles, écrivez vos succès "
+"personnels ou encore lisez des histoires remarquables. Dites qu monde la "
+"solution que vous avez trouvez pour relever un défi ou une difficulté "
+"auxquels vous avez fait face. Speak up, HeadUP"
 
 #: app/templates/main/common/401.html:2
 msgid "ERROR_401_TITLE"
@@ -551,25 +581,20 @@ msgstr "Erreur serveur"
 #: app/templates/main/common/500.html:13
 msgid "ERROR_500_DESCRIPTION"
 msgstr ""
-"Désolé... cette fois c'est pour nous. L'administrateur a été notifié. Désolé "
-"pour le désagrément occasionné."
+"Désolé... cette fois c'est pour nous. L'administrateur a été notifié. "
+"Désolé pour le désagrément occasionné."
 
-#: app/templates/main/common/_sidebar_user.html:21
+#: app/templates/main/common/_sidebar_user.html:22
 msgid "SIDEBAR_USER_TITLE"
 msgstr "Rejoindre le Club?"
 
-#: app/templates/main/common/_sidebar_user.html:37
+#: app/templates/main/common/_sidebar_user.html:38
 msgid "SIDEBAR_STAMP_TITLE"
 msgstr "Commencer ici !"
 
-#: app/templates/main/common/_sidebar_user.html:40
+#: app/templates/main/common/_sidebar_user.html:41
 msgid "EDIT_STAMP_LBL"
 msgstr "Editer l'estampille"
-
-#: app/templates/main/common/_sidebar_user.html:44
-#: app/templates/main/layout/error-base.html:32
-msgid "NEW_STAMP_BTN"
-msgstr "Nouvelle estampille"
 
 #: app/templates/main/layout/error-base.html:15
 #: app/templates/main/layout/header-no-menu.html:22
@@ -600,12 +625,6 @@ msgstr "Brouillon"
 msgid "PROFILE_BTN"
 msgstr "Profil"
 
-#: app/templates/main/layout/footer.html:8
-#: app/templates/main/layout/header.html:32
-#: app/templates/main/site/conduct.html:2
-msgid "CODE_CONDUCT_LBL"
-msgstr "Code de conduite"
-
 #: app/templates/main/layout/header-no-menu.html:5
 #: app/templates/main/layout/header.html:5
 msgid "Logo"
@@ -631,10 +650,10 @@ msgstr ""
 "HeadUP est votre nouveau Réseau Social de Narration, un site internet au "
 "format Problème-Solution au travers duquel vous pouvez transmettre votre "
 "optimisme et raconter comment vous gardez (ou avez gardé) la tête haute. "
-"Partagez vos expériences positives et drôles, écrivez vos succès personnels "
-"ou encore lisez des histoires remarquables. Dites qu monde la solution que "
-"vous avez trouvez pour relever un défi ou une difficulté auxquels vous avez "
-"fait face. Speak up, HeadUP"
+"Partagez vos expériences positives et drôles, écrivez vos succès "
+"personnels ou encore lisez des histoires remarquables. Dites qu monde la "
+"solution que vous avez trouvez pour relever un défi ou une difficulté "
+"auxquels vous avez fait face. Speak up, HeadUP"
 
 #: app/templates/main/site/home.html:11
 msgid "WELCOME_TITLE_LBL"
@@ -643,7 +662,8 @@ msgstr "%(name)s - Storytelling Club<br/>Ton espace d'expression libre et gratui
 #: app/templates/main/site/home.html:13
 msgid "WELCOME_SUBTITLE_LBL"
 msgstr ""
-"Révèle au monde et par-delà tes histoires & tes solutions…<br/>Speak up, HeadUp!"
+"Révèle au monde et par-delà tes histoires & tes solutions…<br/>Speak up, "
+"HeadUp!"
 
 #: app/templates/main/site/home.html:14
 msgid "GO_TO_STORIES_BTN"
@@ -653,19 +673,19 @@ msgstr "Histoires"
 msgid "WELCOME_SUBTITLE_EXTRA_LBL"
 msgstr "Rejoindre le club?"
 
-#: app/templates/main/site/home.html:30
+#: app/templates/main/site/home.html:44
 msgid "INTRO1_LBL"
 msgstr "Partage une expérience positive"
 
-#: app/templates/main/site/home.html:36
+#: app/templates/main/site/home.html:50
 msgid "INTRO2_LBL"
 msgstr "Inspire les autres avec une réussite personnelle dont tu es fier"
 
-#: app/templates/main/site/home.html:42
+#: app/templates/main/site/home.html:56
 msgid "INTRO3_LBL"
 msgstr "Exprime-toi et raconte comment tu gardes la tête haute"
 
-#: app/templates/main/site/home.html:48
+#: app/templates/main/site/home.html:62
 msgid "INTRO4_LBL"
 msgstr "Transmet ton optimisme en partageant petits et grands succès"
 
@@ -697,7 +717,7 @@ msgid "READ_MORE_LBL"
 msgstr "Lire davantage..."
 
 #: app/templates/main/stamp/partials/_stamp_single.html:44
-#: app/views/admin/posts/forms.py:22
+#: app/views/admin/posts/forms.py:24
 msgid "Anonymous"
 msgstr "Anonyme"
 
@@ -715,7 +735,7 @@ msgstr "Veuillez sélectionner une catégorie différente"
 
 #: app/views/admin/categories/index.py:42
 #: app/views/admin/categories/index.py:77 app/views/admin/posts/index.py:65
-#: app/views/admin/posts/index.py:134
+#: app/views/admin/posts/index.py:127
 msgid "Invalid submission, please check the message below"
 msgstr "Requête non valide, veuillez lire le message ci-dessous"
 
@@ -758,32 +778,32 @@ msgstr "Ton Challenge"
 msgid "Your Solution"
 msgstr "Ta Solution"
 
-#: app/views/admin/posts/forms.py:24
+#: app/views/admin/posts/forms.py:26
 msgid "Show Post"
 msgstr "Montrer Publication"
 
-#: app/views/admin/posts/index.py:50 app/views/admin/posts/index.py:123
+#: app/views/admin/posts/index.py:50 app/views/admin/posts/index.py:116
 msgid "The requested stamp was not found"
 msgstr "L'estampille souhaitée n'a pas été trouvée"
 
-#: app/views/admin/posts/index.py:96 app/views/admin/posts/index.py:169
+#: app/views/admin/posts/index.py:89 app/views/admin/posts/index.py:162
 msgid "Draft was succesfully saved"
 msgstr "Brouillon sauvegardé avec succès"
 
-#: app/views/admin/posts/index.py:98 app/views/admin/posts/index.py:171
+#: app/views/admin/posts/index.py:91 app/views/admin/posts/index.py:164
 msgid "Stamp was succesfully saved"
 msgstr "Estampille sauvegardée avec succès"
 
-#: app/views/admin/posts/index.py:198
+#: app/views/admin/posts/index.py:191
 msgid "The stamp was not found"
 msgstr "L'estampille n'a pas été trouvée"
 
-#: app/views/admin/posts/index.py:209
+#: app/views/admin/posts/index.py:202
 #, python-format
 msgid "The stamp \"%(title)s\" was removed"
 msgstr "L'estampille \"%(title)s\" a été retirée"
 
-#: app/views/admin/posts/index.py:217
+#: app/views/admin/posts/index.py:210
 #, python-format
 msgid "Error while removing the stamp, %(error)s"
 msgstr "Erreur lors du retrait de l'estampille, %(error)s"
@@ -817,53 +837,57 @@ msgstr "Cet email est déjà utilisé. Veuillez en choisir un autre."
 msgid "This nickname is already in use. Please choose another one."
 msgstr "Ce surnom est déjà utilisé. Veuillez en choisir un autre."
 
-#: app/views/admin/sessions/index.py:17
+#: app/views/admin/sessions/index.py:20
 msgid "Please log in to access this page."
 msgstr "Veuillez vous identifier pour accéder à cette page."
 
-#: app/views/admin/sessions/index.py:28
+#: app/views/admin/sessions/index.py:32
 msgid "You need to sign in or sign up before continuing."
 msgstr "Vous devez vous identifier ou vous inscrire avant de continuer."
 
-#: app/views/admin/sessions/index.py:35 app/views/admin/sessions/index.py:90
+#: app/views/admin/sessions/index.py:39 app/views/admin/sessions/index.py:96
 msgid "You are already signed in."
 msgstr "Vous êtes déjà connecté."
 
-#: app/views/admin/sessions/index.py:52
+#: app/views/admin/sessions/index.py:58
 msgid "Signed in successfully."
 msgstr "Connecté avec succès."
 
-#: app/views/admin/sessions/index.py:55
+#: app/views/admin/sessions/index.py:61
 msgid "User not found or invalid password"
 msgstr "User not found or invalid password"
 
-#: app/views/admin/sessions/index.py:57
+#: app/views/admin/sessions/index.py:63
 msgid "Invalid email or password"
 msgstr "Email ou mot de passe erroné"
 
-#: app/views/admin/sessions/index.py:60
+#: app/views/admin/sessions/index.py:66
 msgid "Sign In"
 msgstr "S'identifier"
 
-#: app/views/admin/sessions/index.py:80
+#: app/views/admin/sessions/index.py:86
 msgid "Signed out successfully."
 msgstr "Déconnecté avec succès"
 
-#: app/views/admin/sessions/index.py:82
+#: app/views/admin/sessions/index.py:88
 msgid "Invalid Action"
 msgstr "Action non valide"
 
-#: app/views/admin/sessions/index.py:107
+#: app/views/admin/sessions/index.py:113
 msgid "Welcome! You have signed up successfully."
 msgstr "Bienvenue! Vous venez de vous inscrire avec succès."
 
-#: app/views/admin/sessions/index.py:110
+#: app/views/admin/sessions/index.py:116
+msgid "Welcome to Headup!"
+msgstr ""
+
+#: app/views/admin/sessions/index.py:124
 msgid "Error while saving the new user, please retry later"
 msgstr ""
 "Erreur lors de la sauvegarde du nouvel utilisateur, veuillez réessayer "
 "plus tard"
 
-#: app/views/admin/sessions/index.py:113
+#: app/views/admin/sessions/index.py:127
 msgid "Sign Up"
 msgstr "S'enregistrer"
 

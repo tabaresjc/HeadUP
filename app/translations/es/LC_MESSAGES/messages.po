@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-09-24 18:15+0900\n"
+"POT-Creation-Date: 2017-11-28 13:15+0900\n"
 "PO-Revision-Date: 2017-07-15 16:34+0900\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: es\n"
@@ -16,7 +16,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Generated-By: Babel 2.4.0\n"
+"Generated-By: Babel 2.5.1\n"
 
 #: app/filters/formats.py:23
 #, python-format
@@ -53,13 +53,11 @@ msgstr "Último acceso "
 msgid "posts"
 msgstr "Publicaciones"
 
-#: app/templates/admin/index.html:36 app/templates/admin/posts/index.html:22
+#: app/templates/admin/index.html:36
 msgid ""
 "You don't have any stamps yet<br/>Participate in this comunity by "
 "writting stamps!!"
 msgstr ""
-"Usted no tiene ninguna publicación! <br/>Que espera, participe y escriba "
-"su primera historia!!"
 
 #: app/templates/admin/categories/index.html:20
 #: app/templates/admin/index.html:49 app/templates/admin/layout/navbar.html:24
@@ -68,7 +66,8 @@ msgstr "Publicaciones"
 
 #: app/templates/admin/signin.html:3 app/templates/admin/signin.html:13
 #: app/templates/admin/signin.html:23 app/templates/admin/signup.html:39
-#: app/templates/main/common/_sidebar_user.html:23
+#: app/templates/main/common/_sidebar_user.html:24
+#: app/templates/main/layout/header.html:47
 #: app/templates/main/site/home.html:21
 msgid "LOGIN_BTN"
 msgstr "Ingresar"
@@ -91,7 +90,8 @@ msgstr "No tienes cuenta?"
 
 #: app/templates/admin/signin.html:30 app/templates/admin/signup.html:3
 #: app/templates/admin/signup.html:15 app/templates/admin/signup.html:32
-#: app/templates/main/common/_sidebar_user.html:26
+#: app/templates/main/common/_sidebar_user.html:27
+#: app/templates/main/layout/header.html:44
 #: app/templates/main/site/home.html:22
 msgid "REGISTER_BTN"
 msgstr "Unirse"
@@ -108,7 +108,9 @@ msgstr "Nickname"
 msgid "CONFIRM_PASSWORD_LBL"
 msgstr "Confirmar contraseña"
 
-#: app/templates/admin/signup.html:27 app/templates/main/layout/footer.html:10
+#: app/templates/admin/signup.html:27
+#: app/templates/emails/users/registration.html:168
+#: app/templates/main/layout/footer.html:10
 #: app/templates/main/layout/header.html:29
 #: app/templates/main/site/policy.html:2
 msgid "TOS_LBL"
@@ -211,14 +213,12 @@ msgstr "Decriba la categoría"
 
 #: app/templates/admin/categories/partials/_category_form_add.html:8
 #: app/templates/admin/categories/partials/_category_form_edit.html:8
-#: app/templates/admin/posts/partials/_post_form_edit.html:34
 msgid "Save"
 msgstr "Guardar"
 
 #: app/templates/admin/categories/partials/_category_form_add.html:9
 #: app/templates/admin/categories/partials/_category_form_edit.html:9
 #: app/templates/admin/categories/partials/_transfer_category_form.html:13
-#: app/templates/admin/posts/partials/_post_form_edit.html:36
 #: app/templates/admin/users/edit.html:28
 msgid "Clear"
 msgstr "Reiniciar"
@@ -257,7 +257,7 @@ msgstr "Tu cuenta"
 #: app/templates/admin/layout/sidebar.html:25
 #: app/templates/admin/posts/drafts.html:7
 #: app/templates/admin/posts/partials/_sidebar.html:14
-msgid "Drafts"
+msgid "DRAFTS_LBL"
 msgstr "Borradores"
 
 #: app/templates/admin/layout/navbar.html:26
@@ -274,6 +274,7 @@ msgstr "Top"
 
 #: app/templates/admin/layout/navbar.html:37
 #: app/templates/admin/layout/sidebar.html:96
+#: app/templates/main/layout/header.html:40
 msgid "Sign Out"
 msgstr "Salir"
 
@@ -283,16 +284,17 @@ msgstr ""
 
 #: app/templates/admin/layout/sidebar.html:15
 #: app/templates/admin/layout/sidebar.html:21
-#: app/templates/admin/posts/index.html:7
 #: app/templates/admin/posts/partials/_sidebar.html:9
-msgid "Stamps"
+msgid "STAMPS_LBL"
 msgstr "Publicaciones"
 
 #: app/templates/admin/layout/sidebar.html:29
-#: app/templates/admin/posts/edit.html:8
+#: app/templates/admin/posts/edit.html:2 app/templates/admin/posts/index.html:7
 #: app/templates/admin/posts/partials/_sidebar.html:4
-msgid "New Stamp"
-msgstr "Nueva publicación"
+#: app/templates/main/common/_sidebar_user.html:45
+#: app/templates/main/layout/error-base.html:32
+msgid "NEW_STAMP_LBL"
+msgstr "Nuevo"
 
 #: app/templates/admin/layout/sidebar.html:42
 #: app/templates/admin/users/index.html:9
@@ -310,74 +312,90 @@ msgid "New User"
 msgstr "Usuario nuevo"
 
 #: app/templates/admin/posts/drafts.html:2
-#, python-format
-msgid "Draft | %(page)s"
+msgid "PAGE_DRAFT_TITLE"
 msgstr "Borrador | %(page)s"
 
-#: app/templates/admin/posts/drafts.html:12
-#: app/templates/admin/posts/drafts.html:14
-#: app/templates/admin/posts/drafts.html:18
-#: app/templates/admin/posts/index.html:13
-#: app/templates/admin/posts/index.html:14
-#: app/templates/admin/posts/index.html:18
+#: app/templates/admin/posts/drafts.html:10
+#: app/templates/admin/posts/drafts.html:19
+#: app/templates/admin/posts/index.html:10
+#: app/templates/admin/posts/index.html:19
 msgid "stamps"
 msgstr "publicaciones"
 
-#: app/templates/admin/posts/edit.html:2 app/templates/admin/posts/edit.html:8
-#: app/templates/admin/posts/partials/_sidebar.html:27
-msgid "Edit Stamp"
-msgstr "Actualizar publicación"
+#: app/templates/admin/posts/drafts.html:23
+#: app/templates/admin/posts/index.html:23
+msgid "WELCOME_MESSAGE_LBL"
+msgstr ""
+"Usted no tiene ninguna publicación! <br/>Que espera, participe y escriba "
+"su primera historia!!"
 
-#: app/templates/admin/posts/edit.html:11
-#: app/templates/admin/posts/partials/_post_form_edit.html:35
-#: app/templates/admin/posts/partials/_post_item.html:7
-#: app/templates/admin/posts/show.html:10
-msgid "Draft"
-msgstr "Borrador"
+#: app/templates/admin/posts/edit.html:15
+#: app/templates/admin/posts/partials/_post_item.html:14
+#: app/templates/admin/posts/show.html:15
+msgid "POST_STATUS_DRAFT_LABEL"
+msgstr "Privado: Solamente usted puede ver este documento"
 
 #: app/templates/admin/posts/index.html:2
-#, python-format
-msgid "Stamps | %(page)s"
+msgid "PAGE_STAMPS_TITLE"
 msgstr "Publicaciones | %(page)s"
 
-#: app/templates/admin/posts/partials/_post_form_edit.html:14
-msgid "Click here to upload a new cover picture"
-msgstr "Haga clic aquí para subir una nueva imagen de la publicación"
+#: app/templates/admin/posts/partials/_post_form_edit.html:15
+msgid "BTN_UPLOAD_COVER_PICTURE_LBL"
+msgstr "Haga clic aquí para subir una<br/>nueva imagen de la publicación"
 
-#: app/templates/admin/posts/partials/_post_form_edit.html:21
-msgid "Title – Best description of your post (30 words)"
+#: app/templates/admin/posts/partials/_post_form_edit.html:24
+msgid "FRM_INPUT_TITLE_DESCRIPTION"
 msgstr ""
 "Titulo - Inserte el nombre que mejor define a la publicación (30 palabras"
 " maximo)"
 
-#: app/templates/admin/posts/partials/_post_form_edit.html:22
-msgid "Your Challenge – Description of what you had to cope with (150 words)"
+#: app/templates/admin/posts/partials/_post_form_edit.html:25
+msgid "FRM_INPUT_CHALLENGE_DESCRIPTION"
 msgstr "Tu desafío - Describa la situación o el problema que se presentó"
 
-#: app/templates/admin/posts/partials/_post_form_edit.html:23
-msgid "Your Solution – Description of what you did (150 words)"
+#: app/templates/admin/posts/partials/_post_form_edit.html:26
+msgid "FRM_INPUT_SOLUTION_DESCRIPTION"
 msgstr "Tu solución - Describa lo que hicistes para solucionar el desafio"
 
-#: app/templates/admin/posts/partials/_post_form_edit.html:29
-msgid "Keep working on the stamp"
-msgstr "Guardar y seguir"
-
-#: app/templates/admin/posts/partials/_post_form_edit.html:30
-msgid "Make this Post Anonymous"
+#: app/templates/admin/posts/partials/_post_form_edit.html:31
+msgid "CB_ANONYMOUS_LBL"
 msgstr "Guardar como anonimo"
 
-#: app/templates/admin/posts/partials/_post_item.html:38
+#: app/templates/admin/posts/partials/_post_form_edit.html:37
+#: app/templates/admin/posts/partials/_sidebar.html:45
+msgid "BTN_SAVE_LBL"
+msgstr "Guardar"
+
+#: app/templates/admin/posts/partials/_post_form_edit.html:43
+msgid "ERROR_STAMP_TITLE_EMPTY"
+msgstr "Por favor ingrese el titulo."
+
+#: app/templates/admin/posts/partials/_post_form_edit.html:44
+msgid "ERROR_STAMP_CHALLENGE_EMPTY"
+msgstr ""
+"Por favor ingrese el desafío - Describa la situación o el problema que se"
+" presentó."
+
+#: app/templates/admin/posts/partials/_post_form_edit.html:45
+msgid "ERROR_STAMP_SOLUTION_EMPTY"
+msgstr "Por favor ingrese la solución."
+
+#: app/templates/admin/posts/partials/_post_item.html:48
 #, python-format
 msgid "This will remove '%(title)s', Are you sure?"
 msgstr "Esta seguro que desea eliminar la publicación '%(title)s'?"
 
 #: app/templates/admin/posts/partials/_sidebar.html:20
-msgid "Show Stamp"
-msgstr "Mostrar publicación"
+msgid "STAMP_SHOW_LBL"
+msgstr "Mostrar"
+
+#: app/templates/admin/posts/partials/_sidebar.html:27
+msgid "STAMP_EDIT_LBL"
+msgstr "Actualizar"
 
 #: app/templates/admin/posts/partials/_sidebar.html:36
-msgid "Delete Stamp"
-msgstr "Eliminar publicación"
+msgid "STAMP_REMOVE_LBL"
+msgstr "Eliminar"
 
 #: app/templates/admin/users/add.html:3
 msgid "Create new user"
@@ -505,6 +523,18 @@ msgstr "Lista de usuarios"
 msgid "Delete User"
 msgstr "Borrar usuario"
 
+#: app/templates/emails/users/registration.html:120
+#, python-format
+msgid "Welcome to %(name)s!"
+msgstr ""
+
+#: app/templates/emails/users/registration.html:166
+#: app/templates/main/layout/footer.html:8
+#: app/templates/main/layout/header.html:32
+#: app/templates/main/site/conduct.html:2
+msgid "CODE_CONDUCT_LBL"
+msgstr "Codigo de conducta"
+
 #: app/templates/main/index.html:2
 msgid "LATEST_TITLE"
 msgstr ""
@@ -554,22 +584,17 @@ msgstr ""
 "Sorry... this one is on us. The administrator has been notified. Sorry "
 "for the inconvenience!"
 
-#: app/templates/main/common/_sidebar_user.html:21
+#: app/templates/main/common/_sidebar_user.html:22
 msgid "SIDEBAR_USER_TITLE"
 msgstr "unirse a la comunidad?"
 
-#: app/templates/main/common/_sidebar_user.html:37
+#: app/templates/main/common/_sidebar_user.html:38
 msgid "SIDEBAR_STAMP_TITLE"
 msgstr "Empieza aqui!"
 
-#: app/templates/main/common/_sidebar_user.html:40
+#: app/templates/main/common/_sidebar_user.html:41
 msgid "EDIT_STAMP_LBL"
 msgstr "Actualizar publicación"
-
-#: app/templates/main/common/_sidebar_user.html:44
-#: app/templates/main/layout/error-base.html:32
-msgid "NEW_STAMP_BTN"
-msgstr "Crear publicación"
 
 #: app/templates/main/layout/error-base.html:15
 #: app/templates/main/layout/header-no-menu.html:22
@@ -599,12 +624,6 @@ msgstr "Borradores"
 #: app/templates/main/layout/error-base.html:33
 msgid "PROFILE_BTN"
 msgstr "Perfil"
-
-#: app/templates/main/layout/footer.html:8
-#: app/templates/main/layout/header.html:32
-#: app/templates/main/site/conduct.html:2
-msgid "CODE_CONDUCT_LBL"
-msgstr "Codigo de conducta"
 
 #: app/templates/main/layout/header-no-menu.html:5
 #: app/templates/main/layout/header.html:5
@@ -637,7 +656,9 @@ msgstr ""
 
 #: app/templates/main/site/home.html:11
 msgid "WELCOME_TITLE_LBL"
-msgstr "%(name)s - Comunidad de Storytelling<br/>Tu espacio para que te expreses libre y gratuitamente"
+msgstr ""
+"%(name)s - Comunidad de Storytelling<br/>Tu espacio para que te expreses "
+"libre y gratuitamente"
 
 #: app/templates/main/site/home.html:13
 msgid "WELCOME_SUBTITLE_LBL"
@@ -653,19 +674,19 @@ msgstr "Historias"
 msgid "WELCOME_SUBTITLE_EXTRA_LBL"
 msgstr "Quieres ser parte de nuestra comunidad?"
 
-#: app/templates/main/site/home.html:30
+#: app/templates/main/site/home.html:44
 msgid "INTRO1_LBL"
 msgstr "Comparte tus experiencias positivas"
 
-#: app/templates/main/site/home.html:36
+#: app/templates/main/site/home.html:50
 msgid "INTRO2_LBL"
 msgstr "Inspiranos con un logro personal del cual te sientes orgullos@"
 
-#: app/templates/main/site/home.html:42
+#: app/templates/main/site/home.html:56
 msgid "INTRO3_LBL"
 msgstr "Exprésate y cuéntanos cómo te mantienes motivad@"
 
-#: app/templates/main/site/home.html:48
+#: app/templates/main/site/home.html:62
 msgid "INTRO4_LBL"
 msgstr "Transmite tu optimismo y tu fuerza de voluntad a traves de tus historias"
 
@@ -697,7 +718,7 @@ msgid "READ_MORE_LBL"
 msgstr "Leer mas..."
 
 #: app/templates/main/stamp/partials/_stamp_single.html:44
-#: app/views/admin/posts/forms.py:22
+#: app/views/admin/posts/forms.py:24
 msgid "Anonymous"
 msgstr "Anonimo"
 
@@ -715,7 +736,7 @@ msgstr "Por favor seleccione una categoria diferente"
 
 #: app/views/admin/categories/index.py:42
 #: app/views/admin/categories/index.py:77 app/views/admin/posts/index.py:65
-#: app/views/admin/posts/index.py:134
+#: app/views/admin/posts/index.py:127
 msgid "Invalid submission, please check the message below"
 msgstr ""
 "Formulario no válido, por favor compruebe los mensajes quer aparecen a "
@@ -762,32 +783,32 @@ msgstr "Tu desafio"
 msgid "Your Solution"
 msgstr "Tu solución"
 
-#: app/views/admin/posts/forms.py:24
+#: app/views/admin/posts/forms.py:26
 msgid "Show Post"
 msgstr "Mostrar publicación"
 
-#: app/views/admin/posts/index.py:50 app/views/admin/posts/index.py:123
+#: app/views/admin/posts/index.py:50 app/views/admin/posts/index.py:116
 msgid "The requested stamp was not found"
 msgstr "La publicación seleccionada no fue encontrado"
 
-#: app/views/admin/posts/index.py:96 app/views/admin/posts/index.py:169
+#: app/views/admin/posts/index.py:89 app/views/admin/posts/index.py:162
 msgid "Draft was succesfully saved"
 msgstr "El borrador ha sido guardado exitosamente"
 
-#: app/views/admin/posts/index.py:98 app/views/admin/posts/index.py:171
+#: app/views/admin/posts/index.py:91 app/views/admin/posts/index.py:164
 msgid "Stamp was succesfully saved"
 msgstr "La publicación fue guardada exitosamente"
 
-#: app/views/admin/posts/index.py:198
+#: app/views/admin/posts/index.py:191
 msgid "The stamp was not found"
 msgstr "La publicación no fue encontrada"
 
-#: app/views/admin/posts/index.py:209
+#: app/views/admin/posts/index.py:202
 #, python-format
 msgid "The stamp \"%(title)s\" was removed"
 msgstr "La publicacion \"%(title)s\" fue eliminada"
 
-#: app/views/admin/posts/index.py:217
+#: app/views/admin/posts/index.py:210
 #, python-format
 msgid "Error while removing the stamp, %(error)s"
 msgstr "Ocurrió un error al momento de eliminar la categoría, %(error)s"
@@ -823,53 +844,57 @@ msgstr ""
 msgid "This nickname is already in use. Please choose another one."
 msgstr "Este apodo esta en uso, por favor seleccione otro apodo."
 
-#: app/views/admin/sessions/index.py:17
+#: app/views/admin/sessions/index.py:20
 msgid "Please log in to access this page."
 msgstr "Por favor ingrese su cuenta y clave para acceder esta pagina"
 
-#: app/views/admin/sessions/index.py:28
+#: app/views/admin/sessions/index.py:32
 msgid "You need to sign in or sign up before continuing."
 msgstr "Necesita ingresar su cuenta y clave para poder continuar"
 
-#: app/views/admin/sessions/index.py:35 app/views/admin/sessions/index.py:90
+#: app/views/admin/sessions/index.py:39 app/views/admin/sessions/index.py:96
 msgid "You are already signed in."
 msgstr "Usted ya ha ingresado a nuestro sistema"
 
-#: app/views/admin/sessions/index.py:52
+#: app/views/admin/sessions/index.py:58
 msgid "Signed in successfully."
 msgstr "Usted ha ingresado exitosamente"
 
-#: app/views/admin/sessions/index.py:55
+#: app/views/admin/sessions/index.py:61
 msgid "User not found or invalid password"
 msgstr "Usuario o contraseña no encontrada"
 
-#: app/views/admin/sessions/index.py:57
+#: app/views/admin/sessions/index.py:63
 msgid "Invalid email or password"
 msgstr "Correo electronico o contraseña invalida"
 
-#: app/views/admin/sessions/index.py:60
+#: app/views/admin/sessions/index.py:66
 msgid "Sign In"
 msgstr "Ingresar"
 
-#: app/views/admin/sessions/index.py:80
+#: app/views/admin/sessions/index.py:86
 msgid "Signed out successfully."
 msgstr "La sesión ha sido terminada"
 
-#: app/views/admin/sessions/index.py:82
+#: app/views/admin/sessions/index.py:88
 msgid "Invalid Action"
 msgstr "Acción invalida"
 
-#: app/views/admin/sessions/index.py:107
+#: app/views/admin/sessions/index.py:113
 msgid "Welcome! You have signed up successfully."
 msgstr "Bienvenido! Usted ha ingresado exitosamente"
 
-#: app/views/admin/sessions/index.py:110
+#: app/views/admin/sessions/index.py:116
+msgid "Welcome to Headup!"
+msgstr ""
+
+#: app/views/admin/sessions/index.py:124
 msgid "Error while saving the new user, please retry later"
 msgstr ""
 "Ocurrió un error al momento de guardar un nuevo usuario, favor reintentar"
 " nuevamente"
 
-#: app/views/admin/sessions/index.py:113
+#: app/views/admin/sessions/index.py:127
 msgid "Sign Up"
 msgstr "Registrar"
 
@@ -921,21 +946,3 @@ msgstr ""
 #, python-format
 msgid "Error while processing the stamp, %(error)s"
 msgstr ""
-
-#~ msgid "Error while creating the category"
-#~ msgstr "Ocurrió un error al momento de crear la categoría"
-
-#~ msgid "Error while updating the category"
-#~ msgstr "Ocurrió un error al momento de actualizar la categoría"
-
-#~ msgid "Error while removing the category"
-#~ msgstr "Ocurrió un error al momento de actualizar la categoría"
-
-#~ msgid "Stamp succesfully created"
-#~ msgstr "La publicación fue guardada exitosamente"
-
-#~ msgid "You are not allowed to make changes to this post"
-#~ msgstr ""
-
-#~ msgid "Go to"
-#~ msgstr "Ir hacia"

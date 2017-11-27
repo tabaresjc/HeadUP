@@ -12,7 +12,7 @@
 			<span class="delete" data-target="#cover_picture_id"><i class="glyphicon glyphicon-remove"></i></span>
 		</div>
 		<div class="cover-picture-edit-button">
-			<span class="upload">{{ _('Click here to upload a new cover picture') }}</span>
+			<span class="upload">{{ _('BTN_UPLOAD_COVER_PICTURE_LBL') }}</span>
 		</div>
 	</div>
 
@@ -20,21 +20,28 @@
 		<input type=file name=file accept="image/x-png, image/jpeg">
 	</div>
 
-	{{ render_inline_field(form.title, class="form-control", placeholder=_('Title – Best description of your post (30 words)')) }}
-	{{ render_inline_field(form.body, id="txt_challenge", placeholder=_('Your Challenge – Description of what you had to cope with (150 words)'), rows="8", style="width:100%; padding: 8px;") }}
-	{{ render_inline_field(form.extra_body, id="txt_solution", placeholder=_('Your Solution – Description of what you did (150 words)'), rows="8", style="width:100%; padding: 8px;") }}
 	{{ render_inline_field(form.category_id, class="form-control") }}
+	{{ render_inline_field(form.title, class="form-control", placeholder=_('FRM_INPUT_TITLE_DESCRIPTION')) }}
+	{{ render_inline_field(form.body, class="form-control", placeholder=_('FRM_INPUT_CHALLENGE_DESCRIPTION'), rows="8") }}
+	{{ render_inline_field(form.extra_body, placeholder=_('FRM_INPUT_SOLUTION_DESCRIPTION')) }}
 	{{ render_inline_field(form.cover_picture_id) }}
 	{{ render_inline_field(form.editor_version) }}
 
 	<div class="checkbox clearfix">
-		<label>{{ form.remain()|safe }} {{ _('Keep working on the stamp') }}</label>
-		<label class="pull-right">{{ form.anonymous()|safe }} {{ _('Make this Post Anonymous') }}</label>
+		<label class="pull-right">{{ form.anonymous()|safe }} {{ _('CB_ANONYMOUS_LBL') }}</label>
 	</div>
 
+	{{ render_inline_field(form.status, class="form-control") }}
+
 	<div class="actions clearfix">
-		<input type="submit" name="public" value="{{ _('Save') }}" class="btn btn-large btn-primary btn-lg pull-right">
-		<input type="submit" name="draft" value="{{ _('Draft') }}" class="btn btn-large btn-default btn-lg pull-right margin-right">
-		<input id="btn_editor_clear" type="reset" value="{{ _('Clear') }}" class="btn btn-large btn-danger btn-lg">
+		<a href="javascripts:void();" class="btn-save btn btn-primary btn-lg pull-right">{{ _('BTN_SAVE_LBL') }}</a>
 	</div>
 </form>
+
+<script type="text/javascript">
+	window.page_translations = {
+		'ERROR_STAMP_TITLE_EMPTY': "{{ _('ERROR_STAMP_TITLE_EMPTY') }}",
+		'ERROR_STAMP_CHALLENGE_EMPTY': "{{ _('ERROR_STAMP_CHALLENGE_EMPTY') }}",
+		'ERROR_STAMP_SOLUTION_EMPTY': "{{ _('ERROR_STAMP_SOLUTION_EMPTY') }}"
+	};
+</script>

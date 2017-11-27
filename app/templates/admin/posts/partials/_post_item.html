@@ -1,20 +1,24 @@
-<div class="panel panel-primary panel-post">
+<div class="panel panel-primary">
 	<div class="panel-heading clearfix">
 		<div class="row">
-			<div class="col-md-11 col-sm-11 col-xs-11">
+			<div class="col-md-11 col-sm-11 col-xs-10">
 				<h3 class="panel-title">
 					<a href="{{ url_for('PostsView:get', id=post.id) }}">
-						{% if post.is_draft %}
-						<span class="label label-danger">
-							{{ _('Draft') }}
-						</span>&nbsp;
+						{{ post.title | truncate(80) }}
+
+						{% if post.category %}
+						<span>({{ post.category.name }})</span>
 						{% endif %}
-						{{ post.title }}
-						{% if post.category %}<span>({{ post.category.name }})</span>{% endif %}
+
+						{% if post.is_draft %}
+						<span class="btn-lock badge label-danger" data-toggle="tooltip" title="{{ _('POST_STATUS_DRAFT_LABEL') }}">
+							<i class="glyphicon glyphicon-lock"></i>
+						</span>
+						{% endif %}
 					</a>
 				</h3>
 			</div>
-			<div class="col-md-1 col-sm-1 col-xs-1">
+			<div class="col-md-1 col-sm-1 col-xs-2">
 				<div class="pull-right">
 					<div class="btn-group" role="group">
 						{% if post.can_edit() %}

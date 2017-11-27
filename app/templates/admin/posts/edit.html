@@ -1,27 +1,34 @@
 {% extends "admin/layout/base.html" %}
-{% set title = _('Edit Stamp') %}
+{% set title = post.title if post else _('NEW_STAMP_LBL') %}
 
 {% block main %}
 	<div id="page-title" class="row">
 		<div class="col-md-12 col-sm-12 col-xs-12">
 			<h4>
-				{{ _('Edit Stamp') if post else _('New Stamp') }}
+				{{ title }}
+
+				{% if post and post.category %}
+				<span>({{ post.category.name }})</span>
+				{% endif %}
+
 				{% if post and post.is_draft %}
-				<span class="label label-danger">
-					{{ _('Draft') }}
+				<span class="btn-lock badge label-danger" data-toggle="tooltip" title="{{ _('POST_STATUS_DRAFT_LABEL') }}">
+					<i class="glyphicon glyphicon-lock"></i>
 				</span>
 				{% endif %}
 			</h4>
 		</div>
 	</div>
-	<div class="row">
-		<div class="col-md-9 col-sm-12 col-xs-12">
+	<div id="page-content" class="row">
+		<div class="col-sm-9 col-md-9 col-xs-12">
 			<div class="well">
 				{% include 'admin/posts/partials/_post_form_edit.html' %}
 			</div>
 		</div>
-		<div class="col-md-3 col-sm-12 col-xs-12">
-			{% include 'admin/posts/partials/_sidebar.html' %}
+		<div class="col-sm-3 col-md-3 col-xs-12 col-sidebar-container">
+			<div class="col-sidebar">
+				{% include 'admin/posts/partials/_sidebar.html' %}
+			</div>
 		</div>
 	</div>
 {% endblock %}
