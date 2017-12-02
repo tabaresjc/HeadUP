@@ -1,0 +1,27 @@
+{% if post and config.LIKE_BTN_CODE %}
+<span class="likebtn-wrapper"
+    data-identifier="item_{{ post.encoded_id }}"
+    data-site_id="{{ config.LIKE_BTN_CODE }}"
+	data-lang="{{ language }}"
+    data-theme="custom"
+    data-btn_size="32"
+    data-icon_size="20"
+    data-icon_l="hrt6"
+    data-icon_d="hrt12"
+    data-icon_l_c="#51ab6d"
+    data-icon_l_c_v="#ffffff"
+    data-icon_d_c="#51ab6d"
+    data-icon_d_c_v="#ffffff"
+    data-label_c="#51ab6d"
+    data-label_c_v="#ffffff"
+    data-counter_l_c="#333333"
+    data-counter_d_c="#333333"
+    data-bg_c="#ffffff"
+    data-bg_c_v="#51ab6d"
+    data-brdr_c="#51ab6d"
+    data-f_family="Trebuchet MS"
+    data-white_label="true"
+    data-show_dislike_label="true"
+    data-popup_disabled="true">
+</span>
+{% endif %}

@@ -5,7 +5,6 @@ from werkzeug.security import generate_password_hash, check_password_hash
 from app import db
 from .role import Role
 from app.helpers import ModelHelper, MutableObject
-from hashlib import md5
 import datetime
 import re
 
