@@ -13,6 +13,9 @@ DEFAULT_TIMEZONE = 'Asia/Tokyo'
 def get_locale():
     cfg = config.__dict__
 
+    if cfg.get('FORCE_LANG'):
+        return cfg.get('FORCE_LANG')
+
     LANGUAGES = cfg.get('LANGUAGES')
 
     if not LANGUAGES:

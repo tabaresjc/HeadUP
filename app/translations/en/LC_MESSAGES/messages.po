@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-11-28 13:15+0900\n"
+"POT-Creation-Date: 2017-12-06 23:17+0900\n"
 "PO-Revision-Date: 2017-07-15 18:02+0900\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: en\n"
@@ -53,11 +53,12 @@ msgstr ""
 msgid "posts"
 msgstr ""
 
-#: app/templates/admin/index.html:36
-msgid ""
+#: app/templates/admin/index.html:36 app/templates/admin/posts/drafts.html:23
+#: app/templates/admin/posts/index.html:23
+msgid "WELCOME_MESSAGE_LBL"
+msgstr ""
 "You don't have any stamps yet<br/>Participate in this comunity by "
 "writting stamps!!"
-msgstr ""
 
 #: app/templates/admin/categories/index.html:20
 #: app/templates/admin/index.html:49 app/templates/admin/layout/navbar.html:24
@@ -160,7 +161,7 @@ msgstr ""
 
 #: app/templates/admin/categories/index.html:17
 #: app/templates/admin/users/index.html:21
-#: app/templates/admin/users/show.html:56
+#: app/templates/admin/users/show.html:53
 #: app/views/admin/categories/forms.py:11 app/views/admin/sessions/forms.py:19
 #: app/views/admin/users/forms.py:25
 msgid "Name"
@@ -302,7 +303,6 @@ msgid "Users"
 msgstr ""
 
 #: app/templates/admin/layout/sidebar.html:49
-#: app/templates/admin/users/show.html:18
 msgid "User List"
 msgstr ""
 
@@ -321,13 +321,6 @@ msgstr "Draft | %(page)s"
 #: app/templates/admin/posts/index.html:19
 msgid "stamps"
 msgstr ""
-
-#: app/templates/admin/posts/drafts.html:23
-#: app/templates/admin/posts/index.html:23
-msgid "WELCOME_MESSAGE_LBL"
-msgstr ""
-"You don't have any stamps yet<br/>Participate in this comunity by "
-"writting stamps!!"
 
 #: app/templates/admin/posts/edit.html:15
 #: app/templates/admin/posts/partials/_post_item.html:14
@@ -430,7 +423,7 @@ msgid "Total Posts"
 msgstr ""
 
 #: app/templates/admin/users/index.html:30
-#: app/templates/admin/users/show.html:72 app/views/admin/users/forms.py:32
+#: app/templates/admin/users/show.html:69 app/views/admin/users/forms.py:32
 msgid "Role"
 msgstr ""
 
@@ -440,61 +433,61 @@ msgid "User's Profile | %(name)s"
 msgstr ""
 
 #: app/templates/admin/users/partials/_sidebar.html:39
-#: app/templates/admin/users/show.html:27
+#: app/templates/admin/users/show.html:24
 #, python-format
 msgid "This will remove '%(name)s', Are you sure?"
 msgstr ""
 
-#: app/templates/admin/users/show.html:29
+#: app/templates/admin/users/show.html:26
 msgid "Remove"
 msgstr ""
 
-#: app/templates/admin/users/show.html:34
+#: app/templates/admin/users/show.html:31
 msgid "Edit"
 msgstr ""
 
-#: app/templates/admin/users/show.html:44
+#: app/templates/admin/users/show.html:41
 msgid "User's Info"
 msgstr ""
 
-#: app/templates/admin/users/show.html:48
+#: app/templates/admin/users/show.html:45
 msgid "Id"
 msgstr ""
 
-#: app/templates/admin/users/show.html:52
+#: app/templates/admin/users/show.html:49
 msgid "Last seen"
 msgstr ""
 
-#: app/templates/admin/users/show.html:60 app/views/admin/sessions/forms.py:20
+#: app/templates/admin/users/show.html:57 app/views/admin/sessions/forms.py:20
 #: app/views/admin/users/forms.py:29
 msgid "Nickname"
 msgstr ""
 
-#: app/templates/admin/users/show.html:64 app/views/admin/users/forms.py:46
+#: app/templates/admin/users/show.html:61 app/views/admin/users/forms.py:46
 msgid "Address"
 msgstr ""
 
-#: app/templates/admin/users/show.html:68 app/views/admin/users/forms.py:49
+#: app/templates/admin/users/show.html:65 app/views/admin/users/forms.py:49
 msgid "Phone"
 msgstr ""
 
-#: app/templates/admin/users/show.html:76
+#: app/templates/admin/users/show.html:73
 msgid "Created at"
 msgstr ""
 
-#: app/templates/admin/users/show.html:92
+#: app/templates/admin/users/show.html:89
 msgid "Recent posts"
 msgstr ""
 
-#: app/templates/admin/users/show.html:99
+#: app/templates/admin/users/show.html:96
 msgid "Posted at"
 msgstr ""
 
-#: app/templates/admin/users/show.html:100
+#: app/templates/admin/users/show.html:97
 msgid "Updated at"
 msgstr ""
 
-#: app/templates/admin/users/show.html:101 app/views/admin/posts/forms.py:11
+#: app/templates/admin/users/show.html:98 app/views/admin/posts/forms.py:11
 msgid "Title"
 msgstr ""
 
@@ -927,3 +920,10 @@ msgstr ""
 #, python-format
 msgid "Error while processing the stamp, %(error)s"
 msgstr ""
+
+#~ msgid ""
+#~ "You don't have any stamps "
+#~ "yet<br/>Participate in this comunity by "
+#~ "writting stamps!!"
+#~ msgstr ""
+
