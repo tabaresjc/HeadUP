@@ -21,7 +21,7 @@ def get_locale():
     if not LANGUAGES:
         return cfg.get('DEFAULT_LANGUAGE', DEFAULT_LANGUAGE)
 
-    host = request.headers.get('HOST')
+    host = request.headers.get('HOST', '')
 
     for key, value in LANGUAGES.iteritems():
         if host.startswith(key):

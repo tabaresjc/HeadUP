@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-12-06 23:17+0900\n"
+"POT-Creation-Date: 2017-12-07 00:21+0900\n"
 "PO-Revision-Date: 2017-07-15 16:34+0900\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: fr\n"
@@ -22,6 +22,11 @@ msgstr ""
 #, python-format
 msgid "Posted %(ago)s ago"
 msgstr "Publié il y a %(ago)s"
+
+#: app/helpers/email/registration.py:16
+#: app/templates/emails/users/registration.html:23
+msgid "EMAIL_REGISTRATION_TITLE"
+msgstr "Bienvenue sur %(name)s!"
 
 #: app/models/users/role.py:9 app/models/users/role.py:14
 msgid "Writer"
@@ -56,7 +61,9 @@ msgstr "publications"
 #: app/templates/admin/index.html:36 app/templates/admin/posts/drafts.html:23
 #: app/templates/admin/posts/index.html:23
 msgid "WELCOME_MESSAGE_LBL"
-msgstr "Tu n’as pas encore d’estampilles<br/>Prends part à la communauté en en écrivant une nouvelle !!"
+msgstr ""
+"Tu n’as pas encore d’estampilles<br/>Prends part à la communauté en en "
+"écrivant une nouvelle !!"
 
 #: app/templates/admin/categories/index.html:20
 #: app/templates/admin/index.html:49 app/templates/admin/layout/navbar.html:24
@@ -108,7 +115,7 @@ msgid "CONFIRM_PASSWORD_LBL"
 msgstr "Confirmer mot de passe"
 
 #: app/templates/admin/signup.html:27
-#: app/templates/emails/users/registration.html:168
+#: app/templates/emails/users/registration.html:73
 #: app/templates/main/layout/footer.html:10
 #: app/templates/main/layout/header.html:29
 #: app/templates/main/site/policy.html:2
@@ -514,12 +521,17 @@ msgstr "Liste Utilisateurs"
 msgid "Delete User"
 msgstr "Supprimer Utilisateur"
 
-#: app/templates/emails/users/registration.html:120
-#, python-format
-msgid "Welcome to %(name)s!"
+#: app/templates/emails/users/registration.html:32
+msgid "EMAIL_REGISTRATION_DESCRIPTION"
 msgstr ""
+"Nous sommes ravis de te compter parmi nous ! Tu peux désormais partager "
+"ton enthousiasme en écrivant ton histoire."
 
-#: app/templates/emails/users/registration.html:166
+#: app/templates/emails/users/registration.html:50
+msgid "EMAIL_REGISTRATION_ACTION_BTN"
+msgstr "Ecris ta première histoire"
+
+#: app/templates/emails/users/registration.html:71
 #: app/templates/main/layout/footer.html:8
 #: app/templates/main/layout/header.html:32
 #: app/templates/main/site/conduct.html:2
@@ -868,17 +880,13 @@ msgstr "Action non valide"
 msgid "Welcome! You have signed up successfully."
 msgstr "Bienvenue! Vous venez de vous inscrire avec succès."
 
-#: app/views/admin/sessions/index.py:116
-msgid "Welcome to Headup!"
-msgstr ""
-
-#: app/views/admin/sessions/index.py:124
+#: app/views/admin/sessions/index.py:117
 msgid "Error while saving the new user, please retry later"
 msgstr ""
 "Erreur lors de la sauvegarde du nouvel utilisateur, veuillez réessayer "
 "plus tard"
 
-#: app/views/admin/sessions/index.py:127
+#: app/views/admin/sessions/index.py:120
 msgid "Sign Up"
 msgstr "S'enregistrer"
 
@@ -934,3 +942,13 @@ msgstr ""
 #~ "yet<br/>Participate in this comunity by "
 #~ "writting stamps!!"
 #~ msgstr ""
+
+#~ msgid "Welcome to %(name)s!"
+#~ msgstr ""
+
+#~ msgid "Welcome to Headup!"
+#~ msgstr "Bienvenue sur HeadUP !"
+
+#~ msgid "EMAIL_REGISTRATION_SUBJECT"
+#~ msgstr ""
+

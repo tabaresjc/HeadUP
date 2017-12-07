@@ -212,3 +212,15 @@ class UsersView(FlaskView):
             return render_view(url_for('UsersView:get', id=id),
                                redirect=True,
                                message=message)
+
+    @route('/<int:id>/send-email/<string:kind>', methods=['GET'])
+    def send_email(self, id, kind):
+        if not current_user.is_admin:
+            abort(404)
+        user = User.get_by_id(id)
+
+        if kind == 'registration':
+            from app.helpers.email.registration import send_registration_email
+            send_registration_email(user)
+
+        return render_view(url_for('UsersView:get', id=id), redirect=True)

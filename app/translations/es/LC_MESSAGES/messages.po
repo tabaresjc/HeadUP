@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-12-06 23:17+0900\n"
+"POT-Creation-Date: 2017-12-07 00:21+0900\n"
 "PO-Revision-Date: 2017-07-15 16:34+0900\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: es\n"
@@ -22,6 +22,11 @@ msgstr ""
 #, python-format
 msgid "Posted %(ago)s ago"
 msgstr "Publicado hace %(ago)s"
+
+#: app/helpers/email/registration.py:16
+#: app/templates/emails/users/registration.html:23
+msgid "EMAIL_REGISTRATION_TITLE"
+msgstr "Bienvenido a %(name)s!"
 
 #: app/models/users/role.py:9 app/models/users/role.py:14
 msgid "Writer"
@@ -110,7 +115,7 @@ msgid "CONFIRM_PASSWORD_LBL"
 msgstr "Confirmar contraseña"
 
 #: app/templates/admin/signup.html:27
-#: app/templates/emails/users/registration.html:168
+#: app/templates/emails/users/registration.html:73
 #: app/templates/main/layout/footer.html:10
 #: app/templates/main/layout/header.html:29
 #: app/templates/main/site/policy.html:2
@@ -516,12 +521,17 @@ msgstr "Lista de usuarios"
 msgid "Delete User"
 msgstr "Borrar usuario"
 
-#: app/templates/emails/users/registration.html:120
-#, python-format
-msgid "Welcome to %(name)s!"
+#: app/templates/emails/users/registration.html:32
+msgid "EMAIL_REGISTRATION_DESCRIPTION"
 msgstr ""
+"Estamos emocionados de que estés con nosotros! De inmediato ya puedes "
+"comenzar a escribir tus historias inspiradoras."
 
-#: app/templates/emails/users/registration.html:166
+#: app/templates/emails/users/registration.html:50
+msgid "EMAIL_REGISTRATION_ACTION_BTN"
+msgstr "Escribe tu primera historia"
+
+#: app/templates/emails/users/registration.html:71
 #: app/templates/main/layout/footer.html:8
 #: app/templates/main/layout/header.html:32
 #: app/templates/main/site/conduct.html:2
@@ -877,17 +887,13 @@ msgstr "Acción invalida"
 msgid "Welcome! You have signed up successfully."
 msgstr "Bienvenido! Usted ha ingresado exitosamente"
 
-#: app/views/admin/sessions/index.py:116
-msgid "Welcome to Headup!"
-msgstr ""
-
-#: app/views/admin/sessions/index.py:124
+#: app/views/admin/sessions/index.py:117
 msgid "Error while saving the new user, please retry later"
 msgstr ""
 "Ocurrió un error al momento de guardar un nuevo usuario, favor reintentar"
 " nuevamente"
 
-#: app/views/admin/sessions/index.py:127
+#: app/views/admin/sessions/index.py:120
 msgid "Sign Up"
 msgstr "Registrar"
 
@@ -944,5 +950,14 @@ msgstr ""
 #~ "You don't have any stamps "
 #~ "yet<br/>Participate in this comunity by "
 #~ "writting stamps!!"
+#~ msgstr ""
+
+#~ msgid "Welcome to %(name)s!"
+#~ msgstr ""
+
+#~ msgid "Welcome to Headup!"
+#~ msgstr ""
+
+#~ msgid "EMAIL_REGISTRATION_SUBJECT"
 #~ msgstr ""
 

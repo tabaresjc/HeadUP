@@ -10,7 +10,7 @@ from flask_babel import lazy_gettext, gettext
 from app import app, login_manager
 from forms import LoginForm, SignUpForm
 from app.models import User, GuestUser
-from app.helpers.tasks import register_notification
+from app.helpers.email.registration import send_registration_email
 import datetime
 
 mod = Blueprint('sessions', __name__)
@@ -111,14 +111,7 @@ def signup():
             # Login User
             login_user(user)
             flash(gettext('Welcome! You have signed up successfully.'))
-
-            register_notification.delay(
-                gettext('Welcome to Headup!'),
-                user.email,
-                render_template(
-                    'emails/users/registration.html',
-                    user=user))
-
+            send_registration_email(user)
             return redirect(url_for('latest'))
         except:
             flash(gettext('Error while saving the new user, please retry later'), 'error')
