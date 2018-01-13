@@ -300,7 +300,7 @@ msgstr "Publicaciones"
 #: app/templates/main/common/_sidebar_user.html:45
 #: app/templates/main/layout/error-base.html:32
 msgid "NEW_STAMP_LBL"
-msgstr "Nuevo"
+msgstr "Nueva historia"
 
 #: app/templates/admin/layout/sidebar.html:42
 #: app/templates/admin/users/index.html:9
@@ -960,4 +960,3 @@ msgstr ""
 
 #~ msgid "EMAIL_REGISTRATION_SUBJECT"
 #~ msgstr ""
-

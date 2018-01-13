@@ -62,7 +62,7 @@ msgstr "publications"
 #: app/templates/admin/posts/index.html:23
 msgid "WELCOME_MESSAGE_LBL"
 msgstr ""
-"Tu n’as pas encore d’estampilles<br/>Prends part à la communauté en en "
+"Tu n’as pas encore d’histoires<br/>Prends part à la communauté en en "
 "écrivant une nouvelle !!"
 
 #: app/templates/admin/categories/index.html:20
@@ -292,7 +292,7 @@ msgstr ""
 #: app/templates/admin/layout/sidebar.html:21
 #: app/templates/admin/posts/partials/_sidebar.html:9
 msgid "STAMPS_LBL"
-msgstr "Estampilles"
+msgstr "Histoires"
 
 #: app/templates/admin/layout/sidebar.html:29
 #: app/templates/admin/posts/edit.html:2 app/templates/admin/posts/index.html:7
@@ -300,7 +300,7 @@ msgstr "Estampilles"
 #: app/templates/main/common/_sidebar_user.html:45
 #: app/templates/main/layout/error-base.html:32
 msgid "NEW_STAMP_LBL"
-msgstr "Nouvelle"
+msgstr "Nouvelle histoire"
 
 #: app/templates/admin/layout/sidebar.html:42
 #: app/templates/admin/users/index.html:9
@@ -325,7 +325,7 @@ msgstr "Brouillon | %(page)s"
 #: app/templates/admin/posts/index.html:10
 #: app/templates/admin/posts/index.html:19
 msgid "stamps"
-msgstr "estampilles"
+msgstr "Histoires"
 
 #: app/templates/admin/posts/edit.html:15
 #: app/templates/admin/posts/partials/_post_item.html:14
@@ -335,7 +335,7 @@ msgstr "Privé: vous seul pouvez voir le document"
 
 #: app/templates/admin/posts/index.html:2
 msgid "PAGE_STAMPS_TITLE"
-msgstr "Estampilles | %(page)s"
+msgstr "Histoires | %(page)s"
 
 #: app/templates/admin/posts/partials/_post_form_edit.html:15
 msgid "BTN_UPLOAD_COVER_PICTURE_LBL"
@@ -618,7 +618,7 @@ msgstr "Tableau de bord"
 
 #: app/templates/main/layout/error-base.html:30
 msgid "POSTS_BTN"
-msgstr "Estampilles"
+msgstr "Histoires"
 
 #: app/templates/main/layout/error-base.html:31
 msgid "DRAFT_BTN"
@@ -694,12 +694,12 @@ msgstr "Transmet ton optimisme en partageant petits et grands succès"
 
 #: app/templates/main/stamp/category.html:2
 msgid "CATEGORY_LIST_TITLE"
-msgstr "Estampilles pour %(category)s"
+msgstr "Histoires pour %(category)s"
 
 #: app/templates/main/stamp/partials/_ranking.html:5
 #: app/templates/main/stamp/ranking.html:2
 msgid "RANKING_TITLE"
-msgstr "Estampilles les plus populaires"
+msgstr "Histoires les plus populaires"
 
 #: app/templates/main/stamp/partials/_stamp_ranking_feed.html:20
 #: app/templates/main/stamp/partials/_stamp_single.html:17
@@ -951,4 +951,3 @@ msgstr ""
 
 #~ msgid "EMAIL_REGISTRATION_SUBJECT"
 #~ msgstr ""
-
