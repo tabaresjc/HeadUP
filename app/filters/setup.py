@@ -21,5 +21,5 @@ def utility_processor():
         pag=PaginationHelper.pag,
         today=today,
         config=config,
-        language=language,
+        language=str(language),
         site_name=config.SITE_NAME)

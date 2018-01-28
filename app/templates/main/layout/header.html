@@ -31,6 +31,28 @@
 					<li class="visible-xs-block visible-sm-block {% if request.endpoint=='code_of_conduct' %}active{% endif %}">
 						<a href="{{ url_for('code_of_conduct') }}">{% trans%}CODE_CONDUCT_LBL{% endtrans %}</a>
 					</li>
+					<li role="separator" class="visible-xs-block visible-sm-block divider"></li>
+					{% if language != 'en' %}
+					<li class="visible-xs-block visible-sm-block ">
+						<a href="http://{{ config.MAIN_DOMAIN }}{{ request.path }}">
+							<img src="/static/images/flags/en.svg" width="16" height="16"> English
+						</a>
+					</li>
+					{% endif %}
+					{% if language != 'fr' %}
+					<li class="visible-xs-block visible-sm-block ">
+						<a href="http://fr.{{ config.MAIN_DOMAIN }}{{ request.path }}">
+							<img src="/static/images/flags/fr.svg" width="16" height="16"> Français
+						</a>
+					</li>
+					{% endif %}
+					{% if language != 'es' %}
+					<li class="visible-xs-block visible-sm-block ">
+						<a href="http://es.{{ config.MAIN_DOMAIN }}{{ request.path }}">
+							<img src="/static/images/flags/es.svg" width="16" height="16"> Español
+						</a>
+					</li>
+					{% endif %}
 				</ul>
 			</div>
 		</nav>
