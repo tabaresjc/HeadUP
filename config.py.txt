@@ -20,7 +20,6 @@ SITE_NAME = 'HeadUP'
 DEFAULT_TIMEZONE = 'Asia/Tokyo'
 DEFAULT_LANGUAGE = 'en'
 DEFAULT_USER_ROLES = [('1', 'Administrator'), ('2', 'Writer')]
-LANGUAGES_FORM = [(u'en', u'English'), (u'es', u'Español')]
 LANGUAGES = {'en': u'English', 'es': u'Español', 'fr': u'Français'}
 UPLOAD_MEDIA_FOLDER = 'media'
 UPLOAD_MEDIA_PICTURES = 'media/pictures'

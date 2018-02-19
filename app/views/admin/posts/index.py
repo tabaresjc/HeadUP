@@ -3,7 +3,7 @@
 from flask import flash, redirect, url_for, request, jsonify, abort
 from flask_login import current_user, login_required
 from flask_classy import FlaskView, route
-from flask_babel import gettext
+from flask_babel import gettext as _
 from flask_paginate import Pagination
 from app.models import Post, Picture, Feed
 from app.helpers import render_view
@@ -47,7 +47,7 @@ class PostsView(FlaskView):
         post = Post.get_by_id(id)
 
         if post is None or not post.can_edit():
-            message = gettext('The requested stamp was not found')
+            message = _('The requested stamp was not found')
             return render_view(url_for('PostsView:index'),
                                status=False,
                                redirect=True,
@@ -62,7 +62,7 @@ class PostsView(FlaskView):
         try:
             if request.method == 'POST':
                 if not form.validate():
-                    raise Exception(gettext('Invalid submission, please check the message below'))
+                    raise Exception(_('Invalid submission, please check the message below'))
 
                 remain = request.values.get('remain', False, bool)
 
@@ -86,9 +86,9 @@ class PostsView(FlaskView):
                 Feed.clear_feed_cache()
 
                 if post.is_draft:
-                    message = gettext('Draft was succesfully saved')
+                    message = _('Draft was succesfully saved')
                 else:
-                    message = gettext('Stamp was succesfully saved')
+                    message = _('Stamp was succesfully saved')
 
                 if remain:
                     url = url_for('PostsView:put', id=post.id, remain='y')
@@ -113,7 +113,7 @@ class PostsView(FlaskView):
         post = Post.get_by_id(id)
 
         if post is None or not post.can_edit() or post.is_hidden:
-            message = gettext('The requested stamp was not found')
+            message = _('The requested stamp was not found')
             return render_view(url_for('PostsView:index'),
                                redirect=True,
                                message=message,
@@ -124,7 +124,7 @@ class PostsView(FlaskView):
 
             if request.method == 'POST':
                 if not form.validate():
-                    raise Exception(gettext('Invalid submission, please check the message below'))
+                    raise Exception(_('Invalid submission, please check the message below'))
 
                 cover_picture_id = request.values.get('cover_picture_id', 0, int)
                 is_draft = request.values.get('status', 0, int) == Post.POST_DRAFT
@@ -159,9 +159,9 @@ class PostsView(FlaskView):
                 Feed.clear_feed_cache()
 
                 if post.is_draft:
-                    message = gettext('Draft was succesfully saved')
+                    message = _('Draft was succesfully saved')
                 else:
-                    message = gettext('Stamp was succesfully saved')
+                    message = _('Stamp was succesfully saved')
 
                 if not remain:
                     return render_view(url_for('PostsView:get', id=post.id),
@@ -188,7 +188,7 @@ class PostsView(FlaskView):
         post = Post.get_by_id(id)
 
         if post is None:
-            flash(gettext('The stamp was not found'), 'error')
+            flash(_('The stamp was not found'), 'error')
             return redirect(url_for('PostsView:index'))
 
         if not post.can_edit():
@@ -199,7 +199,7 @@ class PostsView(FlaskView):
             Post.delete(post.id)
             Feed.clear_feed_cache()
             ret = request.values.get('return')
-            message = gettext('The stamp "%(title)s" was removed', title=title)
+            message = _('The stamp "%(title)s" was removed', title=title)
             if ret:
                 return render_view(ret, redirect=True, message=message)
 
@@ -207,7 +207,7 @@ class PostsView(FlaskView):
                                redirect=True,
                                message=message)
         except Exception as e:
-            message = gettext('Error while removing the stamp, %(error)s',
+            message = _('Error while removing the stamp, %(error)s',
                               error=e)
             return render_view(url_for('PostsView:index'),
                                status=False,

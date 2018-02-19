@@ -27,7 +27,7 @@ def upgrade():
 
 def downgrade():
     try:
-        op.drop_column('posts', 'score')
         op.drop_index('idx_score', 'posts')
+        op.drop_column('posts', 'score')
     except Exception as e:
         pass

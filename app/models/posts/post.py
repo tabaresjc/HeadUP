@@ -11,28 +11,39 @@ class Post(db.Model, ModelHelper):
 
     __tablename__ = 'posts'
 
-    __json_meta__ = ['id', 'title', 'body', 'extra_body',
-                     'user', 'cover_picture', 'category', 'anonymous']
+    __json_meta__ = ['id',
+                     'title',
+                     'body',
+                     'extra_body',
+                     'user',
+                     'status',
+                     'lang',
+                     'cover_picture',
+                     'category',
+                     'anonymous']
 
     POST_PUBLIC = 0x001
     POST_DRAFT = 0x100
     POST_HIDDEN = 0x800
 
     id = db.Column(db.Integer, primary_key=True)
-
     title = db.Column(db.String(255))
-    user_id = db.Column(db.Integer, db.ForeignKey(
-        'users.id', ondelete='CASCADE', onupdate='NO ACTION'))
-    category_id = db.Column(db.Integer, db.ForeignKey(
-        'categories.id', ondelete='CASCADE', onupdate='NO ACTION'))
-
+    user_id = db.Column(db.Integer,
+                        db.ForeignKey('users.id',
+                                      ondelete='CASCADE',
+                                      onupdate='NO ACTION'))
+    category_id = db.Column(db.Integer,
+                            db.ForeignKey('categories.id',
+                                          ondelete='CASCADE',
+                                          onupdate='NO ACTION'))
     status = db.Column(db.Integer, default=1, index=True)
-
+    lang = db.Column(db.String(4), default='en', index=True)
     anonymous = db.Column(db.SmallInteger)
-    score = db.Column(db.Numeric(20, 7), default=0,
-                      server_default='0', nullable=False)
+    score = db.Column(db.Numeric(20, 7),
+                      default=0,
+                      server_default='0',
+                      nullable=False)
     attr = db.Column(MutableObject.get_column())
-
     created_at = db.Column(db.DateTime, default=datetime.datetime.utcnow)
     modified_at = db.Column(db.DateTime, default=datetime.datetime.utcnow)
 
@@ -125,14 +136,18 @@ class Post(db.Model, ModelHelper):
         return self.status == self.POST_DRAFT
 
     def is_mine(self):
-        return current_user.is_authenticated and self.user.id == current_user.id
+        return (current_user.is_authenticated and
+                self.user.id == current_user.id)
 
     def can_edit(self):
-        return current_user.is_authenticated and (self.user.id == current_user.id or current_user.is_admin)
+        return (current_user.is_authenticated and
+                (self.user.id == current_user.id or current_user.is_admin))
 
     def update_score(self, page_view=0, vote=0, down_vote=0):
         from app.models import Feed
+
         scale = 10
+
         if page_view > 0:
             self.page_views = self.page_views + page_view
 
@@ -168,7 +183,18 @@ class Post(db.Model, ModelHelper):
         return [(cls.POST_DRAFT, "Private"), (cls.POST_PUBLIC, "Public")]
 
     @classmethod
-    def posts_by_user(cls, user_id, limit=10, page=1, status=POST_PUBLIC, orderby='id', desc=True):
+    def get_language_list(cls):
+        import config
+        return [(value, text) for value, text in config.LANGUAGES.iteritems()]
+
+    @classmethod
+    def posts_by_user(cls,
+                      user_id,
+                      limit=10,
+                      page=1,
+                      status=POST_PUBLIC,
+                      orderby='id',
+                      desc=True):
         query = cls.query.filter_by(user_id=user_id, status=status)
 
         count = query.count()

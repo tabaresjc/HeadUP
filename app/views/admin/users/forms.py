@@ -3,7 +3,6 @@
 from flask_wtf import Form
 from wtforms import BooleanField, TextField, TextAreaField, PasswordField, SelectField, validators
 from flask_babel import lazy_gettext, gettext
-from config import LANGUAGES_FORM
 import pytz
 import config
 from app.models import Role

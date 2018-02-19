@@ -1,11 +1,9 @@
 {% macro render_inline_field(field) %}
-<div class="form-group">
+<div class="form-group" {% if field.hidden %}style="display:none;"{% endif %}>
   {{ field(**kwargs)|safe }}
-  {% if field.errors %}
   {% for error in field.errors %}
-    <div class="label label-danger">{{ error }}</div><br/>
+	<div class="label label-danger">{{ error }}</div><br/>
   {% endfor %}
-  {% endif %}
 </div>
 {% endmacro %}
 

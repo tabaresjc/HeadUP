@@ -1,29 +1,29 @@
 # -*- coding: utf8 -*-
 
 from flask_wtf import Form
-from wtforms import TextAreaField, TextField, BooleanField, SelectField, HiddenField, validators
-from flask_babel import lazy_gettext, gettext
+from wtforms import TextAreaField, TextField, BooleanField, SelectField, \
+    HiddenField, validators
+from flask_babel import get_locale
 from app.models import Category, Post
 
 
 class PostForm(Form):
 
-    title = TextField(lazy_gettext('Title'),
-                      [validators.Required()])
+    title = TextField([validators.Required()])
 
-    body = TextAreaField(lazy_gettext('Your Challenge'),
-                         [validators.Required()])
+    body = TextAreaField([validators.Required()])
 
-    extra_body = TextAreaField(lazy_gettext('Your Solution'),
-                               [validators.Required()])
+    extra_body = TextAreaField([validators.Required()])
 
-    category_id = SelectField(u'Category', coerce=int)
+    category_id = SelectField(coerce=int)
 
-    status = SelectField(u'Status', coerce=int)
+    status = SelectField(coerce=int)
 
-    anonymous = BooleanField(lazy_gettext('Anonymous'), default=0)
+    lang = SelectField([validators.Required()])
 
-    remain = BooleanField(lazy_gettext('Show Post'), default=False)
+    anonymous = BooleanField(default=0)
+
+    remain = BooleanField(default=False)
 
     cover_picture_id = HiddenField()
 
@@ -33,10 +33,13 @@ class PostForm(Form):
         super(PostForm, self).__init__(*args, **kwargs)
         self.category_id.choices = Category.get_list()
         self.status.choices = Post.get_status_list()
+        self.lang.choices = Post.get_language_list()
         self.set_values(post)
 
     def set_values(self, post):
         if not post:
+            language = str(get_locale())
+            self.lang.data = language
             return
         self.title.data = post.title
         self.body.data = post.body
@@ -44,5 +47,6 @@ class PostForm(Form):
         self.anonymous.data = post.anonymous
         self.category_id.data = post.category_id
         self.status.data = post.status
+        self.lang.data = post.lang
         self.cover_picture_id.data = post.cover_picture_id
         self.editor_version.data = post.editor_version
