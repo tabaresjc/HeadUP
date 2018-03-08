@@ -11,7 +11,7 @@ class Feed:
     CACHE_CATEGORY_PAGE = 'stamps/category'
 
     CACHE_FEED_LIST = 'stamps/feeds.v1'
-    FEED_DEFAULT_LIMIT = 20
+    FEED_DEFAULT_LIMIT = 100
 
     vote_factor = 10
     epoch = datetime.datetime(1970, 1, 1)
