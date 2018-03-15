@@ -9,13 +9,12 @@ import re
 
 class CategoryForm(Form):
     name = TextField(lazy_gettext('Name'),
-                     [validators.Length(min=4, max=25),
+                     [validators.Length(min=4, max=100),
                       validators.InputRequired()])
 
     slug = TextField(lazy_gettext('Slug'),
-                     [validators.Length(min=4, max=25),
-                      validators.InputRequired(),
-                      validators.Regexp('^[-\w]+$')])
+                     [validators.Length(min=4, max=100),
+                      validators.InputRequired()])
 
     description = TextAreaField(lazy_gettext('Description'),
                                 [validators.Length(min=4, max=1024),

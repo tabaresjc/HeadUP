@@ -42,6 +42,9 @@ class CategoriesView(FlaskView):
                         gettext('Invalid submission, please check the message below'))
                 category = Category.create()
                 form.populate_obj(category)
+
+                category.slug = Category.urlify(category.slug)
+
                 category.save()
                 message = gettext('Category succesfully created')
                 return render_view(url_for('CategoriesView:put', id=category.id),
@@ -77,6 +80,7 @@ class CategoriesView(FlaskView):
                         gettext('Invalid submission, please check the message below'))
 
                 form.populate_obj(category)
+                category.slug = Category.urlify(category.slug)
                 category.save()
                 message = gettext('Category was succesfully saved')
 

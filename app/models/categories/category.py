@@ -73,3 +73,14 @@ class Category(db.Model, ModelHelper):
         posts = category.posts.order_by(db.text('id DESC')).limit(
             limit).offset((page - 1) * limit)
         return posts, category
+
+    @classmethod
+    def urlify(cls, s):
+        import re
+        # Remove all non-word characters (everything except numbers and letters)
+        s = re.sub(r"[^\w\s]+", ' ', s)
+
+        # Replace all runs of whitespace with a single dash
+        s = re.sub(r"\s+", '-', s)
+
+        return s.lower()
