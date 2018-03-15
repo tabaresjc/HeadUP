@@ -61,7 +61,7 @@ def stamps_ranking(page=1, limit=5):
 
 
 @widgets.widget('stamps_category')
-def stamps_category(category, page=1, limit=20):
+def stamps_category(category, page=1, limit=100):
     lang = str(get_locale())
 
     obj = Feed.get_feed_cache(name=Feed.CACHE_CATEGORY_PAGE,

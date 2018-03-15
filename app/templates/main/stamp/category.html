@@ -1,6 +1,17 @@
 {% extends "main/layout/base.html" %}
 {% set title = _('CATEGORY_LIST_TITLE', category=category.name) %}
 
+{% block meta_extra %}
+	{% if config.FB_APPID %}
+	<meta property="fb:app_id" content="{{ config.FB_APPID }}" />
+	{% endif %}
+	<meta property="og:type" content="blog" />
+	<meta property="og:url" content="{{ url_for('stamp.category', slug=category.slug, page=page if page > 1 else None, _external=true) }}" />
+	<meta property="og:title" content="{{ title }}" />
+	<meta property="og:description" content="{{ description }}">
+	<meta property="og:image" content="{{ url_for('static', filename='assets/headsup/images/lp-home/screen-bg_1.jpg', _external=true) }}" />
+{% endblock %}
+
 {% block wide_container %}
 <div class="row">
 	<div class="col-xs-12 col-md-12">
@@ -8,10 +19,10 @@
 	</div>
 </div>
 <div class="row">
-	<div class="col-xs-12  col-md-8">
+	<div class="block-main col-xs-12 col-sm-8 col-md-8">
 		{{ widget('stamps_category', category=category, page=page) }}
 	</div>
-	<div class="col-xs-12  col-md-4">
+	<div class="block-side col-xs-12 col-sm-4 col-md-4">
 		{% include 'main/common/_sidebar_user.html' %}
 	</div>
 </div>
