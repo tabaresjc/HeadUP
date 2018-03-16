@@ -8,14 +8,11 @@ from jinja2 import evalcontextfilter
 @app.template_filter()
 @evalcontextfilter
 def ga_autolinks(eval_ctx, items):
-    domain_name = request.headers.get('HOST', '')
     if not items:
         return None
 
-    result = []
+    domain_name = request.headers.get('HOST', '')
 
-    for item in items:
-        if item not in domain_name:
-            result.append(u'"%s"' % item)
+    result = [u'"%s"' % item for item in items if item != domain_name]
 
     return u','.join(result)
