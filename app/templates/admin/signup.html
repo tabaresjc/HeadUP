@@ -20,7 +20,13 @@
 				{{ render_inline_field(form.name, class="form-control",placeholder=_('NAME_LBL')) }}
 				{{ render_inline_field(form.nickname, class="form-control",placeholder=_('NICKNAME_LBL')) }}
 				{{ render_inline_field(form.password, class="form-control",placeholder=_('PASSWORD_LBL')) }}
-				{{ render_inline_field(form.confirm_password, class="form-control",placeholder=_('CONFIRM_PASSWORD_LBL')) }}
+
+				{% if config.RC_SITE_KEY %}
+				<div class="captcha-container">
+					<div class="g-recaptcha" data-sitekey="{{ config.RC_SITE_KEY }}"></div>
+				</div>
+				{% endif %}
+
 				<div class="tos-box text-center">
 					<label>
 						{{ form.check_tos }}
@@ -28,6 +34,7 @@
 						{{ _('TOS_CHECK_LBL', link=link_tag|safe) }}
 					</label>
 				</div>
+
 				<div class="action">
 					<input id="submit-signup" type="submit" value="{{ _('REGISTER_BTN') }}" class="btn-glow primary login btn-lg" disabled="disabled">
 				</div>
@@ -39,4 +46,11 @@
 		<a href="{{ url_for('sessions.login') }}">{{ _('LOGIN_BTN') }}</a>
 	</div>
 </div>
+{% endblock %}
+
+
+{% block custom_head_js %}
+{% if config.RC_SITE_KEY %}
+<script src="https://www.google.com/recaptcha/api.js" async defer></script>
+{% endif %}
 {% endblock %}

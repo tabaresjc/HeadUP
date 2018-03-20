@@ -20,12 +20,8 @@ class SignUpForm(Form):
     nickname = TextField(lazy_gettext('Nickname'), [validators.Required()])
     password = PasswordField(lazy_gettext('Password'), [
         validators.Required(),
-        validators.EqualTo('confirm_password',
-                           message=lazy_gettext('Passwords must match')),
         validators.Length(min=10, max=64)
     ])
-    confirm_password = PasswordField(
-        lazy_gettext('Confirm'), [validators.Required()])
     check_tos = BooleanField('check_tos', default=False)
 
 
@@ -53,4 +49,5 @@ class SignUpForm(Form):
             self.nickname.errors.append(
                 gettext('This nickname is already in use. Please choose another one.'))
             valid = False
+
         return valid

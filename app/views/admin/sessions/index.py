@@ -11,6 +11,7 @@ from app import app, login_manager
 from forms import LoginForm, SignUpForm
 from app.models import User, GuestUser
 from app.helpers.email.registration import send_registration_email
+from app.helpers.captcha.verify import verify_captcha
 import datetime
 
 mod = Blueprint('sessions', __name__)
@@ -99,6 +100,9 @@ def signup():
     form = SignUpForm()
     if form.validate_on_submit():
         try:
+            if not verify_captcha():
+                raise Exception(gettext('Invalid captcha, please try again'))
+
             # Create user from the form
             user = User.create()
 
@@ -113,8 +117,8 @@ def signup():
             flash(gettext('Welcome! You have signed up successfully.'))
             send_registration_email(user)
             return redirect(url_for('latest'))
-        except:
-            flash(gettext('Error while saving the new user, please retry later'), 'error')
+        except Exception as e:
+            flash(e.message, 'error')
 
     return render_template('admin/signup.html',
                            title=gettext('Sign Up'),

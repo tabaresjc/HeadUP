@@ -42,16 +42,8 @@
 		float: none;
 		width: 400px;
 
-		-webkit-box-shadow: rgba(0,0,0,0.4) 0 1px 3px,rgba(0,0,0,0.35) 0 0 1px;
-		-moz-box-shadow: rgba(0,0,0,0.4) 0 1px 3px,rgba(0,0,0,0.35) 0 0 1px;
-		-ms-box-shadow: rgba(0,0,0,0.4) 0 1px 3px,rgba(0,0,0,0.35) 0 0 1px;
-		-o-box-shadow: rgba(0,0,0,0.4) 0 1px 3px,rgba(0,0,0,0.35) 0 0 1px;
 		box-shadow: rgba(0,0,0,0.4) 0 1px 3px,rgba(0,0,0,0.35) 0 0 1px;
 		background: #fff;
-		-webkit-border-radius: 6px;
-		-moz-border-radius: 6px;
-		-ms-border-radius: 6px;
-		-o-border-radius: 6px;
 		border-radius: 6px;
 
 		.content-wrap {
@@ -60,9 +52,13 @@
 		}
 		h6 {
 			text-transform: uppercase;
-			margin-bottom: 35px;
+			margin: 0 0 15px 0;
 			font-size: 18px;
 			font-weight: 600;
+		}
+		.captcha-container {
+			display: inline-block;
+			margin: 0 auto 10px 0;
 		}
 		input[type="text"],
 		input[type="password"] {

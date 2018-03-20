@@ -79,3 +79,9 @@ BROKER_URL = 'amqp://headupuser:headup123456@localhost:5672/headup'
 # like btn service
 # *************************************************
 LIKE_BTN_CODE = None
+
+# *************************************************
+# recaptchaV2
+# *************************************************
+RC_SITE_KEY = None
+RC_SECRET_KEY = None
