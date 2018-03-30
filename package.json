@@ -2,6 +2,12 @@
 	"name": "headsup",
 	"version": "0.1.0",
 	"description": "Your site to share a positive experience",
+	"scripts": {
+		"setup": "bower install && npm install",
+		"build": "grunt dist",
+		"serve": "grunt serve",
+		"dev": "grunt dev"
+	},
 	"devDependencies": {
 		"grunt": "^1.0.1",
 		"grunt-assemble": "^0.6.3",
