@@ -1,7 +1,7 @@
 # -*- coding: utf8 -*-
 
-from app import app
 from app.helpers import HttpJsonEncoder
+import app
 
 
-app.json_encoder = HttpJsonEncoder
+app.app.json_encoder = HttpJsonEncoder

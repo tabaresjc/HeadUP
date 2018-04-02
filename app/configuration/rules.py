@@ -1,7 +1,7 @@
 # -*- coding: utf8 -*-
 
-from app import app
 import config
+import app
 
-app.add_url_rule('/%s/<path:name>' % config.UPLOAD_MEDIA_PICTURES,
+app.app.add_url_rule('/%s/<path:name>' % config.UPLOAD_MEDIA_PICTURES,
                  endpoint='pictures')

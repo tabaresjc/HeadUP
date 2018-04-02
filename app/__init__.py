@@ -14,10 +14,16 @@ app = Flask(__name__)
 app.config.from_object('config')
 
 # -------------------------------------------------------------------------
+# Load celery
+# -------------------------------------------------------------------------
+from celery import Celery  # noqa
+mq = Celery('tasks', broker=config.BROKER_URL)
+
+# -------------------------------------------------------------------------
 # Database Configuration
 # -------------------------------------------------------------------------
 from flask_sqlalchemy import SQLAlchemy  # noqa
-db = SQLAlchemy(app)
+sa = SQLAlchemy(app)
 
 # -------------------------------------------------------------------------
 # Cache Configuration
@@ -54,12 +60,6 @@ login_manager = LoginManager(app)
 # -------------------------------------------------------------------------
 from flask_mail import Mail  # noqa
 mail = Mail(app)
-
-# -------------------------------------------------------------------------
-# Load celery
-# -------------------------------------------------------------------------
-from celery import Celery  # noqa
-mq = Celery('tasks', broker=config.BROKER_URL)
 
 # -------------------------------------------------------------------------
 # Register modules of the application

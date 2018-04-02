@@ -21,4 +21,10 @@
 		{{ _('Delete Category') }}
 	</a>
 	{% endif %}
+	{% if not request.endpoint.startswith('CategoriesView:transfer') %}
+	<a href="{{ url_for('CategoriesView:transfer_post')  }}" class="list-group-item">
+		<i class="glyphicon glyphicon-transfer"></i>
+		{{ _('Transfer Posts') }}
+	</a>
+	{% endif %}
 </div>

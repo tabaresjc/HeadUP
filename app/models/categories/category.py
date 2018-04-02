@@ -1,25 +1,25 @@
 # -*- coding: utf8 -*-
 
 from flask_login import current_user
-from app import db
+from app import sa
 from app.helpers import ModelHelper, MutableObject
 import datetime
 
 
-class Category(db.Model, ModelHelper):
+class Category(sa.Model, ModelHelper):
 
     __tablename__ = 'categories'
 
     __json_meta__ = ['id', 'name', 'slug']
 
-    id = db.Column(db.Integer, primary_key=True)
-    name = db.Column(db.String(128), index=True, unique=True)
-    slug = db.Column(db.String(128), index=True, unique=True)
-    posts = db.relationship('Post', backref='category', lazy='dynamic')
-    attr = db.Column(MutableObject.get_column())
+    id = sa.Column(sa.Integer, primary_key=True)
+    name = sa.Column(sa.String(128), index=True, unique=True)
+    slug = sa.Column(sa.String(128), index=True, unique=True)
+    posts = sa.relationship('Post', backref='category', lazy='dynamic')
+    attr = sa.Column(MutableObject.get_column())
 
-    created_at = db.Column(db.DateTime, default=datetime.datetime.utcnow)
-    modified_at = db.Column(db.DateTime, default=datetime.datetime.utcnow)
+    created_at = sa.Column(sa.DateTime, default=datetime.datetime.utcnow)
+    modified_at = sa.Column(sa.DateTime, default=datetime.datetime.utcnow)
 
     def __repr__(self):
         return '<Category %s>' % (self.id)
@@ -51,7 +51,7 @@ class Category(db.Model, ModelHelper):
         Post.query.filter_by(category_id=from_category.id).update(
             dict(category_id=to_category.id))
 
-        db.session.commit()
+        sa.session.commit()
         return True
 
     @classmethod
@@ -70,7 +70,7 @@ class Category(db.Model, ModelHelper):
         category = cls.query.filter_by(slug=cat).one_or_none()
         if not category:
             return None, None
-        posts = category.posts.order_by(db.text('id DESC')).limit(
+        posts = category.posts.order_by(sa.text('id DESC')).limit(
             limit).offset((page - 1) * limit)
         return posts, category
 

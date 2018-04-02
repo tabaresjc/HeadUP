@@ -4,8 +4,6 @@
 {% set cover_picture = post.cover_picture if post and post.cover_picture else None %}
 
 <form id="form-editor" action="{{ url_form }}" method="POST" name="postForm" autocomplete="off" enctype = "multipart/form-data" data-language="{{ language }}">
-	{{ form.hidden_tag() }}
-
 	<div class="cover-picture{{ ' with-picture' if cover_picture else ' without-picture' }}" style="background-image:url({{ cover_picture.image_url if cover_picture }})">
 		<div class="cover-picture-edit-menu">
 			<span class="update"><i class="glyphicon glyphicon-refresh"></i></span>
@@ -37,6 +35,7 @@
 	<div class="actions clearfix">
 		<a href="javascripts:void();" class="btn-save btn btn-primary btn-lg pull-right">{{ _('BTN_SAVE_LBL') }}</a>
 	</div>
+	{{ form.hidden_tag() }}
 </form>
 
 <script type="text/javascript">

@@ -8,15 +8,15 @@ class ModelHelper(object):
 
     @classmethod
     def begin_transaction(cls):
-        app.db.session.begin(subtransactions=True)
+        app.sa.session.begin(subtransactions=True)
 
     @classmethod
     def commit_transaction(cls):
-        app.db.session.commit()
+        app.sa.session.commit()
 
     @classmethod
     def rollback_transaction(cls):
-        app.db.session.rollback()
+        app.sa.session.rollback()
 
     def set_attribute(self, key, value):
         self.attr = self.attr or {}
@@ -49,23 +49,23 @@ class ModelHelper(object):
         return commit and self.save() or self
 
     def save(self, commit=True):
-        app.db.session.add(self)
+        app.sa.session.add(self)
         if commit:
             if hasattr(self, 'modified_at'):
                 setattr(self, 'modified_at', datetime.datetime.utcnow())
-            app.db.session.commit()
+            app.sa.session.commit()
         return self
 
     @classmethod
     def delete(cls, id, commit=True):
         cls.query.filter_by(id=id).delete()
         if commit:
-            app.db.session.commit()
+            app.sa.session.commit()
         return True
 
     @classmethod
     def count(cls):
-        return app.db.session.query(cls).count()
+        return app.sa.session.query(cls).count()
 
     @classmethod
     def pagination(cls, limit=10, page=1, orderby='id', desc=True):
@@ -74,6 +74,6 @@ class ModelHelper(object):
         records = []
         if count:
             sort_by = '%s %s' % (orderby, 'DESC' if desc else 'ASC')
-            records = query.order_by(app.db.text(sort_by)).limit(
+            records = query.order_by(app.sa.text(sort_by)).limit(
                 limit).offset((page - 1) * limit)
         return records, count

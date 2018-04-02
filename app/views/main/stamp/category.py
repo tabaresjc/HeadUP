@@ -1,7 +1,6 @@
 # -*- coding: utf8 -*-
 
 from flask import render_template, abort
-from app import app
 from . import mod
 from app.models import Category
 

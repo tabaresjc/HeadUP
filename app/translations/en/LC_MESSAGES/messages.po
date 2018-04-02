@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-12-07 00:21+0900\n"
+"POT-Creation-Date: 2018-04-02 18:56+0900\n"
 "PO-Revision-Date: 2017-07-15 18:02+0900\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: en\n"
@@ -18,12 +18,20 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.5.1\n"
 
+#: app/configuration/session.py:10
+msgid "Please log in to access this page."
+msgstr ""
+
+#: app/configuration/session.py:22
+msgid "You need to sign in or sign up before continuing."
+msgstr ""
+
 #: app/filters/formats.py:23
 #, python-format
 msgid "Posted %(ago)s ago"
 msgstr ""
 
-#: app/helpers/email/registration.py:16
+#: app/helpers/email/registration.py:21
 #: app/templates/emails/users/registration.html:23
 msgid "EMAIL_REGISTRATION_TITLE"
 msgstr "Welcome to %(name)s!"
@@ -41,8 +49,7 @@ msgstr ""
 msgid "Blog Administration"
 msgstr ""
 
-#: app/templates/admin/index.html:13 app/views/admin/sessions/forms.py:10
-#: app/views/admin/sessions/forms.py:17 app/views/admin/users/forms.py:20
+#: app/templates/admin/index.html:13
 msgid "Email"
 msgstr ""
 
@@ -69,66 +76,6 @@ msgstr ""
 #: app/templates/admin/index.html:49 app/templates/admin/layout/navbar.html:24
 msgid "Posts"
 msgstr ""
-
-#: app/templates/admin/signin.html:3 app/templates/admin/signin.html:13
-#: app/templates/admin/signin.html:23 app/templates/admin/signup.html:39
-#: app/templates/main/common/_sidebar_user.html:24
-#: app/templates/main/layout/header.html:47
-#: app/templates/main/site/home.html:21
-msgid "LOGIN_BTN"
-msgstr "Login"
-
-#: app/templates/admin/signin.html:17 app/templates/admin/signup.html:19
-msgid "MAIL_LBL"
-msgstr "Email"
-
-#: app/templates/admin/signin.html:18 app/templates/admin/signup.html:22
-msgid "PASSWORD_LBL"
-msgstr "Password"
-
-#: app/templates/admin/signin.html:21
-msgid "REMEMBER_ME_BTN"
-msgstr "Remember me"
-
-#: app/templates/admin/signin.html:29
-msgid "SIGNUP_ACTION_LBL"
-msgstr "Don't have an account?"
-
-#: app/templates/admin/signin.html:30 app/templates/admin/signup.html:3
-#: app/templates/admin/signup.html:15 app/templates/admin/signup.html:32
-#: app/templates/main/common/_sidebar_user.html:27
-#: app/templates/main/layout/header.html:44
-#: app/templates/main/site/home.html:22
-msgid "REGISTER_BTN"
-msgstr "Register"
-
-#: app/templates/admin/signup.html:20
-msgid "NAME_LBL"
-msgstr "Name"
-
-#: app/templates/admin/signup.html:21
-msgid "NICKNAME_LBL"
-msgstr "Nickname"
-
-#: app/templates/admin/signup.html:23
-msgid "CONFIRM_PASSWORD_LBL"
-msgstr "Confirm password"
-
-#: app/templates/admin/signup.html:27
-#: app/templates/emails/users/registration.html:73
-#: app/templates/main/layout/footer.html:10
-#: app/templates/main/layout/header.html:29
-#: app/templates/main/site/policy.html:2
-msgid "TOS_LBL"
-msgstr "Terms of Service"
-
-#: app/templates/admin/signup.html:28
-msgid "TOS_CHECK_LBL"
-msgstr "I have read and agree to the %(link)s"
-
-#: app/templates/admin/signup.html:38
-msgid "SIGNIN_ACTION_LBL"
-msgstr "Already have an account?"
 
 #: app/templates/admin/categories/add.html:2
 #: app/templates/admin/categories/partials/_sidebar.html:11
@@ -167,18 +114,14 @@ msgstr ""
 #: app/templates/admin/categories/index.html:17
 #: app/templates/admin/users/index.html:21
 #: app/templates/admin/users/show.html:53
-#: app/views/admin/categories/forms.py:11 app/views/admin/sessions/forms.py:19
-#: app/views/admin/users/forms.py:25
 msgid "Name"
 msgstr ""
 
 #: app/templates/admin/categories/index.html:18
-#: app/views/admin/categories/forms.py:15
 msgid "Slug"
 msgstr ""
 
 #: app/templates/admin/categories/index.html:19
-#: app/views/admin/categories/forms.py:20
 msgid "Description"
 msgstr ""
 
@@ -190,7 +133,7 @@ msgstr ""
 msgid "Update category"
 msgstr ""
 
-#: app/templates/admin/categories/index.html:40
+#: app/templates/admin/categories/index.html:41
 #: app/templates/admin/categories/partials/_sidebar.html:17
 #: app/templates/admin/posts/partials/_sidebar.html:34
 #, python-format
@@ -202,29 +145,34 @@ msgstr ""
 msgid "Delete category"
 msgstr ""
 
+#: app/templates/admin/categories/transfer.html:2
+#: app/templates/admin/categories/transfer.html:7
+msgid "Transfer categories"
+msgstr ""
+
+#: app/templates/admin/categories/partials/_category_form_add.html:3
+#: app/templates/admin/categories/partials/_category_form_edit.html:3
+msgid "Insert Name"
+msgstr ""
+
 #: app/templates/admin/categories/partials/_category_form_add.html:4
 #: app/templates/admin/categories/partials/_category_form_edit.html:4
-msgid "Insert Name"
+msgid "Insert Slug"
 msgstr ""
 
 #: app/templates/admin/categories/partials/_category_form_add.html:5
 #: app/templates/admin/categories/partials/_category_form_edit.html:5
-msgid "Insert Slug"
+msgid "Describe the category..."
 msgstr ""
 
-#: app/templates/admin/categories/partials/_category_form_add.html:6
-#: app/templates/admin/categories/partials/_category_form_edit.html:6
-msgid "Describe the category..."
+#: app/templates/admin/categories/partials/_category_form_add.html:7
+#: app/templates/admin/categories/partials/_category_form_edit.html:7
+msgid "Save"
 msgstr ""
 
 #: app/templates/admin/categories/partials/_category_form_add.html:8
 #: app/templates/admin/categories/partials/_category_form_edit.html:8
-msgid "Save"
-msgstr ""
-
-#: app/templates/admin/categories/partials/_category_form_add.html:9
-#: app/templates/admin/categories/partials/_category_form_edit.html:9
-#: app/templates/admin/categories/partials/_transfer_category_form.html:13
+#: app/templates/admin/categories/partials/_transfer_post.html:12
 #: app/templates/admin/users/edit.html:28
 msgid "Clear"
 msgstr ""
@@ -237,11 +185,12 @@ msgstr ""
 msgid "Delete Category"
 msgstr ""
 
-#: app/templates/admin/categories/partials/_transfer_category_form.html:4
+#: app/templates/admin/categories/partials/_sidebar.html:27
+#: app/templates/admin/categories/partials/_transfer_post.html:4
 msgid "Transfer Posts"
 msgstr ""
 
-#: app/templates/admin/categories/partials/_transfer_category_form.html:14
+#: app/templates/admin/categories/partials/_transfer_post.html:13
 msgid "Transfer"
 msgstr ""
 
@@ -280,7 +229,7 @@ msgstr ""
 
 #: app/templates/admin/layout/navbar.html:37
 #: app/templates/admin/layout/sidebar.html:96
-#: app/templates/main/layout/header.html:40
+#: app/templates/main/layout/header.html:62
 msgid "Sign Out"
 msgstr ""
 
@@ -337,40 +286,40 @@ msgstr "Private: Only you can see this document"
 msgid "PAGE_STAMPS_TITLE"
 msgstr "Stamps | %(page)s"
 
-#: app/templates/admin/posts/partials/_post_form_edit.html:15
+#: app/templates/admin/posts/partials/_post_edit.html:13
 msgid "BTN_UPLOAD_COVER_PICTURE_LBL"
 msgstr "Click here to upload a new cover picture"
 
-#: app/templates/admin/posts/partials/_post_form_edit.html:24
+#: app/templates/admin/posts/partials/_post_edit.html:22
 msgid "FRM_INPUT_TITLE_DESCRIPTION"
 msgstr "Title – Best description of your post (30 words)"
 
-#: app/templates/admin/posts/partials/_post_form_edit.html:25
+#: app/templates/admin/posts/partials/_post_edit.html:23
 msgid "FRM_INPUT_CHALLENGE_DESCRIPTION"
 msgstr "Your Challenge – Description of what you had to cope with (150 words)"
 
-#: app/templates/admin/posts/partials/_post_form_edit.html:26
+#: app/templates/admin/posts/partials/_post_edit.html:24
 msgid "FRM_INPUT_SOLUTION_DESCRIPTION"
 msgstr "Your Solution – Description of what you did (150 words)"
 
-#: app/templates/admin/posts/partials/_post_form_edit.html:31
+#: app/templates/admin/posts/partials/_post_edit.html:30
 msgid "CB_ANONYMOUS_LBL"
 msgstr "Make this Post Anonymous"
 
-#: app/templates/admin/posts/partials/_post_form_edit.html:37
+#: app/templates/admin/posts/partials/_post_edit.html:36
 #: app/templates/admin/posts/partials/_sidebar.html:45
 msgid "BTN_SAVE_LBL"
 msgstr "Save"
 
-#: app/templates/admin/posts/partials/_post_form_edit.html:43
+#: app/templates/admin/posts/partials/_post_edit.html:43
 msgid "ERROR_STAMP_TITLE_EMPTY"
 msgstr "Please enter a title."
 
-#: app/templates/admin/posts/partials/_post_form_edit.html:44
+#: app/templates/admin/posts/partials/_post_edit.html:44
 msgid "ERROR_STAMP_CHALLENGE_EMPTY"
 msgstr "Please enter the challenge."
 
-#: app/templates/admin/posts/partials/_post_form_edit.html:45
+#: app/templates/admin/posts/partials/_post_edit.html:45
 msgid "ERROR_STAMP_SOLUTION_EMPTY"
 msgstr "Please enter the solution."
 
@@ -390,6 +339,68 @@ msgstr "Edit"
 #: app/templates/admin/posts/partials/_sidebar.html:36
 msgid "STAMP_REMOVE_LBL"
 msgstr "Delete"
+
+#: app/templates/admin/sessions/signin.html:3
+#: app/templates/admin/sessions/signin.html:15
+msgid "LOGIN_TITLE"
+msgstr "Login"
+
+#: app/templates/admin/sessions/signin.html:19
+#: app/templates/admin/sessions/signup.html:19
+msgid "MAIL_LBL"
+msgstr "Email"
+
+#: app/templates/admin/sessions/signin.html:20
+#: app/templates/admin/sessions/signup.html:22
+msgid "PASSWORD_LBL"
+msgstr "Password"
+
+#: app/templates/admin/sessions/signin.html:25
+msgid "REMEMBER_ME_BTN"
+msgstr "Remember me"
+
+#: app/templates/admin/sessions/signin.html:31
+#: app/templates/admin/sessions/signup.html:45
+#: app/templates/main/common/_sidebar_user.html:24
+#: app/templates/main/layout/header.html:69
+#: app/templates/main/site/home.html:21
+msgid "LOGIN_BTN"
+msgstr "Login"
+
+#: app/templates/admin/sessions/signin.html:38
+msgid "SIGNUP_ACTION_LBL"
+msgstr "Don't have an account?"
+
+#: app/templates/admin/sessions/signin.html:39
+#: app/templates/admin/sessions/signup.html:38
+#: app/templates/main/common/_sidebar_user.html:27
+#: app/templates/main/layout/header.html:66
+#: app/templates/main/site/home.html:22
+msgid "REGISTER_BTN"
+msgstr "Sign Up"
+
+#: app/templates/admin/sessions/signup.html:3
+#: app/templates/admin/sessions/signup.html:15
+msgid "REGISTER_TITLE"
+msgstr "Sign Up"
+
+#: app/templates/admin/sessions/signup.html:20
+msgid "NAME_LBL"
+msgstr "Name"
+
+#: app/templates/admin/sessions/signup.html:21
+msgid "NICKNAME_LBL"
+msgstr "Nickname"
+
+#: app/templates/admin/sessions/signup.html:33
+msgid "TOS_CHECK_LBL"
+msgstr ""
+"<span>I have read and agree to the <br/><a href=\"%(link)s\" class"
+"=\"custom-link\" target=\"_blank\">Terms of Service</a></span>"
+
+#: app/templates/admin/sessions/signup.html:44
+msgid "SIGNIN_ACTION_LBL"
+msgstr "Already have an account?"
 
 #: app/templates/admin/users/add.html:3
 msgid "Create new user"
@@ -428,7 +439,7 @@ msgid "Total Posts"
 msgstr ""
 
 #: app/templates/admin/users/index.html:30
-#: app/templates/admin/users/show.html:69 app/views/admin/users/forms.py:32
+#: app/templates/admin/users/show.html:69
 msgid "Role"
 msgstr ""
 
@@ -463,16 +474,15 @@ msgstr ""
 msgid "Last seen"
 msgstr ""
 
-#: app/templates/admin/users/show.html:57 app/views/admin/sessions/forms.py:20
-#: app/views/admin/users/forms.py:29
+#: app/templates/admin/users/show.html:57
 msgid "Nickname"
 msgstr ""
 
-#: app/templates/admin/users/show.html:61 app/views/admin/users/forms.py:46
+#: app/templates/admin/users/show.html:61
 msgid "Address"
 msgstr ""
 
-#: app/templates/admin/users/show.html:65 app/views/admin/users/forms.py:49
+#: app/templates/admin/users/show.html:65
 msgid "Phone"
 msgstr ""
 
@@ -492,7 +502,7 @@ msgstr ""
 msgid "Updated at"
 msgstr ""
 
-#: app/templates/admin/users/show.html:98 app/views/admin/posts/forms.py:11
+#: app/templates/admin/users/show.html:98
 msgid "Title"
 msgstr ""
 
@@ -533,6 +543,13 @@ msgstr "Write your first story"
 #: app/templates/main/site/conduct.html:2
 msgid "CODE_CONDUCT_LBL"
 msgstr "Code of conduct"
+
+#: app/templates/emails/users/registration.html:73
+#: app/templates/main/layout/footer.html:10
+#: app/templates/main/layout/header.html:29
+#: app/templates/main/site/policy.html:2
+msgid "TOS_LBL"
+msgstr "Terms of Service"
 
 #: app/templates/main/index.html:2
 msgid "LATEST_TITLE"
@@ -712,232 +729,141 @@ msgid "READ_MORE_LBL"
 msgstr "Read more..."
 
 #: app/templates/main/stamp/partials/_stamp_single.html:44
-#: app/views/admin/posts/forms.py:24
 msgid "Anonymous"
 msgstr ""
 
-#: app/views/admin/categories/forms.py:36
-msgid "From"
-msgstr ""
+#: app/views/admin/categories/index.py:39
+#: app/views/admin/categories/index.py:77
+#: app/views/admin/categories/index.py:130 app/views/admin/posts/index.py:66
+#: app/views/admin/posts/index.py:121 app/views/admin/sessions/index.py:78
+#: app/views/admin/users/index.py:55 app/views/admin/users/index.py:88
+msgid "ERROR_INVALID_SUBMISSION"
+msgstr "Invalid submission, please check the message below"
 
-#: app/views/admin/categories/forms.py:38
-msgid "To"
-msgstr ""
+#: app/views/admin/categories/index.py:52
+msgid "CATEGORY_CREATE_SUCESS"
+msgstr "Category succesfully created"
 
-#: app/views/admin/categories/forms.py:51
+#: app/views/admin/categories/index.py:67
+#: app/views/admin/categories/index.py:104
+msgid "CATEGORY_NOT_FOUND"
+msgstr "Category not found"
+
+#: app/views/admin/categories/index.py:89
+msgid "CATEGORY_SAVE_SUCCESS"
+msgstr "Category successfully saved"
+
+#: app/views/admin/categories/index.py:110
+msgid "CATEGORY_TRANSFER_POSTS_FAILED"
+msgstr "Sorry, this category can not be removed"
+
+#: app/views/admin/categories/index.py:115
+msgid "CATEGORY_REMOVE_SUCCESS"
+msgstr "The category with name \"%(name)s\" was removed"
+
+#: app/views/admin/categories/index.py:136
+msgid "CATEGORY_TRANSFER_POSTS_CHECK_FAILED"
+msgstr "Either category was not found"
+
+#: app/views/admin/categories/index.py:140
+msgid "CATEGORY_TRANSFER_POSTS_SUCCESS"
+msgstr "The posts were transfered from %(from_name)s to %(to_name)s"
+
+#: app/views/admin/categories/forms/transfer.py:23
 msgid "Please select a different category"
 msgstr ""
 
-#: app/views/admin/categories/index.py:42
-#: app/views/admin/categories/index.py:77 app/views/admin/posts/index.py:65
-#: app/views/admin/posts/index.py:127
-msgid "Invalid submission, please check the message below"
-msgstr ""
+#: app/views/admin/posts/index.py:54 app/views/admin/posts/index.py:114
+#: app/views/admin/posts/index.py:180
+msgid "POST_NOT_FOUND"
+msgstr "Story not found"
 
-#: app/views/admin/categories/index.py:46
-msgid "Category succesfully created"
-msgstr ""
+#: app/views/admin/posts/index.py:89 app/views/admin/posts/index.py:157
+msgid "POST_DRAFT_SAVE_SUCESS"
+msgstr "Draft was succesfully saved"
 
-#: app/views/admin/categories/index.py:63
-#: app/views/admin/categories/index.py:105
-msgid "The category was not found"
-msgstr ""
+#: app/views/admin/posts/index.py:91 app/views/admin/posts/index.py:159
+msgid "POST_PUBLIC_SAVE_SUCESS"
+msgstr "The story was successfully saved"
 
-#: app/views/admin/categories/index.py:81
-msgid "Category was succesfully saved"
-msgstr ""
+#: app/views/admin/posts/index.py:190
+msgid "POST_DELETE_SUCESS"
+msgstr "The story \"%(title)s\" was removed"
 
-#: app/views/admin/categories/index.py:111
-msgid "Sorry, the last category can not be removed"
-msgstr ""
-
-#: app/views/admin/categories/index.py:115
-#, python-format
-msgid "The category \"%(name)s\" was removed"
-msgstr ""
-
-#: app/views/admin/categories/index.py:138
-msgid "Either category was not found"
-msgstr ""
-
-#: app/views/admin/categories/index.py:142
-#, python-format
-msgid "The posts were transfered from %(from_name)s to %(to_name)s"
-msgstr ""
-
-#: app/views/admin/posts/forms.py:14
-msgid "Your Challenge"
-msgstr ""
-
-#: app/views/admin/posts/forms.py:17
-msgid "Your Solution"
-msgstr ""
-
-#: app/views/admin/posts/forms.py:26
-msgid "Show Post"
-msgstr ""
-
-#: app/views/admin/posts/index.py:50 app/views/admin/posts/index.py:116
-msgid "The requested stamp was not found"
-msgstr ""
-
-#: app/views/admin/posts/index.py:89 app/views/admin/posts/index.py:162
-msgid "Draft was succesfully saved"
-msgstr ""
-
-#: app/views/admin/posts/index.py:91 app/views/admin/posts/index.py:164
-msgid "Stamp was succesfully saved"
-msgstr ""
-
-#: app/views/admin/posts/index.py:191
-msgid "The stamp was not found"
-msgstr ""
-
-#: app/views/admin/posts/index.py:202
-#, python-format
-msgid "The stamp \"%(title)s\" was removed"
-msgstr ""
-
-#: app/views/admin/posts/index.py:210
+#: app/views/admin/posts/index.py:198
 #, python-format
 msgid "Error while removing the stamp, %(error)s"
 msgstr ""
 
-#: app/views/admin/sessions/forms.py:12 app/views/admin/sessions/forms.py:21
-#: app/views/admin/users/forms.py:36 app/views/admin/users/forms.py:60
-msgid "Password"
-msgstr ""
-
-#: app/views/admin/sessions/forms.py:24
-msgid "Passwords must match"
-msgstr ""
-
-#: app/views/admin/sessions/forms.py:28 app/views/admin/users/forms.py:44
-msgid "Confirm"
-msgstr ""
-
-#: app/views/admin/sessions/forms.py:39
+#: app/views/admin/sessions/forms.py:26
 msgid "This name has invalid characters"
 msgstr ""
 
-#: app/views/admin/sessions/forms.py:44
+#: app/views/admin/sessions/forms.py:30
 msgid "This nickname has invalid characters"
 msgstr ""
 
-#: app/views/admin/sessions/forms.py:49
+#: app/views/admin/sessions/forms.py:34
 msgid "This email is already in use. Please choose another one."
 msgstr ""
 
-#: app/views/admin/sessions/forms.py:54
+#: app/views/admin/sessions/forms.py:38
 msgid "This nickname is already in use. Please choose another one."
 msgstr ""
 
-#: app/views/admin/sessions/index.py:20
-msgid "Please log in to access this page."
-msgstr ""
+#: app/views/admin/sessions/index.py:21 app/views/admin/sessions/index.py:71
+msgid "SESSIONS_MSG_ALREADY_SIGNED_IN"
+msgstr "You are already signed in."
 
-#: app/views/admin/sessions/index.py:32
-msgid "You need to sign in or sign up before continuing."
-msgstr ""
+#: app/views/admin/sessions/index.py:29
+msgid "SESSIONS_ERROR_LOGIN"
+msgstr "Invalid email or password."
 
-#: app/views/admin/sessions/index.py:39 app/views/admin/sessions/index.py:96
-msgid "You are already signed in."
-msgstr ""
-
-#: app/views/admin/sessions/index.py:58
-msgid "Signed in successfully."
-msgstr ""
-
-#: app/views/admin/sessions/index.py:61
-msgid "User not found or invalid password"
-msgstr ""
+#: app/views/admin/sessions/index.py:47
+msgid "SESSIONS_MSG_LOGIN_SUCESS"
+msgstr "Signed in successfully"
 
 #: app/views/admin/sessions/index.py:63
-msgid "Invalid email or password"
+msgid "SESSIONS_MSG_SIGNED_OUT"
+msgstr "Signed out successfully."
+
+#: app/views/admin/sessions/index.py:81
+msgid "SESSIONS_ERROR_UNFINISHED_CHALLENGE_LBL"
 msgstr ""
 
-#: app/views/admin/sessions/index.py:66
-msgid "Sign In"
-msgstr ""
+#: app/views/admin/sessions/index.py:102
+msgid "SESSIONS_MSG_SIGNUP_COMPLETED"
+msgstr "Welcome! You have signed up successfully."
 
-#: app/views/admin/sessions/index.py:86
-msgid "Signed out successfully."
-msgstr ""
+#: app/views/admin/users/index.py:39 app/views/admin/users/index.py:78
+#: app/views/admin/users/index.py:117 app/views/admin/users/index.py:158
+msgid "USER_NOT_FOUND"
+msgstr "User not found"
 
-#: app/views/admin/sessions/index.py:88
-msgid "Invalid Action"
-msgstr ""
+#: app/views/admin/users/index.py:64
+msgid "USER_CREATE_SUCCESS"
+msgstr "User was succesfully created"
 
-#: app/views/admin/sessions/index.py:113
-msgid "Welcome! You have signed up successfully."
-msgstr ""
+#: app/views/admin/users/index.py:100
+msgid "USER_SAVE_SUCCESS"
+msgstr "User was succesfully updated"
 
-#: app/views/admin/sessions/index.py:117
-msgid "Error while saving the new user, please retry later"
-msgstr ""
+#: app/views/admin/users/index.py:129
+msgid "USER_DELETE_SUCCESS"
+msgstr "The user \"%(name)s\" was removed"
 
-#: app/views/admin/sessions/index.py:120
-msgid "Sign Up"
-msgstr ""
+#: app/views/admin/users/index.py:132
+msgid "USER_DELETE_FAIL"
+msgstr "Error while removing the user, %(error)s"
 
-#: app/views/admin/users/forms.py:38 app/views/admin/users/forms.py:62
-msgid "Please repeat the password"
-msgstr ""
+#: app/views/admin/users/index.py:201
+msgid "USER_POST_HIDE_SUCCESS"
+msgstr "The stamp was hidden"
 
-#: app/views/admin/users/index.py:41
-msgid "The requested user was not found"
-msgstr ""
+#: app/views/admin/users/index.py:203
+msgid "USER_POST_RESTORE_SUCCESS"
+msgstr "The stamp was made public"
 
-#: app/views/admin/users/index.py:61
-msgid "User was succesfully saved"
-msgstr ""
-
-#: app/views/admin/users/index.py:66 app/views/admin/users/index.py:98
-msgid "Invalid submission, please check the messages below"
-msgstr ""
-
-#: app/views/admin/users/index.py:81 app/views/admin/users/index.py:153
-msgid "The user was not found"
-msgstr ""
-
-#: app/views/admin/users/index.py:93
-msgid "User was succesfully updated"
-msgstr ""
-
-#: app/views/admin/users/index.py:123
-#, python-format
-msgid "The user \"%(name)s\" was removed"
-msgstr ""
-
-#: app/views/admin/users/index.py:128
-#, python-format
-msgid "Error while removing the user, %(error)s"
-msgstr ""
-
-#: app/views/admin/users/index.py:200
-msgid "The stamp was hidden"
-msgstr ""
-
-#: app/views/admin/users/index.py:205
-msgid "The stamp was restored"
-msgstr ""
-
-#: app/views/admin/users/index.py:210
-#, python-format
-msgid "Error while processing the stamp, %(error)s"
-msgstr ""
-
-#~ msgid ""
-#~ "You don't have any stamps "
-#~ "yet<br/>Participate in this comunity by "
-#~ "writting stamps!!"
-#~ msgstr ""
-
-#~ msgid "Welcome to %(name)s!"
-#~ msgstr ""
-
-#~ msgid "Welcome to Headup!"
-#~ msgstr ""
-
-#~ msgid "EMAIL_REGISTRATION_SUBJECT"
-#~ msgstr ""
+#: app/views/admin/users/index.py:206
+msgid "USER_POST_HIDE_OR_RESTORE_FAIL"
+msgstr "Error while processing the stamp, %(error)s"

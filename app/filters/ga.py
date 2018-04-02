@@ -1,11 +1,11 @@
 # -*- coding: utf8 -*-
 
-from app import app
 from flask import request
 from jinja2 import evalcontextfilter
+import app
 
 
-@app.template_filter()
+@app.app.template_filter()
 @evalcontextfilter
 def ga_autolinks(eval_ctx, items):
     if not items:

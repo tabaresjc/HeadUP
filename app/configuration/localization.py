@@ -1,15 +1,15 @@
 # -*- coding: utf8 -*-
 
-from app import babel
 from flask import request
 from flask_login import current_user
+import app
 import config
 
 DEFAULT_LANGUAGE = 'en'
 DEFAULT_TIMEZONE = 'Asia/Tokyo'
 
 
-@babel.localeselector
+@app.babel.localeselector
 def get_locale():
     cfg = config.__dict__
 
@@ -30,7 +30,7 @@ def get_locale():
     return request.accept_languages.best_match(config.LANGUAGES.keys())
 
 
-@babel.timezoneselector
+@app.babel.timezoneselector
 def get_timezone():
     cfg = config.__dict__
 

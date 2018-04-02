@@ -1,0 +1,19 @@
+{% extends "admin/layout/base.html" %}
+{% set title = _('Transfer categories') %}
+
+{% block main %}
+    <div id="page-title" class="row">
+        <div class="col-md-12 col-sm-12 col-xs-12">
+            <h4>{{ _('Transfer categories') }}</h4>
+        </div>
+    </div>
+    <br/>
+    <div class="row">
+       <div class="col-md-9 col-sm-12 col-xs-12">
+            {% include 'admin/categories/partials/_transfer_post.html' %}
+        </div>
+        <div class="col-md-3 col-sm-12 col-xs-12">
+            {% include 'admin/categories/partials/_sidebar.html' %}
+        </div>
+    </div>
+{% endblock %}

@@ -11,47 +11,46 @@
         <div class="col-md-9 col-sm-12 col-xs-12">
 			{{ pag('CategoriesView:index', page, limit, total, _('categories'), kind='info')|safe }}
 			{{ pag('CategoriesView:index', page, limit, total, _('categories'), kind='links')|safe }}
-            <table class="table table-bordered clearfix">
+            <table class="table table-bordered">
                 <thead>
                     <tr>
                         <th>{{ _('Name')}} </th>
                         <th>{{ _('Slug')}} </th>
                         <th>{{ _('Description')}} </th>
-                        <th>{{ _('Posts')}} </th>
-                        <th>{{ _('Actions')}} </th>
+                        <th width="80">{{ _('Posts')}} </th>
+                        <th width="100">{{ _('Actions')}} </th>
                     </tr>
                 </thead>
                 <tbody>
                 {% for category in categories %}
-                    <tr>
-                        <td>{{ category.name }}</td>
-                        <td>{{ category.slug }}</td>
-                        <td>{{ category.description|htmltruncate(40) }}</td>
-                        <td>{{ category.posts.count() }}</td>
-                        <td>
-                            {% if category.can_edit() %}
-                            <div class="btn-group">
-                                <a class="btn btn-primary"
-									href="{{ url_for('CategoriesView:put', id=category.id) }}"
-									title="{{ _('Update category') }}">
-                                    <i class="glyphicon glyphicon-pencil"></i>
-                                </a>
-                                <a class="btn btn-danger"
-									data-confirm="{{ _('This will remove %(name)s, Are you sure?', name=category.name) }}"
-									data-method="post"
-									href="{{ url_for('CategoriesView:delete', id=category.id)  }}"
-									title="{{ _('Delete category') }}">
-                                    <i class="glyphicon glyphicon-trash"></i>
-                                </a>
-                            </div>
-                            {% endif %}
-                        </td>
-                    </tr>
+                <tr>
+                    <td>{{ category.name }}</td>
+                    <td>{{ category.slug }}</td>
+                    <td>{{ category.description|htmltruncate(40) }}</td>
+                    <td>{{ category.posts.count() }}</td>
+                    <td>
+                        {% if category.can_edit() %}
+                        <div class="btn-group">
+                            <a href="{{ url_for('CategoriesView:put', id=category.id) }}"
+								class="btn btn-primary"
+								title="{{ _('Update category') }}">
+                                <i class="glyphicon glyphicon-pencil"></i>
+                            </a>
+                            <a href="{{ url_for('CategoriesView:delete', id=category.id)  }}"
+								class="btn btn-danger"
+								data-confirm="{{ _('This will remove %(name)s, Are you sure?', name=category.name) }}"
+								data-method="post"
+								title="{{ _('Delete category') }}">
+                                <i class="glyphicon glyphicon-trash"></i>
+                            </a>
+                        </div>
+                        {% endif %}
+                    </td>
+                </tr>
                 {% endfor %}
                 </tbody>
             </table>
             {{ pag('CategoriesView:index', page, limit, total, _('categories'), kind='links')|safe }}
-			{% include 'admin/categories/partials/_transfer_category_form.html' %}
         </div>
         <div class="col-md-3 col-sm-12 col-xs-12">
 			{% include 'admin/categories/partials/_sidebar.html' %}

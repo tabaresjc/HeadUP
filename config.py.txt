@@ -59,7 +59,7 @@ OTHER_DOMAINS = []
 # *************************************************
 # Mail Function
 # *************************************************
-MAIL_SERVER = 'localhost'
+MAIL_SERVER = None
 MAIL_PORT = 25
 MAIL_USERNAME = None
 MAIL_PASSWORD = None

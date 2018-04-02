@@ -1,8 +1,8 @@
 # -*- coding: utf8 -*-
 
-from app import db, cache
 from math import log
 import datetime
+import app
 
 
 class Feed:
@@ -36,24 +36,24 @@ class Feed:
     @classmethod
     def get_feed_cache(cls, name, page=1, limit=FEED_DEFAULT_LIMIT, lang='en'):
         key = u'%s.%s.%s.%s' % (name, page, limit, lang)
-        return cache.get(key)
+        return app.cache.get(key)
 
     @classmethod
     def set_feed_cache(cls, name, data, page=1, limit=FEED_DEFAULT_LIMIT, duration=3600, lang='en'):
         key = u'%s.%s.%s.%s' % (name, page, limit, lang)
-        cache.set(key, data, duration)
+        app.cache.set(key, data, duration)
 
-        feed_list = cache.get(cls.CACHE_FEED_LIST) or []
+        feed_list = app.cache.get(cls.CACHE_FEED_LIST) or []
 
         if key not in feed_list:
             feed_list.append(key)
-            cache.set(cls.CACHE_FEED_LIST, feed_list, 3600 * 24)
+            app.cache.set(cls.CACHE_FEED_LIST, feed_list, 3600 * 24)
 
     @classmethod
     def clear_feed_cache(cls):
-        keys = cache.get(cls.CACHE_FEED_LIST) or []
+        keys = app.cache.get(cls.CACHE_FEED_LIST) or []
         for key in keys:
-            cache.set(key, None)
+            app.cache.set(key, None)
 
     @classmethod
     def posts(cls, page=1, limit=10):
@@ -62,7 +62,7 @@ class Feed:
         count = query.count()
         records = []
         if count:
-            order = db.text('created_at DESC')
+            order = app.sa.text('created_at DESC')
             offset = (page - 1) * limit
             records = query.order_by(order).limit(limit).offset(offset)
         return records, count
@@ -74,7 +74,7 @@ class Feed:
         count = query.count()
         records = []
         if count:
-            order = db.text('score DESC')
+            order = app.sa.text('score DESC')
             offset = (page - 1) * limit
             records = query.order_by(order).limit(limit).offset(offset)
         return records, count
@@ -86,7 +86,7 @@ class Feed:
         count = query.count()
         records = []
         if count:
-            order = db.text('created_at DESC')
+            order = app.sa.text('created_at DESC')
             offset = (page - 1) * limit
             records = query.order_by(order).limit(limit).offset(offset)
         return records, count

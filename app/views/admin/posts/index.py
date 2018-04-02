@@ -19,7 +19,8 @@ class PostsView(FlaskView):
         limit = 10
 
         posts, total = Post.posts_by_user(current_user.id,
-                                          page=page, limit=limit)
+                                          page=page,
+                                          limit=limit)
 
         return render_view('admin/posts/index.html',
                            posts=posts,
@@ -47,11 +48,10 @@ class PostsView(FlaskView):
         post = Post.get_by_id(id)
 
         if post is None or not post.can_edit():
-            message = _('The requested stamp was not found')
             return render_view(url_for('PostsView:index'),
                                status=False,
                                redirect=True,
-                               message=message)
+                               message=_('POST_NOT_FOUND'))
 
         return render_view('admin/posts/show.html',
                            post=post)
@@ -59,13 +59,13 @@ class PostsView(FlaskView):
     @route('/new', methods=['GET', 'POST'])
     def post(self):
         form = PostForm()
-        try:
-            if request.method == 'POST':
+
+        if form.validate_on_submit():
+            try:
                 if not form.validate():
-                    raise Exception(_('Invalid submission, please check the message below'))
+                    raise Exception(_('ERROR_INVALID_SUBMISSION'))
 
                 remain = request.values.get('remain', False, bool)
-
                 post = Post.create()
                 form.populate_obj(post)
                 post.user = current_user
@@ -86,9 +86,9 @@ class PostsView(FlaskView):
                 Feed.clear_feed_cache()
 
                 if post.is_draft:
-                    message = _('Draft was succesfully saved')
+                    message = _('POST_DRAFT_SAVE_SUCESS')
                 else:
-                    message = _('Stamp was succesfully saved')
+                    message = _('POST_PUBLIC_SAVE_SUCESS')
 
                 if remain:
                     url = url_for('PostsView:put', id=post.id, remain='y')
@@ -96,38 +96,33 @@ class PostsView(FlaskView):
                     url = url_for('PostsView:get', id=post.id)
 
                 return render_view(url, redirect=True, message=message)
-            else:
-                message = None
 
-            return render_view('admin/posts/edit.html',
-                               form=form,
-                               message=message)
-        except Exception as e:
-            return render_view('admin/posts/edit.html',
-                               form=form,
-                               message=str(e),
-                               status=False)
+            except Exception as e:
+                flash(e.message, 'error')
+
+        return render_view('admin/posts/edit.html',
+                           form=form)
 
     @route('/edit/<int:id>', methods=['GET', 'POST'])
     def put(self, id):
         post = Post.get_by_id(id)
 
         if post is None or not post.can_edit() or post.is_hidden:
-            message = _('The requested stamp was not found')
             return render_view(url_for('PostsView:index'),
+                               status=False,
                                redirect=True,
-                               message=message,
-                               status=False)
-        try:
-            form = PostForm()
-            remain = request.values.get('remain', False, bool)
+                               message=_('POST_NOT_FOUND'))
 
-            if request.method == 'POST':
+        form = PostForm(post=post)
+
+        if form.is_submitted():
+            try:
                 if not form.validate():
-                    raise Exception(_('Invalid submission, please check the message below'))
+                    raise Exception(_('ERROR_INVALID_SUBMISSION'))
 
                 cover_picture_id = request.values.get('cover_picture_id', 0, int)
                 is_draft = request.values.get('status', 0, int) == Post.POST_DRAFT
+                remain = request.values.get('remain', False, bool)
 
                 if post.cover_picture and cover_picture_id == 0:
                     # remove the picture, when user request its deletion
@@ -159,37 +154,30 @@ class PostsView(FlaskView):
                 Feed.clear_feed_cache()
 
                 if post.is_draft:
-                    message = _('Draft was succesfully saved')
+                    message = _('POST_DRAFT_SAVE_SUCESS')
                 else:
-                    message = _('Stamp was succesfully saved')
+                    message = _('POST_PUBLIC_SAVE_SUCESS')
 
                 if not remain:
                     return render_view(url_for('PostsView:get', id=post.id),
                                        redirect=True,
                                        message=message)
-            else:
-                form.set_values(post)
-                form.remain.data = remain
-                message = None
+            except Exception as e:
+                flash(e.message, 'error')
 
-            return render_view('admin/posts/edit.html',
-                               form=form,
-                               post=post,
-                               message=message)
-        except Exception as e:
-            return render_view('admin/posts/edit.html',
-                               form=form,
-                               post=post,
-                               message=str(e),
-                               status=False)
+        return render_view('admin/posts/edit.html',
+                           form=form,
+                           post=post)
 
     @route('/remove/<int:id>', methods=['POST'])
     def delete(self, id):
         post = Post.get_by_id(id)
 
         if post is None:
-            flash(_('The stamp was not found'), 'error')
-            return redirect(url_for('PostsView:index'))
+            return render_view(url_for('PostsView:index'),
+                               status=False,
+                               redirect=True,
+                               message=_('POST_NOT_FOUND'))
 
         if not post.can_edit():
             abort(401)
@@ -199,7 +187,7 @@ class PostsView(FlaskView):
             Post.delete(post.id)
             Feed.clear_feed_cache()
             ret = request.values.get('return')
-            message = _('The stamp "%(title)s" was removed', title=title)
+            message = _('POST_DELETE_SUCESS', title=title)
             if ret:
                 return render_view(ret, redirect=True, message=message)
 
@@ -208,7 +196,7 @@ class PostsView(FlaskView):
                                message=message)
         except Exception as e:
             message = _('Error while removing the stamp, %(error)s',
-                              error=e)
+                        error=e)
             return render_view(url_for('PostsView:index'),
                                status=False,
                                redirect=True,

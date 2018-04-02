@@ -1,11 +1,11 @@
 # -*- coding: utf8 -*-
 
-from app import app
 from jinja2 import evalcontextfilter
+import app
 import config
 
 
-@app.template_filter()
+@app.app.template_filter()
 @evalcontextfilter
 def replace_host_name(eval_ctx, value):
     if not value or not config.MAIN_DOMAIN:

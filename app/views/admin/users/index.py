@@ -3,13 +3,11 @@
 from flask import flash, redirect, session, url_for, request, g, jsonify, abort
 from flask_login import login_user, logout_user, current_user, login_required
 from flask_classy import FlaskView, route
-from flask_wtf import Form
-from flask_babel import lazy_gettext, gettext, refresh
-from app import app, login_manager
+from flask_babel import gettext as _, refresh
 from flask_paginate import Pagination
 from app.models import Post, User, Picture, Feed
 from app.helpers import render_view
-from forms import EditUserForm, NewUserForm
+from forms import UserForm
 
 
 class UsersView(FlaskView):
@@ -38,7 +36,7 @@ class UsersView(FlaskView):
         user = User.get_by_id(id)
 
         if user is None or not user.can_edit():
-            message = gettext('The requested user was not found')
+            message = _('USER_NOT_FOUND')
             return render_view(url_for('UsersView:index'),
                                status=False,
                                redirect=True,
@@ -48,28 +46,24 @@ class UsersView(FlaskView):
 
     @route('/new', methods=['GET', 'POST'])
     def post(self):
-        form = NewUserForm()
 
-        if request.method == 'POST':
+        form = UserForm()
 
-            if form.validate_on_submit():
+        if form.is_submitted():
+            try:
+                if not form.validate():
+                    raise Exception(_('ERROR_INVALID_SUBMISSION'))
+
                 user = User.create()
                 form.populate_obj(user)
                 user.set_password(form.password.data)
                 user.save()
 
-                message = gettext('User was succesfully saved')
                 return render_view(url_for('UsersView:get', id=user.id),
                                    redirect=True,
-                                   message=message)
-            else:
-                message = gettext(
-                    'Invalid submission, please check the messages below')
-                return render_view('admin/users/add.html',
-                                   form=form,
-                                   user=None,
-                                   status=False,
-                                   message=message)
+                                   message=_('USER_CREATE_SUCCESS'))
+            except Exception as e:
+                flash(e.message, 'error')
 
         return render_view('admin/users/add.html', form=form, user=None)
 
@@ -77,59 +71,68 @@ class UsersView(FlaskView):
     def put(self, id):
         user = User.get_by_id(id)
 
-        if user is None or not user.can_edit():
-            flash(gettext('The user was not found'), 'error')
-            return redirect(url_for('UsersView:index'))
+        if user is None:
+            return render_view(url_for('UsersView:index'),
+                               status=False,
+                               redirect=True,
+                               message=_('USER_NOT_FOUND'))
 
-        if request.method in ['POST']:
-            form = EditUserForm()
-            if form.validate_on_submit():
+        if not user.can_edit():
+            abort(401)
+
+        form = UserForm(user=user)
+
+        if form.is_submitted():
+            try:
+                if not form.validate():
+                    raise Exception(_('ERROR_INVALID_SUBMISSION'))
+
                 if form.password.data:
                     user.set_password(form.password.data)
                 del form.password
                 form.populate_obj(user)
                 user.save()
+
                 refresh()
-                message = gettext('User was succesfully updated')
+
                 return render_view(url_for('UsersView:get', id=user.id),
                                    redirect=True,
-                                   message=message)
-            else:
-                message = gettext(
-                    'Invalid submission, please check the messages below')
-                return render_view('admin/users/edit.html',
-                                   form=form,
-                                   user=user,
-                                   message=message)
-        else:
-            form = EditUserForm(user=user)
+                                   message=_('USER_SAVE_SUCCESS'))
+            except Exception as e:
+                flash(e.message, 'error')
 
-        return render_view('admin/users/edit.html', form=form, user=user)
+        return render_view('admin/users/edit.html',
+                           form=form,
+                           user=user)
 
     @route('/remove/<int:id>', methods=['POST', 'DELETE'])
     def delete(self, id):
 
         user = User.get_by_id(id)
 
-        if user is None or not user.can_edit():
+        if user is None:
+            return render_view(url_for('UsersView:index'),
+                               status=False,
+                               redirect=True,
+                               message=_('USER_NOT_FOUND'))
+
+        if not user.can_edit():
             abort(401)
 
-        if current_user.id == user.id:
-            abort(403)
-
         try:
+            if current_user.id == user.id:
+                raise Exception('Can\'t remove your own account.')
+
             name = user.name
             User.delete(user.id)
-            message = gettext('The user "%(name)s" was removed', name=name)
-            return render_view(url_for('UsersView:index'),
-                               redirect=True,
-                               message=message)
+
+            flash(_('USER_DELETE_SUCCESS', name=name))
+
         except Exception as e:
-            message = gettext(
-                'Error while removing the user, %(error)s', error=e)
-            return render_view(url_for('UsersView:index'),
-                               redirect=True,
-                               message=message)
+            flash(_('USER_DELETE_FAIL', error=e.message), 'error')
+
+        return render_view(url_for('UsersView:index'),
+                           redirect=True)
 
     @route('/<int:id>/upload-profile-picture/', methods=['POST'])
     def upload_profile_picture(self, id):
@@ -150,10 +153,9 @@ class UsersView(FlaskView):
         user = User.get_by_id(id)
 
         if user is None:
-            message = gettext('The user was not found')
             return render_view(url_for('UsersView:index'),
                                status=False,
-                               message=message)
+                               message=_('USER_NOT_FOUND'))
 
         limit = 10
         page = request.values.get('page', 1, type=int)
@@ -193,30 +195,24 @@ class UsersView(FlaskView):
                 post.status = Post.POST_HIDDEN
 
             post.save()
-
             Feed.clear_feed_cache()
 
             if post.is_hidden:
-                message = gettext('The stamp was hidden')
-                return render_view(url_for('UsersView:get', id=id),
-                                   redirect=True,
-                                   message=message)
+                flash(_('USER_POST_HIDE_SUCCESS'))
             else:
-                message = gettext('The stamp was restored')
-                return render_view(url_for('UsersView:get', id=id),
-                                   redirect=True,
-                                   message=message)
+                flash(_('USER_POST_RESTORE_SUCCESS'))
+
         except Exception as e:
-            message = gettext(
-                'Error while processing the stamp, %(error)s', error=e)
-            return render_view(url_for('UsersView:get', id=id),
-                               redirect=True,
-                               message=message)
+            flash(_('USER_POST_HIDE_OR_RESTORE_FAIL', error=e.message), 'error')
+
+        return render_view(url_for('UsersView:get', id=id),
+                           redirect=True)
 
     @route('/<int:id>/send-email/<string:kind>', methods=['GET'])
     def send_email(self, id, kind):
         if not current_user.is_admin:
-            abort(404)
+            abort(401)
+
         user = User.get_by_id(id)
 
         if kind == 'registration':

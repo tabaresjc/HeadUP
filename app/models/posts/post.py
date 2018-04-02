@@ -1,13 +1,13 @@
 # -*- coding: utf8 -*-
 
 from flask_login import current_user
-from app import db
+from app import sa
 from app.helpers import ModelHelper, MutableObject
 import datetime
 import base64
 
 
-class Post(db.Model, ModelHelper):
+class Post(sa.Model, ModelHelper):
 
     __tablename__ = 'posts'
 
@@ -26,26 +26,26 @@ class Post(db.Model, ModelHelper):
     POST_DRAFT = 0x100
     POST_HIDDEN = 0x800
 
-    id = db.Column(db.Integer, primary_key=True)
-    title = db.Column(db.String(255))
-    user_id = db.Column(db.Integer,
-                        db.ForeignKey('users.id',
+    id = sa.Column(sa.Integer, primary_key=True)
+    title = sa.Column(sa.String(255))
+    user_id = sa.Column(sa.Integer,
+                        sa.ForeignKey('users.id',
                                       ondelete='CASCADE',
                                       onupdate='NO ACTION'))
-    category_id = db.Column(db.Integer,
-                            db.ForeignKey('categories.id',
+    category_id = sa.Column(sa.Integer,
+                            sa.ForeignKey('categories.id',
                                           ondelete='CASCADE',
                                           onupdate='NO ACTION'))
-    status = db.Column(db.Integer, default=1, index=True)
-    lang = db.Column(db.String(4), default='en', index=True)
-    anonymous = db.Column(db.SmallInteger)
-    score = db.Column(db.Numeric(20, 7),
+    status = sa.Column(sa.Integer, default=1, index=True)
+    lang = sa.Column(sa.String(4), default='en', index=True)
+    anonymous = sa.Column(sa.SmallInteger)
+    score = sa.Column(sa.Numeric(20, 7),
                       default=0,
                       server_default='0',
                       nullable=False)
-    attr = db.Column(MutableObject.get_column())
-    created_at = db.Column(db.DateTime, default=datetime.datetime.utcnow)
-    modified_at = db.Column(db.DateTime, default=datetime.datetime.utcnow)
+    attr = sa.Column(MutableObject.get_column())
+    created_at = sa.Column(sa.DateTime, default=datetime.datetime.utcnow)
+    modified_at = sa.Column(sa.DateTime, default=datetime.datetime.utcnow)
 
     def __repr__(self):  # pragma: no cover
         return '<Post %r>' % (self.title)
@@ -193,7 +193,7 @@ class Post(db.Model, ModelHelper):
                       limit=10,
                       page=1,
                       status=POST_PUBLIC,
-                      orderby='id',
+                      orderby='created_at',
                       desc=True):
         query = cls.query.filter_by(user_id=user_id, status=status)
 
@@ -201,6 +201,7 @@ class Post(db.Model, ModelHelper):
         records = []
         if count:
             sort_by = '%s %s' % (orderby, 'DESC' if desc else 'ASC')
-            records = query.order_by(db.text(sort_by)).limit(
-                limit).offset((page - 1) * limit)
+            records = query.order_by(sa.text(sort_by)) \
+                .offset((page - 1) * limit) \
+                .limit(limit)
         return records, count

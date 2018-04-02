@@ -2,34 +2,34 @@
 
 from flask_login import current_user
 from flask import url_for
-from app import db
+from app import sa
 from app.helpers import ModelHelper, MutableObject
 from config import UPLOAD_MEDIA_PICTURES_PATH
 import datetime
 import os
 
 
-class Picture(db.Model, ModelHelper):
+class Picture(sa.Model, ModelHelper):
 
     __tablename__ = 'pictures'
 
     __json_meta__ = ['id', 'image_url', 'user_id']
 
-    id = db.Column(db.Integer, primary_key=True)
+    id = sa.Column(sa.Integer, primary_key=True)
 
-    user_id = db.Column(db.Integer, db.ForeignKey(
+    user_id = sa.Column(sa.Integer, sa.ForeignKey(
         'users.id', ondelete='CASCADE', onupdate='NO ACTION'))
 
-    attr = db.Column(MutableObject.get_column())
+    attr = sa.Column(MutableObject.get_column())
 
-    created_at = db.Column(db.DateTime, default=datetime.datetime.utcnow)
-    modified_at = db.Column(db.DateTime, default=datetime.datetime.utcnow)
+    created_at = sa.Column(sa.DateTime, default=datetime.datetime.utcnow)
+    modified_at = sa.Column(sa.DateTime, default=datetime.datetime.utcnow)
 
     def __repr__(self):  # pragma: no cover
         return '<Picture %r>' % (self.id)
 
     def save_file(self, fileObj, user=None):
-        db.session.begin(subtransactions=True)
+        sa.session.begin(subtransactions=True)
         try:
             import hashlib
             extension = fileObj.filename.split('.')[-1]
@@ -42,7 +42,7 @@ class Picture(db.Model, ModelHelper):
             self.name = u'%s.%s' % (h.hexdigest(), self.extension)
             # associate this picture with the user
             self.user_id = user.id if user else None
-            db.session.add(self)
+            sa.session.add(self)
 
             # attempt to save the file
             fileObj.save(os.path.join(UPLOAD_MEDIA_PICTURES_PATH, self.name))
@@ -50,7 +50,7 @@ class Picture(db.Model, ModelHelper):
             # is not saved yet!
             self.save()
         except Exception as e:
-            db.session.rollback()
+            sa.session.rollback()
             raise e
 
     def remove(self, commit=True):

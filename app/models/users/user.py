@@ -2,32 +2,32 @@
 
 from flask_login import UserMixin, current_user
 from werkzeug.security import generate_password_hash, check_password_hash
-from app import db
-from .role import Role
+from app import sa
+from role import Role
 from app.helpers import ModelHelper, MutableObject
 import datetime
 import re
 
 
-class User(db.Model, ModelHelper, UserMixin):
+class User(sa.Model, ModelHelper, UserMixin):
 
     __tablename__ = 'users'
 
     __json_meta__ = ['id', 'email', 'nickname',
                      'is_admin', 'profile_picture_url']
 
-    id = db.Column(db.Integer, primary_key=True)
+    id = sa.Column(sa.Integer, primary_key=True)
 
-    email = db.Column(db.String(128), index=True, unique=True)
-    nickname = db.Column(db.String(128), index=True, unique=True)
-    password = db.Column(db.String(128))
-    role_id = db.Column(db.Integer)
-    attr = db.Column(MutableObject.get_column())
+    email = sa.Column(sa.String(128), index=True, unique=True)
+    nickname = sa.Column(sa.String(128), index=True, unique=True)
+    password = sa.Column(sa.String(128))
+    role_id = sa.Column(sa.Integer)
+    attr = sa.Column(MutableObject.get_column())
 
-    created_at = db.Column(db.DateTime, default=datetime.datetime.utcnow)
-    modified_at = db.Column(db.DateTime, default=datetime.datetime.utcnow)
+    created_at = sa.Column(sa.DateTime, default=datetime.datetime.utcnow)
+    modified_at = sa.Column(sa.DateTime, default=datetime.datetime.utcnow)
 
-    posts = db.relationship('Post', backref='user', lazy='dynamic')
+    posts = sa.relationship('Post', backref='user', lazy='dynamic')
 
     def __repr__(self):  # pragma: no cover
         return u'<User %s>' % (self.id)
@@ -148,8 +148,12 @@ class User(db.Model, ModelHelper, UserMixin):
 
     def get_user_posts(self, limit=10, page=1):
         total = self.posts.count()
-        posts = self.posts.order_by(db.text("id DESC")).offset(
-            (page - 1) * limit).limit(limit)
+
+        posts = self.posts \
+            .order_by(sa.text("created_at DESC")) \
+            .offset((page - 1) * limit) \
+            .limit(limit)
+
         return posts, total
 
     @classmethod

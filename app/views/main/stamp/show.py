@@ -1,11 +1,11 @@
 # -*- coding: utf8 -*-
 
 from flask import render_template, redirect, url_for, abort, send_file, session
-from app import app
-from app.models import Post
 from . import mod
 from app.helpers import nocache
-from config import BASE_DIR
+from app.models import Post, Feed
+import datetime
+import config
 
 
 @mod.route('/<int:id>')
@@ -37,8 +37,7 @@ def new():
 @mod.route('/counter/<string:post_id>.gif')
 @nocache
 def count_page_view(post_id):
-    from app.models import Feed
-    import datetime
+
     id = Post.decode_id(post_id)
     post = Post.get_by_id(id)
     try:
@@ -57,4 +56,4 @@ def count_page_view(post_id):
     except Exception as e:
         Post.rollback_transaction()
         raise e
-    return send_file(BASE_DIR + '/static/images/counter.gif', mimetype='image/gif')
+    return send_file(config.BASE_DIR + '/static/images/counter.gif', mimetype='image/gif')

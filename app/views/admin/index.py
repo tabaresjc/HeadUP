@@ -2,11 +2,11 @@
 
 from flask import render_template, redirect, url_for
 from flask_login import current_user, login_required
-from app import app
+import app
 
 
-@app.route('/mypage/', defaults={'page': 1})
-@app.route('/mypage/page/<int:page>')
+@app.app.route('/mypage/', defaults={'page': 1})
+@app.app.route('/mypage/page/<int:page>')
 @login_required
 def dashboard(page=1):
     limit = 10

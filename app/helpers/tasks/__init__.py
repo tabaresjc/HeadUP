@@ -1,3 +1,3 @@
 # -*- coding: utf8 -*-
 
-from notifications import register_notification
+from notifications import push_notification

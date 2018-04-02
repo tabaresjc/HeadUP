@@ -2,11 +2,11 @@
 
 from flask import render_template
 from flask_babel import get_locale
-from app import widgets, cache
 from app.models import Feed
+import app
 
 
-@widgets.widget('stamps_welcome')
+@app.widgets.widget('stamps_welcome')
 def stamps_welcome(page=1, limit=Feed.FEED_DEFAULT_LIMIT):
     lang = str(get_locale())
 
@@ -33,7 +33,7 @@ def stamps_welcome(page=1, limit=Feed.FEED_DEFAULT_LIMIT):
     return obj
 
 
-@widgets.widget('stamps_ranking')
+@app.widgets.widget('stamps_ranking')
 def stamps_ranking(page=1, limit=5):
     lang = str(get_locale())
 
@@ -60,7 +60,7 @@ def stamps_ranking(page=1, limit=5):
     return obj
 
 
-@widgets.widget('stamps_category')
+@app.widgets.widget('stamps_category')
 def stamps_category(category, page=1, limit=100):
     lang = str(get_locale())
     name = '%s-%s' % (Feed.CACHE_CATEGORY_PAGE, category.id)

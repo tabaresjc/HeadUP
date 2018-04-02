@@ -1,0 +1,42 @@
+{% extends "admin/layout/base.html" %}
+
+{% set title = _('LOGIN_TITLE') %}
+{% set page_class = 'signup-bg' %}
+
+{% block wide_container_main %}
+	<div class="header">
+		<a href="{{ url_for('latest') }}">
+			<img alt="{{ site_name }}" class="logo" src="/static/assets/admin/images/logo.png?v20170101">
+		</a>
+	</div>
+	<div class="signup-wrapper">
+		<div class="box">
+			<div class="content-wrap">
+				<h6>{{ _('LOGIN_TITLE') }}</h6>
+				{% from "shared/_bootstrap_forms.html" import render_inline_field %}
+				<form action="{{ url_for('sessions.login') }}" method="post" name="signup" autocomplete="off">
+					{{ form.hidden_tag() }}
+					{{ render_inline_field(form.email,class="form-control",placeholder=_('MAIL_LBL')) }}
+					{{ render_inline_field(form.password, class="form-control",placeholder=_('PASSWORD_LBL')) }}
+
+					<div class="checkbox text-center">
+						<label>
+							{{ form.remember_me }}
+							<span>{{ _('REMEMBER_ME_BTN') }}</span>
+						</label>
+					</div>
+
+					<div class="action">
+						<button type="submit" name="button" class="btn-glow primary login btn-lg">
+							{{ _('LOGIN_BTN') }}
+						</button>
+					</div>
+				</form>
+			</div>
+		</div>
+		<div class="already">
+			<p>{{ _('SIGNUP_ACTION_LBL') }}</p>
+			<a href="{{ url_for('sessions.signup')}}">{{ _('REGISTER_BTN') }}</a>
+		</div>
+	</div>
+{% endblock %}

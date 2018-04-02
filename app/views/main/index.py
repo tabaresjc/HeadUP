@@ -1,30 +1,30 @@
 # -*- coding: utf8 -*-
 
 from flask import render_template
-from app import app
+import app
 
 
-@app.route('/')
+@app.app.route('/')
 def index():
     return render_template("main/site/home.html")
 
 
-@app.route('/latest', defaults={'page': 1})
-@app.route('/latest/page/<int:page>')
+@app.app.route('/latest', defaults={'page': 1})
+@app.app.route('/latest/page/<int:page>')
 def latest(page=1):
     return render_template("main/index.html", page=page)
 
 
-@app.route('/lp/campaign')
+@app.app.route('/lp/campaign')
 def campaign():
     return render_template("main/lp/campaign.html")
 
 
-@app.route('/policy')
+@app.app.route('/policy')
 def privacy_policy():
     return render_template("main/site/policy.html")
 
 
-@app.route('/conduct')
+@app.app.route('/conduct')
 def code_of_conduct():
     return render_template("main/site/conduct.html")
