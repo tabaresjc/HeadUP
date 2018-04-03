@@ -1,13 +1,12 @@
 # -*- coding: utf8 -*-
 
-from flask import render_template, flash, redirect, url_for, request, abort
+from flask import flash, redirect, url_for, request, abort
 from flask_login import login_required
 from flask_classy import FlaskView, route
 from flask_babel import gettext as _
-from flask_paginate import Pagination
 from app.helpers import render_view
-from forms import CategoryForm, TranferForm
 from app.models import Category
+from forms import CategoryForm, TranferForm
 
 
 class CategoriesView(FlaskView):

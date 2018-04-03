@@ -1,11 +1,14 @@
-{% extends "admin/layout/base.html" %} {% set title = _('Edit User\'s Profile | %(name)s', name=user.name) %} {% block main %}
+{% extends "admin/layout/base.html" %}
+{% set title = _('USER_PROFILE_EDIT_PAGE_TITLE', name=user.name) %}
+
+{% block main %}
 <div class="row">
 	<!-- edit form column -->
 	<div class="col-md-9 personal-info">
 		{% from "shared/_bootstrap_forms.html" import render_normal_field %}
 		<div class="panel panel-primary">
 			<div class="panel-heading">
-				<h3 class="panel-title">{{ _('Edit User Info')}}</h3>
+				<h3 class="panel-title">{{ _('USER_PROFILE_EDIT_TITLE')}}</h3>
 			</div>
 			<form action="{{ url_for('UsersView:put', id=user.id) }}" method="post" name="UserEdit" class="form-horizontal" role="form">
 				{{ form.hidden_tag() }}
@@ -25,8 +28,8 @@
 		            {%- endif %}
 				</div>
 				<div class="panel-footer">
-					<button type="reset" class="btn btn-large btn-danger">{{ _('Clear') }}</button>
-					<button id="UserEditFormSubmit" type="submit" class="btn btn-primary pull-right">{{ _('Save Changes') }}</button>
+					<button type="reset" class="btn btn-large btn-danger">{{ _('BTN_CLEAR_LBL') }}</button>
+					<button id="UserEditFormSubmit" type="submit" class="btn btn-primary pull-right">{{ _('BTN_SAVE_LBL') }}</button>
 				</div>
 			</form>
 		</div>

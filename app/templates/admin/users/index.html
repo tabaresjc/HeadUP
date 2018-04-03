@@ -1,37 +1,27 @@
 {% extends "admin/layout/base.html" %}
-{% set title = _('Users | Page %(page)s', page=page) %}
+{% set title = _('USER_PAGE_TITLE', page=page) %}
 
 {% block main %}
 <!-- users table -->
 <div class="table-wrapper users-table">
 	<div id="page-title" class="row">
 		<div class="col-md-12">
-			<h4>{{ _('Users') }}</h4>
+			<h4>{{ _('USER_LIST') }}</h4>
 		</div>
 	</div>
 	<div class="row" style="text-align:right">
-		{{ pag('admin.users.index', page, limit, total, _('users'), kind='info')|safe }}
-		{{ pag('admin.users.index', page, limit, total, _('users'), kind='links')|safe }}
+		{{ pag('admin.users.index', page, limit, total, _('USER_PAG_LBL'), kind='info')|safe }}
+		{{ pag('admin.users.index', page, limit, total, _('USER_PAG_LBL'), kind='links')|safe }}
 	</div>
 	<div class="row">
 		<table class="table table-hover">
 			<thead>
 				<tr>
-					<th class="col-md-3">
-						{{ _('Name') }}
-					</th>
-					<th class="col-md-3">
-						<span class="line"></span>{{ _('Signed up') }}
-					</th>
-					<th class="col-md-2">
-						<span class="line"></span>{{ _('Total Posts') }}
-					</th>
-					<th class="col-md-2">
-						<span class="line"></span>{{ _('Role') }}
-					</th>
-					<th>
-						<span class="line"></span>
-					</th>
+					<th class="col-md-3">{{ _('USER_NAME') }}</th>
+					<th class="col-md-3"><span class="line"></span>{{ _('USER_SIGNED_UP') }}</th>
+					<th class="col-md-2"><span class="line"></span>{{ _('USER_POSTS_COUNT') }}</th>
+					<th class="col-md-2"><span class="line"></span>{{ _('USER_ROLE') }}</th>
+					<th><span class="line"></span></th>
 				</tr>
 			</thead>
 			<tbody>
@@ -53,7 +43,10 @@
 								<i class="glyphicon glyphicon-pencil"></i>
 							</a>
 							{% if not user.is_current %}
-							<a class="btn btn-danger" data-confirm="This will remove {{ user.name}}, Are you sure?" data-method="post" href="{{ url_for('UsersView:delete', id=user.id)  }}"title="Remove this user">
+							<a class="btn btn-danger"
+								data-confirm="{{ _('USER_DELETE_CONFIRMATION', name=user.name) }}"
+								data-method="post" href="{{ url_for('UsersView:delete', id=user.id)  }}"
+								title="Remove this user">
 								<i class="glyphicon glyphicon-trash"></i>
 							</a>
 							{% endif %}
@@ -69,7 +62,7 @@
 		</table>
 	</div>
 	<div class="row" style="text-align:right">
-		{{ pag('admin.users.index', page, limit, total, _('users'), kind='links')|safe }}
+		{{ pag('admin.users.index', page, limit, total, _('USER_PAG_LBL'), kind='links')|safe }}
 	</div>
 </div>
 <!-- end users table -->

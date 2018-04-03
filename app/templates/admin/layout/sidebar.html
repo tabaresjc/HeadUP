@@ -1,56 +1,56 @@
 	{% set navigation_bar = [
 		{
-			'name': _('Home'),
+			'name': _('APP_HOME_LBL'),
 			'url': 'latest',
 			'icon': 'glyphicon glyphicon-home',
 			'pattern': 'latest'
 		},
 		{
-			'name': _('My Page'),
+			'name': _('APP_MYPAGE'),
 			'url': 'dashboard',
 			'icon': 'glyphicon glyphicon-leaf',
 			'pattern': 'dashboard'
 		},
 		{
-			'name': _('STAMPS_LBL'),
+			'name': _('POST_LIST'),
 			'url': '',
 			'icon': 'glyphicon glyphicon-edit',
 			'pattern': 'PostsView',
 			'sub_menu': {
 				'index': {
-					'name': _('STAMPS_LBL'),
+					'name': _('POST_LIST'),
 					'url': 'PostsView:index'
 				},
 				'draft': {
-					'name': _('DRAFTS_LBL'),
+					'name': _('POST_DRAFT_LIST'),
 					'url': 'PostsView:draft_list'
 				},
 				'new': {
-					'name': _('NEW_STAMP_LBL'),
+					'name': _('POST_CREATE'),
 					'url': 'PostsView:post'
 				}
 			}
 		},
 		{
-			'name': _('Categories'),
+			'name': _('CATEGORY_LIST'),
 			'require_admin': True,
 			'url': 'CategoriesView:index',
 			'icon': 'glyphicon glyphicon-bookmark',
 			'pattern': 'CategoriesView'
 		},
 		{
-			'name': _('Users'),
+			'name': _('USER_LIST'),
 			'require_admin': True,
 			'url': '',
 			'icon': 'glyphicon glyphicon-user',
 			'pattern': 'UsersView',
 			'sub_menu': {
 				'index': {
-					'name': _('User List'),
+					'name': _('USER_LIST'),
 					'url': 'UsersView:index'
 				},
 				'new': {
-					'name': _('New User'),
+					'name': _('USER_CREATE'),
 					'url': 'UsersView:post'
 				}
 			}
@@ -93,7 +93,7 @@
 			<li>
 				<a href="{{ url_for('sessions.logout') }}" data-method="post" >
 					<i class="glyphicon glyphicon-log-out"></i>
-					<span>{{ _('Sign Out') }}</span>
+					<span>{{ _('APP_SIGN_OUT') }}</span>
 				</a>
 			</li>
 		</ul>

@@ -9,11 +9,12 @@
 					</div>
                 </div>
                 {% endif %}
+
 				{% if user.is_current %}
 				<div class="item">
 					<a href="{{ url_for('UsersView:upload_profile_picture', id=user.id) }}" class="upload-profile-picture-btn" data-target=".user-profile-picture">
 						<i class="glyphicon glyphicon-edit"></i>
-						{{ _('Update Profile Picture') }}
+						{{ _('USER_PROFILE_PICTURE_UPDATE') }}
 					</a>
 					<form class="upload-profile-picture-form" enctype="multipart/form-data">
 						{{ form.hidden_tag() }}
@@ -21,33 +22,39 @@
 					</form>
 				</div>
 				{% endif %}
+
 				<div class="item">
-					<a href="{{ url_for('UsersView:get', id = user.id) }}">
-						<i class="glyphicon glyphicon-eye-open"></i>
-						{{ _('Show User') }}
+					<a href="{{ url_for('UsersView:index') }}">
+						<i class="glyphicon glyphicon-list"></i>
+						{{ _('USER_LIST') }}
 					</a>
 				</div>
+
                 {% if request.endpoint.startswith('UsersView:put') and current_user.is_admin %}
-				<div class="item">
-                    <a href="{{ url_for('UsersView:index') }}">
-						<i class="glyphicon glyphicon-list"></i>
-						{{ _('Users List') }}
-					</a>
-                </div>
-                {% if not user.is_current  %}
-                <div class="item">
-                    <a href="{{ url_for('UsersView:delete', id = user.id) }}" data-method="post" data-confirm="{{ _('This will remove \'%(name)s\', Are you sure?', name=user.name)}}">
-						<i class="glyphicon glyphicon-trash"></i>
-						{{ _('Delete User') }}
-					</a>
-                </div>
-                {% endif %}
-                <div class="item">
-                    <a href="{{ url_for('UsersView:post') }}">
-						<i class="glyphicon glyphicon-plus"></i>
-						{{ _('New User') }}
-					</a>
-                </div>
+					<div class="item">
+						<a href="{{ url_for('UsersView:get', id = user.id) }}">
+							<i class="glyphicon glyphicon-eye-open"></i>
+							{{ _('USER_SHOW') }}
+						</a>
+					</div>
+
+	                {% if not user.is_current  %}
+	                <div class="item">
+	                    <a href="{{ url_for('UsersView:delete', id = user.id) }}"
+							data-method="post"
+							data-confirm="{{ _('USER_DELETE_CONFIRMATION', name=user.name)}}">
+							<i class="glyphicon glyphicon-trash"></i>
+							{{ _('USER_DELETE') }}
+						</a>
+	                </div>
+	                {% endif %}
+
+	                <div class="item">
+	                    <a href="{{ url_for('UsersView:post') }}">
+							<i class="glyphicon glyphicon-plus"></i>
+							{{ _('USER_CREATE') }}
+						</a>
+	                </div>
                 {% endif %}
             </div>
         </div>

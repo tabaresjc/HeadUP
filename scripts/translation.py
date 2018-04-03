@@ -38,9 +38,15 @@ def update():
             os.unlink('scripts/translation/messages.pot')
         except:
             pass
-        os.system(
-            'pybabel extract -F scripts/translation/babel.cfg -k lazy_gettext -o scripts/translation/messages.pot .')
-        os.system(
-            'pybabel update -i scripts/translation/messages.pot -d app/translations')
+
+        cmd = [
+            'pybabel extract',
+            '-F scripts/translation/babel.cfg',
+            '-k _lg -k _ -k lazy_gettext',
+            '-o scripts/translation/messages.pot .'
+        ]
+
+        os.system(' '.join(cmd))
+        os.system('pybabel update -i scripts/translation/messages.pot -d app/translations')
     except Exception as e:
         click.echo('Error: %s' % e)

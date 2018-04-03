@@ -13,7 +13,7 @@ class User(sa.Model, ModelHelper, UserMixin):
 
     __tablename__ = 'users'
 
-    __json_meta__ = ['id', 'email', 'nickname',
+    __json_meta__ = ['id', 'USER_EMAIL', 'nickname',
                      'is_admin', 'profile_picture_url']
 
     id = sa.Column(sa.Integer, primary_key=True)

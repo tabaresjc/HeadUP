@@ -3,57 +3,41 @@
 from flask_wtf import FlaskForm
 from wtforms import BooleanField, TextField, TextAreaField, PasswordField, SelectField, validators
 from flask_babel import lazy_gettext as _lg
-import pytz
-import config
 from app.models import Role
-
-
-def get_timezones():
-    tz = []
-    for c in pytz.all_timezones:
-        tz.append((c, c))
-    return tz
+from app.helpers import get_timezones
+import config
 
 
 class UserForm(FlaskForm):
-    email = TextField(_lg('Email'), [
+    email = TextField(_lg('USER_EMAIL'), [
         validators.Required(),
         validators.Email(),
         validators.Length(min=10, max=255)
     ])
-
-    name = TextField(_lg('Name'), [
+    name = TextField(_lg('USER_NAME'), [
         validators.Required(),
         validators.Length(min=3, max=255)
     ])
-
-    nickname = TextField(_lg('Nickname'), [
+    nickname = TextField(_lg('USER_NICKNAME'), [
         validators.Required(),
         validators.Length(min=0, max=64)
     ])
-
-    role_id = SelectField(_lg('Role'), [
+    role_id = SelectField(_lg('USER_ROLE'), [
         validators.Optional()],
         choices=Role.DEFAULT_USER_ROLES)
-
-    password = PasswordField(_lg('Password'), [
+    password = PasswordField(_lg('USER_PASSWORD'), [
         validators.Optional(),
-        validators.EqualTo('confirm_password', message=_lg('Please repeat the password')),
+        validators.EqualTo('confirm_password', message=_lg('USER_CONFIRM_PASSWORD_INVALID')),
         validators.Length(min=6, max=64)
     ])
-
-    confirm_password = PasswordField(_lg('Confirm'), [validators.Optional()])
-
-    address = TextAreaField(_lg('Address'), [validators.Length(min=0, max=255)])
-
-    phone = TextField(_lg('Phone'), [validators.Length(min=0, max=64)])
-
-    timezone = SelectField('Timezone', choices=get_timezones())
+    confirm_password = PasswordField(_lg('USER_CONFIRM'), [validators.Optional()])
+    address = TextAreaField(_lg('USER_ADDRESS'), [validators.Length(min=0, max=255)])
+    phone = TextField(_lg('USER_PHONE'), [validators.Length(min=0, max=64)])
+    timezone = SelectField(_lg('USER_TIMEZONE'), choices=get_timezones())
 
     def __init__(self, user=None, *args, **kwargs):
         super(UserForm, self).__init__(*args, **kwargs)
 
-        self.timezone.data = config.DEFAULT_TIMEZONE
         if not self.is_submitted() and user:
             self.email.data = user.email
             self.name.data = user.name

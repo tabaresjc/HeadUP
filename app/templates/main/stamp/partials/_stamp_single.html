@@ -41,7 +41,7 @@
 						  	{% set user_name = '<a href="%s"  class="custom-link">%s</a>' % (url_for('stamp.show', id=post.id), post.user.name) %}
 						  {%- else %}
 						  	<img src="/static/images/user.png" width="30" height="30"/>
-						  	{% set user_name = _('Anonymous') %}
+						  	{% set user_name = _('ANONYMOUS_LBL') %}
 						  {%- endif %}
 
 						  {{ _('POSTED_BY_USER_LBL', user=user_name|safe, category=category_name|safe) }}

@@ -1,39 +1,39 @@
 <div class="list-group">
-	<a href="{{ url_for('PostsView:post') }}" class="list-group-item">
+	<a href="{{ url_for('PostsView:post') }}" class="list-group-item list-group-item-success">
 		<i class="glyphicon glyphicon-plus"></i>
-		{{ _('NEW_STAMP_LBL') }}
+		{{ _('POST_CREATE') }}
 	</a>
 
 	<a href="{{ url_for('PostsView:index') }}" class="list-group-item">
 		<i class="glyphicon glyphicon-list"></i>
-		{{ _('STAMPS_LBL') }}
+		{{ _('POST_LIST') }}
 	</a>
 
 	<a href="{{ url_for('PostsView:draft_list') }}" class="list-group-item">
 		<i class="glyphicon glyphicon-list-alt"></i>
-		{{ _('DRAFTS_LBL') }}
+		{{ _('POST_DRAFT_LIST') }}
 	</a>
 
 	{% if post and request.endpoint.startswith('PostsView:put') %}
 	<a href="{{ url_for('PostsView:get', id = post.id) }}" class="list-group-item">
 		<i class="glyphicon glyphicon-eye-open"></i>
-		{{ _('STAMP_SHOW_LBL') }}
+		{{ _('POST_SHOW') }}
 	</a>
 	{% endif %}
 
 	{% if post and post.can_edit() and request.endpoint.startswith('PostsView:get') %}
 	<a href="{{ url_for('PostsView:put', id = post.id) }}" class="list-group-item">
 		<i class="glyphicon glyphicon-edit"></i>
-		{{ _('STAMP_EDIT_LBL') }}
+		{{ _('POST_EDIT') }}
 	</a>
 	{% endif %}
 
 	{% if post and post.can_edit() %}
 	<a href="{{ url_for('PostsView:delete', id = post.id) }}" class="list-group-item"
 		data-method="post"
-		data-confirm="{{ _('This will remove %(name)s, Are you sure?', name=post.title) }}">
+		data-confirm="{{ _('POST_DELETE_CONFIRMATION', title=post.title) }}">
 		<i class="glyphicon glyphicon-trash"></i>
-		{{ _('STAMP_REMOVE_LBL') }}
+		{{ _('POST_DELETE') }}
 	</a>
 	{% endif %}
 </div>

@@ -17,7 +17,7 @@
 				<form action="{{ url_for('sessions.login') }}" method="post" name="signup" autocomplete="off">
 					{{ form.hidden_tag() }}
 					{{ render_inline_field(form.email,class="form-control",placeholder=_('MAIL_LBL')) }}
-					{{ render_inline_field(form.password, class="form-control",placeholder=_('PASSWORD_LBL')) }}
+					{{ render_inline_field(form.password, class="form-control",placeholder=_('USER_PASSWORD')) }}
 
 					<div class="checkbox text-center">
 						<label>

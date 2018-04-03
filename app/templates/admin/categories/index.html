@@ -1,24 +1,24 @@
 {% extends "admin/layout/base.html" %}
-{% set title = _('Categories | %(page)s', page=page) %}
+{% set title = _('CATEGORY_PAGE_TITLE', page=page) %}
 
 {% block main %}
     <div id="page-title" class="row">
         <div class="col-md-12 col-sm-12 col-xs-12">
-            <h4>{{ _('Categories') }}</h4>
+            <h4>{{ _('CATEGORY_LIST') }}</h4>
         </div>
     </div>
     <div class="row">
         <div class="col-md-9 col-sm-12 col-xs-12">
-			{{ pag('CategoriesView:index', page, limit, total, _('categories'), kind='info')|safe }}
-			{{ pag('CategoriesView:index', page, limit, total, _('categories'), kind='links')|safe }}
+			{{ pag('CategoriesView:index', page, limit, total, _('CATEGORY_PAG_LBL'), kind='info')|safe }}
+			{{ pag('CategoriesView:index', page, limit, total, _('CATEGORY_PAG_LBL'), kind='links')|safe }}
             <table class="table table-bordered">
                 <thead>
                     <tr>
-                        <th>{{ _('Name')}} </th>
-                        <th>{{ _('Slug')}} </th>
-                        <th>{{ _('Description')}} </th>
-                        <th width="80">{{ _('Posts')}} </th>
-                        <th width="100">{{ _('Actions')}} </th>
+                        <th>{{ _('CATEGORY_NAME')}} </th>
+                        <th>{{ _('CATEGORY_SLUG')}} </th>
+                        <th>{{ _('CATEGORY_DESC')}} </th>
+                        <th width="80">{{ _('USER_LIST')}} </th>
+                        <th width="100">{{ _('CATEGORY_ACTIONS')}} </th>
                     </tr>
                 </thead>
                 <tbody>
@@ -33,14 +33,14 @@
                         <div class="btn-group">
                             <a href="{{ url_for('CategoriesView:put', id=category.id) }}"
 								class="btn btn-primary"
-								title="{{ _('Update category') }}">
+								title="{{ _('CATEGORY_EDIT') }}">
                                 <i class="glyphicon glyphicon-pencil"></i>
                             </a>
                             <a href="{{ url_for('CategoriesView:delete', id=category.id)  }}"
 								class="btn btn-danger"
-								data-confirm="{{ _('This will remove %(name)s, Are you sure?', name=category.name) }}"
+								data-confirm="{{ _('CATEGORY_DELETE_CONFIRMATION', name=category.name) }}"
 								data-method="post"
-								title="{{ _('Delete category') }}">
+								title="{{ _('CATEGORY_DELETE') }}">
                                 <i class="glyphicon glyphicon-trash"></i>
                             </a>
                         </div>
@@ -50,7 +50,7 @@
                 {% endfor %}
                 </tbody>
             </table>
-            {{ pag('CategoriesView:index', page, limit, total, _('categories'), kind='links')|safe }}
+            {{ pag('CategoriesView:index', page, limit, total, _('CATEGORY_PAG_LBL'), kind='links')|safe }}
         </div>
         <div class="col-md-3 col-sm-12 col-xs-12">
 			{% include 'admin/categories/partials/_sidebar.html' %}

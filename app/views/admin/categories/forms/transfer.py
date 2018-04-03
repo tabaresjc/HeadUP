@@ -7,8 +7,8 @@ from app.models import Category
 
 
 class TranferForm(FlaskForm):
-    from_id = SelectField(_lg('From'), coerce=int)
-    to_id = SelectField(_lg('To'), coerce=int)
+    from_id = SelectField(_lg('CATEGORY_FROM'), coerce=int)
+    to_id = SelectField(_lg('CATEGORY_TO'), coerce=int)
 
     def __init__(self, *args, **kwargs):
         super(TranferForm, self).__init__(*args, **kwargs)
@@ -20,7 +20,7 @@ class TranferForm(FlaskForm):
         valid = super(TranferForm, self).validate()
 
         if self.from_id.data == self.to_id.data:
-            self.to_id.errors.append(_('Please select a different category'))
+            self.to_id.errors.append(_('CATEGORY_TRANFER_POSTS_SAME_ERROR'))
             valid = False
 
         return valid

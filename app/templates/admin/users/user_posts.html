@@ -1,17 +1,17 @@
 {% extends "admin/layout/base.html" %}
 
-{% set title = _('User\'s Posts | %(name)s', name=user.name) %}
+{% set title = _('USER_POST_PAGE_TITLE', name=user.name) %}
 
 {% block main %}
 <div class="row">
   <div class="col-md-8 col-md-offset-2">
-    {{ pag('admin.users.user_posts', page, limit, total, _('posts'), kind='info')|safe }}
-    {{ pag('admin.users.user_posts', page, limit, total, _('posts'), kind='links')|safe }}
+    {{ pag('admin.users.user_posts', page, limit, total, _('POSTS_PAG_LBL'), kind='info')|safe }}
+    {{ pag('admin.users.user_posts', page, limit, total, _('POSTS_PAG_LBL'), kind='links')|safe }}
     <div class="clearfix"></div>
     {% for post in posts %}
     {% include 'admin/posts/_post_item.html' %}
     {% endfor %}
-    {{ pag('admin.users.user_posts', page, limit, total, _('posts'), kind='links')|safe }}
+    {{ pag('admin.users.user_posts', page, limit, total, _('POSTS_PAG_LBL'), kind='links')|safe }}
   </div>
 </div>
 {% endblock %}

@@ -1,17 +1,16 @@
 # -*- coding: utf8 -*-
 
-from flask import flash, redirect, url_for, request, jsonify, abort
+from flask import flash, redirect, url_for, request, abort
 from flask_login import current_user, login_required
 from flask_classy import FlaskView, route
 from flask_babel import gettext as _
-from flask_paginate import Pagination
 from app.models import Post, Picture, Feed
 from app.helpers import render_view
 from forms import PostForm
 
 
 class PostsView(FlaskView):
-    route_base = '/mypage/stamps'
+    route_base = '/mypage/stories'
     decorators = [login_required]
 
     def index(self):
@@ -187,17 +186,13 @@ class PostsView(FlaskView):
             Post.delete(post.id)
             Feed.clear_feed_cache()
             ret = request.values.get('return')
-            message = _('POST_DELETE_SUCESS', title=title)
-            if ret:
-                return render_view(ret, redirect=True, message=message)
 
-            return render_view(url_for('PostsView:index'),
-                               redirect=True,
-                               message=message)
+            flash(_('POST_DELETE_SUCESS', title=title))
+
+            if ret:
+                return render_view(ret, redirect=True)
         except Exception as e:
-            message = _('Error while removing the stamp, %(error)s',
-                        error=e)
-            return render_view(url_for('PostsView:index'),
-                               status=False,
-                               redirect=True,
-                               message=message)
+            flash(_('ERROR_POST_DELETE_FAILED', error=e), 'error')
+
+        return render_view(url_for('PostsView:index'),
+                           redirect=True)

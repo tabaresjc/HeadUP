@@ -1,5 +1,5 @@
 {% set container_class = 'user-profile' %}
-{% set title = _('User\'s Profile | %(name)s', name=user.name) %}
+{% set title = _('USER_PROFILE_SHOW_PAGE_TITLE', name=user.name) %}
 {% extends "admin/layout/base.html" %}
 
 {% block main %}
@@ -21,14 +21,18 @@
 	<div class="col-md-12">
 		<div class="div pull-right">
 			{% if not user.is_current and current_user.is_admin %}
-			<a class="btn btn-danger" title="Delete user" href="{{ url_for('UsersView:delete',id=user.id) }}" data-method="post" data-confirm="{{ _('This will remove \'%(name)s\', Are you sure?',name=user.name) }}">
+			<a class="btn btn-danger" title="Delete user" href="{{ url_for('UsersView:delete',id=user.id) }}"
+				data-method="post"
+				data-confirm="{{ _('USER_DELETE_CONFIRMATION',name=user.name) }}">
 				<i class="glyphicon glyphicon-trash"></i>
-				<span>{{ _('Remove') }}</span>
+				<span>{{ _('USER_REMOVE') }}</span>
 			</a>
-			{% endif %} {% if user.is_current or current_user.is_admin %}
+			{% endif %}
+
+			{% if user.is_current or current_user.is_admin %}
 			<a class="btn btn-primary" href="{{ url_for('UsersView:put',id=user.id) }}">
 				<i class="glyphicon glyphicon-pencil"></i>
-				<span>{{ _('Edit') }}</span>
+				<span>{{ _('USER_EDIT') }}</span>
 			</a>
 			{% endif %}
 		</div>
@@ -38,39 +42,39 @@
 <div class="row">
 	<div class="col-md-12">
 		<div class="panel panel-primary">
-			<div class="panel-heading">{{ _('User\'s Info') }}</div>
+			<div class="panel-heading">{{ _('USER_INFO_TITLE') }}</div>
 			<table class="table table-striped table-condensed">
 				<tbody>
 					<tr>
-						<td class="col-md-2"><strong>{{ _('Id') }}</strong></td>
+						<td class="col-md-2"><strong>{{ _('USER_ID') }}</strong></td>
 						<td>{{ user.id }}</td>
 					</tr>
 					<tr>
-						<td><strong>{{ _('Last seen') }}</strong></td>
+						<td><strong>{{ _('USER_LAST_SEE') }}</strong></td>
 						<td>{{ user.last_seen|datetimeformat }}</td>
 					</tr>
 					<tr>
-						<td><strong>{{ _('Name') }}</strong></td>
+						<td><strong>{{ _('USER_NAME') }}</strong></td>
 						<td>{{ user.name }}</td>
 					</tr>
 					<tr>
-						<td><strong>{{ _('Nickname') }}</strong></td>
+						<td><strong>{{ _('USER_NICKNAME') }}</strong></td>
 						<td>{{ user.nickname }}</td>
 					</tr>
 					<tr>
-						<td><strong>{{ _('Address') }}</strong></td>
+						<td><strong>{{ _('USER_ADDRESS') }}</strong></td>
 						<td>{{ user.address }}</td>
 					</tr>
 					<tr>
-						<td><strong>{{ _('Phone') }}</strong></td>
+						<td><strong>{{ _('USER_PHONE') }}</strong></td>
 						<td>{{ user.phone }}</td>
 					</tr>
 					<tr>
-						<td><strong>{{ _('Role') }}</strong></td>
+						<td><strong>{{ _('USER_ROLE') }}</strong></td>
 						<td>{{ user.role_desc }}</td>
 					</tr>
 					<tr>
-						<td><strong>{{ _('Created at') }}</strong></td>
+						<td><strong>{{ _('USER_CREATED_AT') }}</strong></td>
 						<td>{{ user.created_at|datetimeformat }}</td>
 					</tr>
 				</tbody>
@@ -86,16 +90,16 @@
 			<div class="panel panel-primary">
 				<!-- Default panel contents -->
 				<div class="panel-heading">
-					{{ _('Recent posts') }}
+					{{ _('USER_POST_RECENT_TITLE') }}
 				</div>
 				<!-- Table -->
 				{% set posts, posts_total = user.get_user_posts(limit=100) %}
 				<table class="table">
 					<thead>
 						<tr>
-							<th class="col-md-2">{{ _('Posted at') }}</th>
-							<th class="col-md-2">{{ _('Updated at') }}</th>
-							<th>{{ _('Title') }}</th>
+							<th class="col-md-2">{{ _('USER_POST_PUBLISHED_AT') }}</th>
+							<th class="col-md-2">{{ _('USER_POST_UPDATED_AT') }}</th>
+							<th>{{ _('USER_POST_TITLE') }}</th>
 							{% if current_user.is_admin -%}
 							<th></th>
 							{% endif %}

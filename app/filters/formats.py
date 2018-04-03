@@ -19,7 +19,7 @@ def humanformat(eval_ctx, value):
     if not value:
         return ''
 
-    return gettext('Posted %(ago)s ago',
+    return gettext('APP_PUBLISHED_AGO',
                    ago=format_timedelta(value, granularity='second'))
 
 

@@ -1,13 +1,13 @@
 {% extends "admin/layout/base.html" %}
-{% set title = _('PAGE_DRAFT_TITLE', page=page) %}
+{% set title = _('POSTS_DRAFT_PAGE_TITLE', page=page) %}
 
 {% block main %}
 	<div id="page-title" class="row">
 		<div class="col-md-12 col-sm-12 col-xs-12">
-			<h4>{{ _('DRAFTS_LBL') }}</h4>
+			<h4>{{ _('POSTS_DRAFT_LIST') }}</h4>
 		</div>
 		<div class="col-md-12 col-sm-12 col-xs-12">
-			{{ pag('admin.posts.draft_list', page, limit, total, _('stamps'), kind='info')|safe }}
+			{{ pag('admin.posts.draft_list', page, limit, total, _('POSTS_PAG_LBL'), kind='info')|safe }}
 		</div>
 	</div>
 	<div id="page-content" class="row">
@@ -16,7 +16,7 @@
 				{% for post in posts %}
 					{% include 'admin/posts/partials/_post_item.html' %}
 				{% endfor %}
-				{{ pag('admin.posts.draft_list', page, limit, total, _('stamps'), kind='links')|safe }}
+				{{ pag('admin.posts.draft_list', page, limit, total, _('POSTS_PAG_LBL'), kind='links')|safe }}
 			{%- else %}
 			<a href="{{ url_for('stamp.new') }}" class="no-post-message">
 	      		<img src="/static/assets/admin/images/Logo/feather-blue-256.png" alt="{{ site_name }}" />

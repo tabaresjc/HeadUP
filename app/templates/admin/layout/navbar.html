@@ -8,33 +8,33 @@
             </button>
             <a class="navbar-brand" href="{{ url_for('dashboard') }}">
               <strong>{{ site_name }}</strong>
-              {{ _('Admin') if current_user.is_admin else _('My Page') }}
+              {{ _('APP_ADMIN') if current_user.is_admin else _('APP_WRITER') }}
             </a>
         </div>
         <ul class="nav navbar-nav pull-right hidden-xs">
             <li>
-                <a href="javascript:void(0);" class="hidden-xs hidden-sm">{{ _('Welcome, %(name)s',name=current_user.name) }} </a>
+                <a href="javascript:void(0);" class="hidden-xs hidden-sm">{{ _('APP_WELCOME_LBL', name=current_user.name) }} </a>
             </li>
             <li class="dropdown">
                 <a href="javascript:void(0);" class="dropdown-toggle hidden-xs hidden-sm" data-toggle="dropdown">
-                    {{ _('Your account') }}
+                    {{ _('APP_YOUR_ACCOUNT') }}
                     <b class="caret"></b>
                 </a>
                 <ul class="dropdown-menu">
-                    <li><a href="{{ url_for('PostsView:index') }}">{{ _('Posts') }}</a></li>
-                    <li><a href="{{ url_for('PostsView:draft_list') }}">{{ _('DRAFTS_LBL') }}</a></li>
-                    <li><a href="{{ url_for('PostsView:post') }}">{{ _('Add new Post') }}</a></li>
+                    <li><a href="{{ url_for('PostsView:index') }}">{{ _('POST_LIST') }}</a></li>
+                    <li><a href="{{ url_for('PostsView:draft_list') }}">{{ _('POST_DRAFT_LIST') }}</a></li>
+                    <li><a href="{{ url_for('PostsView:post') }}">{{ _('POST_CREATE') }}</a></li>
                     <li class="divider"></li>
-                    <li><a href="{{ url_for('UsersView:get', id=current_user.id) }}">{{ _('Profile') }}</a></li>
+                    <li><a href="{{ url_for('UsersView:get', id=current_user.id) }}">{{ _('APP_PROFILE') }}</a></li>
                 </ul>
             </li>
             <li class="settings hidden-xs hidden-sm">
-                <a href="{{ url_for('latest') }}" role="button" title="{{ _('Top') }}">
+                <a href="{{ url_for('latest') }}" role="button" title="{{ _('APP_TOP') }}">
                     <i class="glyphicon glyphicon-home"></i>
                 </a>
             </li>
             <li class="settings hidden-xs hidden-sm">
-                <a href="{{ url_for('sessions.logout') }}" data-method="post" role="button" title="{{ _('Sign Out') }}">
+                <a href="{{ url_for('sessions.logout') }}" data-method="post" role="button" title="{{ _('APP_SIGN_OUT') }}">
                     <i class="glyphicon glyphicon-log-out"></i>
                 </a>
             </li>

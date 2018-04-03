@@ -29,7 +29,6 @@ class PostForm(FlaskForm):
         if not post:
             language = str(get_locale())
             self.lang.data = language
-            return
 
         if not self.is_submitted() and post:
             self.title.data = post.title
