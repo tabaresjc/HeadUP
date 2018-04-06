@@ -1,0 +1,13 @@
+{% extends "admin/layout/base.html" %}
+{% set page_class = 'user-page' %}
+
+{% block wide_container_main %}
+	<div class="header">
+		<a href="{{ url_for('latest') }}" class="logo">
+			<img alt="{{ site_name }}" src="/static/images/logo.png?v20180401" width="80" height="80">
+			<img alt="{{ site_name }}" src="/static/images/logo-headup-white.png?v20180401" width="195" height="60">
+		</a>
+	</div>
+	{% block page_content %}
+	{% endblock %}
+{% endblock %}

@@ -1,5 +1,5 @@
 html {
-	background: transparent url(/static/assets/admin/images/bgs/back-orange.png) repeat-x 0 0;
+	background: #3b3b4a;
 	min-height: 100%;
 	background-size: 100% 100%;
 
@@ -7,17 +7,20 @@ html {
 		background-size: auto !important;
 	}
 }
+
 body {
 	background: none;
 
 	&.menu {
 		#sidebar-nav {
-			background: transparent url(/static/assets/admin/images/bgs/back-orange.png) repeat-x 0 0;
+			background: #3b3b4a;
 			background-size: 100% 100%;
 			box-shadow: none;
 		}
 	}
 }
+
+
 .navbar-inverse {
 	background: none;
 	border: 1px solid transparent;

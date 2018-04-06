@@ -32,7 +32,7 @@
     		{{ pag('admin.index', page, limit, total, _('POSTS_PAG_LBL'), kind='links')|safe }}
 	    {%- else %}
 	    <a href="{{ url_for('stamp.new') }}" class="no-post-message">
-	      <img src="/static/assets/admin/images/Logo/feather-blue-256.png" alt="{{ site_name }}" />
+	      <img src="/static/images/stories/feather-blue-256.png" alt="{{ site_name }}" />
 	      <span>{{ _('WELCOME_MESSAGE_LBL') | safe }}</span>
 	    </a>
 	    {%- endif %}

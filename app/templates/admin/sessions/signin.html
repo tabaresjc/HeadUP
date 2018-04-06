@@ -1,17 +1,10 @@
-{% extends "admin/layout/base.html" %}
-
+{% extends "admin/sessions/layout.html" %}
 {% set title = _('LOGIN_TITLE') %}
-{% set page_class = 'signup-bg' %}
 
-{% block wide_container_main %}
-	<div class="header">
-		<a href="{{ url_for('latest') }}">
-			<img alt="{{ site_name }}" class="logo" src="/static/assets/admin/images/logo.png?v20170101">
-		</a>
-	</div>
-	<div class="signup-wrapper">
+{% block page_content %}
+	<div class="content-wrapper">
 		<div class="box">
-			<div class="content-wrap">
+			<div class="form-wrapper">
 				<h6>{{ _('LOGIN_TITLE') }}</h6>
 				{% from "shared/_bootstrap_forms.html" import render_inline_field %}
 				<form action="{{ url_for('sessions.login') }}" method="post" name="signup" autocomplete="off">
