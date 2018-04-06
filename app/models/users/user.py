@@ -21,6 +21,7 @@ class User(sa.Model, ModelHelper, UserMixin):
     email = sa.Column(sa.String(128), index=True, unique=True)
     nickname = sa.Column(sa.String(128), index=True, unique=True)
     password = sa.Column(sa.String(128))
+    reset_password = sa.Column(sa.String(128), index=True, unique=True)
     role_id = sa.Column(sa.Integer)
     attr = sa.Column(MutableObject.get_column())
 
@@ -156,9 +157,24 @@ class User(sa.Model, ModelHelper, UserMixin):
 
         return posts, total
 
+    def generate_reset_password(self):
+        import hashlib
+        h = hashlib.new('md5')
+
+        h.update(self.email)
+        h.update(datetime.datetime.utcnow().isoformat())
+        self.reset_password = h.hexdigest()
+        self.save()
+
     @classmethod
     def find_by_email(cls, email):
         return cls.query.filter_by(email=email).first()
+
+    @classmethod
+    def find_by_reset_password_code(cls, code):
+        if not code:
+            return None
+        return cls.query.filter_by(reset_password=code).first()
 
     @classmethod
     def make_valid_name(cls, name):

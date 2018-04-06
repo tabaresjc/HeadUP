@@ -5,7 +5,7 @@ from flask_login import login_user, logout_user, current_user, login_required
 from flask_babel import gettext as _
 from app.models import User
 from app.helpers import send_registration_email, verify_captcha, render_view
-from forms import LoginForm, SignUpForm
+from forms import LoginForm, SignUpForm, ForgotPasswordForm, ResetPasswordForm
 import datetime
 
 mod = Blueprint('sessions', __name__)
@@ -34,7 +34,7 @@ def login():
             redirect_to = session.pop('redirect_to', None)
 
             if not redirect_to:
-                redirect_to = url_for('latest')
+                redirect_to = url_for('dashboard')
 
             remember = form.remember_me.data
 
@@ -102,4 +102,80 @@ def signup():
             flash(e.message, 'error')
 
     return render_view('admin/sessions/signup.html',
+                       form=form)
+
+
+@mod.route('/forgot-password', methods=['GET', 'POST'])
+def forgot_password():
+    if current_user.is_authenticated:
+        return render_view(url_for('latest'),
+                           redirect=True,
+                           message=_('SESSIONS_MSG_ALREADY_SIGNED_IN'))
+
+    form = ForgotPasswordForm()
+
+    if form.is_submitted():
+        try:
+            if not form.validate():
+                raise Exception(_('ERROR_INVALID_SUBMISSION'))
+
+            email = form.email.data
+
+            user = User.find_by_email(email)
+
+            if not user:
+                raise Exception(_('SESSIONS_ERROR_MAIL_NOT_FOUND', email=email))
+
+            user.generate_reset_password()
+
+            flash(_('SESSIONS_PASSWORD_RESET', email=email))
+
+            return render_view(url_for('sessions.forgot_password'),
+                               redirect=True)
+
+        except Exception as e:
+            flash(e.message, 'error')
+
+    return render_view('admin/sessions/forgot_password.html',
+                       form=form)
+
+
+@mod.route('/reset-password', methods=['GET', 'POST'])
+def reset_password():
+    if current_user.is_authenticated:
+        return render_view(url_for('latest'),
+                           redirect=True,
+                           message=_('SESSIONS_MSG_ALREADY_SIGNED_IN'))
+
+    code = request.values.get('code', None)
+    user = User.find_by_reset_password_code(code)
+
+    if not user:
+        return render_view(url_for('sessions.forgot_password'),
+                           redirect=True,
+                           message=_('ERROR_INVALID_RESET_PASSWORD_CODE'))
+
+    form = ResetPasswordForm(user=user)
+
+    if form.is_submitted():
+        try:
+            if not form.validate():
+                raise Exception(_('ERROR_INVALID_SUBMISSION'))
+
+            user.set_password(form.password.data)
+            user.reset_password = None
+
+            # store the user
+            user.save()
+
+            # TODO: send reset password email
+
+            return render_view(url_for('sessions.login'),
+                               redirect=True,
+                               message=_('SESSIONS_MSG_PASSWORD_RESET_COMPLETED'))
+
+        except Exception as e:
+            flash(e.message, 'error')
+
+    return render_view('admin/sessions/reset_password.html',
                        form=form)

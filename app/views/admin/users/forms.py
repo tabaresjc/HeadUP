@@ -28,7 +28,7 @@ class UserForm(FlaskForm):
     password = PasswordField(_lg('USER_PASSWORD'), [
         validators.Optional(),
         validators.EqualTo('confirm_password', message=_lg('USER_CONFIRM_PASSWORD_INVALID')),
-        validators.Length(min=6, max=64)
+        validators.Length(min=10, max=64)
     ])
     confirm_password = PasswordField(_lg('USER_CONFIRM'), [validators.Optional()])
     address = TextAreaField(_lg('USER_ADDRESS'), [validators.Length(min=0, max=255)])

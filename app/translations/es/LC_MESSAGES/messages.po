@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-04-03 18:26+0900\n"
+"POT-Creation-Date: 2018-04-06 19:30+0900\n"
 "PO-Revision-Date: 2017-07-15 16:34+0900\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: es\n"
@@ -49,8 +49,11 @@ msgstr "Admin"
 msgid "DASHBOARD_TITLE"
 msgstr "Dashboard"
 
-#: app/templates/admin/index.html:13 app/views/admin/sessions/forms.py:10
-#: app/views/admin/sessions/forms.py:16 app/views/admin/users/forms.py:12
+#: app/templates/admin/index.html:13
+#: app/views/admin/sessions/forms/forgot_password.py:9
+#: app/views/admin/sessions/forms/login.py:9
+#: app/views/admin/sessions/forms/signup.py:10
+#: app/views/admin/users/forms.py:12
 msgid "USER_EMAIL"
 msgstr "Correo electronico"
 
@@ -319,69 +322,105 @@ msgstr "Actualizar"
 msgid "POST_DELETE"
 msgstr "Eliminar"
 
-#: app/templates/admin/sessions/signin.html:3
-#: app/templates/admin/sessions/signin.html:15
-msgid "LOGIN_TITLE"
-msgstr "Iniciar sesión"
+#: app/templates/admin/sessions/forgot_password.html:2
+msgid "FORGOT_PASSWORD_TITLE"
+msgstr "Restablecer tu contraseña"
 
-#: app/templates/admin/sessions/signin.html:19
-#: app/templates/admin/sessions/signup.html:19
+#: app/templates/admin/sessions/forgot_password.html:10
+msgid "FORGOT_PASSWORD_TEXT"
+msgstr ""
+"Introduce tu correo para recibir instrucciones sobre cómo restablecer la "
+"contraseña."
+
+#: app/templates/admin/sessions/forgot_password.html:11
+#: app/templates/admin/sessions/signin.html:11
+#: app/templates/admin/sessions/signup.html:11
 msgid "MAIL_LBL"
 msgstr "Correo electrónico"
 
-#: app/templates/admin/sessions/signin.html:20
-#: app/templates/admin/sessions/signup.html:22
-#: app/views/admin/sessions/forms.py:11 app/views/admin/sessions/forms.py:19
-#: app/views/admin/users/forms.py:28
-msgid "USER_PASSWORD"
-msgstr "Contraseña"
+#: app/templates/admin/sessions/forgot_password.html:15
+msgid "SEND_RESET_INSTRUCTION_BTN"
+msgstr "Enviar Correo de restablecimiento"
 
-#: app/templates/admin/sessions/signin.html:25
-msgid "REMEMBER_ME_BTN"
-msgstr "Recuerdame en esta computadora"
+#: app/templates/admin/sessions/forgot_password.html:21
+#: app/templates/admin/sessions/reset_password.html:22
+#: app/templates/admin/sessions/signup.html:37
+msgid "SIGNIN_ACTION_LBL"
+msgstr "Ya tienes una cuenta?"
 
-#: app/templates/admin/sessions/signin.html:31
-#: app/templates/admin/sessions/signup.html:45
+#: app/templates/admin/sessions/forgot_password.html:22
+#: app/templates/admin/sessions/reset_password.html:23
+#: app/templates/admin/sessions/signin.html:22
+#: app/templates/admin/sessions/signup.html:38
 #: app/templates/main/common/_sidebar_user.html:24
 #: app/templates/main/layout/header.html:69
 #: app/templates/main/site/home.html:21
 msgid "LOGIN_BTN"
 msgstr "Iniciar sesión"
 
-#: app/templates/admin/sessions/signin.html:38
+#: app/templates/admin/sessions/reset_password.html:2
+msgid "RESET_PASSWORD_TITLE"
+msgstr "Restablecer contraseña"
+
+#: app/templates/admin/sessions/reset_password.html:10
+msgid "RESET_PASSWORD_TEXT"
+msgstr "Introduce y confirma tu contraseña nueva en la parte inferior."
+
+#: app/templates/admin/sessions/reset_password.html:16
+msgid "RESET_PASSWORD_BTN"
+msgstr "Restablecer contraseña"
+
+#: app/templates/admin/sessions/signin.html:2
+#: app/templates/admin/sessions/signin.html:10
+msgid "LOGIN_TITLE"
+msgstr "Iniciar sesión"
+
+#: app/templates/admin/sessions/signin.html:12
+#: app/templates/admin/sessions/signup.html:14
+#: app/views/admin/sessions/forms/login.py:10
+#: app/views/admin/sessions/forms/signup.py:13
+#: app/views/admin/users/forms.py:28
+msgid "USER_PASSWORD"
+msgstr "Contraseña"
+
+#: app/templates/admin/sessions/signin.html:16
+msgid "REMEMBER_ME_BTN"
+msgstr "Recuerdame en esta computadora"
+
+#: app/templates/admin/sessions/signin.html:28
 msgid "SIGNUP_ACTION_LBL"
 msgstr "No tienes cuenta?"
 
-#: app/templates/admin/sessions/signin.html:39
-#: app/templates/admin/sessions/signup.html:38
+#: app/templates/admin/sessions/signin.html:29
+#: app/templates/admin/sessions/signup.html:31
 #: app/templates/main/common/_sidebar_user.html:27
 #: app/templates/main/layout/header.html:66
 #: app/templates/main/site/home.html:22
 msgid "REGISTER_BTN"
 msgstr "Registrarse"
 
-#: app/templates/admin/sessions/signup.html:3
-#: app/templates/admin/sessions/signup.html:15
+#: app/templates/admin/sessions/signin.html:32
+msgid "FORGOT_PASWWORD_BTN"
+msgstr "¿Has olvidado la contraseña?"
+
+#: app/templates/admin/sessions/signup.html:2
+#: app/templates/admin/sessions/signup.html:10
 msgid "REGISTER_TITLE"
 msgstr "Registrarse"
 
-#: app/templates/admin/sessions/signup.html:20
+#: app/templates/admin/sessions/signup.html:12
 msgid "NAME_LBL"
 msgstr "Nombre"
 
-#: app/templates/admin/sessions/signup.html:21
+#: app/templates/admin/sessions/signup.html:13
 msgid "NICKNAME_LBL"
 msgstr "Apodo"
 
-#: app/templates/admin/sessions/signup.html:33
+#: app/templates/admin/sessions/signup.html:25
 msgid "TOS_CHECK_LBL"
 msgstr ""
 "<span>Estoy de acuerdo con los <br/><a href=\"%(link)s\" class=\"custom-"
 "link\" target=\"_blank\">Terminos del servicio</a></span>"
-
-#: app/templates/admin/sessions/signup.html:44
-msgid "SIGNIN_ACTION_LBL"
-msgstr "Ya tienes una cuenta?"
 
 #: app/templates/admin/users/edit.html:2
 msgid "USER_PROFILE_EDIT_PAGE_TITLE"
@@ -402,7 +441,8 @@ msgid "USER_PAG_LBL"
 msgstr "usuarios"
 
 #: app/templates/admin/users/index.html:20
-#: app/templates/admin/users/show.html:57 app/views/admin/sessions/forms.py:17
+#: app/templates/admin/users/show.html:57
+#: app/views/admin/sessions/forms/signup.py:11
 #: app/views/admin/users/forms.py:17
 msgid "USER_NAME"
 msgstr "Nombre"
@@ -450,7 +490,8 @@ msgstr "Id"
 msgid "USER_LAST_SEE"
 msgstr "Ultima visita"
 
-#: app/templates/admin/users/show.html:61 app/views/admin/sessions/forms.py:18
+#: app/templates/admin/users/show.html:61
+#: app/views/admin/sessions/forms/signup.py:12
 #: app/views/admin/users/forms.py:21
 msgid "USER_NICKNAME"
 msgstr "Apodo"
@@ -704,6 +745,7 @@ msgstr "Leer mas..."
 #: app/views/admin/categories/index.py:76
 #: app/views/admin/categories/index.py:129 app/views/admin/posts/index.py:65
 #: app/views/admin/posts/index.py:120 app/views/admin/sessions/index.py:76
+#: app/views/admin/sessions/index.py:120 app/views/admin/sessions/index.py:163
 #: app/views/admin/users/index.py:55 app/views/admin/users/index.py:88
 msgid "ERROR_INVALID_SUBMISSION"
 msgstr ""
@@ -774,25 +816,8 @@ msgstr "La publicacion \"%(title)s\" fue eliminada"
 msgid "ERROR_POST_DELETE_FAILED"
 msgstr "Ocurrió un error al momento de eliminar la categoría, %(error)s"
 
-#: app/views/admin/sessions/forms.py:26
-msgid "USER_NAME_INVALID"
-msgstr "Este nombre tiene caracteres invalidos"
-
-#: app/views/admin/sessions/forms.py:30
-msgid "USER_NICKNAME_INVALID"
-msgstr "Este apodo tiene caracteres invalidos"
-
-#: app/views/admin/sessions/forms.py:34
-msgid "USER_EMAIL_TAKEN_ERROR"
-msgstr ""
-"Este correo electronico esta en uso, por favor seleccione otro correo "
-"electronico."
-
-#: app/views/admin/sessions/forms.py:38
-msgid "USER_NICKNAME_TAKEN_ERROR"
-msgstr "Este apodo esta en uso, por favor seleccione otro apodo."
-
 #: app/views/admin/sessions/index.py:19 app/views/admin/sessions/index.py:69
+#: app/views/admin/sessions/index.py:113 app/views/admin/sessions/index.py:148
 msgid "SESSIONS_MSG_ALREADY_SIGNED_IN"
 msgstr "Usted ya ha ingresado a nuestro sistema"
 
@@ -816,9 +841,56 @@ msgstr "Le code captcha est invalide"
 msgid "SESSIONS_MSG_SIGNUP_COMPLETED"
 msgstr "Bienvenido! Usted ha ingresado exitosamente"
 
+#: app/views/admin/sessions/index.py:127
+msgid "SESSIONS_ERROR_MAIL_NOT_FOUND"
+msgstr "No hay registrada ninguna cuenta con la dirección de correo %(email)s."
+
+#: app/views/admin/sessions/index.py:131
+msgid "SESSIONS_PASSWORD_RESET"
+msgstr ""
+"Las instrucciones sobre cómo restablecer tu contraseña se enviaron a "
+"%(email)s."
+
+#: app/views/admin/sessions/index.py:156
+msgid "ERROR_INVALID_RESET_PASSWORD_CODE"
+msgstr ""
+"El enlace al correo que has presionado es inválido. Por favor intente "
+"nuevamente."
+
+#: app/views/admin/sessions/index.py:179
+msgid "SESSIONS_MSG_PASSWORD_RESET_COMPLETED"
+msgstr "Tu contraseña se ha cambiado correctamente."
+
+#: app/views/admin/sessions/forms/reset_password.py:9
+msgid "USER_RESET_PASSWORD"
+msgstr "Nueva contraseña"
+
+#: app/views/admin/sessions/forms/reset_password.py:11
 #: app/views/admin/users/forms.py:30
 msgid "USER_CONFIRM_PASSWORD_INVALID"
 msgstr "La contraseña no coincide"
+
+#: app/views/admin/sessions/forms/reset_password.py:14
+msgid "USER_RESET_PASSWORD_CONFIRM"
+msgstr "Confirmar contraseña"
+
+#: app/views/admin/sessions/forms/signup.py:20
+msgid "USER_NAME_INVALID"
+msgstr "Este nombre tiene caracteres invalidos"
+
+#: app/views/admin/sessions/forms/signup.py:24
+msgid "USER_NICKNAME_INVALID"
+msgstr "Este apodo tiene caracteres invalidos"
+
+#: app/views/admin/sessions/forms/signup.py:28
+msgid "USER_EMAIL_TAKEN_ERROR"
+msgstr ""
+"Este correo electronico esta en uso, por favor seleccione otro correo "
+"electronico."
+
+#: app/views/admin/sessions/forms/signup.py:32
+msgid "USER_NICKNAME_TAKEN_ERROR"
+msgstr "Este apodo esta en uso, por favor seleccione otro apodo."
 
 #: app/views/admin/users/forms.py:33
 msgid "USER_CONFIRM"

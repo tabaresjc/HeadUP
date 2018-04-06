@@ -6,18 +6,6 @@
 	.section {
 		margin-bottom: 40px;
 
-		a.btn-flat,
-		a.btn-glow {
-			margin-right: 5px;
-		}
-
-		&.btns {
-			a.btn-flat,
-			a.btn-glow {
-				margin-bottom: 12px;
-			}
-		}
-
 		code {
 			margin-right: 25px;
 		}
@@ -34,27 +22,6 @@
 
 	.ctrls {
 		margin-bottom: 20px;
-
-		.btn-glow {
-			margin-right: 8px;
-		}
-
-		.btn-flat.icon {
-			margin-right: 8px;
-		}
-
-		.btn-group.settings {
-			margin-left: 20px;
-		}
-
-		.btn-group.settings i {
-			font-size: 13px;
-			color: #444;
-		}
-
-		.slider-frame {
-			margin-right: 10px;
-		}
 
 		.pagination {
 			margin: 5px 0;

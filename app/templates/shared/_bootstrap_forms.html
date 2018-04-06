@@ -1,56 +1,42 @@
 {% macro render_inline_field(field) %}
 <div class="form-group" {% if field.hidden %}style="display:none;"{% endif %}>
-  {{ field(**kwargs)|safe }}
-  {% for error in field.errors %}
-	<div class="label label-danger">{{ error }}</div><br/>
-  {% endfor %}
+	{{ field(**kwargs)|safe }}
+	{% for error in field.errors %}
+		<span class="label label-danger">{{ error }}</span>
+	{% endfor %}
 </div>
 {% endmacro %}
 
 {% macro render_normal_field(field, field_width=10, label_width=2, wrap_class='') %}
 <div class="form-group">
-  <label class="col-lg-{{ label_width}} control-label">{{ field.label }}</label>
-  <div class="col-lg-{{ field_width }}">
-    {% if wrap_class!='' %}
-    <div class="{{ wrap_class }}">
-      {{ field(**kwargs)|safe }}
-    </div>
-    {% else %}
-    {{ field(**kwargs)|safe }}
-    {% endif %}
+	<label class="col-lg-{{ label_width}} control-label">{{ field.label }}</label>
+	<div class="col-lg-{{ field_width }}">
+		{% if wrap_class!='' %}
+		<div class="{{ wrap_class }}">
+			{{ field(**kwargs)|safe }}
+		</div>
+		{% else %}
+		{{ field(**kwargs)|safe }}
+		{% endif %}
 
-    {% if field.errors %}
-    {% for error in field.errors %}
-      <div class="label label-danger">{{ error }}</div><br/>
-    {% endfor %}
-    {% endif %}
-  </div>
+		{% if field.errors %}
+			{% for error in field.errors %}
+				<span class="label label-danger">{{ error }}</span>
+			{% endfor %}
+		{% endif %}
+	</div>
 </div>
 {% endmacro %}
 
-{% macro render_field(field, wrap_class='') %}
-{% set field_id = kwargs.pop('id') if kwargs.get('id') else field.name %}
+{% macro render_field(field) %}
 <div class="form-group">
-    {{ field.label }}
-    {% if wrap_class!='' %}
-        <div class="{{ wrap_class }}">{{ field(id=field_id, **kwargs)|safe }}</div>
-    {% else %}
-        {{ field(id=field_id, **kwargs)|safe }}
-    {% endif %}
+	<label for="{{ field.id }}">{{ field.label }}</label>
+	{{ field(**kwargs)|safe }}
 
-    {% if field.errors %}
-        {% for error in field.errors %}
-        <div class="label label-danger" style="margin:0 10px;">{{ error }}</div>
-        {% endfor %}
-    {% endif %}
+	{% if field.errors %}
+		{% for error in field.errors %}
+			<span class="label label-danger">{{ error }}</span>
+		{% endfor %}
+	{% endif %}
 </div>
-{% endmacro %}
-
-{% macro render_search_field(field) %}
-{{ field(**kwargs)|safe }}
-{% if field.errors %}
-{% for error in field.errors %}
-  <div class="label label-danger">{{ error }}</div><br/>
-{% endfor %}
-{% endif %}
 {% endmacro %}
