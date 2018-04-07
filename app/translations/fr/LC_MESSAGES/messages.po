@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-04-06 19:30+0900\n"
+"POT-Creation-Date: 2018-04-07 21:52+0900\n"
 "PO-Revision-Date: 2017-07-15 16:34+0900\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: fr\n"
@@ -30,8 +30,7 @@ msgstr "Vous devez vous identifier ou vous inscrire avant de continuer."
 msgid "APP_PUBLISHED_AGO"
 msgstr "Publié il y a %(ago)s"
 
-#: app/helpers/email/registration.py:21
-#: app/templates/emails/users/registration.html:23
+#: app/helpers/email/registration.py:13
 msgid "EMAIL_REGISTRATION_TITLE"
 msgstr "Bienvenue sur %(name)s!"
 
@@ -540,29 +539,37 @@ msgstr "Montrer Utilisateur"
 msgid "USER_DELETE"
 msgstr "Supprimer Utilisateur"
 
-#: app/templates/emails/users/registration.html:32
-msgid "EMAIL_REGISTRATION_DESCRIPTION"
-msgstr ""
-"Nous sommes ravis de te compter parmi nous ! Tu peux désormais partager "
-"ton enthousiasme en écrivant ton histoire."
-
-#: app/templates/emails/users/registration.html:50
-msgid "EMAIL_REGISTRATION_ACTION_BTN"
-msgstr "Ecris ta première histoire"
-
-#: app/templates/emails/users/registration.html:71
+#: app/templates/emails/layout/base.html:359
 #: app/templates/main/layout/footer.html:8
 #: app/templates/main/layout/header.html:32
 #: app/templates/main/site/conduct.html:2
 msgid "CODE_CONDUCT_LBL"
 msgstr "Code de conduite"
 
-#: app/templates/emails/users/registration.html:73
+#: app/templates/emails/layout/base.html:361
 #: app/templates/main/layout/footer.html:10
 #: app/templates/main/layout/header.html:29
 #: app/templates/main/site/policy.html:2
 msgid "TOS_LBL"
 msgstr "Conditions générales d'utilisation"
+
+#: app/templates/emails/users/registration.html:9
+msgid "EMAIL_GREETING"
+msgstr "Bonjour %(name)s,"
+
+#: app/templates/emails/users/registration.html:11
+msgid "EMAIL_REGISTRATION_DESCRIPTION"
+msgstr ""
+"Nous sommes ravis de te compter parmi nous ! Tu peux désormais partager "
+"ton enthousiasme en écrivant ton histoire."
+
+#: app/templates/emails/users/registration.html:21
+msgid "EMAIL_REGISTRATION_ACTION_BTN"
+msgstr "Ecris ta première histoire"
+
+#: app/templates/emails/users/registration.html:31
+msgid "EMAIL_END_BODY"
+msgstr "<p>Merci,<br>L'équipe %(name)s</p>"
 
 #: app/templates/main/index.html:2
 msgid "LATEST_TITLE"
@@ -850,7 +857,7 @@ msgstr ""
 msgid "ERROR_INVALID_RESET_PASSWORD_CODE"
 msgstr "Le lien E-mail que vous avez cliqué est invalide. Veuillez réessayer."
 
-#: app/views/admin/sessions/index.py:179
+#: app/views/admin/sessions/index.py:175
 msgid "SESSIONS_MSG_PASSWORD_RESET_COMPLETED"
 msgstr "Votre mot de passe a été changé avec succès."
 

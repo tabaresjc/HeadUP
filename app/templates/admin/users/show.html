@@ -4,6 +4,15 @@
 
 {% block main %}
 <!-- header -->
+{% if user.is_admin %}
+<div class="panel panel-default">
+	<div class="panel-body">
+		<a href="{{ url_for('UsersView:send_email', id=user.id, kind='registration') }}" class="btn btn-primary" data-method="post">
+			Test registration email
+		</a>
+	</div>
+</div>
+{% endif %}
 <div class="row">
 	<div class="col-xx-12 col-sm-12 col-md-12">
 		<div class="media">

@@ -90,3 +90,6 @@ app/templates/admin/layout/base.html
 
 # ignore cache folder
 /cache/
+
+# ignore logs folder
+/logs/

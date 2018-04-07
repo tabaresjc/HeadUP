@@ -4,7 +4,7 @@ from flask import Blueprint, flash, redirect, session, url_for, request
 from flask_login import login_user, logout_user, current_user, login_required
 from flask_babel import gettext as _
 from app.models import User
-from app.helpers import send_registration_email, verify_captcha, render_view
+from app.helpers import send_email, verify_captcha, render_view
 from forms import LoginForm, SignUpForm, ForgotPasswordForm, ResetPasswordForm
 import datetime
 
@@ -93,7 +93,7 @@ def signup():
             login_user(user)
 
             # send registration email
-            send_registration_email(user)
+            send_email('registration', user)
 
             return render_view(url_for('latest'),
                                redirect=True,

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-04-06 19:30+0900\n"
+"POT-Creation-Date: 2018-04-07 21:52+0900\n"
 "PO-Revision-Date: 2017-07-15 18:02+0900\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: en\n"
@@ -30,8 +30,7 @@ msgstr "You need to sign in or sign up before continuing."
 msgid "APP_PUBLISHED_AGO"
 msgstr "Posted %(ago)s ago"
 
-#: app/helpers/email/registration.py:21
-#: app/templates/emails/users/registration.html:23
+#: app/helpers/email/registration.py:13
 msgid "EMAIL_REGISTRATION_TITLE"
 msgstr "Welcome to %(name)s!"
 
@@ -536,29 +535,36 @@ msgstr "Show user"
 msgid "USER_DELETE"
 msgstr "Remove user"
 
-#: app/templates/emails/users/registration.html:32
-msgid "EMAIL_REGISTRATION_DESCRIPTION"
-msgstr ""
-"We're excited you're here! You can start writing your inspirational "
-"stories."
-
-#: app/templates/emails/users/registration.html:50
-msgid "EMAIL_REGISTRATION_ACTION_BTN"
-msgstr "Write your first story"
-
-#: app/templates/emails/users/registration.html:71
+#: app/templates/emails/layout/base.html:359
 #: app/templates/main/layout/footer.html:8
 #: app/templates/main/layout/header.html:32
 #: app/templates/main/site/conduct.html:2
 msgid "CODE_CONDUCT_LBL"
 msgstr "Code of conduct"
 
-#: app/templates/emails/users/registration.html:73
+#: app/templates/emails/layout/base.html:361
 #: app/templates/main/layout/footer.html:10
 #: app/templates/main/layout/header.html:29
 #: app/templates/main/site/policy.html:2
 msgid "TOS_LBL"
 msgstr "Terms of Service"
+
+#: app/templates/emails/users/registration.html:9
+msgid "EMAIL_GREETING"
+msgstr "Hi %(name)s,"
+
+#: app/templates/emails/users/registration.html:11
+msgid "EMAIL_REGISTRATION_DESCRIPTION"
+msgstr ""
+"We're excited you're here! You can start writing your stories"
+
+#: app/templates/emails/users/registration.html:21
+msgid "EMAIL_REGISTRATION_ACTION_BTN"
+msgstr "Write your first story"
+
+#: app/templates/emails/users/registration.html:31
+msgid "EMAIL_END_BODY"
+msgstr "<p>Thanks,<br>%(name)s Team</p>"
 
 #: app/templates/main/index.html:2
 msgid "LATEST_TITLE"
@@ -840,7 +846,7 @@ msgstr "Instructions on how to reset your password were sent to %(email)s."
 msgid "ERROR_INVALID_RESET_PASSWORD_CODE"
 msgstr "The email link you clicked is invalid. Please try again."
 
-#: app/views/admin/sessions/index.py:179
+#: app/views/admin/sessions/index.py:175
 msgid "SESSIONS_MSG_PASSWORD_RESET_COMPLETED"
 msgstr "Your password has been successfully changed."
 

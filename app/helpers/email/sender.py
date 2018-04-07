@@ -1,22 +1,21 @@
 # -*- coding: utf8 -*-
 
-from flask import render_template
-from flask_mail import Message
-import app
+from registration import send_registration_email
+import config
 
 
-def send_email(subject, recipients, text_body=None, html_body=None):
-    try:
-        msg = Message(subject, recipients=recipients)
+email_senders = {
+    'registration': send_registration_email,
+}
 
-        if not text_body and not html_body:
-            return
 
-        if text_body:
-            msg.body = text_body
-        if html_body:
-            msg.html = html_body
+def send_email(name=None, *args, **kwargs):
+    if not name or not config.MAIL_SERVER:
+        return
 
-        app.mail.send(msg)
-    except:
-        pass
+    f = email_senders.get(name)
+
+    if not f:
+        raise Exception('Unknown email')
+
+    f(*args, **kwargs)

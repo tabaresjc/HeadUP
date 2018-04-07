@@ -1,3 +1,3 @@
 # -*- coding: utf8 -*-
 
-from notifications import push_notification
+from handler import task_handler

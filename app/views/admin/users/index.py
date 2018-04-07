@@ -6,7 +6,7 @@ from flask_classy import FlaskView, route
 from flask_babel import gettext as _, refresh
 from flask_paginate import Pagination
 from app.models import Post, User, Picture, Feed
-from app.helpers import render_view
+from app.helpers import render_view, send_email
 from forms import UserForm
 
 
@@ -208,15 +208,20 @@ class UsersView(FlaskView):
         return render_view(url_for('UsersView:get', id=id),
                            redirect=True)
 
-    @route('/<int:id>/send-email/<string:kind>', methods=['GET'])
+    @route('/<int:id>/send-email/<string:kind>', methods=['POST'])
     def send_email(self, id, kind):
         if not current_user.is_admin:
             abort(401)
 
         user = User.get_by_id(id)
 
-        if kind == 'registration':
-            from app.helpers.email.registration import send_registration_email
-            send_registration_email(user)
-        flash('done!')
+        if not user:
+            abort(404)
+
+        try:
+            send_email(kind, user=user)
+            flash('Email sent')
+        except Exception as e:
+            flash(e.message, 'error')
+
         return render_view(url_for('UsersView:get', id=id), redirect=True)
