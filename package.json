@@ -5,7 +5,7 @@
 	"scripts": {
 		"setup": "bower install && npm install",
 		"build": "grunt dist",
-		"serve": "grunt serve",
+		"watch": "grunt monitor",
 		"dev": "grunt dev"
 	},
 	"devDependencies": {

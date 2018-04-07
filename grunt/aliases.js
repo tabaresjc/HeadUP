@@ -15,7 +15,7 @@ module.exports = function(grunt, options) {
 				'backend-dev',
 			]
 		},
-		'serve': {
+		'monitor': {
 			description: 'Generate the assets files for Development mode (Default)',
 			tasks: [
 				'dev',

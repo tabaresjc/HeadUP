@@ -218,5 +218,5 @@ class UsersView(FlaskView):
         if kind == 'registration':
             from app.helpers.email.registration import send_registration_email
             send_registration_email(user)
-
+        flash('done!')
         return render_view(url_for('UsersView:get', id=id), redirect=True)
