@@ -10,6 +10,9 @@
 		<a href="{{ url_for('UsersView:send_email', id=user.id, kind='registration') }}" class="btn btn-primary" data-method="post">
 			Test registration email
 		</a>
+		<a href="{{ url_for('UsersView:send_email', id=user.id, kind='reset_password') }}" class="btn btn-primary" data-method="post">
+			Test reset password
+		</a>
 	</div>
 </div>
 {% endif %}

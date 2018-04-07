@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-04-07 21:52+0900\n"
+"POT-Creation-Date: 2018-04-07 23:03+0900\n"
 "PO-Revision-Date: 2017-07-15 16:34+0900\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: es\n"
@@ -30,9 +30,13 @@ msgstr "Necesita ingresar su cuenta y clave para poder continuar"
 msgid "APP_PUBLISHED_AGO"
 msgstr "Publicado hace %(ago)s"
 
-#: app/helpers/email/registration.py:13
+#: app/helpers/email/actions/registration.py:13
 msgid "EMAIL_REGISTRATION_TITLE"
 msgstr "Bienvenido a %(name)s!"
+
+#: app/helpers/email/actions/reset_password.py:13
+msgid "EMAIL_RESET_PASSWORD_TITLE"
+msgstr "Restablecer tu contraseña - %(email)s"
 
 #: app/models/users/role.py:9 app/models/users/role.py:14
 #: app/templates/admin/layout/navbar.html:11
@@ -440,7 +444,7 @@ msgid "USER_PAG_LBL"
 msgstr "usuarios"
 
 #: app/templates/admin/users/index.html:20
-#: app/templates/admin/users/show.html:57
+#: app/templates/admin/users/show.html:69
 #: app/views/admin/sessions/forms/signup.py:11
 #: app/views/admin/users/forms.py:17
 msgid "USER_NAME"
@@ -455,13 +459,13 @@ msgid "USER_POSTS_COUNT"
 msgstr "Publicaciones"
 
 #: app/templates/admin/users/index.html:23
-#: app/templates/admin/users/show.html:73 app/views/admin/users/forms.py:25
+#: app/templates/admin/users/show.html:85 app/views/admin/users/forms.py:25
 msgid "USER_ROLE"
 msgstr "Rol"
 
 #: app/templates/admin/users/index.html:47
 #: app/templates/admin/users/partials/_sidebar.html:45
-#: app/templates/admin/users/show.html:26
+#: app/templates/admin/users/show.html:38
 msgid "USER_DELETE_CONFIRMATION"
 msgstr "Esta seguro que desea eliminar al usuario '%(name)s'?"
 
@@ -469,57 +473,57 @@ msgstr "Esta seguro que desea eliminar al usuario '%(name)s'?"
 msgid "USER_PROFILE_SHOW_PAGE_TITLE"
 msgstr "Perfil de usuario | %(name)s"
 
-#: app/templates/admin/users/show.html:28
+#: app/templates/admin/users/show.html:40
 msgid "USER_REMOVE"
 msgstr "Eliminar"
 
-#: app/templates/admin/users/show.html:35
+#: app/templates/admin/users/show.html:47
 msgid "USER_EDIT"
 msgstr "Actualizar"
 
-#: app/templates/admin/users/show.html:45
+#: app/templates/admin/users/show.html:57
 msgid "USER_INFO_TITLE"
 msgstr "Información del usuario"
 
-#: app/templates/admin/users/show.html:49
+#: app/templates/admin/users/show.html:61
 msgid "USER_ID"
 msgstr "Id"
 
-#: app/templates/admin/users/show.html:53
+#: app/templates/admin/users/show.html:65
 msgid "USER_LAST_SEE"
 msgstr "Ultima visita"
 
-#: app/templates/admin/users/show.html:61
+#: app/templates/admin/users/show.html:73
 #: app/views/admin/sessions/forms/signup.py:12
 #: app/views/admin/users/forms.py:21
 msgid "USER_NICKNAME"
 msgstr "Apodo"
 
-#: app/templates/admin/users/show.html:65 app/views/admin/users/forms.py:34
+#: app/templates/admin/users/show.html:77 app/views/admin/users/forms.py:34
 msgid "USER_ADDRESS"
 msgstr "Dirección"
 
-#: app/templates/admin/users/show.html:69 app/views/admin/users/forms.py:35
+#: app/templates/admin/users/show.html:81 app/views/admin/users/forms.py:35
 msgid "USER_PHONE"
 msgstr "Teléfono"
 
-#: app/templates/admin/users/show.html:77
+#: app/templates/admin/users/show.html:89
 msgid "USER_CREATED_AT"
 msgstr "Creado"
 
-#: app/templates/admin/users/show.html:93
+#: app/templates/admin/users/show.html:105
 msgid "USER_POST_RECENT_TITLE"
 msgstr "Publicaciones recientes"
 
-#: app/templates/admin/users/show.html:100
+#: app/templates/admin/users/show.html:112
 msgid "USER_POST_PUBLISHED_AT"
 msgstr "Publicado"
 
-#: app/templates/admin/users/show.html:101
+#: app/templates/admin/users/show.html:113
 msgid "USER_POST_UPDATED_AT"
 msgstr "Actualizado"
 
-#: app/templates/admin/users/show.html:102
+#: app/templates/admin/users/show.html:114
 msgid "USER_POST_TITLE"
 msgstr "Publicación"
 
@@ -539,14 +543,14 @@ msgstr "Mostrar usuario"
 msgid "USER_DELETE"
 msgstr "Borrar usuario"
 
-#: app/templates/emails/layout/base.html:359
+#: app/templates/emails/layout/base.html:365
 #: app/templates/main/layout/footer.html:8
 #: app/templates/main/layout/header.html:32
 #: app/templates/main/site/conduct.html:2
 msgid "CODE_CONDUCT_LBL"
 msgstr "Codigo de conducta"
 
-#: app/templates/emails/layout/base.html:361
+#: app/templates/emails/layout/base.html:367
 #: app/templates/main/layout/footer.html:10
 #: app/templates/main/layout/header.html:29
 #: app/templates/main/site/policy.html:2
@@ -554,6 +558,7 @@ msgid "TOS_LBL"
 msgstr "Terminos del servicio"
 
 #: app/templates/emails/users/registration.html:9
+#: app/templates/emails/users/reset_password.html:9
 msgid "EMAIL_GREETING"
 msgstr "Hola %(name)s,"
 
@@ -563,13 +568,21 @@ msgstr ""
 "Estamos emocionados de que estés con nosotros! De inmediato ya puedes "
 "comenzar a escribir tus historias."
 
-#: app/templates/emails/users/registration.html:21
+#: app/templates/emails/users/registration.html:22
 msgid "EMAIL_REGISTRATION_ACTION_BTN"
 msgstr "Escribe tu primera historia"
 
-#: app/templates/emails/users/registration.html:31
+#: app/templates/emails/users/registration.html:33
+#: app/templates/emails/users/reset_password.html:17
 msgid "EMAIL_END_BODY"
 msgstr "<p>Gracias,<br>El equipo de %(name)s</p>"
+
+#: app/templates/emails/users/reset_password.html:11
+msgid "EMAIL_RESET_PASSWORD_DESCRIPTION"
+msgstr ""
+"Has solicitado restablecer la contraseña de tu cuenta de HeadUP con la "
+"dirección de correo electrónico %(email)s. Por favor, haz clic en este "
+"enlace para restablecer la contraseña."
 
 #: app/templates/main/index.html:2
 msgid "LATEST_TITLE"
@@ -939,3 +952,6 @@ msgstr "The story was made public"
 #: app/views/admin/users/index.py:206
 msgid "USER_POST_HIDE_OR_RESTORE_FAIL"
 msgstr "Error while processing the stamp, %(error)s"
+
+#~ msgid "EMAIL_RESET_PASSWORD_ACTION_BTN"
+#~ msgstr ""

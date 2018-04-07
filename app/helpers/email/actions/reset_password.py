@@ -2,17 +2,17 @@
 
 from flask import render_template
 from flask_babel import gettext as _
-from push import push_email
+from app.helpers.email.push import push_email
 import config
 
 
-def send_registration_email(user):
+def reset_password_email(user):
     if not user:
         return
 
-    subject = _('EMAIL_REGISTRATION_TITLE', name=config.SITE_NAME)
+    subject = _('EMAIL_RESET_PASSWORD_TITLE', email=user.email)
 
-    body = render_template('emails/users/registration.html',
+    body = render_template('emails/users/reset_password.html',
                            user=user,
                            title=subject)
 

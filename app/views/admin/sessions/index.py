@@ -130,6 +130,9 @@ def forgot_password():
 
             flash(_('SESSIONS_PASSWORD_RESET', email=email))
 
+            # send reset password email
+            send_email('reset_password', user)
+
             return render_view(url_for('sessions.forgot_password'),
                                redirect=True)
 
@@ -167,8 +170,6 @@ def reset_password():
 
             # store the user
             user.save()
-
-            # TODO: send reset password email
 
             return render_view(url_for('sessions.login'),
                                redirect=True,

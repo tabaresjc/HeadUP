@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-04-07 21:52+0900\n"
+"POT-Creation-Date: 2018-04-07 23:03+0900\n"
 "PO-Revision-Date: 2017-07-15 16:34+0900\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: fr\n"
@@ -30,9 +30,13 @@ msgstr "Vous devez vous identifier ou vous inscrire avant de continuer."
 msgid "APP_PUBLISHED_AGO"
 msgstr "Publié il y a %(ago)s"
 
-#: app/helpers/email/registration.py:13
+#: app/helpers/email/actions/registration.py:13
 msgid "EMAIL_REGISTRATION_TITLE"
 msgstr "Bienvenue sur %(name)s!"
+
+#: app/helpers/email/actions/reset_password.py:13
+msgid "EMAIL_RESET_PASSWORD_TITLE"
+msgstr "Réinitialiser votre mot de passe - %(email)s"
 
 #: app/models/users/role.py:9 app/models/users/role.py:14
 #: app/templates/admin/layout/navbar.html:11
@@ -440,7 +444,7 @@ msgid "USER_PAG_LBL"
 msgstr "utilisateurs"
 
 #: app/templates/admin/users/index.html:20
-#: app/templates/admin/users/show.html:57
+#: app/templates/admin/users/show.html:69
 #: app/views/admin/sessions/forms/signup.py:11
 #: app/views/admin/users/forms.py:17
 msgid "USER_NAME"
@@ -455,13 +459,13 @@ msgid "USER_POSTS_COUNT"
 msgstr "Publications"
 
 #: app/templates/admin/users/index.html:23
-#: app/templates/admin/users/show.html:73 app/views/admin/users/forms.py:25
+#: app/templates/admin/users/show.html:85 app/views/admin/users/forms.py:25
 msgid "USER_ROLE"
 msgstr "Role"
 
 #: app/templates/admin/users/index.html:47
 #: app/templates/admin/users/partials/_sidebar.html:45
-#: app/templates/admin/users/show.html:26
+#: app/templates/admin/users/show.html:38
 msgid "USER_DELETE_CONFIRMATION"
 msgstr "Cela va supprimer '%(name)s', Voulez-vous continuer?"
 
@@ -469,57 +473,57 @@ msgstr "Cela va supprimer '%(name)s', Voulez-vous continuer?"
 msgid "USER_PROFILE_SHOW_PAGE_TITLE"
 msgstr "Profil de l'Utilisateur | %(name)s"
 
-#: app/templates/admin/users/show.html:28
+#: app/templates/admin/users/show.html:40
 msgid "USER_REMOVE"
 msgstr "Supprimer"
 
-#: app/templates/admin/users/show.html:35
+#: app/templates/admin/users/show.html:47
 msgid "USER_EDIT"
 msgstr "Modifier"
 
-#: app/templates/admin/users/show.html:45
+#: app/templates/admin/users/show.html:57
 msgid "USER_INFO_TITLE"
 msgstr "Info Utilisateur"
 
-#: app/templates/admin/users/show.html:49
+#: app/templates/admin/users/show.html:61
 msgid "USER_ID"
 msgstr "Id"
 
-#: app/templates/admin/users/show.html:53
+#: app/templates/admin/users/show.html:65
 msgid "USER_LAST_SEE"
 msgstr "Vu dernièrement"
 
-#: app/templates/admin/users/show.html:61
+#: app/templates/admin/users/show.html:73
 #: app/views/admin/sessions/forms/signup.py:12
 #: app/views/admin/users/forms.py:21
 msgid "USER_NICKNAME"
 msgstr "Surnom"
 
-#: app/templates/admin/users/show.html:65 app/views/admin/users/forms.py:34
+#: app/templates/admin/users/show.html:77 app/views/admin/users/forms.py:34
 msgid "USER_ADDRESS"
 msgstr "Adresse"
 
-#: app/templates/admin/users/show.html:69 app/views/admin/users/forms.py:35
+#: app/templates/admin/users/show.html:81 app/views/admin/users/forms.py:35
 msgid "USER_PHONE"
 msgstr "Téléphone"
 
-#: app/templates/admin/users/show.html:77
+#: app/templates/admin/users/show.html:89
 msgid "USER_CREATED_AT"
 msgstr "Créée à"
 
-#: app/templates/admin/users/show.html:93
+#: app/templates/admin/users/show.html:105
 msgid "USER_POST_RECENT_TITLE"
 msgstr "Publications récentes"
 
-#: app/templates/admin/users/show.html:100
+#: app/templates/admin/users/show.html:112
 msgid "USER_POST_PUBLISHED_AT"
 msgstr "Postée à"
 
-#: app/templates/admin/users/show.html:101
+#: app/templates/admin/users/show.html:113
 msgid "USER_POST_UPDATED_AT"
 msgstr "Mise à jour à"
 
-#: app/templates/admin/users/show.html:102
+#: app/templates/admin/users/show.html:114
 msgid "USER_POST_TITLE"
 msgstr "Publication"
 
@@ -539,14 +543,14 @@ msgstr "Montrer Utilisateur"
 msgid "USER_DELETE"
 msgstr "Supprimer Utilisateur"
 
-#: app/templates/emails/layout/base.html:359
+#: app/templates/emails/layout/base.html:365
 #: app/templates/main/layout/footer.html:8
 #: app/templates/main/layout/header.html:32
 #: app/templates/main/site/conduct.html:2
 msgid "CODE_CONDUCT_LBL"
 msgstr "Code de conduite"
 
-#: app/templates/emails/layout/base.html:361
+#: app/templates/emails/layout/base.html:367
 #: app/templates/main/layout/footer.html:10
 #: app/templates/main/layout/header.html:29
 #: app/templates/main/site/policy.html:2
@@ -554,6 +558,7 @@ msgid "TOS_LBL"
 msgstr "Conditions générales d'utilisation"
 
 #: app/templates/emails/users/registration.html:9
+#: app/templates/emails/users/reset_password.html:9
 msgid "EMAIL_GREETING"
 msgstr "Bonjour %(name)s,"
 
@@ -563,13 +568,21 @@ msgstr ""
 "Nous sommes ravis de te compter parmi nous ! Tu peux désormais partager "
 "ton enthousiasme en écrivant ton histoire."
 
-#: app/templates/emails/users/registration.html:21
+#: app/templates/emails/users/registration.html:22
 msgid "EMAIL_REGISTRATION_ACTION_BTN"
 msgstr "Ecris ta première histoire"
 
-#: app/templates/emails/users/registration.html:31
+#: app/templates/emails/users/registration.html:33
+#: app/templates/emails/users/reset_password.html:17
 msgid "EMAIL_END_BODY"
 msgstr "<p>Merci,<br>L'équipe %(name)s</p>"
+
+#: app/templates/emails/users/reset_password.html:11
+msgid "EMAIL_RESET_PASSWORD_DESCRIPTION"
+msgstr ""
+"Vous avez demandé à réinitialiser le mot de passe pour votre compte HeadUP"
+" avec l'adresse e-mail (%(email)s). Veuillez cliquer sur ce lien pour "
+"réinitialiser votre mot de passe."
 
 #: app/templates/main/index.html:2
 msgid "LATEST_TITLE"
@@ -930,3 +943,6 @@ msgstr "The story was made public"
 #: app/views/admin/users/index.py:206
 msgid "USER_POST_HIDE_OR_RESTORE_FAIL"
 msgstr "Error while processing the stamp, %(error)s"
+
+#~ msgid "EMAIL_RESET_PASSWORD_ACTION_BTN"
+#~ msgstr ""
