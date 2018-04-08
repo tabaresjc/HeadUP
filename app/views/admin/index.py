@@ -20,3 +20,10 @@ def dashboard(page=1):
                            page=page,
                            limit=limit,
                            total=total)
+
+
+@app.app.route('/mypage/settings')
+@login_required
+def user_settings():
+
+    return redirect(url_for('UsersView:put', id=current_user.id))

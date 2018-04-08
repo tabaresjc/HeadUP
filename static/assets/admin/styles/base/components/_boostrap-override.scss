@@ -224,7 +224,15 @@ textarea::-webkit-input-placeholder {
 .navbar-inverse .navbar-brand {
 	color: #ffffff;
 	padding: 11px 20px;
+
+	@media (max-width: $screen-sm-max) {
+		padding: 16px 0 0 0;
+		height: 52px;
+		line-height: 1;
+	}
 }
+
+
 /* navbar links */
 .navbar-inverse .nav > li > a {
 	padding: 13px 15px 8px;

@@ -479,7 +479,7 @@ msgstr "Eliminar"
 
 #: app/templates/admin/users/show.html:47
 msgid "USER_EDIT"
-msgstr "Actualizar"
+msgstr "Ajustes"
 
 #: app/templates/admin/users/show.html:57
 msgid "USER_INFO_TITLE"

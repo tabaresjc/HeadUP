@@ -1,4 +1,4 @@
-<div class="container-sidebar col-xs-12 col-sm-4 col-md-4">
+<div class="container-sidebar">
 	{% if current_user and current_user.is_authenticated -%}
 	<div class="widget-author  boxed  push-down-30">
 		<div class="widget-author__image-container">
@@ -10,7 +10,23 @@
 		<div class="row">
 			<div class="col-xs-10  col-xs-offset-1">
 				<h4>{{ current_user.name }}</h4>
-				<p>{{ current_user.description }}</p>
+				{% if current_user.description %}<p>{{ current_user.description }}</p>{% endif %}
+			</div>
+			<div class="col-xs-12 col-sm-12 col-md-12">
+				<div class="actions">
+					<a href="{{ url_for('PostsView:index') }}" rel="nofollow" class="btn  btn-primary btn-primary--transparent btn-lg">
+						<span class="glyphicon glyphicon-th-list"></span>
+						<span>{{ _('POST_LIST') }}</span>
+					</a>
+					<a href="{{ url_for('UsersView:get', id=current_user.id) }}" rel="nofollow" class="btn  btn-primary btn-primary--transparent btn-lg">
+						<span class="glyphicon glyphicon-user"></span>
+						<span>{{ _('APP_PROFILE') }}</span>
+					</a>
+					<a href="{{ url_for('UsersView:put', id=current_user.id) }}" rel="nofollow" class="btn  btn-danger btn-danger--transparent btn-lg">
+						<span class="glyphicon glyphicon-user"></span>
+						<span>{{ _('USER_EDIT') }}</span>
+					</a>
+				</div>
 			</div>
 		</div>
 	</div>

@@ -13,10 +13,15 @@
 				<div><strong>{{ _('USER_EMAIL')}}</strong><br/>{{ current_user.email  }}</div>
 				<div><strong>{{ _('USER_LAST_ACCESS')}}</strong><br/>{{ current_user.last_seen|datetimeformat  }}</div>
 			</div>
-			<div class="panel-footer">
-				<div class="div btn-group">
-					<a class="btn btn-success" href="{{ url_for('UsersView:get',id=current_user.id) }}" title="View user's profile">
+			<div class="panel-footer text-center">
+				<div class="btn-group">
+					<a class="btn btn-success" href="{{ url_for('UsersView:get', id=current_user.id) }}">
 						<i class="glyphicon glyphicon-user"></i>
+						<span>{{ _('APP_PROFILE') }}</span>
+					</a>
+					<a class="btn btn-danger" href="{{ url_for('UsersView:put', id=current_user.id) }}">
+						<i class="glyphicon glyphicon-cog"></i>
+						<span>{{ _('USER_EDIT') }}</span>
 					</a>
 				</div>
 			</div>

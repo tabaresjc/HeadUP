@@ -4,8 +4,10 @@
 	.container-sidebar {
 		@media (min-width: $screen-sm-min) {
 			position: fixed;
-			padding-left: 15px;
-    		padding-right: 60px;
+			width: 360px;
+			padding: 0;
+			margin-left: 15px;
+
 		}
 	}
 }

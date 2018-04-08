@@ -31,28 +31,49 @@
 					<li class="visible-xs-block visible-sm-block {% if request.endpoint=='code_of_conduct' %}active{% endif %}">
 						<a href="{{ url_for('code_of_conduct') }}">{% trans%}CODE_CONDUCT_LBL{% endtrans %}</a>
 					</li>
+
+					<li role="separator" class="visible-xs-block divider"></li>
+
+					{% if current_user and current_user.is_authenticated -%}
+					<li class="visible-xs-block">
+						<a href="{{ url_for('UsersView:get', id=current_user.id) }}" rel="nofollow">
+							<span class="glyphicon glyphicon-user"></span>
+							<span>{{ _('APP_PROFILE') }}</span>
+						</a>
+					</li>
+					<li class="visible-xs-block">
+						<a href="{{ url_for('sessions.logout') }}" data-method="post" rel="nofollow">
+							<span class="glyphicon glyphicon-log-out"></span>
+							<span>{{ _('APP_SIGN_OUT') }}</span>
+						</a>
+					</li>
+					{%- else %}
+					<li class="visible-xs-block">
+						<a href="{{ url_for('sessions.login') }}" rel="nofollow">
+							<span class="glyphicon glyphicon-log-in"></span>
+							<span>{{ _('LOGIN_BTN') }}</span>
+						</a>
+					</li>
+					<li class="visible-xs-block">
+						<a href="{{ url_for('sessions.signup') }}" rel="nofollow">
+							<span class="glyphicon glyphicon-plus"></span>
+							<span>{{ _('REGISTER_BTN') }}</span>
+						</a>
+					</li>
+					{%- endif %}
+
 					<li role="separator" class="visible-xs-block visible-sm-block divider"></li>
-					{% if language != 'en' %}
-					<li class="visible-xs-block visible-sm-block ">
-						<a href="http://{{ config.MAIN_DOMAIN }}{{ request.path }}">
-							<img src="/static/images/flags/en.svg" width="16" height="16"> English
-						</a>
-					</li>
-					{% endif %}
-					{% if language != 'fr' %}
-					<li class="visible-xs-block visible-sm-block ">
-						<a href="http://fr.{{ config.MAIN_DOMAIN }}{{ request.path }}">
-							<img src="/static/images/flags/fr.svg" width="16" height="16"> Français
-						</a>
-					</li>
-					{% endif %}
-					{% if language != 'es' %}
-					<li class="visible-xs-block visible-sm-block ">
-						<a href="http://es.{{ config.MAIN_DOMAIN }}{{ request.path }}">
-							<img src="/static/images/flags/es.svg" width="16" height="16"> Español
-						</a>
-					</li>
-					{% endif %}
+
+					{% for key, value in config.LANGUAGES.iteritems() %}
+						{% if language != key %}
+						<li class="visible-xs-block visible-sm-block nav-item--image">
+							<a href="//{{ '%s.' % key if key != 'en' else '.'  }}{{ config.MAIN_DOMAIN }}{{ request.path }}">
+								<img src="/static/images/flags/{{ key }}.svg">
+								<span>{{ value }}</span>
+							</a>
+						</li>
+						{% endif %}
+					{% endfor %}
 				</ul>
 			</div>
 		</nav>
@@ -72,26 +93,19 @@
 				{%- endif %}
 			</div>
 			<div class="custom_menu">
-				<a href="#" class="custom_menu__container">
-					<span class="glyphicon glyphicon-heart"></span>
+				<a href="https://www.facebook.com/headupspace/" rel="nofollow" target="_blank" class="custom_menu__container">
+					<img src="/static/images/sns/facebook.svg" class="img-rounded" width="32" height="32">
 				</a>
-				<ul class="custom_menu__dropdown">
-					<li>
-						<a href="https://www.facebook.com/headupspace/" target="_blank" class="custom_menu__container">
-							<img src="/static/images/sns/facebook.svg" class="img-rounded" width="32" height="32">
-						</a>
-					</li>
-					<li>
-						<a href="https://www.pinterest.com/headupspace/" target="_blank" class="custom_menu__container">
-							<img src="/static/images/sns/pinterest.svg" class="img-rounded" width="32" height="32">
-						</a>
-					</li>
-					<li>
-						<a href="https://www.youtube.com/channel/UCI7kUURMQab8RzK3OoJeasQ" target="_blank" class="custom_menu__container">
-							<img src="/static/images/sns/youtube.svg" class="img-rounded" width="32" height="32">
-						</a>
-					</li>
-				</ul>
+			</div>
+			<div class="custom_menu">
+				<a href="https://www.pinterest.com/headupspace/" rel="nofollow" target="_blank" class="custom_menu__container">
+					<img src="/static/images/sns/pinterest.svg" class="img-rounded" width="32" height="32">
+				</a>
+			</div>
+			<div class="custom_menu">
+				<a href="https://www.youtube.com/channel/UCI7kUURMQab8RzK3OoJeasQ" rel="nofollow" target="_blank" class="custom_menu__container">
+					<img src="/static/images/sns/youtube.svg" class="img-rounded" width="32" height="32">
+				</a>
 			</div>
 			<div class="custom_menu">
 				<a href="javascript:;" class="custom_menu__container">
