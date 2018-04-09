@@ -22,3 +22,7 @@ def internal_error_404(error):
 @app.app.errorhandler(500)
 def internal_error_500(error):
     return render_template('main/common/500.html', title=error), 500
+
+@app.app.errorhandler(Exception)
+def internal_error_500(error):
+    return render_template('main/common/500.html', title=error), 500

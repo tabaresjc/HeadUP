@@ -5,6 +5,7 @@ import flask
 import jinja2
 import os
 import config
+import logging
 
 app = Flask(__name__)
 
@@ -14,20 +15,18 @@ app = Flask(__name__)
 app.config.from_object('config')
 
 # -------------------------------------------------------------------------
-# Load the app's configuration
-# -------------------------------------------------------------------------
-import logging  # noqa
-from logging.handlers import TimedRotatingFileHandler  # noqa
-log_handler = TimedRotatingFileHandler(config.LOG_PATH, 'midnight', 1)
-log_handler.suffix = '%Y-%m-%d'
-log_handler.setLevel(logging.DEBUG if config.DEBUG else logging.INFO)
-app.logger.addHandler(log_handler)
-
-# -------------------------------------------------------------------------
 # Load celery
 # -------------------------------------------------------------------------
 from celery import Celery  # noqa
 mq = Celery('tasks', broker=config.BROKER_URL)
+
+# -------------------------------------------------------------------------
+# Load the app's configuration
+# -------------------------------------------------------------------------
+from app.helpers import LogHelper  # noqa
+cache = LogHelper(app)
+
+app.logger.info('starting application...')
 
 # -------------------------------------------------------------------------
 # Database Configuration
