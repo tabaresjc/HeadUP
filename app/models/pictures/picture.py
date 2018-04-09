@@ -3,13 +3,14 @@
 from flask_login import current_user
 from flask import url_for
 from app import sa
+from app.models import Base
 from app.helpers import ModelHelper, MutableObject
 from config import UPLOAD_MEDIA_PICTURES_PATH
 import datetime
 import os
 
 
-class Picture(sa.Model, ModelHelper):
+class Picture(Base, sa.Model, ModelHelper):
 
     __tablename__ = 'pictures'
 

@@ -2,12 +2,13 @@
 
 from flask_login import current_user
 from app import sa
+from app.models import Base
 from app.helpers import ModelHelper, MutableObject
 import datetime
 import base64
 
 
-class Post(sa.Model, ModelHelper):
+class Post(Base, sa.Model, ModelHelper):
 
     __tablename__ = 'posts'
 
@@ -46,6 +47,8 @@ class Post(sa.Model, ModelHelper):
     attr = sa.Column(MutableObject.get_column())
     created_at = sa.Column(sa.DateTime, default=datetime.datetime.utcnow)
     modified_at = sa.Column(sa.DateTime, default=datetime.datetime.utcnow)
+
+    # comments = sa.relationship('Comment', backref='post', lazy='dynamic')
 
     def __repr__(self):  # pragma: no cover
         return '<Post %r>' % (self.title)

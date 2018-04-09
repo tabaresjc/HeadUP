@@ -2,11 +2,12 @@
 
 from flask_login import current_user
 from app import sa
+from app.models import Base
 from app.helpers import ModelHelper, MutableObject
 import datetime
 
 
-class Category(sa.Model, ModelHelper):
+class Category(Base, sa.Model, ModelHelper):
 
     __tablename__ = 'categories'
 

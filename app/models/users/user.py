@@ -3,13 +3,14 @@
 from flask_login import UserMixin, current_user
 from werkzeug.security import generate_password_hash, check_password_hash
 from app import sa
+from app.models import Base
 from role import Role
 from app.helpers import ModelHelper, MutableObject
 import datetime
 import re
 
 
-class User(sa.Model, ModelHelper, UserMixin):
+class User(Base, sa.Model, ModelHelper, UserMixin):
 
     __tablename__ = 'users'
 

@@ -16,13 +16,14 @@ fileConfig(config.config_file_name)
 # for 'autogenerate' support
 # from myapp import mymodel
 # target_metadata = mymodel.Base.metadata
-target_metadata = None
+from app.models import Base
+target_metadata = Base.metadata
 
 # other values from the config, defined by the needs of env.py,
 # can be acquired:
 # my_important_option = config.get_main_option("my_important_option")
 # ... etc.
-DATABASE_URL = os.environ.get('DATABASE_URL', 'mysql://user:pwd@host/database')
+DATABASE_URL = os.environ.get('DATABASE_URL')
 config.set_main_option('sqlalchemy.url', DATABASE_URL)
 
 
@@ -39,8 +40,9 @@ def run_migrations_offline():
 
     """
     url = config.get_main_option("sqlalchemy.url")
-    context.configure(
-        url=url, target_metadata=target_metadata, literal_binds=True)
+    context.configure(url=url,
+                      target_metadata=target_metadata,
+                      literal_binds=True)
 
     with context.begin_transaction():
         context.run_migrations()
@@ -53,8 +55,11 @@ def run_migrations_online():
     and associate a connection with the context.
 
     """
+    alembic_config = config.get_section(config.config_ini_section)
+    alembic_config['sqlalchemy.url'] = DATABASE_URL
+
     connectable = engine_from_config(
-        config.get_section(config.config_ini_section),
+        alembic_config,
         prefix='sqlalchemy.',
         poolclass=pool.NullPool)
 

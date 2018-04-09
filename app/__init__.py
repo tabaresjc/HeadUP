@@ -21,36 +21,10 @@ from celery import Celery  # noqa
 mq = Celery('tasks', broker=config.BROKER_URL)
 
 # -------------------------------------------------------------------------
-# Load the app's configuration
-# -------------------------------------------------------------------------
-from app.helpers import LogHelper  # noqa
-cache = LogHelper(app)
-
-app.logger.info('starting application...')
-
-# -------------------------------------------------------------------------
 # Database Configuration
 # -------------------------------------------------------------------------
 from flask_sqlalchemy import SQLAlchemy  # noqa
 sa = SQLAlchemy(app)
-
-# -------------------------------------------------------------------------
-# Cache Configuration
-# -------------------------------------------------------------------------
-from app.helpers import CacheHelper  # noqa
-cache = CacheHelper(app, config=config.CACHE_CONFIG)
-
-# -------------------------------------------------------------------------
-# Load the CSRF Protection
-# -------------------------------------------------------------------------
-from flask_wtf.csrf import CSRFProtect  # noqa
-csrf = CSRFProtect(app)
-
-# -------------------------------------------------------------------------
-# Load the Babel extension for Internationalization
-# -------------------------------------------------------------------------
-from flask_babel import Babel  # noqa
-babel = Babel(app)
 
 # -------------------------------------------------------------------------
 # Widget Configuration
@@ -69,6 +43,30 @@ login_manager = LoginManager(app)
 # -------------------------------------------------------------------------
 from flask_mail import Mail  # noqa
 mail = Mail(app)
+
+# -------------------------------------------------------------------------
+# Load the CSRF Protection
+# -------------------------------------------------------------------------
+from flask_wtf.csrf import CSRFProtect  # noqa
+csrf = CSRFProtect(app)
+
+# -------------------------------------------------------------------------
+# Load the Babel extension for Internationalization
+# -------------------------------------------------------------------------
+from flask_babel import Babel  # noqa
+babel = Babel(app)
+
+# -------------------------------------------------------------------------
+# Load the app's configuration
+# -------------------------------------------------------------------------
+from app.helpers import LogHelper  # noqa
+cache = LogHelper(app)
+
+# -------------------------------------------------------------------------
+# Cache Configuration
+# -------------------------------------------------------------------------
+from app.helpers import CacheHelper  # noqa
+cache = CacheHelper(app, config=config.CACHE_CONFIG)
 
 # -------------------------------------------------------------------------
 # Register modules of the application
