@@ -13,15 +13,16 @@
 		},
 		{
 			'name': _('USER_EDIT'),
-			'url': 'user_settings',
+			'url': '',
+			'url_solved': url_for('UsersView:put', id=current_user.id),
 			'icon': 'glyphicon glyphicon-cog',
-			'pattern': 'user_settings'
+			'pattern': 'UsersView:put'
 		},
 		{
 			'name': _('POST_LIST'),
 			'url': '',
 			'icon': 'glyphicon glyphicon-edit',
-			'pattern': 'PostsView',
+			'pattern': 'PostsView:index PostsView:draft_list PostsView:post PostsView:put',
 			'sub_menu': {
 				'index': {
 					'name': _('POST_LIST'),
@@ -42,14 +43,14 @@
 			'require_admin': True,
 			'url': 'CategoriesView:index',
 			'icon': 'glyphicon glyphicon-bookmark',
-			'pattern': 'CategoriesView'
+			'pattern': 'CategoriesView:index CategoriesView:post CategoriesView:put CategoriesView:transfer_post'
 		},
 		{
 			'name': _('USER_LIST'),
 			'require_admin': True,
 			'url': '',
 			'icon': 'glyphicon glyphicon-user',
-			'pattern': 'UsersView',
+			'pattern': 'UsersView:index UsersView:post UsersView:get',
 			'sub_menu': {
 				'index': {
 					'name': _('USER_LIST'),
@@ -65,15 +66,9 @@
 	<div id="sidebar-nav">
 		<ul id="dashboard-menu">
 			{% for item in navigation_bar -%}
-			{% set is_active = request.endpoint.startswith(item.pattern) %}
+			{% set is_active = request.endpoint in item.pattern %}
 			{% if not item.require_admin or (current_user.is_admin and item.require_admin) -%}
 			<li class="element {% if is_active  %}active{% endif %}">
-				{% if is_active  %}
-				<div class="pointer">
-					<div class="arrow"></div>
-					<div class="arrow_border"></div>
-				</div>
-				{% endif %}
 				{% if 'sub_menu' in item  %}
 				<a href="javascript:void(0);" class="dropdown-toggle {% if is_active  %}current{% endif %}">
 					<i class="{{ item['icon'] }}"></i>
@@ -88,7 +83,7 @@
 					{% endfor %}
 				</ul>
 				{% else %}
-				<a href="{{ url_for(item['url']) }}" >
+				<a href="{{ item.url_solved if item.get('url_solved') else url_for(item.url) }}" >
 					<i class="{{ item['icon'] }}"></i>
 					<span>{{ item['name'] }}</span>
 				</a>

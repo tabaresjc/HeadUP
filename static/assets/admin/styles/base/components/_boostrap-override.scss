@@ -111,12 +111,7 @@ input[type="password"]:focus,
 input[type="text"]:focus,
 textarea:focus {
 	border-color: #A2CEF0;
-	-webkit-box-shadow: inset 0 0 1px rgba(0, 0, 0, 0.075), 0 0 4px rgba(82, 168, 236, 0.6);
-	-moz-box-shadow: inset 0 0 1px rgba(0, 0, 0, 0.075), 0 0 4px rgba(82, 168, 236, 0.6);
 	box-shadow: inset 0 0 1px rgba(0, 0, 0, 0.075), 0 0 4px rgba(82, 168, 236, 0.6);
-	/*-webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 4px rgba(82, 168, 236, 0.6);
-	   -moz-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 4px rgba(82, 168, 236, 0.6);
-			box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 4px rgba(82, 168, 236, 0.6);*/
 }
 
 input[type="reset"] {}
@@ -194,21 +189,7 @@ textarea::-webkit-input-placeholder {
 	border-radius: 0;
 	border-bottom: 1px solid #191e23;
 	background: #2c3742;
-	/* Old browsers */
-	background: -moz-linear-gradient(top, #2c3742 0%, #28303a 100%);
-	/* FF3.6+ */
-	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#2c3742), color-stop(100%,#28303a));
-	/* Chrome,Safari4+ */
-	background: -webkit-linear-gradient(top, #2c3742 0%,#28303a 100%);
-	/* Chrome10+,Safari5.1+ */
-	background: -o-linear-gradient(top, #2c3742 0%,#28303a 100%);
-	/* Opera 11.10+ */
-	background: -ms-linear-gradient(top, #2c3742 0%,#28303a 100%);
-	/* IE10+ */
 	background: linear-gradient(to bottom, #2c3742 0%,#28303a 100%);
-	/* W3C */
-	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr= '#2c3742', endColorstr='#28303a',GradientType=0 );
-	/* IE6-9 */
 }
 /* navbar-nav*/
 .navbar-inverse .navbar-nav {
@@ -219,6 +200,7 @@ textarea::-webkit-input-placeholder {
 	float: left;
 	margin-top: 10px;
 	margin-left: 15px;
+	border: none;
 }
 /* navbar brand*/
 .navbar-inverse .navbar-brand {
@@ -236,17 +218,11 @@ textarea::-webkit-input-placeholder {
 /* navbar links */
 .navbar-inverse .nav > li > a {
 	padding: 13px 15px 8px;
-	border-left: 1px solid #101417;
-	color: rgb(214, 214, 214);
+	border-left: 1px solid darken($main-bg-color, 20%);
+	color: $main-color;
 	outline: 0;
 	height: 46px;
 	transition: background 0.1s linear;
-	-moz-transition: background 0.1s linear;
-	/* Firefox 4 */
-	-webkit-transition: background 0.1s linear;
-	/* Safari and Chrome */
-	-o-transition: background 0.1s linear;
-	/* Opera */
 }
 
 .navbar-inverse .nav > li > a:hover {

@@ -38,6 +38,9 @@ class UserForm(FlaskForm):
     def __init__(self, user=None, *args, **kwargs):
         super(UserForm, self).__init__(*args, **kwargs)
 
+        if not user:
+            self.timezone.data = config.DEFAULT_TIMEZONE
+
         if not self.is_submitted() and user:
             self.email.data = user.email
             self.name.data = user.name
