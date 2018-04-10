@@ -58,13 +58,13 @@ class Feed:
     @classmethod
     def posts(cls, page=1, limit=10):
         from app.models import Post
-        query = Post.query.filter_by(status=Post.POST_PUBLIC)
+        order = app.sa.text('posts.created_at DESC')
+        query = Post.query.filter_by(status=Post.POST_PUBLIC).order_by(order)
         count = query.count()
         records = []
         if count:
-            order = app.sa.text('created_at DESC')
             offset = (page - 1) * limit
-            records = query.order_by(order).limit(limit).offset(offset)
+            records = query.limit(limit).offset(offset)
         return records, count
 
     @classmethod
