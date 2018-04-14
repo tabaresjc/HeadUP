@@ -14,8 +14,13 @@ class User(Base, sa.Model, ModelHelper, UserMixin):
 
     __tablename__ = 'users'
 
-    __json_meta__ = ['id', 'USER_EMAIL', 'nickname',
-                     'is_admin', 'profile_picture_url']
+    __json_meta__ = [
+        'id',
+        'email',
+        'nickname',
+        'is_admin',
+        'profile_picture_url'
+    ]
 
     id = sa.Column(sa.Integer, primary_key=True)
 
@@ -30,6 +35,7 @@ class User(Base, sa.Model, ModelHelper, UserMixin):
     modified_at = sa.Column(sa.DateTime, default=datetime.datetime.utcnow)
 
     posts = sa.relationship('Post', backref='user', lazy='dynamic')
+    comments = sa.relationship('Comment', backref='user', lazy='dynamic')
 
     def __repr__(self):  # pragma: no cover
         return u'<User %s>' % (self.id)

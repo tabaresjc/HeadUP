@@ -35,5 +35,5 @@ require([
 	'jqueryVimeoEmbed',
 	'notification',
 	'plugins/miscellaneous',
-	'plugins/upvote'
+	'plugins/comment'
 ]);

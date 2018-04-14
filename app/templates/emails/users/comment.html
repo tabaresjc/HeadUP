@@ -1,0 +1,41 @@
+{% extends "emails/layout/base.html" %}
+
+{% set comment_url = url_for('stamp.show', id=post.id, _external=True, _anchor='comment-%s' % comment.id) %}
+
+{% block content %}
+<tr>
+	<td class="wrapper">
+		<table border="0" cellpadding="0" cellspacing="0">
+			<tr>
+				<td>
+					<p>{{ _('EMAIL_GREETING', name=user.name) }}</p>
+					<br/>
+					<p><strong>{{ _('EMAIL_COMMENT_DESCRIPTION', name=comment.user.name, title=post.title) }}</strong></p>
+					<br/>
+					<table border="0" cellpadding="0" cellspacing="0" class="btn btn-primary">
+						<tbody>
+							<tr>
+								<td align="center">
+									<table border="0" cellpadding="0" cellspacing="0">
+										<tbody>
+											<tr>
+												<td>
+													<a href="{{ comment_url }}" target="_blank">
+														{{ _('EMAIL_COMMENT_ACTION_BTN') }}
+													</a>
+												</td>
+											</tr>
+										</tbody>
+									</table>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+					<br/>
+					{{ _('EMAIL_END_BODY', name=config.SITE_NAME) | safe }}
+				</td>
+			</tr>
+		</table>
+	</td>
+</tr>
+{% endblock %}

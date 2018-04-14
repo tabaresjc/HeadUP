@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-04-07 23:03+0900\n"
+"POT-Creation-Date: 2018-04-22 19:47+0900\n"
 "PO-Revision-Date: 2017-07-15 16:34+0900\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: es\n"
@@ -16,7 +16,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Generated-By: Babel 2.5.1\n"
+"Generated-By: Babel 2.5.3\n"
 
 #: app/configuration/session.py:10
 msgid "APP_LOGIN_WARNING_MESSAGE"
@@ -29,6 +29,14 @@ msgstr "Necesita ingresar su cuenta y clave para poder continuar"
 #: app/filters/formats.py:23
 msgid "APP_PUBLISHED_AGO"
 msgstr "Publicado hace %(ago)s"
+
+#: app/helpers/email/actions/comment.py:16
+msgid "EMAIL_COMMENT_TITLE"
+msgstr "%(name)s ha comentado en tu historia \"%(title)s\""
+
+#: app/helpers/email/actions/comment.py:36
+msgid "EMAIL_REPLY_COMMENT_TITLE"
+msgstr "%(name)s ha respondido tu comentario \"%(title)s\""
 
 #: app/helpers/email/actions/registration.py:13
 msgid "EMAIL_REGISTRATION_TITLE"
@@ -64,8 +72,20 @@ msgstr "Correo electronico"
 msgid "USER_LAST_ACCESS"
 msgstr "Último acceso "
 
-#: app/templates/admin/index.html:27 app/templates/admin/index.html:28
-#: app/templates/admin/index.html:32 app/templates/admin/posts/drafts.html:10
+#: app/templates/admin/index.html:20 app/templates/admin/layout/navbar.html:28
+#: app/templates/main/common/_sidebar_user.html:29
+#: app/templates/main/layout/header.html:36
+msgid "APP_PROFILE"
+msgstr "Perfil"
+
+#: app/templates/admin/index.html:24 app/templates/admin/layout/sidebar.html:15
+#: app/templates/admin/users/show.html:47
+#: app/templates/main/common/_sidebar_user.html:35
+msgid "USER_EDIT"
+msgstr "Ajustes"
+
+#: app/templates/admin/index.html:32 app/templates/admin/index.html:33
+#: app/templates/admin/index.html:37 app/templates/admin/posts/drafts.html:10
 #: app/templates/admin/posts/drafts.html:19
 #: app/templates/admin/posts/index.html:10
 #: app/templates/admin/posts/index.html:19
@@ -75,20 +95,21 @@ msgstr "Último acceso "
 msgid "POSTS_PAG_LBL"
 msgstr "publicaciones"
 
-#: app/templates/admin/index.html:36 app/templates/admin/posts/drafts.html:23
+#: app/templates/admin/index.html:41 app/templates/admin/posts/drafts.html:23
 #: app/templates/admin/posts/index.html:23
 msgid "WELCOME_MESSAGE_LBL"
 msgstr ""
 "Usted no tiene ninguna publicación! <br/>Que espera, participe y escriba "
 "su primera historia!!"
 
-#: app/templates/admin/index.html:49 app/templates/admin/layout/navbar.html:24
-#: app/templates/admin/layout/sidebar.html:15
-#: app/templates/admin/layout/sidebar.html:21
+#: app/templates/admin/index.html:54 app/templates/admin/layout/navbar.html:24
+#: app/templates/admin/layout/sidebar.html:22
+#: app/templates/admin/layout/sidebar.html:28
 #: app/templates/admin/posts/index.html:7
 #: app/templates/admin/posts/partials/_sidebar.html:9
+#: app/templates/main/common/_sidebar_user.html:23
 msgid "POST_LIST"
-msgstr "Publicaciones"
+msgstr "Historias"
 
 #: app/templates/admin/categories/add.html:2
 #: app/templates/admin/categories/partials/_sidebar.html:11
@@ -105,7 +126,7 @@ msgstr "Categorías | %(page)s"
 
 #: app/templates/admin/categories/index.html:7
 #: app/templates/admin/categories/partials/_sidebar.html:5
-#: app/templates/admin/layout/sidebar.html:35
+#: app/templates/admin/layout/sidebar.html:42
 msgid "CATEGORY_LIST"
 msgstr "Categorías"
 
@@ -131,8 +152,8 @@ msgid "CATEGORY_DESC"
 msgstr "Descripción"
 
 #: app/templates/admin/categories/index.html:20
-#: app/templates/admin/layout/sidebar.html:42
 #: app/templates/admin/layout/sidebar.html:49
+#: app/templates/admin/layout/sidebar.html:56
 #: app/templates/admin/users/index.html:9
 #: app/templates/admin/users/partials/_sidebar.html:29
 msgid "USER_LIST"
@@ -209,31 +230,28 @@ msgid "APP_YOUR_ACCOUNT"
 msgstr "Tu cuenta"
 
 #: app/templates/admin/layout/navbar.html:25
-#: app/templates/admin/layout/sidebar.html:25
+#: app/templates/admin/layout/sidebar.html:32
 #: app/templates/admin/posts/partials/_sidebar.html:14
 msgid "POST_DRAFT_LIST"
 msgstr "Borradores"
 
 #: app/templates/admin/layout/navbar.html:26
-#: app/templates/admin/layout/sidebar.html:29
+#: app/templates/admin/layout/sidebar.html:36
 #: app/templates/admin/posts/edit.html:2
 #: app/templates/admin/posts/partials/_sidebar.html:4
-#: app/templates/main/common/_sidebar_user.html:45
+#: app/templates/main/common/_sidebar_user.html:70
 #: app/templates/main/layout/error-base.html:32
 msgid "POST_CREATE"
 msgstr "Nueva historia"
-
-#: app/templates/admin/layout/navbar.html:28
-msgid "APP_PROFILE"
-msgstr "Perfil"
 
 #: app/templates/admin/layout/navbar.html:32
 msgid "APP_TOP"
 msgstr "Top"
 
 #: app/templates/admin/layout/navbar.html:37
-#: app/templates/admin/layout/sidebar.html:96
-#: app/templates/main/layout/header.html:62
+#: app/templates/admin/layout/sidebar.html:97
+#: app/templates/main/layout/header.html:42
+#: app/templates/main/layout/header.html:87
 msgid "APP_SIGN_OUT"
 msgstr "Salir"
 
@@ -248,7 +266,7 @@ msgstr "Home"
 msgid "APP_MYPAGE"
 msgstr "Mi Pagina"
 
-#: app/templates/admin/layout/sidebar.html:53
+#: app/templates/admin/layout/sidebar.html:60
 #: app/templates/admin/users/add.html:2 app/templates/admin/users/add.html:11
 #: app/templates/admin/users/partials/_sidebar.html:55
 msgid "USER_CREATE"
@@ -355,9 +373,10 @@ msgstr "Ya tienes una cuenta?"
 #: app/templates/admin/sessions/reset_password.html:23
 #: app/templates/admin/sessions/signin.html:22
 #: app/templates/admin/sessions/signup.html:38
-#: app/templates/main/common/_sidebar_user.html:24
-#: app/templates/main/layout/header.html:69
-#: app/templates/main/site/home.html:21
+#: app/templates/main/common/_sidebar_user.html:49
+#: app/templates/main/layout/header.html:49
+#: app/templates/main/layout/header.html:94
+#: app/templates/main/site/home.html:21 app/templates/main/stamp/show.html:112
 msgid "LOGIN_BTN"
 msgstr "Iniciar sesión"
 
@@ -396,9 +415,10 @@ msgstr "No tienes cuenta?"
 
 #: app/templates/admin/sessions/signin.html:29
 #: app/templates/admin/sessions/signup.html:31
-#: app/templates/main/common/_sidebar_user.html:27
-#: app/templates/main/layout/header.html:66
-#: app/templates/main/site/home.html:22
+#: app/templates/main/common/_sidebar_user.html:52
+#: app/templates/main/layout/header.html:55
+#: app/templates/main/layout/header.html:91
+#: app/templates/main/site/home.html:22 app/templates/main/stamp/show.html:115
 msgid "REGISTER_BTN"
 msgstr "Registrarse"
 
@@ -477,10 +497,6 @@ msgstr "Perfil de usuario | %(name)s"
 msgid "USER_REMOVE"
 msgstr "Eliminar"
 
-#: app/templates/admin/users/show.html:47
-msgid "USER_EDIT"
-msgstr "Ajustes"
-
 #: app/templates/admin/users/show.html:57
 msgid "USER_INFO_TITLE"
 msgstr "Información del usuario"
@@ -543,24 +559,42 @@ msgstr "Mostrar usuario"
 msgid "USER_DELETE"
 msgstr "Borrar usuario"
 
-#: app/templates/emails/layout/base.html:365
+#: app/templates/emails/layout/base.html:369
 #: app/templates/main/layout/footer.html:8
-#: app/templates/main/layout/header.html:32
+#: app/templates/main/layout/header.html:79
 #: app/templates/main/site/conduct.html:2
 msgid "CODE_CONDUCT_LBL"
 msgstr "Codigo de conducta"
 
-#: app/templates/emails/layout/base.html:367
+#: app/templates/emails/layout/base.html:371
 #: app/templates/main/layout/footer.html:10
-#: app/templates/main/layout/header.html:29
+#: app/templates/main/layout/header.html:76
 #: app/templates/main/site/policy.html:2
 msgid "TOS_LBL"
 msgstr "Terminos del servicio"
 
+#: app/templates/emails/users/comment.html:11
 #: app/templates/emails/users/registration.html:9
+#: app/templates/emails/users/reply_comment.html:11
 #: app/templates/emails/users/reset_password.html:9
 msgid "EMAIL_GREETING"
 msgstr "Hola %(name)s,"
+
+#: app/templates/emails/users/comment.html:13
+msgid "EMAIL_COMMENT_DESCRIPTION"
+msgstr "%(name)s ha comentado en tu historia \"%(title)s\""
+
+#: app/templates/emails/users/comment.html:24
+#: app/templates/emails/users/reply_comment.html:24
+msgid "EMAIL_COMMENT_ACTION_BTN"
+msgstr "Ver commentario"
+
+#: app/templates/emails/users/comment.html:35
+#: app/templates/emails/users/registration.html:33
+#: app/templates/emails/users/reply_comment.html:35
+#: app/templates/emails/users/reset_password.html:16
+msgid "EMAIL_END_BODY"
+msgstr "<p>Gracias,<br>El equipo de %(name)s</p>"
 
 #: app/templates/emails/users/registration.html:11
 msgid "EMAIL_REGISTRATION_DESCRIPTION"
@@ -572,12 +606,11 @@ msgstr ""
 msgid "EMAIL_REGISTRATION_ACTION_BTN"
 msgstr "Escribe tu primera historia"
 
-#: app/templates/emails/users/registration.html:33
-#: app/templates/emails/users/reset_password.html:17
-msgid "EMAIL_END_BODY"
-msgstr "<p>Gracias,<br>El equipo de %(name)s</p>"
+#: app/templates/emails/users/reply_comment.html:13
+msgid "EMAIL_REPLY_COMMENT_DESCRIPTION"
+msgstr "%(name)s ha respondido tu comentario \"%(title)s\""
 
-#: app/templates/emails/users/reset_password.html:11
+#: app/templates/emails/users/reset_password.html:10
 msgid "EMAIL_RESET_PASSWORD_DESCRIPTION"
 msgstr ""
 "Has solicitado restablecer la contraseña de tu cuenta de HeadUP con la "
@@ -633,15 +666,15 @@ msgstr ""
 "Sorry... this one is on us. The administrator has been notified. Sorry "
 "for the inconvenience!"
 
-#: app/templates/main/common/_sidebar_user.html:22
+#: app/templates/main/common/_sidebar_user.html:47
 msgid "SIDEBAR_USER_TITLE"
 msgstr "unirse a la comunidad?"
 
-#: app/templates/main/common/_sidebar_user.html:38
+#: app/templates/main/common/_sidebar_user.html:63
 msgid "SIDEBAR_STAMP_TITLE"
 msgstr "Empieza aqui!"
 
-#: app/templates/main/common/_sidebar_user.html:41
+#: app/templates/main/common/_sidebar_user.html:66
 msgid "EDIT_STAMP_LBL"
 msgstr "Actualizar publicación"
 
@@ -745,16 +778,40 @@ msgstr "Historias mas populares"
 #: app/templates/main/stamp/partials/_stamp_ranking_feed.html:20
 #: app/templates/main/stamp/partials/_stamp_single.html:17
 #: app/templates/main/stamp/partials/_stamp_single.html:44
-#: app/templates/main/stamp/show.html:38
+#: app/templates/main/stamp/show.html:40
 msgid "ANONYMOUS_LBL"
 msgstr "Anonimo"
 
 #: app/templates/main/stamp/partials/_stamp_ranking_feed.html:23
 #: app/templates/main/stamp/partials/_stamp_single.html:20
 #: app/templates/main/stamp/partials/_stamp_single.html:47
-#: app/templates/main/stamp/show.html:40
+#: app/templates/main/stamp/show.html:42
 msgid "POSTED_BY_USER_LBL"
 msgstr "Publicado por %(user)s en %(category)s"
+
+#: app/templates/main/stamp/show.html:101
+msgid "COMMENT_TEXT_PLACEHOLDER"
+msgstr "Añadir un comentario…"
+
+#: app/templates/main/stamp/show.html:104
+msgid "COMMENT_SUBMIT_BTN"
+msgstr "Comentar"
+
+#: app/templates/main/stamp/show.html:151
+msgid "COMMENT_REPLY_LBL"
+msgstr "Responder"
+
+#: app/templates/main/stamp/show.html:180
+msgid "COMMENT_REPLY_TEXT_PLACEHOLDER"
+msgstr "Añadir un comentario…"
+
+#: app/templates/main/stamp/show.html:183
+msgid "COMMENT_REPLY_CANCEL_BTN"
+msgstr "Cancelar"
+
+#: app/templates/main/stamp/show.html:186
+msgid "COMMENT_REPLY_SUBMIT_BTN"
+msgstr "Responder"
 
 #: app/templates/main/stamp/partials/_stamp_ranking_feed.html:37
 #: app/templates/main/stamp/partials/_stamp_single.html:68
@@ -764,9 +821,10 @@ msgstr "Leer mas..."
 #: app/views/admin/categories/index.py:38
 #: app/views/admin/categories/index.py:76
 #: app/views/admin/categories/index.py:129 app/views/admin/posts/index.py:65
-#: app/views/admin/posts/index.py:120 app/views/admin/sessions/index.py:76
-#: app/views/admin/sessions/index.py:120 app/views/admin/sessions/index.py:163
+#: app/views/admin/posts/index.py:120 app/views/admin/sessions/index.py:87
+#: app/views/admin/sessions/index.py:136 app/views/admin/sessions/index.py:182
 #: app/views/admin/users/index.py:55 app/views/admin/users/index.py:88
+#: app/views/main/stamp/comment/index.py:25
 msgid "ERROR_INVALID_SUBMISSION"
 msgstr ""
 "Formulario no válido, por favor compruebe los mensajes quer aparecen a "
@@ -836,48 +894,48 @@ msgstr "La publicacion \"%(title)s\" fue eliminada"
 msgid "ERROR_POST_DELETE_FAILED"
 msgstr "Ocurrió un error al momento de eliminar la categoría, %(error)s"
 
-#: app/views/admin/sessions/index.py:19 app/views/admin/sessions/index.py:69
-#: app/views/admin/sessions/index.py:113 app/views/admin/sessions/index.py:148
+#: app/views/admin/sessions/index.py:19 app/views/admin/sessions/index.py:75
+#: app/views/admin/sessions/index.py:129 app/views/admin/sessions/index.py:167
 msgid "SESSIONS_MSG_ALREADY_SIGNED_IN"
 msgstr "Usted ya ha ingresado a nuestro sistema"
 
-#: app/views/admin/sessions/index.py:27
+#: app/views/admin/sessions/index.py:33
 msgid "SESSIONS_ERROR_LOGIN"
 msgstr "Correo electronico o contraseña invalida"
 
-#: app/views/admin/sessions/index.py:45
+#: app/views/admin/sessions/index.py:51
 msgid "SESSIONS_MSG_LOGIN_SUCESS"
 msgstr "Usted ha ingresado exitosamente"
 
-#: app/views/admin/sessions/index.py:61
+#: app/views/admin/sessions/index.py:67
 msgid "SESSIONS_MSG_SIGNED_OUT"
 msgstr "La sesión ha sido terminada"
 
-#: app/views/admin/sessions/index.py:79
+#: app/views/admin/sessions/index.py:90
 msgid "SESSIONS_ERROR_UNFINISHED_CHALLENGE_LBL"
 msgstr "Le code captcha est invalide"
 
-#: app/views/admin/sessions/index.py:100
+#: app/views/admin/sessions/index.py:116
 msgid "SESSIONS_MSG_SIGNUP_COMPLETED"
 msgstr "Bienvenido! Usted ha ingresado exitosamente"
 
-#: app/views/admin/sessions/index.py:127
+#: app/views/admin/sessions/index.py:143
 msgid "SESSIONS_ERROR_MAIL_NOT_FOUND"
 msgstr "No hay registrada ninguna cuenta con la dirección de correo %(email)s."
 
-#: app/views/admin/sessions/index.py:131
+#: app/views/admin/sessions/index.py:147
 msgid "SESSIONS_PASSWORD_RESET"
 msgstr ""
 "Las instrucciones sobre cómo restablecer tu contraseña se enviaron a "
 "%(email)s."
 
-#: app/views/admin/sessions/index.py:156
+#: app/views/admin/sessions/index.py:175
 msgid "ERROR_INVALID_RESET_PASSWORD_CODE"
 msgstr ""
 "El enlace al correo que has presionado es inválido. Por favor intente "
 "nuevamente."
 
-#: app/views/admin/sessions/index.py:175
+#: app/views/admin/sessions/index.py:192
 msgid "SESSIONS_MSG_PASSWORD_RESET_COMPLETED"
 msgstr "Tu contraseña se ha cambiado correctamente."
 
@@ -894,21 +952,21 @@ msgstr "La contraseña no coincide"
 msgid "USER_RESET_PASSWORD_CONFIRM"
 msgstr "Confirmar contraseña"
 
-#: app/views/admin/sessions/forms/signup.py:20
+#: app/views/admin/sessions/forms/signup.py:26
 msgid "USER_NAME_INVALID"
 msgstr "Este nombre tiene caracteres invalidos"
 
-#: app/views/admin/sessions/forms/signup.py:24
+#: app/views/admin/sessions/forms/signup.py:30
 msgid "USER_NICKNAME_INVALID"
 msgstr "Este apodo tiene caracteres invalidos"
 
-#: app/views/admin/sessions/forms/signup.py:28
+#: app/views/admin/sessions/forms/signup.py:34
 msgid "USER_EMAIL_TAKEN_ERROR"
 msgstr ""
 "Este correo electronico esta en uso, por favor seleccione otro correo "
 "electronico."
 
-#: app/views/admin/sessions/forms/signup.py:32
+#: app/views/admin/sessions/forms/signup.py:38
 msgid "USER_NICKNAME_TAKEN_ERROR"
 msgstr "Este apodo esta en uso, por favor seleccione otro apodo."
 
@@ -952,6 +1010,14 @@ msgstr "The story was made public"
 #: app/views/admin/users/index.py:206
 msgid "USER_POST_HIDE_OR_RESTORE_FAIL"
 msgstr "Error while processing the stamp, %(error)s"
+
+#: app/views/main/stamp/comment/forms.py:9
+msgid "COMMENT_DESC"
+msgstr ""
+
+#: app/views/main/stamp/comment/index.py:31
+msgid "COMMENT_SAVE_SUCESS"
+msgstr "Gracias!, tu comentario fue añadido a la historia."
 
 #~ msgid "EMAIL_RESET_PASSWORD_ACTION_BTN"
 #~ msgstr ""

@@ -2,8 +2,9 @@
 from sqlalchemy.ext.declarative import declarative_base
 Base = declarative_base()
 
-from categories import Category
-from posts import Post
-from users import User, Role, GuestUser
-from pictures import Picture
-from feed import Feed
+from categories import Category  # noqa
+from comments import Comment  # noqa
+from posts import Post  # noqa
+from users import User, Role, GuestUser  # noqa
+from pictures import Picture  # noqa
+from feed import Feed  # noqa

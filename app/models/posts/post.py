@@ -29,26 +29,24 @@ class Post(Base, sa.Model, ModelHelper):
 
     id = sa.Column(sa.Integer, primary_key=True)
     title = sa.Column(sa.String(255))
-    user_id = sa.Column(sa.Integer,
-                        sa.ForeignKey('users.id',
-                                      ondelete='CASCADE',
-                                      onupdate='NO ACTION'))
-    category_id = sa.Column(sa.Integer,
-                            sa.ForeignKey('categories.id',
-                                          ondelete='CASCADE',
-                                          onupdate='NO ACTION'))
-    status = sa.Column(sa.Integer, default=1, index=True)
-    lang = sa.Column(sa.String(4), default='en', index=True)
+    user_id = sa.Column(sa.Integer, sa.ForeignKey('users.id',
+                                                  ondelete='CASCADE',
+                                                  onupdate='NO ACTION'))
+    category_id = sa.Column(sa.Integer, sa.ForeignKey('categories.id',
+                                                      ondelete='CASCADE',
+                                                      onupdate='NO ACTION'))
+    status = sa.Column(sa.Integer, default=1, index=True, nullable=False)
+    lang = sa.Column(sa.String(4), default='en', index=True, nullable=False)
     anonymous = sa.Column(sa.SmallInteger)
     score = sa.Column(sa.Numeric(20, 7),
                       default=0,
-                      server_default='0',
-                      nullable=False)
+                      index=True,
+                      nullable=False,
+                      server_default='0')
     attr = sa.Column(MutableObject.get_column())
     created_at = sa.Column(sa.DateTime, default=datetime.datetime.utcnow)
     modified_at = sa.Column(sa.DateTime, default=datetime.datetime.utcnow)
-
-    # comments = sa.relationship('Comment', backref='post', lazy='dynamic')
+    comments = sa.relationship('Comment', backref='post', lazy='dynamic')
 
     def __repr__(self):  # pragma: no cover
         return '<Post %r>' % (self.title)
@@ -137,6 +135,18 @@ class Post(Base, sa.Model, ModelHelper):
     @property
     def is_draft(self):
         return self.status == self.POST_DRAFT
+
+    @property
+    def comment_list(self):
+        if not hasattr(self, '_comment_list'):
+            data = dict([(item.id, item) for item in self.comments])
+
+            for comment in self.comments:
+                comment.children = []
+                if comment.comment_id:
+                    data[comment.comment_id].children.append(comment)
+            self._comment_list = [c for c in self.comments if not c.comment_id]
+        return self._comment_list
 
     def is_mine(self):
         return (current_user.is_authenticated and

@@ -1,9 +1,10 @@
 # -*- coding: utf8 -*-
 
 from flask import render_template, redirect, url_for, abort, send_file, session
-from . import mod
+from app.views.main.stamp import mod
 from app.helpers import nocache
 from app.models import Post, Feed
+from comment.forms import CommentForm
 import datetime
 import config
 
@@ -11,14 +12,15 @@ import config
 @mod.route('/<int:id>')
 def show(id):
     post = Post.get_by_id(id)
-    if post is None:
+
+    if post is None or post.is_hidden:
         abort(404)
 
-    if post.is_hidden:
-        abort(404)
+    form = CommentForm()
 
-    return render_template("main/stamp/show.html",
-                           post=post)
+    return render_template('main/stamp/show.html',
+                           post=post,
+                           form=form)
 
 
 @mod.route('/edit/<int:id>')

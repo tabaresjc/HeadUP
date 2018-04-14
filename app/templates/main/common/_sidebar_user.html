@@ -1,66 +1,76 @@
-<div class="container-sidebar">
-	{% if current_user and current_user.is_authenticated -%}
-	<div class="widget-author  boxed  push-down-30">
-		<div class="widget-author__image-container">
-			<div class="widget-author__avatar--blurred">
-				<img alt="{{ current_user.name }}" src="{{ current_user.profile_picture_url or '/static/assets/admin/images/bgs/landscape.jpg' }}" width="90" height="90">
+<div class="sidebar-wrapper">
+	<div class="sidebar-container">
+		{% if current_user and current_user.is_authenticated -%}
+		<div class="widget-author push-down-20">
+			<div class="widget-author__image-container">
+				<div class="widget-author__avatar--blurred">
+					<img alt="{{ current_user.name }}" src="{{ current_user.profile_picture_url or '/static/assets/admin/images/bgs/landscape.jpg' }}" width="90" height="90">
+				</div>
+				<img class="widget-author__avatar" alt="{{ current_user.name }}" src="{{ current_user.profile_picture_url or '/static/images/user.png' }}" width="90" height="90">
 			</div>
-			<img class="widget-author__avatar" alt="{{ current_user.name }}" src="{{ current_user.profile_picture_url or '/static/images/user.png' }}" width="90" height="90">
-		</div>
-		<div class="row">
-			<div class="col-xs-10  col-xs-offset-1">
-				<h4>{{ current_user.name }}</h4>
-				{% if current_user.description %}<p>{{ current_user.description }}</p>{% endif %}
+			<div class="row">
+				<div class="col-xs-10  col-xs-offset-1">
+					<h4>{{ current_user.name }}</h4>
+					{% if current_user.description %}<p>{{ current_user.description }}</p>{% endif %}
+				</div>
 			</div>
-			<div class="col-xs-12 col-sm-12 col-md-12">
-				<div class="actions">
-					<a href="{{ url_for('PostsView:index') }}" rel="nofollow" class="btn  btn-primary btn-primary--transparent btn-lg">
-						<span class="glyphicon glyphicon-th-list"></span>
-						<span>{{ _('POST_LIST') }}</span>
-					</a>
-					<a href="{{ url_for('UsersView:get', id=current_user.id) }}" rel="nofollow" class="btn  btn-primary btn-primary--transparent btn-lg">
-						<span class="glyphicon glyphicon-user"></span>
-						<span>{{ _('APP_PROFILE') }}</span>
-					</a>
-					<a href="{{ url_for('UsersView:put', id=current_user.id) }}" rel="nofollow" class="btn  btn-danger btn-danger--transparent btn-lg">
-						<span class="glyphicon glyphicon-user"></span>
-						<span>{{ _('USER_EDIT') }}</span>
-					</a>
+			<div class="row">
+				<div class="col-md-12 col-sm-12 col-xs-12">
+					<div class="btn-group btn-group-justified" role="group">
+						<div class="btn-group" role="group">
+							<a href="{{ url_for('PostsView:index') }}" rel="nofollow" class="btn  btn-primary btn-primary--transparent btn-lg">
+								<span class="glyphicon glyphicon-th-list"></span>
+								<span>{{ _('POST_LIST') }}</span>
+							</a>
+						</div>
+						<div class="btn-group" role="group">
+							<a href="{{ url_for('UsersView:get', id=current_user.id) }}" rel="nofollow" class="btn  btn-primary btn-primary--transparent btn-lg">
+								<span class="glyphicon glyphicon-user"></span>
+								<span>{{ _('APP_PROFILE') }}</span>
+							</a>
+						</div>
+						<div class="btn-group" role="group">
+							<a href="{{ url_for('UsersView:put', id=current_user.id) }}" rel="nofollow" class="btn  btn-primary btn-primary--transparent btn-lg">
+								<span class="glyphicon glyphicon-user"></span>
+								<span>{{ _('USER_EDIT') }}</span>
+							</a>
+						</div>
+					</div>
 				</div>
 			</div>
 		</div>
-	</div>
-	{%- else %}
-	<div class="sidebar  boxed  push-down-30">
-		<div class="row">
-			<div class="col-xs-10  col-xs-offset-1">
-				<div class="widget-categories  push-down-30">
-					<h6>{{ _('SIDEBAR_USER_TITLE') }}</h6>
-					<a href="{{ url_for('sessions.login') }}" rel="nofollow" class="btn  btn-primary btn-primary--transparent btn-lg btn-block">
-						{{ _('LOGIN_BTN') }}
-					</a>
-					<a href="{{ url_for('sessions.signup') }}" rel="nofollow" class="btn  btn-primary btn-primary--transparent btn-lg btn-block">
-						{{ _('REGISTER_BTN') }}
-					</a>
+		{%- else %}
+		<div class="boxed  push-down-20">
+			<div class="row">
+				<div class="col-xs-10  col-xs-offset-1">
+					<div class="widget-categories">
+						<h6>{{ _('SIDEBAR_USER_TITLE') }}</h6>
+						<a href="{{ url_for('sessions.login') }}" rel="nofollow" class="btn  btn-primary btn-primary--transparent btn-lg btn-block">
+							{{ _('LOGIN_BTN') }}
+						</a>
+						<a href="{{ url_for('sessions.signup') }}" rel="nofollow" class="btn  btn-primary btn-primary--transparent btn-lg btn-block">
+							{{ _('REGISTER_BTN') }}
+						</a>
+					</div>
 				</div>
 			</div>
 		</div>
-	</div>
-	{%- endif %}
-	<div class="sidebar  boxed  push-down-30">
-		<div class="row">
-			<div class="col-xs-10  col-xs-offset-1">
-				<div class="widget-categories  push-down-30">
-					<h6>{{ _('SIDEBAR_STAMP_TITLE') }}</h6>
-					{% if request.endpoint == 'stamp.show' and post.is_mine() -%}
-					<a href="{{ url_for('stamp.edit', id=post.id) }}" rel="nofollow" class="btn  btn-primary btn-lg btn-block">
-						{{ _('EDIT_STAMP_LBL') }}
-					</a>
-					{%- else %}
-					<a href="{{ url_for('stamp.new') }}" rel="nofollow" class="btn  btn-primary btn-primary--transparent btn-lg btn-block">
-						{{ _('POST_CREATE') }}
-					</a>
-					{%- endif %}
+		{%- endif %}
+		<div class="boxed push-down-20">
+			<div class="row">
+				<div class="col-xs-10  col-xs-offset-1">
+					<div class="widget-categories">
+						<h6>{{ _('SIDEBAR_STAMP_TITLE') }}</h6>
+						{% if request.endpoint == 'stamp.show' and post.is_mine() -%}
+						<a href="{{ url_for('stamp.edit', id=post.id) }}" rel="nofollow" class="btn  btn-primary btn-lg btn-block">
+							{{ _('EDIT_STAMP_LBL') }}
+						</a>
+						{%- else %}
+						<a href="{{ url_for('stamp.new') }}" rel="nofollow" class="btn  btn-primary btn-primary--transparent btn-lg btn-block">
+							{{ _('POST_CREATE') }}
+						</a>
+						{%- endif %}
+					</div>
 				</div>
 			</div>
 		</div>

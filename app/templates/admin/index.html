@@ -3,10 +3,10 @@
 
 {% block main %}
 <div class="row">
-	<div class="col-md-3 col-sm-12 col-xs-12">
-		<div class="div panel panel-primary">
-			<div class="div panel-heading">{{ current_user.name }}</div>
-			<div class="div panel-body" style="text-align:center;">
+	<div class="col-md-3 col-sm-12 col-xs-12 main-sidebar">
+		<div class="panel panel-primary">
+			<div class="panel-heading">{{ current_user.name }}</div>
+			<div class="panel-body" style="text-align:center;">
 				<a href="{{ url_for('UsersView:get',id=current_user.id) }}">
 					<img alt="{{ current_user.name }}" class="img-thumbnail" src="{{ current_user.profile_picture_url or '/static/images/user-neutral.png' }}">
 				</a>
@@ -27,7 +27,7 @@
 			</div>
 		</div>
 	</div>
-	<div class="col-md-9 col-sm-12 col-xs-12">
+	<div class="col-md-9 col-sm-12 col-xs-12 main-list">
 		{% if posts and posts.count() -%}
     		{{ pag('admin.index', page, limit, total, _('POSTS_PAG_LBL'), kind='info')|safe }}
     		{{ pag('admin.index', page, limit, total, _('POSTS_PAG_LBL'), kind='links')|safe }}

@@ -5,15 +5,35 @@ define(['jquery', 'underscore'], function($, _) {
 		return (window.innerWidth > 0) ? window.innerWidth : screen.width;
 	};
 
+	function stickySidebar() {
+		var w = screenWidth(),
+			sidebarWrapper = $('.sidebar-wrapper'),
+			sidebarContainer = $('#main-sidebar');
+
+		if (w > 991) {
+			var ws = sidebarContainer.width();
+
+			sidebarWrapper.css({
+				'position': 'fixed',
+				'width': ws +'px'
+			});
+		} else {
+			sidebarWrapper.removeAttr('style');
+		}
+	}
+
 	$(window).on('resize', _.debounce(function() {
-		if (screenWidth() > 991) {
+		var w = screenWidth();
+		if (w > 991) {
 			$('#readable-navbar-collapse')
 				.removeAttr('style')
 				.removeClass('in');
 		}
-	}, 500));
+		stickySidebar();
+	}, 200));
 
 	$(function() {
+		stickySidebar();
 
 		$('.vimeo-thumb').each(function() {
 			$(this).smartVimeoEmbed(_({

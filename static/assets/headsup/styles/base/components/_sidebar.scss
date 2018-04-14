@@ -1,34 +1,50 @@
-// Sidebar
-.block-side {
-	padding: 0;
-	.container-sidebar {
-		@media (min-width: $screen-sm-min) {
-			position: fixed;
-			width: 360px;
-			padding: 0;
-			margin-left: 15px;
+#main-sidebar{
+	.sidebar-wrapper {
 
+		.boxed {
+			padding: 15px 0;
+
+			h6 {
+				text-transform: none;
+				margin-bottom: 5px;
+			}
+
+			.btn {
+				margin: 0;
+			}
+
+			.btn + .btn {
+				margin-top: 5px;
+			}
 		}
 	}
-}
 
-.sidebar {
-	padding: 30px 0 0;
+	// Small grid
+	//
+	// Columns, offsets, pushes, and pulls for the small device range, from phones
+	// to tablets.
 
-	p {
-		line-height: 1.5;
-		color: #9a9a90;
-		font-size: 14px;
-		font-family: $tertiary-font;
+	@media (min-width: $screen-sm-min) {
+		// float: right;
 	}
 
-	h6 {
-		margin-bottom: 12px;
+
+	// Medium grid
+	//
+	// Columns, offsets, pushes, and pulls for the desktop device range.
+
+	@media (min-width: $screen-md-min) {
+		position: relative;
+		float: right;
 	}
 
-	img {
-		max-width: 100%;
-		height: auto;
-		border-radius: 6px;
+
+	// Large grid
+	//
+	// Columns, offsets, pushes, and pulls for the large desktop device range.
+
+	@media (min-width: $screen-lg-min) {
+		position: relative;
+		float: right;
 	}
 }

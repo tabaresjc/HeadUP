@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 from flask_wtf import FlaskForm
-from wtforms import BooleanField, TextField, PasswordField, validators
+from wtforms import BooleanField, TextField, PasswordField, HiddenField, validators
 from flask_babel import lazy_gettext as _lg, gettext as _
 from app.models import User
 
@@ -12,6 +12,12 @@ class SignUpForm(FlaskForm):
     nickname = TextField(_lg('USER_NICKNAME'), [validators.Required()])
     password = PasswordField(_lg('USER_PASSWORD'), [validators.Required(), validators.Length(min=10, max=64)])
     check_tos = BooleanField('check_tos', default=False)
+    back_link = HiddenField()
+
+    def __init__(self, ret=None, *args, **kwargs):
+        super(SignUpForm, self).__init__(*args, **kwargs)
+        if not self.is_submitted() and ret:
+            self.back_link.data = ret
 
     def validate(self):
         valid = super(SignUpForm, self).validate()

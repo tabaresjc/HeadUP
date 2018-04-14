@@ -7,3 +7,4 @@ from . import show  # noqa
 from . import ranking  # noqa
 from . import category  # noqa
 from . import widgets  # noqa
+from . import comment  # noqa

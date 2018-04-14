@@ -14,11 +14,17 @@ mod = Blueprint('sessions', __name__)
 @mod.route('/login', methods=['GET', 'POST'])
 def login():
     if current_user.is_authenticated:
-        return render_view(url_for('latest'),
+        return render_view(url_for('dashboard'),
                            redirect=True,
                            message=_('SESSIONS_MSG_ALREADY_SIGNED_IN'))
 
-    form = LoginForm()
+    redirect_to = session.pop('redirect_to', None)
+
+    if request.values.get('ret'):
+        redirect_to = request.values.get('ret')
+
+    form = LoginForm(ret=redirect_to)
+
     if form.is_submitted():
         try:
             user = User.find_by_email(form.email.data)
@@ -31,7 +37,7 @@ def login():
             user.last_seen = datetime.datetime.utcnow()
             user.save()
 
-            redirect_to = session.pop('redirect_to', None)
+            redirect_to = form.back_link.data
 
             if not redirect_to:
                 redirect_to = url_for('dashboard')
@@ -64,11 +70,16 @@ def logout():
 @mod.route('/signup', methods=['GET', 'POST'])
 def signup():
     if current_user.is_authenticated:
-        return render_view(url_for('latest'),
+        return render_view(url_for('dashboard'),
                            redirect=True,
                            message=_('SESSIONS_MSG_ALREADY_SIGNED_IN'))
 
-    form = SignUpForm()
+    redirect_to = session.pop('redirect_to', None)
+
+    if request.values.get('ret'):
+        redirect_to = request.values.get('ret')
+
+    form = SignUpForm(ret=redirect_to)
 
     if form.is_submitted():
         try:
@@ -92,10 +103,15 @@ def signup():
             # Login User
             login_user(user)
 
+            redirect_to = form.back_link.data
+
+            if not redirect_to:
+                redirect_to = url_for('dashboard')
+
             # send registration email
             send_email('registration', user)
 
-            return render_view(url_for('latest'),
+            return render_view(redirect_to,
                                redirect=True,
                                message=_('SESSIONS_MSG_SIGNUP_COMPLETED'))
         except Exception as e:

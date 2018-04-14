@@ -2,6 +2,8 @@
 {% set title = post.title %}
 {% set description = post.extra_body | striptags | limit(300) %}
 
+{% from "shared/_bootstrap_forms.html" import render_inline_field %}
+
 {% block meta_extra %}
 	<link rel="canonical" href="{{ url_for('stamp.show', id=post.id, _external=true) | replace_host_name }}">
 	{% if config.FB_APPID %}
@@ -19,7 +21,7 @@
 {% endblock %}
 
 {% block content %}
-<div class="boxed push-down-30">
+<div class="boxed push-down-20">
 	{% if post.cover_picture %}
 	<div class="meta push-down-20">
 		<div class="main-post-image" style="background-image:url({{ post.cover_picture.image_url }})"></div>
@@ -90,6 +92,79 @@
 	</div>
 	{% include 'main/stamp/partials/_counter.html' %}
 </div>
+
+<div class="row push-down-20">
+	<div class="col-md-12 col-sm-12 col-xs-12">
+		<form action="{{ url_for('stamp.comment_new', id=post.id) }}" method="post" autocomplete="off">
+			<div class="panel panel-default panel-comment">
+				<div class="panel-body">
+					{{ render_inline_field(form.text, class="form-control", placeholder=_('COMMENT_TEXT_PLACEHOLDER')) }}
+					<div class="actions clearfix">
+						<button type="submit" class="btn btn-primary btn-primary--transparent btn-lg pull-right">
+							{{ _('COMMENT_SUBMIT_BTN') }}
+						</button>
+					</div>
+				</div>
+				{% if not current_user.is_authenticated %}
+				<div class="login-required">
+					<div class="column">
+						<a href="{{ url_for('sessions.login', ret=url_for('stamp.show', id=post.id, _anchor='comment-box')) }}" rel="nofollow" class="btn btn-primary">
+							{{ _('LOGIN_BTN') }}
+						</a>
+						<a href="{{ url_for('sessions.signup', ret=url_for('stamp.show', id=post.id, _anchor='comment-box')) }}" rel="nofollow" class="btn btn-primary">
+							{{ _('REGISTER_BTN') }}
+						</a>
+					</div>
+				</div>
+				{% endif %}
+			</div>
+			{{ form.hidden_tag() }}
+		</form>
+	</div>
+</div>
+
+{% if post.comments.count() %}
+<div class="row push-down-20">
+	<div class="col-md-12 col-sm-12 col-xs-12">
+		<div class="panel panel-comment-list">
+			<div class="panel-body">
+				<ul class="media-list">
+					{% for comment in post.comment_list recursive %}
+					<li id="comment-{{ comment.id }}" class="media">
+						<div class="media-left">
+							<a href="javascript:;">
+								<img class="media-object"
+									src="{{ post.user.profile_picture_url or '/static/images/user.png' }}"
+									alt="{{ post.user.name }}"
+									width="64" height="64">
+							</a>
+						</div>
+						<div class="media-body">
+							<span class="author"><strong>{{ comment.user.name }}</strong></span>
+							<span class="date text-muted">{{ comment.created_at|datetimeformat('EEE, d MMM yyyy') }}</span>
+							<div class="text">
+								{{ comment.text | nl2br }}
+							</div>
+						</div>
+						<div class="media-footer clearfix">
+							<a href="javascript:;" class="link comment-reply pull-right" data-comment-id="{{ comment.id }}">
+								{{ _('COMMENT_REPLY_LBL') }}
+							</a>
+						</div>
+						{% if comment.children -%}
+						<ul class="media-list {{ 'media-top-nested' if loop.depth > 5 }}">
+							{{ loop(comment.children) }}
+						</ul>
+						{% endif %}
+					</li>
+					{% endfor %}
+				</ul>
+			</div>
+		</div>
+	</div>
+</div>
+{% endif %}
+
 {% endblock %}
 
 {% block sidebar %}
@@ -98,19 +173,24 @@
 
 
 {% block custom_js %}
-	{% if post and config.LIKE_BTN_CODE %}
-	<script>
-	  (function(d, e, s) {
-	    if (d.getElementById("likebtn_wjs")) return;
-	    a = d.createElement(e);
-	    m = d.getElementsByTagName(e)[0];
-	    a.async = 1;
-	    a.id = "likebtn_wjs";
-	    a.src = s;
-	    m.parentNode.insertBefore(a, m)
-	  })(document, "script", "//w.likebtn.com/js/w/widget.js");
+	<script id="reply-template" type="text/template">
+		<div class="reply-wrapper">
+			<form action="{{ url_for('stamp.comment_new', id=post.id) }}" method="post" autocomplete="off">
+				<div class="panel-reply">
+					{{ render_inline_field(form.text, class="form-control", placeholder=_('COMMENT_REPLY_TEXT_PLACEHOLDER'), rows="1") }}
+					<div class="actions clearfix">
+						<button type="submit" class="comment-cancel-btn btn btn-danger btn-danger--transparent btn-lg pull-left">
+							{{ _('COMMENT_REPLY_CANCEL_BTN') }}
+						</button>
+						<button type="submit" class="comment-submit-btn btn btn-primary btn-primary--transparent btn-lg pull-right">
+							{{ _('COMMENT_REPLY_SUBMIT_BTN') }}
+						</button>
+					</div>
+				</div>
+				{{ form.hidden_tag() }}
+			</form>
+		</div>
 	</script>
-	{% endif %}
 	{% if config.ADDTHIS_LINK_STAMP %}
 	<script type="text/javascript" src="{{ config.ADDTHIS_LINK_STAMP }}"></script>
 	{% endif %}

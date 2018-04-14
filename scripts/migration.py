@@ -47,17 +47,6 @@ def downgrade(point='base'):
     try:
         os.environ['DATABASE_URL'] = config.SQLALCHEMY_DATABASE_URI
         os.environ['PYTHONPATH'] = config.BASE_DIR
-        os.system('alembic upgrade %s' % point)
-    except Exception as e:
-        click.echo('Error: %s' % e)
-
-
-@cli.command()
-def downgrade_one():
-    """Undo last migration."""
-    try:
-        os.environ['DATABASE_URL'] = config.SQLALCHEMY_DATABASE_URI
-        os.environ['PYTHONPATH'] = config.BASE_DIR
-        os.system('alembic upgrade -1')
+        os.system('alembic downgrade %s' % point)
     except Exception as e:
         click.echo('Error: %s' % e)

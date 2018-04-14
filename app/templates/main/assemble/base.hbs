@@ -37,14 +37,21 @@
     <div class="container-wrap">
         <div class="push-header"></div>
         <!-- header -->
-        {% block page_header_block %}{% include 'main/layout/header.html' %}{% endblock %}
+        {% block page_header_block %}
+			{% include 'main/layout/header.html' %}
+		{% endblock %}
         <!-- end header -->
         {% block container %}
         <div class="container">
             {% block wide_container %}
 			<div class="row">
-				<div class="block-main col-xs-12 col-sm-8 col-md-8">{% block content %}{% endblock %}</div>
-                <div class="block-side col-xs-12 col-sm-4 col-md-4">{% block sidebar %}{% endblock %}</div>
+				<div id="main-sidebar" class="col-md-4 col-sm-12 col-xs-12">
+					{% block sidebar %}{% endblock %}
+				</div>
+				<div id="main-content" class="col-md-8 col-sm-12 col-xs-12">
+					{% block content %}{% endblock %}
+				</div>
+
             </div>
             {% endblock %}
         </div>
