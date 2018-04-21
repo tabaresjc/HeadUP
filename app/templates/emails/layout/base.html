@@ -62,7 +62,11 @@
 
 		/* This should also be a block element, so that it will fill 100% of the .container */
 
-		.content {
+		.content {The try_files directive
+Like the return and rewrite directives, the try_files directive is placed in a server or location block. As parameters, it takes a list of one or more files and directories and a final URI:
+
+try_files file ... uri;
+NGINX
 			box-sizing: border-box;
 			display: block;
 			Margin: 0 auto;
@@ -197,7 +201,7 @@
 		.btn-primary a {
 			background-color: #51ab6d;
 			border-color: #51ab6d;
-			color: #ffffff;
+			color: #ffffff !important;
 		}
 
 		/* -------------------------------------
