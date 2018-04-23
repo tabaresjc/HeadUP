@@ -15,7 +15,7 @@
 
 				{% if config.RC_SITE_KEY %}
 				<div class="captcha-container">
-					<div class="g-recaptcha" data-sitekey="{{ config.RC_SITE_KEY }}"></div>
+					<div align="center" class="g-recaptcha" data-sitekey="{{ config.RC_SITE_KEY }}"></div>
 				</div>
 				{% endif %}
 
@@ -43,9 +43,8 @@
 </form>
 {% endblock %}
 
-
 {% block custom_head_js %}
 	{% if config.RC_SITE_KEY %}
-	<script src="https://www.google.com/recaptcha/api.js" async defer></script>
+	<script src="//www.google.com/recaptcha/api.js" async defer></script>
 	{% endif %}
 {% endblock %}

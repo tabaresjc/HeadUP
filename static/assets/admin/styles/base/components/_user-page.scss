@@ -25,18 +25,18 @@
 	}
 
 	.content-wrapper {
-
 		.panel {
 			margin: 0 auto;
 
-			.panel-body, .panel-footer {
+			.panel-body,
+			.panel-footer {
 				padding: 15px 30px;
 			}
 
 			.panel-body {
 				.alert {
 					width: 100%;
-					margin: 0 0 10px 0;
+					margin: 0 0 10px;
 				}
 
 				h6 {
@@ -52,17 +52,12 @@
 					font-weight: 600;
 				}
 
-				.captcha-container {
-					display: inline-block;
-					margin: 0 auto;
-				}
-
 				.form-group {
 					margin: 0;
 				}
 
-				.form-group + .form-group,
-				.form-group + .captcha-container {
+				.form-group + .captcha-container,
+				.form-group + .form-group {
 					margin-top: 15px;
 				}
 
@@ -82,7 +77,7 @@
 
 				.checkbox {
 					line-height: 1;
-					margin: 10px 0 0 0;
+					margin: 10px 0 0;
 
 					label {
 						padding: 0;
@@ -115,6 +110,10 @@
 					margin: 0 auto;
 				}
 			}
+
+			.captcha-container + .panel-footer {
+				margin-top: 15px;
+			}
 		}
 
 		.already {
@@ -146,18 +145,20 @@
 				margin-top: 5px;
 			}
 		}
-	}
 
+		.captcha-container {
+			position: relative;
+		}
+	}
 	@media (max-width: $screen-xs-max) {
 		.content-wrapper {
 			padding: 0 8px;
 		}
 	}
-
 	@media (min-width: $screen-sm-min) {
 		.content-wrapper {
-			.panel,
-			.alert {
+			.alert,
+			.panel {
 				width: 400px;
 			}
 

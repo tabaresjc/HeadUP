@@ -57,16 +57,6 @@ def login():
                        form=form)
 
 
-@mod.route('/logout', methods=['POST'])
-@login_required
-def logout():
-    logout_user()
-
-    return render_view(url_for('latest'),
-                       redirect=True,
-                       message=_('SESSIONS_MSG_SIGNED_OUT'))
-
-
 @mod.route('/signup', methods=['GET', 'POST'])
 def signup():
     if current_user.is_authenticated:
@@ -121,6 +111,16 @@ def signup():
                        form=form)
 
 
+@mod.route('/logout', methods=['POST'])
+@login_required
+def logout():
+    logout_user()
+
+    return render_view(url_for('latest'),
+                       redirect=True,
+                       message=_('SESSIONS_MSG_SIGNED_OUT'))
+
+
 @mod.route('/forgot-password', methods=['GET', 'POST'])
 def forgot_password():
     if current_user.is_authenticated:
@@ -134,6 +134,9 @@ def forgot_password():
         try:
             if not form.validate():
                 raise Exception(_('ERROR_INVALID_SUBMISSION'))
+
+            if not verify_captcha():
+                raise Exception(_('SESSIONS_ERROR_UNFINISHED_CHALLENGE_LBL'))
 
             email = form.email.data
 
@@ -180,6 +183,9 @@ def reset_password():
         try:
             if not form.validate():
                 raise Exception(_('ERROR_INVALID_SUBMISSION'))
+
+            if not verify_captcha():
+                raise Exception(_('SESSIONS_ERROR_UNFINISHED_CHALLENGE_LBL'))
 
             user.set_password(form.password.data)
             user.reset_password = None
