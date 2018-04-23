@@ -39,3 +39,17 @@ class Comment(Base, sa.Model, ModelHelper):
         if not hasattr(self, '_parent_comment'):
             self._parent_comment = Comment.get_by_id(self.comment_id)
         return self._parent_comment
+
+    @property
+    def can_edit(self):
+        from flask_login import current_user
+        return (current_user.is_authenticated and
+                (self.user.id == current_user.id or current_user.is_admin))
+
+    @property
+    def can_delete(self):
+        from flask_login import current_user
+        return (current_user.is_authenticated and
+                (self.user_id == current_user.id or
+                 self.post.user_id == current_user.id or
+                 current_user.is_admin))

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-04-22 19:47+0900\n"
+"POT-Creation-Date: 2018-04-23 19:43+0900\n"
 "PO-Revision-Date: 2017-07-15 16:34+0900\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: fr\n"
@@ -34,7 +34,7 @@ msgstr "Publié il y a %(ago)s"
 msgid "EMAIL_COMMENT_TITLE"
 msgstr "%(name)s a commenté votre histoire \"%(title)s\""
 
-#: app/helpers/email/actions/comment.py:36
+#: app/helpers/email/actions/comment.py:39
 msgid "EMAIL_REPLY_COMMENT_TITLE"
 msgstr "%(name)s a répondu à votre commentaire sur \"%(title)s\""
 
@@ -797,18 +797,22 @@ msgid "COMMENT_SUBMIT_BTN"
 msgstr "Commenter"
 
 #: app/templates/main/stamp/show.html:151
+msgid "COMMENT_DELETE_CONFIRMATION"
+msgstr "Cette action supprimera définitivement [%(text)s],\nVoulez-vous continuer?"
+
+#: app/templates/main/stamp/show.html:156
 msgid "COMMENT_REPLY_LBL"
 msgstr "Répondre"
 
-#: app/templates/main/stamp/show.html:180
+#: app/templates/main/stamp/show.html:186
 msgid "COMMENT_REPLY_TEXT_PLACEHOLDER"
 msgstr "Ajouter un commentaire..."
 
-#: app/templates/main/stamp/show.html:183
+#: app/templates/main/stamp/show.html:189
 msgid "COMMENT_REPLY_CANCEL_BTN"
 msgstr "Annuler"
 
-#: app/templates/main/stamp/show.html:186
+#: app/templates/main/stamp/show.html:192
 msgid "COMMENT_REPLY_SUBMIT_BTN"
 msgstr "Répondre"
 
@@ -1010,5 +1014,10 @@ msgstr ""
 msgid "COMMENT_SAVE_SUCESS"
 msgstr "Merci! Votre commentaire a été ajouté à l'histoire."
 
-#~ msgid "EMAIL_RESET_PASSWORD_ACTION_BTN"
-#~ msgstr ""
+#: app/views/main/stamp/comment/index.py:59
+msgid "COMMENT_DELETE_SUCCESS"
+msgstr "Le commentaire a été supprimé."
+
+#: app/views/main/stamp/comment/index.py:61
+msgid "ERROR_COMMENT_DELETE_FAILED"
+msgstr "Erreur lors de la suppression du commentaire, %(error)s"

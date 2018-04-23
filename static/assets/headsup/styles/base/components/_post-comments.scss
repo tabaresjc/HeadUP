@@ -53,6 +53,10 @@
 .panel-comment-list {
 	margin: 0;
 
+	a {
+		border-bottom: none;
+	}
+
 	.media-list {
 		margin: 0;
 
@@ -74,9 +78,16 @@
 			display: block;
 		}
 
+		.media-body {
+			.media-footer {
+				margin-top: 20px;
+			}
+		}
+
 		.reply-wrapper {
 			margin-top: 10px;
 		}
+
 	}
 
 	.media + .media	{
@@ -90,6 +101,6 @@
 	textarea {
 		resize: none;
 		overflow: hidden;
-		max-height: 300px;
+		max-height: 400px;
 	}
 }

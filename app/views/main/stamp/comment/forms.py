@@ -6,12 +6,12 @@ from flask_babel import lazy_gettext as _lg
 
 
 class CommentForm(FlaskForm):
-    text = TextAreaField(_lg('COMMENT_DESC'), [
+    text = TextAreaField([
         validators.Length(min=2, max=16384),
         validators.InputRequired()
     ])
 
-    comment_id = HiddenField()
+    comment_id = HiddenField(default='0')
 
     def __init__(self, comment=None, *args, **kwargs):
         super(CommentForm, self).__init__(*args, **kwargs)

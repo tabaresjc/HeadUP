@@ -5,7 +5,7 @@ from flask_login import current_user, login_required
 from flask_babel import gettext as _
 from app.views.main.stamp import mod
 from app.models import Post, Comment
-from app.helpers import send_email
+from app.helpers import send_email, render_view
 from forms import CommentForm
 
 
@@ -45,3 +45,23 @@ def comment_new(id):
     return render_template('main/stamp/show.html',
                            post=post,
                            form=form)
+
+@mod.route('/comment/<int:id>/delete', methods=['POST'])
+@login_required
+def comment_delete(id):
+    comment = Comment.get_by_id(id)
+
+    if comment is None or not comment.can_delete:
+        abort(403)
+
+    post = comment.post
+
+    try:
+        Comment.delete(id)
+        message = _('COMMENT_DELETE_SUCCESS')
+    except Exception as e:
+        message = _('ERROR_COMMENT_DELETE_FAILED', error=e)
+
+    return render_view(url_for('stamp.show', id=post.id),
+                       redirect=True,
+                       message=message)

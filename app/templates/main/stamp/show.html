@@ -145,11 +145,18 @@
 							<div class="text">
 								{{ comment.text | nl2br }}
 							</div>
-						</div>
-						<div class="media-footer clearfix">
-							<a href="javascript:;" class="link comment-reply pull-right" data-comment-id="{{ comment.id }}">
-								{{ _('COMMENT_REPLY_LBL') }}
-							</a>
+							<div class="media-footer clearfix">
+								{% if comment.can_delete %}
+								<a href="{{ url_for('stamp.comment_delete', id=comment.id) }}" class="link comment-delete pull-left"
+									data-method="post"
+									data-confirm="{{ _('COMMENT_DELETE_CONFIRMATION', text=comment.text|truncate(20)) }}">
+									<i class="glyphicon glyphicon-trash"></i>
+								</a>
+								{% endif %}
+								<a href="javascript:;" class="link comment-reply pull-right" data-comment-id="{{ comment.id }}">
+									{{ _('COMMENT_REPLY_LBL') }}
+								</a>
+							</div>
 						</div>
 						{% if comment.children -%}
 						<ul class="media-list {{ 'media-top-nested' if loop.depth > 5 }}">

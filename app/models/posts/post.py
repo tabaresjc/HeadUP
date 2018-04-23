@@ -143,7 +143,7 @@ class Post(Base, sa.Model, ModelHelper):
 
             for comment in self.comments:
                 comment.children = []
-                if comment.comment_id:
+                if comment.comment_id and comment.comment_id in data:
                     data[comment.comment_id].children.append(comment)
             self._comment_list = [c for c in self.comments if not c.comment_id]
         return self._comment_list

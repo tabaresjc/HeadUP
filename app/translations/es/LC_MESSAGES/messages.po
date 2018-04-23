@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-04-22 19:47+0900\n"
+"POT-Creation-Date: 2018-04-23 19:43+0900\n"
 "PO-Revision-Date: 2017-07-15 16:34+0900\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: es\n"
@@ -34,7 +34,7 @@ msgstr "Publicado hace %(ago)s"
 msgid "EMAIL_COMMENT_TITLE"
 msgstr "%(name)s ha comentado en tu historia \"%(title)s\""
 
-#: app/helpers/email/actions/comment.py:36
+#: app/helpers/email/actions/comment.py:39
 msgid "EMAIL_REPLY_COMMENT_TITLE"
 msgstr "%(name)s ha respondido tu comentario \"%(title)s\""
 
@@ -798,18 +798,22 @@ msgid "COMMENT_SUBMIT_BTN"
 msgstr "Comentar"
 
 #: app/templates/main/stamp/show.html:151
+msgid "COMMENT_DELETE_CONFIRMATION"
+msgstr "Esta acción va a eliminar [%(text)s] de forma permanente,\nDesea continuar?"
+
+#: app/templates/main/stamp/show.html:156
 msgid "COMMENT_REPLY_LBL"
 msgstr "Responder"
 
-#: app/templates/main/stamp/show.html:180
+#: app/templates/main/stamp/show.html:186
 msgid "COMMENT_REPLY_TEXT_PLACEHOLDER"
 msgstr "Añadir un comentario…"
 
-#: app/templates/main/stamp/show.html:183
+#: app/templates/main/stamp/show.html:189
 msgid "COMMENT_REPLY_CANCEL_BTN"
 msgstr "Cancelar"
 
-#: app/templates/main/stamp/show.html:186
+#: app/templates/main/stamp/show.html:192
 msgid "COMMENT_REPLY_SUBMIT_BTN"
 msgstr "Responder"
 
@@ -892,7 +896,7 @@ msgstr "La publicacion \"%(title)s\" fue eliminada"
 
 #: app/views/admin/posts/index.py:195
 msgid "ERROR_POST_DELETE_FAILED"
-msgstr "Ocurrió un error al momento de eliminar la categoría, %(error)s"
+msgstr "Ocurrió un error al momento de eliminar la historia, %(error)s"
 
 #: app/views/admin/sessions/index.py:19 app/views/admin/sessions/index.py:75
 #: app/views/admin/sessions/index.py:129 app/views/admin/sessions/index.py:167
@@ -1019,5 +1023,10 @@ msgstr ""
 msgid "COMMENT_SAVE_SUCESS"
 msgstr "Gracias!, tu comentario fue añadido a la historia."
 
-#~ msgid "EMAIL_RESET_PASSWORD_ACTION_BTN"
-#~ msgstr ""
+#: app/views/main/stamp/comment/index.py:59
+msgid "COMMENT_DELETE_SUCCESS"
+msgstr "El comentario fue eliminado."
+
+#: app/views/main/stamp/comment/index.py:61
+msgid "ERROR_COMMENT_DELETE_FAILED"
+msgstr "Ocurrió un error al momento de eliminar el comentario, %(error)s"
