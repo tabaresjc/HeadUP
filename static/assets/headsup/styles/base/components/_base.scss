@@ -1,14 +1,15 @@
 /*------------------------------------*\
     Tags
 \*------------------------------------*/
-html, body {
-  height: 100%;
-  margin: 0;
+body,
+html {
+	height: 100%;
+	margin: 0;
 }
 
 body {
-  font-family: $primary-font;
-  background-color: $body-bg;
+	font-family: $primary-font;
+	background-color: $body-bg;
 }
 
 h1,
@@ -17,339 +18,326 @@ h3,
 h4,
 h5,
 h6 {
-  line-height: 1.5;
-  margin: 15px 0;
-  font-family: $secondary-font;
-  color: $headings-color;
-  font-weight: 700;
+	line-height: 1.5;
+	margin: 15px 0;
+	font-family: $secondary-font;
+	color: $headings-color;
+	font-weight: 700;
+	@media (min-width: $screen-sm-min) {
+		margin: 30px 0;
+	}
 
-  @media (min-width: $screen-sm-min) {
-    margin: 30px 0;
-  }
+	a {
+		color: $headings-color;
+		border: none;
 
-  a {
-    color: $headings-color;
-    border: none;
-
-    &:hover {
-      color: #9a9a90;
-    }
-  }
+		&:hover {
+			color: #9a9a90;
+		}
+	}
 }
 
 h1 {
-  font-size: 30px;
-  letter-spacing: -1.4px;
-
-  @media (min-width: $screen-sm-min) {
-    font-size: 50px;
-  }
+	font-size: 30px;
+	letter-spacing: -1.4px;
+	@media (min-width: $screen-sm-min) {
+		font-size: 50px;
+	}
 }
 
 h2 {
-  font-size: 24px;
-  letter-spacing: -0.8px;
-
-  @media (min-width: $screen-sm-min) {
-    font-size: 30px;
-  }
+	font-size: 24px;
+	letter-spacing: -0.8px;
+	@media (min-width: $screen-sm-min) {
+		font-size: 30px;
+	}
 }
 
 h3 {
-  font-size: 24px;
-  font-weight: 300;
-  color: #999;
-  letter-spacing: -0.75px;
-  line-height: 1.25;
+	font-size: 24px;
+	font-weight: 300;
+	color: #999;
+	letter-spacing: -0.75px;
+	line-height: 1.25;
+	@media (min-width: $screen-sm-min) {
+		font-size: 30px;
+	}
 
-  @media (min-width: $screen-sm-min) {
-    font-size: 30px;
-  }
+	a {
+		color: #999;
+		border: none;
 
-    a {
-    color: #999;
-    border: none;
-
-    &:hover {
-      color: #9a9a90;
-    }
-  }
+		&:hover {
+			color: #9a9a90;
+		}
+	}
 }
 
 h4 {
-  font-size: 18px;
-
-  @media (min-width: $screen-sm-min) {
-    font-size: 24px;
-  }
+	font-size: 18px;
+	@media (min-width: $screen-sm-min) {
+		font-size: 24px;
+	}
 }
 
 h5 {
-  font-size: 16px;
-
-  @media (min-width: $screen-sm-min) {
-    font-size: 18px;
-  }
+	font-size: 16px;
+	@media (min-width: $screen-sm-min) {
+		font-size: 18px;
+	}
 }
 
 h6 {
-  font-size: 12px;
-  font-family: $tertiary-font;
-  text-transform: uppercase;
-  margin: 0;
-  color: #9a9a90;
+	font-size: 12px;
+	font-family: $tertiary-font;
+	text-transform: uppercase;
+	margin: 0;
+	color: #9a9a90;
 
-  a {
-    color: #9a9a90;
-    border: none;
+	a {
+		color: #9a9a90;
+		border: none;
 
-    &:hover {
-      color: #9a9a90;
-    }
-  }
+		&:hover {
+			color: #9a9a90;
+		}
+	}
 }
 
 a {
-  color: $primary-color;
-  border-bottom: 1px dotted #9a9a90;
+	color: $primary-color;
+	border-bottom: 1px dotted #9a9a90;
 
-  &:hover {
-    color: darken($primary-color, 10);
-    text-decoration: none;
-  }
+	&:hover {
+		color: darken($primary-color, 10);
+		text-decoration: none;
+	}
 }
 
 header a {
-  border-bottom: none;
+	border-bottom: none;
 }
-
 /*------------------------------------*\
     Push header
 \*------------------------------------*/
-.container-wrap > header.header {position: fixed;top:0;width: 100%;z-index: 99}
-.container-wrap > .push-header {height: 100px;width: 100%;}
+.container-wrap > header.header {
+	position: fixed;
+	top: 0;
+	width: 100%;
+	z-index: 99;
+}
 
+.container-wrap > .push-header {
+	height: 100px;
+	width: 100%;
+}
 // Default quote style
 blockquote {
-  border-left: 4px solid $primary-color;
-  margin: 30px 0;
-  padding: 10px 30px;
-  font-weight: 400;
-  font-size: 18px;
-  font-style: italic;
-  color: $text-color;
-
-  @media (min-width: $screen-sm-min) {
-    font-size: 26px;
-    margin: 60px 0;
-  }
+	border-left: 4px solid $primary-color;
+	margin: 30px 0;
+	padding: 10px 30px;
+	font-weight: 400;
+	font-size: 18px;
+	font-style: italic;
+	color: $text-color;
+	@media (min-width: $screen-sm-min) {
+		font-size: 26px;
+		margin: 60px 0;
+	}
 }
-
 // Alternative quote style
 .blockquote__alternative {
-  text-align: center;
-  border-left: none;
-  padding: 10px 30px;
-  position: relative;
+	text-align: center;
+	border-left: none;
+	padding: 10px 30px;
+	position: relative;
+	@media (min-width: $screen-sm-min) {
+		padding: 10px 75px;
+	}
 
-  @media (min-width: $screen-sm-min) {
-    padding: 10px 75px;
-  }
+	&:before {
+		position: absolute;
+		content: open-quote;
+		left: -15px;
+		top: -30px;
+		color: #dcdddd;
+		font-size: 80px;
+		font-weight: bold;
+		@media (min-width: $screen-sm-min) {
+			left: 0;
+			font-size: 100px;
+		}
+	}
 
-  &:before {
-    position: absolute;
-    content: open-quote;
-    left: -15px;
-    top: -30px;
-    color: #dcdddd;
-    font-size: 80px;
-    font-weight: bold;
-
-    @media (min-width: $screen-sm-min) {
-      left: 0;
-      font-size: 100px;
-    }
-  }
-
-  p {
-    font-size: 16px;
-    color: #9a9a90;
-    font-style: normal;
-
-    @media (min-width: $screen-sm-min) {
-      font-size: 20px;
-    }
-  }
+	p {
+		font-size: 16px;
+		color: #9a9a90;
+		font-style: normal;
+		@media (min-width: $screen-sm-min) {
+			font-size: 20px;
+		}
+	}
 }
-
 // Divider
 hr {
-  margin: 10px 0 30px 0;
-  border-color: #dcdddd;
+	margin: 10px 0 30px;
+	border-color: #dcdddd;
 }
 
 /*------------------------------------*\
     Helpers
 \*------------------------------------*/
-
 // generates styles: .push-down-5 {margin-bottom: 5px;}, .push-down-10 {margin-bottom: 10px;} etc. to 60px
 @for $i from 0 through 12 {
-  $i5 : $i*5;
-  .push-down-#{$i5} {
-    margin-bottom: 5px * $i;
-  }
+	$i5: $i*5;
+
+	.push-down-#{$i5} {
+		margin-bottom: 5px * $i;
+	}
 }
 
 .btn {
-  -webkit-tap-highlight-color: rgba(0,0,0,0);
+	-webkit-tap-highlight-color: rgba(0,0,0,0);
 }
-
 // Featured image, ready for use in WP version as well
 .wp-post-image {
-  width: 100%;
-  height: auto;
-  border-top-right-radius: 6px;
-  border-top-left-radius: 6px;
+	width: 100%;
+	height: auto;
+	border-top-right-radius: 6px;
+	border-top-left-radius: 6px;
 }
-
 // Header, place where one can find logo, navigation, social icons and search
 .header {
-  position: relative;
-  background-color: #fff;
-  border-top: 1px solid #e4e4e4;
-  box-shadow: 0 1px 5px #dcdddd;
+	position: relative;
+	background-color: #fff;
+	border-top: 1px solid #e4e4e4;
+	box-shadow: 0 1px 5px #dcdddd;
 }
-
 // All main content is in this boxed div
 .boxed {
-  background-color: #fff;
-  border: 1px solid #e4e4e4;
-  border-radius: 6px;
+	background-color: #fff;
+	border: 1px solid #e4e4e4;
+	border-radius: 6px;
 }
-
 // This is for 2 or titles under each other
 h1 + h3,
 h2 + h3 {
-  margin: -8px 0 30px 0;
+	margin: -8px 0 30px;
 }
-
 // Title on front page is pushed up 30px;
 .front-page-title {
-  @media (min-width: $screen-sm-min) {
-    margin-top: 0;
-  }
+	@media (min-width: $screen-sm-min) {
+		margin-top: 0;
+	}
 }
-
 // Subtitle for search result posts.
 .search-subtitle {
-  margin: -20px 0 -10px 0;
+	margin: -20px 0 -10px;
 }
 
 .search-results {
-  h2,
-  h3 {
-    margin: -30px 0 20px 0;
-    display: inline-block;
-  }
+	h2,
+	h3 {
+		margin: -30px 0 20px;
+		display: inline-block;
+	}
 }
-
 // Put that class in div around your video embed code and video will become responsive
 .responsive-embed-video {
-  position: relative;
-  padding-bottom: 56.25%;
-  height: 0;
-  overflow: hidden;
-  border-top-right-radius: 6px;
-  border-top-left-radius: 6px;
+	position: relative;
+	padding-bottom: 56.25%;
+	height: 0;
+	overflow: hidden;
+	border-top-right-radius: 6px;
+	border-top-left-radius: 6px;
 
-  iframe,
-  img {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-  }
+	iframe,
+	img {
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
+	}
 }
 
 .logo {
-  margin-right: 15px;
+	margin-right: 15px;
 
-  img {
-    height: 70px;
-    width: auto;
-  }
+	img {
+		height: 70px;
+		width: auto;
+	}
 }
 
 .post-ads {
-  text-align: center;
-  margin-bottom: 45px;
+	text-align: center;
+	margin-bottom: 45px;
 
-  img {
-    border: 1px solid #e4e4e4;
-    width: 100%;
-    height: auto;
-
-    @media (min-width: $screen-lg-min) {
-      width: auto;
-    }
-  }
+	img {
+		border: 1px solid #e4e4e4;
+		width: 100%;
+		height: auto;
+		@media (min-width: $screen-lg-min) {
+			width: auto;
+		}
+	}
 }
 
 .features {
-  img {
-    max-width: 100%;
-    height: auto;
-  }
+	img {
+		max-width: 100%;
+		height: auto;
+	}
 
-  p {
-    font-family: $primary-font;
-    font-size: 16px;
-    line-height: 1.65;
-    color: $text-color;
-
-    @media (min-width: $screen-sm-min) {
-      font-size: 18px;
-    }
-  }
+	p {
+		font-family: $primary-font;
+		font-size: 16px;
+		line-height: 1.65;
+		color: $text-color;
+		@media (min-width: $screen-sm-min) {
+			font-size: 18px;
+		}
+	}
 }
 
 .copyrights {
-  text-align: center;
-  background-color: #fff;
-  border-top: 1px solid #e4e4e4;
-  padding: 10px 0;
-  font-family: $secondary-font;
-  font-weight: 700;
-  color: #9a9a90;
-
-  @media (min-width: $screen-sm-min) {
-    text-align: left;
-  }
+	text-align: center;
+	background-color: #fff;
+	border-top: 1px solid #e4e4e4;
+	padding: 10px 0;
+	font-family: $secondary-font;
+	font-weight: 700;
+	color: #9a9a90;
+	@media (min-width: $screen-sm-min) {
+		text-align: left;
+	}
 }
 
 .copyrights--right {
-  @media (min-width: $screen-sm-min) {
-    text-align: right;
-  }
+	@media (min-width: $screen-sm-min) {
+		text-align: right;
+	}
 }
 
 .table {
-  font-size: 16px;
+	font-size: 16px;
 }
-
 @media screen and (min-device-width: 1000px) {
-    .container-wrap {
-      	min-height: 100%;
-      	margin-bottom: -40px;
-    }
-	.container-wrap:after {
-  		content: "";
-  		display: block;
+	.container-wrap {
+		min-height: 100%;
+		margin-bottom: -40px;
 	}
-    .push {
-      	height: 40px;
-    }
+
+	.container-wrap:after {
+		content: "";
+		display: block;
+	}
+
+	.push {
+		height: 40px;
+	}
+
 	.site-footer {
 		position: fixed;
 		bottom: 0;

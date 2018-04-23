@@ -103,4 +103,10 @@
 		overflow: hidden;
 		max-height: 400px;
 	}
+
+	.form-control:focus {
+		border-color: $primary-color;
+		outline: 0;
+		box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba($primary-color-darker, 0.6);
+	}
 }
