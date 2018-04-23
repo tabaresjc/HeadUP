@@ -153,9 +153,11 @@
 									<i class="glyphicon glyphicon-trash"></i>
 								</a>
 								{% endif %}
+								{% if current_user.is_authenticated %}
 								<a href="javascript:;" class="link comment-reply pull-right" data-comment-id="{{ comment.id }}">
 									{{ _('COMMENT_REPLY_LBL') }}
 								</a>
+								{% endif %}
 							</div>
 						</div>
 						{% if comment.children -%}
