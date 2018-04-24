@@ -1,58 +1,19 @@
 <div class="boxed  push-down-20">
-	{% if post.cover_picture %}
 	<div class="meta">
+		{% if post.cover_picture %}
 		<div class="main-post-image" style="background-image:url({{ post.cover_picture.image_url }})"></div>
-		<div class="meta__container">
-			<div class="row">
-				<div class="col-xs-12  col-sm-12">
-					<div class="meta__info">
-						<span class="meta__author">
-						  {% set category_name = '<a href="%s" class="custom-link">%s</a>' % (url_for('stamp.category', slug=post.category.slug), post.category.name) %}
-
-						  {% if not post.anonymous -%}
-						  	<img src="{{ post.user.profile_picture_url or '/static/images/user.png' }}" alt="{{ post.user.name }}" width="30" height="30">
-						  	{% set user_name = '<a href="%s" class="custom-link">%s</a>' % (url_for('stamp.show', id=post.id), post.user.name) %}
-						  {%- else %}
-						  	<img src="/static/images/user.png" width="30" height="30"/>
-						  	{% set user_name = _('ANONYMOUS_LBL') %}
-						  {%- endif %}
-
-						  {{ _('POSTED_BY_USER_LBL', user=user_name|safe, category=category_name|safe) }}
-						</span>
-						<span class="meta__date"><span class="glyphicon glyphicon-calendar"></span> &nbsp; {{ post.created_at|datetimeformat('EEE, d MMM yyyy') }}</span>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
-	{% else %}
-	<div class="meta">
+		{% else %}
 		<div class="main-post-image" style="background-image:url(/static/assets/headsup/images/stamp-no-cover.jpg)"></div>
 		<q class="meta__quote">{{ post.title }}</q>
+		{% endif %}
 		<div class="meta__container">
 			<div class="row">
 				<div class="col-xs-12  col-sm-12">
-					<div class="meta__info">
-						<span class="meta__author">
-						  {% set category_name = '<a href="%s" class="custom-link">%s</a>' % (url_for('stamp.category', slug=post.category.slug), post.category.name) %}
-
-						  {% if not post.anonymous -%}
-						  	<img src="{{ post.user.profile_picture_url or '/static/images/user.png' }}" alt="{{ post.user.name }}" width="30" height="30">
-						  	{% set user_name = '<a href="%s"  class="custom-link">%s</a>' % (url_for('stamp.show', id=post.id), post.user.name) %}
-						  {%- else %}
-						  	<img src="/static/images/user.png" width="30" height="30"/>
-						  	{% set user_name = _('ANONYMOUS_LBL') %}
-						  {%- endif %}
-
-						  {{ _('POSTED_BY_USER_LBL', user=user_name|safe, category=category_name|safe) }}
-						</span>
-						<span class="meta__date"><span class="glyphicon glyphicon-calendar"></span> &nbsp; {{ post.created_at|datetimeformat('EEE, d MMM yyyy') }}</span>
-					</div>
+					{% include 'main/stamp/partials/_user_info.html'%}
 				</div>
 			</div>
 		</div>
 	</div>
-	{% endif %}
     <!-- Start of the blogpost -->
     <div class="row">
         <div class="col-xs-10  col-xs-offset-1">

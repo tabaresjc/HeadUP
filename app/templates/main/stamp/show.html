@@ -22,54 +22,23 @@
 
 {% block content %}
 <div class="boxed push-down-20">
-	{% if post.cover_picture %}
+
 	<div class="meta push-down-20">
+		{% if post.cover_picture %}
 		<div class="main-post-image" style="background-image:url({{ post.cover_picture.image_url }})"></div>
+		{% else %}
+		<div class="main-post-image" style="background-image:url(/static/assets/headsup/images/stamp-no-cover.jpg)"></div>
+		<q class="meta__quote">{{ post.title }}</q>
+		{% endif %}
 		<div class="meta__container">
 			<div class="row">
 				<div class="col-xs-12  col-sm-12">
-					<div class="meta__info">
-						<span class="meta__author">
-						  {% set category_name = '<a href="%s" class="custom-link">%s</a>' % ('javascript:;', post.category.name) %}
+					{% include 'main/stamp/partials/_user_info.html'%}
+				</div>
+			</div>
+		</div>
+	</div>
 
-						  {% if not post.anonymous -%}
-						  	<img src="{{ post.user.profile_picture_url or '/static/images/user.png' }}" alt="{{ post.user.name }}" width="30" height="30">
-						  	{% set user_name = '<a href="%s" class="custom-link">%s</a>' % (url_for('stamp.show', id=post.id), post.user.name) %}
-						  {%- else %}
-						  	<img src="/static/images/user.png" width="30" height="30"/>
-						  	{% set user_name = _('ANONYMOUS_LBL') %}
-						  {%- endif %}
-						  {{ _('POSTED_BY_USER_LBL', user=user_name|safe, category=category_name|safe) }}
-						</span>
-						<span class="meta__date"><span class="glyphicon glyphicon-calendar"></span> &nbsp; {{ post.created_at|datetimeformat('EEE, d MMM yyyy') }}</span>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
-	{% else %}
-	<div class="meta push-down-20">
-		<div class="row">
-			<div class="col-xs-12  col-sm-10  col-sm-offset-1  col-md-10  col-md-offset-1">
-				<div class="meta__container--without-image">
-					<div class="row">
-						<div class="col-xs-12  col-sm-12">
-							<div class="meta__info">
-								<span class="meta__author">
-									<img src="{{ post.user.profile_picture_url or '/static/images/user.png' }}" alt="Meta avatar" width="30" height="30">
-									<a href="javascript:void(0);">{{ post.user.name }}</a>  in <a href="javascript:void(0);">{{ post.category.name }}</a>
-								</span>
-								<span class="meta__date">
-									<span class="glyphicon glyphicon-calendar"></span> &nbsp; {{ post.created_at|datetimeformat('EEE, d MMM yyyy') }}
-								</span>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
-	{% endif %}
 	<div class="row">
 		<div class="col-xs-10  col-xs-offset-1  col-md-10  col-md-offset-1  push-down-30">
 			<div class="post-content">
