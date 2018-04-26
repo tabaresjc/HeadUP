@@ -28,7 +28,6 @@
 
 // General parts
 @import "components/navigation";
-@import "components/top-search-and-social";
 @import "components/sidebar";
 @import "components/widgets";
 @import "components/footer";
@@ -49,9 +48,6 @@
 
 // Pages
 @import "components/contact";
-
-// jQuery plugin
-@import "components/jquery-smartvimeoembed";
 
 // Import Custom css styles
 @import "custom";
