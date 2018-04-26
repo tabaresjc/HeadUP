@@ -1,0 +1,45 @@
+/**
+ * Variables and Bootstrap overrides
+ */
+
+// Brand colors
+// -------------------------
+
+$primary-color: #51ab6d;
+$primary-color-darker: darken($primary-color, 10);
+
+// Headings and text color
+// -------------------------
+
+$headings-color: #2f343b;
+$text-color: #40454a;
+
+// Scaffolding
+// -------------------------
+
+$body-bg: #f3f4f4;
+
+// Transitions
+// -------------------------
+
+$primary-transition: all .1s linear;
+
+// Typography
+// -------------------------
+
+$font-size-base: 13px;
+$line-height-base: 1.5;
+
+$primary-font: 'Ubuntu', sans-serif; // For content
+$secondary-font: 'Ubuntu Condensed', sans-serif; // For headings and navigation
+$tertiary-font: 'Ubuntu Condensed', sans-serif; // For smaller text
+
+$font-family-sans-serif: 'Ubuntu Condensed', sans-serif;;
+
+$base-path: "/static/assets/main/";
+$icon-font-path: "../../../../node_modules/bootstrap-sass/assets/fonts/bootstrap/";
+
+// Grid system
+// --------------------------------------------------
+
+$grid-float-breakpoint: 992px;

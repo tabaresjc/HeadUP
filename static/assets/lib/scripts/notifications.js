@@ -1,7 +1,7 @@
+import alertify from 'Lib/alertifyjs/build/alertify.js';
+
 (function($, document, window, undefined) {
 	'use strict';
-
-	var alertify = require('alertifyjs');
 
 	// Create the defaults options
 	var defaults = {

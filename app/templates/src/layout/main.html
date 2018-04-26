@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="{{ language }}">
+<head>
+	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+	<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0" />
+    <title>{% if title -%}{{ site_name }} | {{ title }}{%- else %}{{ site_name }}{%- endif %}</title>
+    <meta name="description" content="{{ description if description else '' }}">
+
+	{% block meta_extra %}{% endblock %}
+
+    {% include 'shared/icons.html' %}
+
+	<% for (var css in htmlWebpackPlugin.files.css) { %>
+	<link rel="stylesheet" href="<%= htmlWebpackPlugin.files.css[css] %>"/>
+	<% } %>
+
+	{% block custom_css %}{% endblock %}
+
+	{% include 'shared/ga.html' %}
+
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+    <![endif]-->
+
+	{% block custom_head_js %}{% endblock %}
+
+	<meta content="authenticity_token" name="csrf-param">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+</head>
+<body>
+	{% block full_page %}
+    <div class="container-wrap">
+        <div class="push-header"></div>
+        <!-- header -->
+        {% block page_header_block %}
+			{% include 'main/layout/header.html' %}
+		{% endblock %}
+        <!-- end header -->
+        {% block container %}
+        <div class="container">
+            {% block wide_container %}
+			<div class="row">
+				<div id="main-sidebar" class="col-md-4 col-sm-12 col-xs-12">
+					{% block sidebar %}{% endblock %}
+				</div>
+				<div id="main-content" class="col-md-8 col-sm-12 col-xs-12">
+					{% block content %}{% endblock %}
+				</div>
+
+            </div>
+            {% endblock %}
+        </div>
+        {% endblock %}
+        <div class="push"></div>
+    </div>
+    <!-- footer -->
+    {% block page_footer_block %}{% include 'main/layout/footer.html' %}{% endblock %}
+    <!-- end footer -->
+	{% endblock %}
+
+	{% include 'shared/message.html' %}
+
+	<script>
+	window.loadFont =  function() {
+		var families = ['Ubuntu:400,700', 'Ubuntu+Condensed'];
+		WebFont.load({google: {families: families}});
+	};
+	</script>
+	<script src="https://ajax.googleapis.com/ajax/libs/webfont/1.6.16/webfont.js" onload="loadFont()"></script>
+
+	<% for (var js in htmlWebpackPlugin.files.js) { %>
+	<script src="<%= htmlWebpackPlugin.files.js[js] %>"></script>
+	<% } %>
+
+    {% block custom_js %}{% endblock %}
+</body>
+</html>

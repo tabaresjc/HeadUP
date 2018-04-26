@@ -1,8 +1,6 @@
 (function($, document, window, undefined) {
 	'use strict';
 
-	var notification = require('notification');
-
 	// Create the defaults options
 	var defaults = {
 		btnSelector: '.upload-profile-picture-btn',

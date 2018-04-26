@@ -60,23 +60,23 @@
 }
 
 .slide_1.active {
-	background-image: url(/static/assets/headsup/images/lp-home/bg-pattern4.png), url(/static/assets/headsup/images/lp-home/screen-bg_1.jpg)
+	background-image: url(/static/images/lp/home/bg-pattern4.png), url(/static/images/lp/home/screen-bg_1.jpg)
 }
 
 .slide_2.active {
-	background-image: url(/static/assets/headsup/images/lp-home/bg-pattern4.png), url(/static/assets/headsup/images/lp-home/screen-bg_2.jpg)
+	background-image: url(/static/images/lp/home/bg-pattern4.png), url(/static/images/lp/home/screen-bg_2.jpg)
 }
 
 .slide_3.active {
-	background-image: url(/static/assets/headsup/images/lp-home/bg-pattern4.png), url(/static/assets/headsup/images/lp-home/screen-bg_3.jpg)
+	background-image: url(/static/images/lp/home/bg-pattern4.png), url(/static/images/lp/home/screen-bg_3.jpg)
 }
 
 .slide_4.active {
-	background-image: url(/static/assets/headsup/images/lp-home/bg-pattern4.png), url(/static/assets/headsup/images/lp-home/screen-bg_4.jpg)
+	background-image: url(/static/images/lp/home/bg-pattern4.png), url(/static/images/lp/home/screen-bg_4.jpg)
 }
 
 .slide_5.active {
-	background-image: url(/static/assets/headsup/images/lp-home/bg-pattern4.png), url(/static/assets/headsup/images/lp-home/screen-bg_5.jpg)
+	background-image: url(/static/images/lp/home/bg-pattern4.png), url(/static/images/lp/home/screen-bg_5.jpg)
 }
 
 .fp-slidesNav ul li {

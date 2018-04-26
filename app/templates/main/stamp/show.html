@@ -16,7 +16,7 @@
 	{% if post.cover_picture %}
 	<meta property="og:image" content="{{ url_for('pictures', name=post.cover_picture.name, _external=true) }}" />
 	{% else %}
-	<meta property="og:image" content="{{ url_for('static', filename='assets/headsup/images/lp-home/screen-bg_1.jpg', _external=true) }}" />
+	<meta property="og:image" content="{{ url_for('static', filename='images/lp/home/screen-bg_1.jpg', _external=true) }}" />
 	{% endif %}
 {% endblock %}
 
@@ -27,7 +27,7 @@
 		{% if post.cover_picture %}
 		<div class="main-post-image" style="background-image:url({{ post.cover_picture.image_url }})"></div>
 		{% else %}
-		<div class="main-post-image" style="background-image:url(/static/assets/headsup/images/stamp-no-cover.jpg)"></div>
+		<div class="main-post-image" style="background-image:url(/static/images/others/stamp-no-cover.jpg)"></div>
 		<q class="meta__quote">{{ post.title }}</q>
 		{% endif %}
 		<div class="meta__container">
