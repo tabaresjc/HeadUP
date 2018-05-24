@@ -99,8 +99,7 @@ msgstr "stories"
 #: app/templates/admin/posts/index.html:23
 msgid "WELCOME_MESSAGE_LBL"
 msgstr ""
-"You don't have any stamps yet<br/>Participate in this comunity by "
-"writting stamps!!"
+"You haven't shared any story yet.<br/>Participate in this comunity by writing your first story!"
 
 #: app/templates/admin/index.html:54 app/templates/admin/layout/navbar.html:24
 #: app/templates/admin/layout/sidebar.html:22
