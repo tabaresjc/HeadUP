@@ -7,16 +7,8 @@
 	<meta name="robots" content="nofollow" />
 	<title>{% if title -%}{{ site_name }} | {{ title }}{%- else %}{{ site_name }}{%- endif %}</title>
 	<meta name="description" content="{{ description if description else '' }}">
+
 	{% include 'shared/icons.html' %}
-
-	<!-- build:css(.) /static/assets/admin/styles/vendors.css -->
-	<link rel="stylesheet" href="/node_modules/alertifyjs/build/css/alertify.css"/>
-	<!-- endbuild -->
-
-	<!-- build:css(.) /static/assets/admin/styles/main.css -->
-	<link rel="stylesheet" href="/static/assets/admin/styles/base/main.css">
-	<link rel="stylesheet" href="/static/assets/lib/styles/alertify.css"/>
-	<!-- endbuild -->
 
 	<% for (var css in htmlWebpackPlugin.files.css) { %>
 	<link rel="stylesheet" href="<%= htmlWebpackPlugin.files.css[css] %>"/>
