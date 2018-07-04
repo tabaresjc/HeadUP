@@ -691,7 +691,7 @@ msgstr "Draft"
 
 #: app/templates/main/layout/error-base.html:33
 msgid "PROFILE_BTN"
-msgstr "APP_PROFILE"
+msgstr "Profile"
 
 #: app/templates/main/layout/header-no-menu.html:5
 #: app/templates/main/layout/header.html:5
