@@ -62,7 +62,7 @@
 					{% for key, value in config.LANGUAGES.iteritems() %}
 						{% if language != key %}
 						<li class="visible-xs-block visible-sm-block nav-item--image">
-							<a href="//{{ '%s.' % key if key != 'en' else '.'  }}{{ config.MAIN_DOMAIN }}{{ request.path }}">
+							<a href="//{{ '%s.' % key if key != 'en' else ''  }}{{ config.MAIN_DOMAIN }}{{ request.path }}">
 								<img src="/static/images/flags/{{ key }}.svg">
 								<span>{{ value }}</span>
 							</a>
