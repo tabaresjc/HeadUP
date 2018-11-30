@@ -188,6 +188,13 @@
 		&:hover {
 			background: #418857;
 		}
+
+		&.disabled {
+			color: lighten(#333, 30%);
+		    background-color: #fff;
+		    border-color: #ccc;
+			cursor: not-allowed;
+		}
 	}
 
 	&.white {

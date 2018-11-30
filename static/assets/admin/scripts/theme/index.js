@@ -1,19 +1,54 @@
 import $ from 'jquery';
 
-function checkTos() {
-	if ($('#check_tos').is(':checked')) {
-		$('#submit-signup').removeAttr('disabled');
-	} else {
-		$('#submit-signup').attr('disabled', 'disabled');
+function setupSignup() {
+	if (!$('#check_tos').length || !$('#submit-signup').length) {
+		return;
 	}
+
+	var checkTOS = function() {
+		if ($('#check_tos').is(':checked')) {
+			$('#submit-signup')
+				.removeAttr('disabled')
+				.removeClass('disabled');
+		} else {
+			$('#submit-signup')
+				.attr('disabled', 'disabled')
+				.addClass('disabled');
+		}
+	};
+
+	var onSignupBtnClick = function(e) {
+		e.preventDefault();
+		var gtagToken = $(this).data('gtag');
+
+		if (typeof window.startLoader === 'function') {
+			window.startLoader();
+		}
+
+		if (gtagToken && typeof window.gtag === 'function') {
+			window.gtag('event', 'conversion', {
+					'send_to': gtagToken,
+					'event_callback': submitForm
+				});
+
+			setTimeout(function() {
+				submitForm();
+			}, 2000);
+		} else {
+			submitForm();
+		}
+	};
+
+	$('#check_tos').change(checkTOS);
+	$('#submit-signup').on('click', onSignupBtnClick);
+
+	checkTOS();
 }
 
-function setupTOS() {
-	if ($('#check_tos').length) {
-		$('#check_tos').change(function() {
-			checkTos();
-		});
-		checkTos();
+function submitForm() {
+	if ($('#submit-signup-form').data('busy') !== '1') {
+		$('#submit-signup-form').submit();
+		$('#submit-signup-form').data('busy', '1');
 	}
 }
 
@@ -66,7 +101,7 @@ function setupStickySidebar() {
 		offset = $sidebar.offset(),
 		topPadding = 15;
 
-	if(!$sidebar.length) {
+	if (!$sidebar.length) {
 		return;
 	}
 
@@ -84,8 +119,8 @@ function setupStickySidebar() {
 }
 
 $(function() {
+	setupSignup();
 	setupMenuFunctions();
 	setupTooltips();
-	setupTOS();
 	setupStickySidebar();
 });

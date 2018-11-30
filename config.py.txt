@@ -76,6 +76,12 @@ GA_TRACKING_ID = None
 GA_TRACKINGS = []
 
 # *************************************************
+# Google tag manager
+# *************************************************
+GTAG_ID = None
+GTAG_SIGNUP_CONVERSION_ID = None
+
+# *************************************************
 # MQ Service
 # *************************************************
 BROKER_URL = 'amqp://headupuser:headup123456@localhost:5672/headup'

@@ -13,6 +13,7 @@ import 'Lib/alertifyjs/build/alertify.js';
 import 'Assets/lib/scripts/jquery_ujs.js';
 import 'Assets/lib/scripts/notifications.js';
 import 'Assets/lib/scripts/profile-uploader.js';
+import 'Assets/lib/scripts/loader.js';
 
 import './theme';
 import './upload';

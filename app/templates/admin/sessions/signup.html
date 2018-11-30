@@ -3,7 +3,7 @@
 
 {% from "shared/_bootstrap_forms.html" import render_inline_field %}
 {% block page_content %}
-<form action="{{ url_for('sessions.signup') }}" method="post" autocomplete="off">
+<form id="submit-signup-form" action="{{ url_for('sessions.signup') }}" method="post" autocomplete="off">
 	<div class="content-wrapper">
 		<div class="panel panel-default">
 			<div class="panel-body">
@@ -27,7 +27,9 @@
 				</div>
 			</div>
 			<div class="panel-footer">
-				<button id="submit-signup" type="submit" name="button" class="btn-flat success login btn-lg" disabled="disabled">
+				<button id="submit-signup" type="submit" name="button" class="btn-flat success login btn-lg disabled"
+					disabled="disabled"
+					data-gtag="{{ config.GTAG_SIGNUP_CONVERSION_ID }}">
 					{{ _('REGISTER_BTN') }}
 				</button>
 			</div>
