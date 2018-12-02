@@ -1,7 +1,7 @@
 Werkzeug==0.14.1
 SQLAlchemy==1.2.6
 alembic==0.9.9
-Flask==0.12.2
+Flask==0.12.3
 Flask-Assets==0.12
 Flask-Babel==0.11.2
 Flask-Bcrypt==0.7.1
@@ -16,7 +16,7 @@ Flask-Widgets==0.4
 Flask-WTF==0.14.2
 MySQL-python==1.2.5
 celery==4.1.0
-pyOpenSSL==17.4.0
+pyOpenSSL==17.5.0
 python-dateutil==2.7.2
 PyYAML==3.12
 speaklater==1.3
