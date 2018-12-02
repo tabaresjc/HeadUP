@@ -1,7 +1,7 @@
 Werkzeug==0.14.1
 SQLAlchemy==1.2.6
 alembic==0.9.9
-Flask==0.12.3
+Flask==0.12.4
 Flask-Assets==0.12
 Flask-Babel==0.11.2
 Flask-Bcrypt==0.7.1
