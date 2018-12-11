@@ -8,8 +8,11 @@ html {
 }
 
 body {
-	font-family: $primary-font;
 	background-color: $body-bg;
+	font-size: 13px;
+	.lang-ja & {
+		font-size: 12px;
+	}
 }
 
 h1,
@@ -89,7 +92,6 @@ h5 {
 
 h6 {
 	font-size: 12px;
-	font-family: $tertiary-font;
 	text-transform: uppercase;
 	margin: 0;
 	color: #9a9a90;
@@ -199,6 +201,7 @@ hr {
 .btn {
 	-webkit-tap-highlight-color: rgba(0,0,0,0);
 }
+
 // Featured image, ready for use in WP version as well
 .wp-post-image {
 	width: 100%;

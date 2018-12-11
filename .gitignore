@@ -93,3 +93,6 @@ app/templates/admin/layout/base.html
 
 # ignore logs folder
 /logs/
+
+# ignore vs-code settings
+\.vscode/settings\.json

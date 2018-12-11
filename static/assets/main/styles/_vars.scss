@@ -30,11 +30,10 @@ $primary-transition: all .1s linear;
 $font-size-base: 13px;
 $line-height-base: 1.5;
 
-$primary-font: 'Ubuntu', sans-serif; // For content
-$secondary-font: 'Ubuntu Condensed', sans-serif; // For headings and navigation
-$tertiary-font: 'Ubuntu Condensed', sans-serif; // For smaller text
-
-$font-family-sans-serif: 'Ubuntu Condensed', sans-serif;;
+$primary-font: 'Noto Sans JP', Arial, sans-serif; // For content
+$secondary-font: 'Ubuntu Condensed', Arial, sans-serif; // For headings and navigation
+$tertiary-font: 'Noto Sans JP', Arial, sans-serif; // For smaller text
+$font-family-sans-serif: 'Noto Sans JP', sans-serif;
 
 $base-path: "/static/assets/main/";
 $icon-font-path: "../../../../node_modules/bootstrap-sass/assets/fonts/bootstrap/";

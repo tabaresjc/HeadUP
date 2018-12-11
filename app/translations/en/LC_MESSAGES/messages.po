@@ -501,7 +501,7 @@ msgid "USER_ID"
 msgstr "Id"
 
 #: app/templates/admin/users/show.html:65
-msgid "USER_LAST_SEE"
+msgid "USER_LAST_SEEN"
 msgstr "Last seen"
 
 #: app/templates/admin/users/show.html:73

@@ -2,7 +2,7 @@
 
 from app.helpers import HtmlHelper
 from flask import request
-from flask_babel import gettext, format_datetime, format_timedelta
+from flask_babel import gettext as _, format_datetime, format_timedelta
 from jinja2 import evalcontextfilter
 import app
 
@@ -19,8 +19,7 @@ def humanformat(eval_ctx, value):
     if not value:
         return ''
 
-    return gettext('APP_PUBLISHED_AGO',
-                   ago=format_timedelta(value, granularity='second'))
+    return _('APP_PUBLISHED_AGO', ago=format_timedelta(value, granularity='second'))
 
 
 @app.app.template_filter()

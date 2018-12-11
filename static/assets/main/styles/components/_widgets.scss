@@ -17,7 +17,12 @@
 		line-height: 1.5;
 		font-size: 14px;
 		margin-bottom: 30px;
-		font-family: $secondary-font;
+	}
+
+	.btn-group {
+		a {
+			@include btn-generic;
+		}
 	}
 
 	.btn-group-justified{
@@ -115,6 +120,10 @@
 	font-family: $tertiary-font;
 	font-size: 14px;
 	font-weight: bold;
+
+	& > a {
+		@include btn-generic;
+	}
 
 	ul {
 		list-style: none;

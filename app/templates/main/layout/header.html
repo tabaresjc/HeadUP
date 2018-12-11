@@ -60,14 +60,14 @@
 					<li role="separator" class="visible-xs-block visible-sm-block divider"></li>
 
 					{% for key, value in config.LANGUAGES.iteritems() %}
-						{% if language != key %}
-						<li class="visible-xs-block visible-sm-block nav-item--image">
-							<a href="//{{ '%s.' % key if key != 'en' else ''  }}{{ config.MAIN_DOMAIN }}{{ request.path }}">
-								<img src="/static/images/flags/{{ key }}.svg">
-								<span>{{ value }}</span>
-							</a>
-						</li>
-						{% endif %}
+					{% if language != key %}
+					<li class="visible-xs-block visible-sm-block nav-item--image">
+						<a href="//{{ '%s.' % key if key != 'en' else ''  }}{{ config.MAIN_DOMAIN }}{{ request.path }}">
+							<img src="/static/images/flags/{{ key }}.svg">
+							<span>{{ value }}</span>
+						</a>
+					</li>
+					{% endif %}
 					{% endfor %}
 
 					<li role="separator" class="visible-xs-block visible-sm-block divider"></li>
@@ -113,24 +113,16 @@
 			</div>
 			<div class="custom_menu">
 				<a href="javascript:;" class="custom_menu__container">
-					<img src="/static/images/flags/{{ language }}.svg" width="28" height="28">
+					<i class="glyphicon glyphicon-globe"></i>
 				</a>
 				<ul class="custom_menu__dropdown {{ language }}">
-					<li class="li-lang-en">
-						<a href="http://{{ config.MAIN_DOMAIN }}{{ request.path }}" class="custom_menu__container">
-							<img src="/static/images/flags/en.svg" width="28" height="28">
+					{% for key, value in config.LANGUAGES.iteritems() %}
+					<li>
+						<a href="//{{ '%s.' % key if key != 'en' else ''  }}{{ config.MAIN_DOMAIN }}{{ request.path }}" class="custom_menu__container {{ 'active' if key == language else '' }}">
+							<img src="/static/images/flags/{{ key }}.svg" width="28" height="28">
 						</a>
 					</li>
-					<li class="li-lang-fr">
-						<a href="http://fr.{{ config.MAIN_DOMAIN }}{{ request.path }}" class="custom_menu__container">
-							<img src="/static/images/flags/fr.svg" width="28" height="28">
-						</a>
-					</li>
-					<li class="li-lang-es">
-						<a href="http://es.{{ config.MAIN_DOMAIN }}{{ request.path }}" class="custom_menu__container">
-							<img src="/static/images/flags/es.svg" width="28" height="28">
-						</a>
-					</li>
+					{% endfor %}
 				</ul>
 			</div>
 		</div>

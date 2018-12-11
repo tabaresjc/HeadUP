@@ -1,8 +1,7 @@
 // Search and Social in header
 
 .btn_container,
-.custom_menu__container,
-.search__container {
+.custom_menu__container {
 	display: block;
 	height: 70px;
 	width: 65px;
@@ -12,7 +11,8 @@
 	border-left: 1px solid #dcdddd;
 	color: $primary-color;
 
-	&:hover {
+	&:hover,
+	&.active {
 		transition: $primary-transition;
 		color: $primary-color;
 		background-color: $body-bg;
@@ -21,8 +21,14 @@
 	&:first-child {
 		border-right: 1px solid #dcdddd;
 	}
+
+	.glyphicon {
+		font-size: 1.3em;
+		vertical-align: middle;
+		margin-top: -1px; 
+	}
 }
-// Social
+
 .custom_menu {
 	position: relative;
 	float: right;
@@ -56,91 +62,18 @@
 		border-bottom: 1px solid #dcdddd;
 
 		li {
-			.custom_menu__container {
-				border-top: 1px solid #dcdddd;
-			}
-
 			a {
 				border: none;
+				border-top: 1px solid #dcdddd;
 				color: $primary-color;
 				font-size: 1.3em;
 
 				&:hover {
 					color: darken($primary-color, 10);
-					background: ligthen(#dcdddd, 10);
+					background-color: ligthen(#dcdddd, 10);
 				}
-			}
-		}
-
-		&.en {
-			.li-lang-en {
-				display: none;
-			}
-		}
-
-		&.fr {
-			.li-lang-fr {
-				display: none;
-			}
-		}
-
-		&.es {
-			.li-lang-es {
-				display: none;
-			}
-		}
-
-		&.ja {
-			.li-lang-ja {
-				display: none;
-			}
+			}		
 		}
 	}
 }
-// Search Panel
-.search-panel {
-	display: none;
-	font-family: $secondary-font;
-	background-color: rgba(0, 0, 0, 0.75);
-	position: fixed;
-	top: 0;
-	left: 0;
-	right: 0;
-	bottom: 0;
-	z-index: 999;
 
-	form {
-		margin-top: 50px;
-		font-family: $secondary-font;
-		@media (min-width: $screen-md-min) {
-			margin-top: 160px;
-			margin-left: 70px;
-		}
-	}
-
-	.search-panel__form {
-		background: transparent;
-		border: none;
-		color: #efefeb;
-		font-size: 50px;
-		margin-bottom: 30px;
-		outline: none;
-	}
-
-	input::-webkit-input-placeholder {
-		color: #efefeb;
-		font-weight: 300;
-	}
-
-	.search-panel__text {
-		font-size: 18px;
-		color: $primary-color;
-		padding-left: 5px;
-	}
-}
-
-body.search-mode {
-	.search-panel {
-		display: block;
-	}
-}

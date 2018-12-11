@@ -16,12 +16,11 @@
  */
 
 @import "bootstrap-sass/assets/stylesheets/bootstrap";
-@import "components/_boostrap-override";
-
+@import "components/mixins";
+@import "components/boostrap-override";
 /*------------------------------------*\
     Components
 \*------------------------------------*/
-
 @import "components/layout";
 @import "components/elements";
 @import "components/index";

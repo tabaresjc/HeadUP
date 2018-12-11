@@ -31,7 +31,7 @@
 		.date {
 			color: rgb(180, 184, 187);
 			font-weight: lighter;
-			font-family:  'Lato', 'Open Sans';
+			font-family:  $primary-font;
 			font-style: italic;
 			font-size: 13px;
 			position: absolute;
@@ -59,7 +59,7 @@
 /* specific chart styles */
 .legendLabel {
 	font-size: 12px;
-	font-family: "Open Sans", Arial;
+	font-family: $primary-font;
 	color: #9da3a9
 }
 

@@ -2,8 +2,14 @@
  * Variables and Bootstrap overrides
  */
 
-$icon-font-path: "../../../../node_modules/bootstrap-sass/assets/fonts/bootstrap/";
-
 $main-color: #f1f1f1;
 // #51ab6d
 $main-bg-color: #418857;
+
+$primary-font: 'Noto Sans JP', Arial, sans-serif; // For content
+$secondary-font: 'Ubuntu Condensed', Arial, sans-serif; // For headings and navigation
+$tertiary-font: 'Noto Sans JP', Arial, sans-serif; // For smaller text
+$font-family-sans-serif: 'Noto Sans JP', sans-serif;
+
+
+$icon-font-path: "../../../../node_modules/bootstrap-sass/assets/fonts/bootstrap/";

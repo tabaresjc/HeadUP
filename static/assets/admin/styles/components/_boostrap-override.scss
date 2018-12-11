@@ -6,7 +6,7 @@ h4,
 h5,
 h6 {
 	font-weight: normal;
-	font-family: 'Open Sans', sans-serif;
+	font-family: $secondary-font;
 }
 /* COMPONENTS */
 /* labels */
@@ -57,7 +57,7 @@ button,
 input,
 select,
 textarea {
-	font-family: "Open Sans", Arial;
+	font-family: $primary-font;
 }
 
 input[type="password"],
@@ -150,21 +150,21 @@ textarea[readonly] {
 input:-moz-placeholder,
 textarea:-moz-placeholder {
 	color: #9ba0a5;
-	font-family: "Open Sans", Arial;
+	font-family: $primary-font;
 	font-size: 13px;
 }
 
 input:-ms-input-placeholder,
 textarea:-ms-input-placeholder {
 	color: #9ba0a5;
-	font-family: "Open Sans", Arial;
+	font-family: $primary-font;
 	font-size: 12px;
 }
 
 input::-webkit-input-placeholder,
 textarea::-webkit-input-placeholder {
 	color: #9ba0a5;
-	font-family: "Open Sans", Arial;
+	font-family: $primary-font;
 	font-size: 12px;
 }
 /* PREPEND & APPEND INPUT */
@@ -340,4 +340,9 @@ textarea::-webkit-input-placeholder {
 	.navbar-toggle {
 		display: block !important;
 	}
+}
+
+
+.btn {
+	@include btn-generic;
 }
