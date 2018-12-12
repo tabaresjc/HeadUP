@@ -72,6 +72,7 @@
 			display: block;
 			@media (min-width: $screen-sm-min) {
 				display: inline-block;
+				float: right;
 			}
 		}
 

@@ -123,10 +123,10 @@
 						<tr class="{{ 'first' if loop.first }}">
 							<td>
 								<a href="{{ url_for('PostsView:get', id=post.id) }}">
-                  					{{ post.created_at|datetimeformat(format='EEE, d MMM yyyy') }}
+                  					{{ post.created_at|datetimeformat('DATE') }}
                 				</a>
 							</td>
-							<td>{{ post.modified_at|datetimeformat(format='EEE, d MMM yyyy') }}</td>
+							<td>{{ post.modified_at|datetimeformat('DATE') }}</td>
 							<td>{{ post.title }}</td>
 							{% if current_user.is_admin -%}
 							<td>

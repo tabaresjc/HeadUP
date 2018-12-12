@@ -12,6 +12,6 @@
 	  {{ _('POSTED_BY_USER_LBL', user=user_name|safe, category=category_name|safe) }}
 	</span>
 	<span class="meta__date">
-		<span class="glyphicon glyphicon-calendar"></span> &nbsp; {{ post.created_at|datetimeformat('EEE, d MMM yyyy') }}
+		<span class="glyphicon glyphicon-calendar"></span> &nbsp; {{ post.created_at|datetimeformat('DATE') }}
 	</span>
 </div>

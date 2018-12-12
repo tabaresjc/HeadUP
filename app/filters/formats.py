@@ -3,13 +3,23 @@
 from app.helpers import HtmlHelper
 from flask import request
 from flask_babel import gettext as _, format_datetime, format_timedelta
+from flask_babel import get_locale
 from jinja2 import evalcontextfilter
 import app
+import config
+import autolink
 
 
 @app.app.template_filter()
 @evalcontextfilter
-def datetimeformat(eval_ctx, value, format='EEE, d MMM yyyy H:mm:ss'):
+def datetimeformat(eval_ctx, value, kind='LONG_DATETIME'):
+    language_formats = config.LANGUAGES_FORMATS or {}
+    language = str(get_locale())
+    format = 'dd/MM/yyyy HH:mm'
+
+    if language in language_formats:
+        format = language_formats[language][kind] if kind in language_formats[language] else format
+
     return format_datetime(value, format)
 
 
@@ -43,3 +53,12 @@ def limit(eval_ctx, inputstr, total, ellipsis='...'):
 @evalcontextfilter
 def htmltruncate(eval_ctx, value, target_len=200, ellipsis='...'):
     return HtmlHelper.truncate(value, target_len, ellipsis)
+
+
+@app.app.template_filter()
+@evalcontextfilter
+def linkify(eval_ctx, value):
+    if not value:
+        return value
+
+    return autolink.linkify(value, {'rel': 'nofollow'})
