@@ -104,12 +104,12 @@
 							<a href="javascript:;">
 								<img class="media-object"
 									src="{{ comment.user.profile_picture_url or '/static/images/user.png' }}"
-									alt="{{ comment.user.name }}"
+									alt="{{ comment.user.nickname }}"
 									width="64" height="64">
 							</a>
 						</div>
 						<div class="media-body">
-							<span class="author"><strong>{{ comment.user.name }}</strong></span>
+							<span class="author"><strong>{{ comment.user.nickname }}</strong></span>
 							<span class="date text-muted">{{ comment.created_at|datetimeformat('DATE') }}</span>
 							<div class="text">
 								{{ comment.text | nl2br }}

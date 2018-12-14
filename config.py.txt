@@ -24,8 +24,27 @@ LOG_PATH = 'logs/daily.log'
 SITE_NAME = 'HeadUP'
 DEFAULT_TIMEZONE = 'Asia/Tokyo'
 DEFAULT_LANGUAGE = 'en'
+FORCE_LANG = ''
 DEFAULT_USER_ROLES = [('1', 'Administrator'), ('2', 'Writer')]
-LANGUAGES = {'en': u'English', 'es': u'Español', 'fr': u'Français', 'ja': '日本語'}
+LANGUAGES = OrderedDict([('en', u'English'), ('fr', u'Français'), ('es', u'Español'), ('ja', u'日本語')])
+LANGUAGES_FORMATS = {
+    'en': {
+        'DATE': u'EEE, d MMM yyyy',
+        'LONG_DATETIME': U'EEE, d MMM yyyy H:mm:ss'
+    },
+    'es': {
+        'DATE': u'EEE, d MMM yyyy',
+        'LONG_DATETIME': U'EEE, d MMM yyyy H:mm:ss'
+    },
+    'fr': {
+        'DATE': u'EEE, d MMM yyyy',
+        'LONG_DATETIME': U'EEE, d MMM yyyy H:mm:ss'
+    },
+    'ja': {
+        'DATE': u'y\u5e74MM\u6708dd\u65e5（EE）',
+        'LONG_DATETIME': U'y\u5e74M\u6708d\u65e5EEEE H\u6642mm\u5206'
+    }
+}
 UPLOAD_MEDIA_FOLDER = 'media'
 UPLOAD_MEDIA_PICTURES = 'media/pictures'
 UPLOAD_MEDIA_PICTURES_PATH = os.path.join(BASE_DIR, UPLOAD_MEDIA_PICTURES)

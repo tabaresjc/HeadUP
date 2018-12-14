@@ -81,44 +81,60 @@
 				</ul>
 			</div>
 		</nav>
-		<div class="hidden-xs hidden-sm">
-			<div class="session">
-				{% if current_user and current_user.is_authenticated -%}
-				<a href="{{ url_for('sessions.logout') }}" data-method="post" rel="nofollow" class="btn_container" title="{% trans%}APP_SIGN_OUT{% endtrans %}">
+		<div class="hidden-xs hidden-sm btn-group-container">
+			{% if current_user and current_user.is_authenticated -%}
+			<div class="custom_menu">
+				<a href="{{ url_for('sessions.logout') }}" data-method="post" rel="nofollow" class="custom_menu__btn" title="{% trans%}APP_SIGN_OUT{% endtrans %}">
 					<span class="glyphicon glyphicon-log-out"></span>
 				</a>
-				{%- else %}
-				<a href="{{ url_for('sessions.signup') }}" rel="nofollow" class="btn_container" title="{{ _('REGISTER_BTN') }}">
+			</div>
+			{%- else %}
+			<div class="custom_menu">
+				<a href="{{ url_for('sessions.signup') }}" rel="nofollow" class="custom_menu__btn" title="{{ _('REGISTER_BTN') }}">
 					<span class="glyphicon glyphicon-plus"></span>
 				</a>
-				<a href="{{ url_for('sessions.login') }}" rel="nofollow" class="btn_container" title="{{ _('LOGIN_BTN') }}">
+			</div>
+			<div class="custom_menu">
+				<a href="{{ url_for('sessions.login') }}" rel="nofollow" class="custom_menu__btn" title="{{ _('LOGIN_BTN') }}">
 					<span class="glyphicon glyphicon-log-in"></span>
 				</a>
-				{%- endif %}
 			</div>
+			{%- endif %}
 			<div class="custom_menu">
-				<a href="https://www.facebook.com/headupspace/" rel="nofollow" target="_blank" class="custom_menu__container">
-					<img src="/static/images/sns/facebook.svg" class="img-rounded" width="32" height="32">
+				<a href="javascript:;" class="custom_menu__btn">
+					<i class="glyphicon glyphicon-share"></i>
 				</a>
+				<ul class="custom_menu__dropdown">
+					<li>
+						<a href="https://www.instagram.com/headupspace/" rel="nofollow" target="_blank" class="custom_menu__btn">
+							<img src="/static/images/sns/instagram.svg" class="img-rounded" width="32" height="32">
+						</a>
+					</li>
+					<li>
+						<a href="https://www.facebook.com/headupspace/" rel="nofollow" target="_blank" class="custom_menu__btn">
+							<img src="/static/images/sns/facebook.svg" class="img-rounded img-sns" width="32" height="32">
+						</a>
+					</li>
+					<li>
+						<a href="https://www.pinterest.com/headupspace/" rel="nofollow" target="_blank" class="custom_menu__btn">
+							<img src="/static/images/sns/pinterest.svg" class="img-rounded img-sns" width="32" height="32">
+						</a>
+					</li>
+					<li>
+						<a href="https://www.youtube.com/channel/UCI7kUURMQab8RzK3OoJeasQ" rel="nofollow" target="_blank" class="custom_menu__btn">
+							<img src="/static/images/sns/youtube.svg" class="img-rounded img-sns" width="32" height="32">
+						</a>
+					</li>
+				</ul>
 			</div>
 			<div class="custom_menu">
-				<a href="https://www.pinterest.com/headupspace/" rel="nofollow" target="_blank" class="custom_menu__container">
-					<img src="/static/images/sns/pinterest.svg" class="img-rounded" width="32" height="32">
-				</a>
-			</div>
-			<div class="custom_menu">
-				<a href="https://www.youtube.com/channel/UCI7kUURMQab8RzK3OoJeasQ" rel="nofollow" target="_blank" class="custom_menu__container">
-					<img src="/static/images/sns/youtube.svg" class="img-rounded" width="32" height="32">
-				</a>
-			</div>
-			<div class="custom_menu">
-				<a href="javascript:;" class="custom_menu__container">
+				<a href="javascript:;" class="custom_menu__btn">
 					<i class="glyphicon glyphicon-globe"></i>
 				</a>
 				<ul class="custom_menu__dropdown {{ language }}">
 					{% for key, value in config.LANGUAGES.iteritems() %}
 					<li>
-						<a href="//{{ '%s.' % key if key != 'en' else ''  }}{{ config.MAIN_DOMAIN }}{{ request.path }}" class="custom_menu__container {{ 'active' if key == language else '' }}">
+						<a href="//{{ '%s.' % key if key != 'en' else ''  }}{{ config.MAIN_DOMAIN }}{{ request.path }}" class="custom_menu__btn {{ 'active' if key == language else '' }}">
 							<img src="/static/images/flags/{{ key }}.svg" width="28" height="28">
 						</a>
 					</li>

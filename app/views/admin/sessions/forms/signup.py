@@ -8,7 +8,6 @@ from app.models import User
 
 class SignUpForm(FlaskForm):
     email = TextField(_lg('USER_EMAIL'), [validators.Email(), validators.Length(min=10, max=255)])
-    name = TextField(_lg('USER_NAME'), [validators.Required()])
     nickname = TextField(_lg('USER_NICKNAME'), [validators.Required()])
     password = PasswordField(_lg('USER_PASSWORD'), [validators.Required(), validators.Length(min=10, max=64)])
     check_tos = BooleanField('check_tos', default=False)
@@ -21,10 +20,6 @@ class SignUpForm(FlaskForm):
 
     def validate(self):
         valid = super(SignUpForm, self).validate()
-
-        if self.name.data != User.make_valid_name(self.name.data):
-            self.name.errors.append(_('USER_NAME_INVALID'))
-            valid = False
 
         if self.nickname.data != User.make_valid_nickname(self.nickname.data):
             self.nickname.errors.append(_('USER_NICKNAME_INVALID'))

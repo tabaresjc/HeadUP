@@ -14,10 +14,6 @@ class UserForm(FlaskForm):
         validators.Email(),
         validators.Length(min=10, max=255)
     ])
-    name = TextField(_lg('USER_NAME'), [
-        validators.Required(),
-        validators.Length(min=3, max=255)
-    ])
     nickname = TextField(_lg('USER_NICKNAME'), [
         validators.Required(),
         validators.Length(min=0, max=64)
@@ -31,8 +27,6 @@ class UserForm(FlaskForm):
         validators.Length(min=10, max=64)
     ])
     confirm_password = PasswordField(_lg('USER_CONFIRM'), [validators.Optional()])
-    address = TextAreaField(_lg('USER_ADDRESS'), [validators.Length(min=0, max=255)])
-    phone = TextField(_lg('USER_PHONE'), [validators.Length(min=0, max=64)])
     timezone = SelectField(_lg('USER_TIMEZONE'), choices=get_timezones())
 
     def __init__(self, user=None, *args, **kwargs):
@@ -43,9 +37,6 @@ class UserForm(FlaskForm):
 
         if not self.is_submitted() and user:
             self.email.data = user.email
-            self.name.data = user.name
             self.nickname.data = user.nickname
             self.role_id.data = user.role_id
-            self.address.data = user.address
-            self.phone.data = user.phone
             self.timezone.data = user.timezone
