@@ -42,11 +42,7 @@ class User(Base, sa.Model, ModelHelper, UserMixin):
 
     @property
     def name(self):
-        return self.get_attribute('name', '')
-
-    @name.setter
-    def name(self, value):
-        return self.set_attribute('name', value)
+        return self.nickname
 
     @property
     def description(self):
