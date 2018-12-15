@@ -61,4 +61,4 @@ def linkify(eval_ctx, value):
     if not value:
         return value
 
-    return autolink.linkify(value, {'rel': 'nofollow'})
+    return autolink.linkify(value, {'rel': 'nofollow', 'target': '_blank'})
