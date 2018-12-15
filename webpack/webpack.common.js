@@ -4,8 +4,8 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 module.exports = function(config) {
-	const cssFileName = config.IS_PRD ? 'css/[name].[chunkhash].css' : 'css/[name].css';
-	const jsFileName = config.IS_PRD ? 'js/[name].[chunkhash].js' : 'js/[name].js';
+	const cssFileName = config.IS_PRD ? 'css/[name].[chunkhash].v2.css' : 'css/[name].css';
+	const jsFileName = config.IS_PRD ? 'js/[name].[chunkhash].v2.js' : 'js/[name].js';
 
 	const extractSass = new ExtractTextPlugin({
 		filename: cssFileName,
