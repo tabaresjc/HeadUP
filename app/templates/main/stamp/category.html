@@ -1,5 +1,6 @@
 {% extends "main/layout/base.html" %}
 {% set title = _('CATEGORY_LIST_TITLE', category=category.name) %}
+{% set description = '' %}
 
 {% block meta_extra %}
 	{% if config.FB_APPID %}
@@ -12,18 +13,11 @@
 	<meta property="og:image" content="{{ url_for('static', filename='images/lp/home/screen-bg_1.jpg', _external=true) }}" />
 {% endblock %}
 
-{% block wide_container %}
-<div class="row">
-	<div class="col-xs-12 col-md-12">
-		<h2 class="widget-title-box">{{ title }}</h2>
-	</div>
-</div>
-<div class="row">
-	<div class="block-main col-xs-12 col-sm-8 col-md-8">
-		{{ widget('stamps_category', category=category, page=page) }}
-	</div>
-	<div class="block-side col-xs-12 col-sm-4 col-md-4">
-		{% include 'main/common/_sidebar_user.html' %}
-	</div>
-</div>
+
+{% block content %}
+	{{ widget('stamps_category', category=category, page=page) }}
+{% endblock %}
+
+{% block sidebar %}
+	{% include 'main/common/_sidebar_user.html' %}
 {% endblock %}
