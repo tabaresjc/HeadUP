@@ -48,12 +48,12 @@
 				<h1 class="title">
 					<a href="{{ url_for('stamp.show', id=post.id) }}">{{ post.title }}</a>
 				</h1>
-				<h3>{{ post.body|nl2br|safe }}</h3>
+				<h3>{{ post.body|nl2br|linkify|safe }}</h3>
 				<div class="post-body">
 				{% if post.editor_version %}
-					{{ post.extra_body|safe }}
+					{{ post.extra_body|linkify|safe }}
 				{% else %}
-					{{ post.extra_body|nl2br|safe }}
+					{{ post.extra_body|nl2br|linkify|safe }}
 				{% endif %}
 				</div>
 			</div>

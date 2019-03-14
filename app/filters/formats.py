@@ -7,7 +7,7 @@ from flask_babel import get_locale
 from jinja2 import evalcontextfilter
 import app
 import config
-import autolink
+import bleach
 
 
 @app.app.template_filter()
@@ -61,4 +61,4 @@ def linkify(eval_ctx, value):
     if not value:
         return value
 
-    return autolink.linkify(value, {'rel': 'nofollow', 'target': '_blank'})
+    return bleach.linkify(value)
