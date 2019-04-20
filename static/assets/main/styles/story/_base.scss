@@ -1,0 +1,142 @@
+/*------------------------------------*\
+    Tags
+\*------------------------------------*/
+body,
+html {
+	height: 100%;
+	margin: 0;
+}
+
+body {
+	background-color: #fff;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+	line-height: 1.5;
+	margin: 15px 0;
+	font-family: $secondary-font;
+	color: $headings-color;
+	font-weight: 700;
+	@media (min-width: $screen-sm-min) {
+		margin: 30px 0;
+	}
+
+	a {
+		color: $headings-color;
+		border: none;
+
+		&:hover {
+			color: #9a9a90;
+		}
+	}
+}
+
+h1 {
+	font-size: 30px;
+	letter-spacing: -1.4px;
+	@media (min-width: $screen-sm-min) {
+		font-size: 50px;
+	}
+}
+
+h2 {
+	font-size: 24px;
+	letter-spacing: -0.8px;
+	@media (min-width: $screen-sm-min) {
+		font-size: 30px;
+	}
+}
+
+h3 {
+	font-size: 24px;
+	font-weight: 300;
+	color: #999;
+	letter-spacing: -0.75px;
+	line-height: 1.25;
+	@media (min-width: $screen-sm-min) {
+		font-size: 30px;
+	}
+
+	a {
+		color: #999;
+		border: none;
+
+		&:hover {
+			color: #9a9a90;
+		}
+	}
+}
+
+h4 {
+	font-size: 18px;
+	@media (min-width: $screen-sm-min) {
+		font-size: 24px;
+	}
+}
+
+h5 {
+	font-size: 16px;
+	@media (min-width: $screen-sm-min) {
+		font-size: 18px;
+	}
+}
+
+h6 {
+	font-size: 12px;
+	text-transform: uppercase;
+	margin: 0;
+	color: #9a9a90;
+
+	a {
+		color: #9a9a90;
+		border: none;
+
+		&:hover {
+			color: #9a9a90;
+		}
+	}
+}
+
+a {
+	color: $primary-color;
+	border-bottom: 1px dotted #9a9a90;
+
+	&:hover {
+		color: darken($primary-color, 10);
+		text-decoration: none;
+	}
+}
+
+hr {
+	margin: 10px 0 30px;
+	border-color: #dcdddd;
+}
+
+// when 2 or more titles are under each other
+h1 + h3,
+h2 + h3 {
+	margin: -8px 0 30px;
+}
+
+/*------------------------------------*\
+    Helpers
+\*------------------------------------*/
+// generates styles: .push-down-5 {margin-bottom: 5px;}, .push-down-10 {margin-bottom: 10px;} etc. to 60px
+@for $i from 0 through 12 {
+	$i5: $i * 5;
+
+	.push-down-#{$i5} {
+		margin-bottom: 5px * $i;
+	}
+}
+
+// @media (min-width: $screen-sm-min) {
+// 	.container {
+// 		width: 750px;
+// 	}
+// }

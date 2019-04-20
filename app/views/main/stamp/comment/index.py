@@ -46,6 +46,7 @@ def comment_new(id):
                            post=post,
                            form=form)
 
+
 @mod.route('/comment/<int:id>/delete', methods=['POST'])
 @login_required
 def comment_delete(id):

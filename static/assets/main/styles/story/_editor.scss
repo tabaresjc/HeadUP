@@ -1,0 +1,27 @@
+.container-wrapper {
+	margin: 40px 0;
+	padding: 25px 0;
+	background: #fff;
+
+	#story-title,
+	#story-body {
+		border: none;
+		box-shadow: none;
+		padding: 0;
+	}
+
+	#story-title {
+		font-size: 2em;
+		font-weight: 700;
+	}
+
+	#story-body {
+		@include content-generic;
+	}
+}
+
+.container {
+	@media (min-width: $screen-sm-min) {
+		width: 750px;
+	}
+}

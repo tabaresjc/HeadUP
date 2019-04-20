@@ -1,4 +1,3 @@
 # -*- coding: utf8 -*-
 
-from helper import HtmlHelper
-from template import render_view
+from template import render_view, render_json

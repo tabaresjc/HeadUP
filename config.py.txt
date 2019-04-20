@@ -23,6 +23,7 @@ LOG_PATH = 'logs/daily.log'
 # Site Configuration
 # *************************************************
 SITE_NAME = 'HeadUP'
+SITE_YEAR = '2016'
 DEFAULT_TIMEZONE = 'Asia/Tokyo'
 DEFAULT_LANGUAGE = 'en'
 FORCE_LANG = ''
@@ -49,6 +50,12 @@ LANGUAGES_FORMATS = {
 UPLOAD_MEDIA_FOLDER = 'media'
 UPLOAD_MEDIA_PICTURES = 'media/pictures'
 UPLOAD_MEDIA_PICTURES_PATH = os.path.join(BASE_DIR, UPLOAD_MEDIA_PICTURES)
+
+# *************************************************
+# Session Configuration
+# *************************************************
+SESSION_TYPE = None
+SESSION_KEY_PREFIX = 'hu'
 
 # *************************************************
 # SQLAlchemy Configuration

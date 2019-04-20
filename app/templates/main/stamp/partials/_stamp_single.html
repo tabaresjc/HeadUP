@@ -20,8 +20,8 @@
             <!-- Start of the content -->
             <div class="post-content--front-page">
                 <h2 class="front-page-title"><a href="{{ url_for('stamp.show', id=post.id) }}">{{ post.title }}</a></h2>
-                <h3>{{ post.body|htmltruncate(150)|safe }}</h3>
-                <p>{{ post.extra_body|htmltruncate(200)|safe }}</p>
+                {% if post.body %}<h3>{{ post.body|striptags|limit(150)|safe }}</h3>{% endif %}
+                <p>{{ post.extra_body|striptags|limit(200)|safe }}</p>
             </div>
             <!-- End of the content -->
             <a href="{{ url_for('stamp.show', id=post.id) }}">

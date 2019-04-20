@@ -1,59 +1,30 @@
-/*------------------------------------*\
-    Headsup
-\*------------------------------------*/
-
-/**
- * TABLE OF CONTENTS
- *
- * 01. Imports............Imported files, like partials, variables, Compass etc.
- * 02. Tags...............Like <body>, <h1> etc.
- * 03. Helpers............The general styles like .push-down-15 etc.
- */
-
-/*------------------------------------*\
-    Imports
-\*------------------------------------*/
-
-/**
- * Project variables
- */
-
+// base style
 @import "vars";
 @import "bootstrap-sass/assets/stylesheets/bootstrap";
-@import "components/mixins";
-@import "components/base";
+@import "common/mixins";
+@import "main/base";
 
-/*------------------------------------*\
-    Components
-\*------------------------------------*/
+// common elements
+@import "common/footer";
+@import "common/buttons";
 
-// General parts
-@import "components/navigation";
-@import "components/header";
-@import "components/sidebar";
-@import "components/widgets";
-@import "components/footer";
-
-// Elements
-@import "components/buttons";
-
-// Advanced elements
-@import "components/meta";
-@import "components/read-more";
-@import "components/social-icons";
-@import "components/tags";
-@import "components/post-content";
-@import "components/post-comments";
-@import "components/post-author";
-@import "components/related-stories";
-@import "components/slider";
+// components
+@import "main/navigation";
+@import "main/header";
+@import "main/sidebar";
+@import "main/widgets";
+@import "main/meta";
+@import "main/read-more";
+@import "main/social-icons";
+@import "main/tags";
+@import "main/post-content";
+@import "main/post-comments";
+@import "main/post-author";
+@import "main/related-stories";
+@import "main/slider";
 
 // Pages
-@import "components/contact";
+@import "main/contact";
 
-// Import Custom css styles
+// additional styles
 @import "custom";
-
-/*------------------------------------*\
-    The end :)
-\*------------------------------------*/

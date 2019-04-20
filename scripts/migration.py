@@ -28,6 +28,7 @@ def revision(msg, autogenerate='0'):
     except Exception as e:
         click.echo('Error: %s' % e)
 
+
 @cli.command()
 @click.option('--point', default='head', help='head or revision number')
 def upgrade(point='head'):

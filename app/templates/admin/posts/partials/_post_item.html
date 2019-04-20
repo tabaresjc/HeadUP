@@ -37,8 +37,8 @@
 		{% endif %}
 		<div class="row">
 			<div class="col-md-12">
-				<p><strong>{{ post.body|safe }}</strong></p>
-				{{ post.extra_body|htmltruncate(500)|safe }}
+				{% if post.body %}<p><strong>{{ post.body|safe }}</strong></p>{% endif %}
+				{{ post.extra_body|striptags|limit(500)|safe }}
 			</div>
 		</div>
 	</div>
@@ -52,7 +52,6 @@
 				<i class="glyphicon glyphicon-trash"></i>
 			</a>
 			{% endif %}
-
 			<div class="pull-right">
 				<strong>{{ post.created_at | humanformat }}</strong>
 			</div>

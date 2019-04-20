@@ -3,7 +3,7 @@
 from flask_login import UserMixin, current_user
 from werkzeug.security import generate_password_hash, check_password_hash
 from app import sa
-from app.models import Base
+from app.models import Base, Post
 from role import Role
 from app.helpers import ModelHelper, MutableObject
 import datetime
@@ -150,10 +150,11 @@ class User(Base, sa.Model, ModelHelper, UserMixin):
     def can_edit(self):
         return self.id == current_user.id or current_user.is_admin
 
-    def get_user_posts(self, limit=10, page=1):
+    def get_user_posts(self, limit=10, page=1, status=Post.POST_PUBLIC):
         total = self.posts.count()
 
         posts = self.posts \
+            .filter_by(status=status) \
             .order_by(sa.text("created_at DESC")) \
             .offset((page - 1) * limit) \
             .limit(limit)

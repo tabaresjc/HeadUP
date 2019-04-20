@@ -25,7 +25,11 @@ class Post(Base, sa.Model, ModelHelper):
 
     POST_PUBLIC = 0x001
     POST_DRAFT = 0x100
+    POST_DRAFT_2 = 0x101
     POST_HIDDEN = 0x800
+
+    KIND_STAMP = 1
+    KIND_STORY = 2
 
     id = sa.Column(sa.Integer, primary_key=True)
     title = sa.Column(sa.String(255))
@@ -121,6 +125,14 @@ class Post(Base, sa.Model, ModelHelper):
         return self.set_attribute('editor_version', value)
 
     @property
+    def kind(self):
+        return self.get_attribute('kind', self.KIND_STAMP)
+
+    @kind.setter
+    def kind(self, value):
+        return self.set_attribute('kind', value)
+
+    @property
     def old_status(self):
         return self.get_attribute('old_status', self.POST_DRAFT)
 
@@ -134,7 +146,15 @@ class Post(Base, sa.Model, ModelHelper):
 
     @property
     def is_draft(self):
-        return self.status == self.POST_DRAFT
+        return self.status == self.POST_DRAFT or self.status == self.POST_DRAFT_2
+
+    @property
+    def is_stamp(self):
+        return self.kind == self.KIND_STAMP
+
+    @property
+    def is_story(self):
+        return self.kind == self.KIND_STORY
 
     @property
     def comment_list(self):
@@ -218,3 +238,24 @@ class Post(Base, sa.Model, ModelHelper):
                 .offset((page - 1) * limit) \
                 .limit(limit)
         return records, count
+
+    @classmethod
+    def last_draft(cls, user_id):
+        sort_by = 'created_at DESC'
+
+        return cls.query.filter_by(user_id=user_id, status=cls.POST_DRAFT_2) \
+            .order_by(sa.text(sort_by)) \
+            .offset(0) \
+            .limit(1) \
+            .first()
+
+    @classmethod
+    def init(cls, user, status=POST_DRAFT):
+        p = cls.create()
+        p.user = current_user
+        p.status = status
+
+        # init the score
+        p.update_score(page_view=1)
+        p.editor_version = 1
+        return p

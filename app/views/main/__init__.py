@@ -1,8 +1,18 @@
 # -*- coding: utf8 -*-
 
 import app
-from . import index  # noqa
+
+# Register the URLs for each module
+
+# register the sessions module
+from pages import PagesView  # noqa
+PagesView.register(app.app)
+
+# register the stories module
+from stories import StoriesView  # noqa
+StoriesView.register(app.app)
+
 from . import stamp  # noqa
 
-# import route for stamp resource
+# import routes
 app.app.register_blueprint(stamp.mod)

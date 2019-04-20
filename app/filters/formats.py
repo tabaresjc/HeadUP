@@ -1,6 +1,5 @@
 # -*- coding: utf8 -*-
 
-from app.helpers import HtmlHelper
 from flask import request
 from flask_babel import gettext as _, format_datetime, format_timedelta
 from flask_babel import get_locale
@@ -47,12 +46,6 @@ def limit(eval_ctx, inputstr, total, ellipsis='...'):
         return inputstr
 
     return u''.join([inputstr[:total], ellipsis])
-
-
-@app.app.template_filter()
-@evalcontextfilter
-def htmltruncate(eval_ctx, value, target_len=200, ellipsis='...'):
-    return HtmlHelper.truncate(value, target_len, ellipsis)
 
 
 @app.app.template_filter()

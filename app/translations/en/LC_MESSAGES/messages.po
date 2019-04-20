@@ -668,7 +668,7 @@ msgstr "Start here!"
 
 #: app/templates/main/common/_sidebar_user.html:66
 msgid "EDIT_STAMP_LBL"
-msgstr "Edit stamp"
+msgstr "Edit story"
 
 #: app/templates/main/layout/error-base.html:15
 #: app/templates/main/layout/header-no-menu.html:22
@@ -683,7 +683,7 @@ msgstr "Dashboard"
 
 #: app/templates/main/layout/error-base.html:30
 msgid "POSTS_BTN"
-msgstr "Stamps"
+msgstr "Stories"
 
 #: app/templates/main/layout/error-base.html:31
 msgid "DRAFT_BTN"
@@ -756,12 +756,12 @@ msgstr "Transmit your optimism by writing remarkable success stories"
 
 #: app/templates/main/stamp/category.html:2
 msgid "CATEGORY_LIST_TITLE"
-msgstr "Stamps for %(category)s"
+msgstr "Stories for %(category)s"
 
 #: app/templates/main/stamp/partials/_ranking.html:5
 #: app/templates/main/stamp/ranking.html:2
 msgid "RANKING_TITLE"
-msgstr "Most populars stamps"
+msgstr "Most populars stories"
 
 #: app/templates/main/stamp/partials/_stamp_ranking_feed.html:20
 #: app/templates/main/stamp/partials/_stamp_single.html:17

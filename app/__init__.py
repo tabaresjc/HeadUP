@@ -1,18 +1,22 @@
 # -*- coding: utf8 -*-
 
-from flask import Flask
+import os
 import flask
 import jinja2
-import os
 import config
-import logging
 
-app = Flask(__name__)
+app = flask.Flask(__name__)
 
 # -------------------------------------------------------------------------
 # Load the app's configuration
 # -------------------------------------------------------------------------
 app.config.from_object('config')
+
+# -------------------------------------------------------------------------
+# Session Configuration
+# -------------------------------------------------------------------------
+from flask_session import Session  # noqa
+Session(app)
 
 # -------------------------------------------------------------------------
 # Load celery
@@ -60,7 +64,7 @@ babel = Babel(app)
 # Load the app's configuration
 # -------------------------------------------------------------------------
 from app.helpers import LogHelper  # noqa
-cache = LogHelper(app)
+logger = LogHelper(app)
 
 # -------------------------------------------------------------------------
 # Cache Configuration

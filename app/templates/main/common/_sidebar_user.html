@@ -62,11 +62,11 @@
 					<div class="widget-categories">
 						<h6>{{ _('SIDEBAR_STAMP_TITLE') }}</h6>
 						{% if request.endpoint == 'stamp.show' and post.is_mine() -%}
-						<a href="{{ url_for('stamp.edit', id=post.id) }}" rel="nofollow" class="btn  btn-primary btn-lg btn-block">
+						<a href="{{ url_for('StoriesView:edit', id=post.id) }}" rel="nofollow" class="btn  btn-primary btn-lg btn-block">
 							{{ _('EDIT_STAMP_LBL') }}
 						</a>
 						{%- else %}
-						<a href="{{ url_for('stamp.new') }}" rel="nofollow" class="btn  btn-primary btn-primary--transparent btn-lg btn-block">
+						<a href="{{ url_for('StoriesView:new') }}" rel="nofollow" class="btn  btn-primary btn-primary--transparent btn-lg btn-block">
 							{{ _('POST_CREATE') }}
 						</a>
 						{%- endif %}

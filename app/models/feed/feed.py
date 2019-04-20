@@ -82,7 +82,8 @@ class Feed:
     @classmethod
     def category(cls, category, page=1, limit=20):
         from app.models import Post
-        query = Post.query.filter_by(category_id=category.id, status=Post.POST_PUBLIC)
+        query = Post.query.filter_by(
+            category_id=category.id, status=Post.POST_PUBLIC)
         count = query.count()
         records = []
         if count:

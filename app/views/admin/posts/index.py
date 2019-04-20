@@ -19,7 +19,8 @@ class PostsView(FlaskView):
 
         posts, total = Post.posts_by_user(current_user.id,
                                           page=page,
-                                          limit=limit)
+                                          limit=limit,
+                                          status=Post.POST_PUBLIC)
 
         return render_view('admin/posts/index.html',
                            posts=posts,
@@ -65,10 +66,10 @@ class PostsView(FlaskView):
                     raise Exception(_('ERROR_INVALID_SUBMISSION'))
 
                 remain = request.values.get('remain', False, bool)
-                post = Post.create()
+                post = Post.init(current_user)
                 form.populate_obj(post)
-                post.user = current_user
 
+                # store the cover picture if any
                 f = request.files.get('file')
 
                 if f:
@@ -76,12 +77,11 @@ class PostsView(FlaskView):
                     picture.save_file(f, current_user)
                     post.cover_picture_id = picture.id if picture else 0
 
-                # init the score
-                post.update_score(page_view=1)
-
-                post.editor_version = 1
+                # save the post
                 post.save()
 
+                # refresh the cache
+                # TODO: move to celery task
                 Feed.clear_feed_cache()
 
                 if post.is_draft:
@@ -119,8 +119,10 @@ class PostsView(FlaskView):
                 if not form.validate():
                     raise Exception(_('ERROR_INVALID_SUBMISSION'))
 
-                cover_picture_id = request.values.get('cover_picture_id', 0, int)
-                is_draft = request.values.get('status', 0, int) == Post.POST_DRAFT
+                cover_picture_id = request.values.get(
+                    'cover_picture_id', 0, int)
+                is_draft = request.values.get(
+                    'status', 0, int) == Post.POST_DRAFT
                 remain = request.values.get('remain', False, bool)
 
                 if post.cover_picture and cover_picture_id == 0:

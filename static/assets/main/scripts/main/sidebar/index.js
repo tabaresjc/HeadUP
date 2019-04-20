@@ -1,7 +1,7 @@
 import $ from 'jquery';
 import _ from 'lodash';
 
-const mediumScreenSize = 991;
+var mediumScreenSize = 991;
 
 function screenWidth() {
 	return (window.innerWidth > 0) ? window.innerWidth : screen.width;
@@ -17,7 +17,7 @@ function updateSidebar() {
 
 		sidebarWrapper.css({
 			'position': 'fixed',
-			'width': ws +'px'
+			'width': ws + 'px'
 		});
 	} else {
 		sidebarWrapper.removeAttr('style');
@@ -25,7 +25,7 @@ function updateSidebar() {
 }
 
 function onResize() {
-	return _.debounce(function() {
+	return _.debounce(function () {
 		updateSidebar();
 	}, 200);
 }

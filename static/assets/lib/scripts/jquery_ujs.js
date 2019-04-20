@@ -1,4 +1,4 @@
-(function($, undefined) {
+(function ($, undefined) {
 
 	/**
 	 * Unobtrusive scripting adapter for jQuery
@@ -52,42 +52,42 @@
 		linkDisableSelector: 'a[data-disable-with]',
 
 		// Make sure that every Ajax request sends the CSRF token
-		CSRFProtection: function(xhr) {
+		CSRFProtection: function (xhr) {
 			var token = $('meta[name="csrf-token"]').attr('content');
 			if (token) xhr.setRequestHeader('X-CSRFToken', token);
 		},
 
 		// making sure that all forms have actual up-to-date token(cached forms contain old one)
-		refreshCSRFTokens: function() {
+		refreshCSRFTokens: function () {
 			var csrfToken = $('meta[name=csrf-token]').attr('content');
 			var csrfParam = $('meta[name=csrf-param]').attr('content');
 			$('form input[name="' + csrfParam + '"]').val(csrfToken);
 		},
 
 		// Triggers an event on an element and returns false if the event result is false
-		fire: function(obj, name, data) {
+		fire: function (obj, name, data) {
 			var event = $.Event(name);
 			obj.trigger(event, data);
 			return event.result !== false;
 		},
 
 		// Default confirm dialog, may be overridden with custom confirm dialog in $.rails.confirm
-		confirm: function(message) {
+		confirm: function (message) {
 			return confirm(message);
 		},
 
 		// Default ajax function, may be overridden with custom function in $.rails.ajax
-		ajax: function(options) {
+		ajax: function (options) {
 			return $.ajax(options);
 		},
 
 		// Default way to get an element's href. May be overridden at $.rails.href.
-		href: function(element) {
+		href: function (element) {
 			return element.attr('href');
 		},
 
 		// Submits "remote" forms and links with ajax
-		handleRemote: function(element) {
+		handleRemote: function (element) {
 			var method, url, data, elCrossDomain, crossDomain, withCredentials, dataType, options;
 
 			if (rails.fire(element, 'ajax:before')) {
@@ -127,7 +127,7 @@
 					data: data,
 					dataType: dataType,
 					// stopping the "ajax:beforeSend" event will cancel the ajax request
-					beforeSend: function(xhr, settings) {
+					beforeSend: function (xhr, settings) {
 						var csrftoken = $('meta[name=csrf-token]').attr('content');
 						if (!/^(GET|HEAD|OPTIONS|TRACE)$/i.test(settings.type)) {
 							xhr.setRequestHeader("X-CSRFToken", csrftoken);
@@ -137,17 +137,17 @@
 						}
 						return rails.fire(element, 'ajax:beforeSend', [xhr, settings]);
 					},
-					success: function(data, status, xhr) {
+					success: function (data, status, xhr) {
 						element.trigger('ajax:success', [data, status, xhr]);
 						if (data.redirect_to || data.redirect) {
 							// data.redirect contains the string URL to redirect to
 							window.location.href = data.redirect || data.redirect_to;
 						}
 					},
-					complete: function(xhr, status) {
+					complete: function (xhr, status) {
 						element.trigger('ajax:complete', [xhr, status]);
 					},
-					error: function(xhr, status, error) {
+					error: function (xhr, status, error) {
 						element.trigger('ajax:error', [xhr, status, error]);
 					},
 					crossDomain: crossDomain
@@ -176,7 +176,7 @@
 
 		// Handles "data-method" on links such as:
 		// <a href="/users/5" data-method="delete" rel="nofollow" data-confirm="Are you sure?">Delete</a>
-		handleMethod: function(link) {
+		handleMethod: function (link) {
 			var href = rails.href(link),
 				method = link.data('method'),
 				target = link.attr('target'),
@@ -202,8 +202,8 @@
 		  - Replaces element text with value of 'data-disable-with' attribute
 		  - Sets disabled property to true
 		*/
-		disableFormElements: function(form) {
-			form.find(rails.disableSelector).each(function() {
+		disableFormElements: function (form) {
+			form.find(rails.disableSelector).each(function () {
 				var element = $(this),
 					method = element.is('button') ? 'html' : 'val';
 				element.data('ujs:enable-with', element[method]());
@@ -216,8 +216,8 @@
 		  - Replaces element text with cached value from 'ujs:enable-with' data store (created in `disableFormElements`)
 		  - Sets disabled property to false
 		*/
-		enableFormElements: function(form) {
-			form.find(rails.enableSelector).each(function() {
+		enableFormElements: function (form) {
+			form.find(rails.enableSelector).each(function () {
 				var element = $(this),
 					method = element.is('button') ? 'html' : 'val';
 				if (element.data('ujs:enable-with')) element[method](element.data('ujs:enable-with'));
@@ -235,7 +235,7 @@
 		   Attaching a handler to the element's `confirm:complete` event that returns a `falsy` value makes this function
 		   return false. The `confirm:complete` event is fired whether or not the user answered true or false to the dialog.
 		*/
-		allowAction: function(element) {
+		allowAction: function (element) {
 			var message = element.data('confirm'),
 				answer = false,
 				callback;
@@ -251,13 +251,13 @@
 		},
 
 		// Helper function which checks for blank inputs in a form that match the specified CSS selector
-		blankInputs: function(form, specifiedSelector, nonBlank) {
+		blankInputs: function (form, specifiedSelector, nonBlank) {
 			var inputs = $(),
 				input, valueToCheck,
 				selector = specifiedSelector || 'input,textarea',
 				allInputs = form.find(selector);
 
-			allInputs.each(function() {
+			allInputs.each(function () {
 				input = $(this);
 				valueToCheck = input.is('input[type=checkbox],input[type=radio]') ? input.is(':checked') : input.val();
 				// If nonBlank and valueToCheck are both truthy, or nonBlank and valueToCheck are both falsey
@@ -275,12 +275,12 @@
 		},
 
 		// Helper function which checks for non-blank inputs in a form that match the specified CSS selector
-		nonBlankInputs: function(form, specifiedSelector) {
+		nonBlankInputs: function (form, specifiedSelector) {
 			return rails.blankInputs(form, specifiedSelector, true); // true specifies nonBlank
 		},
 
 		// Helper function, needed to provide consistent behavior in IE
-		stopEverything: function(e) {
+		stopEverything: function (e) {
 			$(e.target).trigger('ujs:everythingStopped');
 			e.stopImmediatePropagation();
 			return false;
@@ -288,16 +288,16 @@
 
 		//  replace element's html with the 'data-disable-with' after storing original html
 		//  and prevent clicking on it
-		disableElement: function(element) {
+		disableElement: function (element) {
 			element.data('ujs:enable-with', element.html()); // store enabled state
 			element.html(element.data('disable-with')); // set to disabled state
-			element.bind('click.railsDisable', function(e) { // prevent further clicking
+			element.bind('click.railsDisable', function (e) { // prevent further clicking
 				return rails.stopEverything(e);
 			});
 		},
 
 		// restore element to its original state which was disabled by 'disableElement' above
-		enableElement: function(element) {
+		enableElement: function (element) {
 			if (element.data('ujs:enable-with') !== undefined) {
 				element.html(element.data('ujs:enable-with')); // set to old enabled state
 				element.removeData('ujs:enable-with'); // clean up cache
@@ -309,17 +309,17 @@
 
 	if (rails.fire($document, 'rails:attachBindings')) {
 
-		$.ajaxPrefilter(function(options, originalOptions, xhr) {
+		$.ajaxPrefilter(function (options, originalOptions, xhr) {
 			if (!options.crossDomain) {
 				rails.CSRFProtection(xhr);
 			}
 		});
 
-		$document.delegate(rails.linkDisableSelector, 'ajax:complete', function() {
+		$document.delegate(rails.linkDisableSelector, 'ajax:complete', function () {
 			rails.enableElement($(this));
 		});
 
-		$document.delegate(rails.linkClickSelector, 'click.rails', function(e) {
+		$document.delegate(rails.linkClickSelector, 'click.rails', function (e) {
 			var link = $(this),
 				method = link.data('method'),
 				data = link.data('params'),
@@ -338,7 +338,7 @@
 				if (handleRemote === false) {
 					rails.enableElement(link);
 				} else {
-					handleRemote.error(function() {
+					handleRemote.error(function () {
 						rails.enableElement(link);
 					});
 				}
@@ -350,7 +350,7 @@
 			}
 		});
 
-		$document.delegate(rails.buttonClickSelector, 'click.rails', function(e) {
+		$document.delegate(rails.buttonClickSelector, 'click.rails', function (e) {
 			var button = $(this);
 			if (!rails.allowAction(button)) return rails.stopEverything(e);
 
@@ -358,7 +358,7 @@
 			return false;
 		});
 
-		$document.delegate(rails.inputChangeSelector, 'change.rails', function(e) {
+		$document.delegate(rails.inputChangeSelector, 'change.rails', function (e) {
 			var link = $(this);
 			if (!rails.allowAction(link)) return rails.stopEverything(e);
 
@@ -366,7 +366,7 @@
 			return false;
 		});
 
-		$document.delegate(rails.formSubmitSelector, 'submit.rails', function(e) {
+		$document.delegate(rails.formSubmitSelector, 'submit.rails', function (e) {
 			var form = $(this),
 				remote = form.data('remote') !== undefined,
 				blankRequiredInputs = rails.blankInputs(form, rails.requiredInputSelector),
@@ -383,14 +383,14 @@
 				if (nonBlankFileInputs) {
 					// slight timeout so that the submit button gets properly serialized
 					// (make it easy for event handler to serialize form without disabled values)
-					setTimeout(function() {
+					setTimeout(function () {
 						rails.disableFormElements(form);
 					}, 13);
 					var aborted = rails.fire(form, 'ajax:aborted:file', [nonBlankFileInputs]);
 
 					// re-enable form elements if event bindings return false (canceling normal form submission)
 					if (!aborted) {
-						setTimeout(function() {
+						setTimeout(function () {
 							rails.enableFormElements(form);
 						}, 13);
 					}
@@ -403,13 +403,13 @@
 
 			} else {
 				// slight timeout so that the submit button gets properly serialized
-				setTimeout(function() {
+				setTimeout(function () {
 					rails.disableFormElements(form);
 				}, 13);
 			}
 		});
 
-		$document.delegate(rails.formInputClickSelector, 'click.rails', function(event) {
+		$document.delegate(rails.formInputClickSelector, 'click.rails', function (event) {
 			var button = $(this);
 
 			if (!rails.allowAction(button)) return rails.stopEverything(event);
@@ -424,15 +424,15 @@
 			button.closest('form').data('ujs:submit-button', data);
 		});
 
-		$document.delegate(rails.formSubmitSelector, 'ajax:beforeSend.rails', function(event) {
+		$document.delegate(rails.formSubmitSelector, 'ajax:beforeSend.rails', function (event) {
 			if (this == event.target) rails.disableFormElements($(this));
 		});
 
-		$document.delegate(rails.formSubmitSelector, 'ajax:complete.rails', function(event) {
+		$document.delegate(rails.formSubmitSelector, 'ajax:complete.rails', function (event) {
 			if (this == event.target) rails.enableFormElements($(this));
 		});
 
-		$(function() {
+		$(function () {
 			rails.refreshCSRFTokens();
 		});
 	}

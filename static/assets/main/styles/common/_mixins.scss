@@ -1,0 +1,60 @@
+// mixins
+@mixin btn-generic {
+	font-family: $secondary-font;
+	& > span,
+	& > i {
+		font-size: 12px;
+	}
+
+	& > span {
+		font-family: $secondary-font;
+	}
+}
+
+
+@mixin content-generic {
+	h1,
+	h2,
+	h3,
+	h4 {
+		margin: 0 0 15px 0;
+	}
+
+	p {
+		font-size: 14px;
+		line-height: 1.4;
+		margin: 0;
+	}
+
+	p + p {
+		margin-top: 12px;
+	}
+
+	p + h1,
+	p + h2,
+	p + h3,
+	p + h4,
+	p + figure {
+		margin-top: 15px;
+	}
+
+	ul,
+	ol {
+		margin: 3.5% 0;
+
+		ul,
+		ol {
+			margin: 1% 0 2% 0;
+		}
+	}
+
+	figure.image {
+		display: block;
+		width: 100%;
+
+		img {
+			display: block;
+			width: 100%;
+		}
+	}
+}

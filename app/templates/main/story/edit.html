@@ -1,0 +1,50 @@
+{% extends "main/layout/base.html" %}
+{% set title = post.title if post else _('POST_CREATE') %}
+{% set description = '' %}
+
+{% block meta_extra %}
+{% endblock %}
+
+{% block page_wrapper %}
+	<nav class="navbar navbar-default navbar-fixed-top">
+		<div class="container">
+			<!-- Collect the nav links, forms, and other content for toggling -->
+			<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+				<div class="navbar-form navbar-right">
+					<button id="story-save-draft" class="btn btn-link">Save draft</button>
+					<button id="story-publish" class="btn btn-primary btn-primary--transparent">Publish</button>
+				</div>
+			</div>
+		</div>
+	</nav>
+
+    <div class="container-wrap">
+        <div class="container">
+            <div class="row">
+				<div class="col-md-12 col-sm-12 col-xs-12">
+					<div id="story-container" data-id="{{ id if id else '' }}" class="container-wrapper">
+							<div id="story-title" data-placeholder="{{ _('FRM_INPUT_TITLE_DESCRIPTION') }}"></div>
+							<div id="story-body" data-placeholder="{{ _('FRM_INPUT_SOLUTION_DESCRIPTION') }}"></div>
+					</div>
+				</div>
+            </div>
+        </div>
+        <div class="push"></div>
+	</div>
+
+    <!-- footer -->
+    {% include 'main/layout/footer.html' %}
+	<!-- end footer -->
+{% endblock %}
+
+{% block base_style %}
+	{% include 'shared/assets/styles/story.html' %}
+{% endblock %}
+
+{% block header_script %}
+    <script src="https://cdn.ckeditor.com/ckeditor5/12.0.0/balloon-block/ckeditor.js"></script>
+{% endblock %}
+
+{% block base_script %}
+	{% include 'shared/assets/scripts/story.html' %}
+{% endblock %}

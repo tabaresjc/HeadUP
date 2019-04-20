@@ -3,21 +3,50 @@ const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 
-module.exports = function(config) {
-	const cssFileName = config.IS_PRD ? 'css/[name].[chunkhash].v2.css' : 'css/[name].css';
-	const jsFileName = config.IS_PRD ? 'js/[name].[chunkhash].v2.js' : 'js/[name].js';
+module.exports = function (config) {
+	const cssFileName = config.IS_PRD ? 'css/[name].[hash:8].css' : 'css/[name].css';
+	const jsFileName = config.IS_PRD ? 'js/[name].[hash:8].js' : 'js/[name].js';
 
 	const extractSass = new ExtractTextPlugin({
 		filename: cssFileName,
 		disable: false
 	});
 
+	const assets = {
+		admin: './static/assets/admin/scripts/index.js',
+		lp: './static/assets/main/scripts/lp/index.js',
+		main: './static/assets/main/scripts/main/index.js',
+		story: './static/assets/main/scripts/story/index.js',
+	};
+
+	const plugins = [
+		new webpack.ProvidePlugin({
+			$: 'jquery',
+			jQuery: 'jquery'
+		}),
+		extractSass
+	];
+
+	Object.entries(assets).forEach((asset) => {
+		const [key, _] = asset;
+
+		plugins.push(new HtmlWebpackPlugin({
+			template: path.resolve(config.APP_DIR, 'app/templates/src/assets/script.html'),
+			filename: path.resolve(config.APP_DIR, `app/templates/shared/assets/scripts/${ key }.html`),
+			inject: false,
+			chunks: [key],
+		}));
+
+		plugins.push(new HtmlWebpackPlugin({
+			template: path.resolve(config.APP_DIR, 'app/templates/src/assets/style.html'),
+			filename: path.resolve(config.APP_DIR, `app/templates/shared/assets/styles/${ key }.html`),
+			inject: false,
+			chunks: [key],
+		}));
+	});
+
 	return {
-		entry: {
-			main: './static/assets/main/scripts/main/index.js',
-			lp: './static/assets/main/scripts/lp/index.js',
-			admin: './static/assets/admin/scripts/index.js',
-		},
+		entry: assets,
 		output: {
 			path: path.resolve(config.APP_DIR, 'static/dist/'),
 			filename: jsFileName,
@@ -30,7 +59,8 @@ module.exports = function(config) {
 			},
 		},
 		module: {
-			rules: [{
+			rules: [
+				{
 					test: /\.(s*)css$/,
 					use: extractSass.extract({
 						use: [{
@@ -58,30 +88,6 @@ module.exports = function(config) {
 				}
 			]
 		},
-		plugins: [
-			new webpack.ProvidePlugin({
-				$: 'jquery',
-				jQuery: 'jquery'
-			}),
-			extractSass,
-			new HtmlWebpackPlugin({
-				template: path.resolve(config.APP_DIR, 'app/templates/src/layout/main.html'),
-				filename: path.resolve(config.APP_DIR, 'app/templates/main/layout/base.html'),
-				inject: false,
-				chunks: ['main'],
-			}),
-			new HtmlWebpackPlugin({
-				template: path.resolve(config.APP_DIR, 'app/templates/src/layout/home.html'),
-				filename: path.resolve(config.APP_DIR, 'app/templates/main/layout/home.html'),
-				inject: false,
-				chunks: ['lp'],
-			}),
-			new HtmlWebpackPlugin({
-				template: path.resolve(config.APP_DIR, 'app/templates/src/layout/admin.html'),
-				filename: path.resolve(config.APP_DIR, 'app/templates/admin/layout/base.html'),
-				inject: false,
-				chunks: ['admin'],
-			})
-		]
+		plugins: plugins
 	}
 };
