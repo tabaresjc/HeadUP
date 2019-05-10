@@ -1,3 +1,3 @@
 # -*- coding: utf8 -*-
 
-from . import index
+from . import stories

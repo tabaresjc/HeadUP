@@ -1,5 +1,5 @@
 {% extends "main/layout/base.html" %}
-{% set title = _('CATEGORY_LIST_TITLE', category=category.name) %}
+{% set title = _('RANKING_TITLE') %}
 {% set description = '' %}
 
 {% block meta_extra %}
@@ -7,17 +7,12 @@
 	<meta property="fb:app_id" content="{{ config.FB_APPID }}" />
 	{% endif %}
 	<meta property="og:type" content="blog" />
-	<meta property="og:url" content="{{ url_for('stamp.category', slug=category.slug, page=page if page > 1 else None, _external=true) }}" />
+	<meta property="og:url" content="{{ url_for('latest', _external=true) }}" />
 	<meta property="og:title" content="{{ title }}" />
 	<meta property="og:description" content="{{ description }}">
 	<meta property="og:image" content="{{ url_for('static', filename='images/lp/home/screen-bg_1.jpg', _external=true) }}" />
 {% endblock %}
 
-
-{% block content %}
-	{{ widget('stamps_category', category=category, page=page) }}
-{% endblock %}
-
-{% block sidebar %}
-	{% include 'main/common/_sidebar_user.html' %}
+{% block container %}
+	{{ widget('stories_ranking') }}
 {% endblock %}

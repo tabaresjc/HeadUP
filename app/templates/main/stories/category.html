@@ -1,20 +1,21 @@
 {% extends "main/layout/base.html" %}
-{% set title = _('LATEST_TITLE') %}
-{% set description = _('LATEST_DESCRIPTION') %}
+{% set title = _('CATEGORY_LIST_TITLE', category=category.name) %}
+{% set description = '' %}
 
 {% block meta_extra %}
 	{% if config.FB_APPID %}
 	<meta property="fb:app_id" content="{{ config.FB_APPID }}" />
 	{% endif %}
 	<meta property="og:type" content="blog" />
-	<meta property="og:url" content="{{ url_for('latest', _external=true) }}" />
+	<meta property="og:url" content="{{ url_for('story.category', slug=category.slug, page=page if page > 1 else None, _external=true) }}" />
 	<meta property="og:title" content="{{ title }}" />
 	<meta property="og:description" content="{{ description }}">
 	<meta property="og:image" content="{{ url_for('static', filename='images/lp/home/screen-bg_1.jpg', _external=true) }}" />
 {% endblock %}
 
+
 {% block content %}
-	{{ widget('stamps_welcome', page=page) }}
+	{{ widget('stories_category', category=category, page=page) }}
 {% endblock %}
 
 {% block sidebar %}

@@ -9,7 +9,7 @@
 			{% for post in posts %}
 			<div class="ranking-item col-xs-12  {% if loop.first %}col-md-12{% else %}col-md-6{% endif %}">
 				<!-- <span class="label label-danger">{{ loop.index }}</span> -->
-				{% include 'main/stamp/partials/_stamp_ranking_feed.html' %}
+				{% include 'widgets/stories/partials/_single_feed.html' %}
 			</div>
 			{% endfor %}
 		</div>

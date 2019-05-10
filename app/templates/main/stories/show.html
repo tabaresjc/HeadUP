@@ -5,12 +5,12 @@
 {% from "shared/_bootstrap_forms.html" import render_inline_field %}
 
 {% block meta_extra %}
-	<link rel="canonical" href="{{ url_for('stamp.show', id=post.id, _external=true) | replace_host_name }}">
+	<link rel="canonical" href="{{ url_for('story.show', id=post.id, _external=true) | replace_host_name }}">
 	{% if config.FB_APPID %}
 	<meta property="fb:app_id" content="{{ config.FB_APPID }}" />
 	{% endif %}
 	<meta property="og:type" content="article" />
-	<meta property="og:url" content="{{ url_for('stamp.show', id=post.id, _external=true) | replace_host_name }}" />
+	<meta property="og:url" content="{{ url_for('story.show', id=post.id, _external=true) | replace_host_name }}" />
 	<meta property="og:title" content="{{ title }}" />
 	<meta property="og:description" content="{{ description }}">
 	{% if post.cover_picture %}
@@ -23,17 +23,17 @@
 {% block content %}
 <div class="boxed push-down-20">
 	{% if post.is_story %}
-		{% include 'main/stamp/partials/_post_story.html'%}
+		{% include 'main/stories/partials/_post_story.html'%}
 	{% else %}
-		{% include 'main/stamp/partials/_post_stamp.html'%}
+		{% include 'main/stories/partials/_post_stamp.html'%}
 	{% endif %}
 
-	{% include 'main/stamp/partials/_counter.html' %}
+	{% include 'main/stories/partials/_counter.html' %}
 </div>
 
 <div class="row push-down-20">
 	<div class="col-md-12 col-sm-12 col-xs-12">
-		<form action="{{ url_for('stamp.comment_new', id=post.id) }}" method="post" autocomplete="off">
+		<form action="{{ url_for('story.comment_new', id=post.id) }}" method="post" autocomplete="off">
 			<div class="panel panel-default panel-comment">
 				<div class="panel-body">
 					{{ render_inline_field(form.text, class="form-control", placeholder=_('COMMENT_TEXT_PLACEHOLDER')) }}
@@ -46,10 +46,10 @@
 				{% if not current_user.is_authenticated %}
 				<div class="login-required">
 					<div class="column">
-						<a href="{{ url_for('sessions.login', ret=url_for('stamp.show', id=post.id, _anchor='comment-box')) }}" rel="nofollow" class="btn btn-primary">
+						<a href="{{ url_for('sessions.login', ret=url_for('story.show', id=post.id, _anchor='comment-box')) }}" rel="nofollow" class="btn btn-primary">
 							{{ _('LOGIN_BTN') }}
 						</a>
-						<a href="{{ url_for('sessions.signup', ret=url_for('stamp.show', id=post.id, _anchor='comment-box')) }}" rel="nofollow" class="btn btn-primary">
+						<a href="{{ url_for('sessions.signup', ret=url_for('story.show', id=post.id, _anchor='comment-box')) }}" rel="nofollow" class="btn btn-primary">
 							{{ _('REGISTER_BTN') }}
 						</a>
 					</div>
@@ -85,7 +85,7 @@
 							</div>
 							<div class="media-footer clearfix">
 								{% if comment.can_delete %}
-								<a href="{{ url_for('stamp.comment_delete', id=comment.id) }}" class="link comment-delete pull-left"
+								<a href="{{ url_for('story.comment_delete', id=comment.id) }}" class="link comment-delete pull-left"
 									data-method="post"
 									data-confirm="{{ _('COMMENT_DELETE_CONFIRMATION', text=comment.text|truncate(20)) }}">
 									<i class="glyphicon glyphicon-trash"></i>
@@ -122,7 +122,7 @@
 {% block after_script %}
 	<script id="reply-template" type="text/template">
 		<div class="reply-wrapper">
-			<form action="{{ url_for('stamp.comment_new', id=post.id) }}" method="post" autocomplete="off">
+			<form action="{{ url_for('story.comment_new', id=post.id) }}" method="post" autocomplete="off">
 				<div class="panel-reply">
 					{{ render_inline_field(form.text, class="form-control", placeholder=_('COMMENT_REPLY_TEXT_PLACEHOLDER'), rows="1") }}
 					<div class="actions clearfix">

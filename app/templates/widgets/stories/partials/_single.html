@@ -9,7 +9,7 @@
 		<div class="meta__container">
 			<div class="row">
 				<div class="col-xs-12  col-sm-12">
-					{% include 'main/stamp/partials/_user_info.html'%}
+					{% include 'main/stories/partials/_user_info.html'%}
 				</div>
 			</div>
 		</div>
@@ -19,12 +19,12 @@
         <div class="col-xs-10  col-xs-offset-1">
             <!-- Start of the content -->
             <div class="post-content--front-page">
-                <h2 class="front-page-title"><a href="{{ url_for('stamp.show', id=post.id) }}">{{ post.title }}</a></h2>
+                <h2 class="front-page-title"><a href="{{ url_for('story.show', id=post.id) }}">{{ post.title }}</a></h2>
                 {% if post.body %}<h3>{{ post.body|striptags|limit(150)|safe }}</h3>{% endif %}
                 <p>{{ post.extra_body|striptags|limit(200)|safe }}</p>
             </div>
             <!-- End of the content -->
-            <a href="{{ url_for('stamp.show', id=post.id) }}">
+            <a href="{{ url_for('story.show', id=post.id) }}">
                 <div class="read-more">
                     {{ _('READ_MORE_LBL') }}
                     <div class="read-more__arrow">

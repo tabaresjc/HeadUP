@@ -1,10 +1,10 @@
 <div class="meta__info">
 	<span class="meta__author">
-	  {% set category_name = '<a href="%s" class="custom-link">%s</a>' % (url_for('stamp.category', slug=post.category.slug), post.category.name) %}
+	  {% set category_name = '<a href="%s" class="custom-link">%s</a>' % (url_for('story.category', slug=post.category.slug), post.category.name) %}
 
 	  {% if not post.anonymous -%}
 		<img src="{{ post.user.profile_picture_url or '/static/images/user.png' }}" alt="{{ post.user.nickname }}" width="30" height="30">
-		{% set user_name = '<a href="%s" class="custom-link">%s</a>' % (url_for('stamp.show', id=post.id), post.user.nickname) %}
+		{% set user_name = '<a href="%s" class="custom-link">%s</a>' % (url_for('story.show', id=post.id), post.user.nickname) %}
 	  {%- else %}
 		<img src="/static/images/user.png" width="30" height="30"/>
 		{% set user_name = _('ANONYMOUS_LBL') %}

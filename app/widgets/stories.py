@@ -6,8 +6,8 @@ from app.models import Feed
 import app
 
 
-@app.widgets.widget('stamps_welcome')
-def stamps_welcome(page=1, limit=Feed.FEED_DEFAULT_LIMIT):
+@app.wg.widget('stories_welcome')
+def stories_welcome(page=1, limit=Feed.FEED_DEFAULT_LIMIT):
     lang = str(get_locale())
 
     obj = Feed.get_feed_cache(name=Feed.CACHE_WELCOME_PAGE,
@@ -18,7 +18,7 @@ def stamps_welcome(page=1, limit=Feed.FEED_DEFAULT_LIMIT):
     if obj is None:
         posts, total = Feed.posts(page=page, limit=Feed.FEED_DEFAULT_LIMIT)
 
-        obj = render_template('main/stamp/partials/_index.html',
+        obj = render_template('widgets/stories/_index.html',
                               posts=posts,
                               page=page,
                               limit=Feed.FEED_DEFAULT_LIMIT,
@@ -33,8 +33,8 @@ def stamps_welcome(page=1, limit=Feed.FEED_DEFAULT_LIMIT):
     return obj
 
 
-@app.widgets.widget('stamps_ranking')
-def stamps_ranking(page=1, limit=5):
+@app.wg.widget('stories_ranking')
+def stories_ranking(page=1, limit=5):
     lang = str(get_locale())
 
     obj = Feed.get_feed_cache(name=Feed.CACHE_RANKING_PAGE,
@@ -45,7 +45,7 @@ def stamps_ranking(page=1, limit=5):
     if obj is None:
         posts, total = Feed.ranking(page=page, limit=limit)
 
-        obj = render_template('main/stamp/partials/_ranking.html',
+        obj = render_template('widgets/stories/_ranking.html',
                               posts=posts,
                               page=page,
                               limit=limit,
@@ -60,8 +60,8 @@ def stamps_ranking(page=1, limit=5):
     return obj
 
 
-@app.widgets.widget('stamps_category')
-def stamps_category(category, page=1, limit=100):
+@app.wg.widget('stories_category')
+def stories_category(category, page=1, limit=100):
     lang = str(get_locale())
     name = '%s-%s' % (Feed.CACHE_CATEGORY_PAGE, category.id)
     obj = Feed.get_feed_cache(name=name,
@@ -72,7 +72,7 @@ def stamps_category(category, page=1, limit=100):
     if obj is None:
         posts, total = Feed.category(category, page=page, limit=limit)
 
-        obj = render_template('main/stamp/partials/_category.html',
+        obj = render_template('widgets/stories/_category.html',
                               category=category,
                               posts=posts,
                               page=page,

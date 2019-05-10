@@ -6,15 +6,15 @@
 			<div class="row">
 				<div class="col-xs-12  col-sm-12">
 					<div class="meta__info">
-						<a href="{{ url_for('stamp.show', id=post.id) }}">
+						<a href="{{ url_for('story.show', id=post.id) }}">
 							<h2>{{ post.title }}</h2>
 						</a>
 						<span class="meta__author">
-						  {% set category_name = '<a href="%s" class="custom-link">%s</a>' % (url_for('stamp.category', slug=post.category.slug), post.category.name) %}
+						  {% set category_name = '<a href="%s" class="custom-link">%s</a>' % (url_for('story.category', slug=post.category.slug), post.category.name) %}
 
 						  {% if not post.anonymous -%}
 						  	<img src="{{ post.user.profile_picture_url or '/static/images/user.png' }}" alt="{{ post.user.nickname }}" width="30" height="30">
-						  	{% set user_name = '<a href="%s" class="custom-link">%s</a>' % (url_for('stamp.show', id=post.id), post.user.nickname) %}
+						  	{% set user_name = '<a href="%s" class="custom-link">%s</a>' % (url_for('story.show', id=post.id), post.user.nickname) %}
 						  {%- else %}
 						  	<img src="/static/images/user.png" width="30" height="30"/>
 						  	{% set user_name = _('ANONYMOUS_LBL') %}
@@ -32,7 +32,7 @@
         <div class="row">
 			<div class="col-xs-10  col-xs-offset-1">
 	            <!-- End of the content -->
-	            <a href="{{ url_for('stamp.show', id=post.id) }}">
+	            <a href="{{ url_for('story.show', id=post.id) }}">
 	                <div class="read-more">
 	                    {{ _('READ_MORE_LBL') }}
 	                    <div class="read-more__arrow">

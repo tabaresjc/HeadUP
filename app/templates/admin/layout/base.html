@@ -24,26 +24,27 @@
 	<![endif]-->
 
 	{% block header_script %}{% endblock %}
-
-	<meta content="authenticity_token" name="csrf-param">
-	<meta name="csrf-token" content="{{ csrf_token() }}">
+	{% include 'shared/meta-token.html' %}
 </head>
+
 <body>
 	{% block page_wrapper %}
-		<!-- navbar -->
-		{% include 'admin/layout/navbar.html' %}
-		<!-- end navbar -->
-		<!-- sidebar -->
-		{% include 'admin/layout/sidebar.html' %}
-		<!-- end sidebar -->
-		<!-- container -->
-		<div class="content {{ content_class|default('') }}">
-			{% block stats %}{% endblock %}
-			<div id="pad-wrapper" class="{{ container_class|default('') }}">
-				{% block main %}{% endblock %}
-			</div>
+	<!-- navbar -->
+	{% include 'admin/layout/navbar.html' %}
+	<!-- end navbar -->
+
+	<!-- sidebar -->
+	{% include 'admin/layout/sidebar.html' %}
+	<!-- end sidebar -->
+
+	<!-- container -->
+	<div class="content {{ content_class|default('') }}">
+		{% block stats %}{% endblock %}
+		<div id="pad-wrapper" class="{{ container_class|default('') }}">
+			{% block main %}{% endblock %}
 		</div>
-		<!-- end container -->
+	</div>
+	<!-- end container -->
 	{% endblock %}
 
 	{% include 'shared/message.html' %}
@@ -54,4 +55,5 @@
 	{% endblock %}
 	{% block after_script %}{% endblock %}
 </body>
+
 </html>

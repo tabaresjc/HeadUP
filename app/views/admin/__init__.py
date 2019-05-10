@@ -2,7 +2,7 @@
 
 import app
 
-# Register the URLs for each module
+# Register the URLs of each module
 
 # register the sessions module
 from sessions import SessionsView  # noqa

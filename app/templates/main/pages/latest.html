@@ -1,6 +1,6 @@
 {% extends "main/layout/base.html" %}
-{% set title = _('RANKING_TITLE') %}
-{% set description = '' %}
+{% set title = _('LATEST_TITLE') %}
+{% set description = _('LATEST_DESCRIPTION') %}
 
 {% block meta_extra %}
 	{% if config.FB_APPID %}
@@ -13,6 +13,10 @@
 	<meta property="og:image" content="{{ url_for('static', filename='images/lp/home/screen-bg_1.jpg', _external=true) }}" />
 {% endblock %}
 
-{% block container %}
-	{{ widget('stamps_ranking') }}
+{% block content %}
+	{{ widget('stories_welcome', page=page) }}
+{% endblock %}
+
+{% block sidebar %}
+	{% include 'main/common/_sidebar_user.html' %}
 {% endblock %}

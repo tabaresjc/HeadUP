@@ -8,7 +8,7 @@
 	<div class="meta__container">
 		<div class="row">
 			<div class="col-xs-12  col-sm-12">
-				{% include 'main/stamp/partials/_user_info.html'%}
+				{% include 'main/stories/partials/_user_info.html'%}
 			</div>
 		</div>
 	</div>
@@ -21,15 +21,10 @@
 				{% include 'shared/like_button.html' %}
 			</div>
 			<h1 class="title">
-				<a href="{{ url_for('stamp.show', id=post.id) }}">{{ post.title }}</a>
+				<a href="{{ url_for('story.show', id=post.id) }}">{{ post.title }}</a>
 			</h1>
-			<h3>{{ post.body|nl2br|linkify|safe }}</h3>
 			<div class="post-body">
-				{% if post.editor_version %}
-					{{ post.extra_body|linkify|safe }}
-				{% else %}
-					{{ post.extra_body|nl2br|linkify|safe }}
-				{% endif %}
+				{{ post.extra_body|safe }}
 			</div>
 		</div>
 	</div>

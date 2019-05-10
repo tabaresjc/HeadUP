@@ -35,7 +35,7 @@ def comment_new(id):
             else:
                 send_email('comment', post, comment)
 
-            return redirect(url_for('stamp.show',
+            return redirect(url_for('story.show',
                                     id=post.id,
                                     _anchor='comment-%s' % comment.id))
 
@@ -63,6 +63,6 @@ def comment_delete(id):
     except Exception as e:
         message = _('ERROR_COMMENT_DELETE_FAILED', error=e)
 
-    return render_view(url_for('stamp.show', id=post.id),
+    return render_view(url_for('story.show', id=post.id),
                        redirect=True,
                        message=message)

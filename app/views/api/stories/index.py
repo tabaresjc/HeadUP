@@ -77,7 +77,7 @@ class ApiStoriesView(FlaskView):
             Feed.clear_feed_cache()
 
             return render_json(story=story,
-                               redirect_to=url_for('stamp.show', id=story.id))
+                               redirect_to=url_for('story.show', id=story.id))
         except Exception as e:
             return render_json(status=False, message=e.message)
 

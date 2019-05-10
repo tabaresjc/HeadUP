@@ -2,7 +2,7 @@
 
 import app
 
-# Register the URLs for each module
+# Register the URLs of each module
 
 # register the picture module
 from pictures import ApiPicturesView  # noqa

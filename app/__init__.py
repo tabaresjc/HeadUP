@@ -34,7 +34,7 @@ sa = SQLAlchemy(app)
 # Widget Configuration
 # -------------------------------------------------------------------------
 from flask_widgets import Widgets  # noqa
-widgets = Widgets(app)
+wg = Widgets(app)
 
 # -------------------------------------------------------------------------
 # Load the session controller
@@ -80,3 +80,4 @@ import helpers  # noqa
 import filters  # noqa
 import models  # noqa
 import views  # noqa
+import widgets  # noqa

@@ -2,7 +2,7 @@
 
 import app
 
-# Register the URLs for each module
+# Register the URLs of each module
 
 # register the sessions module
 from pages import PagesView  # noqa
@@ -12,7 +12,3 @@ PagesView.register(app.app)
 from stories import StoriesView  # noqa
 StoriesView.register(app.app)
 
-from . import stamp  # noqa
-
-# import routes
-app.app.register_blueprint(stamp.mod)
