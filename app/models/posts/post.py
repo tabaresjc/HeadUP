@@ -31,6 +31,8 @@ class Post(Base, sa.Model, ModelHelper):
     KIND_STAMP = 1
     KIND_STORY = 2
 
+    CATEGORY_NONE = 1
+
     id = sa.Column(sa.Integer, primary_key=True)
     title = sa.Column(sa.String(255))
     user_id = sa.Column(sa.Integer, sa.ForeignKey('users.id',
@@ -155,6 +157,10 @@ class Post(Base, sa.Model, ModelHelper):
     @property
     def is_story(self):
         return self.kind == self.KIND_STORY
+
+    @property
+    def has_category(self):
+        return self.category_id and self.category_id != self.CATEGORY_NONE
 
     @property
     def comment_list(self):

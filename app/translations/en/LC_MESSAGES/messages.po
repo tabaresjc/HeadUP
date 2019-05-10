@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-04-23 19:43+0900\n"
+"POT-Creation-Date: 2019-05-10 09:35+0000\n"
 "PO-Revision-Date: 2017-07-15 18:02+0900\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: en\n"
@@ -16,7 +16,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Generated-By: Babel 2.5.3\n"
+"Generated-By: Babel 2.6.0\n"
 
 #: app/configuration/session.py:10
 msgid "APP_LOGIN_WARNING_MESSAGE"
@@ -26,7 +26,7 @@ msgstr "Please log in to access this page."
 msgid "APP_SIGNIN_WARNING_MESSAGE"
 msgstr "You need to sign in or sign up before continuing."
 
-#: app/filters/formats.py:23
+#: app/filters/formats.py:31
 msgid "APP_PUBLISHED_AGO"
 msgstr "Posted %(ago)s ago"
 
@@ -99,7 +99,8 @@ msgstr "stories"
 #: app/templates/admin/posts/index.html:23
 msgid "WELCOME_MESSAGE_LBL"
 msgstr ""
-"You haven't shared any story yet.<br/>Participate in this comunity by writing your first story!"
+"You haven't shared any story yet.<br/>Participate in this comunity by "
+"writing your first story!"
 
 #: app/templates/admin/index.html:54 app/templates/admin/layout/navbar.html:24
 #: app/templates/admin/layout/sidebar.html:22
@@ -141,12 +142,12 @@ msgid "CATEGORY_NAME"
 msgstr "Name"
 
 #: app/templates/admin/categories/index.html:18
-#: app/views/admin/categories/forms/category.py:10
+#: app/views/admin/categories/forms/category.py:11
 msgid "CATEGORY_SLUG"
 msgstr "Slug"
 
 #: app/templates/admin/categories/index.html:19
-#: app/views/admin/categories/forms/category.py:11
+#: app/views/admin/categories/forms/category.py:12
 msgid "CATEGORY_DESC"
 msgstr "Description"
 
@@ -200,14 +201,14 @@ msgstr "Describe the category..."
 #: app/templates/admin/categories/partials/_category_form_edit.html:7
 #: app/templates/admin/posts/partials/_post_edit.html:36
 #: app/templates/admin/posts/partials/_sidebar.html:45
-#: app/templates/admin/users/add.html:32 app/templates/admin/users/edit.html:32
+#: app/templates/admin/users/add.html:29 app/templates/admin/users/edit.html:29
 msgid "BTN_SAVE_LBL"
 msgstr "Save"
 
 #: app/templates/admin/categories/partials/_category_form_add.html:8
 #: app/templates/admin/categories/partials/_category_form_edit.html:8
 #: app/templates/admin/categories/partials/_transfer_post.html:12
-#: app/templates/admin/users/add.html:31 app/templates/admin/users/edit.html:31
+#: app/templates/admin/users/add.html:28 app/templates/admin/users/edit.html:28
 msgid "BTN_CLEAR_LBL"
 msgstr "Clear"
 
@@ -239,7 +240,8 @@ msgstr "Drafts"
 #: app/templates/admin/posts/edit.html:2
 #: app/templates/admin/posts/partials/_sidebar.html:4
 #: app/templates/main/common/_sidebar_user.html:70
-#: app/templates/main/layout/error-base.html:32
+#: app/templates/main/layout/error-base.html:35
+#: app/templates/main/stories/edit.html:2
 msgid "POST_CREATE"
 msgstr "New story"
 
@@ -259,7 +261,7 @@ msgid "APP_HOME_LBL"
 msgstr "Home"
 
 #: app/templates/admin/layout/sidebar.html:9
-#: app/templates/main/layout/error-base.html:27
+#: app/templates/main/layout/error-base.html:30
 #: app/templates/main/layout/header-no-menu.html:28
 #: app/templates/main/layout/header.html:26
 msgid "APP_MYPAGE"
@@ -294,6 +296,7 @@ msgid "BTN_UPLOAD_COVER_PICTURE_LBL"
 msgstr "Click here to upload a new cover picture"
 
 #: app/templates/admin/posts/partials/_post_edit.html:22
+#: app/templates/main/stories/edit.html:26
 msgid "FRM_INPUT_TITLE_DESCRIPTION"
 msgstr "Title – Best description of your post (30 words)"
 
@@ -302,6 +305,7 @@ msgid "FRM_INPUT_CHALLENGE_DESCRIPTION"
 msgstr "Your Challenge – Description of what you had to cope with (150 words)"
 
 #: app/templates/admin/posts/partials/_post_edit.html:24
+#: app/templates/main/stories/edit.html:27
 msgid "FRM_INPUT_SOLUTION_DESCRIPTION"
 msgstr "Your Solution – Description of what you did (150 words)"
 
@@ -350,28 +354,29 @@ msgstr ""
 
 #: app/templates/admin/sessions/forgot_password.html:11
 #: app/templates/admin/sessions/signin.html:11
-#: app/templates/admin/sessions/signup.html:11
+#: app/templates/admin/sessions/signup.html:12
 msgid "MAIL_LBL"
 msgstr "Email"
 
-#: app/templates/admin/sessions/forgot_password.html:15
+#: app/templates/admin/sessions/forgot_password.html:20
 msgid "SEND_RESET_INSTRUCTION_BTN"
 msgstr "Send Reset Email"
 
-#: app/templates/admin/sessions/forgot_password.html:21
-#: app/templates/admin/sessions/reset_password.html:22
-#: app/templates/admin/sessions/signup.html:37
+#: app/templates/admin/sessions/forgot_password.html:26
+#: app/templates/admin/sessions/reset_password.html:27
+#: app/templates/admin/sessions/signup.html:38
 msgid "SIGNIN_ACTION_LBL"
 msgstr "Already have an account?"
 
-#: app/templates/admin/sessions/forgot_password.html:22
-#: app/templates/admin/sessions/reset_password.html:23
+#: app/templates/admin/sessions/forgot_password.html:27
+#: app/templates/admin/sessions/reset_password.html:28
 #: app/templates/admin/sessions/signin.html:22
-#: app/templates/admin/sessions/signup.html:38
+#: app/templates/admin/sessions/signup.html:39
 #: app/templates/main/common/_sidebar_user.html:49
 #: app/templates/main/layout/header.html:49
-#: app/templates/main/layout/header.html:94
-#: app/templates/main/site/home.html:21 app/templates/main/stamp/show.html:112
+#: app/templates/main/layout/header.html:98
+#: app/templates/main/pages/home.html:29
+#: app/templates/main/stories/show.html:50
 msgid "LOGIN_BTN"
 msgstr "Login"
 
@@ -383,7 +388,7 @@ msgstr "Reset Password"
 msgid "RESET_PASSWORD_TEXT"
 msgstr "Please enter and confirm your new password below."
 
-#: app/templates/admin/sessions/reset_password.html:16
+#: app/templates/admin/sessions/reset_password.html:21
 msgid "RESET_PASSWORD_BTN"
 msgstr "Reset Password"
 
@@ -393,10 +398,10 @@ msgid "LOGIN_TITLE"
 msgstr "Login"
 
 #: app/templates/admin/sessions/signin.html:12
-#: app/templates/admin/sessions/signup.html:14
-#: app/views/admin/sessions/forms/login.py:10
+#: app/templates/admin/sessions/signup.html:13
+#: app/views/admin/sessions/forms/login.py:11
 #: app/views/admin/sessions/forms/signup.py:13
-#: app/views/admin/users/forms.py:28
+#: app/views/admin/users/forms.py:24
 msgid "USER_PASSWORD"
 msgstr "Password"
 
@@ -409,11 +414,12 @@ msgid "SIGNUP_ACTION_LBL"
 msgstr "Don't have an account?"
 
 #: app/templates/admin/sessions/signin.html:29
-#: app/templates/admin/sessions/signup.html:31
+#: app/templates/admin/sessions/signup.html:32
 #: app/templates/main/common/_sidebar_user.html:52
 #: app/templates/main/layout/header.html:55
-#: app/templates/main/layout/header.html:91
-#: app/templates/main/site/home.html:22 app/templates/main/stamp/show.html:115
+#: app/templates/main/layout/header.html:93
+#: app/templates/main/pages/home.html:30
+#: app/templates/main/stories/show.html:53
 msgid "REGISTER_BTN"
 msgstr "Sign Up"
 
@@ -426,15 +432,11 @@ msgstr "Forgot Password?"
 msgid "REGISTER_TITLE"
 msgstr "Sign Up"
 
-#: app/templates/admin/sessions/signup.html:12
-msgid "NAME_LBL"
-msgstr "Name"
-
-#: app/templates/admin/sessions/signup.html:13
+#: app/templates/admin/sessions/signup.html:11
 msgid "NICKNAME_LBL"
 msgstr "Nickname"
 
-#: app/templates/admin/sessions/signup.html:25
+#: app/templates/admin/sessions/signup.html:24
 msgid "TOS_CHECK_LBL"
 msgstr ""
 "<span>I have read and agree to the <br/><a href=\"%(link)s\" class"
@@ -460,8 +462,6 @@ msgstr "users"
 
 #: app/templates/admin/users/index.html:20
 #: app/templates/admin/users/show.html:69
-#: app/views/admin/sessions/forms/signup.py:11
-#: app/views/admin/users/forms.py:17
 msgid "USER_NAME"
 msgstr "Name"
 
@@ -474,7 +474,7 @@ msgid "USER_POSTS_COUNT"
 msgstr "Stories"
 
 #: app/templates/admin/users/index.html:23
-#: app/templates/admin/users/show.html:85 app/views/admin/users/forms.py:25
+#: app/templates/admin/users/show.html:85 app/views/admin/users/forms.py:21
 msgid "USER_ROLE"
 msgstr "Role"
 
@@ -506,15 +506,15 @@ msgstr "Last seen"
 
 #: app/templates/admin/users/show.html:73
 #: app/views/admin/sessions/forms/signup.py:12
-#: app/views/admin/users/forms.py:21
+#: app/views/admin/users/forms.py:17
 msgid "USER_NICKNAME"
 msgstr "Nickname"
 
-#: app/templates/admin/users/show.html:77 app/views/admin/users/forms.py:34
+#: app/templates/admin/users/show.html:77
 msgid "USER_ADDRESS"
 msgstr "Address"
 
-#: app/templates/admin/users/show.html:81 app/views/admin/users/forms.py:35
+#: app/templates/admin/users/show.html:81
 msgid "USER_PHONE"
 msgstr "Phone"
 
@@ -557,14 +557,14 @@ msgstr "Remove user"
 #: app/templates/emails/layout/base.html:369
 #: app/templates/main/layout/footer.html:8
 #: app/templates/main/layout/header.html:79
-#: app/templates/main/site/conduct.html:2
+#: app/templates/main/pages/conduct.html:2
 msgid "CODE_CONDUCT_LBL"
 msgstr "Code of conduct"
 
 #: app/templates/emails/layout/base.html:371
 #: app/templates/main/layout/footer.html:10
 #: app/templates/main/layout/header.html:76
-#: app/templates/main/site/policy.html:2
+#: app/templates/main/pages/policy.html:2
 msgid "TOS_LBL"
 msgstr "Terms of Service"
 
@@ -610,49 +610,35 @@ msgstr ""
 "e-mail address (%(email)s). Please click this link to reset your "
 "password."
 
-#: app/templates/main/index.html:2
-msgid "LATEST_TITLE"
-msgstr "Latest | Social Storytelling Network to keep it up"
-
-#: app/templates/main/index.html:3
-msgid "LATEST_DESCRIPTION"
-msgstr ""
-"HeadUP is your Social Storytelling Network, a problem-and-solution "
-"website where you can transmit your optimism, tell how you keep or kept "
-"your head up. Share positive and fun experiences, write personal "
-"achievements or read remarkable success stories. Tell the world about a "
-"solution you found to a challenging situation or a difficulty you once "
-"faced. Speak up, HeadUP"
-
-#: app/templates/main/common/401.html:2
+#: app/templates/errors/401.html:2
 msgid "ERROR_401_TITLE"
 msgstr "Unauthorized"
 
-#: app/templates/main/common/401.html:13
+#: app/templates/errors/401.html:13
 msgid "ERROR_401_DESCRIPTION"
 msgstr "Ackward... Apparently you are not authorized to perform this action."
 
-#: app/templates/main/common/403.html:2
+#: app/templates/errors/403.html:2
 msgid "ERROR_403_TITLE"
 msgstr "Forbidden"
 
-#: app/templates/main/common/403.html:13
+#: app/templates/errors/403.html:13
 msgid "ERROR_403_DESCRIPTION"
 msgstr "Ackward... Apparently you don't have permission to access this resource."
 
-#: app/templates/main/common/404.html:2
+#: app/templates/errors/404.html:2
 msgid "ERROR_404_TITLE"
 msgstr "Not Found"
 
-#: app/templates/main/common/404.html:13
+#: app/templates/errors/404.html:13
 msgid "ERROR_404_DESCRIPTION"
 msgstr "Well... The page you are looking for can't be found!"
 
-#: app/templates/main/common/500.html:2
+#: app/templates/errors/500.html:2
 msgid "ERROR_500_TITLE"
 msgstr "Server Error"
 
-#: app/templates/main/common/500.html:13
+#: app/templates/errors/500.html:13
 msgid "ERROR_500_DESCRIPTION"
 msgstr ""
 "Sorry... this one is on us. The administrator has been notified. Sorry "
@@ -670,26 +656,26 @@ msgstr "Start here!"
 msgid "EDIT_STAMP_LBL"
 msgstr "Edit story"
 
-#: app/templates/main/layout/error-base.html:15
+#: app/templates/main/layout/error-base.html:17
 #: app/templates/main/layout/header-no-menu.html:22
 #: app/templates/main/layout/header.html:20
 msgid "LATEST_LBL"
 msgstr "Latests"
 
-#: app/templates/main/layout/error-base.html:29
-#: app/templates/main/site/home.html:18
+#: app/templates/main/layout/error-base.html:32
+#: app/templates/main/pages/home.html:26
 msgid "DASHBOARD_BTN"
 msgstr "Dashboard"
 
-#: app/templates/main/layout/error-base.html:30
+#: app/templates/main/layout/error-base.html:33
 msgid "POSTS_BTN"
 msgstr "Stories"
 
-#: app/templates/main/layout/error-base.html:31
+#: app/templates/main/layout/error-base.html:34
 msgid "DRAFT_BTN"
 msgstr "Draft"
 
-#: app/templates/main/layout/error-base.html:33
+#: app/templates/main/layout/error-base.html:36
 msgid "PROFILE_BTN"
 msgstr "Profile"
 
@@ -708,11 +694,11 @@ msgstr "Toggle navigation"
 msgid "RANKING_LBL"
 msgstr "H'UP"
 
-#: app/templates/main/site/home.html:2
+#: app/templates/main/pages/home.html:2
 msgid "HOME_TITLE"
 msgstr "Social Storytelling Network to keep it up"
 
-#: app/templates/main/site/home.html:3
+#: app/templates/main/pages/home.html:3
 msgid "HOME_DESCRIPTION"
 msgstr ""
 "HeadUP is your Social Storytelling Network, a problem-and-solution "
@@ -722,130 +708,146 @@ msgstr ""
 "solution you found to a challenging situation or a difficulty you once "
 "faced. Speak up, HeadUP."
 
-#: app/templates/main/site/home.html:11
+#: app/templates/main/pages/home.html:19
 msgid "WELCOME_TITLE_LBL"
 msgstr "%(name)s - Storytelling Network<br/>your space to express yourself freely"
 
-#: app/templates/main/site/home.html:13
+#: app/templates/main/pages/home.html:21
 msgid "WELCOME_SUBTITLE_LBL"
 msgstr "Tell the World and beyond what was your solution…<br/>Speak up, HeadUp!"
 
-#: app/templates/main/site/home.html:14
+#: app/templates/main/pages/home.html:22
 msgid "GO_TO_STORIES_BTN"
 msgstr "Stories"
 
-#: app/templates/main/site/home.html:20
+#: app/templates/main/pages/home.html:28
 msgid "WELCOME_SUBTITLE_EXTRA_LBL"
 msgstr "Would you like to be part of it?"
 
-#: app/templates/main/site/home.html:44
+#: app/templates/main/pages/home.html:52
 msgid "INTRO1_LBL"
 msgstr "Share a positive experience"
 
-#: app/templates/main/site/home.html:50
+#: app/templates/main/pages/home.html:58
 msgid "INTRO2_LBL"
 msgstr "Inspire people with a personal achievement you are proud of"
 
-#: app/templates/main/site/home.html:56
+#: app/templates/main/pages/home.html:64
 msgid "INTRO3_LBL"
 msgstr "Express yourself and tell us how you are keeping your head up"
 
-#: app/templates/main/site/home.html:62
+#: app/templates/main/pages/home.html:70
 msgid "INTRO4_LBL"
 msgstr "Transmit your optimism by writing remarkable success stories"
 
-#: app/templates/main/stamp/category.html:2
-msgid "CATEGORY_LIST_TITLE"
-msgstr "Stories for %(category)s"
+#: app/templates/main/pages/latest.html:2
+msgid "LATEST_TITLE"
+msgstr "Latest | Social Storytelling Network to keep it up"
 
-#: app/templates/main/stamp/partials/_ranking.html:5
-#: app/templates/main/stamp/ranking.html:2
+#: app/templates/main/pages/latest.html:3
+msgid "LATEST_DESCRIPTION"
+msgstr ""
+"HeadUP is your Social Storytelling Network, a problem-and-solution "
+"website where you can transmit your optimism, tell how you keep or kept "
+"your head up. Share positive and fun experiences, write personal "
+"achievements or read remarkable success stories. Tell the world about a "
+"solution you found to a challenging situation or a difficulty you once "
+"faced. Speak up, HeadUP"
+
+#: app/templates/main/pages/ranking.html:2
+#: app/templates/widgets/stories/_ranking.html:5
 msgid "RANKING_TITLE"
 msgstr "Most populars stories"
 
-#: app/templates/main/stamp/partials/_stamp_ranking_feed.html:20
-#: app/templates/main/stamp/partials/_stamp_single.html:17
-#: app/templates/main/stamp/partials/_stamp_single.html:44
-#: app/templates/main/stamp/show.html:40
-msgid "ANONYMOUS_LBL"
-msgstr "Anonymous"
+#: app/templates/main/stories/category.html:2
+msgid "CATEGORY_LIST_TITLE"
+msgstr "Stories for %(category)s"
 
-#: app/templates/main/stamp/partials/_stamp_ranking_feed.html:23
-#: app/templates/main/stamp/partials/_stamp_single.html:20
-#: app/templates/main/stamp/partials/_stamp_single.html:47
-#: app/templates/main/stamp/show.html:42
-msgid "POSTED_BY_USER_LBL"
-msgstr "Posted by %(user)s in %(category)s"
-
-#: app/templates/main/stamp/show.html:101
+#: app/templates/main/stories/show.html:39
 msgid "COMMENT_TEXT_PLACEHOLDER"
 msgstr "Add a comment..."
 
-#: app/templates/main/stamp/show.html:104
+#: app/templates/main/stories/show.html:42
 msgid "COMMENT_SUBMIT_BTN"
 msgstr "Comment"
 
-#: app/templates/main/stamp/show.html:151
+#: app/templates/main/stories/show.html:90
 msgid "COMMENT_DELETE_CONFIRMATION"
-msgstr "This will remove [%(text)s] permanently,\nDo you wish to continue?"
+msgstr ""
+"This will remove [%(text)s] permanently,\n"
+"Do you wish to continue?"
 
-#: app/templates/main/stamp/show.html:156
+#: app/templates/main/stories/show.html:96
 msgid "COMMENT_REPLY_LBL"
 msgstr "Reply"
 
-#: app/templates/main/stamp/show.html:186
+#: app/templates/main/stories/show.html:127
 msgid "COMMENT_REPLY_TEXT_PLACEHOLDER"
 msgstr "Add a reply..."
 
-#: app/templates/main/stamp/show.html:189
+#: app/templates/main/stories/show.html:130
 msgid "COMMENT_REPLY_CANCEL_BTN"
 msgstr "Cancel"
 
-#: app/templates/main/stamp/show.html:192
+#: app/templates/main/stories/show.html:133
 msgid "COMMENT_REPLY_SUBMIT_BTN"
 msgstr "Reply"
 
-#: app/templates/main/stamp/partials/_stamp_ranking_feed.html:37
-#: app/templates/main/stamp/partials/_stamp_single.html:68
+#: app/templates/main/stories/partials/_user_info.html:10
+#: app/templates/widgets/stories/partials/_single_feed.html:21
+msgid "ANONYMOUS_LBL"
+msgstr "Anonymous"
+
+#: app/templates/main/stories/partials/_user_info.html:12
+#: app/templates/widgets/stories/partials/_single_feed.html:26
+msgid "POSTED_BY_USER_LBL"
+msgstr "Posted by %(user)s"
+
+#: app/templates/widgets/stories/partials/_single.html:29
+#: app/templates/widgets/stories/partials/_single_feed.html:45
 msgid "READ_MORE_LBL"
 msgstr "Read more..."
 
-#: app/views/admin/categories/index.py:38
-#: app/views/admin/categories/index.py:76
-#: app/views/admin/categories/index.py:129 app/views/admin/posts/index.py:65
-#: app/views/admin/posts/index.py:120 app/views/admin/sessions/index.py:87
-#: app/views/admin/sessions/index.py:136 app/views/admin/sessions/index.py:182
+#: app/templates/widgets/stories/partials/_single_feed.html:28
+msgid "POSTED_BY_USER_CATEGORY_LBL"
+msgstr "Posted by %(user)s in %(category)s"
+
+#: app/views/admin/categories/index.py:39
+#: app/views/admin/categories/index.py:77
+#: app/views/admin/categories/index.py:130 app/views/admin/posts/index.py:66
+#: app/views/admin/posts/index.py:120 app/views/admin/sessions/index.py:78
+#: app/views/admin/sessions/index.py:136 app/views/admin/sessions/index.py:184
 #: app/views/admin/users/index.py:55 app/views/admin/users/index.py:88
-#: app/views/main/stamp/comment/index.py:25
+#: app/views/main/stories/forms/index.py:25 app/views/main/stories/index.py:76
 msgid "ERROR_INVALID_SUBMISSION"
 msgstr "Invalid submission, please check the message below"
 
-#: app/views/admin/categories/index.py:51
+#: app/views/admin/categories/index.py:52
 msgid "CATEGORY_CREATE_SUCESS"
 msgstr "Category succesfully created"
 
-#: app/views/admin/categories/index.py:66
-#: app/views/admin/categories/index.py:103
+#: app/views/admin/categories/index.py:67
+#: app/views/admin/categories/index.py:104
 msgid "CATEGORY_NOT_FOUND"
 msgstr "Category not found"
 
-#: app/views/admin/categories/index.py:88
+#: app/views/admin/categories/index.py:89
 msgid "CATEGORY_SAVE_SUCCESS"
 msgstr "Category successfully saved"
 
-#: app/views/admin/categories/index.py:109
+#: app/views/admin/categories/index.py:110
 msgid "CATEGORY_TRANSFER_POSTS_FAILED"
 msgstr "Sorry, this category can not be removed"
 
-#: app/views/admin/categories/index.py:114
+#: app/views/admin/categories/index.py:115
 msgid "CATEGORY_REMOVE_SUCCESS"
 msgstr "The category with name \"%(name)s\" was removed"
 
-#: app/views/admin/categories/index.py:135
+#: app/views/admin/categories/index.py:136
 msgid "CATEGORY_TRANSFER_POSTS_CHECK_FAILED"
 msgstr "Either category was not found"
 
-#: app/views/admin/categories/index.py:139
+#: app/views/admin/categories/index.py:140
 msgid "CATEGORY_TRANSFER_POSTS_SUCCESS"
 msgstr "The posts were transfered from %(from_name)s to %(to_name)s"
 
@@ -861,65 +863,66 @@ msgstr "To"
 msgid "CATEGORY_TRANFER_POSTS_SAME_ERROR"
 msgstr "Please select a different category"
 
-#: app/views/admin/posts/index.py:53 app/views/admin/posts/index.py:113
-#: app/views/admin/posts/index.py:179
+#: app/views/admin/posts/index.py:54 app/views/admin/posts/index.py:113
+#: app/views/admin/posts/index.py:181
 msgid "POST_NOT_FOUND"
 msgstr "Story not found"
 
-#: app/views/admin/posts/index.py:88 app/views/admin/posts/index.py:156
+#: app/views/admin/posts/index.py:88 app/views/admin/posts/index.py:158
 msgid "POST_DRAFT_SAVE_SUCESS"
 msgstr "Draft was succesfully saved"
 
-#: app/views/admin/posts/index.py:90 app/views/admin/posts/index.py:158
+#: app/views/admin/posts/index.py:90 app/views/admin/posts/index.py:160
 msgid "POST_PUBLIC_SAVE_SUCESS"
 msgstr "The story was successfully saved"
 
-#: app/views/admin/posts/index.py:190
+#: app/views/admin/posts/index.py:192
 msgid "POST_DELETE_SUCESS"
 msgstr "The story \"%(title)s\" was removed"
 
-#: app/views/admin/posts/index.py:195
+#: app/views/admin/posts/index.py:197
 msgid "ERROR_POST_DELETE_FAILED"
 msgstr "Error while removing the story, %(error)s"
 
-#: app/views/admin/sessions/index.py:19 app/views/admin/sessions/index.py:75
-#: app/views/admin/sessions/index.py:129 app/views/admin/sessions/index.py:167
+#: app/views/admin/sessions/index.py:21 app/views/admin/sessions/index.py:66
+#: app/views/admin/sessions/index.py:129 app/views/admin/sessions/index.py:169
 msgid "SESSIONS_MSG_ALREADY_SIGNED_IN"
 msgstr "You are already signed in."
 
-#: app/views/admin/sessions/index.py:33
+#: app/views/admin/sessions/index.py:35
 msgid "SESSIONS_ERROR_LOGIN"
 msgstr "Invalid email or password."
 
-#: app/views/admin/sessions/index.py:51
+#: app/views/admin/sessions/index.py:53
 msgid "SESSIONS_MSG_LOGIN_SUCESS"
 msgstr "Signed in successfully"
 
-#: app/views/admin/sessions/index.py:67
-msgid "SESSIONS_MSG_SIGNED_OUT"
-msgstr "Signed out successfully."
-
-#: app/views/admin/sessions/index.py:90
+#: app/views/admin/sessions/index.py:82 app/views/admin/sessions/index.py:139
+#: app/views/admin/sessions/index.py:187
 msgid "SESSIONS_ERROR_UNFINISHED_CHALLENGE_LBL"
 msgstr "Invalid captcha"
 
-#: app/views/admin/sessions/index.py:116
+#: app/views/admin/sessions/index.py:108
 msgid "SESSIONS_MSG_SIGNUP_COMPLETED"
 msgstr "Welcome! You have signed up successfully."
 
-#: app/views/admin/sessions/index.py:143
+#: app/views/admin/sessions/index.py:122
+msgid "SESSIONS_MSG_SIGNED_OUT"
+msgstr "Signed out successfully."
+
+#: app/views/admin/sessions/index.py:146
 msgid "SESSIONS_ERROR_MAIL_NOT_FOUND"
 msgstr "There isn't an account on record for the email address %(email)s."
 
-#: app/views/admin/sessions/index.py:147
+#: app/views/admin/sessions/index.py:150
 msgid "SESSIONS_PASSWORD_RESET"
 msgstr "Instructions on how to reset your password were sent to %(email)s."
 
-#: app/views/admin/sessions/index.py:175
+#: app/views/admin/sessions/index.py:177
 msgid "ERROR_INVALID_RESET_PASSWORD_CODE"
 msgstr "The email link you clicked is invalid. Please try again."
 
-#: app/views/admin/sessions/index.py:192
+#: app/views/admin/sessions/index.py:197
 msgid "SESSIONS_MSG_PASSWORD_RESET_COMPLETED"
 msgstr "Your password has been successfully changed."
 
@@ -928,35 +931,31 @@ msgid "USER_RESET_PASSWORD"
 msgstr "New Password"
 
 #: app/views/admin/sessions/forms/reset_password.py:11
-#: app/views/admin/users/forms.py:30
+#: app/views/admin/users/forms.py:26
 msgid "USER_CONFIRM_PASSWORD_INVALID"
 msgstr "Password don't match"
 
-#: app/views/admin/sessions/forms/reset_password.py:14
+#: app/views/admin/sessions/forms/reset_password.py:16
 msgid "USER_RESET_PASSWORD_CONFIRM"
 msgstr "Confirm Password"
 
-#: app/views/admin/sessions/forms/signup.py:26
-msgid "USER_NAME_INVALID"
-msgstr "This name has invalid characters"
-
-#: app/views/admin/sessions/forms/signup.py:30
+#: app/views/admin/sessions/forms/signup.py:27
 msgid "USER_NICKNAME_INVALID"
 msgstr "This nickname has invalid characters"
 
-#: app/views/admin/sessions/forms/signup.py:34
+#: app/views/admin/sessions/forms/signup.py:31
 msgid "USER_EMAIL_TAKEN_ERROR"
 msgstr "This email is already in use. Please choose another one."
 
-#: app/views/admin/sessions/forms/signup.py:38
+#: app/views/admin/sessions/forms/signup.py:35
 msgid "USER_NICKNAME_TAKEN_ERROR"
 msgstr "This nickname is already in use. Please choose another one."
 
-#: app/views/admin/users/forms.py:33
+#: app/views/admin/users/forms.py:31
 msgid "USER_CONFIRM"
 msgstr "Confirm"
 
-#: app/views/admin/users/forms.py:36
+#: app/views/admin/users/forms.py:32
 msgid "USER_TIMEZONE"
 msgstr "Timezone"
 
@@ -993,18 +992,24 @@ msgstr "The story was made public"
 msgid "USER_POST_HIDE_OR_RESTORE_FAIL"
 msgstr "Error while processing the stamp, %(error)s"
 
-#: app/views/main/stamp/comment/forms.py:9
-msgid "COMMENT_DESC"
-msgstr ""
-
-#: app/views/main/stamp/comment/index.py:31
+#: app/views/main/stories/forms/index.py:31 app/views/main/stories/index.py:82
 msgid "COMMENT_SAVE_SUCESS"
 msgstr "Thank you! your comment was added to the story."
 
-#: app/views/main/stamp/comment/index.py:59
+#: app/views/main/stories/forms/index.py:62 app/views/main/stories/index.py:112
 msgid "COMMENT_DELETE_SUCCESS"
 msgstr "The comment has been removed."
 
-#: app/views/main/stamp/comment/index.py:61
+#: app/views/main/stories/forms/index.py:64 app/views/main/stories/index.py:114
 msgid "ERROR_COMMENT_DELETE_FAILED"
 msgstr "Error while removing the comment, %(error)s"
+
+#~ msgid "NAME_LBL"
+#~ msgstr "Name"
+
+#~ msgid "USER_NAME_INVALID"
+#~ msgstr "This name has invalid characters"
+
+#~ msgid "COMMENT_DESC"
+#~ msgstr ""
+
