@@ -1,0 +1,27 @@
+.error-container {
+	padding: 0;
+
+
+	.meta {
+		position: relative;
+		margin-bottom: 0;
+		@media (min-width: $screen-sm-min) {
+			margin-bottom: 0;
+		}
+
+		.post-image {
+			width: 100%;
+			height: auto;
+			border-top-right-radius: 6px;
+			border-top-left-radius: 6px;
+		}
+	}
+
+	.content {
+		padding: 20px 0;
+
+		.title {
+			margin: 0 0 20px 0;
+		}
+	}
+}

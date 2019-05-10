@@ -1,7 +1,7 @@
 # -*- coding: utf8 -*-
 
 import session
-import errorhandler
+import errors
 import localization
 import encoder
 import rules
