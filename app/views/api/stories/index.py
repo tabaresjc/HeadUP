@@ -85,5 +85,6 @@ class ApiStoriesView(FlaskView):
         story.title = data.get('title', u'', unicode)
         story.body = data.get('body', u'', unicode)
         story.extra_body = data.get('extra_body', u'', unicode)
+        story.category_id = data.get('category_id', Post.CATEGORY_NONE, int)
         story.status = status
         story.kind = Post.KIND_STORY

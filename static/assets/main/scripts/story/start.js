@@ -9,7 +9,8 @@ document.addEventListener('DOMContentLoaded', () => {
 		titleId: 'story-title',
 		bodyId: 'story-body',
 		publishId: 'story-publish',
-		saveDraftId: 'story-save-draft'
+		saveDraftId: 'story-save-draft',
+		categorySelectId: 'story-category'
 	});
 
 	editor.start();

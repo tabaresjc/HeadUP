@@ -1,16 +1,17 @@
 "use strict";
 
 import { AppConfig } from 'Assets/main/scripts/config';
-import { StoryApiHelper } from 'Assets/main/scripts/story/api';
+import { StoryApiHelper, CategoryApiHelper } from 'Assets/main/scripts/api';
 import { SpinnerHelper } from 'Assets/main/scripts/lib';
 import { ImageUploadAdapterPlugin } from './upload';
-
+import Choices from 'choices.js';
 
 export class EditorHelper {
 
 	constructor(options) {
 		this._options = Object.assign({}, options);
 		this._storyApiHelper = new StoryApiHelper(AppConfig.storyApiUrl);
+		this._categoryApiHelper = new CategoryApiHelper(AppConfig.categoryApiUrl);
 		this._spinnerHelper = new SpinnerHelper();
 	}
 
@@ -23,7 +24,7 @@ export class EditorHelper {
 		this._storyContainer = document.getElementById(this._options.containerId);
 		this._titleTxt = document.getElementById(this._options.titleId);
 		this._bodyTxt = document.getElementById(this._options.bodyId);
-
+		this._categorySel = document.getElementById(this._options.categorySelectId);
 
 		if (!this._storyContainer || !this._titleTxt || !this._bodyTxt) {
 			console.warn(`[HUP] editor can't be initialized`);
@@ -33,7 +34,8 @@ export class EditorHelper {
 		const promises = [
 			this.setupTitle(),
 			this.setupBody(),
-			this.getStory()
+			this.getStory(),
+			this.getCategories()
 		];
 
 		this._spinnerHelper.start();
@@ -41,12 +43,18 @@ export class EditorHelper {
 		Promise.all(promises)
 			.then(values => {
 				// assign the results of each promise
-				this._titleEditor = values.shift();
-				this._bodyEditor = values.shift();
-				const story = this._story = values.shift();
+				[
+					this._titleEditor,
+					this._bodyEditor,
+					this._story,
+					this._categoryData
+				] = values;
 
-				this._titleEditor.setData(story.title || '');
-				this._bodyEditor.setData(story.extra_body || '');
+				this._titleEditor.setData(this._story.title || '');
+				this._bodyEditor.setData(this._story.extra_body || '');
+				this._categoryChoice = this.buildStoryChoice(
+					this._categoryData.items,
+					this._story);
 
 				this.setupListeners();
 
@@ -145,15 +153,55 @@ export class EditorHelper {
 		}
 	}
 
+	buildStoryChoice(items, story) {
+		const options = {
+			choices: items || [],
+			// addItems: false,
+			// removeItems: false,
+		};
+
+		const choices = new Choices(this._categorySel, options);
+
+		console.log(story, 'story', typeof story.category)
+
+		if (typeof story.category === 'object') {
+			choices.setChoiceByValue(story.category.id);
+		}
+
+		return choices;
+	}
+
+	getCategories() {
+		return this._categoryApiHelper.getItems()
+			.then(data => {
+				const items = new Array();
+
+				for (const [index, value] of data.items.entries()) {
+					items.push({
+						id: value.id,
+						value: value.id,
+						label: value.name
+					});
+				}
+
+				data.items = items;
+
+				return data;
+			});
+	}
+
 	getData() {
-		if (!this._bodyEditor || !this._titleEditor) {
+		if (!this._bodyEditor || !this._titleEditor || !this._categoryChoice) {
 			return null;
 		}
+
+		const category_id = this._categoryChoice.getValue(true);
 
 		return Object.assign({}, {
 			title: this._getText(this._titleEditor.getData()),
 			body: '',
 			extra_body: this._bodyEditor.getData(),
+			category_id: category_id
 		});
 	}
 

@@ -37,6 +37,16 @@ class Category(Base, sa.Model, ModelHelper):
         return current_user and current_user.is_admin
 
     @classmethod
+    def items(cls, orderby='id', desc=True):
+        query = cls.query
+        count = query.count()
+        records = []
+        if count:
+            sort_by = '%s %s' % (orderby, 'DESC' if desc else 'ASC')
+            records = query.order_by(sa.text(sort_by)).all()
+        return records, count
+
+    @classmethod
     def get_list(cls):
         return [(g.id, g.name) for g in cls.query.all()]
 

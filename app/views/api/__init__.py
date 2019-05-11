@@ -11,3 +11,7 @@ ApiPicturesView.register(app.app)
 # register the story module
 from stories import ApiStoriesView  # noqa
 ApiStoriesView.register(app.app)
+
+# register the category module
+from categories import ApiCategoriesView  # noqa
+ApiCategoriesView.register(app.app)
