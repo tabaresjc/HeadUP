@@ -9,6 +9,7 @@
 	<meta name="description" content="{{ description if description else '' }}">
 
 	{% include 'shared/icons.html' %}
+	{% include 'shared/font.html' %}
 
 	{% block before_style %}{% endblock %}
 	{% block base_style %}
@@ -17,7 +18,6 @@
 	{% block after_style %}{% endblock %}
 
 	{% include 'shared/ga.html' %}
-	{% include 'shared/font.html' %}
 
 	<!--[if lt IE 9]>
 	<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>

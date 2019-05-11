@@ -7,7 +7,9 @@
 	<title>{% if title -%}{{ site_name }} | {{ title }}{%- else %}{{ site_name }}{%- endif %}</title>
 	<meta name="description" content="{{ description if description else '' }}">
 	{% block meta_extra %}{% endblock %}
+
 	{% include 'shared/icons.html' %}
+	{% include 'shared/font.html' %}
 
 	{% block before_style %}{% endblock %}
 	{% block base_style %}
@@ -16,7 +18,6 @@
 	{% block after_style %}{% endblock %}
 
 	{% include 'shared/ga.html' %}
-	{% include 'shared/font.html' %}
 
 	<!--[if lt IE 9]>
     <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
