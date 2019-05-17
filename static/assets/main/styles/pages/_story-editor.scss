@@ -1,7 +1,19 @@
-.container-wrapper {
+.story-editor {
+	body {
+		background: #fff;
+	}
+}
+
+.container-wrap-editor {
 	margin: 40px 0;
 	padding: 25px 0;
 	background: #fff;
+
+	.container {
+		@media (min-width: $screen-sm-min) {
+			width: 750px;
+		}
+	}
 
 	#story-title,
 	#story-body {
@@ -17,11 +29,5 @@
 
 	#story-body {
 		@include content-generic;
-	}
-}
-
-.container {
-	@media (min-width: $screen-sm-min) {
-		width: 750px;
 	}
 }

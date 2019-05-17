@@ -36,9 +36,8 @@ $tertiary-font: 'Noto Sans JP', Arial, sans-serif; // For smaller text
 $font-family-sans-serif: 'Noto Sans JP', sans-serif;
 
 $base-path: "/static/assets/main/";
-$icon-font-path: "../../../../node_modules/bootstrap-sass/assets/fonts/bootstrap/";
+$icon-font-path: "~Lib/bootstrap-sass/assets/fonts/bootstrap/";
 
 // Grid system
 // --------------------------------------------------
-
 $grid-float-breakpoint: 992px;

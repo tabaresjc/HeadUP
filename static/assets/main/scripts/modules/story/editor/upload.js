@@ -1,7 +1,7 @@
 "use strict";
 
 import { AppConfig } from 'Assets/main/scripts/config';
-import { ApiBase } from 'Assets/main/scripts/lib';
+import { ApiBase } from 'Assets/helpers';
 
 export class ImageUploadAdapter extends ApiBase {
 

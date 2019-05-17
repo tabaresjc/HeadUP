@@ -2,20 +2,40 @@
 
 import { AppConfig } from 'Assets/main/scripts/config';
 import { StoryApiHelper, CategoryApiHelper } from 'Assets/main/scripts/api';
-import { SpinnerHelper } from 'Assets/main/scripts/lib';
+import { SpinnerHelper } from 'Assets/helpers';
 import { ImageUploadAdapterPlugin } from './upload';
 import Choices from 'choices.js';
 
-export class EditorHelper {
+export class StoryEditorModule {
 
 	constructor(options) {
-		this._options = Object.assign({}, options);
-		this._storyApiHelper = new StoryApiHelper(AppConfig.storyApiUrl);
-		this._categoryApiHelper = new CategoryApiHelper(AppConfig.categoryApiUrl);
-		this._spinnerHelper = new SpinnerHelper();
+		this._moduleId = 'story-editor-page';
+		this._options = Object.assign({
+			containerId: 'story-container',
+			titleId: 'story-title',
+			bodyId: 'story-body',
+			publishId: 'story-publish',
+			saveDraftId: 'story-save-draft',
+			categorySelectId: 'story-category'
+		}, options || {});
+	}
+
+	onLoad() {
+		this.start();
 	}
 
 	start() {
+		const pageContainer = document.getElementById(this._moduleId);
+
+		// check if current page match the id of this module
+		if (!pageContainer) {
+			return;
+		}
+
+		this._storyApiHelper = new StoryApiHelper(AppConfig.storyApiUrl);
+		this._categoryApiHelper = new CategoryApiHelper(AppConfig.categoryApiUrl);
+		this._spinnerHelper = new SpinnerHelper();
+
 		if (!this._options.titleId || !this._options.bodyId) {
 			console.warn(`[HUP] unable to initialize editor`);
 			return;
@@ -161,8 +181,6 @@ export class EditorHelper {
 		};
 
 		const choices = new Choices(this._categorySel, options);
-
-		console.log(story, 'story', typeof story.category)
 
 		if (typeof story.category === 'object') {
 			choices.setChoiceByValue(story.category.id);

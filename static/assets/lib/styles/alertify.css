@@ -6,7 +6,7 @@
 
 .alertify .ajs-dimmer {
 	background-color: #000;
-	opacity: .5;
+	opacity: 0.5;
 }
 
 .alertify .ajs-dialog {
@@ -31,7 +31,8 @@
 	color: black;
 }
 
-.alertify.ajs-resizable .ajs-content, .alertify.ajs-maximized:not(.ajs-resizable) .ajs-content {
+.alertify.ajs-resizable .ajs-content,
+.alertify.ajs-maximized:not(.ajs-resizable) .ajs-content {
 	top: 58px;
 	bottom: 68px;
 }

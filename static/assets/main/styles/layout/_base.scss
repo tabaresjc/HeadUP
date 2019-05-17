@@ -8,7 +8,7 @@ html {
 }
 
 body {
-	background-color: #fff;
+	background-color: $body-bg;
 }
 
 h1,
@@ -112,15 +112,15 @@ a {
 	}
 }
 
-hr {
-	margin: 10px 0 30px;
-	border-color: #dcdddd;
-}
-
 // when 2 or more titles are under each other
 h1 + h3,
 h2 + h3 {
 	margin: -8px 0 30px;
+}
+
+hr {
+	margin: 10px 0 30px;
+	border-color: #dcdddd;
 }
 
 /*------------------------------------*\
@@ -135,8 +135,3 @@ h2 + h3 {
 	}
 }
 
-// @media (min-width: $screen-sm-min) {
-// 	.container {
-// 		width: 750px;
-// 	}
-// }

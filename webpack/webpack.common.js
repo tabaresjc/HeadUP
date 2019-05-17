@@ -13,10 +13,9 @@ module.exports = function (config) {
 	});
 
 	const assets = {
-		admin: './static/assets/admin/scripts/index.js',
-		lp: './static/assets/main/scripts/lp/index.js',
-		main: './static/assets/main/scripts/main/index.js',
-		story: './static/assets/main/scripts/story/index.js',
+		admin: 	'./static/assets/admin/scripts/index.js',
+		main: 	'./static/assets/main/scripts/index.js',
+		// story: 	'./static/assets/story/scripts/index.js',
 	};
 
 	const plugins = [
@@ -32,14 +31,14 @@ module.exports = function (config) {
 
 		plugins.push(new HtmlWebpackPlugin({
 			template: path.resolve(config.APP_DIR, 'app/templates/src/assets/script.html'),
-			filename: path.resolve(config.APP_DIR, `app/templates/shared/assets/scripts/${ key }.html`),
+			filename: path.resolve(config.APP_DIR, `app/templates/shared/assets/scripts/${key}.html`),
 			inject: false,
 			chunks: [key],
 		}));
 
 		plugins.push(new HtmlWebpackPlugin({
 			template: path.resolve(config.APP_DIR, 'app/templates/src/assets/style.html'),
-			filename: path.resolve(config.APP_DIR, `app/templates/shared/assets/styles/${ key }.html`),
+			filename: path.resolve(config.APP_DIR, `app/templates/shared/assets/styles/${key}.html`),
 			inject: false,
 			chunks: [key],
 		}));

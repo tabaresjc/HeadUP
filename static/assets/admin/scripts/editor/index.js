@@ -69,7 +69,7 @@ EditorPlugin.prototype = {
 
 		var language = self.formEditor.data('language') || 'en';
 
-		CKEDITOR.plugins.addExternal('confighelper', '/static/assets/lib/scripts/ckeditor/plugins/confighelper/', 'plugin.js');
+		CKEDITOR.plugins.addExternal('confighelper', '/static/assets/libs/ckeditor/plugins/confighelper/', 'plugin.js');
 
 		CKEDITOR.inline(self.extraBody.attr('id'), {
 			height: 250,

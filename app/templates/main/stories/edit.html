@@ -1,28 +1,29 @@
 {% extends "main/layout/base.html" %}
 {% set title = post.title if post else _('POST_CREATE') %}
 {% set description = '' %}
+{% set page_class = 'story-editor' %}
 
 {% block meta_extra %}
 {% endblock %}
 
 {% block page_wrapper %}
-	<nav class="navbar navbar-default navbar-fixed-top">
-		<div class="container">
-			<!-- Collect the nav links, forms, and other content for toggling -->
-			<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-				<div class="navbar-form navbar-right">
-					<button id="story-save-draft" class="btn btn-link">
-						{{ 'Unpublish' if post else 'Save draft' }}
-					</button>
-					<button class="btn btn-primary btn-primary--transparent" data-toggle="modal" data-target="#story-dialog">
-						Publish
-					</button>
+	<div id="story-editor-page" class="container-wrap-editor">
+		<nav class="navbar navbar-default navbar-fixed-top">
+			<div class="container">
+				<!-- Collect the nav links, forms, and other content for toggling -->
+				<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+					<div class="navbar-form navbar-right">
+						<button id="story-save-draft" class="btn btn-link">
+							{{ 'Unpublish' if post else 'Save draft' }}
+						</button>
+						<button class="btn btn-primary btn-primary--transparent" data-toggle="modal"
+							data-target="#story-dialog">
+							Publish
+						</button>
+					</div>
 				</div>
 			</div>
-		</div>
-	</nav>
-
-	<div class="container-wrap">
+		</nav>
 		<div class="container">
 			<div class="row">
 				<div class="col-md-12 col-sm-12 col-xs-12">
@@ -60,6 +61,7 @@
 				</div>
 			</div>
 			<!-- end modal dialog -->
+
 		<div class="push"></div>
 	</div>
 
@@ -68,14 +70,6 @@
 	<!-- end footer -->
 {% endblock %}
 
-{% block base_style %}
-{% include 'shared/assets/styles/story.html' %}
-{% endblock %}
-
 {% block header_script %}
 <script src="https://cdn.ckeditor.com/ckeditor5/12.0.0/balloon-block/ckeditor.js"></script>
-{% endblock %}
-
-{% block base_script %}
-{% include 'shared/assets/scripts/story.html' %}
 {% endblock %}
