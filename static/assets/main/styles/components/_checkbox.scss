@@ -1,0 +1,33 @@
+@import "~Lib/pretty-checkbox/src/scss/variables";
+@import "~Lib/pretty-checkbox/src/scss/core";
+
+@import "~Lib/pretty-checkbox/src/scss/elements/default/fill";
+@import "~Lib/pretty-checkbox/src/scss/elements/default/outline";
+@import "~Lib/pretty-checkbox/src/scss/elements/default/thick";
+
+@import "~Lib/pretty-checkbox/src/scss/elements/font-icon/general";
+
+@import "~Lib/pretty-checkbox/src/scss/elements/svg/general";
+
+@import "~Lib/pretty-checkbox/src/scss/elements/image/general";
+
+@import "~Lib/pretty-checkbox/src/scss/elements/switch/general";
+@import "~Lib/pretty-checkbox/src/scss/elements/switch/fill";
+@import "~Lib/pretty-checkbox/src/scss/elements/switch/slim";
+
+@import "~Lib/pretty-checkbox/src/scss/extras/toggle";
+@import "~Lib/pretty-checkbox/src/scss/extras/plain";
+@import "~Lib/pretty-checkbox/src/scss/extras/round";
+@import "~Lib/pretty-checkbox/src/scss/extras/curve";
+@import "~Lib/pretty-checkbox/src/scss/extras/animation";
+@import "~Lib/pretty-checkbox/src/scss/extras/disabled";
+@import "~Lib/pretty-checkbox/src/scss/extras/locked";
+@import "~Lib/pretty-checkbox/src/scss/extras/colors";
+@import "~Lib/pretty-checkbox/src/scss/extras/print";
+
+@import "~Lib/pretty-checkbox/src/scss/states/hover";
+@import "~Lib/pretty-checkbox/src/scss/states/focus";
+@import "~Lib/pretty-checkbox/src/scss/states/indeterminate";
+
+
+@import "~Lib/@mdi/font/css/materialdesignicons.css";

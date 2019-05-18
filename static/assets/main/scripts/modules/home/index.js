@@ -7,9 +7,11 @@ export class HomeModule {
 	constructor(options) {
 		this._moduleId = 'fullpage';
 		this._options = Object.assign({
-			sectionsColor: ['#ffffff', '#ffffff', '#ffffff', '#ffffff', '#ffffff'],
-			scrollingSpeed: 500,
-			slidesNavigation: 'true'
+			fullpage: {
+				sectionsColor: ['#ffffff', '#ffffff', '#ffffff', '#ffffff', '#ffffff'],
+				scrollingSpeed: 500,
+				slidesNavigation: 'true'
+			}
 		}, options || {});
 	}
 
@@ -25,6 +27,6 @@ export class HomeModule {
 			return;
 		}
 
-		$(pageContainer).fullpage(this._options);
+		$(pageContainer).fullpage(this._options.fullpage);
 	}
 }

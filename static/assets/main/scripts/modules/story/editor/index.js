@@ -4,6 +4,7 @@ import { AppConfig } from 'Assets/main/scripts/config';
 import { StoryApiHelper, CategoryApiHelper } from 'Assets/main/scripts/api';
 import { SpinnerHelper } from 'Assets/helpers';
 import { ImageUploadAdapterPlugin } from './upload';
+import $ from 'jquery';
 import Choices from 'choices.js';
 
 export class StoryEditorModule {
@@ -16,7 +17,10 @@ export class StoryEditorModule {
 			bodyId: 'story-body',
 			publishId: 'story-publish',
 			saveDraftId: 'story-save-draft',
-			categorySelectId: 'story-category'
+			categorySelectId: 'story-category',
+			launchDialogBtnId: 'story-launch-modal',
+			dialogId: 'story-dialog',
+			anonymousCheckboxId: 'anonymous-checkbox'
 		}, options || {});
 	}
 
@@ -45,6 +49,7 @@ export class StoryEditorModule {
 		this._titleTxt = document.getElementById(this._options.titleId);
 		this._bodyTxt = document.getElementById(this._options.bodyId);
 		this._categorySel = document.getElementById(this._options.categorySelectId);
+		this._anonymousCheckbox = document.getElementById(this._options.anonymousCheckboxId);
 
 		if (!this._storyContainer || !this._titleTxt || !this._bodyTxt) {
 			console.warn(`[HUP] editor can't be initialized`);
@@ -108,6 +113,9 @@ export class StoryEditorModule {
 	}
 
 	setupListeners() {
+		this._launchDialgoBtn = document.getElementById(this._options.launchDialogBtnId);
+		this._launchDialgoBtn.addEventListener('click', this.launchDialog.bind(this));
+
 		this._publishBtn = document.getElementById(this._options.publishId);
 		this._publishBtn.addEventListener('click', this.publishStory.bind(this));
 
@@ -120,12 +128,14 @@ export class StoryEditorModule {
 
 		const id = this._story.id;
 		const data = this.getData();
+		const modalDialog = this.getModalDialog();
 
 		if (!id || !data) {
 			return false;
 		}
 
 		this.updateStatus(false);
+		modalDialog.modal('hide');
 
 		this._storyApiHelper.publish(id, data)
 			.then(response => {
@@ -161,6 +171,12 @@ export class StoryEditorModule {
 			});
 	}
 
+	launchDialog(evt) {
+		const modalDialog = this.getModalDialog();
+
+		modalDialog.modal('show');
+	}
+
 	getStory() {
 		const id = this._storyContainer.getAttribute('data-id');
 
@@ -171,6 +187,18 @@ export class StoryEditorModule {
 			return this._storyApiHelper.last_draft()
 				.then(data => data.draft);
 		}
+	}
+
+	getModalDialog() {
+		if (!this._modalDialog) {
+			this._modalDialog = $(`#${this._options.dialogId}`);
+
+			this._modalDialog.modal({
+				show: false
+			})
+		}
+
+		return this._modalDialog;
 	}
 
 	buildStoryChoice(items, story) {
@@ -184,6 +212,10 @@ export class StoryEditorModule {
 
 		if (typeof story.category === 'object') {
 			choices.setChoiceByValue(story.category.id);
+		}
+
+		if (story.anonymous) {
+			this._anonymousCheckbox.checked = true;
 		}
 
 		return choices;
@@ -219,7 +251,8 @@ export class StoryEditorModule {
 			title: this._getText(this._titleEditor.getData()),
 			body: '',
 			extra_body: this._bodyEditor.getData(),
-			category_id: category_id
+			category_id: category_id,
+			anonymous: this._anonymousCheckbox.checked ? 1 : 0
 		});
 	}
 

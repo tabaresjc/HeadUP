@@ -88,3 +88,4 @@ class ApiStoriesView(FlaskView):
         story.category_id = data.get('category_id', Post.CATEGORY_NONE, int)
         story.status = status
         story.kind = Post.KIND_STORY
+        story.anonymous = data.get('anonymous', 0, int)

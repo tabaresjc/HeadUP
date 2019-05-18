@@ -7,67 +7,76 @@
 {% endblock %}
 
 {% block page_wrapper %}
-	<div id="story-editor-page" class="container-wrap-editor">
-		<nav class="navbar navbar-default navbar-fixed-top">
-			<div class="container">
-				<!-- Collect the nav links, forms, and other content for toggling -->
-				<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-					<div class="navbar-form navbar-right">
-						<button id="story-save-draft" class="btn btn-link">
-							{{ 'Unpublish' if post else 'Save draft' }}
-						</button>
-						<button class="btn btn-primary btn-primary--transparent" data-toggle="modal"
-							data-target="#story-dialog">
-							Publish
-						</button>
-					</div>
-				</div>
-			</div>
-		</nav>
+<div id="story-editor-page" class="container-wrap-editor">
+	<nav class="navbar navbar-default navbar-fixed-top">
 		<div class="container">
-			<div class="row">
-				<div class="col-md-12 col-sm-12 col-xs-12">
-					<div id="story-container" data-id="{{ id if id else '' }}" class="container-wrapper">
-						<div id="story-title" data-placeholder="{{ _('FRM_INPUT_TITLE_DESCRIPTION') }}"></div>
-						<div id="story-body" data-placeholder="{{ _('FRM_INPUT_SOLUTION_DESCRIPTION') }}"></div>
-					</div>
+			<!-- Collect the nav links, forms, and other content for toggling -->
+			<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+				<div class="navbar-form navbar-right">
+					<button id="story-save-draft" class="btn btn-link">
+						{{ 'Unpublish' if post else 'Save draft' }}
+					</button>
+					<button id="story-launch-modal" class="btn btn-primary btn-primary--transparent">
+						Publish
+					</button>
 				</div>
 			</div>
 		</div>
+	</nav>
+	<div class="container">
+		<div class="row">
+			<div class="col-md-12 col-sm-12 col-xs-12">
+				<div id="story-container" data-id="{{ id if id else '' }}" class="container-wrapper">
+					<div id="story-title" data-placeholder="{{ _('FRM_INPUT_TITLE_DESCRIPTION') }}"></div>
+					<div id="story-body" data-placeholder="{{ _('FRM_INPUT_SOLUTION_DESCRIPTION') }}"></div>
+				</div>
+			</div>
+		</div>
+	</div>
 
-		<!-- modal dialog -->
-		<div id="story-dialog" class="modal fade" tabindex="-1" role="dialog">
-				<div class="modal-dialog" role="document">
-					<div class="modal-content">
-						<div class="modal-header">
-							<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-								<span aria-hidden="true">&times;</span>
-							</button>
-							<h4 class="modal-title">Publish</h4>
+	<!-- modal dialog -->
+	<div id="story-dialog" class="modal fade" tabindex="-1" role="dialog">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+					<h4 class="modal-title">Publish</h4>
+				</div>
+				<div class="modal-body">
+					<div class="form">
+						<div class="form-group">
+							<label for="recipient-name" class="control-label">Category:</label>
+							<select id="story-category"></select>
 						</div>
-						<div class="modal-body">
-							<div class="form">
-								<div class="form-group">
-									<label for="recipient-name" class="control-label">Category:</label>
-									<select id="story-category"></select>
+
+						<div class="anonymous-container">
+							<div class="pretty p-icon p-round p-pulse">
+								<input id="anonymous-checkbox" type="checkbox" />
+								<div class="state p-success">
+									<i class="icon mdi mdi-check"></i>
+									<label>Anonymous</label>
 								</div>
 							</div>
 						</div>
-						<div class="modal-footer">
-							<button class="btn btn-default" data-dismiss="modal">Close</button>
-							<button id="story-publish" class="btn btn-primary">Save changes</button>
-						</div>
 					</div>
 				</div>
+				<div class="modal-footer">
+					<button class="btn btn-default" data-dismiss="modal">Close</button>
+					<button id="story-publish" class="btn btn-primary">Save changes</button>
+				</div>
 			</div>
-			<!-- end modal dialog -->
-
-		<div class="push"></div>
+		</div>
 	</div>
+	<!-- end modal dialog -->
 
-	<!-- footer -->
-	{% include 'main/layout/footer.html' %}
-	<!-- end footer -->
+	<div class="push"></div>
+</div>
+
+<!-- footer -->
+{% include 'main/layout/footer.html' %}
+<!-- end footer -->
 {% endblock %}
 
 {% block header_script %}
