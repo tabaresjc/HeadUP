@@ -20,8 +20,11 @@ export class StoryEditorModule {
 			categorySelectId: 'story-category',
 			launchDialogBtnId: 'story-launch-modal',
 			dialogId: 'story-dialog',
-			anonymousCheckboxId: 'anonymous-checkbox'
+			anonymousCheckboxId: 'anonymous-checkbox',
+			cancelBtn: 'story-cancel'
 		}, options || {});
+
+		this._hasChanged = false;
 	}
 
 	onLoad() {

@@ -6,7 +6,7 @@
 
 .container-wrap-editor {
 	margin: 40px 0;
-	padding: 25px 0;
+	padding: 0;
 	background: #fff;
 
 	.container {
@@ -15,19 +15,42 @@
 		}
 	}
 
-	#story-title,
-	#story-body {
-		border: none;
-		box-shadow: none;
-		padding: 0;
+	.navbar {
+		// height: 50px;
+		a {
+			border: none;
+		}
+
+		.navbar-form {
+			margin: 5px 0 0 0;
+		}
 	}
 
-	#story-title {
-		font-size: 2em;
-		font-weight: 700;
-	}
+	#story-container {
+		#story-title,
+		#story-body {
+			border: none;
+			box-shadow: none;
+			padding: 0;
+		}
 
-	#story-body {
-		@include content-generic;
+		#story-title {
+			font-size: 2em;
+			font-weight: 700;
+		}
+
+		#story-body {
+			@include content-generic;
+		}
+
+		@media (max-width: $screen-xs-max) {
+			padding: 0 12px;
+		}
+	}
+}
+
+.ck.ck-block-toolbar-button {
+	@media (max-width: $screen-xs-max) {
+		transform: translateX(5px) !important;
 	}
 }

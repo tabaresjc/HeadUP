@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-05-10 09:35+0000\n"
+"POT-Creation-Date: 2019-05-19 09:00+0000\n"
 "PO-Revision-Date: 2017-07-15 16:34+0900\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: fr\n"
@@ -200,6 +200,7 @@ msgstr "カテゴリーの説明をしてください"
 #: app/templates/admin/posts/partials/_post_edit.html:36
 #: app/templates/admin/posts/partials/_sidebar.html:45
 #: app/templates/admin/users/add.html:29 app/templates/admin/users/edit.html:29
+#: app/templates/main/stories/edit.html:74
 msgid "BTN_SAVE_LBL"
 msgstr "保存"
 
@@ -294,7 +295,7 @@ msgid "BTN_UPLOAD_COVER_PICTURE_LBL"
 msgstr "新しいカバー写真をアップロードするにはここをクリック"
 
 #: app/templates/admin/posts/partials/_post_edit.html:22
-#: app/templates/main/stories/edit.html:26
+#: app/templates/main/stories/edit.html:39
 msgid "FRM_INPUT_TITLE_DESCRIPTION"
 msgstr "タイトル – あなたのストーリーにタイトルをつけるなら (30 文字以内)\n"
 
@@ -305,11 +306,12 @@ msgstr ""
 "やり遂げたこと  – そのために立ち向かったこと(150 文字以内）"
 
 #: app/templates/admin/posts/partials/_post_edit.html:24
-#: app/templates/main/stories/edit.html:27
+#: app/templates/main/stories/edit.html:40
 msgid "FRM_INPUT_SOLUTION_DESCRIPTION"
 msgstr "どうやって解決しましたか、解決しますか – 具体的になにをしたか書いてください (150 words)"
 
 #: app/templates/admin/posts/partials/_post_edit.html:30
+#: app/templates/main/stories/edit.html:66
 msgid "CB_ANONYMOUS_LBL"
 msgstr "この投稿を匿名にする。"
 
@@ -373,7 +375,7 @@ msgstr "既にアカウントがありますか？"
 #: app/templates/main/common/_sidebar_user.html:49
 #: app/templates/main/layout/header.html:49
 #: app/templates/main/layout/header.html:98
-#: app/templates/main/pages/home.html:29
+#: app/templates/main/pages/home.html:21
 #: app/templates/main/stories/show.html:50
 msgid "LOGIN_BTN"
 msgstr "ログイン"
@@ -416,7 +418,7 @@ msgstr "アカウントがまだありませんか？"
 #: app/templates/main/common/_sidebar_user.html:52
 #: app/templates/main/layout/header.html:55
 #: app/templates/main/layout/header.html:93
-#: app/templates/main/pages/home.html:30
+#: app/templates/main/pages/home.html:22
 #: app/templates/main/stories/show.html:53
 msgid "REGISTER_BTN"
 msgstr "無料登録"
@@ -658,7 +660,7 @@ msgid "LATEST_LBL"
 msgstr "最新のストーリー"
 
 #: app/templates/main/layout/error-base.html:32
-#: app/templates/main/pages/home.html:26
+#: app/templates/main/pages/home.html:18
 msgid "DASHBOARD_BTN"
 msgstr "マイページ"
 
@@ -700,35 +702,35 @@ msgstr ""
 "はソーシャルストーリーテリングネットワークです。目標、問題、課題とそれをクリアするための解決策をシェアする場であり、どのように立ち向かっているのか、どうやって気持ちを高く持ち続けているのかシェアすることの出来る場です。ポジティブで楽しい経験、または自身が何かを成し遂げた経験を書いたり、他の誰かの驚くようなストーリーを閲覧することができます。困難な状況や、難しい課題にたいしてあなたが見つけた解決方法はなんですか。世界にむけてシェアしてください。Speak"
 " up, HeadUP."
 
-#: app/templates/main/pages/home.html:19
+#: app/templates/main/pages/home.html:11
 msgid "WELCOME_TITLE_LBL"
 msgstr "%(name)s - ストーリーテリングネットワーク<br/>自由にあなたを表現する場所"
 
-#: app/templates/main/pages/home.html:21
+#: app/templates/main/pages/home.html:13
 msgid "WELCOME_SUBTITLE_LBL"
 msgstr "あなたの解決策を世界にシェアしよう…<br/>Speak up, HeadUp!"
 
-#: app/templates/main/pages/home.html:22
+#: app/templates/main/pages/home.html:14
 msgid "GO_TO_STORIES_BTN"
 msgstr "ストーリー"
 
-#: app/templates/main/pages/home.html:28
+#: app/templates/main/pages/home.html:20
 msgid "WELCOME_SUBTITLE_EXTRA_LBL"
 msgstr "参加したいですか？"
 
-#: app/templates/main/pages/home.html:52
+#: app/templates/main/pages/home.html:44
 msgid "INTRO1_LBL"
 msgstr "ポジティブな経験をシェアしてください。"
 
-#: app/templates/main/pages/home.html:58
+#: app/templates/main/pages/home.html:50
 msgid "INTRO2_LBL"
 msgstr "あなたが誇りに思う経験を話してください。<br/>きっと頑張っているだれかが励まされるはずです。"
 
-#: app/templates/main/pages/home.html:64
+#: app/templates/main/pages/home.html:56
 msgid "INTRO3_LBL"
 msgstr "どうやって気持ちを高く持ち続けているのですか？<br/>教えてください。"
 
-#: app/templates/main/pages/home.html:70
+#: app/templates/main/pages/home.html:62
 msgid "INTRO4_LBL"
 msgstr "サクセスストーリーを書いてポジティブなエネルギーを世界に放とう"
 
@@ -751,6 +753,31 @@ msgstr "一番人気のストーリー"
 #: app/templates/main/stories/category.html:2
 msgid "CATEGORY_LIST_TITLE"
 msgstr "Stamps for %(category)s"
+
+#: app/templates/main/stories/edit.html:20
+msgid "BTN_CANCEL_LBL"
+msgstr "キャンセル"
+
+#: app/templates/main/stories/edit.html:26
+msgid "BTN_UNPUBLISH_LBL"
+msgstr "下書き保存"
+
+#: app/templates/main/stories/edit.html:26
+msgid "BTN_DRAFT_LBL"
+msgstr "下書き保存"
+
+#: app/templates/main/stories/edit.html:29
+#: app/templates/main/stories/edit.html:54
+msgid "BTN_PUBLISH_LBL"
+msgstr "投稿"
+
+#: app/templates/main/stories/edit.html:59
+msgid "SELECT_CATEGORY_LBL"
+msgstr "カテゴリを選んでください"
+
+#: app/templates/main/stories/edit.html:73
+msgid "BTN_CLOSE_LBL"
+msgstr "閉じる"
 
 #: app/templates/main/stories/show.html:39
 msgid "COMMENT_TEXT_PLACEHOLDER"
@@ -780,13 +807,18 @@ msgstr "キャンセル"
 msgid "COMMENT_REPLY_SUBMIT_BTN"
 msgstr "返信する"
 
-#: app/templates/main/stories/partials/_user_info.html:10
+#: app/templates/main/stories/partials/_user_info.html:9
 #: app/templates/widgets/stories/partials/_single_feed.html:21
 msgid "ANONYMOUS_LBL"
 msgstr "匿名"
 
-#: app/templates/main/stories/partials/_user_info.html:12
+#: app/templates/main/stories/partials/_user_info.html:14
 #: app/templates/widgets/stories/partials/_single_feed.html:26
+msgid "POSTED_BY_USER_CATEGORY_LBL"
+msgstr "%(user)s が %(category)s に投稿しました。"
+
+#: app/templates/main/stories/partials/_user_info.html:16
+#: app/templates/widgets/stories/partials/_single_feed.html:28
 msgid "POSTED_BY_USER_LBL"
 msgstr "%(user)s が投稿しました。"
 
@@ -794,10 +826,6 @@ msgstr "%(user)s が投稿しました。"
 #: app/templates/widgets/stories/partials/_single_feed.html:45
 msgid "READ_MORE_LBL"
 msgstr "もっと読む…"
-
-#: app/templates/widgets/stories/partials/_single_feed.html:28
-msgid "POSTED_BY_USER_CATEGORY_LBL"
-msgstr "%(user)s が %(category)s に投稿しました。"
 
 #: app/views/admin/categories/index.py:39
 #: app/views/admin/categories/index.py:77

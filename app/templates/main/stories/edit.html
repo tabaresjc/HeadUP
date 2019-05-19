@@ -10,14 +10,23 @@
 <div id="story-editor-page" class="container-wrap-editor">
 	<nav class="navbar navbar-default navbar-fixed-top">
 		<div class="container">
-			<!-- Collect the nav links, forms, and other content for toggling -->
-			<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#story-navbar" aria-expanded="false">
+					<span class="sr-only">Toggle navigation</span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+				</button>
+				<a id="story-cancel" class="navbar-brand" href="{{ url_for('story.show', id=post.id) }}">{{ _('BTN_CANCEL_LBL') }}</a>
+			</div>
+			<div id="story-navbar" class="collapse navbar-collapse">
+
 				<div class="navbar-form navbar-right">
 					<button id="story-save-draft" class="btn btn-link">
-						{{ 'Unpublish' if post else 'Save draft' }}
+						{{ _('BTN_UNPUBLISH_LBL') if post else _('BTN_DRAFT_LBL') }}
 					</button>
 					<button id="story-launch-modal" class="btn btn-primary btn-primary--transparent">
-						Publish
+						{{ _('BTN_PUBLISH_LBL') }}
 					</button>
 				</div>
 			</div>
@@ -42,29 +51,27 @@
 					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 						<span aria-hidden="true">&times;</span>
 					</button>
-					<h4 class="modal-title">Publish</h4>
+					<h4 class="modal-title">{{ _('BTN_PUBLISH_LBL') }}</h4>
 				</div>
 				<div class="modal-body">
 					<div class="form">
 						<div class="form-group">
-							<label for="recipient-name" class="control-label">Category:</label>
+							<label for="recipient-name" class="control-label">{{ _('SELECT_CATEGORY_LBL') }}</label>
 							<select id="story-category"></select>
 						</div>
-
 						<div class="anonymous-container">
-							<div class="pretty p-icon p-round p-pulse">
+							<div class="pretty p-switch p-fill p-bigger">
 								<input id="anonymous-checkbox" type="checkbox" />
 								<div class="state p-success">
-									<i class="icon mdi mdi-check"></i>
-									<label>Anonymous</label>
+									<label>{{ _('CB_ANONYMOUS_LBL') }}</label>
 								</div>
 							</div>
 						</div>
 					</div>
 				</div>
 				<div class="modal-footer">
-					<button class="btn btn-default" data-dismiss="modal">Close</button>
-					<button id="story-publish" class="btn btn-primary">Save changes</button>
+					<button class="btn btn-default" data-dismiss="modal">{{ _('BTN_CLOSE_LBL') }}</button>
+					<button id="story-publish" class="btn btn-primary">{{ _('BTN_SAVE_LBL') }}</button>
 				</div>
 			</div>
 		</div>

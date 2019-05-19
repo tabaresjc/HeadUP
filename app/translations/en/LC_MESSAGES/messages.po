@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-05-10 09:35+0000\n"
+"POT-Creation-Date: 2019-05-19 09:00+0000\n"
 "PO-Revision-Date: 2017-07-15 18:02+0900\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: en\n"
@@ -202,6 +202,7 @@ msgstr "Describe the category..."
 #: app/templates/admin/posts/partials/_post_edit.html:36
 #: app/templates/admin/posts/partials/_sidebar.html:45
 #: app/templates/admin/users/add.html:29 app/templates/admin/users/edit.html:29
+#: app/templates/main/stories/edit.html:74
 msgid "BTN_SAVE_LBL"
 msgstr "Save"
 
@@ -296,7 +297,7 @@ msgid "BTN_UPLOAD_COVER_PICTURE_LBL"
 msgstr "Click here to upload a new cover picture"
 
 #: app/templates/admin/posts/partials/_post_edit.html:22
-#: app/templates/main/stories/edit.html:26
+#: app/templates/main/stories/edit.html:39
 msgid "FRM_INPUT_TITLE_DESCRIPTION"
 msgstr "Title – Best description of your post (30 words)"
 
@@ -305,13 +306,14 @@ msgid "FRM_INPUT_CHALLENGE_DESCRIPTION"
 msgstr "Your Challenge – Description of what you had to cope with (150 words)"
 
 #: app/templates/admin/posts/partials/_post_edit.html:24
-#: app/templates/main/stories/edit.html:27
+#: app/templates/main/stories/edit.html:40
 msgid "FRM_INPUT_SOLUTION_DESCRIPTION"
 msgstr "Your Solution – Description of what you did (150 words)"
 
 #: app/templates/admin/posts/partials/_post_edit.html:30
+#: app/templates/main/stories/edit.html:66
 msgid "CB_ANONYMOUS_LBL"
-msgstr "Make this Post Anonymous"
+msgstr "Publish as Anonymous"
 
 #: app/templates/admin/posts/partials/_post_edit.html:43
 msgid "ERROR_STAMP_TITLE_EMPTY"
@@ -375,7 +377,7 @@ msgstr "Already have an account?"
 #: app/templates/main/common/_sidebar_user.html:49
 #: app/templates/main/layout/header.html:49
 #: app/templates/main/layout/header.html:98
-#: app/templates/main/pages/home.html:29
+#: app/templates/main/pages/home.html:21
 #: app/templates/main/stories/show.html:50
 msgid "LOGIN_BTN"
 msgstr "Login"
@@ -418,7 +420,7 @@ msgstr "Don't have an account?"
 #: app/templates/main/common/_sidebar_user.html:52
 #: app/templates/main/layout/header.html:55
 #: app/templates/main/layout/header.html:93
-#: app/templates/main/pages/home.html:30
+#: app/templates/main/pages/home.html:22
 #: app/templates/main/stories/show.html:53
 msgid "REGISTER_BTN"
 msgstr "Sign Up"
@@ -663,7 +665,7 @@ msgid "LATEST_LBL"
 msgstr "Latests"
 
 #: app/templates/main/layout/error-base.html:32
-#: app/templates/main/pages/home.html:26
+#: app/templates/main/pages/home.html:18
 msgid "DASHBOARD_BTN"
 msgstr "Dashboard"
 
@@ -708,35 +710,35 @@ msgstr ""
 "solution you found to a challenging situation or a difficulty you once "
 "faced. Speak up, HeadUP."
 
-#: app/templates/main/pages/home.html:19
+#: app/templates/main/pages/home.html:11
 msgid "WELCOME_TITLE_LBL"
 msgstr "%(name)s - Storytelling Network<br/>your space to express yourself freely"
 
-#: app/templates/main/pages/home.html:21
+#: app/templates/main/pages/home.html:13
 msgid "WELCOME_SUBTITLE_LBL"
 msgstr "Tell the World and beyond what was your solution…<br/>Speak up, HeadUp!"
 
-#: app/templates/main/pages/home.html:22
+#: app/templates/main/pages/home.html:14
 msgid "GO_TO_STORIES_BTN"
 msgstr "Stories"
 
-#: app/templates/main/pages/home.html:28
+#: app/templates/main/pages/home.html:20
 msgid "WELCOME_SUBTITLE_EXTRA_LBL"
 msgstr "Would you like to be part of it?"
 
-#: app/templates/main/pages/home.html:52
+#: app/templates/main/pages/home.html:44
 msgid "INTRO1_LBL"
 msgstr "Share a positive experience"
 
-#: app/templates/main/pages/home.html:58
+#: app/templates/main/pages/home.html:50
 msgid "INTRO2_LBL"
 msgstr "Inspire people with a personal achievement you are proud of"
 
-#: app/templates/main/pages/home.html:64
+#: app/templates/main/pages/home.html:56
 msgid "INTRO3_LBL"
 msgstr "Express yourself and tell us how you are keeping your head up"
 
-#: app/templates/main/pages/home.html:70
+#: app/templates/main/pages/home.html:62
 msgid "INTRO4_LBL"
 msgstr "Transmit your optimism by writing remarkable success stories"
 
@@ -762,6 +764,31 @@ msgstr "Most populars stories"
 #: app/templates/main/stories/category.html:2
 msgid "CATEGORY_LIST_TITLE"
 msgstr "Stories for %(category)s"
+
+#: app/templates/main/stories/edit.html:20
+msgid "BTN_CANCEL_LBL"
+msgstr "Cancel"
+
+#: app/templates/main/stories/edit.html:26
+msgid "BTN_UNPUBLISH_LBL"
+msgstr "Save as Draft"
+
+#: app/templates/main/stories/edit.html:26
+msgid "BTN_DRAFT_LBL"
+msgstr "Save as Draft"
+
+#: app/templates/main/stories/edit.html:29
+#: app/templates/main/stories/edit.html:54
+msgid "BTN_PUBLISH_LBL"
+msgstr "Publish"
+
+#: app/templates/main/stories/edit.html:59
+msgid "SELECT_CATEGORY_LBL"
+msgstr "Select category"
+
+#: app/templates/main/stories/edit.html:73
+msgid "BTN_CLOSE_LBL"
+msgstr "Close"
 
 #: app/templates/main/stories/show.html:39
 msgid "COMMENT_TEXT_PLACEHOLDER"
@@ -793,13 +820,18 @@ msgstr "Cancel"
 msgid "COMMENT_REPLY_SUBMIT_BTN"
 msgstr "Reply"
 
-#: app/templates/main/stories/partials/_user_info.html:10
+#: app/templates/main/stories/partials/_user_info.html:9
 #: app/templates/widgets/stories/partials/_single_feed.html:21
 msgid "ANONYMOUS_LBL"
 msgstr "Anonymous"
 
-#: app/templates/main/stories/partials/_user_info.html:12
+#: app/templates/main/stories/partials/_user_info.html:14
 #: app/templates/widgets/stories/partials/_single_feed.html:26
+msgid "POSTED_BY_USER_CATEGORY_LBL"
+msgstr "Posted by %(user)s in %(category)s"
+
+#: app/templates/main/stories/partials/_user_info.html:16
+#: app/templates/widgets/stories/partials/_single_feed.html:28
 msgid "POSTED_BY_USER_LBL"
 msgstr "Posted by %(user)s"
 
@@ -807,10 +839,6 @@ msgstr "Posted by %(user)s"
 #: app/templates/widgets/stories/partials/_single_feed.html:45
 msgid "READ_MORE_LBL"
 msgstr "Read more..."
-
-#: app/templates/widgets/stories/partials/_single_feed.html:28
-msgid "POSTED_BY_USER_CATEGORY_LBL"
-msgstr "Posted by %(user)s in %(category)s"
 
 #: app/views/admin/categories/index.py:39
 #: app/views/admin/categories/index.py:77
