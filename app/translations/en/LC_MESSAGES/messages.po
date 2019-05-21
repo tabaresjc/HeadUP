@@ -779,7 +779,7 @@ msgstr "Save as Draft"
 
 #: app/templates/main/stories/edit.html:29
 #: app/templates/main/stories/edit.html:54
-msgid "BTN_PUBLISH_LBL"
+msgid "PUBLISH_LBL"
 msgstr "Publish"
 
 #: app/templates/main/stories/edit.html:59

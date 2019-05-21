@@ -21,26 +21,66 @@
 			border: none;
 		}
 
+		.btn {
+			&.navbar-btn {
+				margin-top: 5px;
+				margin-bottom: 5px;
+			}
+		}
+
 		.navbar-form {
 			margin: 5px 0 0 0;
+		}
+
+		.navbar-brand {
+			font-weight: 700;
+		}
+
+		.navbar-form {
+			padding-right: 0;
+
+			@media (max-width: $screen-md-max) {
+				margin: 0;
+				border-top: none;
+			}
 		}
 	}
 
 	#story-container {
+		padding-top: 30px;
+
 		#story-title,
 		#story-body {
 			border: none;
 			box-shadow: none;
-			padding: 0;
+			padding: 0 3px;
+
+			&.error-validation {
+				border: 1px solid #d9534f;
+				border-radius: 5px;
+			}
 		}
 
 		#story-title {
 			font-size: 2em;
 			font-weight: 700;
+			font-family: "Ubuntu Condensed", Arial, sans-serif;
 		}
 
 		#story-body {
 			@include content-generic;
+		}
+
+		.ck.ck-editor__editable_inline>:last-child {
+			margin-bottom: 5px;
+		}
+
+		.ck.ck-editor__editable_inline>:first-child {
+			margin-top: 5px;
+		}
+
+		.ck-content + .ck-content {
+			margin-top: 15px;
 		}
 
 		@media (max-width: $screen-xs-max) {

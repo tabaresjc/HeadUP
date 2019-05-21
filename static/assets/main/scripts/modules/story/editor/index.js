@@ -21,7 +21,10 @@ export class StoryEditorModule {
 			launchDialogBtnId: 'story-launch-modal',
 			dialogId: 'story-dialog',
 			anonymousCheckboxId: 'anonymous-checkbox',
-			cancelBtn: 'story-cancel'
+			cancelBtnId: 'story-cancel',
+			messages: {
+				beforeUnload: `You have unfinished changes, do you wish to leave?`
+			}
 		}, options || {});
 
 		this._hasChanged = false;
@@ -124,6 +127,23 @@ export class StoryEditorModule {
 
 		this._saveDraftBtn = document.getElementById(this._options.saveDraftId);
 		this._saveDraftBtn.addEventListener('click', this.saveDraft.bind(this));
+
+		this._cancelBtn = document.getElementById(this._options.cancelBtnId);
+		this._cancelBtn.addEventListener('click', this.cancel.bind(this));
+
+		this._titleEditor.model.document.on('change:data', () => {
+			this._hasChanged = true;
+		});
+
+		this._bodyEditor.model.document.on('change:data', () => {
+			this._hasChanged = true;
+		});
+
+		window.addEventListener('beforeunload', (event) => {
+			if (this._hasChanged) {
+				event.returnValue = this._options.messages.beforeUnload;
+			}
+		});
 	}
 
 	publishStory(evt) {
@@ -131,18 +151,24 @@ export class StoryEditorModule {
 
 		const id = this._story.id;
 		const data = this.getData();
-		const modalDialog = this.getModalDialog();
+
+		// close the dialog
+		this.getModalDialog().modal('hide');
+
+		if (!this._validate()) {
+			return;
+		}
 
 		if (!id || !data) {
 			return false;
 		}
 
 		this.updateStatus(false);
-		modalDialog.modal('hide');
 
 		this._storyApiHelper.publish(id, data)
 			.then(response => {
 				this.updateStatus(true);
+				this._hasChanged = false;
 
 				if (response.redirect_to) {
 					window.location = response.redirect_to;
@@ -168,6 +194,7 @@ export class StoryEditorModule {
 		this._storyApiHelper.save_draft(id, data)
 			.then(response => {
 				this.updateStatus(true);
+				this._hasChanged = false;
 			})
 			.catch(error => {
 				this.updateStatus(true);
@@ -176,8 +203,16 @@ export class StoryEditorModule {
 
 	launchDialog(evt) {
 		const modalDialog = this.getModalDialog();
-
 		modalDialog.modal('show');
+	}
+
+	cancel(evt) {
+		if (this._hasChanged && !confirm(this._options.messages.beforeUnload)) {
+			evt.preventDefault();
+			return;
+		}
+
+		this._hasChanged = false;
 	}
 
 	getStory() {
@@ -213,7 +248,7 @@ export class StoryEditorModule {
 
 		const choices = new Choices(this._categorySel, options);
 
-		if (typeof story.category === 'object') {
+		if (story.category && typeof story.category === 'object') {
 			choices.setChoiceByValue(story.category.id);
 		}
 
@@ -273,6 +308,37 @@ export class StoryEditorModule {
 		}
 	}
 
+	_validate() {
+		let isValid = true;
+
+		this._titleEditor.sourceElement.classList.remove('warning-validation');
+
+		if (this._isEmptyEditor(this._titleEditor)) {
+			this._titleEditor.sourceElement.classList.add('error-validation');
+			isValid = false;
+		}
+
+		this._bodyEditor.sourceElement.classList.remove('warning-validation');
+
+		if (this._isEmptyEditor(this._bodyEditor)) {
+			this._bodyEditor.sourceElement.classList.add('error-validation');
+			isValid = false;
+		}
+
+		return isValid;
+	}
+
+	_isEmptyEditor(editor) {
+		const data = editor.getData();
+		const t = this._getText(data);
+
+		if (t && t.trim().length) {
+			return false;
+		}
+
+		return true;
+	}
+
 	_getText(srcHtml) {
 		if (!srcHtml) {
 			return '';
@@ -280,6 +346,6 @@ export class StoryEditorModule {
 		let d = document.createElement('div');
 		d.innerHTML = srcHtml.trim();
 
-		return d.textContent;
+		return d.textContent || d.innerText ||  '';
 	}
 }

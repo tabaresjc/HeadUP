@@ -789,7 +789,7 @@ msgstr "Enregistrer le brouillon"
 
 #: app/templates/main/stories/edit.html:29
 #: app/templates/main/stories/edit.html:54
-msgid "BTN_PUBLISH_LBL"
+msgid "PUBLISH_LBL"
 msgstr "Publier"
 
 #: app/templates/main/stories/edit.html:59

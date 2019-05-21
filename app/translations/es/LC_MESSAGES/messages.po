@@ -790,7 +790,7 @@ msgstr "Guardar Borrador"
 
 #: app/templates/main/stories/edit.html:29
 #: app/templates/main/stories/edit.html:54
-msgid "BTN_PUBLISH_LBL"
+msgid "PUBLISH_LBL"
 msgstr "Publicar"
 
 #: app/templates/main/stories/edit.html:59

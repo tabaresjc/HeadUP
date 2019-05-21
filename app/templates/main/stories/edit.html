@@ -9,26 +9,20 @@
 {% block page_wrapper %}
 <div id="story-editor-page" class="container-wrap-editor">
 	<nav class="navbar navbar-default navbar-fixed-top">
-		<div class="container">
-			<div class="navbar-header">
-				<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#story-navbar" aria-expanded="false">
-					<span class="sr-only">Toggle navigation</span>
-					<span class="icon-bar"></span>
-					<span class="icon-bar"></span>
-					<span class="icon-bar"></span>
-				</button>
-				<a id="story-cancel" class="navbar-brand" href="{{ url_for('story.show', id=post.id) }}">{{ _('BTN_CANCEL_LBL') }}</a>
+		<div class="container clearfix">
+			<div class="pull-left">
+					<a id="story-cancel" class="btn btn-link navbar-btn" href="{{ url_for('story.show', id=post.id) if post else url_for('latest') }}">
+						{{ _('BTN_CANCEL_LBL') }}
+					</a>
 			</div>
-			<div id="story-navbar" class="collapse navbar-collapse">
 
-				<div class="navbar-form navbar-right">
-					<button id="story-save-draft" class="btn btn-link">
-						{{ _('BTN_UNPUBLISH_LBL') if post else _('BTN_DRAFT_LBL') }}
-					</button>
-					<button id="story-launch-modal" class="btn btn-primary btn-primary--transparent">
-						{{ _('BTN_PUBLISH_LBL') }}
-					</button>
-				</div>
+			<div class="pull-right">
+				<button id="story-save-draft" class="btn btn-link navbar-btn">
+					{{ _('BTN_UNPUBLISH_LBL') if post else _('BTN_DRAFT_LBL') }}
+				</button>
+				<button id="story-launch-modal" class="btn btn-primary navbar-btn btn-primary--transparent">
+					{{ _('PUBLISH_LBL') }}
+				</button>
 			</div>
 		</div>
 	</nav>
@@ -51,7 +45,7 @@
 					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 						<span aria-hidden="true">&times;</span>
 					</button>
-					<h4 class="modal-title">{{ _('BTN_PUBLISH_LBL') }}</h4>
+					<h4 class="modal-title">{{ _('PUBLISH_LBL') }}</h4>
 				</div>
 				<div class="modal-body">
 					<div class="form">
