@@ -1,127 +1,72 @@
-/* Absolute Center Spinner */
-#spinner {
-	&.loading {
-		position: fixed;
-		z-index: 9999;
-		height: 2em;
-		width: 2em;
-		overflow: show;
-		margin: auto;
-		top: 0;
-		left: 0;
-		bottom: 0;
-		right: 0;
+$spinkit-spinner-margin: 25% auto !default;
+$spinkit-size: 80px !default;
+$spinkit-spinner-color: #fff !default;
 
-		/* Transparent Overlay */
-		&:before {
-			content: "";
-			display: block;
-			position: fixed;
-			top: 0;
-			left: 0;
+#overlay-container {
+	position: fixed; /* Sit on top of the page content */
+	display: none; /* Hidden by default */
+	width: 100%; /* Full width (cover the whole page) */
+	height: 100%; /* Full height (cover the whole page) */
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	background-color: rgba(0, 0, 0, 0.5); /* Black background with opacity */
+	z-index: 9999; /* Specify a stack order in case you're using a different order for other elements */
+
+	&.loading {
+		display: block;
+	}
+
+	.sk-circle {
+		$circleCount: 12;
+		$animationDuration: 1.2s;
+
+		margin: $spinkit-spinner-margin;
+		width: $spinkit-size;
+		height: $spinkit-size;
+		position: relative;
+
+		.sk-child {
 			width: 100%;
 			height: 100%;
-			background: radial-gradient(rgba(20, 20, 20, 0.8), rgba(0, 0, 0, 0.8));
-			background: -webkit-radial-gradient(rgba(20, 20, 20, 0.8), rgba(0, 0, 0, 0.8));
+			position: absolute;
+			left: 0;
+			top: 0;
 		}
 
-		/* :not(:required) hides these rules from IE9 and below */
-		&:not(:required) {
-			/* hide "loading..." text */
-			font: 0/0 a;
-			color: transparent;
-			text-shadow: none;
-			background-color: transparent;
-			border: 0;
-		}
-
-		&:not(:required):after {
+		.sk-child:before {
 			content: "";
 			display: block;
-			font-size: 10px;
-			width: 1em;
-			height: 1em;
-			margin-top: -0.5em;
-			-webkit-animation: spinner 1500ms infinite linear;
-			-moz-animation: spinner 1500ms infinite linear;
-			-ms-animation: spinner 1500ms infinite linear;
-			-o-animation: spinner 1500ms infinite linear;
-			animation: spinner 1500ms infinite linear;
-			border-radius: 0.5em;
-			-webkit-box-shadow: rgba(255, 255, 255, 0.75) 1.5em 0 0 0, rgba(255, 255, 255, 0.75) 1.1em 1.1em 0 0,
-				rgba(255, 255, 255, 0.75) 0 1.5em 0 0, rgba(255, 255, 255, 0.75) -1.1em 1.1em 0 0,
-				rgba(255, 255, 255, 0.75) -1.5em 0 0 0, rgba(255, 255, 255, 0.75) -1.1em -1.1em 0 0,
-				rgba(255, 255, 255, 0.75) 0 -1.5em 0 0, rgba(255, 255, 255, 0.75) 1.1em -1.1em 0 0;
-			box-shadow: rgba(255, 255, 255, 0.75) 1.5em 0 0 0, rgba(255, 255, 255, 0.75) 1.1em 1.1em 0 0,
-				rgba(255, 255, 255, 0.75) 0 1.5em 0 0, rgba(255, 255, 255, 0.75) -1.1em 1.1em 0 0,
-				rgba(255, 255, 255, 0.75) -1.5em 0 0 0, rgba(255, 255, 255, 0.75) -1.1em -1.1em 0 0,
-				rgba(255, 255, 255, 0.75) 0 -1.5em 0 0, rgba(255, 255, 255, 0.75) 1.1em -1.1em 0 0;
+			margin: 0 auto;
+			width: 15%;
+			height: 15%;
+			background-color: $spinkit-spinner-color;
+			border-radius: 100%;
+			animation: sk-circleBounceDelay $animationDuration infinite ease-in-out both;
+		}
+
+		@for $i from 2 through $circleCount {
+			.sk-circle#{$i} {
+				transform: rotate(360deg / $circleCount * ($i - 1));
+			}
+		}
+
+		@for $i from 2 through $circleCount {
+			.sk-circle#{$i}:before {
+				animation-delay: -$animationDuration + $animationDuration / $circleCount * ($i - 1);
+			}
 		}
 	}
 }
 
-/* Animation */
-@-webkit-keyframes spinner {
-	0% {
-		-webkit-transform: rotate(0deg);
-		-moz-transform: rotate(0deg);
-		-ms-transform: rotate(0deg);
-		-o-transform: rotate(0deg);
-		transform: rotate(0deg);
-	}
+@keyframes sk-circleBounceDelay {
+	0%,
+	80%,
 	100% {
-		-webkit-transform: rotate(360deg);
-		-moz-transform: rotate(360deg);
-		-ms-transform: rotate(360deg);
-		-o-transform: rotate(360deg);
-		transform: rotate(360deg);
+		transform: scale(0);
 	}
-}
-@-moz-keyframes spinner {
-	0% {
-		-webkit-transform: rotate(0deg);
-		-moz-transform: rotate(0deg);
-		-ms-transform: rotate(0deg);
-		-o-transform: rotate(0deg);
-		transform: rotate(0deg);
-	}
-	100% {
-		-webkit-transform: rotate(360deg);
-		-moz-transform: rotate(360deg);
-		-ms-transform: rotate(360deg);
-		-o-transform: rotate(360deg);
-		transform: rotate(360deg);
-	}
-}
-@-o-keyframes spinner {
-	0% {
-		-webkit-transform: rotate(0deg);
-		-moz-transform: rotate(0deg);
-		-ms-transform: rotate(0deg);
-		-o-transform: rotate(0deg);
-		transform: rotate(0deg);
-	}
-	100% {
-		-webkit-transform: rotate(360deg);
-		-moz-transform: rotate(360deg);
-		-ms-transform: rotate(360deg);
-		-o-transform: rotate(360deg);
-		transform: rotate(360deg);
-	}
-}
-@keyframes spinner {
-	0% {
-		-webkit-transform: rotate(0deg);
-		-moz-transform: rotate(0deg);
-		-ms-transform: rotate(0deg);
-		-o-transform: rotate(0deg);
-		transform: rotate(0deg);
-	}
-	100% {
-		-webkit-transform: rotate(360deg);
-		-moz-transform: rotate(360deg);
-		-ms-transform: rotate(360deg);
-		-o-transform: rotate(360deg);
-		transform: rotate(360deg);
+	40% {
+		transform: scale(1);
 	}
 }
