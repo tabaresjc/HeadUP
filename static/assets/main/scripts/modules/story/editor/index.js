@@ -4,6 +4,7 @@ import { AppConfig } from 'Assets/main/scripts/config';
 import { StoryApiHelper, CategoryApiHelper } from 'Assets/main/scripts/api';
 import { SpinnerHelper } from 'Assets/helpers';
 import { ImageUploadAdapterPlugin } from './upload';
+import { CoverPicturePlugin } from './cover-picture';
 import $ from 'jquery';
 import Choices from 'choices.js';
 
@@ -42,16 +43,15 @@ export class StoryEditorModule {
 			return;
 		}
 
-		this._storyApiHelper = new StoryApiHelper(AppConfig.storyApiUrl);
-		this._categoryApiHelper = new CategoryApiHelper(AppConfig.categoryApiUrl);
-		this._spinnerHelper = new SpinnerHelper();
-
 		if (!this._options.titleId || !this._options.bodyId) {
 			console.warn(`[HUP] unable to initialize editor`);
 			return;
 		}
 
 		this._storyContainer = document.getElementById(this._options.containerId);
+		this._storyApiHelper = new StoryApiHelper(AppConfig.storyApiUrl);
+		this._categoryApiHelper = new CategoryApiHelper(AppConfig.categoryApiUrl);
+		this._spinnerHelper = new SpinnerHelper();
 		this._titleTxt = document.getElementById(this._options.titleId);
 		this._bodyTxt = document.getElementById(this._options.bodyId);
 		this._categorySel = document.getElementById(this._options.categorySelectId);
@@ -63,10 +63,10 @@ export class StoryEditorModule {
 		}
 
 		const promises = [
-			this.setupTitle(),
-			this.setupBody(),
-			this.getStory(),
-			this.getCategories()
+			this._setupTitle(),
+			this._setupBody(),
+			this._getStory(),
+			this._getCategories()
 		];
 
 		this._spinnerHelper.start();
@@ -83,11 +83,16 @@ export class StoryEditorModule {
 
 				this._titleEditor.setData(this._story.title || '');
 				this._bodyEditor.setData(this._story.extra_body || '');
-				this._categoryChoice = this.buildStoryChoice(
+				this._categoryChoice = this._buildStoryChoice(
 					this._categoryData.items,
 					this._story);
 
-				this.setupListeners();
+				this._coverPicture = new CoverPicturePlugin({
+					picture: this._story.cover_picture,
+					post_id: this._story.id,
+				});
+
+				this._setupListeners();
 
 				console.info(`[HUP] editor initialized`);
 				this._spinnerHelper.stop();
@@ -98,7 +103,7 @@ export class StoryEditorModule {
 			});
 	}
 
-	setupTitle() {
+	_setupTitle() {
 		const config = {
 			placeholder: this._titleTxt.getAttribute('data-placeholder'),
 			blockToolbar: [],
@@ -109,7 +114,7 @@ export class StoryEditorModule {
 		return BalloonEditor.create(this._titleTxt, config);
 	}
 
-	setupBody() {
+	_setupBody() {
 		const config = {
 			placeholder: this._bodyTxt.getAttribute('data-placeholder'),
 			extraPlugins: [ImageUploadAdapterPlugin],
@@ -118,18 +123,18 @@ export class StoryEditorModule {
 		return BalloonEditor.create(this._bodyTxt, config);
 	}
 
-	setupListeners() {
+	_setupListeners() {
 		this._launchDialgoBtn = document.getElementById(this._options.launchDialogBtnId);
-		this._launchDialgoBtn.addEventListener('click', this.launchDialog.bind(this));
+		this._launchDialgoBtn.addEventListener('click', this._launchDialog.bind(this));
 
 		this._publishBtn = document.getElementById(this._options.publishId);
-		this._publishBtn.addEventListener('click', this.publishStory.bind(this));
+		this._publishBtn.addEventListener('click', this._publishStory.bind(this));
 
 		this._saveDraftBtn = document.getElementById(this._options.saveDraftId);
-		this._saveDraftBtn.addEventListener('click', this.saveDraft.bind(this));
+		this._saveDraftBtn.addEventListener('click', this._saveDraft.bind(this));
 
 		this._cancelBtn = document.getElementById(this._options.cancelBtnId);
-		this._cancelBtn.addEventListener('click', this.cancel.bind(this));
+		this._cancelBtn.addEventListener('click', this._cancel.bind(this));
 
 		this._titleEditor.model.document.on('change:data', () => {
 			this._hasChanged = true;
@@ -146,14 +151,14 @@ export class StoryEditorModule {
 		});
 	}
 
-	publishStory(evt) {
+	_publishStory(evt) {
 		evt.preventDefault();
 
 		const id = this._story.id;
-		const data = this.getData();
+		const data = this._getData();
 
 		// close the dialog
-		this.getModalDialog().modal('hide');
+		this._getModalDialog().modal('hide');
 
 		if (!this._validate()) {
 			return;
@@ -163,11 +168,11 @@ export class StoryEditorModule {
 			return false;
 		}
 
-		this.updateStatus(false);
+		this._updateStatus(false);
 
 		this._storyApiHelper.publish(id, data)
 			.then(response => {
-				this.updateStatus(true);
+				this._updateStatus(true);
 				this._hasChanged = false;
 
 				if (response.redirect_to) {
@@ -175,38 +180,38 @@ export class StoryEditorModule {
 				}
 			})
 			.catch(error => {
-				this.updateStatus(true);
+				this._updateStatus(true);
 			});
 	}
 
-	saveDraft(evt) {
+	_saveDraft(evt) {
 		evt.preventDefault();
 
 		const id = this._story.id;
-		const data = this.getData();
+		const data = this._getData();
 
 		if (!id || !data) {
 			return false;
 		}
 
-		this.updateStatus(false);
+		this._updateStatus(false);
 
 		this._storyApiHelper.save_draft(id, data)
 			.then(response => {
-				this.updateStatus(true);
+				this._updateStatus(true);
 				this._hasChanged = false;
 			})
 			.catch(error => {
-				this.updateStatus(true);
+				this._updateStatus(true);
 			});
 	}
 
-	launchDialog(evt) {
-		const modalDialog = this.getModalDialog();
+	_launchDialog(evt) {
+		const modalDialog = this._getModalDialog();
 		modalDialog.modal('show');
 	}
 
-	cancel(evt) {
+	_cancel(evt) {
 		if (this._hasChanged && !confirm(this._options.messages.beforeUnload)) {
 			evt.preventDefault();
 			return;
@@ -215,7 +220,7 @@ export class StoryEditorModule {
 		this._hasChanged = false;
 	}
 
-	getStory() {
+	_getStory() {
 		const id = this._storyContainer.getAttribute('data-id');
 
 		if (id) {
@@ -227,7 +232,7 @@ export class StoryEditorModule {
 		}
 	}
 
-	getModalDialog() {
+	_getModalDialog() {
 		if (!this._modalDialog) {
 			this._modalDialog = $(`#${this._options.dialogId}`);
 
@@ -239,7 +244,7 @@ export class StoryEditorModule {
 		return this._modalDialog;
 	}
 
-	buildStoryChoice(items, story) {
+	_buildStoryChoice(items, story) {
 		const options = {
 			choices: items || [],
 			// addItems: false,
@@ -259,7 +264,7 @@ export class StoryEditorModule {
 		return choices;
 	}
 
-	getCategories() {
+	_getCategories() {
 		return this._categoryApiHelper.getItems()
 			.then(data => {
 				const items = new Array();
@@ -278,7 +283,7 @@ export class StoryEditorModule {
 			});
 	}
 
-	getData() {
+	_getData() {
 		if (!this._bodyEditor || !this._titleEditor || !this._categoryChoice) {
 			return null;
 		}
@@ -294,7 +299,7 @@ export class StoryEditorModule {
 		});
 	}
 
-	updateStatus(enabled) {
+	_updateStatus(enabled) {
 		if (!!enabled) {
 			this._publishBtn.removeAttribute('disabled');
 			this._saveDraftBtn.removeAttribute('disabled');

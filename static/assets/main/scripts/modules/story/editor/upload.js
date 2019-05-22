@@ -1,14 +1,14 @@
 "use strict";
 
 import { AppConfig } from 'Assets/main/scripts/config';
-import { ApiBase } from 'Assets/helpers';
+import { PictureApiHelper } from 'Assets/main/scripts/api';
 
-export class ImageUploadAdapter extends ApiBase {
+export class ImageUploadAdapter {
 
-	constructor(url, loader) {
-		super(url);
+	constructor(loader) {
 		// The file loader instance to use during the upload.
 		this.loader = loader;
+		this._pictureApiHelper = new PictureApiHelper(AppConfig.pictureApiUrl);
 	}
 
 	// Starts the upload process.
@@ -27,15 +27,15 @@ export class ImageUploadAdapter extends ApiBase {
 					'file': file
 				};
 
-				return this.fetch('upload', data, {
-					method: 'POST',
+				return this._pictureApiHelper.upload(data, {
 					onProgress: onProgress
 				})
 				.then(response => {
 					// transforms the response provided by the api, into a format required
 					// by the editor
+					const picture = response.picture;
 					return Object.assign({}, {
-						default: response.url
+						default: picture.image_url
 					});
 				});
 			});
@@ -45,6 +45,6 @@ export class ImageUploadAdapter extends ApiBase {
 
 export function ImageUploadAdapterPlugin(editor) {
 	editor.plugins.get('FileRepository').createUploadAdapter = (loader) => {
-		return new ImageUploadAdapter(AppConfig.pictureApiUrl, loader);
+		return new ImageUploadAdapter(loader);
 	};
 }

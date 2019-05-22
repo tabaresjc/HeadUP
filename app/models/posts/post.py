@@ -20,6 +20,7 @@ class Post(Base, sa.Model, ModelHelper):
                      'status',
                      'lang',
                      'cover_picture',
+                     'cover_picture_id',
                      'category',
                      'anonymous']
 

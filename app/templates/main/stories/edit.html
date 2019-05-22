@@ -11,11 +11,11 @@
 	<nav class="navbar navbar-default navbar-fixed-top">
 		<div class="container clearfix">
 			<div class="pull-left">
-					<a id="story-cancel" class="btn btn-link navbar-btn" href="{{ url_for('story.show', id=post.id) if post else url_for('latest') }}">
-						{{ _('BTN_CANCEL_LBL') }}
-					</a>
+				<a id="story-cancel" class="btn btn-link navbar-btn"
+					href="{{ url_for('story.show', id=post.id) if post else url_for('latest') }}">
+					{{ _('BTN_CANCEL_LBL') }}
+				</a>
 			</div>
-
 			<div class="pull-right">
 				<button id="story-save-draft" class="btn btn-link navbar-btn">
 					{{ _('BTN_UNPUBLISH_LBL') if post else _('BTN_DRAFT_LBL') }}
@@ -27,6 +27,24 @@
 		</div>
 	</nav>
 	<div class="container">
+		<div class="row">
+			<div class="col-md-12 col-sm-12 col-xs-12">
+				<div class="cover-picture">
+					<div class="cover-picture-panel">
+						<span class="update"><i class="glyphicon glyphicon-refresh"></i></span>
+						<span class="delete" data-target="#cover_picture_id">
+							<i class="glyphicon glyphicon-remove"></i>
+						</span>
+					</div>
+					<div class="cover-picture-button">
+						<span class="glyphicon glyphicon-picture" aria-hidden="true"></span>
+					</div>
+					<div class="upload-file-container">
+						<input id="cover-picture-upload" type=file name=file accept="image/x-png, image/jpeg">
+					</div>
+				</div>
+			</div>
+		</div>
 		<div class="row">
 			<div class="col-md-12 col-sm-12 col-xs-12">
 				<div id="story-container" data-id="{{ id if id else '' }}" class="container-wrapper">

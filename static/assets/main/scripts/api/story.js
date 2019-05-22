@@ -16,7 +16,6 @@ export class StoryApiHelper extends ApiBase {
 		});
 	}
 
-
 	last_draft() {
 		return this.fetch('last-draft', {}, {
 			method: 'GET'

@@ -14,7 +14,8 @@ class Picture(Base, sa.Model, ModelHelper):
 
     __tablename__ = 'pictures'
 
-    __json_meta__ = ['id', 'image_url', 'user_id']
+    __json_meta__ = ['id', 'user_id', 'image_url', 'image_url_org',
+                     'image_url_sd', 'image_url_md', 'image_url_sm']
 
     SIZE_SD = 1028
     SIZE_MD = 512
@@ -56,6 +57,22 @@ class Picture(Base, sa.Model, ModelHelper):
     @property
     def image_url(self):
         return url_for('pictures', name=self.name)
+
+    @property
+    def image_url_org(self):
+        return url_for('pictures', name=self.name_org)
+
+    @property
+    def image_url_sd(self):
+        return url_for('pictures', name=self.name_sd)
+
+    @property
+    def image_url_md(self):
+        return url_for('pictures', name=self.name_md)
+
+    @property
+    def image_url_sm(self):
+        return url_for('pictures', name=self.name_sm)
 
     @property
     def name(self):
