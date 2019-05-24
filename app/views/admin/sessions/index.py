@@ -116,7 +116,12 @@ def signup():
 def logout():
     logout_user()
 
-    return render_view(url_for('latest'),
+    redirect_to = url_for('latest')
+
+    if request.values.get('ret'):
+        redirect_to = request.values.get('ret')
+
+    return render_view(redirect_to,
                        redirect=True,
                        message=_('SESSIONS_MSG_SIGNED_OUT'))
 

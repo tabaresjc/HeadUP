@@ -62,3 +62,17 @@ def linkify(eval_ctx, value):
         return value
 
     return bleach.linkify(value)
+
+
+@app.app.template_filter()
+@evalcontextfilter
+def urlthis(eval_ctx, value, language, scheme='http://'):
+    sep = '.'
+
+    if config.MAIN_DOMAIN.startswith('stg.'):
+        sep = '-'
+
+    if language == 'en':
+        return '%s%s%s' % (scheme, config.MAIN_DOMAIN, value or '')
+    else:
+        return '%s%s%s%s%s' % (scheme, language, sep, config.MAIN_DOMAIN, value or '')
