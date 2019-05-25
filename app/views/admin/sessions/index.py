@@ -117,26 +117,12 @@ class SessionsView(FlaskView):
     def logout(self):
         logout_user()
 
+        redirect_to = url_for('latest')
 
-@mod.route('/logout', methods=['POST'])
-@login_required
-def logout():
-    logout_user()
+        if request.values.get('ret'):
+            redirect_to = request.values.get('ret')
 
-    redirect_to = url_for('latest')
-
-    if request.values.get('ret'):
-        redirect_to = request.values.get('ret')
-
-    return render_view(redirect_to,
-                       redirect=True,
-                       message=_('SESSIONS_MSG_SIGNED_OUT'))
-
-
-@mod.route('/forgot-password', methods=['GET', 'POST'])
-def forgot_password():
-    if current_user.is_authenticated:
-        return render_view(url_for('latest'),
+        return render_view(redirect_to,
                            redirect=True,
                            message=_('SESSIONS_MSG_SIGNED_OUT'))
 
@@ -155,14 +141,16 @@ def forgot_password():
                     raise Exception(_('ERROR_INVALID_SUBMISSION'))
 
                 if not verify_captcha():
-                    raise Exception(_('SESSIONS_ERROR_UNFINISHED_CHALLENGE_LBL'))
+                    raise Exception(
+                        _('SESSIONS_ERROR_UNFINISHED_CHALLENGE_LBL'))
 
                 email = form.email.data
 
                 user = User.find_by_email(email)
 
                 if not user:
-                    raise Exception(_('SESSIONS_ERROR_MAIL_NOT_FOUND', email=email))
+                    raise Exception(
+                        _('SESSIONS_ERROR_MAIL_NOT_FOUND', email=email))
 
                 user.generate_reset_password()
 
@@ -203,7 +191,8 @@ def forgot_password():
                     raise Exception(_('ERROR_INVALID_SUBMISSION'))
 
                 if not verify_captcha():
-                    raise Exception(_('SESSIONS_ERROR_UNFINISHED_CHALLENGE_LBL'))
+                    raise Exception(
+                        _('SESSIONS_ERROR_UNFINISHED_CHALLENGE_LBL'))
 
                 user.set_password(form.password.data)
                 user.reset_password = None
