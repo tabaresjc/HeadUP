@@ -299,16 +299,16 @@ msgstr "Click here to upload a new cover picture"
 #: app/templates/admin/posts/partials/_post_edit.html:22
 #: app/templates/main/stories/edit.html:39
 msgid "FRM_INPUT_TITLE_DESCRIPTION"
-msgstr "Title – Best description of your post (30 words)"
+msgstr "Title"
 
 #: app/templates/admin/posts/partials/_post_edit.html:23
 msgid "FRM_INPUT_CHALLENGE_DESCRIPTION"
-msgstr "Your Challenge – Description of what you had to cope with (150 words)"
+msgstr "The challenge - litle introduction to the story"
 
 #: app/templates/admin/posts/partials/_post_edit.html:24
 #: app/templates/main/stories/edit.html:40
 msgid "FRM_INPUT_SOLUTION_DESCRIPTION"
-msgstr "Your Solution – Description of what you did (150 words)"
+msgstr "Tell your story"
 
 #: app/templates/admin/posts/partials/_post_edit.html:30
 #: app/templates/main/stories/edit.html:66

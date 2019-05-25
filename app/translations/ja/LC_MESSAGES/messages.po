@@ -297,18 +297,16 @@ msgstr "新しいカバー写真をアップロードするにはここをクリ
 #: app/templates/admin/posts/partials/_post_edit.html:22
 #: app/templates/main/stories/edit.html:39
 msgid "FRM_INPUT_TITLE_DESCRIPTION"
-msgstr "タイトル – あなたのストーリーにタイトルをつけるなら (30 文字以内)\n"
+msgstr "タイトル"
 
 #: app/templates/admin/posts/partials/_post_edit.html:23
 msgid "FRM_INPUT_CHALLENGE_DESCRIPTION"
-msgstr ""
-"やり遂げたいこと – いま立ち向かっていること\n"
-"やり遂げたこと  – そのために立ち向かったこと(150 文字以内）"
+msgstr "やり遂げたいこと"
 
 #: app/templates/admin/posts/partials/_post_edit.html:24
 #: app/templates/main/stories/edit.html:40
 msgid "FRM_INPUT_SOLUTION_DESCRIPTION"
-msgstr "どうやって解決しましたか、解決しますか – 具体的になにをしたか書いてください (150 words)"
+msgstr "ストーリーを書いてください"
 
 #: app/templates/admin/posts/partials/_post_edit.html:30
 #: app/templates/main/stories/edit.html:66

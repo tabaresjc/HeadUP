@@ -299,18 +299,16 @@ msgstr "Cliquer ici pour mettre en ligne<br/>une nouvelle image de couverture"
 #: app/templates/admin/posts/partials/_post_edit.html:22
 #: app/templates/main/stories/edit.html:39
 msgid "FRM_INPUT_TITLE_DESCRIPTION"
-msgstr "Titre - Meilleure description de ta publication (300 words)"
+msgstr "Titre"
 
 #: app/templates/admin/posts/partials/_post_edit.html:23
 msgid "FRM_INPUT_CHALLENGE_DESCRIPTION"
-msgstr ""
-"Ton défi ou problème rencontré - Description de ce à quoi tu as dû faire "
-"face (150 words)"
+msgstr "Ton défi ou problème rencontré"
 
 #: app/templates/admin/posts/partials/_post_edit.html:24
 #: app/templates/main/stories/edit.html:40
 msgid "FRM_INPUT_SOLUTION_DESCRIPTION"
-msgstr "Ta Solution - Description de ce que tu as fais (150 words)"
+msgstr "Ecrivez votre histoire"
 
 #: app/templates/admin/posts/partials/_post_edit.html:30
 #: app/templates/main/stories/edit.html:66

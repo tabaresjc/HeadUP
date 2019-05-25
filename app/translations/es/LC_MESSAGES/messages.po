@@ -299,18 +299,16 @@ msgstr "Haga clic aquí para subir una<br/>nueva imagen de la publicación"
 #: app/templates/admin/posts/partials/_post_edit.html:22
 #: app/templates/main/stories/edit.html:39
 msgid "FRM_INPUT_TITLE_DESCRIPTION"
-msgstr ""
-"Titulo - Inserte el nombre que mejor define a la publicación (30 palabras"
-" maximo)"
+msgstr "Titulo"
 
 #: app/templates/admin/posts/partials/_post_edit.html:23
 msgid "FRM_INPUT_CHALLENGE_DESCRIPTION"
-msgstr "Tu desafío - Describa la situación o el problema que se presentó"
+msgstr "Tu desafío - breve descripción del problema"
 
 #: app/templates/admin/posts/partials/_post_edit.html:24
 #: app/templates/main/stories/edit.html:40
 msgid "FRM_INPUT_SOLUTION_DESCRIPTION"
-msgstr "Tu solución - Describa lo que hicistes para solucionar el desafio"
+msgstr "Escribe tu historia"
 
 #: app/templates/admin/posts/partials/_post_edit.html:30
 #: app/templates/main/stories/edit.html:66
