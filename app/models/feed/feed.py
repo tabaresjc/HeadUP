@@ -1,8 +1,9 @@
 # -*- coding: utf8 -*-
 
-from math import log
-import datetime
+from app.models import Post
 import app
+import math
+import datetime
 
 
 class Feed:
@@ -28,7 +29,7 @@ class Feed:
     @classmethod
     def score(cls, page_views, ups, downs, date):
         s = cls.base_score(page_views, ups, downs)
-        order = log(max(abs(s), 1), 10)
+        order = math.log(max(abs(s), 1), 10)
         sign = 1 if s > 0 else -1 if s < 0 else 0
         seconds = cls.epoch_seconds(date) - 1134028003
         return round((sign * order) + (seconds / 45000), 7)
@@ -56,16 +57,20 @@ class Feed:
             app.cache.set(key, None)
 
     @classmethod
-    def posts(cls, page=1, limit=10):
-        from app.models import Post
-        order = app.sa.text('posts.created_at DESC')
-        query = Post.query.filter_by(status=Post.POST_PUBLIC).order_by(order)
-        count = query.count()
+    def posts(cls, page=1, limit=10, status=Post.POST_PUBLIC, orderby='created_at', desc=True):
+        q = Post.query.filter_by(status=status)
+
+        count = q.count()
         records = []
+
         if count:
-            offset = (page - 1) * limit
-            records = query.limit(limit).offset(offset)
-        return records, count
+            sort_by = '%s %s' % (orderby, 'DESC' if desc else 'ASC')
+
+            records = q.order_by(app.sa.text(sort_by)) \
+                .limit(limit) \
+                .offset((page - 1) * limit)
+
+        return list(records), count
 
     @classmethod
     def ranking(cls, page=1, limit=20):

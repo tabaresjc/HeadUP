@@ -1,13 +1,14 @@
 "use strict";
 
 import { MenuComponent, SidebarComponent, CommentComponent } from './components';
-import { HomeModule, StoryEditorModule } from './modules';
+import { HomeModule, FeedModule, StoryEditorModule } from './modules';
 
 const loaders = [
 	new MenuComponent(),
 	new SidebarComponent(),
 	new CommentComponent(),
 	new HomeModule(),
+	new FeedModule(),
 	new StoryEditorModule()
 ];
 
@@ -22,7 +23,11 @@ loaders.forEach(l => {
 $(window).on('resize', () => {
 	loaders.forEach(l => {
 		if (typeof l.onResize === 'function') {
-			l.onResize();
+			try {
+				l.onResize();
+			} catch (error) {
+				console.error(error);
+			}
 		}
 	});
 });
@@ -31,7 +36,11 @@ $(window).on('resize', () => {
 $(window).on('load', () => {
 	loaders.forEach(l => {
 		if (typeof l.onLoad === 'function') {
-			l.onLoad();
+			try {
+				l.onLoad();
+			} catch (error) {
+				console.error(error);
+			}
 		}
 	});
 });

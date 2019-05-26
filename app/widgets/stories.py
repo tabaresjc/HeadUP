@@ -18,7 +18,7 @@ def stories_welcome(page=1, limit=Feed.FEED_DEFAULT_LIMIT):
     if obj is None:
         posts, total = Feed.posts(page=page, limit=Feed.FEED_DEFAULT_LIMIT)
 
-        obj = render_template('widgets/stories/_index.html',
+        obj = render_template('widgets/stories/_welcome.html',
                               posts=posts,
                               page=page,
                               limit=Feed.FEED_DEFAULT_LIMIT,

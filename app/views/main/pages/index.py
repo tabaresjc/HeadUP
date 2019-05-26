@@ -14,8 +14,7 @@ class PagesView(FlaskView):
 
     @route('/latest', endpoint='latest')
     def latest(self):
-        page = 1
-        return render_template('main/pages/latest.html', page=page)
+        return render_template('main/pages/latest.html')
 
     @route('/ranking', endpoint='ranking')
     def ranking(self):

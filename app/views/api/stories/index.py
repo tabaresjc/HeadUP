@@ -1,6 +1,6 @@
 # -*- coding: utf8 -*-
 
-from flask import url_for, request
+from flask import url_for, request, abort
 from flask_login import current_user, login_required
 from flask_classy import FlaskView, route
 from app.helpers import render_json
@@ -10,6 +10,23 @@ from app.models import Post, Feed
 class ApiStoriesView(FlaskView):
     route_base = '/api/stories'
     decorators = [login_required]
+
+    @route('/items', methods=['GET'])
+    @route('/items/<int:page>', methods=['GET'])
+    def items(self, page=1):
+        try:
+            data = request.values
+            limit = data.get('limit', 5, int)
+
+            posts, total = Feed.posts(page=page,
+                                      limit=limit)
+
+            return render_json(stories=posts,
+                               total=total,
+                               page=page,
+                               limit=limit)
+        except Exception as e:
+            return render_json(status=False, message=e.message)
 
     @route('/item/<int:id>', methods=['GET'])
     def item(self, id):
@@ -46,7 +63,8 @@ class ApiStoriesView(FlaskView):
                 raise Exception('Story not found')
 
             if not story.can_edit:
-                raise Exception('Your account is not allowed to perform this action')
+                raise Exception(
+                    'Your account is not allowed to perform this action')
 
             self.update_story(story, data, Post.POST_DRAFT_2)
 
@@ -66,7 +84,8 @@ class ApiStoriesView(FlaskView):
                 raise Exception('Story not found')
 
             if not story.can_edit:
-                raise Exception('Your account is not allowed to perform this action')
+                raise Exception(
+                    'Your account is not allowed to perform this action')
 
             self.update_story(story, data, Post.POST_PUBLIC)
 
