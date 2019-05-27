@@ -1,7 +1,6 @@
 
 from app import app
 from PIL import Image
-
 import hashlib
 import datetime
 import config

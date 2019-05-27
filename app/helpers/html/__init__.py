@@ -1,3 +1,3 @@
 # -*- coding: utf8 -*-
 
-from template import render_view, render_json
+from helper import render_view

@@ -12,14 +12,13 @@ class ApiCategoriesView(FlaskView):
     decorators = []
 
     def index(self):
-        try:
-            data = request.values
+        data = request.values
 
-            orderby = data.get('orderby', u'id', unicode)
-            desc = data.get('desc', u'0', unicode) == '1'
+        orderby = data.get('orderby', 'id', unicode)
+        desc = data.get('desc', '0', unicode) == '1'
 
-            items, count = Category.items(orderby=orderby, desc=desc)
+        items, count = Category.items(orderby=orderby,
+                                      desc=desc)
 
-            return render_json(items=items, count=count)
-        except Exception as e:
-            return render_json(status=False, message=e.message)
+        return render_json(items=items,
+                           count=count)

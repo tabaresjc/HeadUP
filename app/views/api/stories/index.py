@@ -9,96 +9,81 @@ from app.models import Post, Feed
 
 class ApiStoriesView(FlaskView):
     route_base = '/api/stories'
-    decorators = [login_required]
 
     @route('/items', methods=['GET'])
     @route('/items/<int:page>', methods=['GET'])
     def items(self, page=1):
-        try:
-            data = request.values
-            limit = data.get('limit', 5, int)
+        data = request.values
+        limit = data.get('limit', 5, int)
 
-            posts, total = Feed.posts(page=page,
-                                      limit=limit)
+        posts, total = Feed.posts(page=page,
+                                  limit=limit)
 
-            return render_json(stories=posts,
-                               total=total,
-                               page=page,
-                               limit=limit)
-        except Exception as e:
-            return render_json(status=False, message=e.message)
+        return render_json(stories=posts,
+                           total=total,
+                           page=page,
+                           limit=limit)
 
     @route('/item/<int:id>', methods=['GET'])
     def item(self, id):
-        try:
-            story = Post.get_by_id(id)
+        story = Post.get_by_id(id)
 
-            if story is None or story.is_hidden:
-                raise Exception('Story not found')
+        if story is None or story.is_hidden:
+            abort(404, 'API_ERROR_POST_NOT_FOUND')
 
-            return render_json(story=story)
-        except Exception as e:
-            return render_json(status=False, message=e.message)
+        return render_json(story=story)
 
     @route('/last-draft', methods=['GET'])
+    @login_required
     def last_draft(self):
-        try:
-            draft = Post.last_draft(user_id=current_user.id)
+        draft = Post.last_draft(user_id=current_user.id)
 
-            if draft is None:
-                draft = Post.init(current_user, status=Post.POST_DRAFT_2)
-                draft.save()
+        if draft is None:
+            draft = Post.init(current_user, status=Post.POST_DRAFT_2)
+            draft.save()
 
-            return render_json(draft=draft)
-        except Exception as e:
-            return render_json(status=False, message=e.message)
+        return render_json(draft=draft)
 
     @route('/save-draft/<int:id>', methods=['POST'])
+    @login_required
     def save_draft(self, id):
-        try:
-            data = request.values
-            story = Post.get_by_id(id)
+        data = request.values
+        story = Post.get_by_id(id)
 
-            if story is None or story.is_hidden:
-                raise Exception('Story not found')
+        if story is None or story.is_hidden:
+            abort(404, 'API_ERROR_POST_NOT_FOUND')
 
-            if not story.can_edit:
-                raise Exception(
-                    'Your account is not allowed to perform this action')
+        if not story.can_edit:
+            abort(403, 'API_ERROR_INVALID_ACCESS')
 
-            self.update_story(story, data, Post.POST_DRAFT_2)
+        self.update_story(story, data, Post.POST_DRAFT_2)
 
-            story.save()
+        story.save()
 
-            return render_json(story=story)
-        except Exception as e:
-            return render_json(status=False, message=e.message)
+        return render_json(story=story)
 
     @route('/publish/<int:id>', methods=['POST'])
+    @login_required
     def publish(self, id):
-        try:
-            data = request.values
-            story = Post.get_by_id(id)
+        data = request.values
+        story = Post.get_by_id(id)
 
-            if story is None or story.is_hidden:
-                raise Exception('Story not found')
+        if story is None or story.is_hidden:
+            abort(404, 'API_ERROR_POST_NOT_FOUND')
 
-            if not story.can_edit:
-                raise Exception(
-                    'Your account is not allowed to perform this action')
+        if not story.can_edit:
+            abort(403, 'API_ERROR_INVALID_ACCESS')
 
-            self.update_story(story, data, Post.POST_PUBLIC)
+        self.update_story(story, data, Post.POST_PUBLIC)
 
-            story.save()
+        story.save()
 
-            # refresh the cache
-            # TODO: move to celery task
-            Feed.clear_feed_cache()
+        # refresh the cache
+        # TODO: move to celery task
+        Feed.clear_feed_cache()
 
-            return render_json(story=story,
-                               redirect_to=url_for('story.show', id=story.id))
-        except Exception as e:
-            return render_json(status=False, message=e.message)
+        return render_json(story=story,
+                           redirect_to=url_for('story.show', id=story.id))
 
     def update_story(self, story, data, status):
         story.title = data.get('title', u'', unicode)
