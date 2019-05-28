@@ -2,7 +2,6 @@
 
 from flask_caching import Cache
 from flask_caching import make_template_fragment_key
-import config
 
 
 class CacheHelper(Cache):

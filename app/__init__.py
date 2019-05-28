@@ -73,6 +73,12 @@ from app.helpers import CacheHelper  # noqa
 cache = CacheHelper(app)
 
 # -------------------------------------------------------------------------
+# Error Configuration
+# -------------------------------------------------------------------------
+from app.helpers import ErrorHelper  # noqa
+ErrorHelper(app)
+
+# -------------------------------------------------------------------------
 # Register modules of the application
 # -------------------------------------------------------------------------
 import configuration  # noqa
