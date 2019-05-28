@@ -29,21 +29,21 @@ class CacheHelper(Cache):
         # only when cache is enabled via config
         if not self.cache_mode:
             return None
-        return super(CacheHelper, self).get(self, *args, **kwargs)
+        return super(CacheHelper, self).get(*args, **kwargs)
 
     def set(self, *args, **kwargs):
         "Proxy function for internal cache object."
         # only when cache is enabled via config
         if not self.cache_mode:
             return None
-        return super(CacheHelper, self).set(self, *args, **kwargs)
+        return super(CacheHelper, self).set(*args, **kwargs)
 
     def add(self, *args, **kwargs):
         "Proxy function for internal cache object."
         # only when cache is enabled via config
         if not self.cache_mode:
             return None
-        return super(CacheHelper, self).add(self, *args, **kwargs)
+        return super(CacheHelper, self).add(*args, **kwargs)
 
     @property
     def cache_mode(self):

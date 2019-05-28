@@ -39,8 +39,8 @@ wg = Widgets(app)
 # -------------------------------------------------------------------------
 # Load the session controller
 # -------------------------------------------------------------------------
-from flask_login import LoginManager  # noqa
-login_manager = LoginManager(app)
+from helpers import LoginManagerHelper  # noqa
+login_manager = LoginManagerHelper(app)
 
 # -------------------------------------------------------------------------
 # Load flask mail
