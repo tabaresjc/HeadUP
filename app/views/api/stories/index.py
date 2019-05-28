@@ -5,6 +5,7 @@ from flask_login import current_user, login_required
 from flask_classy import FlaskView, route
 from app.helpers import render_json
 from app.models import Post, Feed
+from app import cache
 
 
 class ApiStoriesView(FlaskView):
@@ -12,6 +13,7 @@ class ApiStoriesView(FlaskView):
 
     @route('/items', methods=['GET'])
     @route('/items/<int:page>', methods=['GET'])
+    @cache.memoize()
     def items(self, page=1):
         data = request.values
         limit = data.get('limit', 5, int)

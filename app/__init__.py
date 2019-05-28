@@ -70,7 +70,7 @@ logger = LogHelper(app)
 # Cache Configuration
 # -------------------------------------------------------------------------
 from app.helpers import CacheHelper  # noqa
-cache = CacheHelper(app, config=config.CACHE_CONFIG)
+cache = CacheHelper(app)
 
 # -------------------------------------------------------------------------
 # Register modules of the application
