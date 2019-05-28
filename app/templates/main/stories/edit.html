@@ -47,7 +47,7 @@
 		</div>
 		<div class="row">
 			<div class="col-md-12 col-sm-12 col-xs-12">
-				<div id="story-container" data-id="{{ id if id else '' }}" class="container-wrapper">
+				<div id="story-container" data-id="{{ id if id else '' }}" data-language="{{ language }}" class="container-wrapper">
 					<div id="story-title" data-placeholder="{{ _('FRM_INPUT_TITLE_DESCRIPTION') }}"></div>
 					<div id="story-body" data-placeholder="{{ _('FRM_INPUT_SOLUTION_DESCRIPTION') }}"></div>
 				</div>
@@ -99,5 +99,8 @@
 {% endblock %}
 
 {% block header_script %}
-<script src="https://cdn.ckeditor.com/ckeditor5/12.0.0/balloon-block/ckeditor.js"></script>
+	<script src="https://cdn.ckeditor.com/ckeditor5/12.1.0/balloon-block/ckeditor.js"></script>
+	{% if language != 'en' %}
+	<script src="https://cdn.ckeditor.com/ckeditor5/12.1.0/balloon-block/translations/{{ language }}.js"></script>
+	{% endif %}
 {% endblock %}

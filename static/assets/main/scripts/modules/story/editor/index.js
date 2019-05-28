@@ -106,6 +106,7 @@ export class StoryEditorModule {
 	_setupTitle() {
 		const config = {
 			placeholder: this._titleTxt.getAttribute('data-placeholder'),
+			language: this._getLanguage(),
 			blockToolbar: [],
 			balloonToolbar: [],
 			plugins: ['Essentials', 'Paragraph']
@@ -117,6 +118,7 @@ export class StoryEditorModule {
 	_setupBody() {
 		const config = {
 			placeholder: this._bodyTxt.getAttribute('data-placeholder'),
+			language: this._getLanguage(),
 			extraPlugins: [ImageUploadAdapterPlugin],
 		};
 
@@ -218,6 +220,13 @@ export class StoryEditorModule {
 		}
 
 		this._hasChanged = false;
+	}
+
+	_getLanguage() {
+		if (!this._language) {
+			this._language = this._storyContainer.getAttribute('data-language') || 'en';
+		}
+		return this._language;
 	}
 
 	_getStory() {
