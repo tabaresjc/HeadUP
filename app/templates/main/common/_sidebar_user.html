@@ -61,15 +61,24 @@
 				<div class="col-xs-10  col-xs-offset-1">
 					<div class="widget-categories">
 						<h6>{{ _('SIDEBAR_STAMP_TITLE') }}</h6>
-						{% if request.endpoint == 'stamp.show' and post.is_mine() -%}
-						<a href="{{ url_for('stamp.edit', id=post.id) }}" rel="nofollow" class="btn  btn-primary btn-lg btn-block">
-							{{ _('EDIT_STAMP_LBL') }}
-						</a>
-						{%- else %}
-						<a href="{{ url_for('stamp.new') }}" rel="nofollow" class="btn  btn-primary btn-primary--transparent btn-lg btn-block">
-							{{ _('POST_CREATE') }}
-						</a>
-						{%- endif %}
+						<div>
+							{% if request.endpoint == 'stamp.show' and post.is_mine() -%}
+							<a href="{{ url_for('stamp.edit', id=post.id) }}" rel="nofollow" class="btn  btn-primary btn-lg btn-block">
+								{{ _('EDIT_STAMP_LBL') }}
+							</a>
+							{%- else %}
+							<a href="{{ url_for('stamp.new') }}" rel="nofollow" class="btn  btn-primary btn-primary--transparent btn-lg btn-block">
+								{{ _('POST_CREATE') }}
+							</a>
+							{%- endif %}
+						</div>
+						{% if config.PATREON_ID %}
+						<div class="text-center" style="margin-top: 20px;">
+							<a href="https://www.patreon.com/bePatron?u={{ config.PATREON_ID }}&redirect_uri={{ request.url | urlencode }}" target="_blank">
+								<img src="/static/images/sns/patreon.png" alt="Become a patron!" style="width: 60%; margin: 0 auto;">
+							</a>
+						</div>
+						{% endif %}
 					</div>
 				</div>
 			</div>

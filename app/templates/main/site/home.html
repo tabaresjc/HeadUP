@@ -615,6 +615,13 @@
 
 					<br />
 
+					{% if config.PATREON_ID %}
+					<div class="text-center" style="margin-top: 20px;">
+						<a href="https://www.patreon.com/bePatron?u={{ config.PATREON_ID }}&redirect_uri={{ request.url | urlencode }}" target="_blank">
+							<img src="/static/images/sns/patreon.png" alt="Become a patron!" width="150">
+						</a>
+					</div>
+					{% endif %}
 				</div>
 			</div>
 
