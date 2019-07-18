@@ -10,6 +10,7 @@ from app import cache
 
 class ApiStoriesView(FlaskView):
     route_base = '/api/stories'
+    formatter = None
 
     @route('/items', methods=['GET'])
     @route('/items/<int:page>', methods=['GET'])
@@ -21,7 +22,9 @@ class ApiStoriesView(FlaskView):
         posts, total = Feed.posts(page=page,
                                   limit=limit)
 
-        return render_json(stories=posts,
+        stories = map(self.clean_story, posts)
+
+        return render_json(stories=stories,
                            total=total,
                            page=page,
                            limit=limit)
@@ -95,3 +98,8 @@ class ApiStoriesView(FlaskView):
         story.status = status
         story.kind = Post.KIND_STORY
         story.anonymous = data.get('anonymous', 0, int)
+
+    def clean_story(self, story):
+        if story.anonymous:
+            story.user = None
+        return story

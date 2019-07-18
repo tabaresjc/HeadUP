@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-05-19 09:00+0000\n"
+"POT-Creation-Date: 2019-07-19 07:27+0000\n"
 "PO-Revision-Date: 2017-07-15 18:02+0900\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: en\n"
@@ -75,6 +75,7 @@ msgstr "Last login"
 #: app/templates/admin/index.html:20 app/templates/admin/layout/navbar.html:28
 #: app/templates/main/common/_sidebar_user.html:29
 #: app/templates/main/layout/header.html:36
+#: app/templates/main/pages/home.html:58
 msgid "APP_PROFILE"
 msgstr "Profile"
 
@@ -108,6 +109,7 @@ msgstr ""
 #: app/templates/admin/posts/index.html:7
 #: app/templates/admin/posts/partials/_sidebar.html:9
 #: app/templates/main/common/_sidebar_user.html:23
+#: app/templates/main/pages/home.html:54
 msgid "POST_LIST"
 msgstr "Stories"
 
@@ -202,7 +204,7 @@ msgstr "Describe the category..."
 #: app/templates/admin/posts/partials/_post_edit.html:36
 #: app/templates/admin/posts/partials/_sidebar.html:45
 #: app/templates/admin/users/add.html:29 app/templates/admin/users/edit.html:29
-#: app/templates/main/stories/edit.html:74
+#: app/templates/main/stories/edit.html:86
 msgid "BTN_SAVE_LBL"
 msgstr "Save"
 
@@ -233,6 +235,7 @@ msgstr "Your account"
 #: app/templates/admin/layout/navbar.html:25
 #: app/templates/admin/layout/sidebar.html:32
 #: app/templates/admin/posts/partials/_sidebar.html:14
+#: app/templates/main/pages/home.html:55
 msgid "POST_DRAFT_LIST"
 msgstr "Drafts"
 
@@ -242,7 +245,7 @@ msgstr "Drafts"
 #: app/templates/admin/posts/partials/_sidebar.html:4
 #: app/templates/main/common/_sidebar_user.html:70
 #: app/templates/main/layout/error-base.html:35
-#: app/templates/main/stories/edit.html:2
+#: app/templates/main/pages/home.html:56 app/templates/main/stories/edit.html:2
 msgid "POST_CREATE"
 msgstr "New story"
 
@@ -254,6 +257,7 @@ msgstr "Top"
 #: app/templates/admin/layout/sidebar.html:97
 #: app/templates/main/layout/header.html:42
 #: app/templates/main/layout/header.html:87
+#: app/templates/main/pages/home.html:59 app/templates/main/pages/home.html:60
 msgid "APP_SIGN_OUT"
 msgstr "Sign Out"
 
@@ -297,7 +301,7 @@ msgid "BTN_UPLOAD_COVER_PICTURE_LBL"
 msgstr "Click here to upload a new cover picture"
 
 #: app/templates/admin/posts/partials/_post_edit.html:22
-#: app/templates/main/stories/edit.html:39
+#: app/templates/main/stories/edit.html:51
 msgid "FRM_INPUT_TITLE_DESCRIPTION"
 msgstr "Title"
 
@@ -306,12 +310,12 @@ msgid "FRM_INPUT_CHALLENGE_DESCRIPTION"
 msgstr "The challenge - litle introduction to the story"
 
 #: app/templates/admin/posts/partials/_post_edit.html:24
-#: app/templates/main/stories/edit.html:40
+#: app/templates/main/stories/edit.html:52
 msgid "FRM_INPUT_SOLUTION_DESCRIPTION"
 msgstr "Tell your story"
 
 #: app/templates/admin/posts/partials/_post_edit.html:30
-#: app/templates/main/stories/edit.html:66
+#: app/templates/main/stories/edit.html:78
 msgid "CB_ANONYMOUS_LBL"
 msgstr "Publish as Anonymous"
 
@@ -377,7 +381,6 @@ msgstr "Already have an account?"
 #: app/templates/main/common/_sidebar_user.html:49
 #: app/templates/main/layout/header.html:49
 #: app/templates/main/layout/header.html:98
-#: app/templates/main/pages/home.html:21
 #: app/templates/main/stories/show.html:50
 msgid "LOGIN_BTN"
 msgstr "Login"
@@ -420,7 +423,6 @@ msgstr "Don't have an account?"
 #: app/templates/main/common/_sidebar_user.html:52
 #: app/templates/main/layout/header.html:55
 #: app/templates/main/layout/header.html:93
-#: app/templates/main/pages/home.html:22
 #: app/templates/main/stories/show.html:53
 msgid "REGISTER_BTN"
 msgstr "Sign Up"
@@ -560,12 +562,14 @@ msgstr "Remove user"
 #: app/templates/main/layout/footer.html:8
 #: app/templates/main/layout/header.html:79
 #: app/templates/main/pages/conduct.html:2
+#: app/templates/main/pages/home.html:630
 msgid "CODE_CONDUCT_LBL"
 msgstr "Code of conduct"
 
 #: app/templates/emails/layout/base.html:371
 #: app/templates/main/layout/footer.html:10
 #: app/templates/main/layout/header.html:76
+#: app/templates/main/pages/home.html:632
 #: app/templates/main/pages/policy.html:2
 msgid "TOS_LBL"
 msgstr "Terms of Service"
@@ -665,7 +669,6 @@ msgid "LATEST_LBL"
 msgstr "Latests"
 
 #: app/templates/main/layout/error-base.html:32
-#: app/templates/main/pages/home.html:18
 msgid "DASHBOARD_BTN"
 msgstr "Dashboard"
 
@@ -710,38 +713,6 @@ msgstr ""
 "solution you found to a challenging situation or a difficulty you once "
 "faced. Speak up, HeadUP."
 
-#: app/templates/main/pages/home.html:11
-msgid "WELCOME_TITLE_LBL"
-msgstr "%(name)s - Storytelling Network<br/>your space to express yourself freely"
-
-#: app/templates/main/pages/home.html:13
-msgid "WELCOME_SUBTITLE_LBL"
-msgstr "Tell the World and beyond what was your solution…<br/>Speak up, HeadUp!"
-
-#: app/templates/main/pages/home.html:14
-msgid "GO_TO_STORIES_BTN"
-msgstr "Stories"
-
-#: app/templates/main/pages/home.html:20
-msgid "WELCOME_SUBTITLE_EXTRA_LBL"
-msgstr "Would you like to be part of it?"
-
-#: app/templates/main/pages/home.html:44
-msgid "INTRO1_LBL"
-msgstr "Share a positive experience"
-
-#: app/templates/main/pages/home.html:50
-msgid "INTRO2_LBL"
-msgstr "Inspire people with a personal achievement you are proud of"
-
-#: app/templates/main/pages/home.html:56
-msgid "INTRO3_LBL"
-msgstr "Express yourself and tell us how you are keeping your head up"
-
-#: app/templates/main/pages/home.html:62
-msgid "INTRO4_LBL"
-msgstr "Transmit your optimism by writing remarkable success stories"
-
 #: app/templates/main/pages/latest.html:2
 msgid "LATEST_TITLE"
 msgstr "Latest | Social Storytelling Network to keep it up"
@@ -765,28 +736,28 @@ msgstr "Most populars stories"
 msgid "CATEGORY_LIST_TITLE"
 msgstr "Stories for %(category)s"
 
-#: app/templates/main/stories/edit.html:20
+#: app/templates/main/stories/edit.html:16
 msgid "BTN_CANCEL_LBL"
 msgstr "Cancel"
 
-#: app/templates/main/stories/edit.html:26
+#: app/templates/main/stories/edit.html:21
 msgid "BTN_UNPUBLISH_LBL"
 msgstr "Save as Draft"
 
-#: app/templates/main/stories/edit.html:26
+#: app/templates/main/stories/edit.html:21
 msgid "BTN_DRAFT_LBL"
 msgstr "Save as Draft"
 
-#: app/templates/main/stories/edit.html:29
-#: app/templates/main/stories/edit.html:54
+#: app/templates/main/stories/edit.html:24
+#: app/templates/main/stories/edit.html:66
 msgid "PUBLISH_LBL"
 msgstr "Publish"
 
-#: app/templates/main/stories/edit.html:59
+#: app/templates/main/stories/edit.html:71
 msgid "SELECT_CATEGORY_LBL"
 msgstr "Select category"
 
-#: app/templates/main/stories/edit.html:73
+#: app/templates/main/stories/edit.html:85
 msgid "BTN_CLOSE_LBL"
 msgstr "Close"
 
@@ -835,7 +806,15 @@ msgstr "Posted by %(user)s in %(category)s"
 msgid "POSTED_BY_USER_LBL"
 msgstr "Posted by %(user)s"
 
-#: app/templates/widgets/stories/partials/_single.html:29
+#: app/templates/shared/feed/_status.html:21
+msgid "LBL_SCRLL_LAST_PAGE"
+msgstr "End of content"
+
+#: app/templates/shared/feed/_status.html:26
+msgid "LBL_SCRLL_ERROR"
+msgstr "No more pages to load"
+
+#: app/templates/widgets/stories/partials/_single.html:28
 #: app/templates/widgets/stories/partials/_single_feed.html:45
 msgid "READ_MORE_LBL"
 msgstr "Read more..."
@@ -844,7 +823,7 @@ msgstr "Read more..."
 #: app/views/admin/categories/index.py:77
 #: app/views/admin/categories/index.py:130 app/views/admin/posts/index.py:66
 #: app/views/admin/posts/index.py:120 app/views/admin/sessions/index.py:78
-#: app/views/admin/sessions/index.py:136 app/views/admin/sessions/index.py:184
+#: app/views/admin/sessions/index.py:141 app/views/admin/sessions/index.py:191
 #: app/views/admin/users/index.py:55 app/views/admin/users/index.py:88
 #: app/views/main/stories/forms/index.py:25 app/views/main/stories/index.py:76
 msgid "ERROR_INVALID_SUBMISSION"
@@ -913,7 +892,7 @@ msgid "ERROR_POST_DELETE_FAILED"
 msgstr "Error while removing the story, %(error)s"
 
 #: app/views/admin/sessions/index.py:21 app/views/admin/sessions/index.py:66
-#: app/views/admin/sessions/index.py:129 app/views/admin/sessions/index.py:169
+#: app/views/admin/sessions/index.py:134 app/views/admin/sessions/index.py:176
 msgid "SESSIONS_MSG_ALREADY_SIGNED_IN"
 msgstr "You are already signed in."
 
@@ -925,8 +904,8 @@ msgstr "Invalid email or password."
 msgid "SESSIONS_MSG_LOGIN_SUCESS"
 msgstr "Signed in successfully"
 
-#: app/views/admin/sessions/index.py:82 app/views/admin/sessions/index.py:139
-#: app/views/admin/sessions/index.py:187
+#: app/views/admin/sessions/index.py:82 app/views/admin/sessions/index.py:145
+#: app/views/admin/sessions/index.py:195
 msgid "SESSIONS_ERROR_UNFINISHED_CHALLENGE_LBL"
 msgstr "Invalid captcha"
 
@@ -934,23 +913,23 @@ msgstr "Invalid captcha"
 msgid "SESSIONS_MSG_SIGNUP_COMPLETED"
 msgstr "Welcome! You have signed up successfully."
 
-#: app/views/admin/sessions/index.py:122
+#: app/views/admin/sessions/index.py:127
 msgid "SESSIONS_MSG_SIGNED_OUT"
 msgstr "Signed out successfully."
 
-#: app/views/admin/sessions/index.py:146
+#: app/views/admin/sessions/index.py:153
 msgid "SESSIONS_ERROR_MAIL_NOT_FOUND"
 msgstr "There isn't an account on record for the email address %(email)s."
 
-#: app/views/admin/sessions/index.py:150
+#: app/views/admin/sessions/index.py:157
 msgid "SESSIONS_PASSWORD_RESET"
 msgstr "Instructions on how to reset your password were sent to %(email)s."
 
-#: app/views/admin/sessions/index.py:177
+#: app/views/admin/sessions/index.py:184
 msgid "ERROR_INVALID_RESET_PASSWORD_CODE"
 msgstr "The email link you clicked is invalid. Please try again."
 
-#: app/views/admin/sessions/index.py:197
+#: app/views/admin/sessions/index.py:205
 msgid "SESSIONS_MSG_PASSWORD_RESET_COMPLETED"
 msgstr "Your password has been successfully changed."
 
@@ -1040,4 +1019,30 @@ msgstr "Error while removing the comment, %(error)s"
 
 #~ msgid "COMMENT_DESC"
 #~ msgstr ""
+
+#~ msgid "WELCOME_TITLE_LBL"
+#~ msgstr ""
+#~ "%(name)s - Storytelling Network<br/>your space"
+#~ " to express yourself freely"
+
+#~ msgid "WELCOME_SUBTITLE_LBL"
+#~ msgstr "Tell the World and beyond what was your solution…<br/>Speak up, HeadUp!"
+
+#~ msgid "GO_TO_STORIES_BTN"
+#~ msgstr "Stories"
+
+#~ msgid "WELCOME_SUBTITLE_EXTRA_LBL"
+#~ msgstr "Would you like to be part of it?"
+
+#~ msgid "INTRO1_LBL"
+#~ msgstr "Share a positive experience"
+
+#~ msgid "INTRO2_LBL"
+#~ msgstr "Inspire people with a personal achievement you are proud of"
+
+#~ msgid "INTRO3_LBL"
+#~ msgstr "Express yourself and tell us how you are keeping your head up"
+
+#~ msgid "INTRO4_LBL"
+#~ msgstr "Transmit your optimism by writing remarkable success stories"
 

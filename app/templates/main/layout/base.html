@@ -8,8 +8,8 @@
 	<meta name="description" content="{{ description if description else '' }}">
 	{% block meta_extra %}{% endblock %}
 
-	{% include 'shared/icons.html' %}
-	{% include 'shared/font.html' %}
+	{% include 'shared/header/_icons.html' %}
+	{% include 'shared/header/_font.html' %}
 
 	{% block before_style %}{% endblock %}
 	{% block base_style %}
@@ -17,7 +17,7 @@
 	{% endblock %}
 	{% block after_style %}{% endblock %}
 
-	{% include 'shared/ga.html' %}
+	{% include 'shared/header/_ga.html' %}
 
 	<!--[if lt IE 9]>
     <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
@@ -25,7 +25,7 @@
     <![endif]-->
 
 	{% block header_script %}{% endblock %}
-	{% include 'shared/meta-token.html' %}
+	{% include 'shared/meta/_token.html' %}
 </head>
 <body>
 	{% block page_wrapper %}
@@ -61,7 +61,7 @@
 	<!-- end footer -->
 	{% endblock %}
 
-	{% include 'shared/message.html' %}
+	{% include 'shared/footer/_message.html' %}
 
 	{% block before_script %}{% endblock %}
 	{% block base_script %}

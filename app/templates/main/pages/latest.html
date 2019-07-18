@@ -14,28 +14,10 @@
 {% endblock %}
 
 {% block content %}
-	<style>
-		.page-load-status {
-			display: none; /* hidden by default */
-			padding-top: 20px;
-			border-top: 1px solid #DDD;
-			text-align: center;
-			color: #777;
-		}
-	</style>
 	<section id="feed-page" class="stories-list-container" data-target-tmpl="stories-feed-item-tmpl">
 	</section>
-	<div class="page-load-status">
-		<div class="loader-ellips infinite-scroll-request">
-			<span class="loader-ellips__dot"></span>
-			<span class="loader-ellips__dot"></span>
-			<span class="loader-ellips__dot"></span>
-			<span class="loader-ellips__dot"></span>
-		</div>
-		<p class="infinite-scroll-last">End of content</p>
-		<p class="infinite-scroll-error">No more pages to load</p>
-	</div>
-	<script id="stories-feed-item-tmpl" type="text/html">
+	{% include 'shared/feed/_status.html' %}
+	<script id="stories-feed-item-tmpl" type="text/x-lodash-template">
 		{% include 'src/stories/_feed-item.html' %}
 	</script>
 {% endblock %}

@@ -1,7 +1,60 @@
 <% _.forEach(stories, function(story, i) { %>
-<div class="row story-item" style="margin: 0 0 200px 0">
-	<div class="col-md-12 col-sm-12 col-xs-12">
-		<h2><%- story.title %></h2>
+<div class="boxed push-down-20 story-item">
+	<div class="meta">
+		<% if (story.cover_picture) { %>
+			<div class="main-post-image" style="background-image:url('<%- story.cover_picture.image_url %>')"></div>
+		<% } else { %>
+			<div class="main-post-image" style="background-image:url(/static/images/others/stamp-no-cover.jpg)"></div>
+			<q class="meta__quote"><%- story.title %></q>
+		<% } %>
+		<div class="meta__container">
+			<div class="row">
+				<div class="col-xs-12  col-sm-12">
+					<div class="meta__info">
+						<span class="meta__author">
+							<% let user_name = 'ANONYMOUS_LBL'.hu_i18n() %>
+							<% let custom_link = '<a href="{link}" class="custom-link">{text}</a>' %>
+
+							<% if (story.user) { %>
+								<img src="<%- story.user.profile_picture_url || '/static/images/user.png' %>" alt="<%- story.user.nickname %>" width="30" height="30">
+								<% user_name = custom_link.hu_re({link: story.url, text: story.user.nickname}) %>
+							<% } else { %>
+								<img src="/static/images/user.png" width="30" height="30" />
+							<% } %>
+
+							<% if (story.category) { %>
+								<% let category_name = custom_link.hu_re({link: story.category.url, text: story.category.name}) %>
+								<%= 'POSTED_BY_USER_CATEGORY_LBL'.hu_i18n({user: user_name, category: category_name}) %>
+							<% } else { %>
+								<%= 'POSTED_BY_USER_LBL'.hu_i18n({user: user_name}) %>
+							<% } %>
+						</span>
+						<span class="meta__date">
+							<span class="glyphicon glyphicon-calendar"></span> &nbsp; <%- story.created_at_fmt %>
+						</span>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-xs-10  col-xs-offset-1">
+			<div class="post-content--front-page">
+				<h2 class="front-page-title"><a href="<%- story.url %>"><%- story.title %></a></h2>
+				<% if (story.body) { %>
+					<h3><%= story.body.hu_striptags().hu_substring(150) %></h3>
+				<% } %>
+				<p><%= story.extra_body.hu_striptags().hu_substring(200) %></p>
+			</div>
+			<a href="<%- story.url %>">
+				<div class="read-more">
+					<%- 'READ_MORE_LBL'.hu_i18n() %>
+					<div class="read-more__arrow">
+						<span class="glyphicon glyphicon-chevron-right"></span>
+					</div>
+				</div>
+			</a>
+		</div>
 	</div>
 </div>
 <% }); %>

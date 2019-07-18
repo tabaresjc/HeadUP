@@ -6,42 +6,23 @@ import datetime
 
 class ModelHelper(object):
 
-    @classmethod
-    def begin_transaction(cls):
-        app.sa.session.begin(subtransactions=True)
+    @property
+    def created_at_fmt(self):
+        if not hasattr(self, 'created_at'):
+            return None
 
-    @classmethod
-    def commit_transaction(cls):
-        app.sa.session.commit()
+        d = getattr(self, 'created_at')
 
-    @classmethod
-    def rollback_transaction(cls):
-        app.sa.session.rollback()
+        return self.format_date(d)
 
-    def set_attribute(self, key, value):
-        self.attr = self.attr or {}
-        if not key:
-            return
-        self.attr[key] = value
+    @property
+    def modified_at_fmt(self):
+        if not hasattr(self, 'modified_at'):
+            return None
 
-    def get_attribute(self, key, default=None):
-        self.attr = self.attr or {}
-        if not key:
-            return default
-        return self.attr.get(key, default)
+        d = getattr(self, 'modified_at')
 
-    @classmethod
-    def get_by_id(cls, id):
-        return cls.query.get(id)
-
-    @classmethod
-    def create(cls, **kwargs):
-        instance = cls(**kwargs)
-        if hasattr(instance, 'created_at'):
-            setattr(instance, 'created_at', datetime.datetime.utcnow())
-        if hasattr(instance, 'modified_at'):
-            setattr(instance, 'modified_at', datetime.datetime.utcnow())
-        return instance
+        return self.format_date(d)
 
     def update(self, commit=True, **kwargs):
         for attr, value in kwargs.iteritems():
@@ -55,6 +36,49 @@ class ModelHelper(object):
                 setattr(self, 'modified_at', datetime.datetime.utcnow())
             app.sa.session.commit()
         return self
+
+    def set_attribute(self, key, value):
+        self.attr = self.attr or {}
+        if not key:
+            return
+        self.attr[key] = value
+
+    def get_attribute(self, key, default=None):
+        self.attr = self.attr or {}
+        if not key:
+            return default
+        return self.attr.get(key, default)
+
+    def format_date(self, date, fmt='DATE'):
+        if not hasattr(self, '_formatter'):
+            from app import app
+            self._formatter = app.jinja_env.filters.get('datetimeformat')
+        return self._formatter(None, date, fmt)
+
+    @classmethod
+    def begin_transaction(cls):
+        app.sa.session.begin(subtransactions=True)
+
+    @classmethod
+    def commit_transaction(cls):
+        app.sa.session.commit()
+
+    @classmethod
+    def rollback_transaction(cls):
+        app.sa.session.rollback()
+
+    @classmethod
+    def get_by_id(cls, id):
+        return cls.query.get(id)
+
+    @classmethod
+    def create(cls, **kwargs):
+        instance = cls(**kwargs)
+        if hasattr(instance, 'created_at'):
+            setattr(instance, 'created_at', datetime.datetime.utcnow())
+        if hasattr(instance, 'modified_at'):
+            setattr(instance, 'modified_at', datetime.datetime.utcnow())
+        return instance
 
     @classmethod
     def delete(cls, id, commit=True):

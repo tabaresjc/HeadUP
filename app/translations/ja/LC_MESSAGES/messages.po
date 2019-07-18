@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-05-19 09:00+0000\n"
+"POT-Creation-Date: 2019-07-19 07:27+0000\n"
 "PO-Revision-Date: 2017-07-15 16:34+0900\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: fr\n"
@@ -75,6 +75,7 @@ msgstr "最後のログイン"
 #: app/templates/admin/index.html:20 app/templates/admin/layout/navbar.html:28
 #: app/templates/main/common/_sidebar_user.html:29
 #: app/templates/main/layout/header.html:36
+#: app/templates/main/pages/home.html:58
 msgid "APP_PROFILE"
 msgstr "プロフィール"
 
@@ -106,6 +107,7 @@ msgstr "シェアしたストーリーはまだありません。<br/>ストー�
 #: app/templates/admin/posts/index.html:7
 #: app/templates/admin/posts/partials/_sidebar.html:9
 #: app/templates/main/common/_sidebar_user.html:23
+#: app/templates/main/pages/home.html:54
 msgid "POST_LIST"
 msgstr "ストーリー"
 
@@ -200,7 +202,7 @@ msgstr "カテゴリーの説明をしてください"
 #: app/templates/admin/posts/partials/_post_edit.html:36
 #: app/templates/admin/posts/partials/_sidebar.html:45
 #: app/templates/admin/users/add.html:29 app/templates/admin/users/edit.html:29
-#: app/templates/main/stories/edit.html:74
+#: app/templates/main/stories/edit.html:86
 msgid "BTN_SAVE_LBL"
 msgstr "保存"
 
@@ -231,6 +233,7 @@ msgstr "あなたのアカウント"
 #: app/templates/admin/layout/navbar.html:25
 #: app/templates/admin/layout/sidebar.html:32
 #: app/templates/admin/posts/partials/_sidebar.html:14
+#: app/templates/main/pages/home.html:55
 msgid "POST_DRAFT_LIST"
 msgstr "下書き"
 
@@ -240,7 +243,7 @@ msgstr "下書き"
 #: app/templates/admin/posts/partials/_sidebar.html:4
 #: app/templates/main/common/_sidebar_user.html:70
 #: app/templates/main/layout/error-base.html:35
-#: app/templates/main/stories/edit.html:2
+#: app/templates/main/pages/home.html:56 app/templates/main/stories/edit.html:2
 msgid "POST_CREATE"
 msgstr "新しいストーリー"
 
@@ -252,6 +255,7 @@ msgstr "トップ"
 #: app/templates/admin/layout/sidebar.html:97
 #: app/templates/main/layout/header.html:42
 #: app/templates/main/layout/header.html:87
+#: app/templates/main/pages/home.html:59 app/templates/main/pages/home.html:60
 msgid "APP_SIGN_OUT"
 msgstr "サインアウト"
 
@@ -295,7 +299,7 @@ msgid "BTN_UPLOAD_COVER_PICTURE_LBL"
 msgstr "新しいカバー写真をアップロードするにはここをクリック"
 
 #: app/templates/admin/posts/partials/_post_edit.html:22
-#: app/templates/main/stories/edit.html:39
+#: app/templates/main/stories/edit.html:51
 msgid "FRM_INPUT_TITLE_DESCRIPTION"
 msgstr "タイトル"
 
@@ -304,12 +308,12 @@ msgid "FRM_INPUT_CHALLENGE_DESCRIPTION"
 msgstr "やり遂げたいこと"
 
 #: app/templates/admin/posts/partials/_post_edit.html:24
-#: app/templates/main/stories/edit.html:40
+#: app/templates/main/stories/edit.html:52
 msgid "FRM_INPUT_SOLUTION_DESCRIPTION"
 msgstr "ストーリーを書いてください"
 
 #: app/templates/admin/posts/partials/_post_edit.html:30
-#: app/templates/main/stories/edit.html:66
+#: app/templates/main/stories/edit.html:78
 msgid "CB_ANONYMOUS_LBL"
 msgstr "この投稿を匿名にする。"
 
@@ -373,7 +377,6 @@ msgstr "既にアカウントがありますか？"
 #: app/templates/main/common/_sidebar_user.html:49
 #: app/templates/main/layout/header.html:49
 #: app/templates/main/layout/header.html:98
-#: app/templates/main/pages/home.html:21
 #: app/templates/main/stories/show.html:50
 msgid "LOGIN_BTN"
 msgstr "ログイン"
@@ -416,7 +419,6 @@ msgstr "アカウントがまだありませんか？"
 #: app/templates/main/common/_sidebar_user.html:52
 #: app/templates/main/layout/header.html:55
 #: app/templates/main/layout/header.html:93
-#: app/templates/main/pages/home.html:22
 #: app/templates/main/stories/show.html:53
 msgid "REGISTER_BTN"
 msgstr "無料登録"
@@ -556,12 +558,14 @@ msgstr "ユーザーを削除する"
 #: app/templates/main/layout/footer.html:8
 #: app/templates/main/layout/header.html:79
 #: app/templates/main/pages/conduct.html:2
+#: app/templates/main/pages/home.html:630
 msgid "CODE_CONDUCT_LBL"
 msgstr "ポリシー"
 
 #: app/templates/emails/layout/base.html:371
 #: app/templates/main/layout/footer.html:10
 #: app/templates/main/layout/header.html:76
+#: app/templates/main/pages/home.html:632
 #: app/templates/main/pages/policy.html:2
 msgid "TOS_LBL"
 msgstr "利用規約"
@@ -658,7 +662,6 @@ msgid "LATEST_LBL"
 msgstr "最新のストーリー"
 
 #: app/templates/main/layout/error-base.html:32
-#: app/templates/main/pages/home.html:18
 msgid "DASHBOARD_BTN"
 msgstr "マイページ"
 
@@ -700,38 +703,6 @@ msgstr ""
 "はソーシャルストーリーテリングネットワークです。目標、問題、課題とそれをクリアするための解決策をシェアする場であり、どのように立ち向かっているのか、どうやって気持ちを高く持ち続けているのかシェアすることの出来る場です。ポジティブで楽しい経験、または自身が何かを成し遂げた経験を書いたり、他の誰かの驚くようなストーリーを閲覧することができます。困難な状況や、難しい課題にたいしてあなたが見つけた解決方法はなんですか。世界にむけてシェアしてください。Speak"
 " up, HeadUP."
 
-#: app/templates/main/pages/home.html:11
-msgid "WELCOME_TITLE_LBL"
-msgstr "%(name)s - ストーリーテリングネットワーク<br/>自由にあなたを表現する場所"
-
-#: app/templates/main/pages/home.html:13
-msgid "WELCOME_SUBTITLE_LBL"
-msgstr "あなたの解決策を世界にシェアしよう…<br/>Speak up, HeadUp!"
-
-#: app/templates/main/pages/home.html:14
-msgid "GO_TO_STORIES_BTN"
-msgstr "ストーリー"
-
-#: app/templates/main/pages/home.html:20
-msgid "WELCOME_SUBTITLE_EXTRA_LBL"
-msgstr "参加したいですか？"
-
-#: app/templates/main/pages/home.html:44
-msgid "INTRO1_LBL"
-msgstr "ポジティブな経験をシェアしてください。"
-
-#: app/templates/main/pages/home.html:50
-msgid "INTRO2_LBL"
-msgstr "あなたが誇りに思う経験を話してください。<br/>きっと頑張っているだれかが励まされるはずです。"
-
-#: app/templates/main/pages/home.html:56
-msgid "INTRO3_LBL"
-msgstr "どうやって気持ちを高く持ち続けているのですか？<br/>教えてください。"
-
-#: app/templates/main/pages/home.html:62
-msgid "INTRO4_LBL"
-msgstr "サクセスストーリーを書いてポジティブなエネルギーを世界に放とう"
-
 #: app/templates/main/pages/latest.html:2
 msgid "LATEST_TITLE"
 msgstr "最新のストーリー | チャレンジし続けるためのソーシャルストーリーテリングネットワーク"
@@ -752,28 +723,28 @@ msgstr "一番人気のストーリー"
 msgid "CATEGORY_LIST_TITLE"
 msgstr "Stamps for %(category)s"
 
-#: app/templates/main/stories/edit.html:20
+#: app/templates/main/stories/edit.html:16
 msgid "BTN_CANCEL_LBL"
 msgstr "キャンセル"
 
-#: app/templates/main/stories/edit.html:26
+#: app/templates/main/stories/edit.html:21
 msgid "BTN_UNPUBLISH_LBL"
 msgstr "下書き保存"
 
-#: app/templates/main/stories/edit.html:26
+#: app/templates/main/stories/edit.html:21
 msgid "BTN_DRAFT_LBL"
 msgstr "下書き保存"
 
-#: app/templates/main/stories/edit.html:29
-#: app/templates/main/stories/edit.html:54
+#: app/templates/main/stories/edit.html:24
+#: app/templates/main/stories/edit.html:66
 msgid "PUBLISH_LBL"
 msgstr "投稿"
 
-#: app/templates/main/stories/edit.html:59
+#: app/templates/main/stories/edit.html:71
 msgid "SELECT_CATEGORY_LBL"
 msgstr "カテゴリを選んでください"
 
-#: app/templates/main/stories/edit.html:73
+#: app/templates/main/stories/edit.html:85
 msgid "BTN_CLOSE_LBL"
 msgstr "閉じる"
 
@@ -820,7 +791,15 @@ msgstr "%(user)s が %(category)s に投稿しました。"
 msgid "POSTED_BY_USER_LBL"
 msgstr "%(user)s が投稿しました。"
 
-#: app/templates/widgets/stories/partials/_single.html:29
+#: app/templates/shared/feed/_status.html:21
+msgid "LBL_SCRLL_LAST_PAGE"
+msgstr "最後のページ"
+
+#: app/templates/shared/feed/_status.html:26
+msgid "LBL_SCRLL_ERROR"
+msgstr "読み込むページがこれ以上ありません"
+
+#: app/templates/widgets/stories/partials/_single.html:28
 #: app/templates/widgets/stories/partials/_single_feed.html:45
 msgid "READ_MORE_LBL"
 msgstr "もっと読む…"
@@ -829,7 +808,7 @@ msgstr "もっと読む…"
 #: app/views/admin/categories/index.py:77
 #: app/views/admin/categories/index.py:130 app/views/admin/posts/index.py:66
 #: app/views/admin/posts/index.py:120 app/views/admin/sessions/index.py:78
-#: app/views/admin/sessions/index.py:136 app/views/admin/sessions/index.py:184
+#: app/views/admin/sessions/index.py:141 app/views/admin/sessions/index.py:191
 #: app/views/admin/users/index.py:55 app/views/admin/users/index.py:88
 #: app/views/main/stories/forms/index.py:25 app/views/main/stories/index.py:76
 msgid "ERROR_INVALID_SUBMISSION"
@@ -898,7 +877,7 @@ msgid "ERROR_POST_DELETE_FAILED"
 msgstr "コメントを削除中にエラーが起きました。￥ %(error)s"
 
 #: app/views/admin/sessions/index.py:21 app/views/admin/sessions/index.py:66
-#: app/views/admin/sessions/index.py:129 app/views/admin/sessions/index.py:169
+#: app/views/admin/sessions/index.py:134 app/views/admin/sessions/index.py:176
 msgid "SESSIONS_MSG_ALREADY_SIGNED_IN"
 msgstr "すでにサインインしています。"
 
@@ -910,8 +889,8 @@ msgstr "メールアドレスかパスワードが無効です。"
 msgid "SESSIONS_MSG_LOGIN_SUCESS"
 msgstr "サインインが完了しました"
 
-#: app/views/admin/sessions/index.py:82 app/views/admin/sessions/index.py:139
-#: app/views/admin/sessions/index.py:187
+#: app/views/admin/sessions/index.py:82 app/views/admin/sessions/index.py:145
+#: app/views/admin/sessions/index.py:195
 msgid "SESSIONS_ERROR_UNFINISHED_CHALLENGE_LBL"
 msgstr "Invalid captcha"
 
@@ -919,23 +898,23 @@ msgstr "Invalid captcha"
 msgid "SESSIONS_MSG_SIGNUP_COMPLETED"
 msgstr "ようこそ！サインインが完了しました。"
 
-#: app/views/admin/sessions/index.py:122
+#: app/views/admin/sessions/index.py:127
 msgid "SESSIONS_MSG_SIGNED_OUT"
 msgstr "サインアウトしました。"
 
-#: app/views/admin/sessions/index.py:146
+#: app/views/admin/sessions/index.py:153
 msgid "SESSIONS_ERROR_MAIL_NOT_FOUND"
 msgstr "メールアドレス%(email)sの登録がありません。"
 
-#: app/views/admin/sessions/index.py:150
+#: app/views/admin/sessions/index.py:157
 msgid "SESSIONS_PASSWORD_RESET"
 msgstr "パスワードリセットに関するメールが %(email)sへ送られました。"
 
-#: app/views/admin/sessions/index.py:177
+#: app/views/admin/sessions/index.py:184
 msgid "ERROR_INVALID_RESET_PASSWORD_CODE"
 msgstr "The email link you clicked is invalid. Please try again.　"
 
-#: app/views/admin/sessions/index.py:197
+#: app/views/admin/sessions/index.py:205
 msgid "SESSIONS_MSG_PASSWORD_RESET_COMPLETED"
 msgstr "パスワードが変更されました。"
 
@@ -1054,4 +1033,28 @@ msgstr "コメントを削除中にエラーが起きました。 %(error)s"
 
 #~ msgid "USER_NAME_INVALID"
 #~ msgstr "この名前には使用できない文字キャラクターが使われています。"
+
+#~ msgid "WELCOME_TITLE_LBL"
+#~ msgstr "%(name)s - ストーリーテリングネットワーク<br/>自由にあなたを表現する場所"
+
+#~ msgid "WELCOME_SUBTITLE_LBL"
+#~ msgstr "あなたの解決策を世界にシェアしよう…<br/>Speak up, HeadUp!"
+
+#~ msgid "GO_TO_STORIES_BTN"
+#~ msgstr "ストーリー"
+
+#~ msgid "WELCOME_SUBTITLE_EXTRA_LBL"
+#~ msgstr "参加したいですか？"
+
+#~ msgid "INTRO1_LBL"
+#~ msgstr "ポジティブな経験をシェアしてください。"
+
+#~ msgid "INTRO2_LBL"
+#~ msgstr "あなたが誇りに思う経験を話してください。<br/>きっと頑張っているだれかが励まされるはずです。"
+
+#~ msgid "INTRO3_LBL"
+#~ msgstr "どうやって気持ちを高く持ち続けているのですか？<br/>教えてください。"
+
+#~ msgid "INTRO4_LBL"
+#~ msgstr "サクセスストーリーを書いてポジティブなエネルギーを世界に放とう"
 

@@ -39,7 +39,7 @@
 </div>
 
 {% if request.endpoint.startswith('PostsView:put') or request.endpoint.startswith('PostsView:post') %}
-{% from "shared/_bootstrap_forms.html" import render_inline_field %}
+{% from "shared/macros/_bootstrap.html" import render_inline_field %}
 <div class="sidebar-edit-post clearfix">
 	{{ render_inline_field(form.status, id="sidebar-status", class="form-control") }}
 	<button type="button" class="btn-save btn btn-primary btn-block">{{ _('BTN_SAVE_LBL') }}</button>

@@ -1,5 +1,6 @@
 # -*- coding: utf8 -*-
 
+from flask import url_for
 from flask_login import current_user
 from app import sa
 from app.models import Base
@@ -19,8 +20,11 @@ class Post(Base, sa.Model, ModelHelper):
                      'user',
                      'status',
                      'lang',
+                     'url',
                      'cover_picture',
                      'cover_picture_id',
+                     'created_at_fmt',
+                     'modified_at_fmt',
                      'category',
                      'anonymous']
 
@@ -142,6 +146,10 @@ class Post(Base, sa.Model, ModelHelper):
     @old_status.setter
     def old_status(self, value):
         return self.set_attribute('old_status', value)
+
+    @property
+    def url(self):
+        return url_for('story.show', id=self.id)
 
     @property
     def is_hidden(self):

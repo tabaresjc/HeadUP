@@ -1,10 +1,10 @@
 "use strict";
 
 import { AppConfig } from 'Assets/main/scripts/config';
-import { StoryApiHelper } from 'Assets/main/scripts/api';
 import $ from 'jquery';
 import _ from 'lodash';
 import InfiniteScroll from 'infinite-scroll';
+import { GetLanguage } from 'Assets/helpers';
 
 export class FeedModule {
 
@@ -33,14 +33,20 @@ export class FeedModule {
 		this._limit = 20;
 		this._endScroll = false;
 		this._baseUrl = `${AppConfig.storyApiUrl}/items`;
-		// this._storyApiHelper = new StoryApiHelper(AppConfig.storyApiUrl);
 		this._feedContainer = document.querySelector(this._options.targetScrollSelector);
 		this._infiniteScroll = new InfiniteScroll(this._feedContainer, {
 			path: () => {
 				if (this._endScroll) {
 					return false;
 				}
-				return `${this._baseUrl}/${this._page}?limit=${this._limit}`;
+
+				let url = `${this._baseUrl}/${this._page}`;
+				let qs = [];
+
+				qs.push(`limit=${this._limit}`);
+				qs.push(`lang=${GetLanguage()}`);
+
+				return `${url}?${qs.join('&')}`;
 			},
 			// load response as flat text
 			responseType: 'json',
@@ -50,7 +56,6 @@ export class FeedModule {
 		});
 
 		this._setupListeners();
-
 		// load initial page
 		this._infiniteScroll.loadNextPage();
 	}
@@ -67,12 +72,10 @@ export class FeedModule {
 
 	_onScrollLoad(response) {
 		const data = response.data;
-
 		const templateFn = this._getTemplateFn();
-		const resultHtml = templateFn(data);
-		const proxyElem = document.createElement('div');
-		proxyElem.innerHTML = resultHtml;
-		const items = proxyElem.querySelectorAll(this._options.targetItemSelector);
+		const items = this._wrapHtml(templateFn(data))
+			.querySelectorAll(this._options.targetItemSelector);
+
 		this._infiniteScroll.appendItems(items);
 
 		const totalPages = Math.floor(1 + (data.total / this._limit));
@@ -97,5 +100,11 @@ export class FeedModule {
 		}
 
 		return this._templateFn;
+	}
+
+	_wrapHtml(str) {
+		const div = document.createElement('div');
+		div.innerHTML = str;
+		return div;
 	}
 }

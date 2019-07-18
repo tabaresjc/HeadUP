@@ -17,6 +17,7 @@ Flask-Widgets==0.4
 Flask-WTF==0.14.2
 MySQL-python==1.2.5
 celery==4.1.0
+pojson==0.7
 pyOpenSSL==17.5.0
 python-dateutil==2.7.2
 PyYAML==3.12

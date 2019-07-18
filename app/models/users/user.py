@@ -16,9 +16,7 @@ class User(Base, sa.Model, ModelHelper, UserMixin):
 
     __json_meta__ = [
         'id',
-        'email',
         'nickname',
-        'is_admin',
         'profile_picture_url'
     ]
 

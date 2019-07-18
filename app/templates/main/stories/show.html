@@ -2,7 +2,7 @@
 {% set title = post.title %}
 {% set description = post.extra_body | striptags | limit(300) %}
 
-{% from "shared/_bootstrap_forms.html" import render_inline_field %}
+{% from "shared/macros/_bootstrap.html" import render_inline_field %}
 
 {% block meta_extra %}
 	<link rel="canonical" href="{{ url_for('story.show', id=post.id, _external=true) | replace_host_name }}">

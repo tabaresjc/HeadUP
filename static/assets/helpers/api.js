@@ -1,5 +1,7 @@
 "use strict";
 
+import { GetLanguage } from 'Assets/helpers';
+
 export class ApiBase {
 	constructor(baseUrl) {
 		this.baseUrl = baseUrl;
@@ -26,12 +28,30 @@ export class ApiBase {
 
 	_getHandler(endpoint, options) {
 		const xhr = new XMLHttpRequest();
-		const url = `${this.baseUrl}/${endpoint}`;
+		const url = this._getUrl(endpoint, options);
 
 		xhr.open(options.method, url, true);
 		xhr.responseType = 'json';
 
 		return xhr;
+	}
+
+	_getUrl(endpoint, options) {
+		const url = `${this.baseUrl}/${endpoint}`;
+		let qs = [];
+
+		if (options.params && typeof options.params === 'object' && options.method === 'GET') {
+			qs = Object.entries(options.params).map(function (pair) {
+				const [key, value] = pair;
+				return `${key}=${encodeURIComponent(value)}`;
+			});
+		}
+
+		if (!options.omitLang) {
+			qs.push(`lang=${GetLanguage()}`);
+		}
+
+		return `${url}?${qs.join('&')}`;
 	}
 
 	_buildData(srcData) {
@@ -51,7 +71,7 @@ export class ApiBase {
 
 	// Initializes XMLHttpRequest listeners.
 	_attachListeners(xhr, resolve, reject, options) {
-		const genericErrorText = `Unable to process request`;
+		const genericErrorText = `[HUP] Unable to process request`;
 
 		xhr.addEventListener('error', (err) => reject(console.log(err)));
 		xhr.addEventListener('abort', (err) => reject(console.log(err)));

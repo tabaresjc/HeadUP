@@ -1,9 +1,12 @@
 "use strict";
 
+import { AppConfig } from './config';
+import { LanguageSetupAdapter } from 'Assets/helpers';
 import { MenuComponent, SidebarComponent, CommentComponent } from './components';
 import { HomeModule, FeedModule, StoryEditorModule } from './modules';
 
 const loaders = [
+	LanguageSetupAdapter,
 	new MenuComponent(),
 	new SidebarComponent(),
 	new CommentComponent(),
@@ -14,7 +17,7 @@ const loaders = [
 
 // setup on ready events
 loaders.forEach(l => {
-	if (typeof l.onReady === 'function') {
+	if (l.onReady && typeof l.onReady === 'function') {
 		l.onReady();
 	}
 });
@@ -22,7 +25,7 @@ loaders.forEach(l => {
 // setup on resize events
 $(window).on('resize', () => {
 	loaders.forEach(l => {
-		if (typeof l.onResize === 'function') {
+		if (l.onResize && typeof l.onResize === 'function') {
 			try {
 				l.onResize();
 			} catch (error) {
@@ -35,7 +38,9 @@ $(window).on('resize', () => {
 // setup on load events
 $(window).on('load', () => {
 	loaders.forEach(l => {
-		if (typeof l.onLoad === 'function') {
+		if (typeof l === 'function') {
+			l(AppConfig);
+		} else if (l.onLoad && typeof l.onLoad === 'function') {
 			try {
 				l.onLoad();
 			} catch (error) {

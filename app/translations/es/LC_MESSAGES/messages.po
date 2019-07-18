@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-05-19 09:00+0000\n"
+"POT-Creation-Date: 2019-07-19 07:27+0000\n"
 "PO-Revision-Date: 2017-07-15 16:34+0900\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: es\n"
@@ -75,6 +75,7 @@ msgstr "Último acceso "
 #: app/templates/admin/index.html:20 app/templates/admin/layout/navbar.html:28
 #: app/templates/main/common/_sidebar_user.html:29
 #: app/templates/main/layout/header.html:36
+#: app/templates/main/pages/home.html:58
 msgid "APP_PROFILE"
 msgstr "Perfil"
 
@@ -108,6 +109,7 @@ msgstr ""
 #: app/templates/admin/posts/index.html:7
 #: app/templates/admin/posts/partials/_sidebar.html:9
 #: app/templates/main/common/_sidebar_user.html:23
+#: app/templates/main/pages/home.html:54
 msgid "POST_LIST"
 msgstr "Historias"
 
@@ -202,7 +204,7 @@ msgstr "Decriba la categoría..."
 #: app/templates/admin/posts/partials/_post_edit.html:36
 #: app/templates/admin/posts/partials/_sidebar.html:45
 #: app/templates/admin/users/add.html:29 app/templates/admin/users/edit.html:29
-#: app/templates/main/stories/edit.html:74
+#: app/templates/main/stories/edit.html:86
 msgid "BTN_SAVE_LBL"
 msgstr "Guardar"
 
@@ -233,6 +235,7 @@ msgstr "Tu cuenta"
 #: app/templates/admin/layout/navbar.html:25
 #: app/templates/admin/layout/sidebar.html:32
 #: app/templates/admin/posts/partials/_sidebar.html:14
+#: app/templates/main/pages/home.html:55
 msgid "POST_DRAFT_LIST"
 msgstr "Borradores"
 
@@ -242,7 +245,7 @@ msgstr "Borradores"
 #: app/templates/admin/posts/partials/_sidebar.html:4
 #: app/templates/main/common/_sidebar_user.html:70
 #: app/templates/main/layout/error-base.html:35
-#: app/templates/main/stories/edit.html:2
+#: app/templates/main/pages/home.html:56 app/templates/main/stories/edit.html:2
 msgid "POST_CREATE"
 msgstr "Nueva historia"
 
@@ -254,6 +257,7 @@ msgstr "Top"
 #: app/templates/admin/layout/sidebar.html:97
 #: app/templates/main/layout/header.html:42
 #: app/templates/main/layout/header.html:87
+#: app/templates/main/pages/home.html:59 app/templates/main/pages/home.html:60
 msgid "APP_SIGN_OUT"
 msgstr "Salir"
 
@@ -297,7 +301,7 @@ msgid "BTN_UPLOAD_COVER_PICTURE_LBL"
 msgstr "Haga clic aquí para subir una<br/>nueva imagen de la publicación"
 
 #: app/templates/admin/posts/partials/_post_edit.html:22
-#: app/templates/main/stories/edit.html:39
+#: app/templates/main/stories/edit.html:51
 msgid "FRM_INPUT_TITLE_DESCRIPTION"
 msgstr "Titulo"
 
@@ -306,12 +310,12 @@ msgid "FRM_INPUT_CHALLENGE_DESCRIPTION"
 msgstr "Tu desafío - breve descripción del problema"
 
 #: app/templates/admin/posts/partials/_post_edit.html:24
-#: app/templates/main/stories/edit.html:40
+#: app/templates/main/stories/edit.html:52
 msgid "FRM_INPUT_SOLUTION_DESCRIPTION"
 msgstr "Escribe tu historia"
 
 #: app/templates/admin/posts/partials/_post_edit.html:30
-#: app/templates/main/stories/edit.html:66
+#: app/templates/main/stories/edit.html:78
 msgid "CB_ANONYMOUS_LBL"
 msgstr "Publicar como anónimo"
 
@@ -379,7 +383,6 @@ msgstr "Ya tienes una cuenta?"
 #: app/templates/main/common/_sidebar_user.html:49
 #: app/templates/main/layout/header.html:49
 #: app/templates/main/layout/header.html:98
-#: app/templates/main/pages/home.html:21
 #: app/templates/main/stories/show.html:50
 msgid "LOGIN_BTN"
 msgstr "Iniciar sesión"
@@ -422,7 +425,6 @@ msgstr "No tienes cuenta?"
 #: app/templates/main/common/_sidebar_user.html:52
 #: app/templates/main/layout/header.html:55
 #: app/templates/main/layout/header.html:93
-#: app/templates/main/pages/home.html:22
 #: app/templates/main/stories/show.html:53
 msgid "REGISTER_BTN"
 msgstr "Registrarse"
@@ -562,12 +564,14 @@ msgstr "Borrar usuario"
 #: app/templates/main/layout/footer.html:8
 #: app/templates/main/layout/header.html:79
 #: app/templates/main/pages/conduct.html:2
+#: app/templates/main/pages/home.html:630
 msgid "CODE_CONDUCT_LBL"
 msgstr "Codigo de conducta"
 
 #: app/templates/emails/layout/base.html:371
 #: app/templates/main/layout/footer.html:10
 #: app/templates/main/layout/header.html:76
+#: app/templates/main/pages/home.html:632
 #: app/templates/main/pages/policy.html:2
 msgid "TOS_LBL"
 msgstr "Terminos del servicio"
@@ -669,7 +673,6 @@ msgid "LATEST_LBL"
 msgstr "Recientes"
 
 #: app/templates/main/layout/error-base.html:32
-#: app/templates/main/pages/home.html:18
 msgid "DASHBOARD_BTN"
 msgstr "Dashboard"
 
@@ -714,42 +717,6 @@ msgstr ""
 "mundo acerca de tus desafios y la manera que enfrentastes las situaciones"
 " mas inesperadas."
 
-#: app/templates/main/pages/home.html:11
-msgid "WELCOME_TITLE_LBL"
-msgstr ""
-"%(name)s - Comunidad de Storytelling<br/>Tu espacio para que te expreses "
-"libre y gratuitamente"
-
-#: app/templates/main/pages/home.html:13
-msgid "WELCOME_SUBTITLE_LBL"
-msgstr ""
-"Cuentanos tu historia y dile al mundo cual fue tu desafio!…<br/>Habla! "
-"HeadUp!"
-
-#: app/templates/main/pages/home.html:14
-msgid "GO_TO_STORIES_BTN"
-msgstr "Historias"
-
-#: app/templates/main/pages/home.html:20
-msgid "WELCOME_SUBTITLE_EXTRA_LBL"
-msgstr "Quieres ser parte de nuestra comunidad?"
-
-#: app/templates/main/pages/home.html:44
-msgid "INTRO1_LBL"
-msgstr "Comparte tus experiencias positivas"
-
-#: app/templates/main/pages/home.html:50
-msgid "INTRO2_LBL"
-msgstr "Inspiranos con un logro personal del cual te sientes orgullos@"
-
-#: app/templates/main/pages/home.html:56
-msgid "INTRO3_LBL"
-msgstr "Exprésate y cuéntanos cómo te mantienes motivad@"
-
-#: app/templates/main/pages/home.html:62
-msgid "INTRO4_LBL"
-msgstr "Transmite tu optimismo y tu fuerza de voluntad a traves de tus historias"
-
 #: app/templates/main/pages/latest.html:2
 msgid "LATEST_TITLE"
 msgstr ""
@@ -774,28 +741,28 @@ msgstr "Historias mas populares"
 msgid "CATEGORY_LIST_TITLE"
 msgstr "Historias pertenecientes a la categoria %(category)s"
 
-#: app/templates/main/stories/edit.html:20
+#: app/templates/main/stories/edit.html:16
 msgid "BTN_CANCEL_LBL"
 msgstr "Cancelar"
 
-#: app/templates/main/stories/edit.html:26
+#: app/templates/main/stories/edit.html:21
 msgid "BTN_UNPUBLISH_LBL"
 msgstr "Guardar Borrador"
 
-#: app/templates/main/stories/edit.html:26
+#: app/templates/main/stories/edit.html:21
 msgid "BTN_DRAFT_LBL"
 msgstr "Guardar Borrador"
 
-#: app/templates/main/stories/edit.html:29
-#: app/templates/main/stories/edit.html:54
+#: app/templates/main/stories/edit.html:24
+#: app/templates/main/stories/edit.html:66
 msgid "PUBLISH_LBL"
 msgstr "Publicar"
 
-#: app/templates/main/stories/edit.html:59
+#: app/templates/main/stories/edit.html:71
 msgid "SELECT_CATEGORY_LBL"
 msgstr "Seleccione categoría"
 
-#: app/templates/main/stories/edit.html:73
+#: app/templates/main/stories/edit.html:85
 msgid "BTN_CLOSE_LBL"
 msgstr "Cerrar"
 
@@ -844,7 +811,15 @@ msgstr "Publicado por %(user)s en %(category)s"
 msgid "POSTED_BY_USER_LBL"
 msgstr "Publicado por %(user)s"
 
-#: app/templates/widgets/stories/partials/_single.html:29
+#: app/templates/shared/feed/_status.html:21
+msgid "LBL_SCRLL_LAST_PAGE"
+msgstr "Fin de página"
+
+#: app/templates/shared/feed/_status.html:26
+msgid "LBL_SCRLL_ERROR"
+msgstr "No hay más páginas para cargar"
+
+#: app/templates/widgets/stories/partials/_single.html:28
 #: app/templates/widgets/stories/partials/_single_feed.html:45
 msgid "READ_MORE_LBL"
 msgstr "Leer mas..."
@@ -853,7 +828,7 @@ msgstr "Leer mas..."
 #: app/views/admin/categories/index.py:77
 #: app/views/admin/categories/index.py:130 app/views/admin/posts/index.py:66
 #: app/views/admin/posts/index.py:120 app/views/admin/sessions/index.py:78
-#: app/views/admin/sessions/index.py:136 app/views/admin/sessions/index.py:184
+#: app/views/admin/sessions/index.py:141 app/views/admin/sessions/index.py:191
 #: app/views/admin/users/index.py:55 app/views/admin/users/index.py:88
 #: app/views/main/stories/forms/index.py:25 app/views/main/stories/index.py:76
 msgid "ERROR_INVALID_SUBMISSION"
@@ -926,7 +901,7 @@ msgid "ERROR_POST_DELETE_FAILED"
 msgstr "Ocurrió un error al momento de eliminar la historia, %(error)s"
 
 #: app/views/admin/sessions/index.py:21 app/views/admin/sessions/index.py:66
-#: app/views/admin/sessions/index.py:129 app/views/admin/sessions/index.py:169
+#: app/views/admin/sessions/index.py:134 app/views/admin/sessions/index.py:176
 msgid "SESSIONS_MSG_ALREADY_SIGNED_IN"
 msgstr "Usted ya ha ingresado a nuestro sistema"
 
@@ -938,8 +913,8 @@ msgstr "Correo electronico o contraseña invalida"
 msgid "SESSIONS_MSG_LOGIN_SUCESS"
 msgstr "Usted ha ingresado exitosamente"
 
-#: app/views/admin/sessions/index.py:82 app/views/admin/sessions/index.py:139
-#: app/views/admin/sessions/index.py:187
+#: app/views/admin/sessions/index.py:82 app/views/admin/sessions/index.py:145
+#: app/views/admin/sessions/index.py:195
 msgid "SESSIONS_ERROR_UNFINISHED_CHALLENGE_LBL"
 msgstr "Le code captcha est invalide"
 
@@ -947,27 +922,27 @@ msgstr "Le code captcha est invalide"
 msgid "SESSIONS_MSG_SIGNUP_COMPLETED"
 msgstr "Bienvenido! Usted ha ingresado exitosamente"
 
-#: app/views/admin/sessions/index.py:122
+#: app/views/admin/sessions/index.py:127
 msgid "SESSIONS_MSG_SIGNED_OUT"
 msgstr "La sesión ha sido terminada"
 
-#: app/views/admin/sessions/index.py:146
+#: app/views/admin/sessions/index.py:153
 msgid "SESSIONS_ERROR_MAIL_NOT_FOUND"
 msgstr "No hay registrada ninguna cuenta con la dirección de correo %(email)s."
 
-#: app/views/admin/sessions/index.py:150
+#: app/views/admin/sessions/index.py:157
 msgid "SESSIONS_PASSWORD_RESET"
 msgstr ""
 "Las instrucciones sobre cómo restablecer tu contraseña se enviaron a "
 "%(email)s."
 
-#: app/views/admin/sessions/index.py:177
+#: app/views/admin/sessions/index.py:184
 msgid "ERROR_INVALID_RESET_PASSWORD_CODE"
 msgstr ""
 "El enlace al correo que has presionado es inválido. Por favor intente "
 "nuevamente."
 
-#: app/views/admin/sessions/index.py:197
+#: app/views/admin/sessions/index.py:205
 msgid "SESSIONS_MSG_PASSWORD_RESET_COMPLETED"
 msgstr "Tu contraseña se ha cambiado correctamente."
 
@@ -1059,4 +1034,37 @@ msgstr "Ocurrió un error al momento de eliminar el comentario, %(error)s"
 
 #~ msgid "COMMENT_DESC"
 #~ msgstr ""
+
+#~ msgid "WELCOME_TITLE_LBL"
+#~ msgstr ""
+#~ "%(name)s - Comunidad de Storytelling<br/>Tu"
+#~ " espacio para que te expreses libre"
+#~ " y gratuitamente"
+
+#~ msgid "WELCOME_SUBTITLE_LBL"
+#~ msgstr ""
+#~ "Cuentanos tu historia y dile al "
+#~ "mundo cual fue tu desafio!…<br/>Habla! "
+#~ "HeadUp!"
+
+#~ msgid "GO_TO_STORIES_BTN"
+#~ msgstr "Historias"
+
+#~ msgid "WELCOME_SUBTITLE_EXTRA_LBL"
+#~ msgstr "Quieres ser parte de nuestra comunidad?"
+
+#~ msgid "INTRO1_LBL"
+#~ msgstr "Comparte tus experiencias positivas"
+
+#~ msgid "INTRO2_LBL"
+#~ msgstr "Inspiranos con un logro personal del cual te sientes orgullos@"
+
+#~ msgid "INTRO3_LBL"
+#~ msgstr "Exprésate y cuéntanos cómo te mantienes motivad@"
+
+#~ msgid "INTRO4_LBL"
+#~ msgstr ""
+#~ "Transmite tu optimismo y tu fuerza "
+#~ "de voluntad a traves de tus "
+#~ "historias"
 
