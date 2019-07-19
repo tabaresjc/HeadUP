@@ -13,9 +13,8 @@ module.exports = function (config) {
 	});
 
 	const assets = {
-		admin: 	'./static/assets/admin/scripts/index.js',
-		main: 	'./static/assets/main/scripts/index.js',
-		// story: 	'./static/assets/story/scripts/index.js',
+		admin: 	'./app/assets/admin/scripts/index.js',
+		main: 	'./app/assets/main/scripts/index.js',
 	};
 
 	const plugins = [
@@ -53,7 +52,7 @@ module.exports = function (config) {
 		},
 		resolve: {
 			alias: {
-				'Assets': path.resolve(config.APP_DIR, 'static/assets'),
+				'Assets': path.resolve(config.APP_DIR, 'app/assets'),
 				'Lib': path.resolve(config.APP_DIR, 'node_modules'),
 			},
 		},
