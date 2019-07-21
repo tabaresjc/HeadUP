@@ -14,12 +14,7 @@
 {% endblock %}
 
 {% block content %}
-	<section id="feed-page" class="stories-list-container" data-target-tmpl="stories-feed-item-tmpl">
-	</section>
-	{% include 'shared/feed/_status.html' %}
-	<script id="stories-feed-item-tmpl" type="text/x-lodash-template">
-		{% include 'src/stories/_feed-item.html' %}
-	</script>
+	{{ widget('story_list') }}
 {% endblock %}
 
 {% block sidebar %}

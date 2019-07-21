@@ -123,15 +123,4 @@ hr {
 	border-color: #dcdddd;
 }
 
-/*------------------------------------*\
-    Helpers
-\*------------------------------------*/
-// generates styles: .push-down-5 {margin-bottom: 5px;}, .push-down-10 {margin-bottom: 10px;} etc. to 60px
-@for $i from 0 through 12 {
-	$i5: $i * 5;
-
-	.push-down-#{$i5} {
-		margin-bottom: 5px * $i;
-	}
-}
 

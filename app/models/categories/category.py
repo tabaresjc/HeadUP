@@ -36,7 +36,9 @@ class Category(Base, sa.Model, ModelHelper):
 
     @property
     def url(self):
-        return url_for('story.category', slug=self.slug)
+        if not hasattr(self, '_url'):
+            self._url = url_for('story.category', slug=self.slug)
+        return self._url
 
     def can_edit(self):
         return current_user and current_user.is_admin

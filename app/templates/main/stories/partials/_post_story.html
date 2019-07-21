@@ -1,28 +1,58 @@
-<div class="meta push-down-20">
+<div class="story-item boxed push-down-20">
 	{% if post.cover_picture %}
-	<div class="main-post-image" style="background-image:url({{ post.cover_picture.image_url }})"></div>
-	{% else %}
-	<div class="main-post-image" style="background-image:url(/static/images/others/stamp-no-cover.jpg)"></div>
-	<q class="meta__quote">{{ post.title }}</q>
+	<div class="story-cover-picture" style="background-image:url('{{ post.cover_picture.image_url }}')"></div>
 	{% endif %}
-	<div class="meta__container">
-		<div class="row">
-			<div class="col-xs-12  col-sm-12">
-				{% include 'main/stories/partials/_user_info.html'%}
-			</div>
-		</div>
-	</div>
-</div>
 
-<div class="row">
-	<div class="col-xs-10 col-xs-offset-1 col-md-10 col-md-offset-1 push-down-30">
-		<div class="post-content">
-			<h1 class="title">
-				<a href="{{ url_for('story.show', id=post.id) }}">{{ post.title }}</a>
-			</h1>
-			<div class="post-body">
-				{{ post.extra_body|safe }}
+	<div class="story-content">
+		<h1 class="story-title"><a href="{{ post.url }}" rel="title">{{ post.title }}</a></h1>
+
+		<div class="story-info push-top-20 clearfix">
+			{% if not post.anonymous -%}
+			<img src="{{ post.user.profile_picture_url or '/static/images/user.png' }}" alt="{{ post.user.nickname }}" class="thumb">
+			{%- else %}
+			<img src="/static/images/user.png" class="thumb" />
+			{%- endif %}
+			<ul>
+				<li>
+					<span>
+						{% if not post.anonymous -%}
+							{{ post.user.nickname }}
+						{%- else %}
+							{{ _('ANONYMOUS_LBL') }}
+						{%- endif %}
+					</span>
+				</li>
+				{% if post.has_category %}
+				<li>
+					<a href="{{ post.category.url }}" class="custom-link">{{ post.category.name }}</a>
+				</li>
+				{%- endif %}
+				<li>
+					<span class="glyphicon glyphicon-calendar"></span>
+					<span>{{ post.created_at|datetimeformat('DATE') }}</span>
+				</li>
+			</ul>
+		</div>
+
+		<div class="story-body push-top-30">
+			{% if post.is_story %}
+			<div class="content">{{ post.extra_body|safe }}</div>
+			{% else %}
+			<h3>{{ post.body|nl2br|linkify|safe }}</h3>
+			<div class="content push-top-30">
+				{% if post.editor_version %}
+					{{ post.extra_body|linkify|safe }}
+				{% else %}
+					{{ post.extra_body|nl2br|linkify|safe }}
+				{% endif %}
 			</div>
+			{% endif %}
+		</div>
+
+		<div class="story-social push-top-20">
+			<a href="#" class="icon-social upvote">&nbsp;</a>
+			<a href="{{ post.url }}#comment-panel" class="icon-social comment">&nbsp;</a>
+			<!-- <a href="#" class="icon-social share">&nbsp;</a> -->
 		</div>
 	</div>
 </div>

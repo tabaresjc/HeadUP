@@ -15,7 +15,7 @@
 
 
 {% block content %}
-	{{ widget('stories_category', category=category, page=page) }}
+	{{ widget('story_list', category_id=category.id) }}
 {% endblock %}
 
 {% block sidebar %}

@@ -57,8 +57,13 @@ class Feed:
             app.cache.set(key, None)
 
     @classmethod
-    def posts(cls, page=1, limit=10, status=Post.POST_PUBLIC, orderby='created_at', desc=True):
-        q = Post.query.filter_by(status=status)
+    def posts(cls, category_id=0, page=1, limit=10, status=Post.POST_PUBLIC, orderby='created_at', desc=True):
+        q = None
+
+        if category_id:
+            q = Post.query.filter_by(status=status, category_id=category_id)
+        else:
+            q = Post.query.filter_by(status=status)
 
         count = q.count()
         records = []
@@ -87,8 +92,8 @@ class Feed:
     @classmethod
     def category(cls, category, page=1, limit=20):
         from app.models import Post
-        query = Post.query.filter_by(
-            category_id=category.id, status=Post.POST_PUBLIC)
+        query = Post.query.filter_by(category_id=category.id,
+                                     status=Post.POST_PUBLIC)
         count = query.count()
         records = []
         if count:

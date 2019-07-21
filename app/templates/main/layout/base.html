@@ -41,11 +41,11 @@
 		<div class="container">
 			{% block wide_container %}
 			<div class="row">
-				<div id="main-sidebar" class="col-md-4 col-sm-12 col-xs-12">
-					{% block sidebar %}{% endblock %}
-				</div>
 				<div id="main-content" class="col-md-8 col-sm-12 col-xs-12">
 					{% block content %}{% endblock %}
+				</div>
+				<div id="main-sidebar" class="col-md-4 col-sm-12 col-xs-12">
+					{% block sidebar %}{% endblock %}
 				</div>
 			</div>
 			{% endblock %}

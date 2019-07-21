@@ -11,7 +11,7 @@ export class FeedModule {
 	constructor(options) {
 		this._moduleId = 'feed-page';
 		this._options = Object.assign({
-			targetScrollSelector: '.stories-list-container',
+			targetScrollSelector: '.story-feed-list',
 			targetItemSelector: '.story-item'
 		}, options || {});
 	}
@@ -41,12 +41,9 @@ export class FeedModule {
 				}
 
 				let url = `${this._baseUrl}/${this._page}`;
-				let qs = [];
+				let params = this._getParams();
 
-				qs.push(`limit=${this._limit}`);
-				qs.push(`lang=${GetLanguage()}`);
-
-				return `${url}?${qs.join('&')}`;
+				return `${url}?${params}`;
 			},
 			// load response as flat text
 			responseType: 'json',
@@ -78,7 +75,7 @@ export class FeedModule {
 
 		this._infiniteScroll.appendItems(items);
 
-		const totalPages = Math.floor(1 + (data.total / this._limit));
+		const totalPages = Math.floor(1 + (data.total / this._getLimit()));
 
 		if (this._page < this._maxPages && this._page < totalPages) {
 			this._page += 1;
@@ -100,6 +97,35 @@ export class FeedModule {
 		}
 
 		return this._templateFn;
+	}
+
+	_getParams() {
+		return [
+			`category=${this._getCategory()}`,
+			`limit=${this._getLimit()}`,
+			`lang=${this._getLanguage()}`
+		].join('&');
+	}
+
+	_getLimit() {
+		if (!this._limit) {
+			this._limit = this._feedContainer.getAttribute('data-target-limit') || 20;
+		}
+		return this._limit;
+	}
+
+	_getCategory() {
+		if (!this._category) {
+			this._category = this._feedContainer.getAttribute('data-target-category') || '';
+		}
+		return this._category;
+	}
+
+	_getLanguage() {
+		if (!this._language) {
+			this._language = this._feedContainer.getAttribute('data-target-lang') || GetLanguage();
+		}
+		return this._language;
 	}
 
 	_wrapHtml(str) {

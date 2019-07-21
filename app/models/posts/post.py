@@ -149,7 +149,9 @@ class Post(Base, sa.Model, ModelHelper):
 
     @property
     def url(self):
-        return url_for('story.show', id=self.id)
+        if not hasattr(self, '_url'):
+            self._url = url_for('story.show', id=self.id)
+        return self._url
 
     @property
     def is_hidden(self):

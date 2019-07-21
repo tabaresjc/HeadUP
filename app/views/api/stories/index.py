@@ -14,12 +14,14 @@ class ApiStoriesView(FlaskView):
 
     @route('/items', methods=['GET'])
     @route('/items/<int:page>', methods=['GET'])
-    @cache.memoize()
+    @cache.cached(query_string=True)
     def items(self, page=1):
         data = request.values
         limit = data.get('limit', 5, int)
+        category_id = data.get('category', 0, int)
 
-        posts, total = Feed.posts(page=page,
+        posts, total = Feed.posts(category_id=category_id,
+                                  page=page,
                                   limit=limit)
 
         stories = map(self.clean_story, posts)

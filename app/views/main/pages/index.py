@@ -16,10 +16,6 @@ class PagesView(FlaskView):
     def latest(self):
         return render_template('main/pages/latest.html')
 
-    @route('/ranking', endpoint='ranking')
-    def ranking(self):
-        return render_template('main/pages/ranking.html')
-
     @route('/policy', endpoint='privacy_policy')
     def privacy_policy(self):
         return render_template('main/pages/policy.html')

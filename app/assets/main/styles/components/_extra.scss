@@ -1,38 +1,19 @@
-.main-post-image {
-	width: 100%;
-	height: 300px;
-	margin: 0 0 12px;
-	border-radius: 5px 5px 0 0;
-	background: no-repeat center;
-	background-size: cover;
-}
+/*------------------------------------*\
+    Helpers
+\*------------------------------------*/
+// generates styles: .push-down-5 {margin-bottom: 5px;}, .push-down-10 {margin-bottom: 10px;} etc. to 60px
+@for $i from 0 through 12 {
+	$i5: $i * 5;
 
-.push-down-20 {
-	margin-bottom: 20px;
-}
-
-h1.title {
-	margin: 0;
-	font-size: 40px;
-	letter-spacing: 0;
-}
-
-h1+h3,
-h2+h3 {
-	margin: 0;
-}
-
-.fullpage-wrapper {
-	font-family: $secondary-font;
-	.btn {
-		@include btn-generic;
+	.push-down-#{$i5} {
+		margin-bottom: 5px * $i;
 	}
 }
 
-@media (max-width: 767px) {
-	div.logo {
-		margin: 0;
-		display: inline-block;
-		position: absolute;
+@for $i from 0 through 12 {
+	$i5: $i * 5;
+
+	.push-top-#{$i5} {
+		margin-top: 5px * $i;
 	}
 }

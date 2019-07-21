@@ -1,0 +1,10 @@
+<section id="feed-page" class="story-feed-list"
+	data-target-category="{{ category_id }}"
+	data-target-limit="{{ limit }}"
+	data-target-lang="{{ lang }}"
+	data-target-tmpl="stories-feed-item-tmpl">
+</section>
+{% include 'shared/feed/_status.html' %}
+<script id="stories-feed-item-tmpl" type="text/x-lodash-template">
+	{% include 'src/stories/_feed-item.html' %}
+</script>

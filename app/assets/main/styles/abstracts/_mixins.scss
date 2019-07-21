@@ -17,16 +17,22 @@
 
 
 @mixin content-generic {
+	font-family: $primary-font;
+
 	h1,
 	h2,
 	h3,
 	h4 {
+		color: #000;
+		font-weight: 700;
 		margin: 0 0 15px 0;
 	}
 
 	p {
+		color: #333;
+		font-weight: 400;
+		line-height: 1.35;
 		font-size: 14px;
-		line-height: 1.4;
 		margin: 0;
 	}
 
