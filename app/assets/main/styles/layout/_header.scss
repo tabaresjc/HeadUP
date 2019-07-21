@@ -19,9 +19,26 @@
 		.logo {
 			margin-right: 15px;
 
+			a {
+				display: block;
+				cursor: pointer;
+			}
+
 			img {
 				height: 70px;
 				width: auto;
+			}
+
+			@media (max-width: $screen-sm-max) {
+				margin: 0;
+				display: inline-block;
+				position: absolute;
+			}
+		}
+
+		.navbar-header {
+			button.navbar-toggle {
+				margin-right: 30px;
 			}
 		}
 
@@ -108,6 +125,8 @@
 				}
 			}
 		}
+
+
 	}
 
 	& > .push-header {

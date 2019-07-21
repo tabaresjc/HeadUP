@@ -1,10 +1,8 @@
 <header class="header">
 	<div class="container">
-		<div class="logo pull-left">
-			<a href="{{ url_for('latest') }}">
-				<img src="/static/images/logo-headup.png?v20180401" alt="{% trans %}Logo{% endtrans %}">
-			</a>
-		</div>
+		<a href="{{ url_for('latest') }}" class="logo pull-left">
+			<img src="/static/images/logo-headup.png?v20180401" alt="{% trans %}Logo{% endtrans %}">
+		</a>
 		<div class="navbar-header">
 			<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#readable-navbar-collapse">
 				<span class="sr-only">{% trans %}TOGGLE_NAVIGATION_LBL{% endtrans %}</span>
@@ -22,8 +20,6 @@
 					<li class="{% if request.endpoint=='show_mypage' %}active{% endif %}">
 						<a href="{{ url_for('dashboard') }}" rel="nofollow">{% trans%}APP_MYPAGE{% endtrans %}</a>
 					</li>
-
-
 					<li role="separator" class="visible-xs-block divider"></li>
 
 					{% if current_user and current_user.is_authenticated -%}

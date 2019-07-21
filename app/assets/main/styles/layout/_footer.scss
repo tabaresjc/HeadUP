@@ -1,43 +1,45 @@
-.footer {
-	text-align: center;
-	background-color: #fff;
-	border-top: 1px solid #e4e4e4;
-	padding: 10px 0;
-	font-family: $secondary-font;
-	font-weight: 700;
-	color: #9a9a90;
+.container-wrap {
+	min-height: 100%;
+	margin-bottom: -40px;
 
-	.footer--right {
-		@media (min-width: $screen-sm-min) {
-			text-align: right;
-		}
-	}
-
-	@media (min-width: $screen-sm-min) {
-		text-align: left;
-	}
-}
-
-// fix footer to the bottom of the screen
-@media screen and (min-device-width: 1000px) {
-	.container-wrap {
-		min-height: 100%;
-		margin-bottom: -40px;
-	}
-
-	.container-wrap:after {
+	&:after {
 		content: "";
 		display: block;
 	}
+}
 
-	.push {
-		height: 40px;
+.footer {
+	background-color: #fff;
+	border-top: 1px solid #e4e4e4;
+	padding: 5px 8px;
+	font-family: $secondary-font;
+	font-weight: 700;
+	font-size: 10px;
+	letter-spacing: -0.1px;
+	color: #9a9a90;
+	position: fixed;
+	bottom: 0;
+	left: 0;
+	width: 100%;
+
+	.footer--left {
+		float: left;
+		text-align: left;
 	}
 
-	.footer {
-		position: fixed;
-		bottom: 0;
-		left: 0;
-		width: 100%;
+	.footer--right {
+		float: right;
+		text-align: right;
+	}
+
+	@media (min-width: $screen-sm-min) {
+		font-size: 12px;
+		padding: 10px 0;
 	}
 }
+
+.push {
+	height: 40px;
+}
+
+

@@ -10,35 +10,4 @@
 
 
 <d:slug class="ld " style="y:0px;x:0px;webkit-user-select:none;webkit-transform-origin:50px 50px;webkit-animation-duration:1s;webkit-animation-delay:-0.454545s;webkit-animation:1s ease -0.454545s 1 normal none running none;user-select:none;transform-origin:50px 50px;transform:none;r:0px;pointer-events:all;direction:ltr;d:none" >bll7n9</d:slug></metadata></g></g></g></g>
-<style type="text/css" class="ld " style="y:0px;x:0px;webkit-user-select:none;webkit-transform-origin:50px 50px;webkit-animation-duration:1s;webkit-animation-delay:-0.363636s;webkit-animation:1s ease -0.363636s 1 normal none running none;user-select:none;transform-origin:50px 50px;transform:none;r:0px;pointer-events:all;direction:ltr;d:none" >@keyframes ld-breath {
-  0% {
-    -webkit-transform: scale(0.86);
-    transform: scale(0.86);
-  }
-  50% {
-    -webkit-transform: scale(1.06);
-    transform: scale(1.06);
-  }
-  100% {
-    -webkit-transform: scale(0.86);
-    transform: scale(0.86);
-  }
-}
-@-webkit-keyframes ld-breath {
-  0% {
-    -webkit-transform: scale(0.86);
-    transform: scale(0.86);
-  }
-  50% {
-    -webkit-transform: scale(1.06);
-    transform: scale(1.06);
-  }
-  100% {
-    -webkit-transform: scale(0.86);
-    transform: scale(0.86);
-  }
-}
-.ld.ld-breath {
-  -webkit-animation: ld-breath 1s infinite;
-  animation: ld-breath 1s infinite;
-}</style></svg></svg>
+</svg></svg>

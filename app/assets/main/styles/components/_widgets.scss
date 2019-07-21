@@ -1,6 +1,15 @@
 /*------------------------------------*\
     Widgets
 \*------------------------------------*/
+.boxed {
+	background-color: #fff;
+	border: 1px solid #e4e4e4;
+	border-radius: 0px;
+
+	@media (min-width: $screen-sm-min) {
+		border-radius: 6px;
+	}
+}
 
 // Widget author
 .widget-author {
@@ -8,7 +17,10 @@
 	overflow: hidden;
 	background-color: #fff;
 	border: 1px solid #e4e4e4;
-	border-radius: 6px;
+
+	@media (min-width: $screen-sm-min) {
+		border-radius: 6px;
+	}
 
 	h4 {
 		margin-bottom: 10px;

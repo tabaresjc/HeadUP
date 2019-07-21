@@ -76,7 +76,12 @@ export class ApiBase {
 		xhr.addEventListener('error', (err) => reject(console.log(err)));
 		xhr.addEventListener('abort', (err) => reject(console.log(err)));
 		xhr.addEventListener('load', () => {
-			const response = xhr.response;
+			let response = xhr.response;
+
+			// ie fix
+			if (typeof response === 'string') {
+				response = JSON.parse(response);
+			}
 
 			// reject the xhr response when the api throws an error
 			if (!response || !response.status || !response.data) {

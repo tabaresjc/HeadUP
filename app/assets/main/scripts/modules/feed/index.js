@@ -59,7 +59,14 @@ export class FeedModule {
 
 	_setupListeners() {
 		this._infiniteScroll.on('load', (r) => {
-			this._onScrollLoad(r);
+			let response = r;
+
+			// ie fix
+			if (typeof response === 'string') {
+				response = JSON.parse(response);
+			}
+
+			this._onScrollLoad(response);
 		});
 
 		this._infiniteScroll.on('error', (e) => {
@@ -69,6 +76,7 @@ export class FeedModule {
 
 	_onScrollLoad(response) {
 		const data = response.data;
+
 		const templateFn = this._getTemplateFn();
 		const items = this._wrapHtml(templateFn(data))
 			.querySelectorAll(this._options.targetItemSelector);

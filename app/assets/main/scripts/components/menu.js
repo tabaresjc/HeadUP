@@ -1,7 +1,6 @@
 "use strict";
 
 import $ from 'jquery';
-import _ from 'lodash';
 import { AppConfig } from 'Assets/main/scripts/config';
 
 export class MenuComponent {
@@ -16,24 +15,6 @@ export class MenuComponent {
 
 	onLoad() {
 		setTimeout(this.scrollToElement.bind(this), 0);
-	}
-
-	onResize() {
-		_.debounce(() => {
-			let navbarEl = $('#readable-navbar-collapse');
-
-			if (!navbarEl.length) {
-				return;
-			}
-
-			let w = this.screenWidth();
-
-			if (w > this._mediumScreenSize) {
-				navbarEl
-					.removeAttr('style')
-					.removeClass('in');
-			}
-		}, 200);
 	}
 
 	screenWidth() {

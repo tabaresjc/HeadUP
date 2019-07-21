@@ -1,10 +1,10 @@
 <footer class="footer site-footer">
 	<div class="container">
-		<div class="row">
-			<div class="col-xs-12 col-sm-6">
-				Copyright ©{{ today.year if today.year == config.SITE_YEAR else '%s-%s' % (config.SITE_YEAR, today.year)  }} {{ config.SITE_NAME }}. All rights reserved.
+		<div class="row clearfix">
+			<div class="col-md-6 col-sm-6 col-xs-6 footer--left">
+				Copyright ©{{ today.year }} {{ config.SITE_NAME }}.<span class="hidden-xs">All rights reserved.</span>
 			</div>
-			<div class="col-xs-12 col-sm-6 footer--right">
+			<div class="col-md-6 col-sm-6 col-xs-6 footer--right">
 				<a href="{{ url_for('code_of_conduct') }}">{{ _('CODE_CONDUCT_LBL') }}</a>
 				<span>&nbsp;|&nbsp;</span>
 				<a href="{{ url_for('privacy_policy') }}">{{ _('TOS_LBL') }}</a>

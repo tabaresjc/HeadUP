@@ -13,11 +13,14 @@
 	<meta property="og:image" content="{{ url_for('static', filename='images/lp/home/screen-bg_1.jpg', _external=true) }}" />
 {% endblock %}
 
-{% block content %}
-	{{ widget('story_list') }}
-{% endblock %}
+{% block wide_container %}
+<div class="row">
+	<div id="main-sidebar" class="col-md-4 col-sm-12 col-xs-12">
+		{% include 'main/common/_sidebar_user.html' %}
+	</div>
 
-{% block sidebar %}
-	{% include 'main/common/_sidebar_user.html' %}
+	<div id="main-content" class="col-md-8 col-sm-12 col-xs-12">
+		{{ widget('story_list') }}
+	</div>
+</div>
 {% endblock %}
-
