@@ -45,3 +45,11 @@ if (!String.prototype.hu_re) {
 	};
 }
 
+if (!String.prototype.hu_ext_url) {
+	String.prototype.hu_ext_url = function () {
+		let host = 'https://headup.space';
+		let path = this.trim();
+		return `${host}${path}`;
+	};
+}
+

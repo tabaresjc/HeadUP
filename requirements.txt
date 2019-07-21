@@ -25,3 +25,4 @@ speaklater==1.3
 urllib3==1.22
 bleach==3.1.0
 ConcurrentLogHandler==0.9.1
+Pillow==6.0.0

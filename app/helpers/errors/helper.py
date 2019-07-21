@@ -25,7 +25,7 @@ class ErrorHelper(object):
 
         if not self.app.config.get('DEBUG'):
             self.app.register_error_handler(Exception,
-                                            self._catch_exception_errors)
+                                            self._internal_server_error)
 
     def _internal_http_error(self, error):
         self.app.logger.error('Internal HTTP Exception, code[%s] => %s',
