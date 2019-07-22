@@ -7,7 +7,7 @@ import { HomeModule, FeedModule, StoryEditorModule, StoryShowModule } from './mo
 
 const loaders = [
 	LanguageSetupAdapter,
-	// new MenuComponent(),
+	new MenuComponent(),
 	new SidebarComponent(),
 	new CommentComponent(),
 	new HomeModule(),

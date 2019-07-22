@@ -4,21 +4,21 @@ import $ from 'jquery';
 import { AppConfig } from 'Assets/main/scripts/config';
 
 export class MenuComponent {
-	constructor() {
+	constructor(options) {
 		this._mediumScreenSize = AppConfig.screens.medium;
 		this._elementId = location.hash;
+		this._options = Object.assign({
+			scrollToTime: 2000
+		}, options || {});
 	}
 
 	onReady() {
-		setTimeout(this.stopScrolling.bind(this), 0);
+		setTimeout(this.stopScrolling.bind(this));
 	}
 
 	onLoad() {
-		setTimeout(this.scrollToElement.bind(this), 0);
-	}
-
-	screenWidth() {
-		return (window.innerWidth > 0) ? window.innerWidth : screen.width;
+		setTimeout(this.scrollToElement.bind(this),
+			this._options.scrollToTime);
 	}
 
 	stopScrolling() {
@@ -31,7 +31,7 @@ export class MenuComponent {
 	scrollToElement() {
 		if (this._elementId && $(this._elementId).length) {
 			var y = $(this._elementId).offset().top - 80;
-			$(document).scrollTop(y);
+			$('html, body').animate({ scrollTop: `${y}px` });
 		}
 	}
 }
