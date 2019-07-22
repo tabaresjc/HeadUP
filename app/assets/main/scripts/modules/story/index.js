@@ -6,3 +6,4 @@
 "use strict";
 
 export * from './editor';
+export * from './show';

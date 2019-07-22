@@ -21,7 +21,7 @@
 {% endblock %}
 
 {% block content %}
-	<div class="story-single">
+	<div id="story-show-page" class="story-single">
 		{% include 'main/stories/partials/_post_story.html'%}
 	</div>
 
@@ -113,7 +113,6 @@
 	{% include 'main/common/_sidebar_user.html' %}
 {% endblock %}
 
-
 {% block after_script %}
 	<script id="reply-template" type="text/template">
 		<div class="reply-wrapper">
@@ -135,5 +134,9 @@
 	</script>
 	{% if config.ADDTHIS_LINK_STAMP %}
 	<script type="text/javascript" src="{{ config.ADDTHIS_LINK_STAMP }}"></script>
+	{% endif %}
+
+	{% if config.IFRAMELY %}
+	<script charset="utf-8" src="//cdn.iframe.ly/embed.js?api_key={{ config.IFRAMELY }}"></script>
 	{% endif %}
 {% endblock %}

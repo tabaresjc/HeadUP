@@ -3,7 +3,7 @@
 import { AppConfig } from './config';
 import { LanguageSetupAdapter } from 'Assets/helpers';
 import { MenuComponent, SidebarComponent, CommentComponent } from './components';
-import { HomeModule, FeedModule, StoryEditorModule } from './modules';
+import { HomeModule, FeedModule, StoryEditorModule, StoryShowModule } from './modules';
 
 const loaders = [
 	LanguageSetupAdapter,
@@ -12,7 +12,8 @@ const loaders = [
 	new CommentComponent(),
 	new HomeModule(),
 	new FeedModule(),
-	new StoryEditorModule()
+	new StoryEditorModule(),
+	new StoryShowModule()
 ];
 
 // setup on ready events
