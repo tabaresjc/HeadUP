@@ -12,7 +12,7 @@
 }
 
 // Widget author
-.widget-author {
+.widget-user {
 	padding: 0;
 	overflow: hidden;
 	background-color: #fff;
@@ -48,7 +48,7 @@
 	}
 }
 
-.widget-author__image-container {
+.widget-user__image-container {
 	position: relative;
 	margin-bottom: 45px;
 	@media (min-width: $screen-sm-min) {
@@ -56,7 +56,7 @@
 	}
 }
 
-.widget-author__avatar {
+.widget-user__avatar {
 	position: absolute;
 	left: 50%;
 	margin-left: -45px;
@@ -67,7 +67,7 @@
 	background-color: #fff;
 }
 
-.widget-author__avatar--blurred {
+.widget-user__avatar--blurred {
 	overflow: hidden;
 	height: 125px;
 
@@ -92,7 +92,7 @@
 	}
 }
 
-.widget-author__content {
+.widget-user__content {
 	text-align: left;
 	@media (min-width: $screen-sm-min) {
 		margin-bottom: 45px;
@@ -135,6 +135,7 @@
 	font-family: $tertiary-font;
 	font-size: 14px;
 	font-weight: bold;
+	padding: 0 15px;
 
 	& > a {
 		@include btn-generic;

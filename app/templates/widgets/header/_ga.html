@@ -1,6 +1,24 @@
+<!-- Cookie Consent by https://www.TermsFeed.com -->
+<script type="text/javascript" src="//www.termsfeed.com/cookie-consent/releases/3.0.0/cookie-consent.js"></script>
+<script type="text/javascript">
+	document.addEventListener('DOMContentLoaded', function () {
+		cookieconsent.run({
+			'notice_banner_type': 'interstitial',
+			'consent_type': 'implied',
+			'palette': 'dark',
+			'change_preferences_selector': '#changePreferences',
+			'language': '{{ language }}',
+			'website_name': 'HeadUP',
+			'cookies_policy_url': '{{ url_for('privacy_policy', _external=True) }}'
+		});
+	});
+</script>
+<noscript>Cookie Consent by <a href="https://www.termsfeed.com/">TermsFeed</a></noscript>
+<!-- End Cookie Consent -->
+
 {% set domains = config.GA_TRACKINGS | ga_autolinks  %}
 {% if config.GA_TRACKING_ID and domains %}
-	<script>
+	<script cookie-consent="tracking">
 		(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
 		(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
 		m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
@@ -15,7 +33,7 @@
 
 {% if config.GTAG_ID %}
 <!-- Global site tag (gtag.js) - Google Ads: 779054283 -->
-<script async src="https://www.googletagmanager.com/gtag/js?id={{ config.GTAG_ID }}"></script>
+<script async src="https://www.googletagmanager.com/gtag/js?id={{ config.GTAG_ID }}" cookie-consent="targeting"></script>
 <script>
 	window.dataLayer = window.dataLayer || [];
 	var gtag = window.gtag = function(){dataLayer.push(arguments);}

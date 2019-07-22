@@ -17,7 +17,7 @@
 	{% endblock %}
 	{% block after_style %}{% endblock %}
 
-	{% include 'shared/header/_ga.html' %}
+	{{ widget('header_ga', language=language) }}
 
 	<!--[if lt IE 9]>
 	<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>

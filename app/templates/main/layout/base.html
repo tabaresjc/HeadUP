@@ -17,7 +17,7 @@
 	{% endblock %}
 	{% block after_style %}{% endblock %}
 
-	{% include 'shared/header/_ga.html' %}
+	{{ widget('header_ga', language=language) }}
 
 	<!--[if lt IE 9]>
     <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
