@@ -20,6 +20,15 @@ DEBUG = True
 # *************************************************
 LOG_PATH = 'logs/daily.log'
 
+LOG_EMAIL_ENABLED = False
+LOG_EMAIL_HOST = None
+LOG_EMAIL_PORT = None
+LOG_EMAIL_USE_TLS = None
+LOG_EMAIL_USERNAME = None
+LOG_EMAIL_PASSWORD = None
+LOG_EMAIL_DEFAULT_SENDER = None
+LOG_EMAIL_DEFAULT_RECIPIENTS = None
+
 # *************************************************
 # Site Configuration
 # *************************************************
