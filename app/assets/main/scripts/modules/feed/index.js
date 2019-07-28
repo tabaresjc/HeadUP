@@ -3,6 +3,7 @@
 import { AppConfig } from 'Assets/main/scripts/config';
 import $ from 'jquery';
 import _ from 'lodash';
+import io from 'socket.io-client';
 import InfiniteScroll from 'infinite-scroll';
 import { GetLanguage } from 'Assets/helpers';
 
@@ -55,6 +56,8 @@ export class FeedModule {
 		this._setupListeners();
 		// load initial page
 		this._infiniteScroll.loadNextPage();
+
+		this._setupSocket();
 	}
 
 	_setupListeners() {
@@ -72,6 +75,32 @@ export class FeedModule {
 		this._infiniteScroll.on('error', (e) => {
 			console.error(`[HUP] InfiniteScroll =>`, e);
 		});
+	}
+
+	_setupSocket() {
+		var socket = io.connect();
+
+		socket.on('vote_results', message => {
+			console.log('payload', message);
+			let id = message['id'];
+			let vote = message['vote'];
+			$(`.vote-results[data-id="${id}"]`).text(vote);
+		});
+
+
+		$('body').on('click', '.story-social .upvote', function(e) {
+			e.preventDefault();
+			let target = e.target;
+
+			let id = target.getAttribute('data-id');
+			let vote = $(`.vote-results[data-id="${id}"]`).text();
+
+			let payload = {'id': id, 'vote': vote};
+
+			console.log('payload', payload);
+
+			socket.emit('vote', payload);
+		})
 	}
 
 	_onScrollLoad(response) {

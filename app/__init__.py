@@ -13,6 +13,12 @@ app = flask.Flask(__name__)
 app.config.from_object('config')
 
 # -------------------------------------------------------------------------
+# Socket IO Configuration
+# -------------------------------------------------------------------------
+from flask_socketio import SocketIO  # noqa
+socketio = SocketIO(app)
+
+# -------------------------------------------------------------------------
 # Session Configuration
 # -------------------------------------------------------------------------
 from flask_session import Session  # noqa
@@ -87,3 +93,4 @@ import filters  # noqa
 import models  # noqa
 import views  # noqa
 import widgets  # noqa
+import events  # noqa
