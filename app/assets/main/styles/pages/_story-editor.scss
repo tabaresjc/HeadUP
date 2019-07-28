@@ -10,7 +10,10 @@
 	background: #fff;
 
 	.container {
+		padding: 0 12px;
+
 		@media (min-width: $screen-sm-min) {
+			padding: 0;
 			width: 750px;
 		}
 	}
@@ -64,7 +67,7 @@
 			cursor: pointer;
 		}
 
-		> div {
+		& > div {
 			position: absolute;
 			left: 0;
 			top: 0;
@@ -76,7 +79,7 @@
 			display: none;
 		}
 
-		> .cover-picture-panel {
+		& > .cover-picture-panel {
 			background: rgba(0, 0, 0, 0.5);
 
 			> span {
@@ -99,7 +102,7 @@
 			}
 		}
 
-		> .cover-picture-button {
+		& > .cover-picture-button {
 			> span {
 				position: absolute;
 				font-size: 2.5em;
@@ -161,10 +164,6 @@
 
 		.ck-content + .ck-content {
 			margin-top: 15px;
-		}
-
-		@media (max-width: $screen-xs-max) {
-			padding: 0 12px;
 		}
 	}
 
