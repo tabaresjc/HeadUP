@@ -8,3 +8,4 @@ from posts import Post  # noqa
 from users import User, Role, GuestUser  # noqa
 from pictures import Picture  # noqa
 from feed import Feed  # noqa
+from votes import Vote  # noqa

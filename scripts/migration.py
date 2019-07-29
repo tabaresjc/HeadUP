@@ -43,7 +43,7 @@ def upgrade(point='head'):
 
 @cli.command()
 @click.option('--point', default='base', help='head or revision number')
-def downgrade(point='base'):
+def downgrade(point='-1'):
     """Downgrade to base or to the given revision number."""
     try:
         os.environ['DATABASE_URL'] = config.SQLALCHEMY_DATABASE_URI

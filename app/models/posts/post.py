@@ -26,7 +26,8 @@ class Post(Base, sa.Model, ModelHelper):
                      'created_at_fmt',
                      'modified_at_fmt',
                      'category',
-                     'anonymous']
+                     'anonymous',
+                     'likes']
 
     POST_PUBLIC = 0x001
     POST_DRAFT = 0x100
@@ -122,6 +123,14 @@ class Post(Base, sa.Model, ModelHelper):
     @down_votes.setter
     def down_votes(self, value):
         return self.set_attribute('down_votes', value)
+
+    @property
+    def likes(self):
+        return self.get_attribute('likes', 0)
+
+    @likes.setter
+    def likes(self, value):
+        return self.set_attribute('likes', value)
 
     @property
     def editor_version(self):
