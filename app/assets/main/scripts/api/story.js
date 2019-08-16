@@ -2,7 +2,7 @@
 
 import { ApiBase } from 'Assets/helpers';
 
-export class StoryApiHelper extends ApiBase {
+export class StoryApiService extends ApiBase {
 
 	constructor(url) {
 		super(url);

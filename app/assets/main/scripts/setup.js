@@ -2,7 +2,7 @@
 
 import { AppConfig } from './config';
 import { LanguageSetupAdapter } from 'Assets/helpers';
-import { MenuComponent, SidebarComponent, CommentComponent } from './components';
+import { MenuComponent, SidebarComponent, CommentComponent, VoteComponent, UserComponent } from './components';
 import { HomeModule, FeedModule, StoryEditorModule, StoryShowModule } from './modules';
 
 const loaders = [
@@ -10,6 +10,8 @@ const loaders = [
 	new MenuComponent(),
 	new SidebarComponent(),
 	new CommentComponent(),
+	new VoteComponent(),
+	new UserComponent(),
 	new HomeModule(),
 	new FeedModule(),
 	new StoryEditorModule(),

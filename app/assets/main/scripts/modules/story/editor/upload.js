@@ -1,14 +1,14 @@
 "use strict";
 
 import { AppConfig } from 'Assets/main/scripts/config';
-import { PictureApiHelper } from 'Assets/main/scripts/api';
+import { PictureApiService } from 'Assets/main/scripts/api';
 
 export class ImageUploadAdapter {
 
 	constructor(loader) {
 		// The file loader instance to use during the upload.
 		this.loader = loader;
-		this._pictureApiHelper = new PictureApiHelper(AppConfig.pictureApiUrl);
+		this._pictureApiHelper = new PictureApiService(AppConfig.pictureApiUrl);
 	}
 
 	// Starts the upload process.

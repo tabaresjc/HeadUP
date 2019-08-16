@@ -1,30 +1,28 @@
-(function(document, root, undefined) {
-	'use strict';
+"use strict";
 
-	var MyLocalStorage = root.MyLocalStorage = function() {
-		var self = this;
+export class LocalStorageHelper {
 
-		var myLocalStorageName = getHashCode(root.location.hostname),
-			myLocalStorageContainer = getLocalStorage(myLocalStorageName);
+	constructor() {
+		this._myLocalStorageName = this._getHashCode(`${window.location.hostname}`);
+		this._myLocalStorageContainer = this._getLocalStorage(this._myLocalStorageName);
+	}
 
-		self.getRecord = function(key) {
-			return myLocalStorageContainer[key] || {}
-		}
+	get(key) {
+		return this._myLocalStorageContainer[key] || {};
+	}
 
-		self.saveRecord = function(key, record) {
-			myLocalStorageContainer[key] = record || {};
-			setLocalStorage(myLocalStorageName, myLocalStorageContainer);
-		}
+	set(key, record) {
+		this._myLocalStorageContainer[key] = record || {};
+		this._setLocalStorage(this._myLocalStorageName, myLocalStorageContainer);
 	}
 
 	/**
 	 * Get a value from localStorage (or empty object if it doesn't exist)
 	 *
 	 * @param   {String}  key  The local storage key
-	 *
 	 * @return  {Object}
 	 */
-	function getLocalStorage(key) {
+	_getLocalStorage(key) {
 		return JSON.parse((window.localStorage && window.localStorage.getItem(key)) || '{}')
 	}
 
@@ -34,7 +32,7 @@
 	 * @param  {String}  key  The local storage key
 	 * @param  {Object}  obj  The object to store
 	 */
-	function setLocalStorage(key, obj) {
+	_setLocalStorage(key, obj) {
 		window.localStorage.setItem(key, JSON.stringify(obj));
 	}
 
@@ -43,7 +41,7 @@
 	 *
 	 * @return  {String}
 	 */
-	function getHashCode(str) {
+	_getHashCode(str) {
 		str = str || {};
 
 		var hash = 0,
@@ -61,5 +59,7 @@
 
 		return hash;
 	}
+}
 
-})(document, window);
+
+

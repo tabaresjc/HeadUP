@@ -22,6 +22,7 @@
 					</li>
 					<li role="separator" class="visible-xs-block divider"></li>
 
+
 					{% if current_user and current_user.is_authenticated -%}
 					<li class="visible-xs-block">
 						<a href="{{ url_for('UsersView:get', id=current_user.id) }}" rel="nofollow">
@@ -75,24 +76,7 @@
 			</div>
 		</nav>
 		<div class="hidden-xs hidden-sm btn-group-container">
-			{% if current_user and current_user.is_authenticated -%}
-			<div class="custom_menu">
-				<a href="{{ url_for('sessions.logout') }}" data-method="post" rel="nofollow" class="custom_menu__btn" title="{% trans%}APP_SIGN_OUT{% endtrans %}">
-					<span class="glyphicon glyphicon-log-out"></span>
-				</a>
-			</div>
-			{%- else %}
-			<div class="custom_menu">
-				<a href="{{ url_for('sessions.signup') }}" rel="nofollow" class="custom_menu__btn" title="{{ _('REGISTER_BTN') }}">
-					<span class="glyphicon glyphicon-plus"></span>
-				</a>
-			</div>
-			<div class="custom_menu">
-				<a href="{{ url_for('sessions.login') }}" rel="nofollow" class="custom_menu__btn" title="{{ _('LOGIN_BTN') }}">
-					<span class="glyphicon glyphicon-log-in"></span>
-				</a>
-			</div>
-			{%- endif %}
+
 			<div class="custom_menu">
 				<a href="javascript:;" class="custom_menu__btn">
 					<i class="glyphicon glyphicon-share"></i>
@@ -132,6 +116,26 @@
 						</a>
 					</li>
 					{% endfor %}
+				</ul>
+			</div>
+
+			<div class="btn-group custom_dropdown">
+				<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+					<i class="glyphicon glyphicon-user"></i> <span class="caret"></span>
+				</button>
+				<ul class="dropdown-menu user-component">
+					<li class="user-session-active"><a href="{{ url_for('PostsView:index') }}">{{ _('POST_LIST') }}</a></li>
+					<li class="user-session-active"><a href="{{ url_for('PostsView:draft_list') }}">{{ _('POST_DRAFT_LIST') }}</a></li>
+					<li class="user-session-active"><a href="{{ url_for('PostsView:post') }}">{{ _('POST_CREATE') }}</a></li>
+
+					<li class="user-session-anonymous"><a href="{{ url_for('sessions.login') }}">{{ _('LOGIN_BTN') }}</a></li>
+					<li class="user-session-anonymous"><a href="{{ url_for('sessions.signup') }}">{{ _('REGISTER_BTN') }}</a></li>
+
+                    <li class="divider user-session-active"></li>
+                    <li class="user-session-active"><a href="{{ url_for('UsersView:get', id=current_user.id) }}">{{ _('APP_PROFILE') }}</a></li>
+
+					<li class="divider user-session-active"></li>
+					<li class="user-session-active"><a href="{{ url_for('sessions.logout') }}" data-method="post">{{ _('APP_SIGN_OUT') }}</a></li>
 				</ul>
 			</div>
 		</div>

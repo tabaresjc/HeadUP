@@ -31,11 +31,16 @@ class ModelHelper(object):
 
     def save(self, commit=True):
         app.sa.session.add(self)
+        if hasattr(self, 'modified_at'):
+            setattr(self, 'modified_at', datetime.datetime.utcnow())
         if commit:
-            if hasattr(self, 'modified_at'):
-                setattr(self, 'modified_at', datetime.datetime.utcnow())
             app.sa.session.commit()
         return self
+
+    def remove(self, commit=True):
+        app.sa.session.delete(self)
+        if commit:
+            app.sa.session.commit()
 
     def set_attribute(self, key, value):
         self.attr = self.attr or {}
@@ -69,6 +74,10 @@ class ModelHelper(object):
 
     @classmethod
     def get_by_id(cls, id):
+        return cls.query.get(id)
+
+    @classmethod
+    def get(cls, id):
         return cls.query.get(id)
 
     @classmethod

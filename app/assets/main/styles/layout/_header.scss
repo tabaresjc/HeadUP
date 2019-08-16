@@ -43,6 +43,22 @@
 		}
 
 		.btn-group-container {
+			.custom_dropdown {
+				position: relative;
+				float: right;
+
+				.btn {
+					display: block;
+					height: 70px;
+					border-radius: 0;
+					margin: 0;
+
+					i, span {
+						color: $primary-color;
+					}
+				}
+			}
+
 			.custom_menu {
 				position: relative;
 				float: right;

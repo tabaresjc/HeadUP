@@ -2,7 +2,7 @@
 
 import { ApiBase } from 'Assets/helpers';
 
-export class PictureApiHelper extends ApiBase {
+export class PictureApiService extends ApiBase {
 
 	constructor(url) {
 		super(url);
@@ -17,12 +17,13 @@ export class PictureApiHelper extends ApiBase {
 	}
 
 	upload(data, srcOptions) {
+		const endpoint = `upload`;
 
 		const options = Object.assign({
 			method: 'POST'
 		}, srcOptions || {});
 
-		return this.fetch('upload', data || {}, options);
+		return this.fetch(endpoint, data || {}, options);
 	}
 
 	delete(id) {

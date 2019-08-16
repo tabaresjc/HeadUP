@@ -2,7 +2,7 @@
 
 import { AppConfig } from 'Assets/main/scripts/config';
 import { SpinnerHelper } from 'Assets/helpers';
-import { PictureApiHelper } from 'Assets/main/scripts/api';
+import { PictureApiService } from 'Assets/main/scripts/api';
 
 export class CoverPicturePlugin {
 
@@ -25,7 +25,7 @@ export class CoverPicturePlugin {
 			return;
 		}
 
-		this._pictureApiHelper = new PictureApiHelper(AppConfig.pictureApiUrl);
+		this._pictureApiHelper = new PictureApiService(AppConfig.pictureApiUrl);
 		this._fileReader = new FileReader();
 		this._inputFile = document.getElementById(this._options.inputFileSelector);
 		this._uploadBtn = document.querySelectorAll(this._options.updatePictureSelector);

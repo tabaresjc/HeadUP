@@ -7,11 +7,11 @@ from app.helpers import render_json
 from app.models import Picture, Post
 
 
-class ApiPicturesView(FlaskView):
+class PicturesApiView(FlaskView):
     route_base = '/api/pictures'
 
-    @route('/item', methods=['GET'])
-    def item(self):
+    @route('/item/<int:id>', methods=['GET'])
+    def item(self, id):
         picture = Picture.get_by_id(id)
 
         if not picture:

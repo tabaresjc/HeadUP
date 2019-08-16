@@ -1,7 +1,7 @@
 "use strict";
 
 import { AppConfig } from 'Assets/main/scripts/config';
-import { StoryApiHelper, CategoryApiHelper } from 'Assets/main/scripts/api';
+import { StoryApiService, CategoryApiService } from 'Assets/main/scripts/api';
 import { SpinnerHelper } from 'Assets/helpers';
 import { ImageUploadAdapterPlugin } from './upload';
 import { CoverPicturePlugin } from './cover-picture';
@@ -49,8 +49,8 @@ export class StoryEditorModule {
 		}
 
 		this._storyContainer = document.getElementById(this._options.containerId);
-		this._storyApiHelper = new StoryApiHelper(AppConfig.storyApiUrl);
-		this._categoryApiHelper = new CategoryApiHelper(AppConfig.categoryApiUrl);
+		this._storyApiHelper = new StoryApiService(AppConfig.storyApiUrl);
+		this._categoryApiHelper = new CategoryApiService(AppConfig.categoryApiUrl);
 		this._spinnerHelper = new SpinnerHelper();
 		this._titleTxt = document.getElementById(this._options.titleId);
 		this._bodyTxt = document.getElementById(this._options.bodyId);

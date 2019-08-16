@@ -1,3 +1,3 @@
 # -*- coding: utf8 -*-
 
-from index import ApiStoriesView  # noqa
+from index import StoriesApiView  # noqa

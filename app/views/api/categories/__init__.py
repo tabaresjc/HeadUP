@@ -1,3 +1,3 @@
 # -*- coding: utf8 -*-
 
-from index import ApiCategoriesView  # noqa
+from index import CategoriesApiView  # noqa

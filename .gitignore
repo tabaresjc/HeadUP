@@ -78,4 +78,6 @@ media/
 /logs/
 
 # ignore vs-code settings
-\.vscode/settings\.json
+/.vscode/
+/*.code-workspace
+/env/

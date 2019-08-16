@@ -7,7 +7,7 @@ from app.helpers import render_json
 from app.models import Category
 
 
-class ApiCategoriesView(FlaskView):
+class CategoriesApiView(FlaskView):
     route_base = '/api/categories'
     decorators = []
 

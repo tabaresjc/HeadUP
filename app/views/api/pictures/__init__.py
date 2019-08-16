@@ -1,3 +1,3 @@
 # -*- coding: utf8 -*-
 
-from index import ApiPicturesView  # noqa
+from index import PicturesApiView  # noqa

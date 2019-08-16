@@ -4,11 +4,11 @@ from flask import url_for, request, abort
 from flask_login import current_user, login_required
 from flask_classy import FlaskView, route
 from app.helpers import render_json
-from app.models import Post, Feed
+from app.models import Post, Feed, Vote
 from app import cache
 
 
-class ApiStoriesView(FlaskView):
+class StoriesApiView(FlaskView):
     route_base = '/api/stories'
     formatter = None
 
