@@ -2,6 +2,7 @@ const path = require('path');
 const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const VueLoaderPlugin = require('vue-loader/lib/plugin');
 
 module.exports = function (config) {
 	const cssFileName = config.IS_PRD ? 'css/[name].[hash:8].css' : 'css/[name].css';
@@ -13,11 +14,12 @@ module.exports = function (config) {
 	});
 
 	const assets = {
-		admin: 	'./app/assets/admin/scripts/index.js',
-		main: 	'./app/assets/main/scripts/index.js',
+		admin: './app/assets/admin/scripts/index.js',
+		main: './app/assets/main/scripts/index.js',
 	};
 
 	const plugins = [
+		new VueLoaderPlugin(),
 		new webpack.ProvidePlugin({
 			$: 'jquery',
 			jQuery: 'jquery'
@@ -52,12 +54,21 @@ module.exports = function (config) {
 		},
 		resolve: {
 			alias: {
+				'vue$': 'vue/dist/vue.esm.js',
 				'Assets': path.resolve(config.APP_DIR, 'app/assets'),
 				'Lib': path.resolve(config.APP_DIR, 'node_modules'),
 			},
 		},
 		module: {
 			rules: [
+				{
+					test: /\.vue$/,
+					loader: 'vue-loader'
+				},
+				{
+					test: /\.js$/,
+					loader: 'babel-loader'
+				},
 				{
 					test: /\.(s*)css$/,
 					use: extractSass.extract({
