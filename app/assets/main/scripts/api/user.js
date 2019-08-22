@@ -11,15 +11,8 @@ export class UserApiService extends ApiBase {
 	getProfile() {
 		const endpoint = `profile`;
 
-		return this.fetch(endpoint, {}, {
-			method: 'GET'
-		});
-	}
-
-	getVotes() {
-		const endpoint = `item/${ id }`;
-
-		return this.fetch(endpoint, {}, {
+		return this.request({
+			url: endpoint,
 			method: 'GET'
 		});
 	}

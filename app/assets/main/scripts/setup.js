@@ -1,17 +1,19 @@
-"use strict";
+'use strict';
 
 import { AppConfig } from './config';
-import { LanguageSetupAdapter } from 'Assets/helpers';
-import { MenuComponent, SidebarComponent, CommentComponent, VoteComponent, UserComponent } from './components';
+
+// Components
+import { MenuComponent, SidebarComponent, CommentComponent, VoteComponent } from './components';
+// modules
 import { HomeModule, FeedModule, StoryEditorModule, StoryShowModule } from './modules';
+import { VueLoader } from './vue';
 
 const loaders = [
-	LanguageSetupAdapter,
+	new VueLoader(),
 	new MenuComponent(),
 	new SidebarComponent(),
 	new CommentComponent(),
 	new VoteComponent(),
-	new UserComponent(),
 	new HomeModule(),
 	new FeedModule(),
 	new StoryEditorModule(),

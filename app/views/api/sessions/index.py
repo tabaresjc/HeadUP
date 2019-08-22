@@ -5,6 +5,7 @@ from flask_login import current_user, login_required, login_user, logout_user
 from flask_classy import FlaskView, route
 from app.helpers import render_json
 from app.models import User
+import datetime
 
 
 class SessionsApiView(FlaskView):
@@ -12,11 +13,11 @@ class SessionsApiView(FlaskView):
 
     @route('/login', methods=['POST'])
     def login(self, id):
-        data = request.values
+        data = request.json
 
         email = data.get('email', None)
         password = data.get('password', None)
-        remember = data.get('remember', 0, int) != 0
+        remember = data.get('remember', 0) != 0
 
         user = User.find_by_email(email)
 

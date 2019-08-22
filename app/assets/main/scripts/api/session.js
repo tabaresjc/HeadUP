@@ -15,15 +15,18 @@ export class SessionApiService extends ApiBase {
 			email: email
 		};
 
-		return this.fetch(endpoint, data, {
-			method: 'POST'
+		return this.request({
+			url: endpoint,
+			method: 'POST',
+			data: data
 		});
 	}
 
 	logout() {
 		const endpoint = `logout`;
 
-		return this.fetch(endpoint, {}, {
+		return this.request({
+			url: endpoint,
 			method: 'POST'
 		});
 	}

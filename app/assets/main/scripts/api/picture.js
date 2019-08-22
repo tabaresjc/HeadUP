@@ -11,25 +11,39 @@ export class PictureApiService extends ApiBase {
 	getItem(id) {
 		const endpoint = `item/${id}`;
 
-		return this.fetch(endpoint, {}, {
+		return this.request({
+			url: endpoint,
 			method: 'GET'
 		});
 	}
 
-	upload(data, srcOptions) {
+	upload(data, callbacks) {
 		const endpoint = `upload`;
 
 		const options = Object.assign({
-			method: 'POST'
-		}, srcOptions || {});
+			url: endpoint,
+			method: 'POST',
+			data: data,
+			onUploadProgress: function (progressEvent) {
+				if (callbacks && typeof callbacks.onUploadProgress === 'function') {
+					callbacks.onUploadProgress(progressEvent);
+				}
+			},
+			onDownloadProgress: function (progressEvent) {
+				if (callbacks && typeof callbacks.onDownloadProgress === 'function') {
+					callbacks.onDownloadProgress(progressEvent);
+				}
+			},
+		});
 
-		return this.fetch(endpoint, data || {}, options);
+		return this.requestUpload(options);
 	}
 
 	delete(id) {
 		const endpoint = `delete/${id}`;
 
-		return this.fetch(endpoint, {}, {
+		return this.request({
+			url: endpoint,
 			method: 'POST'
 		});
 	}

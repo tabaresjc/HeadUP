@@ -11,13 +11,17 @@ export class StoryApiService extends ApiBase {
 	getItem(id) {
 		const endpoint = `item/${ id }`;
 
-		return this.fetch(endpoint, {}, {
+		return this.request({
+			url: endpoint,
 			method: 'GET'
 		});
 	}
 
 	last_draft() {
-		return this.fetch('last-draft', {}, {
+		const endpoint = `last-draft`;
+
+		return this.request({
+			url: endpoint,
 			method: 'GET'
 		});
 	}
@@ -25,16 +29,20 @@ export class StoryApiService extends ApiBase {
 	save_draft(id, data) {
 		const endpoint = `save-draft/${ id }`;
 
-		return this.fetch(endpoint, data, {
-			method: 'POST'
+		return this.request({
+			url: endpoint,
+			method: 'POST',
+			data: data
 		});
 	}
 
 	publish(id, data) {
 		const endpoint = `publish/${ id }`;
 
-		return this.fetch(endpoint, data, {
-			method: 'POST'
+		return this.request({
+			url: endpoint,
+			method: 'POST',
+			data: data
 		});
 	}
 }

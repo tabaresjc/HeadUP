@@ -1,29 +1,88 @@
 "use strict";
 
-import { GetLanguage } from 'Assets/helpers';
+import axios from 'axios';
 
 export class ApiBase {
+
 	constructor(baseUrl) {
 		this.baseUrl = baseUrl;
+		this.init();
 	}
 
-	fetch(endpoint, srcData, srcOptions) {
-		const options = Object.assign(
-			{
-				method: 'GET',
-				progress: () => { }
-			},
-			srcOptions
-		);
+	init() {
+		// setup csrf for every request made to the api
+		axios.defaults.headers.common['X-CSRFToken'] = this._getToken();
+	}
 
-		return new Promise((resolve, reject) => {
-			const xhr = this._getHandler(endpoint, options);
-			const data = this._buildData(srcData);
+	request(options) {
+		if (!options.url) {
+			console.warn(`[HeadUP] ApiBase found no url`);
+		}
 
-			this._attachListeners(xhr, resolve, reject, options);
+		const httpHandler = this._createHttpClient();
 
-			xhr.send(data);
+		const config = Object.assign({
+			method: 'GET',
+			params: {},
+			data: {}
+		}, options);
+
+		return httpHandler.request(config)
+			.then(response => this._transformResponse(response));
+	}
+
+	requestUpload(options) {
+		if (!options.url) {
+			console.warn(`[HeadUP] ApiBase found no url`);
+		}
+
+		const httpHandler = this._createHttpClient({
+			headers: {
+				'Content-Type': 'multipart/form-data'
+			}
 		});
+
+		const data = this._buildData(data);
+
+		const config = Object.assign({
+			method: 'POST',
+		}, options, { data: data });
+
+		return httpHandler.request(config)
+			.then(response => this._transformResponse(response));
+	}
+
+	_createHttpClient(options) {
+		const config = Object.assign({
+			baseURL: this.baseUrl,
+			withCredentials: false,
+			headers: {
+				'Accept': 'application/json',
+				'Content-Type': 'application/json'
+			},
+			responseType: 'json'
+		}, options || {});
+
+		return axios.create(config);
+	}
+
+	_transformResponse(response) {
+		if (typeof response === 'string') {
+			try {
+				response = JSON.parse(response);
+			} catch (e) {
+			}
+		}
+
+		if (response.data && response.data.data) {
+			return response.data.data;
+		}
+
+		if (response.data) {
+			return response.data;
+		}
+
+		return response;
 	}
 
 	_getHandler(endpoint, options) {
@@ -36,75 +95,15 @@ export class ApiBase {
 		return xhr;
 	}
 
-	_getUrl(endpoint, options) {
-		const url = `${this.baseUrl}/${endpoint}`;
-		let qs = [];
-
-		if (options.params && typeof options.params === 'object' && options.method === 'GET') {
-			qs = Object.entries(options.params).map(function (pair) {
-				const [key, value] = pair;
-				return `${key}=${encodeURIComponent(value)}`;
-			});
-		}
-
-		if (!options.omitLang) {
-			qs.push(`lang=${GetLanguage()}`);
-		}
-
-		return `${url}?${qs.join('&')}`;
-	}
-
 	_buildData(srcData) {
-		// prepare the form data.
-		const d = new FormData();
-		const apiToken = this._getToken();
+		// prepare form data.
+		const data = new FormData();
 
 		for (const [k, v] of Object.entries(srcData)) {
-			d.append(k, v);
+			data.append(k, v);
 		}
 
-		// append the api token, so that the request can be accepted
-		d.append('csrf_token', apiToken);
-
-		return d;
-	}
-
-	// Initializes XMLHttpRequest listeners.
-	_attachListeners(xhr, resolve, reject, options) {
-		const genericErrorText = `[HUP] Unable to process request`;
-
-		xhr.addEventListener('error', (err) => reject(console.log(err)));
-		xhr.addEventListener('abort', (err) => reject(console.log(err)));
-		xhr.addEventListener('load', () => {
-			let response = xhr.response;
-
-			// ie fix
-			if (typeof response === 'string') {
-				response = JSON.parse(response);
-			}
-
-			// reject the xhr response when the api throws an error
-			if (!response || !response.status || !response.data) {
-				return reject(
-					response && response.message
-						? response.message
-						: genericErrorText
-				);
-			}
-
-			resolve(response.data);
-		});
-
-		// Upload progress when it is supported and provided by the user
-		if (!xhr.upload || typeof options.progress !== 'function') {
-			return;
-		}
-
-		xhr.upload.addEventListener('progress', evt => {
-			if (evt.lengthComputable) {
-				options.progress({ total: evt.total, loaded: evt.loaded });
-			}
-		});
+		return data;
 	}
 
 	_getToken() {

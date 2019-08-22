@@ -28,7 +28,7 @@ export class ImageUploadAdapter {
 				};
 
 				return this._pictureApiHelper.upload(data, {
-					onProgress: onProgress
+					onUploadProgress: onProgress
 				})
 				.then(response => {
 					// transforms the response provided by the api, into a format required

@@ -52,4 +52,3 @@ if (!String.prototype.hu_ext_url) {
 		return `${host}${path}`;
 	};
 }
-

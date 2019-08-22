@@ -119,7 +119,17 @@
 				</ul>
 			</div>
 
-			<div class="btn-group custom_dropdown">
+			<user-profile :endpoints="{
+				post_list: '{{ url_for('PostsView:index') }}',
+				draft_list: '{{ url_for('PostsView:draft_list') }}',
+				post_create: '{{ url_for('PostsView:post') }}',
+				sessions_login: '{{ url_for('sessions.login') }}',
+				sessions_signup: '{{ url_for('sessions.signup') }}',
+				sessions_logout: '{{ url_for('sessions.logout') }}'
+			}"/>
+
+
+			<!-- <div class="btn-group custom_dropdown">
 				<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 					<i class="glyphicon glyphicon-user"></i> <span class="caret"></span>
 				</button>
@@ -131,13 +141,13 @@
 					<li class="user-session-anonymous"><a href="{{ url_for('sessions.login') }}">{{ _('LOGIN_BTN') }}</a></li>
 					<li class="user-session-anonymous"><a href="{{ url_for('sessions.signup') }}">{{ _('REGISTER_BTN') }}</a></li>
 
-                    <li class="divider user-session-active"></li>
-                    <li class="user-session-active"><a href="{{ url_for('UsersView:get', id=current_user.id) }}">{{ _('APP_PROFILE') }}</a></li>
+					<li class="divider user-session-active"></li>
+					<li class="user-session-active"><a href="{{ url_for('UsersView:get', id=current_user.id) }}">{{ _('APP_PROFILE') }}</a></li>
 
 					<li class="divider user-session-active"></li>
 					<li class="user-session-active"><a href="{{ url_for('sessions.logout') }}" data-method="post">{{ _('APP_SIGN_OUT') }}</a></li>
 				</ul>
-			</div>
+			</div> -->
 		</div>
 	</div>
 </header>

@@ -22,7 +22,7 @@ class PicturesApiView(FlaskView):
     @route('/upload', methods=['POST'])
     @login_required
     def upload(self):
-        data = request.values
+        data = request.json
         f = request.files.get('file')
 
         if not f:
@@ -31,7 +31,7 @@ class PicturesApiView(FlaskView):
         picture = Picture.create()
         picture.save_file(f, current_user)
 
-        post_id = data.get('post_id', 0, int)
+        post_id = data.get('post_id', 0)
 
         if post_id:
             post = Post.get_by_id(post_id)

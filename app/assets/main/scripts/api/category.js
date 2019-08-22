@@ -9,14 +9,15 @@ export class CategoryApiService extends ApiBase {
 	}
 
 	getItems(orderby = 'name', desc = '0') {
-		const endpoint = ``;
-		const data = {
+		const params = {
 			orderby: orderby,
 			desc: desc,
 		};
 
-		return this.fetch(endpoint, data, {
-			method: 'GET'
+		return this.request({
+			url: '/',
+			method: 'GET',
+			params: params
 		});
 	}
 }

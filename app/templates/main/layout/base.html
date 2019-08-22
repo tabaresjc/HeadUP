@@ -28,40 +28,42 @@
 	{% include 'shared/meta/_token.html' %}
 </head>
 <body>
-	{% block page_wrapper %}
-	<div class="container-wrap">
-		<!-- header -->
-		<div class="push-header"></div>
-		{% block page_header_block %}
-			{% include 'main/layout/header.html' %}
-		{% endblock %}
-		<!-- end header -->
+	<div id="app-container">
+		{% block page_wrapper %}
+		<div class="container-wrap">
+			<!-- header -->
+			<div class="push-header"></div>
+			{% block page_header_block %}
+				{% include 'main/layout/header.html' %}
+			{% endblock %}
+			<!-- end header -->
 
-		{% block container %}
-		<div class="container">
-			{% block wide_container %}
-			<div class="row">
-				<div id="main-content" class="col-md-8 col-sm-12 col-xs-12">
-					{% block content %}{% endblock %}
+			{% block container %}
+			<div class="container">
+				{% block wide_container %}
+				<div class="row">
+					<div id="main-content" class="col-md-8 col-sm-12 col-xs-12">
+						{% block content %}{% endblock %}
+					</div>
+					<div id="main-sidebar" class="col-md-4 col-sm-12 col-xs-12">
+						{% block sidebar %}{% endblock %}
+					</div>
 				</div>
-				<div id="main-sidebar" class="col-md-4 col-sm-12 col-xs-12">
-					{% block sidebar %}{% endblock %}
-				</div>
+				{% endblock %}
 			</div>
 			{% endblock %}
+			<div class="push"></div>
 		</div>
+
+		<!-- footer -->
+		{% block page_footer_block %}
+			{% include 'main/layout/footer.html' %}
 		{% endblock %}
-		<div class="push"></div>
+		<!-- end footer -->
+		{% endblock %}
+
+		{% include 'shared/footer/_message.html' %}
 	</div>
-
-	<!-- footer -->
-	{% block page_footer_block %}
-		{% include 'main/layout/footer.html' %}
-	{% endblock %}
-	<!-- end footer -->
-	{% endblock %}
-
-	{% include 'shared/footer/_message.html' %}
 
 	{% block before_script %}{% endblock %}
 	{% block base_script %}

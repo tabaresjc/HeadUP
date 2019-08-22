@@ -54,7 +54,7 @@ class StoriesApiView(FlaskView):
     @route('/save-draft/<int:id>', methods=['POST'])
     @login_required
     def save_draft(self, id):
-        data = request.values
+        data = request.json
         story = Post.get_by_id(id)
 
         if story is None or story.is_hidden:
@@ -72,7 +72,7 @@ class StoriesApiView(FlaskView):
     @route('/publish/<int:id>', methods=['POST'])
     @login_required
     def publish(self, id):
-        data = request.values
+        data = request.json
         story = Post.get_by_id(id)
 
         if story is None or story.is_hidden:
@@ -93,13 +93,13 @@ class StoriesApiView(FlaskView):
                            redirect_to=url_for('story.show', id=story.id))
 
     def update_story(self, story, data, status):
-        story.title = data.get('title', u'', unicode)
-        story.body = data.get('body', u'', unicode)
-        story.extra_body = data.get('extra_body', u'', unicode)
-        story.category_id = data.get('category_id', Post.CATEGORY_NONE, int)
+        story.title = data.get('title', u'')
+        story.body = data.get('body', u'')
+        story.extra_body = data.get('extra_body', u'')
+        story.category_id = data.get('category_id', Post.CATEGORY_NONE)
         story.status = status
         story.kind = Post.KIND_STORY
-        story.anonymous = data.get('anonymous', 0, int)
+        story.anonymous = data.get('anonymous', 0)
 
     def clean_story(self, story):
         if story.anonymous:

@@ -1,7 +1,6 @@
 # -*- coding: utf8 -*-
 
 from flask import request
-from flask_login import current_user, login_required
 from flask_classy import FlaskView, route
 from app.helpers import render_json
 from app.models import Category

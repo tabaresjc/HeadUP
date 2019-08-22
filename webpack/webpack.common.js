@@ -55,6 +55,7 @@ module.exports = function (config) {
 		resolve: {
 			alias: {
 				'vue$': 'vue/dist/vue.esm.js',
+				'Static': path.resolve(config.APP_DIR, 'static'),
 				'Assets': path.resolve(config.APP_DIR, 'app/assets'),
 				'Lib': path.resolve(config.APP_DIR, 'node_modules'),
 			},
@@ -66,8 +67,12 @@ module.exports = function (config) {
 					loader: 'vue-loader'
 				},
 				{
-					test: /\.js$/,
-					loader: 'babel-loader'
+					test: /.js$/,
+					loader: 'babel-loader',
+					options: {
+						presets: ['env'],
+						plugins: ['transform-object-rest-spread']
+					}
 				},
 				{
 					test: /\.(s*)css$/,
