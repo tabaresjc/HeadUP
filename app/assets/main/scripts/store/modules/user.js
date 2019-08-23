@@ -1,7 +1,6 @@
 'use strict';
 
-import { AppConfig } from 'Assets/main/scripts/config';
-import { UserApiService } from 'Assets/main/scripts/api';
+import { UserApiService, SessionApiService } from 'Assets/main/scripts/api';
 
 export default {
 	namespaced: true,
@@ -18,7 +17,7 @@ export default {
 	},
 	actions: {
 		fetchProfile({ commit }) {
-			const userProfileService = new UserApiService(AppConfig.userApiUrl);
+			const userProfileService = new UserApiService();
 
 			return new Promise((resolve, reject) => {
 				userProfileService.getProfile().then(data => {
@@ -27,6 +26,20 @@ export default {
 						return;
 					}
 					commit('updateProfile', data.user);
+					resolve();
+				});
+			});
+		},
+		logout({ commit, dispatch }) {
+			return new Promise((resolve, reject) => {
+				const sessionApiService = new SessionApiService();
+
+				sessionApiService.logout().then(data => {
+					if (data.message) {
+						dispatch('notification/notify', {message: data.message}, {root:true});
+					}
+
+					commit('updateProfile', {anonymous:true});
 					resolve();
 				});
 			});

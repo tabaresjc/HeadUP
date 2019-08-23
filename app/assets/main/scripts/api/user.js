@@ -1,15 +1,16 @@
-"use strict";
+'use strict';
 
 import { ApiBase } from 'Assets/helpers';
+import { AppConfig } from 'Assets/main/scripts/config';
 
 export class UserApiService extends ApiBase {
 
 	constructor(url) {
-		super(url);
+		super(url || AppConfig.userApiUrl);
 	}
 
 	getProfile() {
-		const endpoint = `profile`;
+		const endpoint = 'profile';
 
 		return this.request({
 			url: endpoint,

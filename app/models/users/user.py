@@ -17,7 +17,9 @@ class User(Base, sa.Model, ModelHelper, UserMixin):
     __json_meta__ = [
         'id',
         'nickname',
-        'profile_picture_url'
+        'profile_picture_url',
+        'is_authenticated',
+        'is_admin'
     ]
 
     id = sa.Column(sa.Integer, primary_key=True)
@@ -136,6 +138,10 @@ class User(Base, sa.Model, ModelHelper, UserMixin):
 
     def check_password(self, password):
         return check_password_hash(str(self.password), str(password))
+
+    @property
+    def is_authenticated(self):
+        return True
 
     @property
     def is_admin(self):

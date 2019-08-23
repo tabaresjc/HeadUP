@@ -3,6 +3,7 @@
 from flask import request, abort
 from flask_login import current_user, login_required, login_user, logout_user
 from flask_classy import FlaskView, route
+from flask_babel import gettext as _
 from app.helpers import render_json
 from app.models import User
 import datetime

@@ -6,12 +6,17 @@ from flask_login import AnonymousUserMixin
 class GuestUser(AnonymousUserMixin):
 
     __json_meta__ = [
-        'anonymous'
+        'anonymous',
+        'is_authenticated'
     ]
 
     @property
     def anonymous(self):
         return True
+
+    @property
+    def is_authenticated(self):
+        return False
 
     @property
     def timezone(self):

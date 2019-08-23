@@ -5,9 +5,16 @@
 		</button>
 
 		<ul class="dropdown-menu dropdown-menu-right">
-			<li><a :href="endpoints.sessions_login">{{ user.nickname }}</a></li>
-			<li><a :href="endpoints.sessions_login">{{ $t("LOGIN_BTN") }}</a></li>
-			<li><a :href="endpoints.sessions_signup">{{ $t("REGISTER_BTN") }}</a></li>
+			<li v-if="!user.is_authenticated"><a :href="endpoints.sessions_login">{{ $t("LOGIN_BTN") }}</a></li>
+			<li v-if="!user.is_authenticated"><a :href="endpoints.sessions_signup">{{ $t("REGISTER_BTN") }}</a></li>
+
+			<li v-if="user.is_authenticated"><a :href="endpoints.user_profile.replace('999999999999', `${user.id}`)">{{ $t("APP_PROFILE") }}</a></li>
+			<li v-if="user.is_authenticated" role="separator" class="divider"></li>
+			<li v-if="user.is_authenticated"><a :href="endpoints.post_list">{{ $t("POST_LIST") }}</a></li>
+			<li v-if="user.is_authenticated"><a :href="endpoints.draft_list">{{ $t("POST_DRAFT_LIST") }}</a></li>
+			<li v-if="user.is_authenticated"><a :href="endpoints.post_create">{{ $t("POST_CREATE") }}</a></li>
+			<li v-if="user.is_authenticated" role="separator" class="divider"></li>
+			<li v-if="user.is_authenticated"><a href="javascript:;" @click="logout()">{{ $t("APP_SIGN_OUT") }}</a></li>
 		</ul>
 	</div>
 </template>
@@ -32,7 +39,8 @@ export default {
     },
 	methods: {
       ...mapActions({
-        fetchProfile: 'user/fetchProfile'
+        fetchProfile: 'user/fetchProfile',
+		logout: 'user/logout'
       })
     },
 	created () {
