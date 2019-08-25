@@ -8,6 +8,7 @@ import store from './store';
 
 // Vue.js components
 import UserProfile from './components/user/user-profile.vue';
+import UserSidebar from './components/user/user-sidebar.vue';
 
 export class VueLoader {
 	constructor(options) {
@@ -29,7 +30,8 @@ export class VueLoader {
 
 		this._langApiHelper = new LanguageApiHelper(AppConfig.languageApiUrl);
 		this._vueComponents = {
-			UserProfile
+			UserProfile,
+			UserSidebar
 		};
 
 		Vue.use(VueI18n);

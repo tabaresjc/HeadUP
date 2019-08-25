@@ -18,6 +18,9 @@
 	{% else %}
 	<meta property="og:image" content="{{ url_for('static', filename='images/lp/home/screen-bg_1.jpg', _external=true) }}" />
 	{% endif %}
+	{% if post.is_mine() %}
+	<meta property="hu:url:edit" content="{{ url_for('story.edit', id=post.id) }}" />
+	{% endif %}
 {% endblock %}
 
 {% block content %}

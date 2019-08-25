@@ -122,11 +122,11 @@
 			<user-profile :endpoints="{
 				post_list: '{{ url_for('PostsView:index') }}',
 				draft_list: '{{ url_for('PostsView:draft_list') }}',
-				post_create: '{{ url_for('PostsView:post') }}',
 				sessions_login: '{{ url_for('sessions.login') }}',
 				sessions_signup: '{{ url_for('sessions.signup') }}',
 				sessions_logout: '{{ url_for('sessions.logout') }}',
-				user_profile: '{{ url_for('UsersView:get', id=999999999999) }}'
+				user_profile: '{{ url_for('UsersView:get', id=999999999999) }}',
+				story_new: '{{ url_for('story.new') }}'
 			}"/>
 		</div>
 	</div>
