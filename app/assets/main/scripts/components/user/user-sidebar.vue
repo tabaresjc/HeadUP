@@ -66,7 +66,7 @@
 			<h6>{{ $t('SIDEBAR_STAMP_TITLE') }}</h6>
 			<a :href="story_edit_url" rel="nofollow"
 				class="btn btn-primary btn-primary--transparent btn-lg btn-block"
-				v-if="user.is_authenticated && story_edit_url">
+				v-if="story_edit_url && user.is_authenticated && story_user_id == user.id">
 				{{ $t('EDIT_STAMP_LBL') }}
 			</a>
 			<a :href="endpoints.story_new" rel="nofollow"
@@ -94,20 +94,24 @@ export default {
 	},
 	data() {
 		return {
-			story_edit_url: null
+			story_edit_url: null,
+			story_user_id: null
 		}
 	},
 	methods: {
-		findStoryEditUrl() {
-			const urlEditEl = document.querySelector('meta[property="hu:url:edit"]');
-			if (!urlEditEl) {
-				return;
+		getStoryInfo() {
+			const storyEditUrl = document.querySelector('meta[property="hu:story:edit:url"]');
+			if (storyEditUrl) {
+				this.story_edit_url = storyEditUrl.content;
 			}
-			this.story_edit_url = urlEditEl.content;
+			const storyUserId = document.querySelector('meta[property="hu:story:user"]');
+			if (storyUserId) {
+				this.story_user_id = storyUserId.content;
+			}
 		}
 	},
 	created () {
-		this.findStoryEditUrl();
+		this.getStoryInfo();
     }
 }
 </script>

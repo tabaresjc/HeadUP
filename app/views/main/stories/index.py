@@ -44,6 +44,9 @@ class StoriesView(FlaskView):
         if post is None or post.is_hidden:
             abort(404)
 
+        if not post.can_edit():
+            abort(403)
+
         return render_template('main/stories/edit.html',
                                id=id,
                                post=post)
