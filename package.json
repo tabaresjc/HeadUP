@@ -26,7 +26,8 @@
 		"jquery": "^3.3.1",
 		"pretty-checkbox": "^3.0.3",
 		"regenerator-runtime": "^0.13.3",
-		"socket.io-client": "^2.2.0"
+		"socket.io-client": "^2.2.0",
+		"vue-infinite-loading": "^2.4.4"
 	},
 	"devDependencies": {
 		"assemble-webpack-loader": "^0.1.0",

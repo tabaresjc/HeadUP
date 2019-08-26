@@ -5,7 +5,7 @@ import { AppConfig } from './config';
 // Components
 import { MenuComponent, SidebarComponent, CommentComponent, VoteComponent } from './components';
 // modules
-import { HomeModule, FeedModule, StoryEditorModule, StoryShowModule } from './modules';
+import { HomeModule, StoryEditorModule, StoryShowModule } from './modules';
 import { VueLoader } from './vue';
 
 const loaders = [
@@ -15,7 +15,6 @@ const loaders = [
 	new CommentComponent(),
 	new VoteComponent(),
 	new HomeModule(),
-	new FeedModule(),
 	new StoryEditorModule(),
 	new StoryShowModule()
 ];
