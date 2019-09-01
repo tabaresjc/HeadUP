@@ -3,14 +3,14 @@
 		<div class="story-social-results clearfix">
 			<span class="label label-success" >
 				<i class="glyphicon glyphicon-heart"></i>
-				<span class="vote-results" :data-id="story.id">{{ story.likes }}</span>
+				<span class="vote-results">{{ story.likes }}</span>
 			</span>
 		</div>
 
 		<div class="story-social push-top-20 clearfix">
-			<a href="javascript:;" class="icon-social upvote" :data-id="story.id"></a>
-			<a :href="`${story.url}#comment-panel`" class="icon-social comment" :data-id="story.id"></a>
-			<a href="javascript:;" class="icon-social share" :data-id="story.id"></a>
+			<a href="javascript:;" class="icon-social upvote" @click="vote(story.id)"></a>
+			<a :href="`${story.url}#comment-panel`" class="icon-social comment"></a>
+			<a href="javascript:;" class="icon-social share"></a>
 		</div>
 	</div>
 </template>
@@ -26,13 +26,10 @@ export default {
 			required: true
 		}
 	},
-	data() {
-		return {
-
-		};
-	},
 	methods: {
-
+		...mapActions({
+			vote: 'stories/vote'
+		})
 	}
 }
 </script>

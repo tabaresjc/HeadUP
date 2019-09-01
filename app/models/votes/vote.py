@@ -24,7 +24,7 @@ class Vote(Base, sa.Model, ModelHelper):
         'modified_at'
     ]
 
-    KIND_POST = 1
+    KIND_STORY = 1
 
     user_id = sa.Column(sa.Integer, primary_key=True)
     target_id = sa.Column(sa.Integer, primary_key=True)
@@ -33,17 +33,17 @@ class Vote(Base, sa.Model, ModelHelper):
     modified_at = sa.Column(sa.DateTime, default=datetime.datetime.utcnow)
 
     @classmethod
-    def votes_by_user_id(cls, user_id, kind=KIND_POST):
+    def votes_by_user_id(cls, user_id, kind=KIND_STORY):
         return cls.query.filter_by(user_id=user_id, kind=kind)
 
     @classmethod
-    def get_target(cls, target_id, kind=KIND_POST):
-        if cls.KIND_POST == kind:
+    def get_target(cls, target_id, kind=KIND_STORY):
+        if cls.KIND_STORY == kind:
             return Post.get(target_id)
         return None
 
     @classmethod
-    def cast_vote(cls, user_id, target_id, kind=KIND_POST, commit=True):
+    def cast_vote(cls, user_id, target_id, kind=KIND_STORY, commit=True):
         is_upvote, count = False, 0
 
         try:

@@ -1,13 +1,16 @@
 'use strict';
 
 import { StoryApiService } from 'Assets/main/scripts/api';
+import $socket from 'Assets/main/scripts/socket';
 
 export default {
 	namespaced: true,
 	state: {
 		page: 1,
 		items: [],
-		storyApiService: null
+		itemsById: {},
+		storyApiService: null,
+		message: null
 	},
 	getters: {
 		page: (state) => {
@@ -22,10 +25,21 @@ export default {
 	},
 	mutations: {
 		pushItems(state, items) {
-			state.items.push(...items);
+			items.forEach(item => {
+				const index = state.items.length;
+				state.itemsById[item.id] = index;
+				state.items.push(item);
+			});
 		},
 		incrementPage(state) {
 			state.page++;
+		},
+		updateVoteCount(state, payload) {
+			const index = state.itemsById[payload.target_id];
+			if (isNaN(index) || !state.items || state.items.length < index) {
+				return;
+			}
+			state.items[index].likes = payload.count;
 		}
 	},
 	actions: {
@@ -33,14 +47,14 @@ export default {
 			return new Promise((resolve, reject) => {
 				getters.storyApiService.getItems(getters.page, params)
 					.then(data => {
-						if (!data.stories || !data.stories.length) {
-							resolve({completed: true});
+						if (!data.total || !data.stories || !data.stories.length) {
+							resolve({ completed: true });
 							return;
 						}
 
 						commit('pushItems', data.stories);
 						commit('incrementPage');
-						resolve({completed: false});
+						resolve({ completed: false });
 					})
 					.catch(err => {
 						dispatch('notification/log', err, { root: true });
@@ -48,5 +62,17 @@ export default {
 					});
 			});
 		},
+		vote(_, targetId) {
+			$socket.emit('vote_story', {
+				target_id: targetId
+			});
+		},
+		socket_voteStoryResults({ commit }, payload) {
+			if (!payload.target_id) {
+				return;
+			}
+
+			commit('updateVoteCount', payload);
+		}
 	}
 };

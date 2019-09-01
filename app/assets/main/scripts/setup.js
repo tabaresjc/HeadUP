@@ -13,7 +13,7 @@ const loaders = [
 	new MenuComponent(),
 	new SidebarComponent(),
 	new CommentComponent(),
-	new VoteComponent(),
+	// new VoteComponent(),
 	new HomeModule(),
 	new StoryEditorModule(),
 	new StoryShowModule()

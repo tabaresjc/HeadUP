@@ -3,7 +3,7 @@
 		<div v-if="story.cover_picture"
 			class="story-cover-picture" v-bind:style="{backgroundImage: `url(${story.cover_picture.image_url})`}"></div>
 		<div class="story-content">
-			<h2 class="story-title"><a href="<%- story.url %>" rel="title">{{ story.title }}</a></h2>
+			<h2 class="story-title"><a :href="story.url" rel="title">{{ story.title }}</a></h2>
 
 			<div class="story-info push-top-20 clearfix">
 				<img v-if="story.user" :src="story.user.profile_picture_url || '/static/images/user.png'" :alt="story.user.nickname" class="thumb">

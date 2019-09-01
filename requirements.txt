@@ -1,6 +1,7 @@
 Werkzeug==0.14.1
 SQLAlchemy==1.2.6
 alembic==0.9.9
+eventlet==0.25.1
 Flask==0.12.2
 Flask-Assets==0.12
 Flask-Babel==0.11.2

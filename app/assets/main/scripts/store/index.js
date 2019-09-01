@@ -16,7 +16,6 @@ export default new Vuex.Store({
 		stories,
 		user
 	},
-
 	state: state,
 	getters: getters,
 	actions: actions,

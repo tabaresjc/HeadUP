@@ -6,7 +6,7 @@ from app.models import Vote
 from flask_socketio import emit
 
 
-@socketio.on('vote_post')
+@socketio.on('vote_story')
 def vote_post(message):
     target_id = int(message.get('target_id', 0))
     user_id = int(current_user.get_id() or 0)
@@ -20,7 +20,7 @@ def vote_post(message):
 
         is_upvote, count = Vote.cast_vote(user_id,
                                           target_id,
-                                          Vote.KIND_POST)
+                                          Vote.KIND_STORY)
         data = {
             'target_id': target_id,
             'user_id': user_id,
@@ -28,9 +28,7 @@ def vote_post(message):
             'is_upvote': is_upvote
         }
 
-        emit('vote_results', data, broadcast=True)
+        emit('vote_story_results', data, broadcast=True)
 
     except Exception as e:
-        app.logger.error(u'[SocketIO] error on "vote" event, %s',
-                         e,
-                         exc_info=True)
+        app.logger.error(u'[SocketIO] error on "vote" event, %s', e, exc_info=True)
