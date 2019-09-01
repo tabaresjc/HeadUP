@@ -5,10 +5,23 @@ import { UserApiService, SessionApiService } from 'Assets/main/scripts/api';
 export default {
 	namespaced: true,
 	state: {
-		profile: []
+		profile: [],
+		userApiService: null,
+		sessionsApiService: null
 	},
 	getters: {
-
+		userApiService: (state) => {
+			if (!state.userApiService) {
+				state.userApiService = new UserApiService()
+			}
+			return state.userApiService;
+		},
+		sessionsApiService: (state) => {
+			if (!state.sessionsApiService) {
+				state.sessionsApiService = new SessionApiService()
+			}
+			return state.sessionsApiService;
+		}
 	},
 	mutations: {
 		updateProfile(state, profile) {
@@ -16,32 +29,38 @@ export default {
 		}
 	},
 	actions: {
-		fetchProfile({ commit }) {
-			const userProfileService = new UserApiService();
-
+		fetchProfile({ commit, getters, dispatch }) {
 			return new Promise((resolve, reject) => {
-				userProfileService.getProfile().then(data => {
-					if (!data.user) {
+				getters.userApiService.getProfile()
+					.then(data => {
+						if (!data.user) {
+							reject();
+							return;
+						}
+						commit('updateProfile', data.user);
+						resolve();
+					})
+					.catch(err => {
+						dispatch('notification/log', err, { root: true });
 						reject();
-						return;
-					}
-					commit('updateProfile', data.user);
-					resolve();
-				});
+					});
 			});
 		},
-		logout({ commit, dispatch }) {
+		logout({ commit, getters, dispatch }) {
 			return new Promise((resolve, reject) => {
-				const sessionApiService = new SessionApiService();
+				getters.sessionsApiService.logout()
+					.then(data => {
+						if (data.message) {
+							dispatch('notification/notify', { message: data.message }, { root: true });
+						}
 
-				sessionApiService.logout().then(data => {
-					if (data.message) {
-						dispatch('notification/notify', {message: data.message}, {root:true});
-					}
-
-					commit('updateProfile', {anonymous:true});
-					resolve();
-				});
+						commit('updateProfile', { anonymous: true });
+						resolve();
+					})
+					.catch(err => {
+						dispatch('notification/log', err, { root: true });
+						reject();
+					});
 			});
 		}
 	}

@@ -10,6 +10,7 @@ import store from './store';
 import UserProfile from './components/user/user-profile.vue';
 import UserSidebar from './components/user/user-sidebar.vue';
 import StoryFeed from './components/story/story-feed.vue';
+import StorySocialBar from './components/story/story-social-bar.vue';
 
 export class VueLoader {
 	constructor(options) {
@@ -33,7 +34,8 @@ export class VueLoader {
 		this._vueComponents = {
 			UserProfile,
 			UserSidebar,
-			StoryFeed
+			StoryFeed,
+			StorySocialBar
 		};
 
 		Vue.use(VueI18n);

@@ -123,108 +123,110 @@
 				}
 			}
 
-			& > .story-social-results {
-				padding: 15px 0 0 0;
+			& > .story-social-bar {
+				& > .story-social-results {
+					padding: 15px 0 0 0;
 
-				.label {
-					font-size: 12px;
+					.label {
+						font-size: 12px;
+					}
 				}
-			}
 
-			& > .story-social {
-				padding: 15px 0 0 0;
-				border-top: 1px solid #e7e7e7;
+				& > .story-social {
+					padding: 15px 0 0 0;
+					border-top: 1px solid #e7e7e7;
 
-				.icon-social {
-					display: inline-block;
-					width: 40px;
-					height: 40px;
-					background: no-repeat center;
-					background-size: 35px 35px;
-					border: 1px solid #606770;
-					border-radius: 100px;
-					cursor: pointer;
-					box-sizing: border-box;
-					margin-right: 15px;
-					float: left;
-
-					&:hover,
-					&:focus,
-					&.active {
-						border-color: #51ab6d;
-					}
-
-
-					&:last-child {
-						margin-right: 0;
-					}
-
-					&.upvote {
-						background-image: url('/static/images/icons/praise_off.png');
-
-						&.active {
-							background-image: url('/static/images/icons/praise_on.png');
-						}
+					.icon-social {
+						display: inline-block;
+						width: 40px;
+						height: 40px;
+						background: no-repeat center;
+						background-size: 35px 35px;
+						border: 1px solid #606770;
+						border-radius: 100px;
+						cursor: pointer;
+						box-sizing: border-box;
+						margin-right: 15px;
+						float: left;
 
 						&:hover,
-						&:focus {
-							background-image: url('/static/images/icons/praise_breath.svg');
-						}
-					}
-
-					&.comment {
-						background-image: url('/static/images/icons/comments_off.png');
-
+						&:focus,
 						&.active {
-							background-image: url('/static/images/icons/comments_on.png');
+							border-color: #51ab6d;
 						}
 
-						&:hover,
-						&:focus {
-							background-image: url('/static/images/icons/comments_breath.svg');
+
+						&:last-child {
+							margin-right: 0;
 						}
+
+						&.upvote {
+							background-image: url('/static/images/icons/praise_off.png');
+
+							&.active {
+								background-image: url('/static/images/icons/praise_on.png');
+							}
+
+							&:hover,
+							&:focus {
+								background-image: url('/static/images/icons/praise_breath.svg');
+							}
+						}
+
+						&.comment {
+							background-image: url('/static/images/icons/comments_off.png');
+
+							&.active {
+								background-image: url('/static/images/icons/comments_on.png');
+							}
+
+							&:hover,
+							&:focus {
+								background-image: url('/static/images/icons/comments_breath.svg');
+							}
+						}
+
+						&.share {
+							float: right;
+							background-image: url('/static/images/icons/share_off.png');
+
+							&.active {
+								background-image: url('/static/images/icons/share_on.png');
+							}
+
+							&:hover,
+							&:focus {
+								background-image: url('/static/images/icons/share_breath.svg');
+							}
+						}
+
+						// & > img {
+						// 	width: 40px;
+						// 	height: 40px;
+						// 	display: none;
+						// }
+
+						// & > img.off {
+						// 	display: block;
+						// }
+
+						// &.active,
+						// &:hover {
+						// 	border-color: #51ab6d;
+
+						// 	& > img.off {
+						// 		display: none;
+						// 	}
+						// }
+
+						// &:hover > img.hover {
+						// 	display: block;
+						// }
+
+						// &.active > img.on {
+						// 	display: block;
+						// }
 					}
-
-					&.share {
-						float: right;
-						background-image: url('/static/images/icons/share_off.png');
-
-						&.active {
-							background-image: url('/static/images/icons/share_on.png');
-						}
-
-						&:hover,
-						&:focus {
-							background-image: url('/static/images/icons/share_breath.svg');
-						}
-					}
-
-					// & > img {
-					// 	width: 40px;
-					// 	height: 40px;
-					// 	display: none;
-					// }
-
-					// & > img.off {
-					// 	display: block;
-					// }
-
-					// &.active,
-					// &:hover {
-					// 	border-color: #51ab6d;
-
-					// 	& > img.off {
-					// 		display: none;
-					// 	}
-					// }
-
-					// &:hover > img.hover {
-					// 	display: block;
-					// }
-
-					// &.active > img.on {
-					// 	display: block;
-					// }
 				}
 			}
 		}
@@ -237,5 +239,18 @@
 			color: #51ab6d;
 			text-decoration: none;
 		}
+	}
+}
+
+.story-feed-container {
+	.btn-feed-message {
+		font-family: $secondary-font;
+		font-size: 1.5rem;
+		margin-bottom: 20px;
+		display: inline-block;
+		padding: 10px 50px;
+		color: #fff;
+		border: 1px solid #51ab6d;
+		background: linear-gradient(to bottom, #51ab6d, #418857);
 	}
 }

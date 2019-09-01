@@ -4,14 +4,20 @@ import alertify from 'Lib/alertifyjs/build/alertify.js';
 
 export default {
 	namespaced: true,
+	state: {
+		categories: null
+	},
 	getters: {
-		categories() {
-			return [
-				{ id: 'message', value: 'success' },
-				{ id: 'success', value: 'success' },
-				{ id: 'error', value: 'error' },
-				{ id: 'warning', value: 'warning' }
-			];
+		categories: (state) => {
+			if (!state.categories) {
+				state.categories = [
+					{ id: 'message', value: 'success' },
+					{ id: 'success', value: 'success' },
+					{ id: 'error', value: 'error' },
+					{ id: 'warning', value: 'warning' }
+				]
+			}
+			return state.categories;
 		},
 		findCategoryName: (state, getters) => (id) => {
 			let category = getters.categories.find(cat => cat.id === id);
@@ -24,9 +30,17 @@ export default {
 		}
 	},
 	actions: {
-		notify({ commit, getters }, payload) {
+		notify({ getters }, payload) {
 			let categoryName = getters.findCategoryName(payload.category);
 			alertify.notify(payload.message, categoryName, payload.waitSeconds || 5);
+		},
+		log({ dispatch }, payload) {
+			// capture errors raised by API
+			if (payload.message && typeof payload.message === 'string') {
+				dispatch('notify', {message: payload.message, category: 'error'});
+			}
+
+			console.log(payload);
 		}
 	}
 };
