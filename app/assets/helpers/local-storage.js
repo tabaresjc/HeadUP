@@ -2,18 +2,18 @@
 
 export class LocalStorageHelper {
 
-	constructor() {
-		this._myLocalStorageName = this._getHashCode(`${window.location.hostname}`);
-		this._myLocalStorageContainer = this._getLocalStorage(this._myLocalStorageName);
+	constructor(name) {
+		this._storageName = this._getHashCode(name);
+		this._myLocalStorageContainer = this._getLocalStorage(this._storageName);
 	}
 
 	get(key) {
-		return this._myLocalStorageContainer[key] || {};
+		return this._myLocalStorageContainer[key];
 	}
 
 	set(key, record) {
-		this._myLocalStorageContainer[key] = record || {};
-		this._setLocalStorage(this._myLocalStorageName, myLocalStorageContainer);
+		this._myLocalStorageContainer[key] = record;
+		this._setLocalStorage(this._storageName, this._myLocalStorageContainer);
 	}
 
 	/**

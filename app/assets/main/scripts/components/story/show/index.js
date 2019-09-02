@@ -1,9 +1,9 @@
 'use strict';
 
-import { AppConfig } from 'Assets/main/scripts/config';
+import { AppConfig } from 'Assets/main/scripts/appConfig';
 import $ from 'jquery';
 
-export class StoryShowModule {
+export class StoryShowComponent {
 
 	constructor(options) {
 		this._moduleId = 'story-show-page';

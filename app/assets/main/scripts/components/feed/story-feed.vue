@@ -1,7 +1,7 @@
 <template>
 	<div class="story-feed-container">
 		<section id="feed-page" class="story-feed-list">
-			<StoryItem
+			<StoryFeedItem
 				v-for="(story, $index) in stories"
 				:story="story"
 				:key="story.id" />

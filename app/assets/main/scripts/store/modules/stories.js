@@ -1,7 +1,7 @@
 'use strict';
 
 import { StoryApiService } from 'Assets/main/scripts/api';
-import $socket from 'Assets/main/scripts/socket';
+import $socket from 'Assets/main/scripts/config/socket';
 
 export default {
 	namespaced: true,

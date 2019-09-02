@@ -1,22 +1,25 @@
 'use strict';
 
-import { AppConfig } from './config';
+import { AppConfig } from 'Assets/main/scripts/appConfig';
 
 // Components
-import { MenuComponent, SidebarComponent, CommentComponent, VoteComponent } from './components';
-// modules
-import { HomeModule, StoryEditorModule, StoryShowModule } from './modules';
-import { VueLoader } from './vue';
+import {
+	MenuComponent,
+	SidebarComponent,
+	CommentComponent,
+	StoryEditorComponent,
+	StoryShowComponent
+} from 'Assets/main/scripts/components';
+
+import { VueLoader } from 'Assets/main/scripts/config/vue';
 
 const loaders = [
 	new VueLoader(),
 	new MenuComponent(),
 	new SidebarComponent(),
 	new CommentComponent(),
-	// new VoteComponent(),
-	new HomeModule(),
-	new StoryEditorModule(),
-	new StoryShowModule()
+	new StoryEditorComponent(),
+	new StoryShowComponent()
 ];
 
 // setup on ready events

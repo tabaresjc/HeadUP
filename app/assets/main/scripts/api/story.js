@@ -1,7 +1,7 @@
 'use strict';
 
 import { ApiBase } from 'Assets/helpers';
-import { AppConfig } from 'Assets/main/scripts/config';
+import { AppConfig } from 'Assets/main/scripts/appConfig';
 
 export class StoryApiService extends ApiBase {
 

@@ -3,18 +3,18 @@
 import Vue from 'vue';
 import VueI18n from 'vue-i18n';
 import VueSocketIOExt from 'vue-socket.io-extended';
-import { AppConfig } from 'Assets/main/scripts/config';
+import { AppConfig } from 'Assets/main/scripts/appConfig';
 import { LanguageApiHelper } from 'Assets/helpers';
 
 // Required components
-import $socket from  'Assets/main/scripts/socket';
-import store from './store';
+import $socket from  'Assets/main/scripts/config/socket';
+import store from 'Assets/main/scripts/store';
 
 // Vue.js components
 import UserProfile from 'Assets/main/scripts/components/user/user-profile.vue';
 import UserSidebar from 'Assets/main/scripts/components/user/user-sidebar.vue';
-import StoryFeed from 'Assets/main/scripts/components/story/story-feed.vue';
-import StorySocialBar from 'Assets/main/scripts/components/story/story-social-bar.vue';
+import StoryFeedItem from 'Assets/main/scripts/components/feed/story-feed-item.vue';
+import StorySocialBar from 'Assets/main/scripts/components/feed/story-social-bar.vue';
 
 export class VueLoader {
 	constructor(options) {
@@ -38,7 +38,7 @@ export class VueLoader {
 		this._vueComponents = {
 			UserProfile,
 			UserSidebar,
-			StoryFeed,
+			StoryFeedItem,
 			StorySocialBar
 		};
 

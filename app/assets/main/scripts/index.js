@@ -8,4 +8,4 @@ import 'regenerator-runtime/runtime';
 
 import './styles';
 import './scripts';
-import './setup';
+import './config';

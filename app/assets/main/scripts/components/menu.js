@@ -1,7 +1,7 @@
 'use strict';
 
 import $ from 'jquery';
-import { AppConfig } from 'Assets/main/scripts/config';
+import { AppConfig } from 'Assets/main/scripts/appConfig';
 
 export class MenuComponent {
 	constructor(options) {

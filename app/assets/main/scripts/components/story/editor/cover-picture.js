@@ -1,6 +1,6 @@
 'use strict';
 
-import { AppConfig } from 'Assets/main/scripts/config';
+import { AppConfig } from 'Assets/main/scripts/appConfig';
 import { SpinnerHelper } from 'Assets/helpers';
 import { PictureApiService } from 'Assets/main/scripts/api';
 

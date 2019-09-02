@@ -2,7 +2,7 @@
 
 import $ from 'jquery';
 import _ from 'lodash';
-import { AppConfig } from 'Assets/main/scripts/config';
+import { AppConfig } from 'Assets/main/scripts/appConfig';
 
 export class SidebarComponent {
 	constructor() {

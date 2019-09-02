@@ -1,6 +1,6 @@
 'use strict';
 
-import { AppConfig } from 'Assets/main/scripts/config';
+import { AppConfig } from 'Assets/main/scripts/appConfig';
 import { StoryApiService, CategoryApiService } from 'Assets/main/scripts/api';
 import { SpinnerHelper } from 'Assets/helpers';
 import { ImageUploadAdapterPlugin } from './upload';
@@ -8,7 +8,7 @@ import { CoverPicturePlugin } from './cover-picture';
 import $ from 'jquery';
 import Choices from 'choices.js';
 
-export class StoryEditorModule {
+export class StoryEditorComponent {
 
 	constructor(options) {
 		this._moduleId = 'story-editor-page';
