@@ -61,6 +61,24 @@ export default {
 					});
 			});
 		},
+		fetchItem({ commit, getters, dispatch }, id) {
+			return new Promise((resolve, reject) => {
+				getters.storyApiService.getItem(id)
+					.then(data => {
+						if (!data.story) {
+							resolve();
+							return;
+						}
+
+						commit('pushItems', [data.story]);
+						resolve(data.story);
+					})
+					.catch(err => {
+						dispatch('notification/log', err, { root: true });
+						reject();
+					});
+			});
+		},
 		vote(_, targetId) {
 			$socket.emit('vote_story', {
 				target_id: targetId

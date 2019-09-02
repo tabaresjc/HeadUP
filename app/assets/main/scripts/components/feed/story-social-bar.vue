@@ -1,18 +1,53 @@
 <template>
 	<div class="story-social-bar">
-		<div class="story-social-results clearfix">
-			<span class="label label-success" >
-				<i class="glyphicon glyphicon-heart"></i>
-				<span class="vote-results">{{ story.likes }}</span>
-			</span>
-		</div>
+		<div class="story-social push-top-20 clearfix" v-if="loaded">
+			<button type="button" class="btn btn-default upvote"
+				v-bind:class="{ active: hasVote(storyData.id) }"
+				@click="vote(storyData.id)"
+				data-toggle="tooltip"
+				:title="$t('BTN_LIKE')">
+				<i class="fas fa-heart"></i>
+				<span class="btn-text-count" v-if="storyData.likes">{{ storyData.likes }}</span>
+			</button>
 
-		<div class="story-social push-top-20 clearfix">
-			<a href="javascript:;" class="icon-social upvote"
-				v-bind:class="{ active: hasVote(story.id) }"
-				@click="vote(story.id)"></a>
-			<a :href="`${story.url}#comment-panel`" class="icon-social comment"></a>
-			<a href="javascript:;" class="icon-social share"></a>
+			<a :href="`${storyData.url}#comment-panel`" class="btn btn-default comment"
+				data-toggle="tooltip"
+				:title="$t('BTN_COMMENTS')">
+				<i class="fas fa-comments"></i>
+			</a>
+
+			<social-sharing :url="hostUrl(storyData.url)"
+							:title="storyData.title"
+							:description="storyData.extra_body"
+							:hashtags="hashTags(story)"
+							inline-template>
+				<div class="btn-group pull-right">
+					<button type="button" class="btn btn-default share"
+						data-toggle="dropdown"
+						aria-haspopup="true"
+						aria-expanded="false"
+						:title="$t('BTN_SHARE')">
+						<i class="fas fa-share"></i>
+					</button>
+					<ul class="dropdown-menu">
+						<li>
+							<network network="facebook">
+								<i class="fab fa-facebook-square"></i> Facebook
+							</network>
+						</li>
+						<li>
+							<network network="linkedin">
+								<i class="fab fa-linkedin"></i> LinkedIn
+							</network>
+						</li>
+						<li>
+							<network network="whatsapp">
+								<i class="fab fa-whatsapp-square"></i> Whatsapp
+							</network>
+						</li>
+					</ul>
+				</div>
+			</social-sharing>
 		</div>
 	</div>
 </template>
@@ -24,8 +59,16 @@ export default {
 	name: 'StorySocialBar',
 	props: {
 		story: {
-			type: Object,
-			required: true
+			type: Object
+		},
+		story_id: {
+			type: Number
+		}
+	},
+	data() {
+		return {
+			storyData: this.story,
+			loaded: false
 		}
 	},
 	computed: {
@@ -35,14 +78,51 @@ export default {
     },
 	methods: {
 		...mapActions({
+			fetchItem: 'stories/fetchItem',
 			vote: 'stories/vote'
 		}),
 		hasVote(storyId) {
-			if (!this.votes) {
+			if (!this.votes || !storyId) {
 				return false;
 			}
+
 			return this.votes.indexOf(storyId) >= 0;
+		},
+		hostUrl(url) {
+			if (!url) {
+				return '';
+			}
+			return `${window.location.protocol}//${window.location.host}${url}`;
+		},
+		hashTags(story) {
+			if (!story) {
+				return '';
+			}
+
+			let values = [
+				story.category.name
+			];
+
+			return values
+				.map(x => x.toLowerCase().replace(' ', ''))
+				.join(',');
 		}
+	},
+	created() {
+		if (!this.story_id && !this.storyData) {
+			return;
+		}
+
+		if (this.storyData) {
+			this.loaded = true;
+			return;
+		}
+
+		this.fetchItem(this.story_id)
+			.then(story => {
+				this.storyData = story;
+				this.loaded = true;
+			});
 	}
 }
 </script>

@@ -98,7 +98,7 @@ module.exports = function (config) {
 				},
 				{
 					test: /\.(woff|woff2|eot|ttf|svg)$/,
-					loader: 'url-loader?limit=1024&name=fonts/[name].[hash].[ext]'
+					loader: 'url-loader?limit=2048&name=fonts/[name].[hash].[ext]'
 				}
 			]
 		},

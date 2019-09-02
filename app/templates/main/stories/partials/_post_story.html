@@ -49,10 +49,8 @@
 			{% endif %}
 		</div>
 
-		<div class="story-social push-top-20 clearfix">
-			<a href="#" class="icon-social upvote"></a>
-			<a href="{{ post.url }}#comment-panel" class="icon-social comment"></a>
-			<a href="#" class="icon-social share">&nbsp;</a>
-		</div>
+		<story-social-bar
+			:key="{{ post.id }}"
+			:story_id="{{ post.id }}" />
 	</div>
 </div>

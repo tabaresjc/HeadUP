@@ -34,7 +34,7 @@ export class StoryShowComponent {
 
 	initEmbedMedia() {
 		if(!iframely) {
-			console.warn(`[HUP] unable to fund "iframely"`);
+			console.warn(`[HUP] unable to find "iframely"`);
 		}
 
 		let elements = document.querySelectorAll('oembed[url]');
@@ -46,6 +46,5 @@ export class StoryShowComponent {
 		elements.forEach(element => {
 			iframely.load(element, element.attributes.url.value);
 		});
-
 	}
 }

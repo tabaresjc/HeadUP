@@ -3,6 +3,8 @@
 import Vue from 'vue';
 import VueI18n from 'vue-i18n';
 import VueSocketIOExt from 'vue-socket.io-extended';
+import SocialSharing from 'vue-social-sharing';
+
 import { AppConfig } from 'Assets/main/scripts/appConfig';
 import { LanguageApiHelper } from 'Assets/helpers';
 
@@ -15,6 +17,7 @@ import UserProfile from 'Assets/main/scripts/components/user/user-profile.vue';
 import UserSidebar from 'Assets/main/scripts/components/user/user-sidebar.vue';
 
 import StoryFeed from 'Assets/main/scripts/components/feed/story-feed.vue';
+import StoryFeedItem from 'Assets/main/scripts/components/feed/story-feed-item.vue';
 import StorySocialBar from 'Assets/main/scripts/components/feed/story-social-bar.vue';
 
 export class VueLoader {
@@ -40,11 +43,17 @@ export class VueLoader {
 			UserProfile,
 			UserSidebar,
 			StoryFeed,
+			StoryFeedItem,
 			StorySocialBar
 		};
 
+		// ignore custom elements
+		Vue.config.ignoredElements = this._vueIgnoredElements();
+
 		Vue.use(VueI18n);
 		Vue.use(VueSocketIOExt, $socket, { store });
+		Vue.use(SocialSharing);
+
 		this._i18n = new VueI18n();
 
 		// load root instance of Vue
@@ -81,6 +90,12 @@ export class VueLoader {
 			this._vueApp.$mount('#app-container');
 			this._loaded = true;
 		}
+	}
+
+	_vueIgnoredElements() {
+		return [
+			'oembed'
+		];
 	}
 }
 

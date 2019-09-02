@@ -27,9 +27,11 @@
 		"pretty-checkbox": "^3.0.3",
 		"socket.io-client": "^2.2.0",
 		"vue-infinite-loading": "^2.4.4",
+		"vue-social-sharing": "^2.4.6",
 		"vue-socket.io-extended": "^4.0.0"
 	},
 	"devDependencies": {
+		"@fortawesome/fontawesome-free": "^5.10.2",
 		"assemble-webpack-loader": "^0.1.0",
 		"axios": "^0.19.0",
 		"babel-cli": "^6.26.0",
