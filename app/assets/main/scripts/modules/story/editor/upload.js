@@ -1,4 +1,4 @@
-"use strict";
+'use strict';
 
 import { AppConfig } from 'Assets/main/scripts/config';
 import { PictureApiService } from 'Assets/main/scripts/api';

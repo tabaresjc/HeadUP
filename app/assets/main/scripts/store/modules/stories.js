@@ -9,8 +9,7 @@ export default {
 		page: 1,
 		items: [],
 		itemsById: {},
-		storyApiService: null,
-		message: null
+		storyApiService: null
 	},
 	getters: {
 		page: (state) => {

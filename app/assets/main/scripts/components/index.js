@@ -1,4 +1,4 @@
-"use strict";
+'use strict';
 
 export * from './sidebar';
 export * from './menu';

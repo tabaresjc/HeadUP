@@ -3,7 +3,7 @@
 	Author: Juan Tabares
 	Date: April 2019
 */
-"use strict";
+'use strict';
 
 export * from './editor';
 export * from './show';

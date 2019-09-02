@@ -1,4 +1,4 @@
-"use strict";
+'use strict';
 
 import $ from 'jquery';
 import io from 'socket.io-client';

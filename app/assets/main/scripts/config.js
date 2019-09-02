@@ -1,4 +1,4 @@
-"use strict";
+'use strict';
 
 export const AppConfig = Object.assign({}, {
 	pictureApiUrl: '/api/pictures',

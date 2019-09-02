@@ -1,4 +1,4 @@
-"use strict";
+'use strict';
 
 import { AppConfig } from 'Assets/main/scripts/config';
 import { SpinnerHelper } from 'Assets/helpers';
