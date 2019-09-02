@@ -8,7 +8,9 @@
 		</div>
 
 		<div class="story-social push-top-20 clearfix">
-			<a href="javascript:;" class="icon-social upvote" @click="vote(story.id)"></a>
+			<a href="javascript:;" class="icon-social upvote"
+				v-bind:class="{ active: hasVote(story.id) }"
+				@click="vote(story.id)"></a>
 			<a :href="`${story.url}#comment-panel`" class="icon-social comment"></a>
 			<a href="javascript:;" class="icon-social share"></a>
 		</div>
@@ -26,10 +28,21 @@ export default {
 			required: true
 		}
 	},
+	computed: {
+      ...mapState({
+        votes: state => state.user.votes
+      })
+    },
 	methods: {
 		...mapActions({
 			vote: 'stories/vote'
-		})
+		}),
+		hasVote(storyId) {
+			if (!this.votes) {
+				return false;
+			}
+			return this.votes.indexOf(storyId) >= 0;
+		}
 	}
 }
 </script>

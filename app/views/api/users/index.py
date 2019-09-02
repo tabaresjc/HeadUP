@@ -16,3 +16,11 @@ class UsersApiView(FlaskView):
         user = current_user._get_current_object()
 
         return render_json(user=user)
+
+    @route('/stories/votes', methods=['GET'])
+    @login_required
+    def stories_votes(self):
+        user = current_user._get_current_object()
+        records = Vote.votes_by_user_id(user.id)
+        votes = map(lambda x: x.target_id, records)
+        return render_json(votes=votes)

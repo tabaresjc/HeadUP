@@ -17,4 +17,13 @@ export class UserApiService extends ApiBase {
 			method: 'GET'
 		});
 	}
+
+	getStoriesVotes() {
+		const endpoint = 'stories/votes';
+
+		return this.request({
+			url: endpoint,
+			method: 'GET'
+		});
+	}
 }

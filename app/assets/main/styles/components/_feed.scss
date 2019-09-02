@@ -150,7 +150,6 @@
 						float: left;
 
 						&:hover,
-						&:focus,
 						&.active {
 							border-color: #51ab6d;
 						}
@@ -167,8 +166,7 @@
 								background-image: url('/static/images/icons/praise_on.png');
 							}
 
-							&:hover,
-							&:focus {
+							&:hover {
 								background-image: url('/static/images/icons/praise_breath.svg');
 							}
 						}
@@ -180,8 +178,7 @@
 								background-image: url('/static/images/icons/comments_on.png');
 							}
 
-							&:hover,
-							&:focus {
+							&:hover {
 								background-image: url('/static/images/icons/comments_breath.svg');
 							}
 						}
@@ -194,38 +191,10 @@
 								background-image: url('/static/images/icons/share_on.png');
 							}
 
-							&:hover,
-							&:focus {
+							&:hover {
 								background-image: url('/static/images/icons/share_breath.svg');
 							}
 						}
-
-						// & > img {
-						// 	width: 40px;
-						// 	height: 40px;
-						// 	display: none;
-						// }
-
-						// & > img.off {
-						// 	display: block;
-						// }
-
-						// &.active,
-						// &:hover {
-						// 	border-color: #51ab6d;
-
-						// 	& > img.off {
-						// 		display: none;
-						// 	}
-						// }
-
-						// &:hover > img.hover {
-						// 	display: block;
-						// }
-
-						// &.active > img.on {
-						// 	display: block;
-						// }
 					}
 				}
 			}

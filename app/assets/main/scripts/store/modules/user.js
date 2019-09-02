@@ -6,8 +6,10 @@ export default {
 	namespaced: true,
 	state: {
 		profile: [],
+		votes: [],
 		userApiService: null,
-		sessionsApiService: null
+		sessionsApiService: null,
+		localStorage: null,
 	},
 	getters: {
 		userApiService: (state) => {
@@ -26,6 +28,23 @@ export default {
 	mutations: {
 		updateProfile(state, profile) {
 			state.profile = profile;
+		},
+		setVotes(state, votes) {
+			state.votes = votes;
+		},
+		refreshVote(state, payload) {
+			if (payload.is_upvote) {
+				state.votes.push(payload.target_id);
+				return;
+			}
+
+			let index = state.votes.indexOf(payload.target_id);
+
+			if (index < 0) {
+				return;
+			}
+
+			state.votes.splice(index, 1);
 		}
 	},
 	actions: {
@@ -38,6 +57,21 @@ export default {
 							return;
 						}
 						commit('updateProfile', data.user);
+						dispatch('fetchStoriesVotes');
+						resolve();
+					})
+					.catch(err => {
+						dispatch('notification/log', err, { root: true });
+						reject();
+					});
+			});
+		},
+		fetchStoriesVotes({ commit, getters, dispatch }) {
+			return new Promise((resolve, reject) => {
+				getters.userApiService.getStoriesVotes()
+					.then(data => {
+						let votes = data.votes || [];
+						commit('setVotes', votes);
 						resolve();
 					})
 					.catch(err => {

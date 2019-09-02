@@ -13,7 +13,8 @@ import store from 'Assets/main/scripts/store';
 // Vue.js components
 import UserProfile from 'Assets/main/scripts/components/user/user-profile.vue';
 import UserSidebar from 'Assets/main/scripts/components/user/user-sidebar.vue';
-import StoryFeedItem from 'Assets/main/scripts/components/feed/story-feed-item.vue';
+
+import StoryFeed from 'Assets/main/scripts/components/feed/story-feed.vue';
 import StorySocialBar from 'Assets/main/scripts/components/feed/story-social-bar.vue';
 
 export class VueLoader {
@@ -38,7 +39,7 @@ export class VueLoader {
 		this._vueComponents = {
 			UserProfile,
 			UserSidebar,
-			StoryFeedItem,
+			StoryFeed,
 			StorySocialBar
 		};
 

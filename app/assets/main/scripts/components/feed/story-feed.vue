@@ -25,13 +25,13 @@
 <script>
 import { mapState, mapGetters, mapActions } from 'vuex';
 import InfiniteLoading from 'vue-infinite-loading';
-import StoryItem from './story-item.vue';
+import StoryFeedItem from './story-feed-item.vue';
 
 export default {
 	name: 'StoryFeed',
 	components: {
 		InfiniteLoading,
-		StoryItem
+		StoryFeedItem
 	},
 	props: {
 		category: {type: Number},

@@ -45,14 +45,6 @@ export default {
 	},
 	props: {
 		story: {type: Object, required: true}
-	},
-	data() {
-		return {
-			page: 1,
-			stories: [],
-		};
-	},
-	methods: {
 	}
 }
 </script>

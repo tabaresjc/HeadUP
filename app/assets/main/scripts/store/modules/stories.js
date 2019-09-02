@@ -72,6 +72,7 @@ export default {
 			}
 
 			commit('updateVoteCount', payload);
+			commit('user/refreshVote', payload, { root: true });
 		}
 	}
 };
