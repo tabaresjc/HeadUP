@@ -5,7 +5,7 @@ function setupSignup() {
 		return;
 	}
 
-	var checkTOS = function() {
+	var checkTOS = function () {
 		if ($('#check_tos').is(':checked')) {
 			$('#submit-signup')
 				.removeAttr('disabled')
@@ -17,7 +17,7 @@ function setupSignup() {
 		}
 	};
 
-	var onSignupBtnClick = function(e) {
+	var onSignupBtnClick = function (e) {
 		e.preventDefault();
 		var gtagToken = $(this).data('gtag');
 
@@ -27,11 +27,11 @@ function setupSignup() {
 
 		if (gtagToken && typeof window.gtag === 'function') {
 			window.gtag('event', 'conversion', {
-					'send_to': gtagToken,
-					'event_callback': submitForm
-				});
+				'send_to': gtagToken,
+				'event_callback': submitForm
+			});
 
-			setTimeout(function() {
+			setTimeout(function () {
 				submitForm();
 			}, 2000);
 		} else {
@@ -54,22 +54,22 @@ function submitForm() {
 
 function setupMenuFunctions() {
 	// mobile side-menu slide toggler
-	$('#sidebar-nav li.element').click(function(e) {
+	$('#sidebar-nav li.element').click(function (e) {
 		e.stopPropagation();
 	});
 
-	$('#menu-toggler').click(function(e) {
+	$('#menu-toggler').click(function (e) {
 		e.stopPropagation();
 		$('body').toggleClass('menu');
 	});
 
-	$('body').click(function() {
+	$('body').click(function () {
 		if ($(this).hasClass('menu')) {
 			$(this).removeClass('menu');
 		}
 	});
 
-	$('#dashboard-menu .dropdown-toggle').click(function(e) {
+	$('#dashboard-menu .dropdown-toggle').click(function (e) {
 		e.preventDefault();
 		var $item = $(this).parent();
 		$item.toggleClass('current');
@@ -80,7 +80,7 @@ function setupMenuFunctions() {
 		}
 	});
 
-	$(window).resize(function() {
+	$(window).resize(function () {
 		if ($(this).width() > 769) {
 			$('body.menu').removeClass('menu')
 		}
@@ -88,7 +88,7 @@ function setupMenuFunctions() {
 }
 
 function setupTooltips() {
-	$('[data-toggle="tooltip"]').each(function(index, el) {
+	$('[data-toggle="tooltip"]').each(function (index, el) {
 		$(el).tooltip({
 			placement: $(this).data('placement') || 'right'
 		});
@@ -105,7 +105,7 @@ function setupStickySidebar() {
 		return;
 	}
 
-	$window.scroll(function() {
+	$window.scroll(function () {
 		if ($window.scrollTop() > offset.top) {
 			$sidebar.stop().animate({
 				marginTop: $window.scrollTop() - offset.top + topPadding
@@ -118,9 +118,67 @@ function setupStickySidebar() {
 	});
 }
 
-$(function() {
+function scanOembed() {
+	let elements = document.querySelectorAll('oembed[url]');
+
+	if (!elements || !elements.length) {
+		return;
+	}
+
+	elements.forEach(element => {
+		let url = element.attributes.url.value;
+		let params = {
+			url: url
+		};
+		$.getJSON('/api/oembed/item',
+			params,
+			function (response) {
+				let data = response.data;
+
+				if (!data.response || data.url !== url) {
+					return;
+				}
+
+				if (!data.response.html) {
+					return;
+				}
+
+				let container = document.createElement('div');
+				container.innerHTML = data.response.html;
+				container = container.childNodes[0];
+
+				container.removeAttribute('height');
+				container.removeAttribute('width');
+
+				element.parentNode.replaceChild(container, element);
+			});
+
+		// this._oembedApiService.getItem(url)
+		// 	.then(data => {
+		// 		if (!data.response || data.url !== url) {
+		// 			return;
+		// 		}
+
+		// 		if (!data.response.html) {
+		// 			return;
+		// 		}
+
+		// 		let container = document.createElement('div');
+		// 		container.innerHTML = data.response.html;
+		// 		container = container.childNodes[0];
+
+		// 		container.removeAttribute('height');
+		// 		container.removeAttribute('width');
+
+		// 		element.parentNode.replaceChild(container, element);
+		// 	});
+	});
+}
+
+$(function () {
 	setupSignup();
 	setupMenuFunctions();
 	setupTooltips();
 	setupStickySidebar();
+	scanOembed();
 });

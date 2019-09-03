@@ -7,6 +7,7 @@ export const AppConfig = Object.assign({}, {
 	sessionApiUrl: '/api/sessions',
 	userApiUrl: '/api/users',
 	languageApiUrl: '/static/data/languages',
+	oembedApiUrl: '/api/oembed',
 	screens: {
 		medium: 991
 	}

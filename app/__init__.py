@@ -67,6 +67,15 @@ from flask_babel import Babel  # noqa
 babel = Babel(app)
 
 # -------------------------------------------------------------------------
+# Load micawber for oembed
+# -------------------------------------------------------------------------
+from micawber.providers import bootstrap_basic  # noqa
+from micawber.contrib.mcflask import add_oembed_filters  # noqa
+
+oembed_providers = bootstrap_basic()
+add_oembed_filters(app, oembed_providers)
+
+# -------------------------------------------------------------------------
 # Load the app's configuration
 # -------------------------------------------------------------------------
 from app.helpers import LogHelper  # noqa

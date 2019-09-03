@@ -1,7 +1,6 @@
 'use strict';
 
-import { AppConfig } from 'Assets/main/scripts/appConfig';
-import $ from 'jquery';
+import { OEmbedApiService } from 'Assets/main/scripts/api';
 
 export class StoryShowComponent {
 
@@ -24,19 +23,15 @@ export class StoryShowComponent {
 			return;
 		}
 
-		if (!this._options.oEmbedSelector) {
-			console.warn(`[HUP] unable to initialize page`);
-			return;
-		}
-
 		this.initEmbedMedia();
 	}
 
 	initEmbedMedia() {
-		if(!iframely) {
-			console.warn(`[HUP] unable to find "iframely"`);
+		if (!this._options.oEmbedSelector) {
+			return;
 		}
 
+		this._oembedApiService = new OEmbedApiService();
 		let elements = document.querySelectorAll('oembed[url]');
 
 		if (!elements || !elements.length) {
@@ -44,7 +39,27 @@ export class StoryShowComponent {
 		}
 
 		elements.forEach(element => {
-			iframely.load(element, element.attributes.url.value);
+			let url = element.attributes.url.value;
+
+			this._oembedApiService.getItem(url)
+				.then(data => {
+					if (!data.response || data.url !== url) {
+						return;
+					}
+
+					if (!data.response.html) {
+						return;
+					}
+
+					let container = document.createElement('div');
+					container.innerHTML = data.response.html;
+					container = container.childNodes[0];
+
+					container.removeAttribute('height');
+					container.removeAttribute('width');
+
+					element.parentNode.replaceChild(container, element);
+				});
 		});
 	}
 }

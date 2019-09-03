@@ -23,3 +23,7 @@ UsersApiView.register(app.app)
 # register the sessions module
 from sessions import SessionsApiView  # noqa
 SessionsApiView.register(app.app)
+
+# register the oembed module
+from oembed import OEmbedApiView  # noqa
+OEmbedApiView.register(app.app)

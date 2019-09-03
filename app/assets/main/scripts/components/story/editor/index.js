@@ -49,8 +49,8 @@ export class StoryEditorComponent {
 		}
 
 		this._storyContainer = document.getElementById(this._options.containerId);
-		this._storyApiHelper = new StoryApiService(AppConfig.storyApiUrl);
-		this._categoryApiHelper = new CategoryApiService(AppConfig.categoryApiUrl);
+		this._storyApiService = new StoryApiService();
+		this._categoryApiService = new CategoryApiService();
 		this._spinnerHelper = new SpinnerHelper();
 		this._titleTxt = document.getElementById(this._options.titleId);
 		this._bodyTxt = document.getElementById(this._options.bodyId);
@@ -172,7 +172,7 @@ export class StoryEditorComponent {
 
 		this._updateStatus(false);
 
-		this._storyApiHelper.publish(id, data)
+		this._storyApiService.publish(id, data)
 			.then(response => {
 				this._updateStatus(true);
 				this._hasChanged = false;
@@ -198,7 +198,7 @@ export class StoryEditorComponent {
 
 		this._updateStatus(false);
 
-		this._storyApiHelper.save_draft(id, data)
+		this._storyApiService.save_draft(id, data)
 			.then(response => {
 				this._updateStatus(true);
 				this._hasChanged = false;
@@ -233,10 +233,10 @@ export class StoryEditorComponent {
 		const id = this._storyContainer.getAttribute('data-id');
 
 		if (id) {
-			return this._storyApiHelper.getItem(id)
+			return this._storyApiService.getItem(id)
 				.then(data => data.story);
 		} else {
-			return this._storyApiHelper.last_draft()
+			return this._storyApiService.last_draft()
 				.then(data => data.draft);
 		}
 	}
@@ -274,7 +274,7 @@ export class StoryEditorComponent {
 	}
 
 	_getCategories() {
-		return this._categoryApiHelper.getItems()
+		return this._categoryApiService.getItems()
 			.then(data => {
 				const items = new Array();
 

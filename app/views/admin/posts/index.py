@@ -112,6 +112,9 @@ class PostsView(FlaskView):
                                redirect=True,
                                message=_('POST_NOT_FOUND'))
 
+        if post.is_story:
+            return redirect(url_for('story.edit', id=post.id))
+
         form = PostForm(post=post)
 
         if form.is_submitted():

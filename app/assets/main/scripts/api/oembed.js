@@ -3,20 +3,20 @@
 import { ApiBase } from 'Assets/helpers';
 import { AppConfig } from 'Assets/main/scripts/appConfig';
 
-export class CategoryApiService extends ApiBase {
+export class OEmbedApiService extends ApiBase {
 
 	constructor(url) {
-		super(url || AppConfig.categoryApiUrl);
+		super(url || AppConfig.oembedApiUrl);
 	}
 
-	getItems(orderby = 'name', desc = '0') {
+	getItem(url) {
+		const endpoint = `item`;
 		const params = {
-			orderby: orderby,
-			desc: desc,
+			url: url
 		};
 
 		return this.request({
-			url: '/',
+			url: endpoint,
 			method: 'GET',
 			params: params
 		});
