@@ -36,7 +36,6 @@ export class CommentComponent {
 
 	onReplyClick(evt) {
 		evt.preventDefault();
-		console.log('onReplyClick')
 		let btn = $(evt.currentTarget);
 		let commentId = btn.attr('data-comment-id');
 

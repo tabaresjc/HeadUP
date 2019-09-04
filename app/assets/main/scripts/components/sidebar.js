@@ -1,12 +1,10 @@
 'use strict';
 
-import _ from 'lodash';
 import { AppConfig } from 'Assets/main/scripts/appConfig';
 
 export class SidebarComponent {
 	constructor() {
 		this._mediumScreenSize = AppConfig.screens.medium;
-		this._onResizeUpdateSidebar = _.debounce(this.updateSidebar.bind(this), 200);
 	}
 
 	onLoad() {
@@ -14,7 +12,7 @@ export class SidebarComponent {
 	}
 
 	onResize() {
-		this._onResizeUpdateSidebar();
+		this.updateSidebar();
 	}
 
 	updateSidebar() {

@@ -676,16 +676,12 @@
 			var i = 0;
 			$(document).scroll(function () {
 				scroll_start = $(this).scrollTop();
-				console.log(scroll_start + " > " + offset.top);
 
 				if (scroll_start > offset.top) {
 					if (i == 0) {
 						typeWriter();
-						console.log("visible now");
 						i = 1;
 					}
-				} else {
-					console.log("not visible now");
 				}
 			});
 		}

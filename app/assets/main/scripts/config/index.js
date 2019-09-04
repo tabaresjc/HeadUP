@@ -1,6 +1,7 @@
 'use strict';
 
 import { AppConfig } from 'Assets/main/scripts/appConfig';
+import { UtilHelper } from 'Assets/helpers';
 
 // Components
 import {
@@ -29,8 +30,8 @@ loaders.forEach(l => {
 	}
 });
 
-// setup on resize events
-$(window).on('resize', () => {
+
+let onResizeDebounced = UtilHelper.debounce(() => {
 	loaders.forEach(l => {
 		if (l.onResize && typeof l.onResize === 'function') {
 			try {
@@ -40,10 +41,13 @@ $(window).on('resize', () => {
 			}
 		}
 	});
-});
+}, 250);
+
+// setup on resize events
+window.addEventListener('resize', onResizeDebounced);
 
 // setup on load events
-$(window).on('load', () => {
+document.addEventListener('DOMContentLoaded', () => {
 	loaders.forEach(l => {
 		if (typeof l === 'function') {
 			l(AppConfig);

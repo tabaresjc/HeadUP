@@ -39,8 +39,6 @@ export default {
 			if (payload.message && typeof payload.message === 'string') {
 				dispatch('notify', {message: payload.message, category: 'error'});
 			}
-
-			console.log(payload);
 		}
 	}
 };

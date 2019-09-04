@@ -68,11 +68,7 @@ module.exports = function (config) {
 				},
 				{
 					test: /.js$/,
-					loader: 'babel-loader',
-					options: {
-						presets: ['env'],
-						plugins: ['transform-object-rest-spread']
-					}
+					loader: 'babel-loader'
 				},
 				{
 					test: /\.(s*)css$/,
@@ -82,7 +78,9 @@ module.exports = function (config) {
 						}, {
 							loader: 'postcss-loader',
 							options: {
-								path: path.resolve(config.APP_DIR, 'webpack/'),
+								config: {
+									path: path.resolve(config.APP_DIR, 'webpack/config'),
+								}
 							}
 						}, {
 							loader: 'sass-loader',
