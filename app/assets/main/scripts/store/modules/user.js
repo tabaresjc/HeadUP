@@ -57,7 +57,9 @@ export default {
 							return;
 						}
 						commit('updateProfile', data.user);
-						dispatch('fetchStoriesVotes');
+						if (data.user.is_authenticated) {
+							dispatch('fetchStoriesVotes');
+						}
 						resolve();
 					})
 					.catch(err => {
