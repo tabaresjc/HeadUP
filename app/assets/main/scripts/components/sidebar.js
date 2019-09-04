@@ -1,12 +1,12 @@
 'use strict';
 
-import $ from 'jquery';
 import _ from 'lodash';
 import { AppConfig } from 'Assets/main/scripts/appConfig';
 
 export class SidebarComponent {
 	constructor() {
 		this._mediumScreenSize = AppConfig.screens.medium;
+		this._onResizeUpdateSidebar = _.debounce(this.updateSidebar.bind(this), 200);
 	}
 
 	onLoad() {
@@ -14,29 +14,23 @@ export class SidebarComponent {
 	}
 
 	onResize() {
-		_.debounce(() => {
-			this.updateSidebar();
-		}, 200);
+		this._onResizeUpdateSidebar();
 	}
 
 	updateSidebar() {
 		let w = this.screenWidth();
-		let sidebarWrapper = $('.sidebar-wrapper');
-		let sidebarContainer = $('#main-sidebar');
+		let sidebarWrapper = document.querySelector('.sidebar-wrapper');
+		let sidebarContainer = document.getElementById('main-sidebar');
 
-		if (!sidebarWrapper.length || !sidebarContainer.length) {
+		if (!sidebarWrapper || !sidebarContainer) {
 			return;
 		}
 
 		if (w > this._mediumScreenSize) {
-			let ws = sidebarContainer.width();
-
-			sidebarWrapper.css({
-				'position': 'fixed',
-				'width': ws + 'px'
-			});
+			let ws = sidebarContainer.offsetWidth;
+			sidebarWrapper.setAttribute('style', `position: fixed; width:${ws - 30}px`)
 		} else {
-			sidebarWrapper.removeAttr('style');
+			sidebarWrapper.removeAttribute('style');
 		}
 	}
 
