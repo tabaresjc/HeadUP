@@ -31,6 +31,17 @@ if (!String.prototype.hu_striptags) {
 	};
 }
 
+if (!String.prototype.hu_nl2br) {
+	String.prototype.hu_nl2br = function () {
+		let s = this.trim();
+
+		return s
+			.replace('\r\n', '</br>')
+			.replace('\n', '</br>');
+	};
+}
+
+
 if (!String.prototype.hu_re) {
 	String.prototype.hu_re = function (obj) {
 		if (!obj) {
@@ -40,7 +51,7 @@ if (!String.prototype.hu_re) {
 		return Object.entries(obj).reduce(function (d, pair) {
 			const [key, value] = pair;
 			return d.replace(`%(${key})s`, value)
-					.replace(`{${key}}`, value);
+				.replace(`{${key}}`, value);
 		}, this.trim());
 	};
 }
@@ -52,3 +63,5 @@ if (!String.prototype.hu_ext_url) {
 		return `${host}${path}`;
 	};
 }
+
+

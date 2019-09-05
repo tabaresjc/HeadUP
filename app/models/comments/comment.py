@@ -11,7 +11,16 @@ class Comment(Base, sa.Model, ModelHelper):
 
     __tablename__ = 'comments'
 
-    __json_meta__ = ['id', 'text', 'created_at', 'modified_at']
+    __json_meta__ = [
+        'id',
+        'text',
+        'profile',
+        'post_id',
+        'comment_id',
+        'children',
+        'created_at',
+        'modified_at'
+    ]
 
     id = sa.Column(sa.Integer, primary_key=True)
     post_id = sa.Column(sa.Integer,
@@ -40,16 +49,35 @@ class Comment(Base, sa.Model, ModelHelper):
             self._parent_comment = Comment.get_by_id(self.comment_id)
         return self._parent_comment
 
+
+    @property
+    def profile(self):
+        if not hasattr(self, '_profile'):
+            self._profile = {
+                'id': self.user_id,
+                'name': self.user.nickname,
+                'profile_picture_url': self.user.profile_picture_url
+            }
+        return self._profile
+
     @property
     def can_edit(self):
-        from flask_login import current_user
         return (current_user.is_authenticated and
                 (self.user.id == current_user.id or current_user.is_admin))
 
     @property
     def can_delete(self):
-        from flask_login import current_user
         return (current_user.is_authenticated and
                 (self.user_id == current_user.id or
                  self.post.user_id == current_user.id or
                  current_user.is_admin))
+
+    @property
+    def children(self):
+        if not hasattr(self, '_children'):
+            self._children = []
+        return self._children
+
+    @children.setter
+    def children(self, value):
+        self._children = value

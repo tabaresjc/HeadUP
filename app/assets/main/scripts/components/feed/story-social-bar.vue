@@ -61,7 +61,7 @@ export default {
 		story: {
 			type: Object
 		},
-		story_id: {
+		storyId: {
 			type: Number
 		}
 	},
@@ -109,7 +109,7 @@ export default {
 		}
 	},
 	created() {
-		if (!this.story_id && !this.storyData) {
+		if (!this.storyId && !this.storyData) {
 			return;
 		}
 
@@ -118,7 +118,7 @@ export default {
 			return;
 		}
 
-		this.fetchItem(this.story_id)
+		this.fetchItem(this.storyId)
 			.then(story => {
 				this.storyData = story;
 				this.loaded = true;
@@ -126,5 +126,3 @@ export default {
 	}
 }
 </script>
-
-

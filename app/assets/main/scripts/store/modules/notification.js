@@ -37,8 +37,24 @@ export default {
 		log({ dispatch }, payload) {
 			// capture errors raised by API
 			if (payload.message && typeof payload.message === 'string') {
-				dispatch('notify', {message: payload.message, category: 'error'});
+				dispatch('notify', { message: payload.message, category: 'error' });
 			}
+		},
+		confirm({ dispath }, options) {
+			return new Promise((resolve, reject) => {
+				if (!options || !options.message) {
+					reject('Not enough parameters, [title, message] are required!');
+					return;
+				}
+
+				alertify.confirm(options.title || 'HeadUP', options.message,
+					() => {
+						resolve({result: 'ok'});
+					},
+					() => {
+						resolve({result: 'cancel'});
+					});
+			});
 		}
 	}
 };

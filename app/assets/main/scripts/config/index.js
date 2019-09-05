@@ -7,7 +7,6 @@ import { UtilHelper } from 'Assets/helpers';
 import {
 	MenuComponent,
 	SidebarComponent,
-	CommentComponent,
 	StoryEditorComponent,
 	StoryShowComponent
 } from 'Assets/main/scripts/components';
@@ -18,7 +17,6 @@ const loaders = [
 	new VueLoader(),
 	new MenuComponent(),
 	new SidebarComponent(),
-	new CommentComponent(),
 	new StoryEditorComponent(),
 	new StoryShowComponent()
 ];
@@ -29,7 +27,6 @@ loaders.forEach(l => {
 		l.onReady();
 	}
 });
-
 
 let onResizeDebounced = UtilHelper.debounce(() => {
 	loaders.forEach(l => {

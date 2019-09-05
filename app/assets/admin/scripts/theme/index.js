@@ -152,26 +152,6 @@ function scanOembed() {
 
 				element.parentNode.replaceChild(container, element);
 			});
-
-		// this._oembedApiService.getItem(url)
-		// 	.then(data => {
-		// 		if (!data.response || data.url !== url) {
-		// 			return;
-		// 		}
-
-		// 		if (!data.response.html) {
-		// 			return;
-		// 		}
-
-		// 		let container = document.createElement('div');
-		// 		container.innerHTML = data.response.html;
-		// 		container = container.childNodes[0];
-
-		// 		container.removeAttribute('height');
-		// 		container.removeAttribute('width');
-
-		// 		element.parentNode.replaceChild(container, element);
-		// 	});
 	});
 }
 

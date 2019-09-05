@@ -872,7 +872,7 @@ msgstr "Commenter"
 #: app/templates/src/translations.html:154
 msgid "COMMENT_DELETE_CONFIRMATION"
 msgstr ""
-"Cette action supprimera définitivement [%(text)s],\n"
+"Cette action supprimera définitivement:\n\"%(text)s\"\n"
 "Voulez-vous continuer?"
 
 #: app/templates/main/stories/show.html:92

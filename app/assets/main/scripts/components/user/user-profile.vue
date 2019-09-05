@@ -34,7 +34,7 @@ export default {
     },
 	computed: {
       ...mapState({
-        user: state => state.user.profile
+ 		user: state => state.user.profile
       })
     },
 	methods: {

@@ -20,6 +20,11 @@ import StoryFeed from 'Assets/main/scripts/components/feed/story-feed.vue';
 import StoryFeedItem from 'Assets/main/scripts/components/feed/story-feed-item.vue';
 import StorySocialBar from 'Assets/main/scripts/components/feed/story-social-bar.vue';
 
+import Comments from 'Assets/main/scripts/components/comment/comments.vue';
+import CommentList from 'Assets/main/scripts/components/comment/comment-list.vue';
+import CommentItem from 'Assets/main/scripts/components/comment/comment-item.vue';
+import CommentForm from 'Assets/main/scripts/components/comment/comment-form.vue';
+
 export class VueLoader {
 	constructor(options) {
 		this._options = Object.assign({
@@ -33,18 +38,24 @@ export class VueLoader {
 
 	start() {
 		const container = this._pageContainer = document.querySelector(this._options.containerSel);
+		const t = document.querySelector('[escape-vuejs]');
 
-		if (!container) {
+		if (!container || t) {
 			return;
 		}
 
 		this._langApiHelper = new LanguageApiHelper(AppConfig.languageApiUrl);
+
 		this._vueComponents = {
 			UserProfile,
 			UserSidebar,
 			StoryFeed,
 			StoryFeedItem,
-			StorySocialBar
+			StorySocialBar,
+			Comments,
+			CommentList,
+			CommentItem,
+			CommentForm
 		};
 
 		// ignore custom elements

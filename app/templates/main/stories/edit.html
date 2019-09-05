@@ -7,7 +7,7 @@
 {% endblock %}
 
 {% block page_wrapper %}
-<div id="story-editor-page" class="container-wrap-editor">
+<div id="story-editor-page" class="container-wrap-editor" escape-vuejs>
 	<nav class="navbar navbar-default navbar-fixed-top">
 		<div class="container clearfix">
 			<div class="pull-left">
@@ -92,7 +92,6 @@
 
 	<div class="push"></div>
 </div>
-
 <!-- footer -->
 {% include 'main/layout/footer.html' %}
 <!-- end footer -->

@@ -6,3 +6,4 @@ export * from './picture';
 export * from './user';
 export * from './session';
 export * from './oembed';
+export * from './comment';

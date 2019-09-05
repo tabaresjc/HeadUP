@@ -33,7 +33,7 @@ export class PictureApiService extends ApiBase {
 				if (callbacks && typeof callbacks.onDownloadProgress === 'function') {
 					callbacks.onDownloadProgress(progressEvent);
 				}
-			},
+			}
 		});
 
 		return this.requestUpload(options);

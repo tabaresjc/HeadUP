@@ -28,13 +28,21 @@
 
 .alertify .ajs-body {
 	font-family: Helvetica, Arial, sans-serif;
+	font-size: 1.4rem;
 	color: black;
+}
+
+.alertify .ajs-body .ajs-content {
+	white-space: pre;
+	overflow: hidden;
+	text-overflow: ellipsis;
 }
 
 .alertify.ajs-resizable .ajs-content,
 .alertify.ajs-maximized:not(.ajs-resizable) .ajs-content {
 	top: 58px;
 	bottom: 68px;
+
 }
 
 .alertify .ajs-footer {

@@ -2,7 +2,7 @@
 
 from flask import request, jsonify
 from flask_wtf import Form
-from httplib import HTTPException
+from werkzeug.exceptions import HTTPException, NotFound
 import datetime
 
 
@@ -14,7 +14,10 @@ def render_json(message=None, status=None, error=None, **kwargs):
     status_code = 200
 
     if error and isinstance(error, HTTPException):
-        status_code = error.status_code
+        status_code = error.code
+        message = error.description
+    elif error and isinstance(error, NotFound):
+        status_code = 404
         message = str(error)
     elif error and isinstance(error, Exception):
         status_code = 500

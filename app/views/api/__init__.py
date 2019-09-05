@@ -27,3 +27,7 @@ SessionsApiView.register(app.app)
 # register the oembed module
 from oembed import OEmbedApiView  # noqa
 OEmbedApiView.register(app.app)
+
+# register the comment module
+from comments import CommentsApiView  # noqa
+CommentsApiView.register(app.app)

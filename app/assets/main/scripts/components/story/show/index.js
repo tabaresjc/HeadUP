@@ -32,14 +32,16 @@ export class StoryShowComponent {
 		}
 
 		this._oembedApiService = new OEmbedApiService();
-		let elements = document.querySelectorAll('oembed[url]');
+		let elements = document.querySelectorAll('.story-body oembed[url]');
 
 		if (!elements || !elements.length) {
 			return;
 		}
 
-		elements.forEach(element => {
+		elements.forEach((element, index) => {
 			let url = element.attributes.url.value;
+			let newId = `oembed-media-${index}`;
+			element.setAttribute('id', newId);
 
 			this._oembedApiService.getItem(url)
 				.then(data => {
@@ -51,15 +53,23 @@ export class StoryShowComponent {
 						return;
 					}
 
-					let container = document.createElement('div');
-					container.innerHTML = data.response.html;
-					container = container.childNodes[0];
-
-					container.removeAttribute('height');
-					container.removeAttribute('width');
-
-					element.parentNode.replaceChild(container, element);
+					setTimeout(() => {
+						this.replaceElement(newId, data.response.html);
+					});
 				});
 		});
+	}
+
+	replaceElement(id, htmlString) {
+		let o = document.getElementById(id);
+		if (o.outerHTML) {
+			o.outerHTML = htmlString;
+		} else {
+			let to = document.createElement('div');
+			let p = o.parentNode;
+			to.innerHTML = '<!--HTML_TO_BE_REPLACED-->';
+			p.replaceChild(to, o);
+			p.innerHTML = p.innerHTML.replace('<div><!--HTML_TO_BE_REPLACED--></div>', htmlString);
+		}
 	}
 }

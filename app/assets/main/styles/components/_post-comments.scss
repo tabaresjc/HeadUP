@@ -62,8 +62,21 @@
 .panel-comment-list {
 	margin: 0;
 
-	a {
+	.btn.btn-link {
 		border-bottom: none;
+		color: #51ab6d;
+		text-decoration: none;
+		outline: none;
+		font-size: 12px;
+		line-height: 1;
+		font-weight: 400;
+
+		&:hover,
+		&:focus {
+			color: #51ab6d;
+			text-decoration: none;
+			outline: none;
+		}
 	}
 
 	.media-list {
@@ -88,6 +101,21 @@
 		}
 
 		.media-body {
+			.comment-container {
+				max-width: 100%;
+				display: block;
+
+				.text {
+					white-space: pre-line;
+					overflow-wrap: break-all;
+					word-wrap: break-word;
+					hyphens: auto;
+					max-width: 100%;
+					width: 100%;
+					display: block;
+				}
+			}
+
 			.media-footer {
 				margin-top: 20px;
 			}
@@ -107,9 +135,9 @@
 .panel-comment,
 .panel-comment-list {
 	textarea {
-		resize: none;
 		overflow: hidden;
-		max-height: 400px;
+		width: 100%;
+		padding: 15px 10px;
 	}
 
 	.form-control:focus {

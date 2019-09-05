@@ -852,7 +852,7 @@ msgstr "コメント"
 #: app/templates/main/stories/show.html:86
 #: app/templates/src/translations.html:154
 msgid "COMMENT_DELETE_CONFIRMATION"
-msgstr "[%(text)s]を完全に削除します。よろしいですか？"
+msgstr "\"%(text)s\"を完全に削除します。よろしいですか？"
 
 #: app/templates/main/stories/show.html:92
 #: app/templates/src/translations.html:155

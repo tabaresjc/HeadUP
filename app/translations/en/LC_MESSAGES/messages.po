@@ -866,7 +866,7 @@ msgstr "Comment"
 #: app/templates/src/translations.html:154
 msgid "COMMENT_DELETE_CONFIRMATION"
 msgstr ""
-"This will remove [%(text)s] permanently,\n"
+"This will permanently remove the comment:\n\"%(text)s\"\n"
 "Do you wish to continue?"
 
 #: app/templates/main/stories/show.html:92
