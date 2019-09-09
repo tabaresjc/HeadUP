@@ -3,6 +3,7 @@ const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const VueLoaderPlugin = require('vue-loader/lib/plugin');
+const MomentLocalesPlugin = require('moment-locales-webpack-plugin');
 
 module.exports = function (config) {
 	const cssFileName = config.IS_PRD ? 'css/[name].[hash:8].css' : 'css/[name].css';
@@ -19,6 +20,9 @@ module.exports = function (config) {
 	};
 
 	const plugins = [
+		new MomentLocalesPlugin({
+            localesToKeep: ['es', 'fr', 'ja'],
+        }),
 		new VueLoaderPlugin(),
 		new webpack.ProvidePlugin({
 			$: 'jquery',

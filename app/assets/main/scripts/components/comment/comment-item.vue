@@ -10,7 +10,7 @@
 		</div>
 		<div class="media-body">
 			<span class="author"><strong>{{ comment.profile.nickname }}</strong></span>
-			<span class="date text-muted">{{ comment.created_at }}</span>
+			<span class="date text-muted">{{ comment.created_at | moment('llll') }}</span>
 			<div class="comment-container">
 				<div class="text">{{ comment.text }}</div>
 			</div>

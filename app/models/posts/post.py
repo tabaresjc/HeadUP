@@ -23,8 +23,8 @@ class Post(Base, sa.Model, ModelHelper):
                      'url',
                      'cover_picture',
                      'cover_picture_id',
-                     'created_at_fmt',
-                     'modified_at_fmt',
+                     'created_at',
+                     'modified_at',
                      'category',
                      'anonymous',
                      'likes']

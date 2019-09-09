@@ -18,7 +18,7 @@
 					</li>
 					<li>
 						<span class="glyphicon glyphicon-calendar"></span>
-						<span>{{ story.created_at_fmt }}</span>
+						<span>{{ story.created_at | moment('ll') }}</span>
 					</li>
 				</ul>
 			</div>

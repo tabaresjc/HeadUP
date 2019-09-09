@@ -4,9 +4,10 @@ import Vue from 'vue';
 import VueI18n from 'vue-i18n';
 import VueSocketIOExt from 'vue-socket.io-extended';
 import SocialSharing from 'vue-social-sharing';
+import VueMoment from 'vue-moment';
 
 import { AppConfig } from 'Assets/main/scripts/appConfig';
-import { LanguageApiHelper } from 'Assets/helpers';
+import { LanguageApiHelper, MomentInstance } from 'Assets/helpers';
 
 // Required components
 import $socket from  'Assets/main/scripts/config/socket';
@@ -45,6 +46,7 @@ export class VueLoader {
 		}
 
 		this._langApiHelper = new LanguageApiHelper(AppConfig.languageApiUrl);
+		this._momentInstance = MomentInstance();
 
 		this._vueComponents = {
 			UserProfile,
@@ -64,6 +66,9 @@ export class VueLoader {
 		Vue.use(VueI18n);
 		Vue.use(VueSocketIOExt, $socket, { store });
 		Vue.use(SocialSharing);
+		Vue.use(VueMoment, {
+			moment: this._momentInstance
+		});
 
 		this._i18n = new VueI18n();
 
@@ -74,10 +79,10 @@ export class VueLoader {
 			components: this._vueComponents,
 			sockets: {
 				connect: function () {
-					console.log('[HeadUP] socket connected');
+					// console.log('[HeadUP] socket connected');
 				},
 				disconnect() {
-					console.log('[HeadUP] socket disconnected');
+					// console.log('[HeadUP] socket disconnected');
 				}
 			}
 		});

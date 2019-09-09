@@ -37,6 +37,6 @@ export class LanguageApiHelper extends ApiBase {
 }
 
 export function GetLanguage() {
-	return document.querySelector('html').getAttribute('lang');
+	return document.querySelector('html').getAttribute('lang') || 'en';
 }
 
