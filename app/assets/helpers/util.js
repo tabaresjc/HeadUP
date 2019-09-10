@@ -14,5 +14,20 @@ export const UtilHelper = {
 			timeout = setTimeout(later, wait);
 			if (callNow) func.apply(context, args);
 		};
+	},
+	smootScroll(targetElementId) {
+		const targetElement = document.getElementById(targetElementId.replace('#', ''));
+
+		if (!targetElement) {
+			return;
+		}
+
+		const yCoordinate = targetElement.getBoundingClientRect().top + window.pageYOffset;
+		const yOffset = -70;
+
+		window.scrollTo({
+			top: yCoordinate + yOffset,
+			behavior: 'smooth'
+		});
 	}
 };

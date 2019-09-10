@@ -36,6 +36,7 @@
 
 <script>
 import { mapState, mapGetters, mapActions } from 'vuex';
+import { UtilHelper } from 'Assets/helpers';
 
 export default {
 	name: 'CommentForm',
@@ -89,25 +90,9 @@ export default {
 						type: 'success'
 					});
 
-					this.jumpToComment(comment.id);
+					const elId = `comment-${comment.id}`;
+					UtilHelper.smootScroll(elId);
 				});
-		},
-		jumpToComment(commentId) {
-			const elId = `comment-${commentId}`;
-
-			const targetElement = document.getElementById(elId);
-
-			if (!targetElement) {
-				return;
-			}
-
-			const yCoordinate = targetElement.getBoundingClientRect().top + window.pageYOffset;
-			const yOffset = -10;
-
-			window.scrollTo({
-				top: yCoordinate + yOffset,
-				behavior: 'smooth'
-			});
 		}
 	}
 }
