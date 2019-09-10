@@ -7,8 +7,8 @@ import datetime
 class HttpJsonEncoder(JSONEncoder):
 
     def default(self, obj):
-        if hasattr(obj, 'isoformat'):
-            return (obj - datetime.datetime(1970, 1, 1)).total_seconds()
+        if hasattr(obj, 'strftime'):
+            return long(obj.strftime('%s'))
 
         if hasattr(obj, '__json_meta__'):
             data = {}

@@ -29,7 +29,7 @@
 				{%- endif %}
 				<li>
 					<span class="glyphicon glyphicon-calendar"></span>
-					<span>{{ post.created_at|datetimeformat('DATE') }}</span>
+					<span v-date-transform="{datetime: {{ post.created_at_unix }}, format: 'llll', isUnix: true}"></span>
 				</li>
 			</ul>
 		</div>

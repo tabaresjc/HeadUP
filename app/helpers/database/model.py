@@ -6,6 +6,20 @@ import datetime
 
 class ModelHelper(object):
 
+    @property
+    def created_at_unix(self):
+        if hasattr(self, 'created_at'):
+            return long(getattr(self, 'created_at').strftime('%s'))
+        else:
+            return None
+
+    @property
+    def modified_at_unix(self):
+        if hasattr(self, 'modified_at'):
+            return long(getattr(self, 'modified_at').strftime('%s'))
+        else:
+            return None
+
     def update(self, commit=True, **kwargs):
         for attr, value in kwargs.iteritems():
             setattr(self, attr, value)

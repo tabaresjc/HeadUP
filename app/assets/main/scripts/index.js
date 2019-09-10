@@ -8,4 +8,5 @@
 
 import './styles';
 import './scripts';
+import './directives';
 import './config';
