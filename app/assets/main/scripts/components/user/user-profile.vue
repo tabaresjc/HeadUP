@@ -3,9 +3,8 @@
 		<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 			<i class="glyphicon glyphicon-user"></i> <span class="caret"></span>
 		</button>
-
 		<ul class="dropdown-menu dropdown-menu-right">
-			<li v-if="!user.is_authenticated"><a :href="endpoints.sessions_login">{{ $t("LOGIN_BTN") }}</a></li>
+			<li v-if="!user.is_authenticated"><a href="#user-session-modal" data-toggle="modal">{{ $t("LOGIN_BTN") }}</a></li>
 			<li v-if="!user.is_authenticated"><a :href="endpoints.sessions_signup">{{ $t("REGISTER_BTN") }}</a></li>
 
 			<li v-if="user.is_authenticated"><a :href="endpoints.user_profile.replace('999999999999', `${user.id}`)">{{ $t("APP_PROFILE") }}</a></li>
@@ -28,26 +27,26 @@ export default {
     	endpoints: {type: Object}
 	},
 	data () {
-      return {
-        loading: false
-      }
+		return {
+			loading: false
+		}
     },
 	computed: {
-      ...mapState({
- 		user: state => state.user.profile
-      })
+		...mapState({
+			user: state => state.user.profile
+		})
     },
 	methods: {
-      ...mapActions({
-        fetchProfile: 'user/fetchProfile',
-		logout: 'user/logout'
-      })
+		...mapActions({
+			fetchProfile: 'user/fetchProfile',
+			logout: 'user/logout'
+		})
     },
 	created () {
-      this.loading = true
-      this.fetchProfile()
-        .then(() => this.loading = false)
-    }
+		this.loading = true
+		this.fetchProfile()
+			.then(() => this.loading = false)
+	}
 }
 </script>
 

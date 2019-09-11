@@ -51,7 +51,7 @@
 	<div class="boxed push-down-20 hidden-xs" v-if="!user.is_authenticated">
 		<div class="widget-categories">
 			<h6>{{ $t('SIDEBAR_USER_TITLE') }}</h6>
-			<a :href="endpoints.sessions_login" rel="nofollow"
+			<a href="#user-session-modal" data-toggle="modal" rel="nofollow"
 				class="btn  btn-primary btn-primary--transparent btn-lg btn-block">
 				{{ $t('LOGIN_BTN') }}
 			</a>

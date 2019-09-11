@@ -21,7 +21,7 @@
 				</div>
 				<div class="login-required" v-if="!user.is_authenticated">
 					<div class="column">
-						<a :href="endpoints.login" rel="nofollow" class="btn btn-primary">
+						<a href="#user-session-modal" data-toggle="modal" rel="nofollow" class="btn btn-primary">
 							{{ $t('LOGIN_BTN') }}
 						</a>
 						<a :href="endpoints.register" rel="nofollow" class="btn btn-primary">

@@ -13,8 +13,11 @@ class SessionsApiView(FlaskView):
     route_base = '/api/sessions'
 
     @route('/login', methods=['POST'])
-    def login(self, id):
+    def login(self):
         data = request.json
+
+        if current_user.is_authenticated:
+            logout_user()
 
         email = data.get('email', None)
         password = data.get('password', None)
@@ -23,7 +26,7 @@ class SessionsApiView(FlaskView):
         user = User.find_by_email(email)
 
         if not user or not user.check_password(password):
-            raise Exception(_('SESSIONS_ERROR_LOGIN'))
+            abort(409, _('SESSIONS_ERROR_LOGIN'))
 
         # Update the User's info
         user.last_login = user.last_seen

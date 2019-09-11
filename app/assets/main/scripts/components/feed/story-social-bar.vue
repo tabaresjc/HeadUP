@@ -3,7 +3,7 @@
 		<div class="story-social push-top-20 clearfix" v-if="loaded">
 			<button type="button" class="btn btn-default upvote"
 				v-bind:class="{ active: hasVote(storyData.id) }"
-				@click="vote(storyData.id)"
+				@click="castVote(storyData.id)"
 				data-toggle="tooltip"
 				:title="$t('BTN_LIKE')">
 				<i class="fas fa-heart"></i>
@@ -72,15 +72,39 @@ export default {
 		}
 	},
 	computed: {
-      ...mapState({
-        votes: state => state.user.votes
-      })
+		...mapState({
+			user: state => state.user.profile,
+			votes: state => state.user.votes
+		})
     },
 	methods: {
 		...mapActions({
 			fetchItem: 'stories/fetchItem',
 			vote: 'stories/vote'
 		}),
+		castVote(storyId) {
+			if (!this.user.is_authenticated) {
+				this.triggerLogin();
+				return;
+			}
+
+			this.vote(storyId)
+				.then(() => {
+					// Nothing to do
+				});
+		},
+		triggerLogin() {
+			let a = document.createElement('a');
+			a.href = '#user-session-modal';
+			a.setAttribute('data-toggle', 'modal');
+			a.style.display = 'none';
+			document.body.appendChild(a);
+
+			setTimeout(() => {
+				a.click();
+				a.parentNode.removeChild(a);
+			});
+		},
 		hasVote(storyId) {
 			if (!this.votes || !storyId) {
 				return false;

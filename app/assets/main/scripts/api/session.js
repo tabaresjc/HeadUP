@@ -9,12 +9,8 @@ export class SessionApiService extends ApiBase {
 		super(url || AppConfig.sessionApiUrl);
 	}
 
-	login(user, email) {
+	login(data) {
 		const endpoint = 'login';
-		const data = {
-			user: user,
-			email: email
-		};
 
 		return this.request({
 			url: endpoint,

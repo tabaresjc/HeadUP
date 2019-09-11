@@ -4,7 +4,7 @@ from flask import request, abort
 from flask_classy import FlaskView, route
 from flask_login import current_user, login_required
 from flask_babel import gettext as _
-from app.helpers import render_json
+from app.helpers import render_json, send_email
 from app.models import Comment, Post
 
 
@@ -46,6 +46,11 @@ class CommentsApiView(FlaskView):
             comment.comment_id = comment_id
 
         comment.save()
+
+        if comment.parent_comment:
+            send_email('reply_comment', comment)
+        else:
+            send_email('comment', post, comment)
 
         return render_json(comment=comment)
 

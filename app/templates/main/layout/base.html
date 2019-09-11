@@ -63,6 +63,12 @@
 		{% endblock %}
 
 		{% include 'shared/footer/_message.html' %}
+		<sessions-login :endpoints="{
+			sessions_login: '{{ url_for('sessions.login') }}',
+			sessions_signup: '{{ url_for('sessions.signup') }}',
+			sessions_logout: '{{ url_for('sessions.logout') }}',
+			forgot_password: '{{ url_for('sessions.forgot_password') }}'
+		}"/>
 	</div>
 
 	{% block before_script %}{% endblock %}

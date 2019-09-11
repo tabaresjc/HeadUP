@@ -38,7 +38,7 @@
 					</li>
 					{%- else %}
 					<li class="visible-xs-block">
-						<a href="{{ url_for('sessions.login') }}" rel="nofollow">
+						<a href="#user-session-modal" data-toggle="modal" rel="nofollow">
 							<span class="glyphicon glyphicon-log-in"></span>
 							<span>{{ _('LOGIN_BTN') }}</span>
 						</a>

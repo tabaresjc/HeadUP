@@ -25,6 +25,7 @@ import Comments from 'Assets/main/scripts/components/comment/comments.vue';
 import CommentList from 'Assets/main/scripts/components/comment/comment-list.vue';
 import CommentItem from 'Assets/main/scripts/components/comment/comment-item.vue';
 import CommentForm from 'Assets/main/scripts/components/comment/comment-form.vue';
+import SessionsLogin from 'Assets/main/scripts/components/sessions/sessions-login.vue';
 
 export class VueLoader {
 	constructor(options) {
@@ -57,7 +58,8 @@ export class VueLoader {
 			Comments,
 			CommentList,
 			CommentItem,
-			CommentForm
+			CommentForm,
+			SessionsLogin
 		};
 
 		// ignore custom elements

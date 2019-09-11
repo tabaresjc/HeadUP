@@ -45,19 +45,22 @@ export default {
 			}
 
 			state.votes.splice(index, 1);
+		},
+		clearVotes(state) {
+			state.votes = [];
 		}
 	},
 	actions: {
 		fetchProfile({ commit, getters, dispatch }) {
 			return new Promise((resolve, reject) => {
 				getters.userApiService.getProfile()
-					.then(data => {
-						if (!data.user) {
+					.then(response => {
+						if (!response.user) {
 							reject();
 							return;
 						}
-						commit('updateProfile', data.user);
-						if (data.user.is_authenticated) {
+						commit('updateProfile', response.user);
+						if (response.user.is_authenticated) {
 							dispatch('fetchStoriesVotes');
 						}
 						resolve();
@@ -71,10 +74,23 @@ export default {
 		fetchStoriesVotes({ commit, getters, dispatch }) {
 			return new Promise((resolve, reject) => {
 				getters.userApiService.getStoriesVotes()
-					.then(data => {
-						let votes = data.votes || [];
+					.then(response => {
+						let votes = response.votes || [];
 						commit('setVotes', votes);
 						resolve();
+					})
+					.catch(err => {
+						dispatch('notification/log', err, { root: true });
+						reject();
+					});
+			});
+		},
+		login({ getters, dispatch }, data) {
+			return new Promise((resolve, reject) => {
+				getters.sessionsApiService.login(data)
+					.then((response) => {
+						dispatch('fetchProfile');
+						resolve(response.user);
 					})
 					.catch(err => {
 						dispatch('notification/log', err, { root: true });
@@ -85,12 +101,13 @@ export default {
 		logout({ commit, getters, dispatch }) {
 			return new Promise((resolve, reject) => {
 				getters.sessionsApiService.logout()
-					.then(data => {
-						if (data.message) {
-							dispatch('notification/notify', { message: data.message }, { root: true });
+					.then(response => {
+						if (response.message) {
+							dispatch('notification/notify', { message: response.message }, { root: true });
 						}
 
 						commit('updateProfile', { anonymous: true });
+						commit('clearVotes');
 						resolve();
 					})
 					.catch(err => {
