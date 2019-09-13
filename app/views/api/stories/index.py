@@ -14,7 +14,11 @@ class StoriesApiView(FlaskView):
 
     @route('/items', methods=['GET'])
     @route('/items/<int:page>', methods=['GET'])
-    @cache.cached(query_string=True)
+    @cache.cached(
+        query_string=True,
+        timeout=Feed.CACHE_FEED_EXPIRED_AT,
+        forced_update=Feed.forced_update_posts
+    )
     def items(self, page=1):
         data = request.values
         limit = data.get('limit', 5, int)

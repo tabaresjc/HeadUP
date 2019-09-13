@@ -4,6 +4,7 @@ from app.models import Post
 import app
 import math
 import datetime
+import uuid
 
 
 class Feed:
@@ -12,6 +13,8 @@ class Feed:
     CACHE_CATEGORY_PAGE = 'stamps/category'
 
     CACHE_FEED_LIST = 'stamps/feeds.v1'
+    CACHE_FEED_POST = 'stamps/posts'
+    CACHE_FEED_EXPIRED_AT = 3600 * 24 * 7
     FEED_DEFAULT_LIMIT = 100
 
     vote_factor = 10
@@ -55,6 +58,18 @@ class Feed:
         keys = app.cache.get(cls.CACHE_FEED_LIST) or []
         for key in keys:
             app.cache.set(key, None)
+
+    @classmethod
+    def forced_update_posts(cls):
+        r = app.cache.get(cls.CACHE_FEED_POST)
+        if not r:
+            app.cache.set(cls.CACHE_FEED_POST, True, cls.CACHE_FEED_EXPIRED_AT)
+            return True
+        return False
+
+    @classmethod
+    def clear_cached_posts(cls):
+        app.cache.delete(cls.CACHE_FEED_POST)
 
     @classmethod
     def posts(cls, category_id=0, page=1, limit=10, status=Post.POST_PUBLIC, orderby='created_at', desc=True):
