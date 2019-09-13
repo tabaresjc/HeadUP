@@ -24,21 +24,21 @@
 			<div class="col-md-12 col-sm-12 col-xs-12">
 				<div class="btn-group btn-group-justified" role="group">
 					<div class="btn-group" role="group">
-						<a :href="endpoints.post_list" rel="nofollow"
+						<a :href="options.post_list" rel="nofollow"
 							class="btn  btn-primary btn-primary--transparent btn-lg">
 							<i class="glyphicon glyphicon-th-list"></i>
 							<span>{{ $t('POST_LIST') }}</span>
 						</a>
 					</div>
 					<div class="btn-group" role="group">
-						<a :href="endpoints.user_profile.replace('999999999999', `${user.id}`)" rel="nofollow"
+						<a :href="options.user_profile.replace('999999999999', `${user.id}`)" rel="nofollow"
 							class="btn  btn-primary btn-primary--transparent btn-lg">
 							<i class="glyphicon glyphicon-user"></i>
 							<span>{{ $t('APP_PROFILE') }}</span>
 						</a>
 					</div>
 					<div class="btn-group" role="group">
-						<a :href="endpoints.user_edit.replace('999999999999', `${user.id}`)" rel="nofollow"
+						<a :href="options.user_edit.replace('999999999999', `${user.id}`)" rel="nofollow"
 							class="btn  btn-primary btn-primary--transparent btn-lg">
 							<i class="glyphicon glyphicon-cog"></i>
 							<span>{{ $t('USER_EDIT') }}</span>
@@ -55,7 +55,7 @@
 				class="btn  btn-primary btn-primary--transparent btn-lg btn-block">
 				{{ $t('LOGIN_BTN') }}
 			</a>
-			<a :href="endpoints.sessions_signup" rel="nofollow"
+			<a :href="options.sessions_signup" rel="nofollow"
 				class="btn  btn-primary btn-primary--transparent btn-lg btn-block">
 				{{ $t('REGISTER_BTN') }}
 			</a>
@@ -69,10 +69,15 @@
 				v-if="story_edit_url && user.is_authenticated && story_user_id == user.id">
 				{{ $t('EDIT_STAMP_LBL') }}
 			</a>
-			<a :href="endpoints.story_new" rel="nofollow"
+			<a :href="options.story_new" rel="nofollow"
 				class="btn btn-primary btn-primary--transparent btn-lg btn-block">
 				{{ $t('POST_CREATE') }}
 			</a>
+			<div class="text-center" style="margin-top: 20px;" v-if="options.patreon_id">
+				<a :href="patreonLink()" target="_blank">
+					<img src="/static/images/sns/patreon.png" alt="Become a patron!" style="width: 60%; margin: 0 auto;">
+				</a>
+			</div>
 		</div>
 	</div>
 </div>
@@ -83,15 +88,14 @@ import {mapState, mapGetters, mapActions} from 'vuex';
 
 export default {
 	name: 'UserSidebar',
-
-	computed: {
-      ...mapState({
-        user: state => state.user.profile
-      })
-    },
 	props: {
-    	endpoints: {type: Object}
+    	options: {type: Object}
 	},
+	computed: {
+		...mapState({
+			user: state => state.user.profile
+		})
+    },
 	data() {
 		return {
 			story_edit_url: null,
@@ -99,6 +103,12 @@ export default {
 		}
 	},
 	methods: {
+		patreonLink() {
+			let target = encodeURIComponent(window.location.href);
+			let patreonId = this.options.patreon_id;
+
+			return `https://www.patreon.com/bePatron?u=${patreonId}&redirect_uri=${target}`
+		},
 		getStoryInfo() {
 			const storyEditUrl = document.querySelector('meta[property="hu:story:edit:url"]');
 			if (storyEditUrl) {

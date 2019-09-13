@@ -1,10 +1,11 @@
 <div class="sidebar-wrapper">
-	<user-sidebar :endpoints="{
+	<user-sidebar :options="{
 		sessions_login: '{{ url_for('sessions.login') }}',
 		sessions_signup: '{{ url_for('sessions.signup') }}',
 		user_profile: '{{ url_for('UsersView:get', id=999999999999) }}',
 		user_edit: '{{ url_for('UsersView:put', id=999999999999) }}',
 		post_list: '{{ url_for('PostsView:index') }}',
-		story_new: '{{ url_for('story.new') }}'
+		story_new: '{{ url_for('story.new') }}',
+		patreon_id: '{{ config.PATREON_ID }}'
 	}"/>
 </div>
