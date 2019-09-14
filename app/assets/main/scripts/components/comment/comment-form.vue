@@ -1,5 +1,5 @@
 <template>
-	<div id="comment-panel" class="row push-down-20">
+	<div id="comment-panel" class="row push-down-20" v-if="loaded">
 		<div class="col-md-12 col-sm-12 col-xs-12">
 			<div class="panel panel-default panel-comment">
 				<div class="panel-body">
@@ -52,6 +52,7 @@ export default {
 	},
 	data() {
 		return {
+			loaded: false,
 			commentMessage: ''
 		}
 	},
@@ -94,6 +95,11 @@ export default {
 					UtilHelper.smootScroll(elId);
 				});
 		}
+	},
+	mounted() {
+		setTimeout(() => {
+			this.loaded = true;
+		}, 500);
 	}
 }
 </script>
