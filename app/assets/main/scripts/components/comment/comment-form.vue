@@ -1,5 +1,5 @@
 <template>
-	<div id="comment-panel" class="row push-down-20" v-if="loaded">
+	<div id="comment-panel" class="row push-down-20" v-if="user">
 		<div class="col-md-12 col-sm-12 col-xs-12">
 			<div class="panel panel-default panel-comment">
 				<div class="panel-body">
@@ -96,10 +96,33 @@ export default {
 				});
 		}
 	},
-	mounted() {
-		setTimeout(() => {
-			this.loaded = true;
-		}, 500);
+	created() {
+		let targetElementId = (location.hash || '').replace('#', '');
+
+		if (targetElementId !== 'comment-panel') {
+			return;
+		}
+
+		window.scrollTo(0, 0);
+
+		let count = 0
+
+		function detectChange() {
+			if (count > 4) {
+				return;
+			}
+
+			let el = document.getElementById(targetElementId);
+
+			if (!el) {
+				count++;
+				setTimeout(detectChange, 250);
+			}
+
+			UtilHelper.smootScroll(targetElementId);
+		}
+
+		detectChange();
 	}
 }
 </script>

@@ -5,7 +5,6 @@ import { UtilHelper } from 'Assets/helpers';
 
 // Components
 import {
-	MenuComponent,
 	SidebarComponent,
 	StoryEditorComponent,
 	StoryShowComponent
@@ -15,7 +14,6 @@ import { VueLoader } from 'Assets/main/scripts/config/vue';
 
 const loaders = [
 	new VueLoader(),
-	new MenuComponent(),
 	new SidebarComponent(),
 	new StoryEditorComponent(),
 	new StoryShowComponent()
