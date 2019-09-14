@@ -25,7 +25,12 @@ export default {
 	mutations: {
 		pushItems(state, items) {
 			items.forEach(item => {
+				if (Object.prototype.hasOwnProperty.call(state.itemsById, item.id)) {
+					return;
+				}
+
 				const index = state.items.length;
+
 				state.itemsById[item.id] = index;
 				state.items.push(item);
 			});
