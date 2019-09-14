@@ -22,7 +22,7 @@ class PicturesApiView(FlaskView):
     @route('/upload', methods=['POST'])
     @login_required
     def upload(self):
-        data = request.json
+        data = request.values
         f = request.files.get('file')
 
         if not f:

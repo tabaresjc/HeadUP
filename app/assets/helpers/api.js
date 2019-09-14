@@ -42,7 +42,7 @@ export class ApiBase {
 			}
 		});
 
-		const data = this._buildData(data);
+		const data = this._buildData(options.data);
 
 		const config = Object.assign({
 			method: 'POST',
