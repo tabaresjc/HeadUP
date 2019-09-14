@@ -71,6 +71,9 @@ class StoriesApiView(FlaskView):
 
         story.save()
 
+        # clear related cache objects
+        Feed.clear_cached_posts()
+
         return render_json(story=story)
 
     @route('/publish/<int:id>', methods=['POST'])
@@ -89,9 +92,8 @@ class StoriesApiView(FlaskView):
 
         story.save()
 
-        # refresh the cache
-        # TODO: move to celery task
-        Feed.clear_feed_cache()
+        # clear related cache objects
+        Feed.clear_cached_posts()
 
         return render_json(story=story,
                            redirect_to=url_for('story.show', id=story.id))

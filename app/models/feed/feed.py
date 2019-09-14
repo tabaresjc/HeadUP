@@ -1,10 +1,11 @@
 # -*- coding: utf8 -*-
 
+from flask import request
 from app.models import Post
 import app
 import math
 import datetime
-import uuid
+import hashlib
 
 
 class Feed:
@@ -61,10 +62,15 @@ class Feed:
 
     @classmethod
     def forced_update_posts(cls):
-        r = app.cache.get(cls.CACHE_FEED_POST)
-        if not r:
-            app.cache.set(cls.CACHE_FEED_POST, True, cls.CACHE_FEED_EXPIRED_AT)
+        request_id = cls._make_request_id()
+
+        bucket = app.cache.get(cls.CACHE_FEED_POST) or []
+
+        if not (request_id in bucket):
+            bucket.append(request_id)
+            app.cache.set(cls.CACHE_FEED_POST, bucket, cls.CACHE_FEED_EXPIRED_AT)
             return True
+
         return False
 
     @classmethod
@@ -116,3 +122,21 @@ class Feed:
             offset = (page - 1) * limit
             records = query.order_by(order).limit(limit).offset(offset)
         return records, count
+
+
+    @classmethod
+    def _make_request_id(cls):
+        """Create a unique hash value of the current request.
+
+        Arguments will be part of the hash, and it will be sorted to keep
+        consistency.
+        """
+
+        args_as_sorted_tuple = tuple(
+            sorted((pair for pair in request.args.items(multi=True)))
+        )
+
+        args_as_bytes = str(args_as_sorted_tuple).encode()
+        hashed_args = str(hashlib.md5(args_as_bytes).hexdigest())
+
+        return '%s%s' % (request.path, hashed_args)
