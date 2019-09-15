@@ -23,7 +23,7 @@ export const UtilHelper = {
 		}
 
 		const yCoordinate = targetElement.getBoundingClientRect().top + window.pageYOffset;
-		const yOffset = -120;
+		const yOffset = -70;
 
 		window.scrollTo({
 			top: yCoordinate + yOffset,

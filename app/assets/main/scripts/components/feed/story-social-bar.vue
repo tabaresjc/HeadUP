@@ -2,17 +2,26 @@
 	<div class="story-social-bar">
 		<div class="story-social push-top-20 clearfix" v-if="loaded">
 			<button type="button" class="btn btn-default upvote"
+				v-on:click="castVote(storyData.id)"
 				v-bind:class="{ active: hasVote(storyData.id) }"
-				@click="castVote(storyData.id)"
-				data-toggle="tooltip"
-				:title="$t('BTN_LIKE')">
+				:title="$t('BTN_LIKE')"
+				data-toggle="tooltip">
 				<i class="fas fa-heart"></i>
 				<span class="btn-text-count" v-if="storyData.likes">{{ storyData.likes }}</span>
 			</button>
 
-			<a :href="`${storyData.url}#comment-panel`" class="btn btn-default comment"
-				data-toggle="tooltip"
-				:title="$t('BTN_COMMENTS')">
+			<a href="javascript:;" v-if="storyPage"
+				v-on:click="scrollToCommentSection()"
+				:title="$t('BTN_COMMENTS')"
+				class="btn btn-default comment"
+				data-toggle="tooltip">
+				<i class="fas fa-comments"></i>
+			</a>
+
+			<a :href="`${storyData.url}#comment-panel`" v-if="!storyPage"
+				:title="$t('BTN_COMMENTS')"
+				class="btn btn-default comment"
+				data-toggle="tooltip">
 				<i class="fas fa-comments"></i>
 			</a>
 
@@ -23,10 +32,10 @@
 							inline-template>
 				<div class="btn-group pull-right">
 					<button type="button" class="btn btn-default share"
+						:title="$t('BTN_SHARE')"
 						data-toggle="dropdown"
 						aria-haspopup="true"
-						aria-expanded="false"
-						:title="$t('BTN_SHARE')">
+						aria-expanded="false">
 						<i class="fas fa-share"></i>
 					</button>
 					<ul class="dropdown-menu">
@@ -54,6 +63,7 @@
 
 <script>
 import { mapState, mapGetters, mapActions } from 'vuex';
+import { UtilHelper } from 'Assets/helpers';
 
 export default {
 	name: 'StorySocialBar',
@@ -63,6 +73,10 @@ export default {
 		},
 		storyId: {
 			type: Number
+		},
+		storyPage: {
+			type: Boolean,
+			default: false
 		}
 	},
 	data() {
@@ -82,6 +96,9 @@ export default {
 			fetchItem: 'stories/fetchItem',
 			vote: 'stories/vote'
 		}),
+		scrollToCommentSection() {
+			UtilHelper.smootScroll('comment-panel');
+		},
 		castVote(storyId) {
 			if (!this.user.is_authenticated) {
 				this.triggerLogin();
