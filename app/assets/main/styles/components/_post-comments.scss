@@ -95,13 +95,17 @@
 	}
 
 	.media {
-		.author {
-			width: 100%;
-			display: block;
-		}
+
 
 		.media-body {
+			.author {
+				width: 100%;
+				display: block;
+			}
+
 			.comment-container {
+				margin-top: 15px;
+
 				max-width: 100%;
 				display: block;
 
@@ -117,7 +121,12 @@
 			}
 
 			.media-footer {
-				margin-top: 20px;
+				margin-top: 15px;
+
+				.btn.btn-link {
+					margin: 0;
+					padding: 0;
+				}
 			}
 		}
 

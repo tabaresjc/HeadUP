@@ -929,7 +929,7 @@ msgstr "読み込むページがこれ以上ありません"
 
 #: app/templates/src/translations.html:164
 msgid "READ_MORE_LBL"
-msgstr "もっと読む…"
+msgstr "(もっと読む)"
 
 #: app/templates/src/translations.html:165
 #: app/views/admin/categories/index.py:39

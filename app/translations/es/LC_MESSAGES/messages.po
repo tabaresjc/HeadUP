@@ -949,7 +949,7 @@ msgstr "No hay más páginas para cargar"
 
 #: app/templates/src/translations.html:164
 msgid "READ_MORE_LBL"
-msgstr "Leer mas..."
+msgstr "(más)"
 
 #: app/templates/src/translations.html:165
 #: app/views/admin/categories/index.py:39

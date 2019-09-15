@@ -25,7 +25,7 @@
 
 			<div class="story-body push-top-20">
 				<h3 v-if="story.body">{{ story.body.hu_striptags().hu_substring(200) }}</h3>
-				<p>{{ story.extra_body.hu_striptags().hu_substring(300) }}</p>
+				<p>{{ story.extra_body.hu_striptags().hu_substring(300) }} <a :href="story.url">{{ $t('READ_MORE_LBL') }}</a></p>
 			</div>
 
 			<StorySocialBar

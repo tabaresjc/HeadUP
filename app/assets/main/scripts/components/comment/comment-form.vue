@@ -99,7 +99,7 @@ export default {
 	created() {
 		let targetElementId = (location.hash || '').replace('#', '');
 
-		if (targetElementId !== 'comment-panel') {
+		if (!(targetElementId && targetElementId.startsWith('comment-'))) {
 			return;
 		}
 

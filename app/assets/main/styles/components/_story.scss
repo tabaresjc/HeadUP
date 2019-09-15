@@ -138,6 +138,16 @@
 				}
 			}
 
+			& > .story-read-more {
+				width: 100%;
+				margin: 5px 0;
+				a {
+					display: block;
+					font-weight: 700;
+					text-align: center;
+				}
+			}
+
 			& > .story-social-bar {
 				& > .story-social-results {
 					padding: 15px 0 0 0;

@@ -55,7 +55,7 @@ class Comment(Base, sa.Model, ModelHelper):
         if not hasattr(self, '_profile'):
             self._profile = {
                 'id': self.user_id,
-                'name': self.user.nickname,
+                'nickname': self.user.nickname,
                 'profile_picture_url': self.user.profile_picture_url
             }
         return self._profile

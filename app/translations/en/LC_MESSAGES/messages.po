@@ -944,7 +944,7 @@ msgstr "No more pages to load"
 
 #: app/templates/src/translations.html:164
 msgid "READ_MORE_LBL"
-msgstr "Read more..."
+msgstr "(more)"
 
 #: app/templates/src/translations.html:165
 #: app/views/admin/categories/index.py:39
