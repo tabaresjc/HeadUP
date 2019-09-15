@@ -1,7 +1,10 @@
 
+body, html {
+    height: 100%;
+}
+
 html {
 	background: $main-bg-color;
-	min-height: 100%;
 	&.small {
 		background-size: auto !important;
 	}
@@ -413,31 +416,31 @@ body.menu {
 	}
 }
 
-#pad-wrapper {
-	padding: 0 40px;
-	margin: 20px 0;
 
-	h4 {
-		line-height: 1.2;
-		color: #696d73;
-		margin-bottom: 20px;
-	}
-}
 
 .content {
 	min-width: 400px;
-	min-height: 620px;
-	margin-bottom: 100px;
+	min-height: 100%;
 	padding-bottom: 0;
 	overflow: hidden;
 	position: relative;
 	background: #fff;
 	margin-left: 177px;
 	border-left: 1px solid #dae3e9;
-	border-bottom: 1px solid #dae3e9;
-	box-shadow: none;
-	border-radius: 0 0 0 5px;
 	transition: margin-left 0.3s ease;
+
+	#pad-wrapper {
+		padding: 0 40px;
+		margin: 20px 0;
+		height: 100%;
+		display: block;
+
+		h4 {
+			line-height: 1.2;
+			color: #696d73;
+			margin-bottom: 20px;
+		}
+	}
 
 	&.wide-content {
 		margin-left: 0;
