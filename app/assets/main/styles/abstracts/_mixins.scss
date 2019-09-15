@@ -23,7 +23,8 @@
 	h2,
 	h3,
 	h4,
-	h5 {
+	h5,
+	h6 {
 		color: #000;
 		font-weight: 700;
 		margin: 0.75rem 0 !important;
@@ -31,12 +32,20 @@
 
 	h3 {
 		font-size: 2.25rem;
+		color: #999;
+		margin: 0 0 20px 0 !important;
 	}
+
 	h4 {
 		font-size: 2.00rem;
 	}
+
 	h5 {
 		font-size: 1.75rem;
+	}
+
+	h6 {
+		font-size: 1.50rem;
 	}
 
 	p {
@@ -56,7 +65,7 @@
 	p + h3,
 	p + h4,
 	p + figure {
-		margin-top: 15px;
+		margin-top: 20px !important;
 	}
 
 	> ul,

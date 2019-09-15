@@ -82,7 +82,14 @@ export class StoryEditorComponent {
 				] = values;
 
 				this._titleEditor.setData(this._story.title || '');
-				this._bodyEditor.setData(this._story.extra_body || '');
+
+				let body = this._story.extra_body || '';
+
+				if (this._story.body) {
+					body = `<h3>${this._story.body}</h3>${body}`;
+				}
+
+				this._bodyEditor.setData(body);
 				this._categoryChoice = this._buildStoryChoice(
 					this._categoryData.items,
 					this._story);
@@ -112,7 +119,7 @@ export class StoryEditorComponent {
 			plugins: ['Essentials', 'Paragraph']
 		};
 
-		return BalloonEditor.create(this._titleTxt, config);
+		return window.BalloonEditor.create(this._titleTxt, config);
 	}
 
 	_setupBody() {
@@ -123,14 +130,15 @@ export class StoryEditorComponent {
 			heading: {
 				options: [
 					{ model: 'paragraph', title: 'P', class: 'ck-heading_paragraph' },
-					{ model: 'heading3', view: 'h3', title: 'H1', class: 'ck-heading_heading3' },
-					{ model: 'heading4', view: 'h4', title: 'H2', class: 'ck-heading_heading4' },
-					{ model: 'heading5', view: 'h5', title: 'H3', class: 'ck-heading_heading5' }
+					{ model: 'heading3', view: 'h3', title: 'T1', class: 'ck-heading_heading3' },
+					{ model: 'heading4', view: 'h4', title: 'T2', class: 'ck-heading_heading4' },
+					{ model: 'heading5', view: 'h5', title: 'T3', class: 'ck-heading_heading5' },
+					{ model: 'heading6', view: 'h6', title: 'T4', class: 'ck-heading_heading5' }
 				]
 			}
 		};
 
-		return BalloonEditor.create(this._bodyTxt, config);
+		return window.BalloonEditor.create(this._bodyTxt, config);
 	}
 
 	_setupListeners() {

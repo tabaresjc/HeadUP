@@ -34,19 +34,13 @@
 			</ul>
 		</div>
 
-		<div class="story-body push-top-30">
-			{% if post.is_story %}
-			<div class="content">{{ post.extra_body|safe }}</div>
-			{% else %}
-			<h3>{{ post.body|nl2br|linkify|safe }}</h3>
-			<div class="content push-top-30">
-				{% if post.editor_version %}
-					{{ post.extra_body|linkify|safe }}
-				{% else %}
-					{{ post.extra_body|nl2br|linkify|safe }}
+		<div class="story-body push-top-20">
+			<div class="content">
+				{% if not post.is_story %}
+				<h3>{{ post.body|nl2br|linkify|safe }}</h3>
 				{% endif %}
+				{{ post.extra_body|safe }}
 			</div>
-			{% endif %}
 		</div>
 
 		<story-social-bar
