@@ -24,6 +24,14 @@ def datetimeformat(eval_ctx, value, kind='LONG_DATETIME'):
 
 @app.app.template_filter()
 @evalcontextfilter
+def timestampformat(eval_ctx, value):
+    if hasattr(value, 'strftime'):
+        return long(value.strftime('%s'))
+    return '0'
+
+
+@app.app.template_filter()
+@evalcontextfilter
 def humanformat(eval_ctx, value):
     if not value:
         return ''

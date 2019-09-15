@@ -10,8 +10,14 @@
 				<a href="{{ url_for('UsersView:get',id=current_user.id) }}">
 					<img alt="{{ current_user.name }}" class="img-thumbnail" src="{{ current_user.profile_picture_url or '/static/images/user-neutral.png' }}">
 				</a>
-				<div><strong>{{ _('USER_EMAIL')}}</strong><br/>{{ current_user.email  }}</div>
-				<div><strong>{{ _('USER_LAST_ACCESS')}}</strong><br/>{{ current_user.last_seen|datetimeformat  }}</div>
+				<div>
+					<strong>{{ _('USER_EMAIL')}}</strong><br/>
+					{{ current_user.email }}
+				</div>
+				<div>
+					<strong>{{ _('USER_LAST_ACCESS')}}</strong><br/>
+					<span data-timestamp="{{ current_user.last_seen | timestampformat }}" data-timestamp-format="llll"></span>
+				</div>
 			</div>
 			<div class="panel-footer text-center">
 				<div class="btn-group">

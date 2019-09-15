@@ -155,10 +155,51 @@ function scanOembed() {
 	});
 }
 
+export function GetLanguage() {
+	return document.querySelector('html').getAttribute('lang') || 'en';
+}
+
+let m = null;
+
+function MomentInstance() {
+	if (!window.moment) {
+		return m;
+	}
+
+	if (!m) {
+		m = window.moment;
+		let lang = GetLanguage();
+		m.locale(lang);
+	}
+	return m;
+}
+
+function timeStampElements() {
+	let m = MomentInstance();
+
+	if (!m) {
+		return;
+	}
+
+	let elements = document.querySelectorAll('[data-timestamp]');
+
+	if (!elements || !elements.length) {
+		return;
+	}
+
+	elements.forEach(element => {
+		let value = element.getAttribute('data-timestamp');
+		let format = element.getAttribute('data-timestamp-format');
+
+		element.innerHTML = m(value * 1000).format(format || 'll');
+	});
+}
+
 $(function () {
 	setupSignup();
 	setupMenuFunctions();
 	setupTooltips();
 	setupStickySidebar();
 	scanOembed();
+	timeStampElements();
 });
