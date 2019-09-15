@@ -416,8 +416,6 @@ body.menu {
 	}
 }
 
-
-
 .content {
 	min-width: 400px;
 	min-height: 100%;
@@ -449,10 +447,6 @@ body.menu {
 	/* starts skins changer */
 	.skins-nav {
 		opacity: 1;
-		-webkit-transition: right 0.3s;
-		-moz-transition: right 0.3s;
-		-ms-transition: right 0.3s;
-		-o-transition: right 0.3s;
 		transition: right 0.3s;
 		position: fixed;
 		right: -88px;

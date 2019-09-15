@@ -29,16 +29,11 @@ class UserForm(FlaskForm):
     ])
     confirm_password = PasswordField(
         _lg('USER_CONFIRM'), [validators.Optional()])
-    timezone = SelectField(_lg('USER_TIMEZONE'), choices=get_timezones())
 
     def __init__(self, user=None, *args, **kwargs):
         super(UserForm, self).__init__(*args, **kwargs)
-
-        if not user:
-            self.timezone.data = config.DEFAULT_TIMEZONE
 
         if not self.is_submitted() and user:
             self.email.data = user.email
             self.nickname.data = user.nickname
             self.role_id.data = user.role_id
-            self.timezone.data = user.timezone
