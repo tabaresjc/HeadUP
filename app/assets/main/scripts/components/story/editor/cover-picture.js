@@ -38,22 +38,25 @@ export class CoverPicturePlugin {
 
 	_setupListeners() {
 		// monitor changes on the file reader
-		this._fileReader.addEventListener('load', () => {
+		this._fileReader.addEventListener('load', (e) => {
+			let file = this._fileReader.file;
 			this._updateStatus(false);
-			this._upload()
+			this._upload(file)
 				.then(response => {
 					this._updateStatus(true);
 					this._options.picture = response.picture;
 					this._updateCoverPicture();
 				})
-				.catch(error => {
+				.catch(() => {
 					this._updateStatus(true);
 				});
 		}, false);
 
 		// monitor changes on the input file
 		this._inputFile.addEventListener('change', () => {
-			this._fileReader.readAsDataURL(this._inputFile.files[0]);
+			let file = this._inputFile.files[0];
+			this._fileReader.file = file;
+			this._fileReader.readAsDataURL(file);
 		});
 
 		// trigger the input file to search for a picture
@@ -70,15 +73,43 @@ export class CoverPicturePlugin {
 
 			this._updateStatus(false);
 			this._remove()
-				.then(response => {
+				.then(() => {
 					this._updateStatus(true);
 					this._options.picture = null;
 					this._updateCoverPicture();
 				})
-				.catch(error => {
+				.catch(() => {
 					this._updateStatus(true);
 				});
 		});
+
+		['dragenter', 'dragover'].forEach(eventName => {
+			this._coverPicture.addEventListener(eventName, (e) => {
+				e.preventDefault();
+				e.stopPropagation();
+				this._coverPicture.classList.add('highlight');
+			}, false);
+		});
+
+		['dragleave', 'drop'].forEach(eventName => {
+			this._coverPicture.addEventListener(eventName, (e) => {
+				e.preventDefault();
+				e.stopPropagation();
+				this._coverPicture.classList.remove('highlight');
+			}, false);
+		});
+
+		this._coverPicture.addEventListener('drop', (e) => {
+			if (this._coverPicture.classList.contains('has-picture')) {
+				// ignore in this sitation
+				return;
+			}
+
+			let dt = e.dataTransfer;
+			let file = dt.files[0];
+			this._fileReader.file = file;
+			this._fileReader.readAsDataURL(file);
+		}, false);
 	}
 
 	_updateCoverPicture() {
@@ -94,9 +125,9 @@ export class CoverPicturePlugin {
 		this._coverPicture.classList.add('has-picture');
 	}
 
-	_upload() {
+	_upload(file) {
 		const data = {
-			'file': this._inputFile.files[0],
+			'file': file,
 			'post_id': this._options.post_id,
 		};
 

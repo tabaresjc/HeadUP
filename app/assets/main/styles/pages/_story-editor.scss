@@ -73,6 +73,10 @@
 			height: $cover-picture-height;
 		}
 
+		&.highlight {
+			border-color: red;
+		}
+
 		span {
 			cursor: pointer;
 		}
