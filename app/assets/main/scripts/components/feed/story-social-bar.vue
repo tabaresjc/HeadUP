@@ -53,6 +53,9 @@
 							<network network="whatsapp">
 								<i class="fab fa-whatsapp-square"></i> Whatsapp
 							</network>
+							<network network="email">
+								<i class="fas fa-envelope"></i> Email
+							</network>
 						</li>
 					</ul>
 				</div>
