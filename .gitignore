@@ -17,6 +17,7 @@ eggs/
 parts/
 sdist/
 var/
+/.env/
 *.egg-info/
 .installed.cfg
 *.egg
@@ -68,25 +69,7 @@ media/
 /tmp/
 
 # ignore generated files
-/static/assets/headsup/styles/main*.css
-/static/assets/headsup/styles/home*.css
-/static/assets/headsup/styles/vendor*.css
-/static/assets/headsup/styles/base/main*.css
-/static/assets/headsup/scripts/main*.js
-/static/assets/headsup/scripts/home*.js
-/static/assets/headsup/fonts/bootstrap/
-app/templates/main/staging/
-app/templates/main/layout/base.html
-app/templates/main/layout/home.html
-
-/static/assets/admin/styles/main*.css
-/static/assets/admin/styles/vendor*.css
-/static/assets/admin/styles/base/main*.css
-/static/assets/admin/styles/base/vendor*.css
-/static/assets/admin/scripts/main*.js
-/static/assets/admin/fonts/bootstrap/
-app/templates/admin/staging/
-app/templates/admin/layout/base.html
+/app/templates/shared/assets/
 
 # ignore cache folder
 /cache/
@@ -95,14 +78,6 @@ app/templates/admin/layout/base.html
 /logs/
 
 # ignore vs-code settings
-\.vscode/settings\.json
-
-*.code-workspace
-
-.vscode/
-
-env/
-
-app/templates/shared/assets/scripts/
-
-app/templates/shared/assets/styles/
+/.vscode/
+/*.code-workspace
+/env/

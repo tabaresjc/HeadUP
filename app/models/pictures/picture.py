@@ -4,9 +4,9 @@ from flask_login import current_user
 from flask import url_for
 from app import sa
 from app.models import Base
-from app.helpers import ModelHelper, MutableObject
-from config import UPLOAD_MEDIA_PICTURES_PATH
+from app.helpers import ModelHelper, MutableObject, process_image_file
 import datetime
+import config
 import os
 
 
@@ -14,7 +14,12 @@ class Picture(Base, sa.Model, ModelHelper):
 
     __tablename__ = 'pictures'
 
-    __json_meta__ = ['id', 'image_url', 'user_id']
+    __json_meta__ = ['id', 'user_id', 'image_url', 'image_url_org',
+                     'image_url_sd', 'image_url_md', 'image_url_sm']
+
+    SIZE_SD = 1028
+    SIZE_MD = 512
+    SIZE_SM = 256
 
     id = sa.Column(sa.Integer, primary_key=True)
 
@@ -29,38 +34,45 @@ class Picture(Base, sa.Model, ModelHelper):
     def __repr__(self):  # pragma: no cover
         return '<Picture %r>' % (self.id)
 
-    def save_file(self, fileObj, user=None):
+    def save_file(self, f, user=None):
         sa.session.begin(subtransactions=True)
         try:
-            import hashlib
-            extension = fileObj.filename.split('.')[-1]
-
-            h = hashlib.new('md5')
-            h.update(fileObj.filename)
-            h.update(datetime.datetime.utcnow().isoformat())
-
-            self.extension = extension.lower()
-            self.name = u'%s.%s' % (h.hexdigest(), self.extension)
             # associate this picture with the user
             self.user_id = user.id if user else None
+
+            # process the image file
+            process_image_file(self, f)
+
+            # save the current session
             sa.session.add(self)
-
-            # attempt to save the file
-            fileObj.save(os.path.join(UPLOAD_MEDIA_PICTURES_PATH, self.name))
-
-            # is not saved yet!
             self.save()
         except Exception as e:
             sa.session.rollback()
             raise e
 
     def remove(self, commit=True):
-        os.remove(os.path.join(UPLOAD_MEDIA_PICTURES_PATH, self.name))
+        os.remove(os.path.join(config.UPLOAD_MEDIA_PICTURES_PATH, self.name))
         Picture.delete(self.id, commit=commit)
 
     @property
     def image_url(self):
         return url_for('pictures', name=self.name)
+
+    @property
+    def image_url_org(self):
+        return url_for('pictures', name=self.name_org)
+
+    @property
+    def image_url_sd(self):
+        return url_for('pictures', name=self.name_sd)
+
+    @property
+    def image_url_md(self):
+        return url_for('pictures', name=self.name_md)
+
+    @property
+    def image_url_sm(self):
+        return url_for('pictures', name=self.name_sm)
 
     @property
     def name(self):
@@ -69,6 +81,38 @@ class Picture(Base, sa.Model, ModelHelper):
     @name.setter
     def name(self, value):
         return self.set_attribute('name', value)
+
+    @property
+    def name_org(self):
+        return self.get_attribute('name_org', '')
+
+    @name_org.setter
+    def name_org(self, value):
+        return self.set_attribute('name_org', value)
+
+    @property
+    def name_sd(self):
+        return self.get_attribute('name_sd', '')
+
+    @name_sd.setter
+    def name_sd(self, value):
+        return self.set_attribute('name_sd', value)
+
+    @property
+    def name_md(self):
+        return self.get_attribute('name_md', '')
+
+    @name_md.setter
+    def name_md(self, value):
+        return self.set_attribute('name_md', value)
+
+    @property
+    def name_sm(self):
+        return self.get_attribute('name_sm', '')
+
+    @name_sm.setter
+    def name_sm(self, value):
+        return self.set_attribute('name_sm', value)
 
     @property
     def extension(self):

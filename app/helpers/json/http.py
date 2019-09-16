@@ -1,13 +1,14 @@
 # -*- coding: utf8 -*-
 
 from flask.json import JSONEncoder
+import datetime
 
 
 class HttpJsonEncoder(JSONEncoder):
 
     def default(self, obj):
-        if hasattr(obj, 'isoformat'):
-            return obj.isoformat()
+        if hasattr(obj, 'strftime'):
+            return long(obj.strftime('%s'))
 
         if hasattr(obj, '__json_meta__'):
             data = {}

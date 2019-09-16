@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-04-23 19:43+0900\n"
+"POT-Creation-Date: 2019-09-16 02:18+0000\n"
 "PO-Revision-Date: 2017-07-15 16:34+0900\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: fr\n"
@@ -16,603 +16,644 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Generated-By: Babel 2.5.3\n"
+"Generated-By: Babel 2.6.0\n"
 
-#: app/configuration/session.py:10
+#: app/configuration/session.py:10 app/templates/src/translations.html:1
 msgid "APP_LOGIN_WARNING_MESSAGE"
 msgstr "ページにアクセスするにはログインしてください。"
 
-#: app/configuration/session.py:22
+#: app/configuration/session.py:22 app/templates/src/translations.html:2
 msgid "APP_SIGNIN_WARNING_MESSAGE"
-msgstr ""
-"続けるにはサインインかサインアップをしてください。"
+msgstr "続けるにはサインインかサインアップをしてください。"
 
-#: app/filters/formats.py:23
+#: app/filters/formats.py:39 app/templates/src/translations.html:3
 msgid "APP_PUBLISHED_AGO"
 msgstr "%(ago)sに作成した。"
 
 #: app/helpers/email/actions/comment.py:16
+#: app/templates/src/translations.html:4
 msgid "EMAIL_COMMENT_TITLE"
 msgstr "%(name)s が \"%(title)s\"にコメントしました。"
 
 #: app/helpers/email/actions/comment.py:39
+#: app/templates/src/translations.html:5
 msgid "EMAIL_REPLY_COMMENT_TITLE"
 msgstr "%(name)s が\"%(title)s\"へ返事をしました。"
 
 #: app/helpers/email/actions/registration.py:13
+#: app/templates/src/translations.html:6
 msgid "EMAIL_REGISTRATION_TITLE"
 msgstr "ようこそ %(name)s!"
 
 #: app/helpers/email/actions/reset_password.py:13
+#: app/templates/src/translations.html:7
 msgid "EMAIL_RESET_PASSWORD_TITLE"
 msgstr "パスワードをリセットする - %(email)s"
 
 #: app/models/users/role.py:9 app/models/users/role.py:14
 #: app/templates/admin/layout/navbar.html:11
+#: app/templates/src/translations.html:8
 msgid "APP_WRITER"
 msgstr "書き手"
 
 #: app/models/users/role.py:10 app/models/users/role.py:13
 #: app/templates/admin/layout/navbar.html:11
+#: app/templates/src/translations.html:9
 msgid "APP_ADMIN"
 msgstr "アドミン"
 
-#: app/templates/admin/index.html:2
+#: app/templates/admin/index.html:2 app/templates/src/translations.html:10
 msgid "DASHBOARD_TITLE"
 msgstr "ダッシュボード"
 
-#: app/templates/admin/index.html:13
+#: app/templates/admin/index.html:14 app/templates/src/translations.html:11
 #: app/views/admin/sessions/forms/forgot_password.py:9
 #: app/views/admin/sessions/forms/login.py:9
 #: app/views/admin/sessions/forms/signup.py:10
-#: app/views/admin/users/forms/user_edit.py:12
-#: app/views/admin/users/forms/user_new.py:12
+#: app/views/admin/users/forms.py:12
 msgid "USER_EMAIL"
 msgstr "メールアドレス"
 
-#: app/templates/admin/index.html:14
+#: app/templates/admin/index.html:18 app/templates/src/translations.html:12
 msgid "USER_LAST_ACCESS"
 msgstr "最後のログイン"
 
-#: app/templates/admin/index.html:20 app/templates/admin/layout/navbar.html:28
-#: app/templates/admin/layout/sidebar.html:47
-#: app/templates/main/common/_sidebar_user.html:29
-#: app/templates/main/layout/header.html:36
+#: app/templates/admin/index.html:26 app/templates/admin/layout/navbar.html:28
+#: app/templates/main/layout/header.html:30
+#: app/templates/main/pages/home.html:58 app/templates/src/translations.html:13
 msgid "APP_PROFILE"
 msgstr "プロフィール"
 
-#: app/templates/admin/index.html:24
-#: app/templates/admin/layout/sidebar.html:42
-#: app/templates/main/common/_sidebar_user.html:35
-msgid "SETTINGS_EDIT"
-msgstr "設定"
+#: app/templates/admin/index.html:30 app/templates/admin/layout/sidebar.html:15
+#: app/templates/admin/users/show.html:47
+#: app/templates/src/translations.html:14
+msgid "USER_EDIT"
+msgstr "編集"
 
-#: app/templates/admin/index.html:32 app/templates/admin/index.html:33
-#: app/templates/admin/index.html:37
-#: app/templates/admin/layout/posts/drafts.html:10
-#: app/templates/admin/layout/posts/drafts.html:19
-#: app/templates/admin/layout/posts/index.html:10
-#: app/templates/admin/layout/posts/index.html:19
+#: app/templates/admin/index.html:38 app/templates/admin/index.html:39
+#: app/templates/admin/index.html:43 app/templates/admin/posts/drafts.html:10
+#: app/templates/admin/posts/drafts.html:19
+#: app/templates/admin/posts/index.html:10
+#: app/templates/admin/posts/index.html:19
 #: app/templates/admin/users/user_posts.html:8
 #: app/templates/admin/users/user_posts.html:9
 #: app/templates/admin/users/user_posts.html:14
+#: app/templates/src/translations.html:15
 msgid "POSTS_PAG_LBL"
 msgstr "ストーリー"
 
-#: app/templates/admin/index.html:41
-#: app/templates/admin/layout/posts/drafts.html:23
-#: app/templates/admin/layout/posts/index.html:23
+#: app/templates/admin/index.html:47 app/templates/admin/posts/drafts.html:23
+#: app/templates/admin/posts/index.html:23
+#: app/templates/src/translations.html:16
 msgid "WELCOME_MESSAGE_LBL"
 msgstr "シェアしたストーリーはまだありません。<br/>ストーリーをシェアして、コミュニティに参加しましょう"
 
-#: app/templates/admin/index.html:54 app/templates/admin/layout/navbar.html:24
-#: app/templates/admin/layout/posts/index.html:7
-#: app/templates/admin/layout/posts/partials/_sidebar.html:9
+#: app/templates/admin/index.html:60 app/templates/admin/layout/navbar.html:24
 #: app/templates/admin/layout/sidebar.html:22
-#: app/templates/admin/layout/sidebar.html:27
-#: app/templates/main/common/_sidebar_user.html:23
+#: app/templates/admin/layout/sidebar.html:28
+#: app/templates/admin/posts/index.html:7
+#: app/templates/admin/posts/partials/_sidebar.html:9
+#: app/templates/main/pages/home.html:54 app/templates/src/translations.html:17
 msgid "POST_LIST"
 msgstr "ストーリー"
 
 #: app/templates/admin/categories/add.html:2
 #: app/templates/admin/categories/partials/_sidebar.html:11
+#: app/templates/src/translations.html:18
 msgid "CATEGORY_CREATE"
 msgstr "カテゴリーを作成する"
 
 #: app/templates/admin/categories/edit.html:2
+#: app/templates/src/translations.html:19
 msgid "CATEGORY_EDIT_PAGE_TITLE"
 msgstr "カテゴリーを編集する: %(name)s"
 
 #: app/templates/admin/categories/index.html:2
+#: app/templates/src/translations.html:20
 msgid "CATEGORY_PAGE_TITLE"
 msgstr "カテゴリー | %(page)s"
 
 #: app/templates/admin/categories/index.html:7
 #: app/templates/admin/categories/partials/_sidebar.html:5
-#: app/templates/admin/layout/sidebar.html:64
+#: app/templates/admin/layout/sidebar.html:42
+#: app/templates/src/translations.html:21
 msgid "CATEGORY_LIST"
 msgstr "カテゴリー"
 
 #: app/templates/admin/categories/index.html:12
 #: app/templates/admin/categories/index.html:13
 #: app/templates/admin/categories/index.html:53
+#: app/templates/src/translations.html:22
 msgid "CATEGORY_PAG_LBL"
 msgstr "カテゴリー"
 
 #: app/templates/admin/categories/index.html:17
+#: app/templates/src/translations.html:23
 #: app/views/admin/categories/forms/category.py:9
 msgid "CATEGORY_NAME"
 msgstr "名前"
 
 #: app/templates/admin/categories/index.html:18
-#: app/views/admin/categories/forms/category.py:10
+#: app/templates/src/translations.html:24
+#: app/views/admin/categories/forms/category.py:11
 msgid "CATEGORY_SLUG"
 msgstr "エイリアス"
 
 #: app/templates/admin/categories/index.html:19
-#: app/views/admin/categories/forms/category.py:11
+#: app/templates/src/translations.html:25
+#: app/views/admin/categories/forms/category.py:12
 msgid "CATEGORY_DESC"
 msgstr "説明"
 
 #: app/templates/admin/categories/index.html:20
-#: app/templates/admin/layout/sidebar.html:72
-#: app/templates/admin/layout/sidebar.html:77
+#: app/templates/admin/layout/sidebar.html:49
+#: app/templates/admin/layout/sidebar.html:56
 #: app/templates/admin/users/index.html:9
 #: app/templates/admin/users/partials/_sidebar.html:29
+#: app/templates/src/translations.html:26
 msgid "USER_LIST"
 msgstr "ユーザー"
 
 #: app/templates/admin/categories/index.html:21
+#: app/templates/src/translations.html:27
 msgid "CATEGORY_ACTIONS"
 msgstr "Actions"
 
 #: app/templates/admin/categories/index.html:36
+#: app/templates/src/translations.html:28
 msgid "CATEGORY_EDIT"
 msgstr "カテゴリーを編集する"
 
 #: app/templates/admin/categories/index.html:41
 #: app/templates/admin/categories/partials/_sidebar.html:17
+#: app/templates/src/translations.html:29
 msgid "CATEGORY_DELETE_CONFIRMATION"
 msgstr "[%(name)s] を完全に削除します。削除しますか？"
 
 #: app/templates/admin/categories/index.html:43
 #: app/templates/admin/categories/partials/_sidebar.html:19
 #: app/templates/admin/categories/partials/_sidebar.html:21
+#: app/templates/src/translations.html:30
 msgid "CATEGORY_DELETE"
 msgstr "カテゴリーの削除"
 
 #: app/templates/admin/categories/transfer.html:2
+#: app/templates/src/translations.html:31
 msgid "CATEGORY_TRANSFER_TITLE"
 msgstr "Transfer categories"
 
 #: app/templates/admin/categories/partials/_category_form_add.html:3
 #: app/templates/admin/categories/partials/_category_form_edit.html:3
+#: app/templates/src/translations.html:32
 msgid "CATEGORY_NAME_PLACEHOLDER"
 msgstr "名前を入れる"
 
 #: app/templates/admin/categories/partials/_category_form_add.html:4
 #: app/templates/admin/categories/partials/_category_form_edit.html:4
+#: app/templates/src/translations.html:33
 msgid "CATEGORY_SLUG_PLACEHOLDER"
 msgstr "エイリアスを入れる"
 
 #: app/templates/admin/categories/partials/_category_form_add.html:5
 #: app/templates/admin/categories/partials/_category_form_edit.html:5
+#: app/templates/src/translations.html:34
 msgid "CATEGORY_DESC_PLACEHOLDER"
 msgstr "カテゴリーの説明をしてください"
 
 #: app/templates/admin/categories/partials/_category_form_add.html:7
 #: app/templates/admin/categories/partials/_category_form_edit.html:7
-#: app/templates/admin/layout/posts/partials/_post_edit.html:36
-#: app/templates/admin/layout/posts/partials/_sidebar.html:45
-#: app/templates/admin/users/add.html:32
-#: app/templates/admin/users/edit.html:28
-#: app/templates/admin/users/password.html:21
-#: app/templates/admin/users/settings_email_notifications.html:14
+#: app/templates/admin/posts/partials/_post_edit.html:36
+#: app/templates/admin/posts/partials/_sidebar.html:45
+#: app/templates/admin/users/add.html:28 app/templates/admin/users/edit.html:28
+#: app/templates/main/stories/edit.html:86
+#: app/templates/src/translations.html:35
 msgid "BTN_SAVE_LBL"
 msgstr "保存"
 
 #: app/templates/admin/categories/partials/_category_form_add.html:8
 #: app/templates/admin/categories/partials/_category_form_edit.html:8
 #: app/templates/admin/categories/partials/_transfer_post.html:12
-#: app/templates/admin/users/add.html:31
-#: app/templates/admin/users/edit.html:27
-#: app/templates/admin/users/password.html:20
+#: app/templates/admin/users/add.html:27 app/templates/admin/users/edit.html:27
+#: app/templates/src/translations.html:36
 msgid "BTN_CLEAR_LBL"
 msgstr "削除"
 
 #: app/templates/admin/categories/partials/_sidebar.html:27
 #: app/templates/admin/categories/partials/_transfer_post.html:4
+#: app/templates/src/translations.html:40
 msgid "CATEGORY_TRANSFER_POSTS"
 msgstr "ストーリーを転送する"
 
 #: app/templates/admin/categories/partials/_transfer_post.html:13
+#: app/templates/src/translations.html:41
 msgid "BTN_TRANSFER_LBL"
 msgstr "転送"
 
 #: app/templates/admin/layout/navbar.html:16
+#: app/templates/src/translations.html:42
 msgid "APP_WELCOME_LBL"
 msgstr "ようこそ, %(name)s　"
 
 #: app/templates/admin/layout/navbar.html:20
+#: app/templates/src/translations.html:43
 msgid "APP_YOUR_ACCOUNT"
 msgstr "あなたのアカウント"
 
 #: app/templates/admin/layout/navbar.html:25
-#: app/templates/admin/layout/posts/partials/_sidebar.html:14
-#: app/templates/admin/layout/sidebar.html:30
+#: app/templates/admin/layout/sidebar.html:32
+#: app/templates/admin/posts/partials/_sidebar.html:14
+#: app/templates/main/pages/home.html:55 app/templates/src/translations.html:44
 msgid "POST_DRAFT_LIST"
 msgstr "下書き"
 
 #: app/templates/admin/layout/navbar.html:26
-#: app/templates/admin/layout/posts/edit.html:2
-#: app/templates/admin/layout/posts/partials/_sidebar.html:4
-#: app/templates/admin/layout/sidebar.html:33
-#: app/templates/main/common/_sidebar_user.html:70
-#: app/templates/main/layout/error-base.html:32
+#: app/templates/admin/layout/sidebar.html:36
+#: app/templates/admin/posts/edit.html:2
+#: app/templates/admin/posts/partials/_sidebar.html:4
+#: app/templates/main/layout/error-base.html:35
+#: app/templates/main/pages/home.html:56 app/templates/main/stories/edit.html:2
+#: app/templates/src/translations.html:45
 msgid "POST_CREATE"
 msgstr "新しいストーリー"
 
 #: app/templates/admin/layout/navbar.html:32
+#: app/templates/src/translations.html:46
 msgid "APP_TOP"
 msgstr "トップ"
 
 #: app/templates/admin/layout/navbar.html:37
-#: app/templates/admin/layout/sidebar.html:89
-#: app/templates/main/layout/header.html:42
-#: app/templates/main/layout/header.html:87
+#: app/templates/admin/layout/sidebar.html:97
+#: app/templates/main/layout/header.html:36
+#: app/templates/main/pages/home.html:59 app/templates/main/pages/home.html:60
+#: app/templates/src/translations.html:47
 msgid "APP_SIGN_OUT"
 msgstr "サインアウト"
 
-#: app/templates/admin/layout/sidebar.html:6
+#: app/templates/admin/layout/sidebar.html:3
+#: app/templates/src/translations.html:48
 msgid "APP_HOME_LBL"
 msgstr "ホーム"
 
-#: app/templates/admin/layout/sidebar.html:13
-#: app/templates/main/layout/error-base.html:27
-#: app/templates/main/layout/header-no-menu.html:28
-#: app/templates/main/layout/header.html:26
+#: app/templates/admin/layout/sidebar.html:9
+#: app/templates/main/layout/error-base.html:30
+#: app/templates/main/layout/header-no-menu.html:25
+#: app/templates/main/layout/header.html:21
+#: app/templates/src/translations.html:49
 msgid "APP_MYPAGE"
 msgstr "マイページ"
 
-#: app/templates/admin/layout/sidebar.html:50
-#: app/templates/admin/sessions/signin.html:12
-#: app/templates/admin/sessions/signup.html:14
-#: app/views/admin/sessions/forms/login.py:10
-#: app/views/admin/sessions/forms/signup.py:13
-#: app/views/admin/users/forms/password.py:12
-#: app/views/admin/users/forms/user_new.py:28
-msgid "USER_PASSWORD"
-msgstr "パスワード"
-
-#: app/templates/admin/layout/sidebar.html:53
-msgid "USER_EMAIL_NOTIFICATION"
-msgstr "メールとお知らせ"
-
-#: app/templates/admin/layout/sidebar.html:80
+#: app/templates/admin/layout/sidebar.html:60
 #: app/templates/admin/users/add.html:2 app/templates/admin/users/add.html:11
 #: app/templates/admin/users/partials/_sidebar.html:55
+#: app/templates/src/translations.html:50
 msgid "USER_CREATE"
 msgstr "新しいユーザー"
 
-#: app/templates/admin/layout/posts/drafts.html:2
+#: app/templates/admin/posts/drafts.html:2
+#: app/templates/src/translations.html:51
 msgid "POSTS_DRAFT_PAGE_TITLE"
 msgstr "下書き | %(page)s"
 
-#: app/templates/admin/layout/posts/drafts.html:7
+#: app/templates/admin/posts/drafts.html:7
+#: app/templates/src/translations.html:52
 msgid "POSTS_DRAFT_LIST"
 msgstr "下書き"
 
-#: app/templates/admin/layout/posts/edit.html:15
-#: app/templates/admin/layout/posts/partials/_post_item.html:14
-#: app/templates/admin/layout/posts/show.html:15
+#: app/templates/admin/posts/edit.html:15
+#: app/templates/admin/posts/partials/_post_item.html:14
+#: app/templates/admin/posts/show.html:15
+#: app/templates/src/translations.html:53
 msgid "POST_STATUS_DRAFT_LABEL"
 msgstr "プライベート: あなただけが閲覧できます。"
 
-#: app/templates/admin/layout/posts/index.html:2
+#: app/templates/admin/posts/index.html:2
+#: app/templates/src/translations.html:54
 msgid "POSTS_PAGE_TITLE"
 msgstr "ストーリー | %(page)s"
 
-#: app/templates/admin/layout/posts/partials/_post_edit.html:13
+#: app/templates/admin/posts/partials/_post_edit.html:13
+#: app/templates/src/translations.html:55
 msgid "BTN_UPLOAD_COVER_PICTURE_LBL"
 msgstr "新しいカバー写真をアップロードするにはここをクリック"
 
-#: app/templates/admin/layout/posts/partials/_post_edit.html:22
+#: app/templates/admin/posts/partials/_post_edit.html:22
+#: app/templates/main/stories/edit.html:51
+#: app/templates/src/translations.html:56
 msgid "FRM_INPUT_TITLE_DESCRIPTION"
-msgstr ""
-"タイトル – あなたのストーリーにタイトルをつけるなら (30 文字以内)\n"
+msgstr "タイトル"
 
-#: app/templates/admin/layout/posts/partials/_post_edit.html:23
+#: app/templates/admin/posts/partials/_post_edit.html:23
+#: app/templates/src/translations.html:57
 msgid "FRM_INPUT_CHALLENGE_DESCRIPTION"
-msgstr ""
-"やり遂げたいこと – いま立ち向かっていること\n"
-"やり遂げたこと  – そのために立ち向かったこと(150 文字以内）"
+msgstr "やり遂げたいこと"
 
-#: app/templates/admin/layout/posts/partials/_post_edit.html:24
+#: app/templates/admin/posts/partials/_post_edit.html:24
+#: app/templates/main/stories/edit.html:52
+#: app/templates/src/translations.html:58
 msgid "FRM_INPUT_SOLUTION_DESCRIPTION"
-msgstr "どうやって解決しましたか、解決しますか – 具体的になにをしたか書いてください (150 words)"
+msgstr "ストーリーを書いてください"
 
-#: app/templates/admin/layout/posts/partials/_post_edit.html:30
+#: app/templates/admin/posts/partials/_post_edit.html:30
+#: app/templates/main/stories/edit.html:78
+#: app/templates/src/translations.html:59
 msgid "CB_ANONYMOUS_LBL"
 msgstr "この投稿を匿名にする。"
 
-#: app/templates/admin/layout/posts/partials/_post_edit.html:43
+#: app/templates/admin/posts/partials/_post_edit.html:43
+#: app/templates/src/translations.html:60
 msgid "ERROR_STAMP_TITLE_EMPTY"
 msgstr "タイトルを入力してください。"
 
-#: app/templates/admin/layout/posts/partials/_post_edit.html:44
+#: app/templates/admin/posts/partials/_post_edit.html:44
+#: app/templates/src/translations.html:61
 msgid "ERROR_STAMP_CHALLENGE_EMPTY"
 msgstr "チャレンジを説明してください。"
 
-#: app/templates/admin/layout/posts/partials/_post_edit.html:45
+#: app/templates/admin/posts/partials/_post_edit.html:45
+#: app/templates/src/translations.html:62
 msgid "ERROR_STAMP_SOLUTION_EMPTY"
 msgstr "解決策はなんですか？"
 
-#: app/templates/admin/layout/posts/partials/_post_item.html:51
-#: app/templates/admin/layout/posts/partials/_sidebar.html:34
+#: app/templates/admin/posts/partials/_post_item.html:51
+#: app/templates/admin/posts/partials/_sidebar.html:34
+#: app/templates/src/translations.html:63
 msgid "POST_DELETE_CONFIRMATION"
 msgstr " '%(title)s'は削除されます。よろしいですか？"
 
-#: app/templates/admin/layout/posts/partials/_sidebar.html:20
+#: app/templates/admin/posts/partials/_sidebar.html:20
+#: app/templates/src/translations.html:64
 msgid "POST_SHOW"
 msgstr "示す"
 
-#: app/templates/admin/layout/posts/partials/_sidebar.html:27
+#: app/templates/admin/posts/partials/_sidebar.html:27
+#: app/templates/src/translations.html:65
 msgid "POST_EDIT"
 msgstr "編集する"
 
-#: app/templates/admin/layout/posts/partials/_sidebar.html:36
+#: app/templates/admin/posts/partials/_sidebar.html:36
+#: app/templates/src/translations.html:66
 msgid "POST_DELETE"
-msgstr "削除"
+msgstr "ストーリーを削除"
 
 #: app/templates/admin/sessions/forgot_password.html:2
+#: app/templates/src/translations.html:67
 msgid "FORGOT_PASSWORD_TITLE"
 msgstr "パスワードを元にもどす。"
 
 #: app/templates/admin/sessions/forgot_password.html:10
+#: app/templates/src/translations.html:68
 msgid "FORGOT_PASSWORD_TEXT"
 msgstr "パスワードをリセットする方法をお送りします。メールアドレスを入力してください。"
 
 #: app/templates/admin/sessions/forgot_password.html:11
 #: app/templates/admin/sessions/signin.html:11
-#: app/templates/admin/sessions/signup.html:11
+#: app/templates/admin/sessions/signup.html:12
+#: app/templates/src/translations.html:69
 msgid "MAIL_LBL"
 msgstr "メールアドレス"
 
 #: app/templates/admin/sessions/forgot_password.html:20
+#: app/templates/src/translations.html:70
 msgid "SEND_RESET_INSTRUCTION_BTN"
 msgstr "パスワードをリセットメールを送信する"
 
 #: app/templates/admin/sessions/forgot_password.html:26
 #: app/templates/admin/sessions/reset_password.html:27
-#: app/templates/admin/sessions/signup.html:37
+#: app/templates/admin/sessions/signup.html:38
+#: app/templates/src/translations.html:71
 msgid "SIGNIN_ACTION_LBL"
 msgstr "既にアカウントがありますか？"
 
 #: app/templates/admin/sessions/forgot_password.html:27
 #: app/templates/admin/sessions/reset_password.html:28
 #: app/templates/admin/sessions/signin.html:22
-#: app/templates/admin/sessions/signup.html:38
-#: app/templates/main/common/_sidebar_user.html:49
-#: app/templates/main/layout/header.html:49
-#: app/templates/main/layout/header.html:94
-#: app/templates/main/site/home.html:21 app/templates/main/stamp/show.html:81
+#: app/templates/admin/sessions/signup.html:39
+#: app/templates/main/layout/header.html:43
+#: app/templates/src/translations.html:72
 msgid "LOGIN_BTN"
 msgstr "ログイン"
 
 #: app/templates/admin/sessions/reset_password.html:2
+#: app/templates/src/translations.html:73
 msgid "RESET_PASSWORD_TITLE"
 msgstr "パスワードをリセットする"
 
 #: app/templates/admin/sessions/reset_password.html:10
+#: app/templates/src/translations.html:74
 msgid "RESET_PASSWORD_TEXT"
 msgstr "新しいパスワードの再入力"
 
 #: app/templates/admin/sessions/reset_password.html:21
+#: app/templates/src/translations.html:75
 msgid "RESET_PASSWORD_BTN"
 msgstr "パスワードをリセットする"
 
 #: app/templates/admin/sessions/signin.html:2
 #: app/templates/admin/sessions/signin.html:10
+#: app/templates/src/translations.html:76
 msgid "LOGIN_TITLE"
 msgstr "ログイン"
 
+#: app/templates/admin/sessions/signin.html:12
+#: app/templates/admin/sessions/signup.html:13
+#: app/templates/src/translations.html:77
+#: app/views/admin/sessions/forms/login.py:11
+#: app/views/admin/sessions/forms/signup.py:13
+#: app/views/admin/users/forms.py:24
+msgid "USER_PASSWORD"
+msgstr "パスワード"
+
 #: app/templates/admin/sessions/signin.html:16
+#: app/templates/src/translations.html:78
 msgid "REMEMBER_ME_BTN"
 msgstr "セッションを維持する"
 
 #: app/templates/admin/sessions/signin.html:28
+#: app/templates/src/translations.html:79
 msgid "SIGNUP_ACTION_LBL"
 msgstr "アカウントがまだありませんか？"
 
 #: app/templates/admin/sessions/signin.html:29
-#: app/templates/admin/sessions/signup.html:31
-#: app/templates/main/common/_sidebar_user.html:52
-#: app/templates/main/layout/header.html:55
-#: app/templates/main/layout/header.html:91
-#: app/templates/main/site/home.html:22 app/templates/main/stamp/show.html:84
+#: app/templates/admin/sessions/signup.html:32
+#: app/templates/main/layout/header.html:49
+#: app/templates/src/translations.html:80
 msgid "REGISTER_BTN"
 msgstr "無料登録"
 
 #: app/templates/admin/sessions/signin.html:32
+#: app/templates/src/translations.html:81
 msgid "FORGOT_PASWWORD_BTN"
 msgstr "パスワードを忘れましたか？"
 
 #: app/templates/admin/sessions/signup.html:2
 #: app/templates/admin/sessions/signup.html:10
+#: app/templates/src/translations.html:82
 msgid "REGISTER_TITLE"
 msgstr "新規登録"
 
-#: app/templates/admin/sessions/signup.html:12
-msgid "NAME_LBL"
-msgstr "お名前"
-
-#: app/templates/admin/sessions/signup.html:13
+#: app/templates/admin/sessions/signup.html:11
+#: app/templates/src/translations.html:83
 msgid "NICKNAME_LBL"
 msgstr "ニックネーム"
 
-#: app/templates/admin/sessions/signup.html:25
+#: app/templates/admin/sessions/signup.html:24
+#: app/templates/src/translations.html:84
 msgid "TOS_CHECK_LBL"
 msgstr ""
-"<span> <a href=\"%(link)s\" class=\"custom-link\" target=\"_blank\">"
-"利用規定</a>を読み、<br/>内容に理解同意しました。</span>"
+"<span> <a href=\"%(link)s\" class=\"custom-link\" "
+"target=\"_blank\">利用規定</a>を読み、<br/>内容に理解同意しました。</span>"
 
-#: app/templates/admin/users/edit.html:2
-#: app/templates/admin/users/password.html:2
-#: app/templates/admin/users/settings_email_notifications.html:2
+#: app/templates/admin/users/edit.html:2 app/templates/src/translations.html:85
 msgid "USER_PROFILE_EDIT_PAGE_TITLE"
 msgstr "ユーザープロフィールを編集する | %(name)s"
 
 #: app/templates/admin/users/edit.html:11
+#: app/templates/src/translations.html:86
 msgid "USER_PROFILE_EDIT_TITLE"
 msgstr "ユーザー情報を編集"
 
 #: app/templates/admin/users/index.html:2
+#: app/templates/src/translations.html:87
 msgid "USER_PAGE_TITLE"
 msgstr "ユーザー | ページ %(page)s"
 
 #: app/templates/admin/users/index.html:13
 #: app/templates/admin/users/index.html:14
 #: app/templates/admin/users/index.html:65
+#: app/templates/src/translations.html:88
 msgid "USER_PAG_LBL"
 msgstr "ユーザー"
 
 #: app/templates/admin/users/index.html:20
 #: app/templates/admin/users/show.html:69
-#: app/views/admin/sessions/forms/signup.py:11
-#: app/views/admin/users/forms/user_edit.py:17
-#: app/views/admin/users/forms/user_new.py:17
+#: app/templates/src/translations.html:89
 msgid "USER_NAME"
 msgstr "お名前"
 
 #: app/templates/admin/users/index.html:21
+#: app/templates/src/translations.html:90
 msgid "USER_SIGNED_UP"
 msgstr "サインアップ"
 
 #: app/templates/admin/users/index.html:22
+#: app/templates/src/translations.html:91
 msgid "USER_POSTS_COUNT"
 msgstr "ストーリー"
 
 #: app/templates/admin/users/index.html:23
-#: app/templates/admin/users/show.html:78
-#: app/views/admin/users/forms/user_edit.py:25
-#: app/views/admin/users/forms/user_new.py:25
+#: app/templates/admin/users/show.html:85
+#: app/templates/src/translations.html:92 app/views/admin/users/forms.py:21
 msgid "USER_ROLE"
 msgstr "役割"
 
 #: app/templates/admin/users/index.html:47
 #: app/templates/admin/users/partials/_sidebar.html:45
 #: app/templates/admin/users/show.html:38
+#: app/templates/src/translations.html:93
 msgid "USER_DELETE_CONFIRMATION"
 msgstr "'%(name)s'を削除します。よろしいですか？"
 
-#: app/templates/admin/users/password.html:11
-msgid "USER_PASSWORD_EDIT_TITLE"
-msgstr "パスワードを変更する"
-
-#: app/templates/admin/users/settings_email_notifications.html:10
-msgid "USER_EMAIL_NOTIFICATION_TITLE"
-msgstr "メールとお知らせ"
-
-#: app/templates/admin/users/settings_email_notifications.html:13
-msgid "BTN_CANCEL_LBL"
-msgstr "キャンセル"
-
-#: app/templates/admin/users/settings_email_notifications.html:17
-msgid "USER_DIGEST_EDIT_TITLE"
-msgstr "Content for You"
-
-#: app/templates/admin/users/settings_email_notifications.html:21
-msgid "USER_ALLOW_DIGEST_EMAIL"
-msgstr ""
-"HeadUP Digest emails consist of Top Stories and other popular content from "
-"your feed."
-
-#: app/templates/admin/users/settings_email_notifications.html:24
-msgid "USER_COMMENTS_EDIT_TITLE"
-msgstr "コメント"
-
-#: app/templates/admin/users/settings_email_notifications.html:28
-msgid "USER_ALLOW_COMMENT_EMAIL"
-msgstr "誰かがあなたのストーリーやコメントに対してコメントをした場合、メールをおくります。"
-
-#: app/templates/admin/users/show.html:2
+#: app/templates/admin/users/show.html:2 app/templates/src/translations.html:94
 msgid "USER_PROFILE_SHOW_PAGE_TITLE"
 msgstr "ユーザープロフィール| %(name)s"
 
 #: app/templates/admin/users/show.html:40
+#: app/templates/src/translations.html:95
 msgid "USER_REMOVE"
 msgstr "削除"
 
-#: app/templates/admin/users/show.html:47
-msgid "USER_EDIT"
-msgstr "編集"
-
 #: app/templates/admin/users/show.html:57
+#: app/templates/src/translations.html:96
 msgid "USER_INFO_TITLE"
 msgstr "ユーザーの情報"
 
 #: app/templates/admin/users/show.html:61
+#: app/templates/src/translations.html:97
 msgid "USER_ID"
 msgstr "ID"
 
 #: app/templates/admin/users/show.html:65
+#: app/templates/src/translations.html:98
 msgid "USER_LAST_SEEN"
 msgstr "最後の閲覧"
 
 #: app/templates/admin/users/show.html:73
+#: app/templates/src/translations.html:99
 #: app/views/admin/sessions/forms/signup.py:12
-#: app/views/admin/users/forms/user_edit.py:21
-#: app/views/admin/users/forms/user_new.py:21
+#: app/views/admin/users/forms.py:17
 msgid "USER_NICKNAME"
 msgstr "ニックネーム"
 
-#: app/templates/admin/users/show.html:83
+#: app/templates/admin/users/show.html:77
+#: app/templates/src/translations.html:100
+msgid "USER_ADDRESS"
+msgstr "住所"
+
+#: app/templates/admin/users/show.html:81
+#: app/templates/src/translations.html:101
+msgid "USER_PHONE"
+msgstr "電話番号"
+
+#: app/templates/admin/users/show.html:89
+#: app/templates/src/translations.html:102
 msgid "USER_CREATED_AT"
 msgstr "作成"
 
-#: app/templates/admin/users/show.html:99
+#: app/templates/admin/users/show.html:105
+#: app/templates/src/translations.html:103
 msgid "USER_POST_RECENT_TITLE"
 msgstr "最近の投稿"
 
-#: app/templates/admin/users/show.html:106
+#: app/templates/admin/users/show.html:112
+#: app/templates/src/translations.html:104
 msgid "USER_POST_PUBLISHED_AT"
 msgstr "投稿"
 
-#: app/templates/admin/users/show.html:107
+#: app/templates/admin/users/show.html:113
+#: app/templates/src/translations.html:105
 msgid "USER_POST_UPDATED_AT"
 msgstr "更新"
 
-#: app/templates/admin/users/show.html:108
+#: app/templates/admin/users/show.html:114
+#: app/templates/src/translations.html:106
 msgid "USER_POST_TITLE"
 msgstr "ストーリー"
 
 #: app/templates/admin/users/user_posts.html:3
+#: app/templates/src/translations.html:107
 msgid "USER_POST_PAGE_TITLE"
 msgstr "ユーザーの投稿 | %(name)s"
 
 #: app/templates/admin/users/partials/_sidebar.html:17
+#: app/templates/src/translations.html:108
 msgid "USER_PROFILE_PICTURE_UPDATE"
 msgstr "プロフィール写真を更新する"
 
 #: app/templates/admin/users/partials/_sidebar.html:37
+#: app/templates/src/translations.html:109
 msgid "USER_SHOW"
 msgstr "Show user"
 
 #: app/templates/admin/users/partials/_sidebar.html:47
+#: app/templates/src/translations.html:110
 msgid "USER_DELETE"
 msgstr "ユーザーを削除する"
 
 #: app/templates/emails/layout/base.html:369
 #: app/templates/main/layout/footer.html:8
-#: app/templates/main/layout/header.html:79
-#: app/templates/main/site/conduct.html:2
+#: app/templates/main/layout/header.html:73
+#: app/templates/main/pages/conduct.html:2
+#: app/templates/main/pages/home.html:671
+#: app/templates/src/translations.html:111
 msgid "CODE_CONDUCT_LBL"
 msgstr "ポリシー"
 
 #: app/templates/emails/layout/base.html:371
 #: app/templates/main/layout/footer.html:10
-#: app/templates/main/layout/header.html:76
-#: app/templates/main/site/policy.html:2
+#: app/templates/main/layout/header.html:70
+#: app/templates/main/pages/home.html:673
+#: app/templates/main/pages/policy.html:2
+#: app/templates/src/translations.html:112
 msgid "TOS_LBL"
 msgstr "利用規約"
 
@@ -620,15 +661,18 @@ msgstr "利用規約"
 #: app/templates/emails/users/registration.html:9
 #: app/templates/emails/users/reply_comment.html:11
 #: app/templates/emails/users/reset_password.html:9
+#: app/templates/src/translations.html:113
 msgid "EMAIL_GREETING"
 msgstr "こんにちは %(name)s,"
 
 #: app/templates/emails/users/comment.html:13
+#: app/templates/src/translations.html:114
 msgid "EMAIL_COMMENT_DESCRIPTION"
 msgstr "%(name)s が \"%(title)s\"にコメントしました。"
 
 #: app/templates/emails/users/comment.html:24
 #: app/templates/emails/users/reply_comment.html:24
+#: app/templates/src/translations.html:115
 msgid "EMAIL_COMMENT_ACTION_BTN"
 msgstr "コメントを見る"
 
@@ -636,425 +680,534 @@ msgstr "コメントを見る"
 #: app/templates/emails/users/registration.html:33
 #: app/templates/emails/users/reply_comment.html:35
 #: app/templates/emails/users/reset_password.html:16
+#: app/templates/src/translations.html:116
 msgid "EMAIL_END_BODY"
 msgstr "<p>ありがとうございます。<br>%(name)s Team</p>"
 
 #: app/templates/emails/users/registration.html:11
+#: app/templates/src/translations.html:117
 msgid "EMAIL_REGISTRATION_DESCRIPTION"
 msgstr "ようこそHeadupへ！あなたのストーリーをシェアしてください。"
 
 #: app/templates/emails/users/registration.html:22
+#: app/templates/src/translations.html:118
 msgid "EMAIL_REGISTRATION_ACTION_BTN"
 msgstr "初めてのストーリーを書きましょう。"
 
 #: app/templates/emails/users/reply_comment.html:13
+#: app/templates/src/translations.html:119
 msgid "EMAIL_REPLY_COMMENT_DESCRIPTION"
 msgstr "%(name)s が\"%(title)s\"へ返事をしました。"
 
 #: app/templates/emails/users/reset_password.html:10
+#: app/templates/src/translations.html:120
 msgid "EMAIL_RESET_PASSWORD_DESCRIPTION"
-msgstr ""
-"(%(email)s)"
-"でHeadupアカウントのパスワードをリセットすることをリクエストしました。パスワードをリセットするにはこちらのリンクをクリックしてください。"
+msgstr "(%(email)s)でHeadupアカウントのパスワードをリセットすることをリクエストしました。パスワードをリセットするにはこちらのリンクをクリックしてください。"
 
-#: app/templates/main/index.html:2
-msgid "LATEST_TITLE"
-msgstr "最新のストーリー | チャレンジし続けるためのソーシャルストーリーテリングネットワーク"
-
-#: app/templates/main/index.html:3
-msgid "LATEST_DESCRIPTION"
-msgstr ""
-"HeadUP "
-"はソーシャルストーリーテリングネットワークです。目標、問題、課題とそれをクリアするための解決策をシェアする場であり、どのように立ち向かっているのか、どうやって気持ちを高く持ち続けているのかシェアすることの出来る場です。ポジティブで楽しい経験、または自身が何かを成し遂げた経験を書いたり、他の誰かの驚くようなストーリーを閲覧することができます。困難な状況や、難しい課題にたいしてあなたが見つけた解決方法はなんですか。世界にむけてシェアしてください。Speak"
-" up, HeadUP.\n"
-
-#: app/templates/main/common/401.html:2
+#: app/templates/errors/401.html:2 app/templates/src/translations.html:121
 msgid "ERROR_401_TITLE"
 msgstr "リクエストが完了しませんでした。"
 
-#: app/templates/main/common/401.html:13
+#: app/templates/errors/401.html:13 app/templates/src/translations.html:122
 msgid "ERROR_401_DESCRIPTION"
 msgstr "このリクエストを受け付けることができません。"
 
-#: app/templates/main/common/403.html:2
+#: app/templates/errors/403.html:2 app/templates/src/translations.html:123
 msgid "ERROR_403_TITLE"
 msgstr "禁止事項"
 
-#: app/templates/main/common/403.html:13
+#: app/templates/errors/403.html:13 app/templates/src/translations.html:124
 msgid "ERROR_403_DESCRIPTION"
 msgstr "このページにアクセスすることが出来ません。"
 
-#: app/templates/main/common/404.html:2
+#: app/templates/errors/404.html:2 app/templates/src/translations.html:125
 msgid "ERROR_404_TITLE"
 msgstr "ページがみつかりません。"
 
-#: app/templates/main/common/404.html:13
+#: app/templates/errors/404.html:13 app/templates/src/translations.html:126
 msgid "ERROR_404_DESCRIPTION"
 msgstr "ページがみつかりません。"
 
-#: app/templates/main/common/500.html:2
+#: app/templates/errors/500.html:2 app/templates/src/translations.html:127
 msgid "ERROR_500_TITLE"
 msgstr "サーバーエラー"
 
-#: app/templates/main/common/500.html:13
+#: app/templates/errors/500.html:13 app/templates/src/translations.html:128
 msgid "ERROR_500_DESCRIPTION"
 msgstr ""
-"Sorry... this one is on us. The administrator has been notified. Sorry for "
-"the inconvenience!"
+"Sorry... this one is on us. The administrator has been notified. Sorry "
+"for the inconvenience!"
 
-#: app/templates/main/common/_sidebar_user.html:47
-msgid "SIDEBAR_USER_TITLE"
-msgstr "Headupに参加しますか？"
-
-#: app/templates/main/common/_sidebar_user.html:63
-msgid "SIDEBAR_STAMP_TITLE"
-msgstr "開始する"
-
-#: app/templates/main/common/_sidebar_user.html:66
-msgid "EDIT_STAMP_LBL"
-msgstr "Edit stamp"
-
-#: app/templates/main/layout/error-base.html:15
+#: app/templates/main/layout/error-base.html:17
 #: app/templates/main/layout/header-no-menu.html:22
-#: app/templates/main/layout/header.html:20
+#: app/templates/main/layout/header.html:18
+#: app/templates/src/translations.html:132
 msgid "LATEST_LBL"
 msgstr "最新のストーリー"
 
-#: app/templates/main/layout/error-base.html:29
-#: app/templates/main/site/home.html:18
+#: app/templates/main/layout/error-base.html:32
+#: app/templates/src/translations.html:133
 msgid "DASHBOARD_BTN"
 msgstr "マイページ"
 
-#: app/templates/main/layout/error-base.html:30
+#: app/templates/main/layout/error-base.html:33
+#: app/templates/src/translations.html:134
 msgid "POSTS_BTN"
 msgstr "Stamps"
 
-#: app/templates/main/layout/error-base.html:31
+#: app/templates/main/layout/error-base.html:34
+#: app/templates/src/translations.html:135
 msgid "DRAFT_BTN"
 msgstr "下書き"
 
-#: app/templates/main/layout/error-base.html:33
+#: app/templates/main/layout/error-base.html:36
+#: app/templates/src/translations.html:136
 msgid "PROFILE_BTN"
 msgstr "APP_PROFILE"
 
 #: app/templates/main/layout/header-no-menu.html:5
-#: app/templates/main/layout/header.html:5
+#: app/templates/main/layout/header.html:4
+#: app/templates/src/translations.html:137
 msgid "Logo"
 msgstr "ロゴ"
 
 #: app/templates/main/layout/header-no-menu.html:11
-#: app/templates/main/layout/header.html:10
+#: app/templates/main/layout/header.html:8
+#: app/templates/src/translations.html:138
 msgid "TOGGLE_NAVIGATION_LBL"
 msgstr "ナビゲーションを切り替える"
 
-#: app/templates/main/layout/header-no-menu.html:25
-#: app/templates/main/layout/header.html:23
-msgid "RANKING_LBL"
-msgstr "H'UP"
-
-#: app/templates/main/site/home.html:2
+#: app/templates/main/pages/home.html:2 app/templates/src/translations.html:140
 msgid "HOME_TITLE"
 msgstr "頑張り続けるためのソーシャルストーリーテリングネットワーク"
 
-#: app/templates/main/site/home.html:3
+#: app/templates/main/pages/home.html:3 app/templates/src/translations.html:141
 msgid "HOME_DESCRIPTION"
 msgstr ""
 "HeadUP "
 "はソーシャルストーリーテリングネットワークです。目標、問題、課題とそれをクリアするための解決策をシェアする場であり、どのように立ち向かっているのか、どうやって気持ちを高く持ち続けているのかシェアすることの出来る場です。ポジティブで楽しい経験、または自身が何かを成し遂げた経験を書いたり、他の誰かの驚くようなストーリーを閲覧することができます。困難な状況や、難しい課題にたいしてあなたが見つけた解決方法はなんですか。世界にむけてシェアしてください。Speak"
 " up, HeadUP."
 
-#: app/templates/main/site/home.html:11
-msgid "WELCOME_TITLE_LBL"
-msgstr "%(name)s - ストーリーテリングネットワーク<br/>自由にあなたを表現する場所"
+#: app/templates/main/pages/latest.html:2
+#: app/templates/src/translations.html:142
+msgid "LATEST_TITLE"
+msgstr "最新のストーリー | チャレンジし続けるためのソーシャルストーリーテリングネットワーク"
 
-#: app/templates/main/site/home.html:13
-msgid "WELCOME_SUBTITLE_LBL"
-msgstr "あなたの解決策を世界にシェアしよう…<br/>Speak up, HeadUp!"
+#: app/templates/main/pages/latest.html:3
+#: app/templates/src/translations.html:143
+msgid "LATEST_DESCRIPTION"
+msgstr ""
+"HeadUP "
+"はソーシャルストーリーテリングネットワークです。目標、問題、課題とそれをクリアするための解決策をシェアする場であり、どのように立ち向かっているのか、どうやって気持ちを高く持ち続けているのかシェアすることの出来る場です。ポジティブで楽しい経験、または自身が何かを成し遂げた経験を書いたり、他の誰かの驚くようなストーリーを閲覧することができます。困難な状況や、難しい課題にたいしてあなたが見つけた解決方法はなんですか。世界にむけてシェアしてください。Speak"
+" up, HeadUP.\n"
 
-#: app/templates/main/site/home.html:14
-msgid "GO_TO_STORIES_BTN"
-msgstr "ストーリー"
-
-#: app/templates/main/site/home.html:20
-msgid "WELCOME_SUBTITLE_EXTRA_LBL"
-msgstr "参加したいですか？"
-
-#: app/templates/main/site/home.html:44
-msgid "INTRO1_LBL"
-msgstr "ポジティブな経験をシェアしてください。"
-
-#: app/templates/main/site/home.html:50
-msgid "INTRO2_LBL"
-msgstr "あなたが誇りに思う経験を話してください。<br/>きっと頑張っているだれかが励まされるはずです。"
-
-#: app/templates/main/site/home.html:56
-msgid "INTRO3_LBL"
-msgstr "どうやって気持ちを高く持ち続けているのですか？<br/>教えてください。"
-
-#: app/templates/main/site/home.html:62
-msgid "INTRO4_LBL"
-msgstr "サクセスストーリーを書いてポジティブなエネルギーを世界に放とう"
-
-#: app/templates/main/stamp/category.html:2
+#: app/templates/main/stories/category.html:2
+#: app/templates/src/translations.html:145
 msgid "CATEGORY_LIST_TITLE"
 msgstr "Stamps for %(category)s"
 
-#: app/templates/main/stamp/partials/_ranking.html:5
-#: app/templates/main/stamp/ranking.html:2
-msgid "RANKING_TITLE"
-msgstr "一番人気のストーリー"
-
-#: app/templates/main/stamp/show.html:70
-msgid "COMMENT_TEXT_PLACEHOLDER"
-msgstr "コメントを追加する。"
-
-#: app/templates/main/stamp/show.html:73
-msgid "COMMENT_SUBMIT_BTN"
-msgstr "コメント"
-
-#: app/templates/main/stamp/show.html:121
-msgid "COMMENT_DELETE_CONFIRMATION"
-msgstr "[%(text)s]を完全に削除します。よろしいですか？"
-
-#: app/templates/main/stamp/show.html:127
-msgid "COMMENT_REPLY_LBL"
-msgstr "返信する"
-
-#: app/templates/main/stamp/show.html:158
-msgid "COMMENT_REPLY_TEXT_PLACEHOLDER"
-msgstr "Add a reply..."
-
-#: app/templates/main/stamp/show.html:161
-msgid "COMMENT_REPLY_CANCEL_BTN"
+#: app/templates/main/stories/edit.html:16
+#: app/templates/src/translations.html:146
+msgid "BTN_CANCEL_LBL"
 msgstr "キャンセル"
 
-#: app/templates/main/stamp/show.html:164
-msgid "COMMENT_REPLY_SUBMIT_BTN"
-msgstr "返信する"
+#: app/templates/main/stories/edit.html:21
+#: app/templates/src/translations.html:147
+msgid "BTN_UNPUBLISH_LBL"
+msgstr "下書き保存"
 
-#: app/templates/main/stamp/partials/_stamp_ranking_feed.html:20
-#: app/templates/main/stamp/partials/_user_info.html:10
+#: app/templates/main/stories/edit.html:21
+#: app/templates/src/translations.html:148
+msgid "BTN_DRAFT_LBL"
+msgstr "下書き保存"
+
+#: app/templates/main/stories/edit.html:24
+#: app/templates/main/stories/edit.html:66
+#: app/templates/src/translations.html:149
+msgid "PUBLISH_LBL"
+msgstr "投稿"
+
+#: app/templates/main/stories/edit.html:71
+#: app/templates/src/translations.html:150
+msgid "SELECT_CATEGORY_LBL"
+msgstr "カテゴリを選んでください"
+
+#: app/templates/main/stories/edit.html:85
+#: app/templates/src/translations.html:151
+msgid "BTN_CLOSE_LBL"
+msgstr "閉じる"
+
+#: app/templates/main/stories/partials/_post_story.html:21
+#: app/templates/src/translations.html:159
 msgid "ANONYMOUS_LBL"
 msgstr "匿名"
 
-#: app/templates/main/stamp/partials/_stamp_ranking_feed.html:23
-#: app/templates/main/stamp/partials/_user_info.html:12
+#: app/templates/src/translations.html:37
+msgid "BTN_LIKE"
+msgstr "高評価"
+
+#: app/templates/src/translations.html:38
+msgid "BTN_COMMENTS"
+msgstr "コメント"
+
+#: app/templates/src/translations.html:39
+msgid "BTN_SHARE"
+msgstr "シェア"
+
+#: app/templates/src/translations.html:129
+msgid "SIDEBAR_USER_TITLE"
+msgstr "Headupに参加しますか？"
+
+#: app/templates/src/translations.html:130
+msgid "SIDEBAR_STAMP_TITLE"
+msgstr "開始する"
+
+#: app/templates/src/translations.html:131
+msgid "EDIT_STAMP_LBL"
+msgstr "ストーリーを編集"
+
+#: app/templates/src/translations.html:139
+msgid "RANKING_LBL"
+msgstr "H'UP"
+
+#: app/templates/src/translations.html:144
+msgid "RANKING_TITLE"
+msgstr "一番人気のストーリー"
+
+#: app/templates/src/translations.html:152
+msgid "COMMENT_TEXT_PLACEHOLDER"
+msgstr "コメントを追加する。"
+
+#: app/templates/src/translations.html:153
+msgid "COMMENT_SUBMIT_BTN"
+msgstr "コメント"
+
+#: app/templates/src/translations.html:154
+msgid "COMMENT_DELETE_CONFIRMATION"
+msgstr "\"%(text)s\"を完全に削除します。よろしいですか？"
+
+#: app/templates/src/translations.html:155
+msgid "COMMENT_REPLY_LBL"
+msgstr "返信する"
+
+#: app/templates/src/translations.html:156
+msgid "COMMENT_REPLY_TEXT_PLACEHOLDER"
+msgstr "Add a reply..."
+
+#: app/templates/src/translations.html:157
+msgid "COMMENT_REPLY_CANCEL_BTN"
+msgstr "キャンセル"
+
+#: app/templates/src/translations.html:158
+msgid "COMMENT_REPLY_SUBMIT_BTN"
+msgstr "返信する"
+
+#: app/templates/src/translations.html:160
+msgid "POSTED_BY_USER_CATEGORY_LBL"
+msgstr "%(user)s が %(category)s に投稿しました。"
+
+#: app/templates/src/translations.html:161
 msgid "POSTED_BY_USER_LBL"
-msgstr " %(user)s が %(category)sに投稿しました。"
+msgstr "%(user)s が投稿しました。"
 
-#: app/templates/main/stamp/partials/_stamp_ranking_feed.html:37
-#: app/templates/main/stamp/partials/_stamp_single.html:29
+#: app/templates/src/translations.html:162
+msgid "LBL_SCRLL_LAST_PAGE"
+msgstr "最後のページ"
+
+#: app/templates/src/translations.html:163
+msgid "LBL_SCRLL_ERROR"
+msgstr "読み込むページがこれ以上ありません"
+
+#: app/templates/src/translations.html:164
 msgid "READ_MORE_LBL"
-msgstr "もっと読む…"
+msgstr "(もっと読む)"
 
-#: app/views/admin/categories/index.py:38
-#: app/views/admin/categories/index.py:76
-#: app/views/admin/categories/index.py:129 app/views/admin/posts/index.py:65
-#: app/views/admin/posts/index.py:120 app/views/admin/sessions/index.py:77
-#: app/views/admin/sessions/index.py:136 app/views/admin/sessions/index.py:185
+#: app/templates/src/translations.html:165
+#: app/views/admin/categories/index.py:39
+#: app/views/admin/categories/index.py:77
+#: app/views/admin/categories/index.py:130 app/views/admin/sessions/index.py:78
+#: app/views/admin/sessions/index.py:141 app/views/admin/sessions/index.py:191
 #: app/views/admin/users/index.py:55 app/views/admin/users/index.py:88
-#: app/views/admin/users/index.py:124 app/views/admin/users/index.py:160
-#: app/views/main/stamp/comment/index.py:25
+#: app/views/main/stories/forms/index.py:25 app/views/main/stories/index.py:79
 msgid "ERROR_INVALID_SUBMISSION"
 msgstr "エラー、下記のメッセージを確認してください。"
 
-#: app/views/admin/categories/index.py:51
+#: app/templates/src/translations.html:166
+#: app/views/admin/categories/index.py:52
 msgid "CATEGORY_CREATE_SUCESS"
 msgstr "カテゴリーが作成されました。"
 
-#: app/views/admin/categories/index.py:66
-#: app/views/admin/categories/index.py:103
+#: app/templates/src/translations.html:167
+#: app/views/admin/categories/index.py:67
+#: app/views/admin/categories/index.py:104
 msgid "CATEGORY_NOT_FOUND"
 msgstr "カテゴリーが見つかりません。"
 
-#: app/views/admin/categories/index.py:88
+#: app/templates/src/translations.html:168
+#: app/views/admin/categories/index.py:89
 msgid "CATEGORY_SAVE_SUCCESS"
 msgstr "カテゴリーが保存されました。"
 
-#: app/views/admin/categories/index.py:109
+#: app/templates/src/translations.html:169
+#: app/views/admin/categories/index.py:110
 msgid "CATEGORY_TRANSFER_POSTS_FAILED"
 msgstr "このカテゴリーは削除できません。"
 
-#: app/views/admin/categories/index.py:114
+#: app/templates/src/translations.html:170
+#: app/views/admin/categories/index.py:115
 msgid "CATEGORY_REMOVE_SUCCESS"
 msgstr "カテゴリー \"%(name)s\" は削除されました。"
 
-#: app/views/admin/categories/index.py:135
+#: app/templates/src/translations.html:171
+#: app/views/admin/categories/index.py:136
 msgid "CATEGORY_TRANSFER_POSTS_CHECK_FAILED"
 msgstr "カテゴリーがありません。"
 
-#: app/views/admin/categories/index.py:139
+#: app/templates/src/translations.html:172
+#: app/views/admin/categories/index.py:140
 msgid "CATEGORY_TRANSFER_POSTS_SUCCESS"
 msgstr "この投稿は %(from_name)s から %(to_name)sへ移動されました。"
 
+#: app/templates/src/translations.html:173
 #: app/views/admin/categories/forms/transfer.py:10
 msgid "CATEGORY_FROM"
 msgstr "From"
 
+#: app/templates/src/translations.html:174
 #: app/views/admin/categories/forms/transfer.py:11
 msgid "CATEGORY_TO"
 msgstr "To"
 
+#: app/templates/src/translations.html:175
 #: app/views/admin/categories/forms/transfer.py:23
 msgid "CATEGORY_TRANFER_POSTS_SAME_ERROR"
 msgstr "別のカテゴリーを選択してください。"
 
-#: app/views/admin/posts/index.py:53 app/views/admin/posts/index.py:113
-#: app/views/admin/posts/index.py:179
+#: app/templates/src/translations.html:176 app/views/admin/posts/index.py:66
 msgid "POST_NOT_FOUND"
 msgstr "ストーリーが見つかりません。"
 
-#: app/views/admin/posts/index.py:88 app/views/admin/posts/index.py:156
+#: app/templates/src/translations.html:177
 msgid "POST_DRAFT_SAVE_SUCESS"
 msgstr "下書きが保存されました。"
 
-#: app/views/admin/posts/index.py:90 app/views/admin/posts/index.py:158
+#: app/templates/src/translations.html:178
 msgid "POST_PUBLIC_SAVE_SUCESS"
 msgstr "ストーリーが保存されました。"
 
-#: app/views/admin/posts/index.py:190
+#: app/templates/src/translations.html:179 app/views/admin/posts/index.py:77
 msgid "POST_DELETE_SUCESS"
-msgstr "\"%(title)s\" は削除されました。"
+msgstr "ストーリーが削除されました。"
 
-#: app/views/admin/posts/index.py:195
+#: app/templates/src/translations.html:180 app/views/admin/posts/index.py:82
 msgid "ERROR_POST_DELETE_FAILED"
 msgstr "コメントを削除中にエラーが起きました。￥ %(error)s"
 
-#: app/views/admin/sessions/index.py:19 app/views/admin/sessions/index.py:65
-#: app/views/admin/sessions/index.py:129 app/views/admin/sessions/index.py:170
+#: app/templates/src/translations.html:181 app/views/admin/sessions/index.py:21
+#: app/views/admin/sessions/index.py:66 app/views/admin/sessions/index.py:134
+#: app/views/admin/sessions/index.py:176
 msgid "SESSIONS_MSG_ALREADY_SIGNED_IN"
 msgstr "すでにサインインしています。"
 
-#: app/views/admin/sessions/index.py:33
+#: app/templates/src/translations.html:182 app/views/admin/sessions/index.py:35
 msgid "SESSIONS_ERROR_LOGIN"
 msgstr "メールアドレスかパスワードが無効です。"
 
-#: app/views/admin/sessions/index.py:51
+#: app/templates/src/translations.html:183 app/views/admin/sessions/index.py:53
 msgid "SESSIONS_MSG_LOGIN_SUCESS"
 msgstr "サインインが完了しました"
 
-#: app/views/admin/sessions/index.py:80 app/views/admin/sessions/index.py:139
-#: app/views/admin/sessions/index.py:188
+#: app/templates/src/translations.html:184 app/views/admin/sessions/index.py:82
+#: app/views/admin/sessions/index.py:145 app/views/admin/sessions/index.py:195
 msgid "SESSIONS_ERROR_UNFINISHED_CHALLENGE_LBL"
 msgstr "Invalid captcha"
 
-#: app/views/admin/sessions/index.py:106
+#: app/templates/src/translations.html:185
+#: app/views/admin/sessions/index.py:108
 msgid "SESSIONS_MSG_SIGNUP_COMPLETED"
 msgstr "ようこそ！サインインが完了しました。"
 
-#: app/views/admin/sessions/index.py:121
+#: app/templates/src/translations.html:186
+#: app/views/admin/sessions/index.py:127
 msgid "SESSIONS_MSG_SIGNED_OUT"
 msgstr "サインアウトしました。"
 
-#: app/views/admin/sessions/index.py:146
+#: app/templates/src/translations.html:187
+#: app/views/admin/sessions/index.py:153
 msgid "SESSIONS_ERROR_MAIL_NOT_FOUND"
 msgstr "メールアドレス%(email)sの登録がありません。"
 
-#: app/views/admin/sessions/index.py:150
+#: app/templates/src/translations.html:188
+#: app/views/admin/sessions/index.py:157
 msgid "SESSIONS_PASSWORD_RESET"
 msgstr "パスワードリセットに関するメールが %(email)sへ送られました。"
 
-#: app/views/admin/sessions/index.py:178
+#: app/templates/src/translations.html:189
+#: app/views/admin/sessions/index.py:184
 msgid "ERROR_INVALID_RESET_PASSWORD_CODE"
 msgstr "The email link you clicked is invalid. Please try again.　"
 
-#: app/views/admin/sessions/index.py:198
+#: app/templates/src/translations.html:190
+#: app/views/admin/sessions/index.py:205
 msgid "SESSIONS_MSG_PASSWORD_RESET_COMPLETED"
 msgstr "パスワードが変更されました。"
 
+#: app/templates/src/translations.html:191
 #: app/views/admin/sessions/forms/reset_password.py:9
 msgid "USER_RESET_PASSWORD"
 msgstr "新しいパスワード"
 
+#: app/templates/src/translations.html:192
 #: app/views/admin/sessions/forms/reset_password.py:11
-#: app/views/admin/users/forms/password.py:14
-#: app/views/admin/users/forms/user_new.py:30
+#: app/views/admin/users/forms.py:26
 msgid "USER_CONFIRM_PASSWORD_INVALID"
 msgstr "パスワードが違います。"
 
-#: app/views/admin/sessions/forms/reset_password.py:14
+#: app/templates/src/translations.html:193
+#: app/views/admin/sessions/forms/reset_password.py:16
 msgid "USER_RESET_PASSWORD_CONFIRM"
 msgstr "パスワードを確定する"
 
-#: app/views/admin/sessions/forms/signup.py:26
-msgid "USER_NAME_INVALID"
-msgstr "この名前には使用できない文字キャラクターが使われています。"
-
-#: app/views/admin/sessions/forms/signup.py:30
+#: app/templates/src/translations.html:194
+#: app/views/admin/sessions/forms/signup.py:27
 msgid "USER_NICKNAME_INVALID"
 msgstr "This nickname has invalid charactersこのニックネームには使用できない文字キャラクターが使われています。"
 
-#: app/views/admin/sessions/forms/signup.py:34
+#: app/templates/src/translations.html:195
+#: app/views/admin/sessions/forms/signup.py:31
 msgid "USER_EMAIL_TAKEN_ERROR"
 msgstr "このメールアドレスは既に使われています。別のアドレスを使ってください。"
 
-#: app/views/admin/sessions/forms/signup.py:38
+#: app/templates/src/translations.html:196
+#: app/views/admin/sessions/forms/signup.py:35
 msgid "USER_NICKNAME_TAKEN_ERROR"
 msgstr ""
-"This nickname is already in use. Please choose another one."
-"このニックネームはすでに使用されています。別のニックネームを使ってください。"
+"This nickname is already in use. Please choose another "
+"one.このニックネームはすでに使用されています。別のニックネームを使ってください。"
 
-#: app/views/admin/users/index.py:39 app/views/admin/users/index.py:78
-#: app/views/admin/users/index.py:114 app/views/admin/users/index.py:150
-#: app/views/admin/users/index.py:186 app/views/admin/users/index.py:227
-msgid "USER_NOT_FOUND"
-msgstr "ユーザーが見つかりません。"
-
-#: app/views/admin/users/index.py:64
-msgid "USER_CREATE_SUCCESS"
-msgstr "ユーザー登録がされました。"
-
-#: app/views/admin/users/index.py:97 app/views/admin/users/index.py:133
-#: app/views/admin/users/index.py:169
-msgid "USER_SAVE_SUCCESS"
-msgstr "ユーザーが更新されました。"
-
-#: app/views/admin/users/index.py:198
-msgid "USER_DELETE_SUCCESS"
-msgstr " \"%(name)s\" は削除されました。"
-
-#: app/views/admin/users/index.py:201
-msgid "USER_DELETE_FAIL"
-msgstr " %(error)sを削除中にエラーが起こりました。"
-
-#: app/views/admin/users/index.py:270
-msgid "USER_POST_HIDE_SUCCESS"
-msgstr "現在投稿は他の人から見ることができません。"
-
-#: app/views/admin/users/index.py:272
-msgid "USER_POST_RESTORE_SUCCESS"
-msgstr "投稿が公開されました。"
-
-#: app/views/admin/users/index.py:275
-msgid "USER_POST_HIDE_OR_RESTORE_FAIL"
-msgstr "投稿する途中でエラーがありました。 %(error)s"
-
-#: app/views/admin/users/forms/password.py:17
-#: app/views/admin/users/forms/user_new.py:33
+#: app/templates/src/translations.html:197 app/views/admin/users/forms.py:31
 msgid "USER_CONFIRM"
 msgstr "確定する"
 
-#: app/views/admin/users/forms/user_edit.py:28
-#: app/views/admin/users/forms/user_new.py:36
+#: app/templates/src/translations.html:198
 msgid "USER_TIMEZONE"
 msgstr "タイムゾーン"
 
-#: app/views/admin/users/forms/user_new.py:34
-msgid "USER_ADDRESS"
-msgstr "住所"
+#: app/templates/src/translations.html:199 app/views/admin/users/index.py:39
+#: app/views/admin/users/index.py:78 app/views/admin/users/index.py:117
+#: app/views/admin/users/index.py:158
+msgid "USER_NOT_FOUND"
+msgstr "ユーザーが見つかりません。"
 
-#: app/views/admin/users/forms/user_new.py:35
-msgid "USER_PHONE"
-msgstr "電話番号"
+#: app/templates/src/translations.html:200 app/views/admin/users/index.py:64
+msgid "USER_CREATE_SUCCESS"
+msgstr "ユーザー登録がされました。"
 
-#: app/views/main/stamp/comment/index.py:31
+#: app/templates/src/translations.html:201 app/views/admin/users/index.py:100
+msgid "USER_SAVE_SUCCESS"
+msgstr "ユーザーが更新されました。"
+
+#: app/templates/src/translations.html:202 app/views/admin/users/index.py:129
+msgid "USER_DELETE_SUCCESS"
+msgstr " \"%(name)s\" は削除されました。"
+
+#: app/templates/src/translations.html:203 app/views/admin/users/index.py:132
+msgid "USER_DELETE_FAIL"
+msgstr " %(error)sを削除中にエラーが起こりました。"
+
+#: app/templates/src/translations.html:204 app/views/admin/users/index.py:201
+msgid "USER_POST_HIDE_SUCCESS"
+msgstr "現在投稿は他の人から見ることができません。"
+
+#: app/templates/src/translations.html:205 app/views/admin/users/index.py:203
+msgid "USER_POST_RESTORE_SUCCESS"
+msgstr "投稿が公開されました。"
+
+#: app/templates/src/translations.html:206 app/views/admin/users/index.py:206
+msgid "USER_POST_HIDE_OR_RESTORE_FAIL"
+msgstr "投稿する途中でエラーがありました。 %(error)s"
+
+#: app/templates/src/translations.html:207
+#: app/views/main/stories/forms/index.py:31 app/views/main/stories/index.py:85
 msgid "COMMENT_SAVE_SUCESS"
 msgstr "ありがとうございます！コメントが追加されました。"
 
-#: app/views/main/stamp/comment/index.py:61
+#: app/templates/src/translations.html:208
+#: app/views/main/stories/forms/index.py:62 app/views/main/stories/index.py:115
 msgid "COMMENT_DELETE_SUCCESS"
 msgstr "コメントが削除されました。"
 
-#: app/views/main/stamp/comment/index.py:63
+#: app/templates/src/translations.html:209
+#: app/views/main/stories/forms/index.py:64 app/views/main/stories/index.py:117
 msgid "ERROR_COMMENT_DELETE_FAILED"
 msgstr "コメントを削除中にエラーが起きました。 %(error)s"
+
+#: app/templates/src/translations.html:210
+msgid "NAME_LBL"
+msgstr "お名前"
+
+#: app/templates/src/translations.html:211
+msgid "USER_NAME_INVALID"
+msgstr "この名前には使用できない文字キャラクターが使われています。"
+
+#: app/templates/src/translations.html:212
+msgid "COMMENT_DESC"
+msgstr ""
+
+#: app/templates/src/translations.html:213
+msgid "WELCOME_TITLE_LBL"
+msgstr "%(name)s - ストーリーテリングネットワーク<br/>自由にあなたを表現する場所"
+
+#: app/templates/src/translations.html:214
+msgid "WELCOME_SUBTITLE_LBL"
+msgstr "あなたの解決策を世界にシェアしよう…<br/>Speak up, HeadUp!"
+
+#: app/templates/src/translations.html:215
+msgid "GO_TO_STORIES_BTN"
+msgstr "ストーリー"
+
+#: app/templates/src/translations.html:216
+msgid "WELCOME_SUBTITLE_EXTRA_LBL"
+msgstr "参加したいですか？"
+
+#: app/templates/src/translations.html:217
+msgid "INTRO1_LBL"
+msgstr "ポジティブな経験をシェアしてください。"
+
+#: app/templates/src/translations.html:218
+msgid "INTRO2_LBL"
+msgstr "あなたが誇りに思う経験を話してください。<br/>きっと頑張っているだれかが励まされるはずです。"
+
+#: app/templates/src/translations.html:219
+msgid "INTRO3_LBL"
+msgstr "どうやって気持ちを高く持ち続けているのですか？<br/>教えてください。"
+
+#: app/templates/src/translations.html:220
+msgid "INTRO4_LBL"
+msgstr "サクセスストーリーを書いてポジティブなエネルギーを世界に放とう"
+
+#: app/templates/src/translations.html:221
+msgid "APP_ERROR_AND_RETRY"
+msgstr "何かがおかしかった。 後でもう一度お試しください。"
+
+#~ msgid "USER_PASSWORD_EDIT_TITLE"
+#~ msgstr "パスワードを変更する"
+
+#~ msgid "USER_EMAIL_NOTIFICATION_TITLE"
+#~ msgstr "メールとお知らせ"
+
+#~ msgid "USER_DIGEST_EDIT_TITLE"
+#~ msgstr "Content for You"
+
+#~ msgid "USER_ALLOW_DIGEST_EMAIL"
+#~ msgstr ""
+#~ "HeadUP Digest emails consist of Top "
+#~ "Stories and other popular content from"
+#~ " your feed."
+
+#~ msgid "USER_COMMENTS_EDIT_TITLE"
+#~ msgstr "コメント"
+
+#~ msgid "USER_ALLOW_COMMENT_EMAIL"
+#~ msgstr "誰かがあなたのストーリーやコメントに対してコメントをした場合、メールをおくります。"
+

@@ -23,20 +23,17 @@ class UserForm(FlaskForm):
         choices=Role.DEFAULT_USER_ROLES)
     password = PasswordField(_lg('USER_PASSWORD'), [
         validators.Optional(),
-        validators.EqualTo('confirm_password', message=_lg('USER_CONFIRM_PASSWORD_INVALID')),
+        validators.EqualTo('confirm_password', message=_lg(
+            'USER_CONFIRM_PASSWORD_INVALID')),
         validators.Length(min=10, max=64)
     ])
-    confirm_password = PasswordField(_lg('USER_CONFIRM'), [validators.Optional()])
-    timezone = SelectField(_lg('USER_TIMEZONE'), choices=get_timezones())
+    confirm_password = PasswordField(
+        _lg('USER_CONFIRM'), [validators.Optional()])
 
     def __init__(self, user=None, *args, **kwargs):
         super(UserForm, self).__init__(*args, **kwargs)
-
-        if not user:
-            self.timezone.data = config.DEFAULT_TIMEZONE
 
         if not self.is_submitted() and user:
             self.email.data = user.email
             self.nickname.data = user.nickname
             self.role_id.data = user.role_id
-            self.timezone.data = user.timezone

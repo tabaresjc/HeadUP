@@ -7,11 +7,10 @@
 	    <title>{% if title -%}{{ site_name }} | {{ title }}{%- else %}{{ site_name }}{%- endif %}</title>
 	    <meta name="description" content="{{ description if description else '' }}">
 	    {% block meta_extra %}{% endblock %}
-	    {% include 'shared/icons.html' %}
+		{% include 'shared/header/_icons.html' %}
 		{% block head %}{% endblock %}
-		{% include 'shared/ga.html' %}
-		<meta content="authenticity_token" name="csrf-param">
-	    <meta name="csrf-token" content="{{ csrf_token() }}">
+		{{ widget('header_ga', language=language) }}
+		{% include 'shared/meta/_token.html' %}
 	</head>
 	<body>
 		{% block page %}

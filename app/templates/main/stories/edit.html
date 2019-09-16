@@ -1,0 +1,105 @@
+{% extends "main/layout/base.html" %}
+{% set title = post.title if post else _('POST_CREATE') %}
+{% set description = '' %}
+{% set page_class = 'story-editor' %}
+
+{% block meta_extra %}
+{% endblock %}
+
+{% block page_wrapper %}
+<div id="story-editor-page" class="container-wrap-editor" escape-vuejs>
+	<nav class="navbar navbar-default navbar-fixed-top">
+		<div class="container clearfix">
+			<div class="pull-left">
+				<a id="story-cancel" class="btn btn-link navbar-btn"
+					href="{{ url_for('story.show', id=post.id) if post else url_for('latest') }}">
+					{{ _('BTN_CANCEL_LBL') }}
+				</a>
+			</div>
+			<div class="pull-right">
+				<button id="story-save-draft" class="btn btn-link navbar-btn">
+					{{ _('BTN_UNPUBLISH_LBL') if post else _('BTN_DRAFT_LBL') }}
+				</button>
+				<button id="story-launch-modal" class="btn btn-primary navbar-btn btn-primary--transparent">
+					{{ _('PUBLISH_LBL') }}
+				</button>
+			</div>
+		</div>
+	</nav>
+	<div class="container story-container">
+		<div class="row">
+			<div class="col-md-12 col-sm-12 col-xs-12">
+				<div class="cover-picture">
+					<div class="cover-picture-panel">
+						<span class="update"><i class="glyphicon glyphicon-refresh"></i></span>
+						<span class="delete" data-target="#cover_picture_id">
+							<i class="glyphicon glyphicon-remove"></i>
+						</span>
+					</div>
+					<div class="cover-picture-button">
+						<span class="glyphicon glyphicon-picture" aria-hidden="true"></span>
+					</div>
+					<div class="upload-file-container">
+						<input id="cover-picture-upload" type=file name=file accept="image/x-png, image/jpeg">
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-12 col-sm-12 col-xs-12">
+				<div id="story-container" data-id="{{ id if id else '' }}" data-language="{{ language }}" class="container-wrapper">
+					<div id="story-title" data-placeholder="{{ _('FRM_INPUT_TITLE_DESCRIPTION') }}"></div>
+					<div id="story-body" data-placeholder="{{ _('FRM_INPUT_SOLUTION_DESCRIPTION') }}"></div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!-- modal dialog -->
+	<div id="story-dialog" class="modal fade" tabindex="-1" role="dialog">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+					<h4 class="modal-title">{{ _('PUBLISH_LBL') }}</h4>
+				</div>
+				<div class="modal-body">
+					<div class="form">
+						<div class="form-group">
+							<label for="recipient-name" class="control-label">{{ _('SELECT_CATEGORY_LBL') }}</label>
+							<select id="story-category"></select>
+						</div>
+						<div class="anonymous-container">
+							<div class="pretty p-switch p-fill p-bigger">
+								<input id="anonymous-checkbox" type="checkbox" />
+								<div class="state p-success">
+									<label>{{ _('CB_ANONYMOUS_LBL') }}</label>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="modal-footer">
+					<button class="btn btn-default" data-dismiss="modal">{{ _('BTN_CLOSE_LBL') }}</button>
+					<button id="story-publish" class="btn btn-primary">{{ _('BTN_SAVE_LBL') }}</button>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- end modal dialog -->
+
+	<div class="push"></div>
+</div>
+<!-- footer -->
+{% include 'main/layout/footer.html' %}
+<!-- end footer -->
+{% endblock %}
+
+{% block header_script %}
+	<script src="https://cdn.ckeditor.com/ckeditor5/12.1.0/balloon-block/ckeditor.js"></script>
+	{% if language != 'en' %}
+	<script src="https://cdn.ckeditor.com/ckeditor5/12.1.0/balloon-block/translations/{{ language }}.js"></script>
+	{% endif %}
+{% endblock %}

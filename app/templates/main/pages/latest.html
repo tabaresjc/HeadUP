@@ -1,0 +1,26 @@
+{% extends "main/layout/base.html" %}
+{% set title = _('LATEST_TITLE') %}
+{% set description = _('LATEST_DESCRIPTION') %}
+
+{% block meta_extra %}
+	{% if config.FB_APPID %}
+	<meta property="fb:app_id" content="{{ config.FB_APPID }}" />
+	{% endif %}
+	<meta property="og:type" content="blog" />
+	<meta property="og:url" content="{{ url_for('latest', _external=true) }}" />
+	<meta property="og:title" content="{{ title }}" />
+	<meta property="og:description" content="{{ description }}">
+	<meta property="og:image" content="{{ url_for('static', filename='images/lp/home/screen-bg_1.jpg', _external=true) }}" />
+{% endblock %}
+
+{% block wide_container %}
+<div class="row">
+	<div id="main-sidebar" class="col-md-4 col-sm-12 col-xs-12">
+		{% include 'main/common/_sidebar_user.html' %}
+	</div>
+
+	<div id="main-content" class="col-md-8 col-sm-12 col-xs-12">
+		{{ widget('story_list') }}
+	</div>
+</div>
+{% endblock %}

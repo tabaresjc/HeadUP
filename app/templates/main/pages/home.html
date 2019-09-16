@@ -1,0 +1,816 @@
+{% extends "main/layout/blank.html" %}
+{% set title = _('HOME_TITLE') %}
+{% set description = _('HOME_DESCRIPTION') %}
+
+{% block page %}
+	<!--START OF NAV-->
+	<nav class="navbar navbar-expand-lg navbar-light" id="nav-wrapper" style="padding:0;">
+		<a class="navbar-brand" href="/" style="margin-right:0;"><img src="/media/lp/201905/images/logo.png"
+				id="logo-1" style="height: 4rem; transition: width 0.5s ease;" /></a>
+		<a class="navbar-brand" href="/"><img src="/media/lp/201905/images/logo-headup-white.png" height="40"
+				id="logo-2" /></a>
+
+		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+			aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation" style="border:0;">
+			<span class="navbar-toggler-icon"></span>
+		</button>
+
+		<div class="collapse navbar-collapse" id="navbarSupportedContent">
+			<ul class="navbar-nav mr-auto"></ul>
+			<ul class="navbar-nav" id="mainNav">
+				<li class="nav-item" style="padding:0 20px;">
+					<a class="nav-link" id="nav-home" href="#home">HOME <span class="sr-only">(current)</span></a>
+				</li>
+				<li class="nav-item" style="padding:0 20px;">
+					<a class="nav-link" id="nav-aboutUs" href="#category">STORY CATEGORIES</a>
+				</li>
+				<li class="nav-item" style="padding:0 20px;">
+					<a class="nav-link" id="nav-aboutUs" href="#contact">CONTACT US</a>
+				</li>
+				<li class="nav-item dropdown" style="padding:0 20px; ">
+					<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
+						aria-haspopup="true" aria-expanded="false">
+						LANGUAGE
+					</a>
+					<div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+						{% for key, value in config.LANGUAGES.iteritems() %}
+							<a href="{{ request.path|urlthis(key) }}" class="dropdown-item {{ 'disabled' if key == language else '' }}">
+								<img src="/media/lp/201905/images/{{ key }}.svg" style="width:28px;height:28px;">
+								<span style="text-transform: uppercase;">{{ value }}</span>
+							</a>
+							{% if not loop.last %}
+							<hr />
+							{% endif %}
+						{% endfor %}
+					</div>
+				</li>
+				{% if current_user and current_user.is_authenticated -%}
+				<li class="nav-item dropdown" style="padding:0 20px; ">
+					<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
+						aria-haspopup="true" aria-expanded="false">
+						ACCOUNT
+					</a>
+					<div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+						<a href="{{ url_for('PostsView:index') }}" class="dropdown-item">{{ _('POST_LIST') }}</a>
+						<a href="{{ url_for('PostsView:draft_list') }}" class="dropdown-item">{{ _('POST_DRAFT_LIST') }}</a>
+						<a href="{{ url_for('PostsView:post') }}" class="dropdown-item">{{ _('POST_CREATE') }}</a>
+						<div class="dropdown-divider"></div>
+						<a href="{{ url_for('UsersView:get', id=current_user.id) }}" class="dropdown-item">{{ _('APP_PROFILE') }}</a>
+						<a href="{{ url_for('sessions.logout', ret='/') }}" class="dropdown-item" data-method="post" title="{{ _('APP_SIGN_OUT') }}">
+							{{ _('APP_SIGN_OUT') }}
+						</a>
+					</div>
+				</li>
+				{%- else %}
+				<li class="nav-item" style="padding:2px 8px;">
+					<a class="nav-link btn btn-outline-secondary round-corner box-effect-small" id="btnLogin"
+						href="{{ url_for('sessions.login') }}" rel="nofollow" style="padding: 0.2rem 1.5rem;font-size:14px;">LOGIN</a>
+				</li>
+				<li class="nav-item" style="padding:2px 8px;">
+					<a class="nav-link btn round-corner box-effect-small" id="btnSignUp"
+						href="{{ url_for('sessions.signup') }}" rel="nofollow">SIGN UP</a>
+				</li>
+				{%- endif %}
+			</ul>
+		</div>
+	</nav>
+	<!--END OF NAV-->
+
+	<!--Home-->
+	<section id="home">
+		<div class="row splash-jumbo" style="padding-top:15%;">
+			<div class="container">
+				<div class="row">
+					<div class="col-12 col-md-12 text-center">
+						<a href="{{ url_for('latest') }}"
+							class="btn btn-warning text-white rounded-pill box-effect-small wow fadeInDown btnRead"
+							style="padding:20px;">START READING HERE! <i class="fa fa-arrow-circle-right"></i></a>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+	<!--End of Home-->
+	<br />
+
+	<!--Categories-->
+	<section id="category" class="section-pad">
+		<div class="container">
+			<!--Category title-->
+			<div class="row text-center">
+				<div class="col-12 col-md-12 underline" style="margin-top:20px;">
+					<h1 class="section-title">Stories by Category</h1>
+				</div>
+			</div>
+			<!--End of Category title-->
+
+			<br />
+
+			<div class="row text-center">
+
+				<div class="col-6 col-md-3" style="margin-top:10px;">
+					<div class="card box-effect-small wow jackInTheBox" style="visibility: visible;">
+						<a href="{{ url_for('story.category', slug='science') }}">
+							<img src="/media/lp/201905/images/category-images/science.png"
+								class="card-img-top story-cat-box"
+								style="display: block;max-width: 100%;height: auto;">
+						</a>
+					</div>
+				</div>
+
+				<div class="col-6 col-md-3" style="margin-top:10px;">
+					<div class="card box-effect-small wow jackInTheBox" style="visibility: visible;">
+						<a href="{{ url_for('story.category', slug='travel') }}">
+							<img src="/media/lp/201905/images/category-images/travel.png"
+								class="card-img-top story-cat-box"
+								style="display: block;max-width: 100%;height: auto;">
+						</a>
+					</div>
+				</div>
+
+				<div class="col-6 col-md-3" style="margin-top:10px;">
+					<div class="card box-effect-small wow jackInTheBox" style="visibility: visible;">
+						<a href="{{ url_for('story.category', slug='studies') }}">
+							<img src="/media/lp/201905/images/category-images/studies.png"
+								class="card-img-top story-cat-box"
+								style="display: block;max-width: 100%;height: auto;">
+						</a>
+					</div>
+				</div>
+
+				<div class="col-6 col-md-3" style="margin-top:10px;">
+					<div class="card box-effect-small wow jackInTheBox" style="visibility: visible;">
+						<a href="{{ url_for('story.category', slug='news') }}">
+							<img src="/media/lp/201905/images/category-images/news.png"
+								class="card-img-top story-cat-box"
+								style="display: block;max-width: 100%;height: auto;">
+						</a>
+					</div>
+				</div>
+
+			</div>
+
+			<br />
+			<div class="row text-center">
+
+				<div class="col-6 col-md-3" style="margin-top:10px;">
+					<div class="card box-effect-small wow jackInTheBox" style="visibility: visible;">
+						<a href="{{ url_for('story.category', slug='tech') }}">
+							<img src="/media/lp/201905/images/category-images/tech.png"
+								class="card-img-top story-cat-box"
+								style="display: block;max-width: 100%;height: auto;">
+						</a>
+					</div>
+				</div>
+
+				<div class="col-6 col-md-3" style="margin-top:10px;">
+					<div class="card box-effect-small wow jackInTheBox" style="visibility: visible;">
+						<a href="{{ url_for('story.category', slug='music') }}">
+							<img src="/media/lp/201905/images/category-images/music.png"
+							class="card-img-top story-cat-box"
+								style="display: block;max-width: 100%;height: auto;">
+						</a>
+					</div>
+				</div>
+
+				<div class="col-6 col-md-3" style="margin-top:10px;">
+					<div class="card box-effect-small wow jackInTheBox" style="visibility: visible;">
+						<a href="{{ url_for('story.category', slug='health') }}">
+							<img src="/media/lp/201905/images/category-images/health.png"
+								class="card-img-top story-cat-box"
+								style="display: block;max-width: 100%;height: auto;">
+						</a>
+					</div>
+				</div>
+
+				<div class="col-6 col-md-3" style="margin-top:10px;">
+					<div class="card box-effect-small wow jackInTheBox" style="visibility: visible;">
+						<a href="{{ url_for('story.category', slug='family') }}">
+							<img src="/media/lp/201905/images/category-images/family.png"
+								class="card-img-top story-cat-box"
+								style="display: block;max-width: 100%;height: auto;">
+						</a>
+					</div>
+				</div>
+
+			</div>
+
+			<br />
+			<div class="row text-center">
+
+				<div class="col-6 col-md-3" style="margin-top:10px;">
+					<div class="card box-effect-small wow jackInTheBox" style="visibility: visible;">
+						<a href="{{ url_for('story.category', slug='disability') }}">
+							<img src="/media/lp/201905/images/category-images/disability.png"
+								class="card-img-top story-cat-box"
+								style="display: block;max-width: 100%;height: auto;">
+						</a>
+					</div>
+				</div>
+
+				<div class="col-6 col-md-3" style="margin-top:10px;">
+					<div class="card box-effect-small wow jackInTheBox" style="visibility: visible;">
+						<a href="{{ url_for('story.category', slug='amusement') }}">
+							<img src="/media/lp/201905/images/category-images/amusement.png"
+								class="card-img-top story-cat-box"
+								style="display: block;max-width: 100%;height: auto;">
+						</a>
+					</div>
+				</div>
+
+				<div class="col-6 col-md-3" style="margin-top:10px;">
+					<div class="card box-effect-small wow jackInTheBox" style="visibility: visible;">
+						<a href="{{ url_for('story.category', slug='life-experience') }}">
+							<img src="/media/lp/201905/images/category-images/life-experience.png"
+								class="card-img-top story-cat-box"
+								style="display: block;max-width: 100%;height: auto;">
+						</a>
+					</div>
+				</div>
+
+				<div class="col-6 col-md-3" style="margin-top:10px;">
+					<div class="card box-effect-small wow jackInTheBox" style="visibility: visible;">
+						<a href="{{ url_for('story.category', slug='business') }}">
+							<img src="/media/lp/201905/images/category-images/business.png"
+								class="card-img-top story-cat-box"
+								style="display: block;max-width: 100%;height: auto;">
+						</a>
+					</div>
+				</div>
+
+			</div>
+
+			<br />
+			<div class="row text-center">
+
+				<div class="col-6 col-md-3" style="margin-top:10px;">
+					<div class="card box-effect-small wow jackInTheBox" style="visibility: visible;">
+						<a href="{{ url_for('story.category', slug='life-lessons') }}">
+							<img src="/media/lp/201905/images/category-images/life-lessons.png"
+								class="card-img-top story-cat-box"
+								style="display: block;max-width: 100%;height: auto;">
+						</a>
+					</div>
+				</div>
+
+				<div class="col-6 col-md-3" style="margin-top:10px;">
+					<div class="card box-effect-small wow jackInTheBox" style="visibility: visible;">
+						<a href="{{ url_for('story.category', slug='fashion') }}">
+							<img src="/media/lp/201905/images/category-images/fashion.png"
+								class="card-img-top story-cat-box"
+								style="display: block;max-width: 100%;height: auto;">
+						</a>
+					</div>
+				</div>
+
+				<div class="col-6 col-md-3" style="margin-top:10px;">
+					<div class="card box-effect-small wow jackInTheBox" style="visibility: visible;">
+						<a href="{{ url_for('story.category', slug='art') }}">
+							<img src="/media/lp/201905/images/category-images/art.png"
+								class="card-img-top story-cat-box"
+								style="display: block;max-width: 100%;height: auto;">
+						</a>
+					</div>
+				</div>
+				<div class="col-6 col-md-3" style="margin-top:10px;">
+					<div class="card box-effect-small wow jackInTheBox" style="visibility: visible;">
+						<a href="{{ url_for('story.category', slug='food') }}">
+							<img src="/media/lp/201905/images/category-images/food.png"
+								class="card-img-top story-cat-box"
+								style="display: block;max-width: 100%;height: auto;">
+						</a>
+					</div>
+				</div>
+
+			</div>
+			<br />
+
+			<div class="row text-center">
+				<div class="col-6 col-md-3" style="margin-top:10px;">
+					<div class="card box-effect-small wow jackInTheBox" style="visibility: visible;">
+						<a href="{{ url_for('story.category', slug='job') }}">
+							<img src="/media/lp/201905/images/category-images/jobs.png"
+								class="card-img-top story-cat-box"
+								style="display: block;max-width: 100%;height: auto;">
+						</a>
+					</div>
+				</div>
+
+				<div class="col-6 col-md-3" style="margin-top:10px;">
+					<div class="card box-effect-small wow jackInTheBox" style="visibility: visible;">
+						<a href="{{ url_for('story.category', slug='pets') }}">
+							<img src="/media/lp/201905/images/category-images/pets.png"
+								class="card-img-top story-cat-box"
+								style="display: block;max-width: 100%;height: auto;">
+						</a>
+					</div>
+				</div>
+
+				<div class="col-6 col-md-3" style="margin-top:10px;">
+					<div class="card box-effect-small wow jackInTheBox" style="visibility: visible;">
+						<a href="{{ url_for('story.category', slug='environment') }}">
+							<img src="/media/lp/201905/images/category-images/environment.png"
+								class="card-img-top story-cat-box"
+								style="display: block;max-width: 100%;height: auto;">
+						</a>
+					</div>
+				</div>
+
+				<div class="col-6 col-md-3" style="margin-top:10px;">
+					<div class="card box-effect-small wow jackInTheBox" style="visibility: visible;">
+						<a href="{{ url_for('story.category', slug='sport') }}">
+							<img src="/media/lp/201905/images/category-images/sport.png"
+								class="card-img-top story-cat-box"
+								style="display: block;max-width: 100%;height: auto;">
+						</a>
+					</div>
+				</div>
+
+				<div class="col-6 col-md-3" style="margin-top:10px;">
+					<div class="card box-effect-small wow jackInTheBox" style="visibility: visible;">
+						<a href="{{ url_for('story.category', slug='dreams') }}">
+							<img src="/media/lp/201905/images/category-images/dreams.png"
+								class="card-img-top story-cat-box"
+								style="display: block;max-width: 100%;height: auto;">
+						</a>
+					</div>
+				</div>
+
+				<div class="col-6 col-md-3" style="margin-top:10px;">
+					<div class="card box-effect-small wow jackInTheBox" style="visibility: visible;">
+						<a href="{{ url_for('story.category', slug='fiction') }}">
+							<img src="/media/lp/201905/images/category-images/fiction.png"
+								class="card-img-top story-cat-box"
+								style="display: block;max-width: 100%;height: auto;">
+						</a>
+					</div>
+				</div>
+
+				<div class="col-6 col-md-3" style="margin-top:10px;">
+					<div class="card box-effect-small wow jackInTheBox" style="visibility: visible;">
+						<a href="{{ url_for('story.category', slug='history') }}">
+							<img src="/media/lp/201905/images/category-images/history.png"
+								class="card-img-top story-cat-box"
+								style="display: block;max-width: 100%;height: auto;">
+						</a>
+					</div>
+				</div>
+
+				<div class="col-6 col-md-3" style="margin-top:10px;">
+					<div class="card box-effect-small wow jackInTheBox" style="visibility: visible;">
+						<a href="{{ url_for('story.category', slug='how-to') }}">
+							<img src="/media/lp/201905/images/category-images/how-to.png"
+								class="card-img-top story-cat-box"
+								style="display: block;max-width: 100%;height: auto;">
+						</a>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+	<!--End of Categories-->
+
+
+	<!--how it works-->
+	<section class="section-pad theme-bg-green" id="how-it-works">
+		<div class="container">
+
+			<!--how it works title-->
+			<div class="row text-center">
+				<div class="col-12 col-md-12 underline" style="margin-top:20px;">
+					<h1 class="section-title text-white">A STORY TO TELL?</h1>
+				</div>
+			</div>
+			<!--End of how it works title-->
+
+			<br />
+			<br />
+
+			<div class="row">
+				<div class="col-12 col-md-3 text-center" style="margin-top:20px;">
+					<div class="card wow slideInRight">
+						<div class="card-body box-effect-small"
+							style="height: 150px;background: linear-gradient(90deg,#f5f5f5,#FFFFFF);">
+							<h6><i class="fa fa-share-alt fa-5x" style="color:#89cbd6"></i> <br /> <span
+									class="text-muted">You want to share a story</span></h6>
+							<hr />
+						</div>
+					</div>
+				</div>
+
+				<div class="col-12 col-md-3 text-center" style="margin-top:20px;">
+					<div class="card wow slideInRight">
+						<div class="card-body box-effect-small"
+							style="height: 150px;background: linear-gradient(90deg,#f5f5f5,#FFFFFF);">
+							<h6 class="mb-1 text-muted">
+								<button onclick="window.location.href='{{ url_for('sessions.signup') }}'"
+									class="btn rounded-pill box-effect-small"
+									style="background-color:#89cbd6;color:white;padding: 15px 20px;">Sign up</button>
+								<br /><br />
+								In 30 secs and create a profile
+							</h6>
+							<hr />
+						</div>
+					</div>
+				</div>
+
+				<div class="col-12 col-md-3" style="margin-top:20px;">
+					<div class="card wow slideInRight">
+						<div class="card-body box-effect-small text-center"
+							style="height: 150px;background: linear-gradient(90deg,#f5f5f5,#FFFFFF);">
+							<h6 class="mb-1 text-muted">
+								<i class="fa fa-pencil fa-5x" style="color:#89cbd6;"></i><br />
+								Write your story
+							</h6>
+							<hr />
+							<!--<p class="mb-1 text-muted text-left">
+									<span>To share or release</span><br />
+									<span>To cheer people up or inspire others</span><br />
+									<span>To promote yourself or your projects</span>
+								</p>-->
+						</div>
+					</div>
+				</div>
+
+				<div class="col-12 col-md-3 text-center" style="margin-top:20px;">
+					<div class="card wow slideInRight">
+						<div class="card-body box-effect-small"
+							style="height: 150px;background: linear-gradient(90deg,#f5f5f5,#FFFFFF);">
+							<h6 class="mb-1">
+								<i class="fa fa-check-circle fa-5x" style="color:#89cbd6;"></i> <br /> <span
+									class="text-muted">Stamp it !</span>
+							</h6>
+							<hr />
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+	<!--how it works-->
+
+	<!--make-diff-->
+	<section class="section-pad" id="make-diff"
+		style="background:linear-gradient(45deg, rgba(255,255,255,0.9), rgba(255,255,255,0.9)), url(/media/lp/201905/images/abs.jpg) center top no-repeat; background-size:cover;">
+		<div class="container">
+
+			<div class="row">
+				<div class="pricing">
+					<div class="row justify-content-md-center">
+						<div class="pricing__plan pricing__plan--popular col-12 col-md-6">
+							<div class="pricing__badge-bg"></div>
+							<!-- <div class="pricing__badge-text">POPULAR</div> -->
+							<h5 class="pricing__title">WHAT MAKES IT DIFFERENT?</h5>
+							<br />
+							<ul class="pricing__list">
+								<li><b>Free</b> & <b>Anonymous</b></li>
+								<li>Share your story <b>worldwide</b> </li>
+								<li><b>Encourage</b> and <b>inspire</b> others</li>
+								<li><b>Promote</b> your projects, your business, your talents</li>
+								<li><b>Discover</b> fantastic and fun stories</li>
+							</ul>
+						</div>
+					</div>
+				</div>
+
+			</div>
+
+		</div>
+	</section>
+	<!--make diff-->
+
+	<section id="latest-stories">
+		<br />
+		<div class="container">
+			<!--title-->
+			<div class="row text-center">
+				<div class="col-12 col-md-12 underline" style="margin-top:20px;">
+					<h1 class="section-title">Latest Stories</h1>
+				</div>
+			</div>
+			<!--End of title-->
+			<br />
+			<div class="row text-center">
+				<div class="col-12 col-md-2"></div>
+				<div class="col-12 col-md-8">
+					<div id="carouselExampleCaptions" class="carousel slide" data-ride="carousel">
+						<div class="carousel-inner box-effect-large" style="border-radius:5px;">
+
+							<div class="carousel-item active">
+								<a href="http://headup.space/stamp/119" class="text-muted" style="text-decoration:none;">
+									<div class="card">
+										<img src="/media/lp/201905/images/story-images/story-1.jpg"
+											class="card-img-top slider_img">
+										<div class="card-body"
+											style="background: linear-gradient(45deg, rgba(255,255,255,0.5), rgba(255,255,255,0.5)); height:150px;">
+											<h5 class="card-title">Jedi Nights</h5>
+											<p class="card-text">A short while ago, in a galaxy not that far far away …
+												A NEW DISCIPLINE ARISES ...</p>
+										</div>
+									</div>
+								</a>
+							</div>
+
+							<div class="carousel-item">
+								<a href="http://headup.space/stamp/108" class="text-muted" style="text-decoration:none;">
+									<div class="card">
+										<img src="/media/lp/201905/images/story-images/story-2.jpg"
+											class="card-img-top slider_img">
+										<div class="card-body"
+											style="background: linear-gradient(45deg, rgba(255,255,255,0.5), rgba(255,255,255,0.5));height:150px;">
+											<h5 class="card-title">自分を取り戻す。</h5>
+											<p class="card-text">ある人につまらない人と言われた経験や浅い人。。。 パートナーが絵具セットを買ってくれた。。。</p>
+										</div>
+									</div>
+								</a>
+
+							</div>
+
+							<div class="carousel-item">
+								<a href="http://headup.space/stamp/66" class="text-muted" style="text-decoration:none;">
+									<div class="card">
+										<img src="/media/lp/201905/images/story-images/story-3.jpg"
+											class="card-img-top slider_img">
+										<div class="card-body"
+											style="background: linear-gradient(45deg, rgba(255,255,255,0.5), rgba(255,255,255,0.5));height:150px;">
+											<h5 class="card-title">No te lo tomes personal, es un aprendizaje de vida
+											</h5>
+											<p class="card-text">Cuando sueñas con algo grande siempre habrá todo tipo
+												de.. Cuando escuchas a tu corazón te das cuenta.. </p>
+										</div>
+									</div>
+								</a>
+
+							</div>
+
+							<div class="carousel-item">
+								<a href="http://headup.space/stamp/103" class="text-muted" style="text-decoration:none;">
+									<div class="card">
+										<img src="/media/lp/201905/images/story-images/story-4.png"
+											class="card-img-top slider_img">
+										<div class="card-body"
+											style="background: linear-gradient(45deg, rgba(255,255,255,0.5), rgba(255,255,255,0.5));height:150px;">
+											<h5 class="card-title">Partager notre rêve horloger !</h5>
+											<p class="card-text">Septembre 2016, Genève... Quartier de Plainpalais. Tout
+												juste sortis de l’atelier d’un ami horloger..</p>
+										</div>
+									</div>
+								</a>
+
+							</div>
+
+						</div>
+
+						<a class="carousel-control-prev" href="#carouselExampleCaptions" role="button" data-slide="prev">
+							<span class="carousel-control-prev-icon" aria-hidden="true"></span>
+							<span class="sr-only">Previous</span>
+						</a>
+						<a class="carousel-control-next" href="#carouselExampleCaptions" role="button" data-slide="next">
+							<span class="carousel-control-next-icon" aria-hidden="true"></span>
+							<span class="sr-only">Next</span>
+						</a>
+					</div>
+				</div>
+				<div class="col-12 col-md-2"></div>
+			</div>
+		</div>
+	</section>
+	<br />
+	<br />
+	<br />
+	<!--CONTACT US SECTION-->
+	<section id="contact" class="section-pad" style="background:linear-gradient(180deg,#ecf2f1,#cbdddd); padding-bottom:0;">
+		<br />
+		<br />
+		<div class="container">
+			<br />
+
+			<div class="row" style="padding:0 5%;">
+				<div class="col-12 col-md-6 text-center" id="contactUsDiv">
+					<video playsinline autoplay muted id="myVideo" class="box-effect-small"
+						style="width:150px; height:150px; border-radius:50%;">
+						<source src="/media/lp/201905/images/motion logo_ver 2.mp4" type="video/mp4">
+					</video>
+
+					<img src="/media/lp/201905/images/logo-headup.png" width="200" id="logoImage" />
+					<p id="logoTitle">your space to express yourself freely</p>
+					<hr />
+
+					<!--Permanent marker title-->
+					<h4 id="vibes" class="text-muted" style="font-family: 'Permanent Marker', cursive;"></h4>
+
+				</div>
+				<div class="col-12 col-md-6 text-center" style="padding-top:50px;">
+					<div>
+						<table>
+							<tr>
+								<td width="30px"><i class="fa fa-map-marker fa-2x text-flash"></i></td>
+								<td style="padding-left:10px;"><span class="text-muted">Worldwide</span>
+								</td>
+							</tr>
+						</table>
+					</div>
+					<br />
+					<div>
+						<table>
+							<tr>
+								<td width="30px"><i class="fa fa-envelope fa-lg text-flash"></i></td>
+								<td style="padding-left:10px;">
+										<a href="mailto:support@headup.space?subject=Inquiry" class="text-muted">support@headup.space</a></td>
+							</tr>
+						</table>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<br />
+
+		<div class="container">
+			<div class="row text-center">
+				<div class="text-center col-12 col-md-12">
+					<h6 class="text-muted">Follow us & share on</h6>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-12 col-md-12 text-center">
+					<a href="https://www.youtube.com/channel/UCI7kUURMQab8RzK3OoJeasQ" target="_blank"
+						class="text-muted wow slideInUp" style="text-decoration:none;">
+						<img style="width:30px;" src="/media/lp/201905/images/youtube.png" alt="youtube" />
+					</a>&nbsp;
+
+					<a href="https://www.facebook.com/headupspace/" target="_blank" class="text-muted wow slideInUp"
+						style="text-decoration:none;">
+						<img style="width:30px;" src="/media/lp/201905/images/facebook.png" alt="facebook" />
+					</a> &nbsp;
+
+					<a href="https://www.instagram.com/headup.space/" target="_blank" class="text-muted wow slideInUp"
+						style="text-decoration:none;">
+						<img style="width:30px;" src="/media/lp/201905/images/instagram.png" alt="instagram" />
+					</a>&nbsp;
+
+					<a href="https://www.pinterest.com/headupspace/" target="_blank" class="text-muted wow slideInUp"
+						style="text-decoration:none;">
+						<img style="width:30px;" src="/media/lp/201905/images/pinterest.png" alt="pinterest" />
+					</a>
+
+					<br />
+
+					{% if config.PATREON_ID %}
+					<div class="text-center" style="margin-top: 20px;">
+						<a href="https://www.patreon.com/bePatron?u={{ config.PATREON_ID }}&redirect_uri={{ request.url | urlencode }}" target="_blank">
+							<img src="/static/images/sns/patreon.png" alt="Become a patron!" width="150">
+						</a>
+					</div>
+					{% endif %}
+				</div>
+			</div>
+
+		</div>
+		<div class="clouds wow slideInUp">
+			<a href="#" class="back-to-top box-effect-large" style="display: inline;"><i class="fa fa-chevron-up"></i></a>
+		</div>
+		<div class="container-fluid text-center" style="background-color:white;">
+			<span class="text-muted">
+				Copyright ©{{ today.year if today.year == 2016 else '2016-%s' % today.year  }} {{ config.SITE_NAME }}. All rights reserved.
+			</span>
+			<br />
+			<a href="{{ url_for('code_of_conduct') }}" class="text-muted">{{ _('CODE_CONDUCT_LBL') }}</a>
+			<span>&nbsp;|&nbsp;</span>
+			<a href="{{ url_for('privacy_policy') }}" class="text-muted">{{ _('TOS_LBL') }}</a>
+			<br />
+		</div>
+	</section>
+{% endblock %}
+
+
+{% block head %}
+	<link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700,900" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css?family=Permanent+Marker" rel="stylesheet">
+
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/js/bootstrap.min.js"></script>
+	<script src="/media/lp/201905/js/wow.min.js"></script>
+	<script src="/media/lp/201905/js/detectmobilebrowser.js"></script>
+	<script src="/media/lp/201905/js/jquery_ujs.js"></script>
+	<script src="/media/lp/201905/js/main.js"></script>
+
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/css/bootstrap.min.css" />
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.min.css" />
+	<link href="/media/lp/201905/css/site.css?v=2" rel="stylesheet" />
+
+	<script>
+		$(function () {
+			new WOW().init();
+		});
+		$(document).ready(function () {
+			if (jQuery.browser.mobile) {
+				$("#logoImage").show();
+				$("#logoTitle").show();
+				$("#myVideo").hide();
+			}
+			else {
+				$("#logoImage").hide();
+				$("#logoTitle").hide();
+				$("#myVideo").show();
+			}
+		});
+		$(document).ready(function () {
+		var scroll_start = 0;
+		var startchange = $('#myVideo');
+		var offset = startchange.offset();
+		if (startchange.length) {
+			var i = 0;
+			$(document).scroll(function () {
+				scroll_start = $(this).scrollTop();
+
+				if (scroll_start > offset.top) {
+					if (i == 0) {
+						typeWriter();
+						i = 1;
+					}
+				}
+			});
+		}
+	});
+
+	var i = 0;
+	var txt = '“A good vibe a day goes a long way”';
+	var speed = 100;
+
+	function typeWriter() {
+		if (i < txt.length) {
+			document.getElementById("vibes").innerHTML += txt.charAt(i);
+			i++;
+			setTimeout(typeWriter, speed);
+		}
+	}
+</script>
+
+<script>
+	$(document).ready(function () {
+		var scroll_start = 0;
+		var startchange = $('#home');
+		var offset = startchange.offset();
+		if (startchange.length) {
+			$(document).scroll(function () {
+				scroll_start = $(this).scrollTop();
+				if (scroll_start > offset.top) {
+					$("#nav-wrapper").css('background-color', 'rgba(255, 255, 255, 0.9)');
+					$("#nav-wrapper").addClass("box-effect-small");
+					$(".nav-link").addClass("nav-link-dark");
+					$("#logo-1").attr("src", "/media/lp/201905/images/logo-headup.png");
+					$("#logo-2").hide();
+				} else {
+					$('#nav-wrapper').css('background-color', 'transparent');
+					$("#nav-wrapper").removeClass("box-effect-small");
+					$(".nav-link").removeClass("nav-link-dark");
+					$("#logo-1").attr("src", "/media/lp/201905/images/logo.png");
+					$("#logo-2").show();
+				}
+			});
+		}
+
+		// checking if menu button is clicked in mobile mode
+		$(document).on("click", ".navbar-toggler", function () {
+			if (document.getElementById('nav-wrapper').clientHeight < 100) {
+				$("#nav-wrapper").css('background-color', 'rgba(255, 255, 255, 0.9)');
+				$(".nav-link").addClass("nav-link-dark");
+				$("#nav-wrapper").addClass("box-effect-small");
+			}
+			else {
+				$('#nav-wrapper').css('background-color', 'transparent');
+				$("#nav-wrapper").removeClass("box-effect-small");
+				$(".nav-link").removeClass("nav-link-dark");
+			}
+		});
+	});
+</script>
+<script>
+	jQuery(document).ready(function ($) {
+		$('.back-to-top').hide();
+
+		// Header fixed and Back to top button
+		$(window).scroll(function () {
+			if ($(this).scrollTop() > 100) {
+				$('.back-to-top').fadeIn('slow');
+				//$('#header').addClass('header-fixed');
+			} else {
+				$('.back-to-top').fadeOut('slow');
+				//$('#header').removeClass('header-fixed');
+			}
+		});
+
+		if ($(this).scrollTop() > 100) {
+			$('.back-to-top').fadeIn('slow');
+			//$('#header').addClass('header-fixed');
+		}
+
+		$(document).on("click", ".back-to-top", function () {
+			var body = $("html, body");
+			body.stop().animate({ scrollTop: 0 }, 500, 'swing');
+		});
+	});
+</script>
+{% endblock %}

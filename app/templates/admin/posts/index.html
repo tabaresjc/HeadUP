@@ -18,7 +18,7 @@
 				{% endfor %}
 				{{ pag('admin.posts.index', page, limit, total, _('POSTS_PAG_LBL'), kind='links')|safe }}
 			{%- else %}
-			<a href="{{ url_for('stamp.new') }}" class="no-post-message">
+			<a href="{{ url_for('story.new') }}" class="no-post-message">
 	      		<img src="/static/images/stories/feather-blue-256.png" alt="{{ site_name }}" />
 	      		<span>{{ _('WELCOME_MESSAGE_LBL') | safe }}</span>
 	    	</a>

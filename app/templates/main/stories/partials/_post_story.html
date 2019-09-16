@@ -1,0 +1,51 @@
+<div class="story-item boxed push-down-20">
+	{% if post.cover_picture %}
+	<div class="story-cover-picture" style="background-image:url('{{ post.cover_picture.image_url }}')"></div>
+	{% endif %}
+
+	<div class="story-content">
+		<h1 class="story-title"><a href="{{ post.url }}" rel="title">{{ post.title }}</a></h1>
+
+		<div class="story-info push-top-20 clearfix">
+			{% if not post.anonymous -%}
+			<img src="{{ post.user.profile_picture_url or '/static/images/user.png' }}" alt="{{ post.user.nickname }}" class="thumb">
+			{%- else %}
+			<img src="/static/images/user.png" class="thumb" />
+			{%- endif %}
+			<ul>
+				<li>
+					<span>
+						{% if not post.anonymous -%}
+							{{ post.user.nickname }}
+						{%- else %}
+							{{ _('ANONYMOUS_LBL') }}
+						{%- endif %}
+					</span>
+				</li>
+				{% if post.has_category %}
+				<li>
+					<a href="{{ post.category.url }}" class="custom-link">{{ post.category.name }}</a>
+				</li>
+				{%- endif %}
+				<li>
+					<span class="glyphicon glyphicon-calendar"></span>
+					<span v-date-transform="{datetime: {{ post.created_at_unix }}, format: 'llll', isUnix: true}"></span>
+				</li>
+			</ul>
+		</div>
+
+		<div class="story-body push-top-20">
+			<div class="content">
+				{% if not post.is_story %}
+				<h3>{{ post.body|nl2br|linkify|safe }}</h3>
+				{% endif %}
+				{{ post.extra_body|safe }}
+			</div>
+		</div>
+
+		<story-social-bar
+			:key="{{ post.id }}"
+			:story-id="{{ post.id }}"
+			:story-page="true" />
+	</div>
+</div>

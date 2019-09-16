@@ -1,8 +1,11 @@
 # -*- coding: utf8 -*-
 
-from math import log
-import datetime
+from flask import request
+from app.models import Post
 import app
+import math
+import datetime
+import hashlib
 
 
 class Feed:
@@ -11,6 +14,8 @@ class Feed:
     CACHE_CATEGORY_PAGE = 'stamps/category'
 
     CACHE_FEED_LIST = 'stamps/feeds.v1'
+    CACHE_FEED_POST = 'stamps/posts'
+    CACHE_FEED_EXPIRED_AT = 3600 * 24 * 7
     FEED_DEFAULT_LIMIT = 100
 
     vote_factor = 10
@@ -28,7 +33,7 @@ class Feed:
     @classmethod
     def score(cls, page_views, ups, downs, date):
         s = cls.base_score(page_views, ups, downs)
-        order = log(max(abs(s), 1), 10)
+        order = math.log(max(abs(s), 1), 10)
         sign = 1 if s > 0 else -1 if s < 0 else 0
         seconds = cls.epoch_seconds(date) - 1134028003
         return round((sign * order) + (seconds / 45000), 7)
@@ -56,16 +61,47 @@ class Feed:
             app.cache.set(key, None)
 
     @classmethod
-    def posts(cls, page=1, limit=10):
-        from app.models import Post
-        order = app.sa.text('posts.created_at DESC')
-        query = Post.query.filter_by(status=Post.POST_PUBLIC).order_by(order)
-        count = query.count()
+    def forced_update_posts(cls):
+        request_id = cls._make_request_id()
+        bucket = app.cache.get(cls.CACHE_FEED_POST) or []
+
+        if request_id in bucket:
+            return False
+
+        bucket.append(request_id)
+
+        app.cache.delete(cls.CACHE_FEED_POST)
+        app.cache.set(cls.CACHE_FEED_POST, bucket, cls.CACHE_FEED_EXPIRED_AT)
+
+        return True
+
+    @classmethod
+    def clear_cached_posts(cls):
+        bucket = app.cache.get(cls.CACHE_FEED_POST) or []
+        for item in bucket:
+            app.cache.delete(item)
+        app.cache.delete(cls.CACHE_FEED_POST)
+
+    @classmethod
+    def posts(cls, category_id=0, page=1, limit=10, status=Post.POST_PUBLIC, orderby='created_at', desc=True):
+        q = None
+
+        if category_id:
+            q = Post.query.filter_by(status=status, category_id=category_id)
+        else:
+            q = Post.query.filter_by(status=status)
+
+        count = q.count()
         records = []
+
         if count:
-            offset = (page - 1) * limit
-            records = query.limit(limit).offset(offset)
-        return records, count
+            sort_by = '%s %s' % (orderby, 'DESC' if desc else 'ASC')
+
+            records = q.order_by(app.sa.text(sort_by)) \
+                .limit(limit) \
+                .offset((page - 1) * limit)
+
+        return list(records), count
 
     @classmethod
     def ranking(cls, page=1, limit=20):
@@ -82,7 +118,8 @@ class Feed:
     @classmethod
     def category(cls, category, page=1, limit=20):
         from app.models import Post
-        query = Post.query.filter_by(category_id=category.id, status=Post.POST_PUBLIC)
+        query = Post.query.filter_by(category_id=category.id,
+                                     status=Post.POST_PUBLIC)
         count = query.count()
         records = []
         if count:
@@ -90,3 +127,21 @@ class Feed:
             offset = (page - 1) * limit
             records = query.order_by(order).limit(limit).offset(offset)
         return records, count
+
+    @classmethod
+    def _make_request_id(cls):
+        """Create a unique hash value of the current request.
+
+        Arguments will be part of the hash, and it will be sorted to keep
+        consistency.
+        """
+        args_as_sorted_tuple = tuple(
+            sorted((pair for pair in request.args.items(multi=True)))
+        )
+        # ... now hash the sorted (key, value) tuple so it can be
+        # used as a key for cache. Turn them into bytes so that the
+        # hash function will accept them
+        args_as_bytes = str(args_as_sorted_tuple).encode()
+        hashed_args = str(hashlib.md5(args_as_bytes).hexdigest())
+        cache_key = request.path + hashed_args
+        return cache_key

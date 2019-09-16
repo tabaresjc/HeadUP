@@ -1,0 +1,249 @@
+.story-feed-list,
+.story-single {
+	.story-item {
+		& > .story-cover-picture {
+			margin: 0;
+			width: 100%;
+			height: 300px;
+			border-radius: 0;
+			background: no-repeat center;
+			background-size: cover;
+
+			@media (min-width: $screen-sm-min) {
+				border-radius: 5px 5px 0 0;
+			}
+		}
+
+		& > .story-content {
+			padding: 20px 10px;
+
+			@media (min-width: $screen-sm-min) {
+				padding: 20px 30px;
+			}
+
+			& > .story-title {
+				margin: 0;
+				font-size: 30px;
+				font-family: $secondary-font;
+				line-height: 1.1;
+				letter-spacing: -0.5px;
+
+				@media (max-width: $screen-xs-max) {
+					font-size: 20px;
+				}
+
+				a {
+					color: #333;
+
+					&:hover,
+					&:focus {
+						text-decoration: none;
+					}
+				}
+			}
+
+			& > .story-info {
+				display: block;
+				box-sizing: border-box;
+
+				img.thumb {
+					-webkit-border-radius: 50px;
+					-moz-border-radius: 50px;
+					-ms-border-radius: 50px;
+					-o-border-radius: 50px;
+					border-radius: 50px;
+					width: 30px;
+					height: 30px;
+					float: left;
+					margin-right: 6px;
+					display: block;
+				}
+
+				ul {
+					list-style: none;
+					display: block;
+					padding: 4px 0 0 0;
+				}
+
+				ul li {
+					display: inline-block;
+					margin-left: 3px;
+					vertical-align: middle;
+					line-height: 1;
+
+					a,
+					span {
+						line-height: 1;
+						margin: 0;
+						padding: 0;
+					}
+
+					span {
+						color: #333;
+					}
+				}
+
+				ul li:after {
+					content: "|";
+					margin-left: 3px;
+					color: #c7cad0;
+				}
+
+				ul li:last-child:after {
+					content: "\00a0";
+				}
+			}
+
+			& > .story-body {
+				font-family: $secondary-font;
+
+				& > h3 {
+					font-size: 20px;
+					font-weight: 300;
+					color: #999;
+					letter-spacing: -0.75px;
+					line-height: 1.25;
+					margin: 0;
+				}
+
+				& > p {
+					color: #2e3137;
+					font-weight: 400;
+					line-height: 1.3;
+					font-size: 14px;
+					font-family: $primary-font;
+				}
+
+				& > h3 + p {
+					margin: 15px 0 0 0;
+				}
+
+				& > .content {
+					@include content-generic;
+
+					figure.media {
+						position: relative;
+						width: 100%;
+						height: 0;
+						padding-bottom: 56.25%;
+
+						iframe {
+							position: absolute;
+							top: 0;
+							left: 0;
+							width: 100%;
+							height: 100%;
+						}
+					}
+				}
+			}
+
+			& > .story-read-more {
+				width: 100%;
+				margin: 5px 0;
+				a {
+					display: block;
+					font-weight: 700;
+					text-align: center;
+				}
+			}
+
+			& > .story-social-bar {
+				& > .story-social-results {
+					padding: 15px 0 0 0;
+
+					.label {
+						font-size: 12px;
+					}
+				}
+
+				& > .story-social {
+					padding: 15px 0 0 0;
+					border-top: 1px solid #e7e7e7;
+
+					.btn {
+						margin: 0;
+						font-size: 1rem;
+						color: #808080;
+						min-width: 50px;
+						height: 35px;
+
+						& > i,
+						& > span {
+							vertical-align: middle;
+							line-height: 1;
+						}
+
+						& > i {
+							font-size: 1.4rem;
+						}
+
+						& > span {
+							font-size: 1.0rem;
+						}
+
+						i + span {
+							margin-left: 3px;
+						}
+
+						&.active {
+							color: #fff;
+							background: #51ab6d;
+						}
+
+						&:focus {
+							outline: none;
+						}
+					}
+
+					.dropdown-menu {
+						li > span {
+							display: block;
+							padding: 5px 20px;
+							clear: both;
+							font-weight: normal;
+							font-size: 1.3rem;
+							line-height: $line-height-base;
+							color: $dropdown-link-color;
+							white-space: nowrap; // prevent links from randomly breaking onto new lines
+							cursor: pointer;
+
+							&:hover,
+							&:focus {
+							  text-decoration: none;
+							  color: $dropdown-link-hover-color;
+							  background-color: $dropdown-link-hover-bg;
+							}
+
+							& > i {
+								margin-right: 3px;
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+
+	.custom-link {
+		text-decoration: none;
+		&:hover,
+		&:focus {
+			color: #51ab6d;
+			text-decoration: none;
+		}
+	}
+}
+
+.story-feed-container {
+	.btn-feed-message {
+		font-family: $secondary-font;
+		font-size: 1.5rem;
+		margin-bottom: 20px;
+		display: inline-block;
+		padding: 10px 50px;
+		color: #fff;
+		border: 1px solid #51ab6d;
+		background: linear-gradient(to bottom, #51ab6d, #418857);
+	}
+}

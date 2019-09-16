@@ -2,7 +2,7 @@
 
 from flask_wtf import FlaskForm
 from wtforms import TextAreaField, TextField, BooleanField, SelectField, \
-                    HiddenField, validators
+    HiddenField, validators
 from flask_babel import get_locale
 from app.models import Category, Post
 

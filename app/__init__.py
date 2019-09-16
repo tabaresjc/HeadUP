@@ -1,18 +1,28 @@
 # -*- coding: utf8 -*-
 
-from flask import Flask
+import os
 import flask
 import jinja2
-import os
 import config
-import logging
 
-app = Flask(__name__)
+app = flask.Flask(__name__)
 
 # -------------------------------------------------------------------------
 # Load the app's configuration
 # -------------------------------------------------------------------------
 app.config.from_object('config')
+
+# -------------------------------------------------------------------------
+# Socket IO Configuration
+# -------------------------------------------------------------------------
+from flask_socketio import SocketIO  # noqa
+socketio = SocketIO(app)
+
+# -------------------------------------------------------------------------
+# Session Configuration
+# -------------------------------------------------------------------------
+from flask_session import Session  # noqa
+Session(app)
 
 # -------------------------------------------------------------------------
 # Load celery
@@ -30,13 +40,13 @@ sa = SQLAlchemy(app)
 # Widget Configuration
 # -------------------------------------------------------------------------
 from flask_widgets import Widgets  # noqa
-widgets = Widgets(app)
+wg = Widgets(app)
 
 # -------------------------------------------------------------------------
 # Load the session controller
 # -------------------------------------------------------------------------
-from flask_login import LoginManager  # noqa
-login_manager = LoginManager(app)
+from helpers import LoginManagerHelper  # noqa
+login_manager = LoginManagerHelper(app)
 
 # -------------------------------------------------------------------------
 # Load flask mail
@@ -57,16 +67,31 @@ from flask_babel import Babel  # noqa
 babel = Babel(app)
 
 # -------------------------------------------------------------------------
+# Load micawber for oembed
+# -------------------------------------------------------------------------
+from micawber.providers import bootstrap_basic  # noqa
+from micawber.contrib.mcflask import add_oembed_filters  # noqa
+
+oembed_providers = bootstrap_basic()
+add_oembed_filters(app, oembed_providers)
+
+# -------------------------------------------------------------------------
 # Load the app's configuration
 # -------------------------------------------------------------------------
 from app.helpers import LogHelper  # noqa
-cache = LogHelper(app)
+logger = LogHelper(app)
 
 # -------------------------------------------------------------------------
 # Cache Configuration
 # -------------------------------------------------------------------------
 from app.helpers import CacheHelper  # noqa
-cache = CacheHelper(app, config=config.CACHE_CONFIG)
+cache = CacheHelper(app)
+
+# -------------------------------------------------------------------------
+# Error Configuration
+# -------------------------------------------------------------------------
+from app.helpers import ErrorHelper  # noqa
+ErrorHelper(app)
 
 # -------------------------------------------------------------------------
 # Register modules of the application
@@ -76,3 +101,5 @@ import helpers  # noqa
 import filters  # noqa
 import models  # noqa
 import views  # noqa
+import widgets  # noqa
+import events  # noqa

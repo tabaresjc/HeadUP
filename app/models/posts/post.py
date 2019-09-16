@@ -1,5 +1,6 @@
 # -*- coding: utf8 -*-
 
+from flask import url_for
 from flask_login import current_user
 from app import sa
 from app.models import Base
@@ -19,13 +20,24 @@ class Post(Base, sa.Model, ModelHelper):
                      'user',
                      'status',
                      'lang',
+                     'url',
                      'cover_picture',
+                     'cover_picture_id',
+                     'created_at',
+                     'modified_at',
                      'category',
-                     'anonymous']
+                     'anonymous',
+                     'likes']
 
     POST_PUBLIC = 0x001
     POST_DRAFT = 0x100
+    POST_DRAFT_2 = 0x101
     POST_HIDDEN = 0x800
+
+    KIND_STAMP = 1
+    KIND_STORY = 2
+
+    CATEGORY_NONE = 1
 
     id = sa.Column(sa.Integer, primary_key=True)
     title = sa.Column(sa.String(255))
@@ -113,12 +125,28 @@ class Post(Base, sa.Model, ModelHelper):
         return self.set_attribute('down_votes', value)
 
     @property
+    def likes(self):
+        return self.get_attribute('likes', 0)
+
+    @likes.setter
+    def likes(self, value):
+        return self.set_attribute('likes', value)
+
+    @property
     def editor_version(self):
         return self.get_attribute('editor_version', 0)
 
     @editor_version.setter
     def editor_version(self, value):
         return self.set_attribute('editor_version', value)
+
+    @property
+    def kind(self):
+        return self.get_attribute('kind', self.KIND_STAMP)
+
+    @kind.setter
+    def kind(self, value):
+        return self.set_attribute('kind', value)
 
     @property
     def old_status(self):
@@ -129,12 +157,30 @@ class Post(Base, sa.Model, ModelHelper):
         return self.set_attribute('old_status', value)
 
     @property
+    def url(self):
+        if not hasattr(self, '_url'):
+            self._url = url_for('story.show', id=self.id)
+        return self._url
+
+    @property
     def is_hidden(self):
         return self.status == self.POST_HIDDEN
 
     @property
     def is_draft(self):
-        return self.status == self.POST_DRAFT
+        return self.status == self.POST_DRAFT or self.status == self.POST_DRAFT_2
+
+    @property
+    def is_stamp(self):
+        return self.kind == self.KIND_STAMP
+
+    @property
+    def is_story(self):
+        return self.kind == self.KIND_STORY
+
+    @property
+    def has_category(self):
+        return self.category_id and self.category_id != self.CATEGORY_NONE
 
     @property
     def comment_list(self):
@@ -145,7 +191,9 @@ class Post(Base, sa.Model, ModelHelper):
                 comment.children = []
                 if comment.comment_id and comment.comment_id in data:
                     data[comment.comment_id].children.append(comment)
+
             self._comment_list = [c for c in self.comments if not c.comment_id]
+
         return self._comment_list
 
     def is_mine(self):
@@ -218,3 +266,24 @@ class Post(Base, sa.Model, ModelHelper):
                 .offset((page - 1) * limit) \
                 .limit(limit)
         return records, count
+
+    @classmethod
+    def last_draft(cls, user_id):
+        sort_by = 'created_at DESC'
+
+        return cls.query.filter_by(user_id=user_id, status=cls.POST_DRAFT_2) \
+            .order_by(sa.text(sort_by)) \
+            .offset(0) \
+            .limit(1) \
+            .first()
+
+    @classmethod
+    def init(cls, user, status=POST_DRAFT):
+        p = cls.create()
+        p.user = current_user
+        p.status = status
+
+        # init the score
+        p.update_score(page_view=1)
+        p.editor_version = 1
+        return p

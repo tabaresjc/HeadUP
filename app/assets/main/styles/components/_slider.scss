@@ -1,0 +1,59 @@
+// Slider
+.slider {
+	@media (min-width: $screen-sm-min) {
+		margin-top: -45px;
+		margin-bottom: 30px;
+	}
+
+	@media (max-width: $screen-xs-max) {
+		margin: 0;
+	}
+}
+
+.slider__subtitle {
+	margin-bottom: 10px;
+}
+
+.slider__title {
+	color: #fff;
+	margin-top: 0;
+	margin-bottom: 45px;
+}
+
+.carousel-inner > .item > img {
+	max-width: none;
+}
+
+.carousel-caption {
+	top: 0;
+}
+
+.sliding-image {
+	#slide__1 {
+		@media (min-width: $screen-sm-min) {
+			h1 {
+				font-size: 2.5em;
+				max-width: 80%;
+				margin: 0 auto;
+				line-height: 1.3;
+			}
+		}
+
+		@media (max-width: $screen-xs-max) {
+			h1 {
+				font-size: 1.75em;
+				max-width: 100%;
+				margin: 0 auto;
+				line-height: 1.2;
+			}
+		}
+	}
+
+	.panel-share {
+		margin-top: 5px;
+		h5 {
+			margin: 0;
+			color: #fff;
+		}
+	}
+}

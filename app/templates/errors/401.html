@@ -1,0 +1,18 @@
+{% extends "main/layout/error-base.html" %}
+{% set title = _('ERROR_401_TITLE') %}
+
+{% block content %}
+<div class="error-container boxed push-down-30">
+	<div class="meta">
+		<img class="post-image" src="/static/images/feather-ball-pen-fr.jpg" alt="{{ title }}" style="height:300px">
+	</div>
+	<div class="row">
+		<div class="col-xs-10 col-xs-offset-1">
+			<div class="content">
+				<h2 class="title">{{ title }}</h2>
+				<p>{{ _('ERROR_401_DESCRIPTION') }}</p>
+			</div>
+		</div>
+	</div>
+</div>
+{% endblock %}

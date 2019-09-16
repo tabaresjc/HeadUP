@@ -10,8 +10,14 @@
 				<a href="{{ url_for('UsersView:get',id=current_user.id) }}">
 					<img alt="{{ current_user.name }}" class="img-thumbnail" src="{{ current_user.profile_picture_url or '/static/images/user-neutral.png' }}">
 				</a>
-				<div><strong>{{ _('USER_EMAIL')}}</strong><br/>{{ current_user.email  }}</div>
-				<div><strong>{{ _('USER_LAST_ACCESS')}}</strong><br/>{{ current_user.last_seen|datetimeformat  }}</div>
+				<div>
+					<strong>{{ _('USER_EMAIL')}}</strong><br/>
+					{{ current_user.email }}
+				</div>
+				<div>
+					<strong>{{ _('USER_LAST_ACCESS')}}</strong><br/>
+					<span data-timestamp="{{ current_user.last_seen | timestampformat }}" data-timestamp-format="llll"></span>
+				</div>
 			</div>
 			<div class="panel-footer text-center">
 				<div class="btn-group">
@@ -36,7 +42,7 @@
 		    {% endfor %}
     		{{ pag('admin.index', page, limit, total, _('POSTS_PAG_LBL'), kind='links')|safe }}
 	    {%- else %}
-	    <a href="{{ url_for('stamp.new') }}" class="no-post-message">
+	    <a href="{{ url_for('story.new') }}" class="no-post-message">
 	      <img src="/static/images/stories/feather-blue-256.png" alt="{{ site_name }}" />
 	      <span>{{ _('WELCOME_MESSAGE_LBL') | safe }}</span>
 	    </a>

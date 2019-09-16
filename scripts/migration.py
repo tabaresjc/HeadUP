@@ -28,6 +28,7 @@ def revision(msg, autogenerate='0'):
     except Exception as e:
         click.echo('Error: %s' % e)
 
+
 @cli.command()
 @click.option('--point', default='head', help='head or revision number')
 def upgrade(point='head'):
@@ -42,7 +43,7 @@ def upgrade(point='head'):
 
 @cli.command()
 @click.option('--point', default='base', help='head or revision number')
-def downgrade(point='base'):
+def downgrade(point='-1'):
     """Downgrade to base or to the given revision number."""
     try:
         os.environ['DATABASE_URL'] = config.SQLALCHEMY_DATABASE_URI

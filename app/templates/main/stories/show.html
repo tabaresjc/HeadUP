@@ -1,0 +1,53 @@
+{% extends "main/layout/base.html" %}
+{% set title = post.title %}
+{% set description = post.extra_body | striptags | limit(300) %}
+
+{% from "shared/macros/_bootstrap.html" import render_inline_field %}
+
+{% block meta_extra %}
+	<link rel="canonical" href="{{ url_for('story.show', id=post.id, _external=true) | replace_host_name }}">
+	{% if config.FB_APPID %}
+	<meta property="fb:app_id" content="{{ config.FB_APPID }}" />
+	{% endif %}
+	<meta property="og:type" content="article" />
+	<meta property="og:url" content="{{ url_for('story.show', id=post.id, _external=true) | replace_host_name }}" />
+	<meta property="og:title" content="{{ title }}" />
+	<meta property="og:description" content="{{ description }}">
+	{% if post.cover_picture %}
+	<meta property="og:image" content="{{ url_for('pictures', name=post.cover_picture.name, _external=true) }}" />
+	{% else %}
+	<meta property="og:image" content="{{ url_for('static', filename='images/lp/home/screen-bg_1.jpg', _external=true) }}" />
+	{% endif %}
+	<meta property="hu:story:id" content="{{ post.id }}" />
+	<meta property="hu:story:user" content="{{ post.user_id }}" />
+	<meta property="hu:story:edit:url" content="{{ url_for('story.edit', id=post.id) }}" />
+{% endblock %}
+
+{% block content %}
+	<div id="story-show-page" class="story-single">
+		{% include 'main/stories/partials/_post_story.html'%}
+	</div>
+
+	<comment-form
+		:post-id="{{ post.id }}"
+		:endpoints="{
+			'login': '{{ url_for('sessions.login', ret=url_for('story.show', id=post.id, _anchor='comment-box')) }}',
+			'register': '{{ url_for('sessions.signup', ret=url_for('story.show', id=post.id, _anchor='comment-box')) }}'
+		}">
+	</comment-form>
+
+	<comments :post-id="{{ post.id }}">
+	</comments>
+
+	{% include 'main/stories/partials/_counter.html' %}
+{% endblock %}
+
+{% block sidebar %}
+	{% include 'main/common/_sidebar_user.html' %}
+{% endblock %}
+
+{% block after_script %}
+	{% if config.ADDTHIS_LINK_STAMP %}
+	<script type="text/javascript" src="{{ config.ADDTHIS_LINK_STAMP }}"></script>
+	{% endif %}
+{% endblock %}

@@ -1,10 +1,8 @@
 <header class="header">
 	<div class="container">
-		<div class="logo pull-left">
-			<a href="{{ url_for('latest') }}">
-				<img src="/static/images/logo-headup.png?v20180401" alt="{% trans %}Logo{% endtrans %}">
-			</a>
-		</div>
+		<a href="{{ url_for('latest') }}" class="logo pull-left">
+			<img src="/static/images/logo-headup.png?v20180401" alt="{% trans %}Logo{% endtrans %}">
+		</a>
 		<div class="navbar-header">
 			<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#readable-navbar-collapse">
 				<span class="sr-only">{% trans %}TOGGLE_NAVIGATION_LBL{% endtrans %}</span>
@@ -19,15 +17,11 @@
 					<li class="{% if request.endpoint=='latest' %}active{% endif %}">
 						<a href="{{ url_for('latest') }}" class="dropdown-toggle">{% trans%}LATEST_LBL{% endtrans %}</a>
 					</li>
-					<li class="{% if request.endpoint=='ranking' %}active{% endif %}">
-						<a href="{{ url_for('ranking') }}">{% trans%}RANKING_LBL{% endtrans %}</a>
-					</li>
 					<li class="{% if request.endpoint=='show_mypage' %}active{% endif %}">
 						<a href="{{ url_for('dashboard') }}" rel="nofollow">{% trans%}APP_MYPAGE{% endtrans %}</a>
 					</li>
-
-
 					<li role="separator" class="visible-xs-block divider"></li>
+
 
 					{% if current_user and current_user.is_authenticated -%}
 					<li class="visible-xs-block">
@@ -44,7 +38,7 @@
 					</li>
 					{%- else %}
 					<li class="visible-xs-block">
-						<a href="{{ url_for('sessions.login') }}" rel="nofollow">
+						<a href="#user-session-modal" data-toggle="modal" rel="nofollow">
 							<span class="glyphicon glyphicon-log-in"></span>
 							<span>{{ _('LOGIN_BTN') }}</span>
 						</a>
@@ -82,24 +76,7 @@
 			</div>
 		</nav>
 		<div class="hidden-xs hidden-sm btn-group-container">
-			{% if current_user and current_user.is_authenticated -%}
-			<div class="custom_menu">
-				<a href="{{ url_for('sessions.logout') }}" data-method="post" rel="nofollow" class="custom_menu__btn" title="{% trans%}APP_SIGN_OUT{% endtrans %}">
-					<span class="glyphicon glyphicon-log-out"></span>
-				</a>
-			</div>
-			{%- else %}
-			<div class="custom_menu">
-				<a href="{{ url_for('sessions.signup') }}" rel="nofollow" class="custom_menu__btn" title="{{ _('REGISTER_BTN') }}">
-					<span class="glyphicon glyphicon-plus"></span>
-				</a>
-			</div>
-			<div class="custom_menu">
-				<a href="{{ url_for('sessions.login') }}" rel="nofollow" class="custom_menu__btn" title="{{ _('LOGIN_BTN') }}">
-					<span class="glyphicon glyphicon-log-in"></span>
-				</a>
-			</div>
-			{%- endif %}
+
 			<div class="custom_menu">
 				<a href="javascript:;" class="custom_menu__btn">
 					<i class="glyphicon glyphicon-share"></i>
@@ -141,6 +118,16 @@
 					{% endfor %}
 				</ul>
 			</div>
+
+			<user-profile :endpoints="{
+				post_list: '{{ url_for('PostsView:index') }}',
+				draft_list: '{{ url_for('PostsView:draft_list') }}',
+				sessions_login: '{{ url_for('sessions.login') }}',
+				sessions_signup: '{{ url_for('sessions.signup') }}',
+				sessions_logout: '{{ url_for('sessions.logout') }}',
+				user_profile: '{{ url_for('UsersView:get', id=999999999999) }}',
+				story_new: '{{ url_for('story.new') }}'
+			}"/>
 		</div>
 	</div>
 </header>

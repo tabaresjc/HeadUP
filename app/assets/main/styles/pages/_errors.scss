@@ -1,0 +1,8 @@
+#page-errors {
+	// title on front page is pushed up 30px;
+	.front-page-title {
+		@media (min-width: $screen-sm-min) {
+			margin-top: 0;
+		}
+	}
+}

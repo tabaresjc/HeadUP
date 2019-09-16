@@ -1,0 +1,45 @@
+.container-wrap {
+	min-height: 100%;
+	margin-bottom: -40px;
+
+	&:after {
+		content: "";
+		display: block;
+	}
+}
+
+.footer {
+	background-color: #fff;
+	border-top: 1px solid #e4e4e4;
+	padding: 5px 8px;
+	font-family: $secondary-font;
+	font-weight: 700;
+	font-size: 10px;
+	letter-spacing: -0.1px;
+	color: #9a9a90;
+	position: fixed;
+	bottom: 0;
+	left: 0;
+	width: 100%;
+
+	.footer--left {
+		float: left;
+		text-align: left;
+	}
+
+	.footer--right {
+		float: right;
+		text-align: right;
+	}
+
+	@media (min-width: $screen-sm-min) {
+		font-size: 12px;
+		padding: 10px 0;
+	}
+}
+
+.push {
+	height: 40px;
+}
+
+

@@ -17,7 +17,8 @@ class CategoriesView(FlaskView):
         page = request.args.get('page', 1, int)
 
         limit = 5
-        categories, total = Category.pagination(page=page, limit=limit, desc=False)
+        categories, total = Category.pagination(
+            page=page, limit=limit, desc=False)
 
         categoryForm = CategoryForm()
 

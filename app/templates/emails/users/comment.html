@@ -1,6 +1,6 @@
 {% extends "emails/layout/base.html" %}
 
-{% set comment_url = url_for('stamp.show', id=post.id, _external=True, _anchor='comment-%s' % comment.id) %}
+{% set comment_url = url_for('story.show', id=post.id, _external=True, _anchor='comment-%s' % comment.id) %}
 
 {% block content %}
 <tr>

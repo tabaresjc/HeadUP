@@ -6,4 +6,5 @@ from flask_babel import lazy_gettext as _lg
 
 
 class ForgotPasswordForm(FlaskForm):
-    email = TextField(_lg('USER_EMAIL'), [validators.Email(), validators.Length(min=10, max=255)])
+    email = TextField(_lg('USER_EMAIL'), [
+                      validators.Email(), validators.Length(min=10, max=255)])

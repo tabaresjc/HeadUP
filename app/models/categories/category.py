@@ -1,5 +1,6 @@
 # -*- coding: utf8 -*-
 
+from flask import url_for
 from flask_login import current_user
 from app import sa
 from app.models import Base
@@ -11,7 +12,7 @@ class Category(Base, sa.Model, ModelHelper):
 
     __tablename__ = 'categories'
 
-    __json_meta__ = ['id', 'name', 'slug']
+    __json_meta__ = ['id', 'name', 'slug', 'url']
 
     id = sa.Column(sa.Integer, primary_key=True)
     name = sa.Column(sa.String(128), index=True, unique=True)
@@ -33,8 +34,24 @@ class Category(Base, sa.Model, ModelHelper):
     def description(self, value):
         return self.set_attribute('description', value)
 
+    @property
+    def url(self):
+        if not hasattr(self, '_url'):
+            self._url = url_for('story.category', slug=self.slug)
+        return self._url
+
     def can_edit(self):
         return current_user and current_user.is_admin
+
+    @classmethod
+    def items(cls, orderby='id', desc=True):
+        query = cls.query
+        count = query.count()
+        records = []
+        if count:
+            sort_by = '%s %s' % (orderby, 'DESC' if desc else 'ASC')
+            records = query.order_by(sa.text(sort_by)).all()
+        return records, count
 
     @classmethod
     def get_list(cls):

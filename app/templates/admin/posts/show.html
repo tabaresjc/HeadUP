@@ -28,6 +28,11 @@
 					{% endif %}
 					<div class="row">
 						<div class="col-md-12">
+							{% if post.is_story %}
+							<div class="post-body">
+								{{ post.extra_body|safe }}
+							</div>
+							{% else %}
 							<p><strong>{{ post.body|nl2br|linkify|safe }}</strong></p>
 							<div class="post-body">
 							{% if post.editor_version %}
@@ -36,6 +41,7 @@
 								{{ post.extra_body|nl2br|linkify|safe }}
 							{% endif %}
 							</div>
+							{% endif %}
 						</div>
 					</div>
 				</div>

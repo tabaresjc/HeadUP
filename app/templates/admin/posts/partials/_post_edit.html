@@ -1,4 +1,4 @@
-{% from "shared/_bootstrap_forms.html" import render_inline_field %}
+{% from "shared/macros/_bootstrap.html" import render_inline_field %}
 
 {% set url_form = url_for('PostsView:put', id=post.id) if post else url_for('PostsView:post') %}
 {% set cover_picture = post.cover_picture if post and post.cover_picture else None %}
