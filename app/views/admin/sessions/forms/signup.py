@@ -11,7 +11,7 @@ class SignUpForm(FlaskForm):
                       validators.Email(), validators.Length(min=10, max=255)])
     nickname = TextField(_lg('USER_NICKNAME'), [validators.Required()])
     password = PasswordField(_lg('USER_PASSWORD'), [
-                             validators.Required(), validators.Length(min=10, max=64)])
+                             validators.Required(), validators.Length(min=6, max=64)])
     check_tos = BooleanField('check_tos', default=False)
     back_link = HiddenField()
 
