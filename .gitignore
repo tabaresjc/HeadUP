@@ -96,3 +96,13 @@ app/templates/admin/layout/base.html
 
 # ignore vs-code settings
 \.vscode/settings\.json
+
+*.code-workspace
+
+.vscode/
+
+env/
+
+app/templates/shared/assets/scripts/
+
+app/templates/shared/assets/styles/
