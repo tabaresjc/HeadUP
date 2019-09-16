@@ -74,8 +74,8 @@ class ErrorHelper(object):
             'Code: %s' % error.code,
             'Endpoint: %s' % request.endpoint,
             'Method: %s' % request.method,
-            'Full Path: %s': % request.full_path,
-            'Path: %s': % request.path,
-            'Query String: %s': % request.query_string
+            'Full Path: %s' % request.full_path,
+            'Path: %s' % request.path,
+            'Query String: %s' % request.query_string
         ]
         return '\n'.join(lines)
