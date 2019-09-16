@@ -204,6 +204,10 @@ class Post(Base, sa.Model, ModelHelper):
         return (current_user.is_authenticated and
                 (self.user.id == current_user.id or current_user.is_admin))
 
+    @property
+    def need_reply(self):
+        return current_user.is_authenticated and self.user_id != current_user.id
+
     def update_score(self, page_view=0, vote=0, down_vote=0):
         from app.models import Feed
 

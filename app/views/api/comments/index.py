@@ -47,9 +47,9 @@ class CommentsApiView(FlaskView):
 
         comment.save()
 
-        if comment.parent_comment:
+        if comment.parent_comment and comment.parent_comment.need_reply:
             send_email('reply_comment', comment)
-        else:
+        elif post and post.need_reply:
             send_email('comment', post, comment)
 
         return render_json(comment=comment)

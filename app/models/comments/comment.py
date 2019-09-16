@@ -73,6 +73,10 @@ class Comment(Base, sa.Model, ModelHelper):
                  current_user.is_admin))
 
     @property
+    def need_reply(self):
+        return current_user.is_authenticated and self.user_id != current_user.id
+
+    @property
     def children(self):
         if not hasattr(self, '_children'):
             self._children = []
