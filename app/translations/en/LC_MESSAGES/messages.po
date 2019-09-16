@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-09-02 22:16+0000\n"
+"POT-Creation-Date: 2019-09-16 02:18+0000\n"
 "PO-Revision-Date: 2017-07-15 18:02+0900\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: en\n"
@@ -26,7 +26,7 @@ msgstr "Please log in to access this page."
 msgid "APP_SIGNIN_WARNING_MESSAGE"
 msgstr "You need to sign in or sign up before continuing."
 
-#: app/filters/formats.py:31 app/templates/src/translations.html:3
+#: app/filters/formats.py:39 app/templates/src/translations.html:3
 msgid "APP_PUBLISHED_AGO"
 msgstr "Posted %(ago)s ago"
 
@@ -66,7 +66,7 @@ msgstr "Admin"
 msgid "DASHBOARD_TITLE"
 msgstr "Dashboard"
 
-#: app/templates/admin/index.html:13 app/templates/src/translations.html:11
+#: app/templates/admin/index.html:14 app/templates/src/translations.html:11
 #: app/views/admin/sessions/forms/forgot_password.py:9
 #: app/views/admin/sessions/forms/login.py:9
 #: app/views/admin/sessions/forms/signup.py:10
@@ -74,24 +74,24 @@ msgstr "Dashboard"
 msgid "USER_EMAIL"
 msgstr "Email"
 
-#: app/templates/admin/index.html:14 app/templates/src/translations.html:12
+#: app/templates/admin/index.html:18 app/templates/src/translations.html:12
 msgid "USER_LAST_ACCESS"
 msgstr "Last login"
 
-#: app/templates/admin/index.html:20 app/templates/admin/layout/navbar.html:28
+#: app/templates/admin/index.html:26 app/templates/admin/layout/navbar.html:28
 #: app/templates/main/layout/header.html:30
 #: app/templates/main/pages/home.html:58 app/templates/src/translations.html:13
 msgid "APP_PROFILE"
 msgstr "Profile"
 
-#: app/templates/admin/index.html:24 app/templates/admin/layout/sidebar.html:15
+#: app/templates/admin/index.html:30 app/templates/admin/layout/sidebar.html:15
 #: app/templates/admin/users/show.html:47
 #: app/templates/src/translations.html:14
 msgid "USER_EDIT"
 msgstr "Settings"
 
-#: app/templates/admin/index.html:32 app/templates/admin/index.html:33
-#: app/templates/admin/index.html:37 app/templates/admin/posts/drafts.html:10
+#: app/templates/admin/index.html:38 app/templates/admin/index.html:39
+#: app/templates/admin/index.html:43 app/templates/admin/posts/drafts.html:10
 #: app/templates/admin/posts/drafts.html:19
 #: app/templates/admin/posts/index.html:10
 #: app/templates/admin/posts/index.html:19
@@ -102,7 +102,7 @@ msgstr "Settings"
 msgid "POSTS_PAG_LBL"
 msgstr "stories"
 
-#: app/templates/admin/index.html:41 app/templates/admin/posts/drafts.html:23
+#: app/templates/admin/index.html:47 app/templates/admin/posts/drafts.html:23
 #: app/templates/admin/posts/index.html:23
 #: app/templates/src/translations.html:16
 msgid "WELCOME_MESSAGE_LBL"
@@ -110,7 +110,7 @@ msgstr ""
 "You haven't shared any story yet.<br/>Participate in this comunity by "
 "writing your first story!"
 
-#: app/templates/admin/index.html:54 app/templates/admin/layout/navbar.html:24
+#: app/templates/admin/index.html:60 app/templates/admin/layout/navbar.html:24
 #: app/templates/admin/layout/sidebar.html:22
 #: app/templates/admin/layout/sidebar.html:28
 #: app/templates/admin/posts/index.html:7
@@ -226,7 +226,7 @@ msgstr "Describe the category..."
 #: app/templates/admin/categories/partials/_category_form_edit.html:7
 #: app/templates/admin/posts/partials/_post_edit.html:36
 #: app/templates/admin/posts/partials/_sidebar.html:45
-#: app/templates/admin/users/add.html:29 app/templates/admin/users/edit.html:29
+#: app/templates/admin/users/add.html:28 app/templates/admin/users/edit.html:28
 #: app/templates/main/stories/edit.html:86
 #: app/templates/src/translations.html:35
 msgid "BTN_SAVE_LBL"
@@ -235,7 +235,7 @@ msgstr "Save"
 #: app/templates/admin/categories/partials/_category_form_add.html:8
 #: app/templates/admin/categories/partials/_category_form_edit.html:8
 #: app/templates/admin/categories/partials/_transfer_post.html:12
-#: app/templates/admin/users/add.html:28 app/templates/admin/users/edit.html:28
+#: app/templates/admin/users/add.html:27 app/templates/admin/users/edit.html:27
 #: app/templates/src/translations.html:36
 msgid "BTN_CLEAR_LBL"
 msgstr "Clear"
@@ -433,7 +433,6 @@ msgstr "Already have an account?"
 #: app/templates/admin/sessions/signin.html:22
 #: app/templates/admin/sessions/signup.html:39
 #: app/templates/main/layout/header.html:43
-#: app/templates/main/stories/show.html:46
 #: app/templates/src/translations.html:72
 msgid "LOGIN_BTN"
 msgstr "Login"
@@ -481,7 +480,6 @@ msgstr "Don't have an account?"
 #: app/templates/admin/sessions/signin.html:29
 #: app/templates/admin/sessions/signup.html:32
 #: app/templates/main/layout/header.html:49
-#: app/templates/main/stories/show.html:49
 #: app/templates/src/translations.html:80
 msgid "REGISTER_BTN"
 msgstr "Sign Up"
@@ -649,7 +647,7 @@ msgstr "Remove user"
 #: app/templates/main/layout/footer.html:8
 #: app/templates/main/layout/header.html:73
 #: app/templates/main/pages/conduct.html:2
-#: app/templates/main/pages/home.html:630
+#: app/templates/main/pages/home.html:671
 #: app/templates/src/translations.html:111
 msgid "CODE_CONDUCT_LBL"
 msgstr "Code of conduct"
@@ -657,7 +655,7 @@ msgstr "Code of conduct"
 #: app/templates/emails/layout/base.html:371
 #: app/templates/main/layout/footer.html:10
 #: app/templates/main/layout/header.html:70
-#: app/templates/main/pages/home.html:632
+#: app/templates/main/pages/home.html:673
 #: app/templates/main/pages/policy.html:2
 #: app/templates/src/translations.html:112
 msgid "TOS_LBL"
@@ -852,43 +850,6 @@ msgstr "Select category"
 msgid "BTN_CLOSE_LBL"
 msgstr "Close"
 
-#: app/templates/main/stories/show.html:35
-#: app/templates/src/translations.html:152
-msgid "COMMENT_TEXT_PLACEHOLDER"
-msgstr "Add a comment..."
-
-#: app/templates/main/stories/show.html:38
-#: app/templates/src/translations.html:153
-msgid "COMMENT_SUBMIT_BTN"
-msgstr "Comment"
-
-#: app/templates/main/stories/show.html:86
-#: app/templates/src/translations.html:154
-msgid "COMMENT_DELETE_CONFIRMATION"
-msgstr ""
-"This will permanently remove the comment:\n\"%(text)s\"\n"
-"Do you wish to continue?"
-
-#: app/templates/main/stories/show.html:92
-#: app/templates/src/translations.html:155
-msgid "COMMENT_REPLY_LBL"
-msgstr "Reply"
-
-#: app/templates/main/stories/show.html:123
-#: app/templates/src/translations.html:156
-msgid "COMMENT_REPLY_TEXT_PLACEHOLDER"
-msgstr "Add a reply..."
-
-#: app/templates/main/stories/show.html:126
-#: app/templates/src/translations.html:157
-msgid "COMMENT_REPLY_CANCEL_BTN"
-msgstr "Cancel"
-
-#: app/templates/main/stories/show.html:129
-#: app/templates/src/translations.html:158
-msgid "COMMENT_REPLY_SUBMIT_BTN"
-msgstr "Reply"
-
 #: app/templates/main/stories/partials/_post_story.html:21
 #: app/templates/src/translations.html:159
 msgid "ANONYMOUS_LBL"
@@ -926,6 +887,37 @@ msgstr "H'UP"
 msgid "RANKING_TITLE"
 msgstr "Most populars stories"
 
+#: app/templates/src/translations.html:152
+msgid "COMMENT_TEXT_PLACEHOLDER"
+msgstr "Add a comment..."
+
+#: app/templates/src/translations.html:153
+msgid "COMMENT_SUBMIT_BTN"
+msgstr "Comment"
+
+#: app/templates/src/translations.html:154
+msgid "COMMENT_DELETE_CONFIRMATION"
+msgstr ""
+"This will permanently remove the comment:\n"
+"\"%(text)s\"\n"
+"Do you wish to continue?"
+
+#: app/templates/src/translations.html:155
+msgid "COMMENT_REPLY_LBL"
+msgstr "Reply"
+
+#: app/templates/src/translations.html:156
+msgid "COMMENT_REPLY_TEXT_PLACEHOLDER"
+msgstr "Add a reply..."
+
+#: app/templates/src/translations.html:157
+msgid "COMMENT_REPLY_CANCEL_BTN"
+msgstr "Cancel"
+
+#: app/templates/src/translations.html:158
+msgid "COMMENT_REPLY_SUBMIT_BTN"
+msgstr "Reply"
+
 #: app/templates/src/translations.html:160
 msgid "POSTED_BY_USER_CATEGORY_LBL"
 msgstr "Posted by %(user)s in %(category)s"
@@ -949,8 +941,7 @@ msgstr "(more)"
 #: app/templates/src/translations.html:165
 #: app/views/admin/categories/index.py:39
 #: app/views/admin/categories/index.py:77
-#: app/views/admin/categories/index.py:130 app/views/admin/posts/index.py:66
-#: app/views/admin/posts/index.py:120 app/views/admin/sessions/index.py:78
+#: app/views/admin/categories/index.py:130 app/views/admin/sessions/index.py:78
 #: app/views/admin/sessions/index.py:141 app/views/admin/sessions/index.py:191
 #: app/views/admin/users/index.py:55 app/views/admin/users/index.py:88
 #: app/views/main/stories/forms/index.py:25 app/views/main/stories/index.py:79
@@ -1008,26 +999,23 @@ msgstr "To"
 msgid "CATEGORY_TRANFER_POSTS_SAME_ERROR"
 msgstr "Please select a different category"
 
-#: app/templates/src/translations.html:176 app/views/admin/posts/index.py:54
-#: app/views/admin/posts/index.py:113 app/views/admin/posts/index.py:181
+#: app/templates/src/translations.html:176 app/views/admin/posts/index.py:66
 msgid "POST_NOT_FOUND"
 msgstr "Story not found"
 
-#: app/templates/src/translations.html:177 app/views/admin/posts/index.py:88
-#: app/views/admin/posts/index.py:158
+#: app/templates/src/translations.html:177
 msgid "POST_DRAFT_SAVE_SUCESS"
 msgstr "Draft was succesfully saved"
 
-#: app/templates/src/translations.html:178 app/views/admin/posts/index.py:90
-#: app/views/admin/posts/index.py:160
+#: app/templates/src/translations.html:178
 msgid "POST_PUBLIC_SAVE_SUCESS"
 msgstr "The story was successfully saved"
 
-#: app/templates/src/translations.html:179 app/views/admin/posts/index.py:192
+#: app/templates/src/translations.html:179 app/views/admin/posts/index.py:77
 msgid "POST_DELETE_SUCESS"
 msgstr "The story was successfully removed"
 
-#: app/templates/src/translations.html:180 app/views/admin/posts/index.py:197
+#: app/templates/src/translations.html:180 app/views/admin/posts/index.py:82
 msgid "ERROR_POST_DELETE_FAILED"
 msgstr "Error while removing the story, %(error)s"
 
@@ -1038,7 +1026,6 @@ msgid "SESSIONS_MSG_ALREADY_SIGNED_IN"
 msgstr "You are already signed in."
 
 #: app/templates/src/translations.html:182 app/views/admin/sessions/index.py:35
-#: app/views/api/sessions/index.py:26
 msgid "SESSIONS_ERROR_LOGIN"
 msgstr "Invalid email or password."
 
@@ -1057,7 +1044,7 @@ msgid "SESSIONS_MSG_SIGNUP_COMPLETED"
 msgstr "Welcome! You have signed up successfully."
 
 #: app/templates/src/translations.html:186
-#: app/views/admin/sessions/index.py:127 app/views/api/sessions/index.py:42
+#: app/views/admin/sessions/index.py:127
 msgid "SESSIONS_MSG_SIGNED_OUT"
 msgstr "Signed out successfully."
 
@@ -1116,7 +1103,7 @@ msgstr "This nickname is already in use. Please choose another one."
 msgid "USER_CONFIRM"
 msgstr "Confirm"
 
-#: app/templates/src/translations.html:198 app/views/admin/users/forms.py:32
+#: app/templates/src/translations.html:198
 msgid "USER_TIMEZONE"
 msgstr "Timezone"
 
@@ -1212,4 +1199,8 @@ msgstr "Express yourself and tell us how you are keeping your head up"
 #: app/templates/src/translations.html:220
 msgid "INTRO4_LBL"
 msgstr "Transmit your optimism by writing remarkable success stories"
+
+#: app/templates/src/translations.html:221
+msgid "APP_ERROR_AND_RETRY"
+msgstr "Oops! Something went wrong. Please try again."
 

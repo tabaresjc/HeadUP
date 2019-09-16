@@ -116,19 +116,23 @@ export default {
 
 			this.createComment(data)
 				.then(comment => {
-					let message = this.$t('COMMENT_SAVE_SUCESS');
-
 					this.commentMessage = '';
 					this.hasReply = false;
 
 					this.notify({
-						message: message,
+						message: this.$root.$t('COMMENT_SAVE_SUCESS'),
 						type: 'success'
+					});
+				})
+				.catch(() => {
+					this.notify({
+						message: this.$root.$t('APP_ERROR_AND_RETRY'),
+						category: 'error'
 					});
 				});
 		},
 		deleteComment() {
-			let confirmMessge = this.$t('COMMENT_DELETE_CONFIRMATION', {
+			let confirmMessge = this.$root.$t('COMMENT_DELETE_CONFIRMATION', {
 				text:this.comment.text.hu_substring(100).hu_nl2br()
 			});
 
@@ -139,15 +143,20 @@ export default {
 					}
 
 					let commentId = this.comment.id;
-					let successMessage = this.$t('COMMENT_DELETE_SUCCESS');
 
 					this.removeComment(commentId)
 						.then(() => {
 							this.notify({
-								message: successMessage,
+								message: this.$root.$t('COMMENT_DELETE_SUCCESS'),
 								type: 'success'
 							});
 						});
+				})
+				.catch(() => {
+					this.notify({
+						message: this.$root.$t('APP_ERROR_AND_RETRY'),
+						category: 'error'
+					});
 				});
 		},
 		toggleReply() {

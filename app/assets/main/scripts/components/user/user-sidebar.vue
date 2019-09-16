@@ -150,7 +150,7 @@ export default {
 		deleteStory() {
 			let title = this.getTitleStory();
 
-			let confirmMessge = this.$t('POST_DELETE_CONFIRMATION', {
+			let confirmMessge = this.$root.$t('POST_DELETE_CONFIRMATION', {
 				title: title
 			});
 
@@ -161,19 +161,24 @@ export default {
 					}
 
 					let storyId = this.storyId;
-					let successMessage = this.$t('POST_DELETE_SUCESS');
 					let redirectPage = this.options.latest_page;
 
 					this.removeStory(storyId)
 						.then(() => {
 							this.notify({
-								message: successMessage,
+								message: this.$root.$t('POST_DELETE_SUCESS'),
 								type: 'success'
 							});
 
 							setTimeout(() => {
 								window.location.href = redirectPage;
 							}, 1000);
+						})
+						.catch(() => {
+							this.notify({
+								message: this.$root.$t('APP_ERROR_AND_RETRY'),
+								category: 'error'
+							});
 						});
 				});
 		}

@@ -81,18 +81,22 @@ export default {
 
 			this.createComment(data)
 				.then(comment => {
-					let message = this.$t('COMMENT_SAVE_SUCESS');
-
 					this.commentMessage = '';
 					this.hasReply = false;
 
 					this.notify({
-						message: message,
+						message: this.$root.$t('COMMENT_SAVE_SUCESS'),
 						type: 'success'
 					});
 
 					const elId = `comment-${comment.id}`;
 					UtilHelper.smootScroll(elId);
+				})
+				.catch(() => {
+					this.notify({
+						message: this.$root.$t('APP_ERROR_AND_RETRY'),
+						category: 'error'
+					});
 				});
 		}
 	},

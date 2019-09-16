@@ -84,19 +84,16 @@ export default {
 			let data = {
 				email: this.loginEmail,
 				password: this.loginPassword
-			}
+			};
 
 			let btn = document.getElementById('user-session-modal-dismiss');
-
-			let message = this.$t('SESSIONS_MSG_LOGIN_SUCESS');
-			let loginMessageFail = this.$t('SESSIONS_ERROR_LOGIN');
-			let generalMessageFail = this.$t('SESSIONS_ERROR_LOGIN');
 
 			this.login(data)
 				.then((user) => {
 					btn.click();
+
 					this.notify({
-						message: message,
+						message: this.$root.$t('SESSIONS_MSG_LOGIN_SUCESS'),
 						type: 'success'
 					});
 				})
@@ -105,10 +102,16 @@ export default {
 						return;
 					}
 
-					if (err.data.message !== 'API_ERROR_SESSION_LOGIN') {
-						this.notify({message: loginMessageFail, category: 'error'});
+					if (err.data.message === 'API_ERROR_SESSION_LOGIN') {
+						this.notify({
+							message: this.$root.$t('SESSIONS_ERROR_LOGIN'),
+							category: 'error'
+						});
 					} else {
-						this.notify({message: generalMessageFail, category: 'error'});
+						this.notify({
+							message: this.$root.$t('APP_ERROR_AND_RETRY'),
+							category: 'error'
+						});
 					}
 				});
 		}

@@ -45,10 +45,15 @@ export default {
 		logout() {
 			this.userLogout()
 				.then(() => {
-					let message = this.$t('SESSIONS_MSG_SIGNED_OUT');
 					this.notify({
-						message: message,
+						message: this.$root.$t('SESSIONS_MSG_SIGNED_OUT'),
 						type: 'success'
+					});
+				})
+				.catch(() => {
+					this.notify({
+						message: this.$root.$t('APP_ERROR_AND_RETRY'),
+						category: 'error'
 					});
 				});
 		}
@@ -56,7 +61,7 @@ export default {
 	created () {
 		this.loading = true
 		this.fetchProfile()
-			.then(() => this.loading = false)
+			.then(() => this.loading = false);
 	}
 }
 </script>
