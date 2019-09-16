@@ -22,11 +22,6 @@ def push_email(subject, recipients, body, is_html=True):
         else:
             msg.body = body
 
-        print '*' * 100
-        print recipients
-        print subject
-        print msg.body
-
         app.mail.send(msg)
     except Exception as e:
         app.logger.error(e.message)
