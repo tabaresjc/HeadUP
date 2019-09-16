@@ -1,9 +1,9 @@
 # -*- coding: utf8 -*-
 
-from flask import render_template
+from flask import render_template, request
 from werkzeug.exceptions import HTTPException
 from app.helpers import render_json, is_json_request
-from email import  ThreadedSMTPHandler
+from email import ThreadedSMTPHandler
 import logging
 
 
@@ -44,8 +44,8 @@ class ErrorHelper(object):
                                             self._internal_server_error)
 
     def _internal_http_error(self, error):
-        self.app.logger.error('Internal HTTP Exception, code[%s] => %s',
-                              error.code,
+        self.app.logger.error('Internal HTTP Exception\n\n%s\n\n%s',
+                              self._request_info(error),
                               error,
                               exc_info=True)
 
@@ -68,3 +68,14 @@ class ErrorHelper(object):
             return render_json(error=error)
 
         return render_template('errors/500.html', title=error), 500
+
+    def _request_info(self, error):
+        lines = [
+            'Code: %s' % error.code,
+            'Endpoint: %s' % request.endpoint,
+            'Method: %s' % request.method,
+            'Full Path: %s': % request.full_path,
+            'Path: %s': % request.path,
+            'Query String: %s': % request.query_string
+        ]
+        return '\n'.join(lines)
