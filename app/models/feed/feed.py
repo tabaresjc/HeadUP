@@ -63,18 +63,23 @@ class Feed:
     @classmethod
     def forced_update_posts(cls):
         request_id = cls._make_request_id()
-
         bucket = app.cache.get(cls.CACHE_FEED_POST) or []
 
-        if not (request_id in bucket):
-            bucket.append(request_id)
-            app.cache.set(cls.CACHE_FEED_POST, bucket, cls.CACHE_FEED_EXPIRED_AT)
-            return True
+        if request_id in bucket:
+            return False
 
-        return False
+        bucket.append(request_id)
+
+        app.cache.delete(cls.CACHE_FEED_POST)
+        app.cache.set(cls.CACHE_FEED_POST, bucket, cls.CACHE_FEED_EXPIRED_AT)
+
+        return True
 
     @classmethod
     def clear_cached_posts(cls):
+        bucket = app.cache.get(cls.CACHE_FEED_POST) or []
+        for item in bucket:
+            app.cache.delete(item)
         app.cache.delete(cls.CACHE_FEED_POST)
 
     @classmethod
@@ -123,7 +128,6 @@ class Feed:
             records = query.order_by(order).limit(limit).offset(offset)
         return records, count
 
-
     @classmethod
     def _make_request_id(cls):
         """Create a unique hash value of the current request.
@@ -131,12 +135,13 @@ class Feed:
         Arguments will be part of the hash, and it will be sorted to keep
         consistency.
         """
-
         args_as_sorted_tuple = tuple(
             sorted((pair for pair in request.args.items(multi=True)))
         )
-
+        # ... now hash the sorted (key, value) tuple so it can be
+        # used as a key for cache. Turn them into bytes so that the
+        # hash function will accept them
         args_as_bytes = str(args_as_sorted_tuple).encode()
         hashed_args = str(hashlib.md5(args_as_bytes).hexdigest())
-
-        return '%s%s' % (request.path, hashed_args)
+        cache_key = request.path + hashed_args
+        return cache_key

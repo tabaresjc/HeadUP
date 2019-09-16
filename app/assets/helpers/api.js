@@ -15,7 +15,7 @@ export class ApiBase {
 	}
 
 	request(options) {
-		if (!options.url) {
+		if (!options.url && options.url !== '') {
 			console.warn(`[HeadUP] ApiBase found no url`);
 		}
 
@@ -32,7 +32,7 @@ export class ApiBase {
 	}
 
 	requestUpload(options) {
-		if (!options.url) {
+		if (!options.url && options.url !== '') {
 			console.warn(`[HeadUP] ApiBase found no url`);
 		}
 

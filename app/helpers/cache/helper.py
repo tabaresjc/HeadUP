@@ -48,3 +48,10 @@ class CacheHelper(Cache):
             return None
 
         return super(CacheHelper, self).add(*args, **kwargs)
+
+    def delete(self, *args, **kwargs):
+        """Proxy function for internal cache object."""
+        if not self._cache_enabled:
+            return None
+
+        return super(CacheHelper, self).delete(*args, **kwargs)
