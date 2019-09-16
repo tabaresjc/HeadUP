@@ -38,9 +38,20 @@ export default {
     },
 	methods: {
 		...mapActions({
+			notify: 'notification/notify',
 			fetchProfile: 'user/fetchProfile',
-			logout: 'user/logout'
-		})
+			userLogout: 'user/logout'
+		}),
+		logout() {
+			this.userLogout()
+				.then(() => {
+					let message = this.$t('SESSIONS_MSG_SIGNED_OUT');
+					this.notify({
+						message: message,
+						type: 'success'
+					});
+				});
+		}
     },
 	created () {
 		this.loading = true

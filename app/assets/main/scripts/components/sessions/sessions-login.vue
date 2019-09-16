@@ -10,20 +10,24 @@
 					<button id="user-session-modal-dismiss" type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
 				</div>
 				<div class="modal-body">
-					<div class="form">
+					<form class="form">
 						<div class="form-group">
-							<input type="text" class="form-control"
+							<input type="text"
 								name="email"
 								v-model="loginEmail"
 								:placeholder="$t('MAIL_LBL')"
-								required="required">
+								class="form-control"
+								required
+								autocomplete="email">
 						</div>
 						<div class="form-group">
-							<input type="password" class="form-control"
+							<input type="password"
 								name="password"
 								v-model="loginPassword"
-								:placeholder="$t('MAIL_LBL')"
-								required="required">
+								:placeholder="$t('USER_PASSWORD')"
+								class="form-control"
+								required
+								autocomplete="password">
 						</div>
 						<div class="form-group">
 							<button type="button" class="btn btn-primary btn-lg btn-block"
@@ -31,7 +35,7 @@
 								{{ $t('LOGIN_BTN') }}
 							</button>
 						</div>
-					</div>
+					</form>
 				</div>
 				<div class="modal-footer">
 					<div class="already">
@@ -74,7 +78,6 @@ export default {
 	methods: {
 		...mapActions({
 			login: 'user/login',
-			logout: 'user/logout',
 			notify: 'notification/notify'
 		}),
 		loginUser() {
@@ -84,7 +87,10 @@ export default {
 			}
 
 			let btn = document.getElementById('user-session-modal-dismiss');
+
 			let message = this.$t('SESSIONS_MSG_LOGIN_SUCESS');
+			let loginMessageFail = this.$t('SESSIONS_ERROR_LOGIN');
+			let generalMessageFail = this.$t('SESSIONS_ERROR_LOGIN');
 
 			this.login(data)
 				.then((user) => {
@@ -93,6 +99,17 @@ export default {
 						message: message,
 						type: 'success'
 					});
+				})
+				.catch((err) => {
+					if (!err.data) {
+						return;
+					}
+
+					if (err.data.message !== 'API_ERROR_SESSION_LOGIN') {
+						this.notify({message: loginMessageFail, category: 'error'});
+					} else {
+						this.notify({message: generalMessageFail, category: 'error'});
+					}
 				});
 		}
     }

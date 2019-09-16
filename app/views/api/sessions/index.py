@@ -21,12 +21,12 @@ class SessionsApiView(FlaskView):
 
         email = data.get('email', None)
         password = data.get('password', None)
-        remember = data.get('remember', 0) != 0
+        remember = data.get('remember', 1) == 0
 
         user = User.find_by_email(email)
 
         if not user or not user.check_password(password):
-            abort(409, _('SESSIONS_ERROR_LOGIN'))
+            abort(409, 'API_ERROR_SESSION_LOGIN')
 
         # Update the User's info
         user.last_login = user.last_seen
@@ -42,4 +42,4 @@ class SessionsApiView(FlaskView):
     def logout(self):
         logout_user()
 
-        return render_json(message=_('SESSIONS_MSG_SIGNED_OUT'))
+        return render_json(status=204)

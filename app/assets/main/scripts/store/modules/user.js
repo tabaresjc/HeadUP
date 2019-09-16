@@ -67,7 +67,7 @@ export default {
 					})
 					.catch(err => {
 						dispatch('notification/log', err, { root: true });
-						reject();
+						reject(err.response);
 					});
 			});
 		},
@@ -81,7 +81,7 @@ export default {
 					})
 					.catch(err => {
 						dispatch('notification/log', err, { root: true });
-						reject();
+						reject(err.response);
 					});
 			});
 		},
@@ -94,7 +94,7 @@ export default {
 					})
 					.catch(err => {
 						dispatch('notification/log', err, { root: true });
-						reject();
+						reject(err.response);
 					});
 			});
 		},
@@ -112,7 +112,7 @@ export default {
 					})
 					.catch(err => {
 						dispatch('notification/log', err, { root: true });
-						reject();
+						reject(err.response);
 					});
 			});
 		}

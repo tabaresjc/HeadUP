@@ -35,10 +35,7 @@ export default {
 			alertify.notify(payload.message, categoryName, payload.waitSeconds || 5);
 		},
 		log({ dispatch }, payload) {
-			// capture errors raised by API
-			if (payload.message && typeof payload.message === 'string') {
-				dispatch('notify', { message: payload.message, category: 'error' });
-			}
+			console.warn(payload);
 		},
 		confirm({ dispath }, options) {
 			return new Promise((resolve, reject) => {

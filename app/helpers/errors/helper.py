@@ -9,8 +9,8 @@ import logging
 
 class ErrorHelper(object):
 
-    http_codes = [400, 401, 403, 404, 500]
-    template_http_codes = [401, 403, 404, 500]
+    http_codes = [400, 401, 403, 404, 409, 500]
+    template_http_codes = [401, 403, 404, 409, 500]
 
     def __init__(self, app, **kwargs):
 
