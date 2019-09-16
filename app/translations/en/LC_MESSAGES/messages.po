@@ -395,7 +395,7 @@ msgstr "Edit"
 #: app/templates/admin/posts/partials/_sidebar.html:36
 #: app/templates/src/translations.html:66
 msgid "POST_DELETE"
-msgstr "Delete"
+msgstr "Remove your story"
 
 #: app/templates/admin/sessions/forgot_password.html:2
 #: app/templates/src/translations.html:67
@@ -1025,7 +1025,7 @@ msgstr "The story was successfully saved"
 
 #: app/templates/src/translations.html:179 app/views/admin/posts/index.py:192
 msgid "POST_DELETE_SUCESS"
-msgstr "The story \"%(title)s\" was removed"
+msgstr "The story was successfully removed"
 
 #: app/templates/src/translations.html:180 app/views/admin/posts/index.py:197
 msgid "ERROR_POST_DELETE_FAILED"

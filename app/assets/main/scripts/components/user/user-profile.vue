@@ -13,7 +13,7 @@
 			<li v-if="user.is_authenticated"><a :href="endpoints.draft_list">{{ $t("POST_DRAFT_LIST") }}</a></li>
 			<li v-if="user.is_authenticated"><a :href="endpoints.story_new">{{ $t("POST_CREATE") }}</a></li>
 			<li v-if="user.is_authenticated" role="separator" class="divider"></li>
-			<li v-if="user.is_authenticated"><a href="javascript:;" @click="logout()">{{ $t("APP_SIGN_OUT") }}</a></li>
+			<li v-if="user.is_authenticated"><a href="javascript:;" v-on:click="logout()">{{ $t("APP_SIGN_OUT") }}</a></li>
 		</ul>
 	</div>
 </template>

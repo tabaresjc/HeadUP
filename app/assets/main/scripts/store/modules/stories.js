@@ -84,6 +84,18 @@ export default {
 					});
 			});
 		},
+		removeItem({ getters, dispatch }, id) {
+			return new Promise((resolve, reject) => {
+				getters.storyApiService.deleteItem(id)
+					.then(() => {
+						resolve();
+					})
+					.catch(err => {
+						dispatch('notification/log', err, { root: true });
+						reject();
+					});
+			});
+		},
 		vote(_, targetId) {
 			$socket.emit('vote_story', {
 				target_id: targetId

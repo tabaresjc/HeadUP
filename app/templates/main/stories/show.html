@@ -18,6 +18,7 @@
 	{% else %}
 	<meta property="og:image" content="{{ url_for('static', filename='images/lp/home/screen-bg_1.jpg', _external=true) }}" />
 	{% endif %}
+	<meta property="hu:story:id" content="{{ post.id }}" />
 	<meta property="hu:story:user" content="{{ post.user_id }}" />
 	<meta property="hu:story:edit:url" content="{{ url_for('story.edit', id=post.id) }}" />
 {% endblock %}

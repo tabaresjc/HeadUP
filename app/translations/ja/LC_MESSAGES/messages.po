@@ -393,7 +393,7 @@ msgstr "編集する"
 #: app/templates/admin/posts/partials/_sidebar.html:36
 #: app/templates/src/translations.html:66
 msgid "POST_DELETE"
-msgstr "削除"
+msgstr "ストーリーを削除"
 
 #: app/templates/admin/sessions/forgot_password.html:2
 #: app/templates/src/translations.html:67
@@ -1010,7 +1010,7 @@ msgstr "ストーリーが保存されました。"
 
 #: app/templates/src/translations.html:179 app/views/admin/posts/index.py:192
 msgid "POST_DELETE_SUCESS"
-msgstr "\"%(title)s\" は削除されました。"
+msgstr "ストーリーが削除されました。"
 
 #: app/templates/src/translations.html:180 app/views/admin/posts/index.py:197
 msgid "ERROR_POST_DELETE_FAILED"

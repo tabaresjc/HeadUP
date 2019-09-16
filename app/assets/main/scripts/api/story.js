@@ -10,7 +10,8 @@ export class StoryApiService extends ApiBase {
 	}
 
 	getItems(page, params) {
-		const endpoint = `items/${page}`;
+		const endpoint = '';
+		params = {...params, page: page};
 
 		return this.request({
 			url: endpoint,
@@ -20,7 +21,7 @@ export class StoryApiService extends ApiBase {
 	}
 
 	getItem(id) {
-		const endpoint = `item/${ id }`;
+		const endpoint = `/${ id }`;
 
 		return this.request({
 			url: endpoint,
@@ -28,8 +29,17 @@ export class StoryApiService extends ApiBase {
 		});
 	}
 
+	deleteItem(id) {
+		const endpoint = `/${ id }`;
+
+		return this.request({
+			url: endpoint,
+			method: 'DELETE'
+		});
+	}
+
 	last_draft() {
-		const endpoint = `last-draft`;
+		const endpoint = 'last-draft';
 
 		return this.request({
 			url: endpoint,

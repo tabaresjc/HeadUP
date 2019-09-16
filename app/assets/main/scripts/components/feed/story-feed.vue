@@ -14,7 +14,9 @@
 				<span class="label btn-feed-message">{{ $t('LBL_SCRLL_LAST_PAGE') }}</span>
 			</div>
 			<div slot="error" slot-scope="{ trigger }">
-				<a href="javascript:;" @click="trigger" class="btn btn-feed-message">
+				<a href="javascript:;"
+					v-on:click="trigger"
+					class="btn btn-feed-message">
 					<i class="glyphicon glyphicon-repeat"></i>
 				</a>
 			</div>
@@ -39,9 +41,9 @@ export default {
 		language: {type: String}
 	},
 	computed: {
-      ...mapState({
-        stories: state => state.stories.items
-      })
+		...mapState({
+			stories: state => state.stories.items
+		})
     },
 	methods: {
 		...mapActions({

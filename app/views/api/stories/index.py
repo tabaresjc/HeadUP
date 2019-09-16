@@ -12,15 +12,14 @@ class StoriesApiView(FlaskView):
     route_base = '/api/stories'
     formatter = None
 
-    @route('/items', methods=['GET'])
-    @route('/items/<int:page>', methods=['GET'])
     @cache.cached(
         query_string=True,
         timeout=Feed.CACHE_FEED_EXPIRED_AT,
         forced_update=Feed.forced_update_posts
     )
-    def items(self, page=1):
+    def index(self):
         data = request.values
+        page = data.get('page', 1, int)
         limit = data.get('limit', 5, int)
         category_id = data.get('category', 0, int)
 
@@ -35,14 +34,30 @@ class StoriesApiView(FlaskView):
                            page=page,
                            limit=limit)
 
-    @route('/item/<int:id>', methods=['GET'])
-    def item(self, id):
+    def get(self, id):
         story = Post.get_by_id(id)
 
         if story is None or story.is_hidden:
             abort(404, 'API_ERROR_POST_NOT_FOUND')
 
         return render_json(story=story)
+
+
+    def delete(self, id):
+        story = Post.get_by_id(id)
+
+        if story is None or story.is_hidden:
+            abort(404, 'API_ERROR_POST_NOT_FOUND')
+
+        if not story.can_edit():
+            abort(401, 'API_ERROR_POST_NOT_FOUND')
+
+        Post.delete(id)
+
+        # clear related cache objects
+        Feed.clear_cached_posts()
+
+        return render_json(status=204)
 
     @route('/last-draft', methods=['GET'])
     @login_required

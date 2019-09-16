@@ -397,7 +397,7 @@ msgstr "Actualizar"
 #: app/templates/admin/posts/partials/_sidebar.html:36
 #: app/templates/src/translations.html:66
 msgid "POST_DELETE"
-msgstr "Eliminar"
+msgstr "Elimina tu historia"
 
 #: app/templates/admin/sessions/forgot_password.html:2
 #: app/templates/src/translations.html:67
@@ -1034,7 +1034,7 @@ msgstr "La publicación fue guardada exitosamente"
 
 #: app/templates/src/translations.html:179 app/views/admin/posts/index.py:192
 msgid "POST_DELETE_SUCESS"
-msgstr "La publicacion \"%(title)s\" fue eliminada"
+msgstr "La publicación fue eliminada exitosamente"
 
 #: app/templates/src/translations.html:180 app/views/admin/posts/index.py:197
 msgid "ERROR_POST_DELETE_FAILED"
