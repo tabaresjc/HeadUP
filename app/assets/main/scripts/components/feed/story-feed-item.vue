@@ -10,7 +10,7 @@
 				<img v-else src="/static/images/user.png" class="thumb" />
 				<ul>
 					<li>
-						<span v-if="story.user"></span>
+						<span v-if="story.user">{{ story.user.nickname }}</span>
 						<span v-else>{{ $t('ANONYMOUS_LBL') }}</span>
 					</li>
 					<li v-if="story.category">
