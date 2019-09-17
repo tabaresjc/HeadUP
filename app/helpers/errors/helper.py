@@ -4,6 +4,7 @@ from flask import render_template, request
 from werkzeug.exceptions import HTTPException
 from app.helpers import render_json, is_json_request
 from email import ThreadedSMTPHandler
+from flask import jsonify
 import logging
 
 
@@ -80,9 +81,9 @@ class ErrorHelper(object):
             'referrer: %s' % request.referrer,
             'json: %s' % request.json,
             'user_agent: %s' % request.user_agent,
-            'args: %s' % request.args,
-            'form: %s' % request.form,
+            'args: %s' % jsonify(request.args),
+            'form: %s' % jsonify(request.form),
             'data: %s' % request.data,
-            'headers: %s' % request.headers
+            'headers: %s' % jsonify(request.headers)
         ]
         return '\n'.join(lines)
