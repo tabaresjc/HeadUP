@@ -81,9 +81,9 @@ class ErrorHelper(object):
             'referrer: %s' % request.referrer,
             'json: %s' % request.json,
             'user_agent: %s' % request.user_agent,
-            'args: %s' % jsonify(request.args),
-            'form: %s' % jsonify(request.form),
-            'data: %s' % request.data,
-            'headers: %s' % jsonify(request.headers)
+            'args: %s' % str(request.args),
+            'form: %s' % str(request.form),
+            'data: %s' % str(request.data),
+            'headers: %s' % str(request.headers)
         ]
         return '\n'.join(lines)
