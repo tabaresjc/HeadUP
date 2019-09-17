@@ -71,11 +71,18 @@ class ErrorHelper(object):
 
     def _request_info(self, error):
         lines = [
-            'Code: %s' % error.code,
-            'Endpoint: %s' % request.endpoint,
-            'Method: %s' % request.method,
-            'Full Path: %s' % request.full_path,
-            'Path: %s' % request.path,
-            'Query String: %s' % request.query_string
+            'code: %s' % error.code,
+            'endpoint: %s' % request.endpoint,
+            'method: %s' % request.method,
+            'full path: %s' % request.full_path,
+            'path: %s' % request.path,
+            'query string: %s' % request.query_string,
+            'referrer: %s' % request.referrer,
+            'json: %s' % request.json,
+            'user_agent: %s' % request.user_agent,
+            'args: %s' % request.args,
+            'form: %s' % request.form,
+            'data: %s' % request.data,
+            'headers: %s' % request.headers
         ]
         return '\n'.join(lines)
