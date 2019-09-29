@@ -9,7 +9,7 @@
 	    {% block meta_extra %}{% endblock %}
 		{% include 'shared/header/_icons.html' %}
 		{% block head %}{% endblock %}
-		{{ widget('header_ga', language=language) }}
+		{{ widget('header_scripts', language=language) }}
 		{% include 'shared/meta/_token.html' %}
 	</head>
 	<body>

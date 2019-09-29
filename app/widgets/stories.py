@@ -12,14 +12,14 @@ def story_list(category_id=0, limit=20):
                            limit=limit)
 
 
-@app.wg.widget('header_ga')
-def header_ga(language='en'):
-    key = u'header_ga.%s' % (language)
+@app.wg.widget('header_scripts')
+def header_scripts(language='en'):
+    key = u'header_scripts.%s' % (language)
 
     fragment = app.cache.get(key)
 
     if not fragment:
-        fragment = render_template('widgets/header/_ga.html',
+        fragment = render_template('widgets/header/_scripts.html',
                                    language=language)
         app.cache.set(key, fragment, 3600 * 24)
 
