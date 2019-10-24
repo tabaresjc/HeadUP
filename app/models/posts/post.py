@@ -102,7 +102,7 @@ class Post(Base, sa.Model, ModelHelper):
 
     @property
     def save_count(self):
-        return self.get_attribute('save_count', 1)
+        return self.get_attribute('save_count', 0)
 
     @save_count.setter
     def save_count(self, value):

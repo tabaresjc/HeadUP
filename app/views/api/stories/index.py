@@ -104,6 +104,9 @@ class StoriesApiView(FlaskView):
 
         self.update_story(story, data, Post.POST_PUBLIC)
 
+        if story.save_count <= 0:
+            story.created_at = Post.current_date()
+        story.save_count += 1
         story.save()
 
         # clear related cache objects
