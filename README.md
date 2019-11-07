@@ -15,9 +15,7 @@ Install the following software on your PC
 	```
 	> sudo apt-get install python-dev libmysqlclient-dev
 	```
-- Node.js and NPM (It's required by Bower, Grunt)
-- Ruby (Required by Compass)
-- Git (duh!)
+- Node.js and NPM
 
 ### Installation 
 
@@ -30,10 +28,24 @@ source venv_headsup/bin/activate
 ```
 3. Run `$ pip install -r requeriments.txt`
 4. Run `$ npm install`
-5. Run `$ bower install`
-6. Run `$ grunt --help` to see list of available tasks
-7. Locate the file config.py.txt and save as config.py, and configure its properties accordingly
-8. Run `$ grunt` to setup the development environment or `$ grunt dist` to setup the production environment
+5. Locate the file config.py.txt and save as config.py, and configure its properties accordingly
+6. Execute any of the following NPM task 
+
+To compile the JS and CSS bundles development (unminified)
+```
+npm run build:dev
+```
+To compile the JS and CSS bundles and watch the changes in any of the budles
+
+```
+npm run dev:watch
+```
+
+To compile the JS and CSS bundles for a production environment
+
+```
+npm run dev:watch
+```
 
 ### NPM Tasks
 + `npm run build:dev`: build development environment
