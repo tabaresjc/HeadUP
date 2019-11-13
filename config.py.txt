@@ -21,13 +21,13 @@ DEBUG = True
 LOG_PATH = 'logs/daily.log'
 
 LOG_EMAIL_ENABLED = False
-LOG_EMAIL_HOST = None
+LOG_EMAIL_HOST = 'localshot'
 LOG_EMAIL_PORT = None
 LOG_EMAIL_USE_TLS = None
 LOG_EMAIL_USERNAME = None
 LOG_EMAIL_PASSWORD = None
-LOG_EMAIL_DEFAULT_SENDER = None
-LOG_EMAIL_DEFAULT_RECIPIENTS = None
+LOG_EMAIL_DEFAULT_SENDER = 'sender@headup.com'
+LOG_EMAIL_DEFAULT_RECIPIENTS = 'recipients@headup.com'
 
 # *************************************************
 # Site Configuration
@@ -64,7 +64,7 @@ UPLOAD_MEDIA_PICTURES_PATH = os.path.join(BASE_DIR, UPLOAD_MEDIA_PICTURES)
 # *************************************************
 # Session Configuration
 # *************************************************
-SESSION_TYPE = None
+SESSION_TYPE = 'filesystem'
 SESSION_KEY_PREFIX = 'hu'
 
 # *************************************************

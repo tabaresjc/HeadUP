@@ -17,7 +17,7 @@ Install the following software on your PC
 	```
 - Node.js and NPM
 
-### Installation 
+### Installation
 
 1. Clone the repository `$ git clone <path to repository>` and `$ cd` into it
 2. Set a virtual environment
@@ -28,14 +28,22 @@ source venv_headsup/bin/activate
 ```
 3. Run `$ pip install -r requeriments.txt`
 4. Run `$ npm install`
-5. Locate the file config.py.txt and save as config.py, and configure its properties accordingly
-6. Execute any of the following NPM task 
-
-To compile the JS and CSS bundles development (unminified)
+5. Locate the file config.py.txt and save as config.py, and configure its properties
+```
+SECRET_KEY = "Some random secret string"
+```
+6. Execute the following NPM task, to compile the JS and CSS bundles development (unminified)
 ```
 npm run build:dev
 ```
-To compile the JS and CSS bundles and watch the changes in any of the budles
+7. Create the `logs` directory
+7. Run `python wsgi.py`
+8. Open your browser on localhost:5000
+
+
+### Other NPM task
+
+To compile the JS and CSS bundles and watch the changes in any of the bundles
 
 ```
 npm run dev:watch
@@ -44,10 +52,5 @@ npm run dev:watch
 To compile the JS and CSS bundles for a production environment
 
 ```
-npm run dev:watch
+npm run build:prd
 ```
-
-### NPM Tasks
-+ `npm run build:dev`: build development environment
-+ `npm run build:prd`: build production environment
-+ `npm run dev:watch`: watch changes in the assets files (js, css, html)

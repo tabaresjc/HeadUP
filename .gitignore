@@ -81,3 +81,9 @@ media/
 /.vscode/
 /*.code-workspace
 /env/
+
+# ignore package-lock
+/package-lock.json
+
+# sessions files
+/flask_session/*
