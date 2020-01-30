@@ -1,3 +1,3 @@
 # -*- coding: utf8 -*-
 
-from post import Post
+from .post import Post

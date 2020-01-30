@@ -1,3 +1,3 @@
 # -*- coding: utf8 -*-
 
-from index import UsersApiView  # noqa
+from .index import UsersApiView  # noqa

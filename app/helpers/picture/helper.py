@@ -89,8 +89,8 @@ def get_file_info(f):
 
 def get_file_hash(f):
     h = hashlib.new('md5')
-    h.update(f.filename)
-    h.update(datetime.datetime.utcnow().isoformat())
+    h.update(f.filename.encode('utf-8'))
+    h.update(datetime.datetime.utcnow().isoformat().encode('utf-8'))
 
     return h.hexdigest()
 

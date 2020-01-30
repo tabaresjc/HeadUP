@@ -51,7 +51,7 @@ def init_user(name, email, password):
             phone=u'',
             lang='en'
         )
-        user.set_password(unicode(password))
+        user.set_password(str(password))
         user.save()
         click.echo("User created")
     else:

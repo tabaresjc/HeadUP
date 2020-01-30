@@ -1,3 +1,3 @@
 # -*- coding: utf8 -*-
 
-from index import PostsView  # noqa
+from .index import PostsView  # noqa

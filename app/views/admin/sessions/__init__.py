@@ -1,3 +1,3 @@
 # -*- coding: utf-8 -*-
 
-from index import SessionsView  # noqa
+from .index import SessionsView  # noqa

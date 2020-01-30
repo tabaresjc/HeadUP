@@ -1,3 +1,3 @@
 # -*- coding: utf8 -*-
 
-from helper import LogHelper
+from .helper import LogHelper

@@ -1,3 +1,3 @@
 # -*- coding: utf8 -*-
 
-from index import OEmbedApiView  # noqa
+from .index import OEmbedApiView  # noqa

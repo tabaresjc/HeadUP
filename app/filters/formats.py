@@ -26,7 +26,7 @@ def datetimeformat(eval_ctx, value, kind='LONG_DATETIME'):
 @evalcontextfilter
 def timestampformat(eval_ctx, value):
     if hasattr(value, 'strftime'):
-        return long(value.strftime('%s'))
+        return int(value.strftime('%s'))
     return '0'
 
 
@@ -45,10 +45,8 @@ def limit(eval_ctx, inputstr, total, ellipsis='...'):
     if not inputstr:
         return inputstr
 
-    if not isinstance(inputstr, basestring):
-        inputstr = unicode(inputstr)
-    elif not isinstance(inputstr, unicode):
-        inputstr = unicode(inputstr, 'utf-8', 'strict')
+    if not isinstance(inputstr, ("".__class__, u"".__class__)):
+        inputstr = str(inputstr)
 
     if total >= len(inputstr):
         return inputstr

@@ -1,3 +1,3 @@
 # -*- coding: utf8 -*-
 
-from index import PagesView
+from .index import PagesView

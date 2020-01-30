@@ -10,10 +10,12 @@ Web Application built with python and Flask Framework to host a super awesome Bl
 
 Install the following software on your PC
 
-- Python 2.7.X & pip
-- MySQL & MySQL Python Lib
+- Python 3.X.X & pip3
+- [mysqlclient 1.4.6](https://pypi.org/project/mysqlclient/)
 	```
-	> sudo apt-get install python-dev libmysqlclient-dev
+	> sudo apt-get install python-dev default-libmysqlclient-dev # Debian / Ubuntu
+	> sudo yum install python-devel mysql-devel # Red Hat / CentOS
+	> brew install mysql-client # macOS (Homebrew)
 	```
 - Node.js and NPM
 

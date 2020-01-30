@@ -6,7 +6,7 @@ from flask_classy import FlaskView, route
 from flask_babel import gettext as _
 from app.models import Post, Picture, Feed
 from app.helpers import render_view
-from forms import PostForm
+from .forms import PostForm
 
 
 class PostsView(FlaskView):

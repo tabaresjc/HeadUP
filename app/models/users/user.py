@@ -4,8 +4,8 @@ from flask_login import UserMixin, current_user
 from werkzeug.security import generate_password_hash, check_password_hash
 from app import sa
 from app.models import Base, Post
-from role import Role
 from app.helpers import ModelHelper, MutableObject
+from .role import Role
 import datetime
 import re
 
@@ -134,7 +134,7 @@ class User(Base, sa.Model, ModelHelper, UserMixin):
         return Role.ROLES.get(self.role_id, '')
 
     def set_password(self, password):
-        self.password = unicode(generate_password_hash(password))
+        self.password = str(generate_password_hash(password))
 
     def check_password(self, password):
         return check_password_hash(str(self.password), str(password))

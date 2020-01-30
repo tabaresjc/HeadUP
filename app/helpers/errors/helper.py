@@ -3,8 +3,8 @@
 from flask import render_template, request
 from werkzeug.exceptions import HTTPException
 from app.helpers import render_json, is_json_request
-from email import ThreadedSMTPHandler
 from flask import jsonify
+from .email import ThreadedSMTPHandler
 import logging
 
 

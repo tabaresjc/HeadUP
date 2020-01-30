@@ -45,7 +45,7 @@ wg = Widgets(app)
 # -------------------------------------------------------------------------
 # Load the session controller
 # -------------------------------------------------------------------------
-from helpers import LoginManagerHelper  # noqa
+from .helpers import LoginManagerHelper  # noqa
 login_manager = LoginManagerHelper(app)
 
 # -------------------------------------------------------------------------

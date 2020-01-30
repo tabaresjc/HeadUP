@@ -6,7 +6,7 @@ from flask_babel import gettext as _
 from app.views.main.stamp import mod
 from app.models import Post, Comment
 from app.helpers import send_email, render_view
-from forms import CommentForm
+from .forms import CommentForm
 
 
 @mod.route('/<int:id>/comment/new', methods=['GET', 'POST'])

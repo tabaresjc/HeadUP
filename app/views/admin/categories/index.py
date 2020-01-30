@@ -6,7 +6,7 @@ from flask_classy import FlaskView, route
 from flask_babel import gettext as _
 from app.helpers import render_view
 from app.models import Category
-from forms import CategoryForm, TranferForm
+from .forms import CategoryForm, TranferForm
 
 
 class CategoriesView(FlaskView):

@@ -1,3 +1,3 @@
 # -*- coding: utf8 -*-
 
-import index
+from . import index

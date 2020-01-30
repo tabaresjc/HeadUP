@@ -1,3 +1,3 @@
 # -*- coding: utf8 -*-
-from helper import CacheHelper
+from .helper import CacheHelper
 

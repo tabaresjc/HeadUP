@@ -61,7 +61,7 @@ def po2json():
     if not os.path.exists(directory):
         os.makedirs(directory)
 
-    for key, item in config.LANGUAGES.iteritems():
+    for key, item in config.LANGUAGES.items():
         file_name = os.path.join(directory, '%s.json' % key)
         cmd = 'pojson -e utf-8 app/translations/%s/LC_MESSAGES/messages.po' % (
             key)
@@ -72,7 +72,7 @@ def po2json():
         # remove empty entry
         del  obj['']
 
-        for k, v in obj.iteritems():
+        for k, v in obj.items():
             if not isinstance(v, list):
                 continue
 

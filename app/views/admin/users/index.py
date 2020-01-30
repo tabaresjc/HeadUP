@@ -7,7 +7,7 @@ from flask_babel import gettext as _, refresh
 from flask_paginate import Pagination
 from app.models import Post, User, Picture, Feed
 from app.helpers import render_view, send_email
-from forms import UserForm
+from .forms import UserForm
 
 
 class UsersView(FlaskView):
