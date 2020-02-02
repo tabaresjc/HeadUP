@@ -94,12 +94,21 @@ from app.helpers import ErrorHelper  # noqa
 ErrorHelper(app)
 
 # -------------------------------------------------------------------------
+# Jinja2 Environment
+# -------------------------------------------------------------------------
+# Setup trim and strip for blocks
+jinja2.Environment(
+    trim_blocks=True,
+    lstrip_blocks=True
+)
+
+# -------------------------------------------------------------------------
 # Register modules of the application
 # -------------------------------------------------------------------------
-import configuration  # noqa
-import helpers  # noqa
-import filters  # noqa
-import models  # noqa
-import views  # noqa
-import widgets  # noqa
-import events  # noqa
+import app.configuration # noqa
+import app.helpers  # noqa
+import app.filters  # noqa
+import app.models  # noqa
+import app.views  # noqa
+import app.widgets  # noqa
+import app.events  # noqa
