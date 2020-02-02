@@ -8,7 +8,7 @@ class HttpJsonEncoder(JSONEncoder):
 
     def default(self, obj):
         if hasattr(obj, 'strftime'):
-            return long(obj.strftime('%s'))
+            return int(obj.strftime('%s'))
 
         if hasattr(obj, '__json_meta__'):
             data = {}

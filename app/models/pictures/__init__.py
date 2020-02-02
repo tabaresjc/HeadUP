@@ -1,3 +1,3 @@
 # -*- coding: utf8 -*-
 
-from picture import Picture
+from .picture import Picture

@@ -6,10 +6,6 @@ import app
 import config
 import datetime
 
-# Setup trim and strip for blocks
-app.app.jinja_env.trim_blocks = True
-app.app.jinja_env.lstrip_blocks = True
-
 
 @app.app.context_processor
 def utility_processor():

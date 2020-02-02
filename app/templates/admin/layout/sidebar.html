@@ -76,7 +76,7 @@
 					<i class="glyphicon glyphicon-chevron-down"></i>
 				</a>
 				<ul class="submenu {% if is_active  %}active{% endif %}">
-					{% for key, submnenu in item.sub_menu.iteritems() %}
+					{% for key, submnenu in item.sub_menu.items() %}
 					<li class="{% if request.endpoint == submnenu.url %}active{% endif %}">
 						<a href="{{ url_for(submnenu.url) }}">{{ submnenu.name }}</a>
 					</li>

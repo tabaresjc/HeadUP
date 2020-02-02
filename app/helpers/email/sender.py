@@ -1,6 +1,6 @@
 # -*- coding: utf8 -*-
 
-import actions
+from . import actions
 import config
 
 

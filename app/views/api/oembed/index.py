@@ -14,7 +14,7 @@ class OEmbedApiView(FlaskView):
     @cache.cached(query_string=True, timeout=86400)
     def get(self):
         data = request.values
-        url = data.get('url', '', unicode)
+        url = data.get('url', '', str)
 
         if not url:
             abort(400)

@@ -13,8 +13,8 @@ class CategoriesApiView(FlaskView):
     def index(self):
         data = request.values
 
-        orderby = data.get('orderby', 'id', unicode)
-        desc = data.get('desc', '0', unicode) == '1'
+        orderby = data.get('orderby', 'id', str)
+        desc = data.get('desc', '0', str) == '1'
 
         items, count = Category.items(orderby=orderby,
                                       desc=desc)

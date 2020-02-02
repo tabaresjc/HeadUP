@@ -12,7 +12,7 @@ def push_email(subject, recipients, body, is_html=True):
         if not body or not subject or not recipients:
             return
 
-        if isinstance(recipients, basestring):
+        if isinstance(recipients, ("".__class__, u"".__class__)):
             recipients = [recipients]
 
         msg = Message(subject, recipients=recipients)

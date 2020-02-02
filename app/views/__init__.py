@@ -1,5 +1,5 @@
 # -*- coding: utf8 -*-
 
-import api
-import admin
-import main
+from . import api
+from . import admin
+from . import main

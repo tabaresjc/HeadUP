@@ -6,7 +6,7 @@ from flask_classy import FlaskView, route
 from flask_babel import gettext as _
 from app.models import Post, Feed, Category, Comment
 from app.helpers import send_email, render_view, nocache
-from forms import CommentForm
+from .forms import CommentForm
 import datetime
 import config
 

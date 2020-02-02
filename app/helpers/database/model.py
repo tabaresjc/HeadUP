@@ -9,19 +9,19 @@ class ModelHelper(object):
     @property
     def created_at_unix(self):
         if hasattr(self, 'created_at'):
-            return long(getattr(self, 'created_at').strftime('%s'))
+            return int(getattr(self, 'created_at').strftime('%s'))
         else:
             return None
 
     @property
     def modified_at_unix(self):
         if hasattr(self, 'modified_at'):
-            return long(getattr(self, 'modified_at').strftime('%s'))
+            return int(getattr(self, 'modified_at').strftime('%s'))
         else:
             return None
 
     def update(self, commit=True, **kwargs):
-        for attr, value in kwargs.iteritems():
+        for attr, value in kwargs.items():
             setattr(self, attr, value)
         return commit and self.save() or self
 

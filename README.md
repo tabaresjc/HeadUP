@@ -10,10 +10,12 @@ Web Application built with python and Flask Framework to host a super awesome Bl
 
 Install the following software on your PC
 
-- Python 2.7.X & pip
-- MySQL & MySQL Python Lib
+- Python 3.X.X & pip3
+- [mysqlclient 1.4.6](https://pypi.org/project/mysqlclient/)
 	```
-	> sudo apt-get install python-dev libmysqlclient-dev
+	> sudo apt-get install python-dev default-libmysqlclient-dev # Debian / Ubuntu
+	> sudo yum install python-devel mysql-devel # Red Hat / CentOS
+	> brew install mysql-client # macOS (Homebrew)
 	```
 - Node.js and NPM
 
@@ -22,11 +24,11 @@ Install the following software on your PC
 1. Clone the repository `$ git clone <path to repository>` and `$ cd` into it
 2. Set a virtual environment
 ```
-pip install virtualenv`
-virtualenv -p /usr/bin/python2.7 venv_headsup
+pip install virtualenv
+virtualenv -p /usr/bin/python3.6 venv_headsup_3.6
 source venv_headsup/bin/activate
 ```
-3. Run `$ pip install -r requeriments.txt`
+3. Run `$ pip3 install -r requirements.txt`
 4. Run `$ npm install`
 5. Locate the file config.py.txt and save as config.py, and configure its properties
 ```

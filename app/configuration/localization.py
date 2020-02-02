@@ -23,7 +23,7 @@ def get_locale():
 
     host = request.headers.get('HOST', '')
 
-    for key, value in LANGUAGES.iteritems():
+    for key, value in LANGUAGES.items():
         if host.startswith(key):
             return key
 

@@ -1,3 +1,3 @@
 # -*- coding: utf8 -*-
 
-from comments import CommentForm
+from .comments import CommentForm

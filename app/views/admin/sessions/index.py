@@ -6,7 +6,7 @@ from flask_classy import FlaskView, route
 from flask_babel import gettext as _
 from app.models import User
 from app.helpers import send_email, verify_captcha, render_view
-from forms import LoginForm, SignUpForm, ForgotPasswordForm, ResetPasswordForm
+from .forms import LoginForm, SignUpForm, ForgotPasswordForm, ResetPasswordForm
 import datetime
 
 

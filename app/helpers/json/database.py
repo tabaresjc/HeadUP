@@ -16,7 +16,7 @@ class DatabaseJSONEncoder(TypeDecorator):
 
         if isinstance(value, dict):
             value[self.date_fields] = []
-            for column, obj in value.iteritems():
+            for column, obj in value.items():
                 # convert datetimes objects
                 if hasattr(obj, 'isoformat'):
                     value[column] = obj.isoformat()

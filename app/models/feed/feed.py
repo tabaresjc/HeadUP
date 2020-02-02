@@ -61,7 +61,7 @@ class Feed:
             app.cache.set(key, None)
 
     @classmethod
-    def forced_update_posts(cls):
+    def forced_update_posts(cls, *args, **kwargs):
         request_id = cls._make_request_id()
         bucket = app.cache.get(cls.CACHE_FEED_POST) or []
 

@@ -229,11 +229,19 @@ class Post(Base, sa.Model, ModelHelper):
 
     @property
     def encoded_id(self):
-        return base64.b64encode(bytes('%s' % self.id)).encode('hex')
+        message = "%s" % self.id
+        message_bytes = message.encode('ascii')
+        return base64.b64encode(message_bytes)
 
     @classmethod
     def decode_id(cls, encodedValue):
-        return long(base64.b64decode(encodedValue.decode('hex')))
+        try:
+            base64_message = "%s" % encodedValue
+            base64_bytes = base64_message.encode('ascii')
+            message_bytes = base64.b64decode(base64_bytes)
+            return int(message_bytes.decode('ascii'))
+        except:
+            return -1
 
     @classmethod
     def minimun_date(cls):
@@ -250,7 +258,7 @@ class Post(Base, sa.Model, ModelHelper):
     @classmethod
     def get_language_list(cls):
         import config
-        return [(value, text) for value, text in config.LANGUAGES.iteritems()]
+        return [(value, text) for value, text in config.LANGUAGES.items()]
 
     @classmethod
     def posts_by_user(cls,

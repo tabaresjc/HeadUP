@@ -1,7 +1,7 @@
 # -*- coding: utf8 -*-
 
-import session
-import localization
-import encoder
-import rules
-import sql_alchemy
+from . import session
+from . import localization
+from . import encoder
+from . import rules
+from . import sql_alchemy

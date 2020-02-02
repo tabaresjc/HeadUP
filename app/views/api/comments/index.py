@@ -26,7 +26,7 @@ class CommentsApiView(FlaskView):
     def post(self):
         data = request.json
         post_id = data.get('post_id', 0)
-        text = unicode(data.get('text', None))
+        text = str(data.get('text', None))
         comment_id = data.get('comment_id', None)
 
         if not post_id or not text:

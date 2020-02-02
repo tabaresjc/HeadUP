@@ -37,7 +37,7 @@ def render_json(message=None, status=None, error=None, **kwargs):
 
     if kwargs:
         data['data'] = {}
-        for key, obj in kwargs.iteritems():
+        for key, obj in kwargs.items():
             if isinstance(obj, Form):
                 continue
             data['data'][key] = obj

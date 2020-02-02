@@ -1,3 +1,3 @@
 # -*- coding: utf8 -*-
 
-from handler import task_handler
+from .handler import task_handler

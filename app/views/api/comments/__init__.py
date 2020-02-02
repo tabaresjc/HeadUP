@@ -1,3 +1,3 @@
 # -*- coding: utf8 -*-
 
-from index import CommentsApiView  # noqa
+from .index import CommentsApiView  # noqa
