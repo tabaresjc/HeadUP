@@ -38,6 +38,15 @@ export class StoryApiService extends ApiBase {
 		});
 	}
 
+	hideItem(id) {
+		const endpoint = `${id}/hide`;
+
+		return this.request({
+			url: endpoint,
+			method: 'POST'
+		});
+	}
+
 	last_draft() {
 		const endpoint = 'last-draft';
 
