@@ -90,6 +90,31 @@ class StoriesApiView(FlaskView):
 
         return render_json(story=story)
 
+    @route('/<int:id>/hide', methods=['POST'])
+    @login_required
+    def hide_story(self, id):
+        story = Post.get_by_id(id)
+
+        if not current_user.is_admin:
+            abort(404, 'API_ERROR_POST_NOT_FOUND')
+
+        if story is None:
+            abort(404, 'API_ERROR_POST_NOT_FOUND')
+
+        if story.is_hidden:
+            story.status = story.old_status
+        else:
+            # save current status and block the post
+            story.old_status = story.status
+            story.status = Post.POST_HIDDEN
+
+        story.save()
+
+        # clear related cache objects
+        Feed.clear_cached_posts()
+
+        return render_json(story=story)
+
     @route('/publish/<int:id>', methods=['POST'])
     @login_required
     def publish(self, id):

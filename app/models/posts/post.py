@@ -27,7 +27,8 @@ class Post(Base, sa.Model, ModelHelper):
                      'modified_at',
                      'category',
                      'anonymous',
-                     'likes']
+                     'likes',
+                     'is_hidden']
 
     POST_PUBLIC = 0x001
     POST_DRAFT = 0x100

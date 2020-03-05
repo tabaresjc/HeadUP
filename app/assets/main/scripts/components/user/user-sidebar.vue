@@ -85,6 +85,13 @@
 				rel="nofollow">
 				{{ $t('POST_CREATE') }}
 			</a>
+			<a href="javascript:;"
+				v-on:click="hideStoryFromFeed()"
+				v-if="user.is_authenticated && user.is_admin"
+				class="btn btn-danger btn-danger--transparent btn-lg btn-block"
+				rel="nofollow">
+				Hide Story
+			</a>
 			<div class="text-center" style="margin-top: 20px;" v-if="options.patreon_id">
 				<a :href="patreonLink()" target="_blank">
 					<img src="/static/images/sns/patreon.png" alt="Become a patron!" style="width: 60%; margin: 0 auto;">
@@ -119,7 +126,8 @@ export default {
 		...mapActions({
 			confirm: 'notification/confirm',
 			notify: 'notification/notify',
-			removeStory: 'stories/removeItem'
+			removeStory: 'stories/removeItem',
+			hideStory: 'stories/hideItem'
 		}),
 		patreonLink() {
 			let target = encodeURIComponent(window.location.href);
@@ -146,6 +154,30 @@ export default {
 				.querySelector('title').innerText
 				.split('|')
 				.pop().trim();
+		},
+		hideStoryFromFeed() {
+			let storyId = this.storyId;
+			this.hideStory(storyId)
+				.then((story) => {
+					if (story.is_hidden) {
+						this.notify({
+							message: this.$root.$t('USER_POST_HIDE_SUCCESS'),
+							type: 'warning'
+						});
+					} else {
+						this.notify({
+							message: this.$root.$t('USER_POST_RESTORE_SUCCESS'),
+							type: 'warning'
+						});
+					}
+
+				})
+				.catch(() => {
+					this.notify({
+						message: this.$root.$t('APP_ERROR_AND_RETRY'),
+						category: 'error'
+					});
+				});
 		},
 		deleteStory() {
 			let title = this.getTitleStory();
