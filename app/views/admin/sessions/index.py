@@ -7,6 +7,7 @@ from flask_babel import gettext as _
 from app.models import User
 from app.helpers import send_email, verify_captcha, render_view
 from forms import LoginForm, SignUpForm, ForgotPasswordForm, ResetPasswordForm
+from app import campaign
 import datetime
 
 
@@ -91,6 +92,8 @@ class SessionsView(FlaskView):
 
                 # store the user
                 user.save()
+
+                campaign.add_suscriber(user.email, user.nickname, '')
 
                 # Login User
                 login_user(user)

@@ -88,6 +88,12 @@ from app.helpers import CacheHelper  # noqa
 cache = CacheHelper(app)
 
 # -------------------------------------------------------------------------
+# Campaign Configuration
+# -------------------------------------------------------------------------
+from app.helpers import CampaignHelper  # noqa
+campaign = CampaignHelper(app)
+
+# -------------------------------------------------------------------------
 # Error Configuration
 # -------------------------------------------------------------------------
 from app.helpers import ErrorHelper  # noqa
