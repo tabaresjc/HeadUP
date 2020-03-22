@@ -146,3 +146,9 @@ PATREON_ID = None
 # HubSpot ID
 # *************************************************
 HUBSPOT_ID = None
+
+# *************************************************
+# Mailchimp
+# *************************************************
+MAILCHIMP_API_KEY = None
+MAILCHIMP_USER_NAME = None

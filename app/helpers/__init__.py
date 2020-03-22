@@ -1,6 +1,7 @@
 # -*- coding: utf8 -*-
 
 from .cache import CacheHelper
+from .campaign import CampaignHelper
 from .database import ModelHelper, MutableObject
 from .html import render_view, nocache
 from .pagination import PaginationHelper
