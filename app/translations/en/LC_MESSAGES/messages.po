@@ -1,13 +1,13 @@
-# English translations for PROJECT.
-# Copyright (C) 2017 ORGANIZATION
-# This file is distributed under the same license as the PROJECT project.
-# FIRST AUTHOR <EMAIL@ADDRESS>, 2017.
+# English translations for HeadUP.
+# Copyright (C) 2019 HeadUP
+# This file is distributed under the same license as the PROJECT HeadUP.
+# Juan Tabares <juan.tabares@headup.space>, 2019.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-09-16 02:18+0000\n"
+"POT-Creation-Date: 2020-04-12 04:32+0000\n"
 "PO-Revision-Date: 2017-07-15 18:02+0900\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: en\n"
@@ -157,13 +157,13 @@ msgstr "Name"
 
 #: app/templates/admin/categories/index.html:18
 #: app/templates/src/translations.html:24
-#: app/views/admin/categories/forms/category.py:11
+#: app/views/admin/categories/forms/category.py:10
 msgid "CATEGORY_SLUG"
 msgstr "Slug"
 
 #: app/templates/admin/categories/index.html:19
 #: app/templates/src/translations.html:25
-#: app/views/admin/categories/forms/category.py:12
+#: app/views/admin/categories/forms/category.py:11
 msgid "CATEGORY_DESC"
 msgstr "Description"
 
@@ -423,7 +423,7 @@ msgstr "Send Reset Email"
 
 #: app/templates/admin/sessions/forgot_password.html:26
 #: app/templates/admin/sessions/reset_password.html:27
-#: app/templates/admin/sessions/signup.html:38
+#: app/templates/admin/sessions/signup.html:37
 #: app/templates/src/translations.html:71
 msgid "SIGNIN_ACTION_LBL"
 msgstr "Already have an account?"
@@ -431,7 +431,7 @@ msgstr "Already have an account?"
 #: app/templates/admin/sessions/forgot_password.html:27
 #: app/templates/admin/sessions/reset_password.html:28
 #: app/templates/admin/sessions/signin.html:22
-#: app/templates/admin/sessions/signup.html:39
+#: app/templates/admin/sessions/signup.html:38
 #: app/templates/main/layout/header.html:43
 #: app/templates/src/translations.html:72
 msgid "LOGIN_BTN"
@@ -478,7 +478,7 @@ msgid "SIGNUP_ACTION_LBL"
 msgstr "Don't have an account?"
 
 #: app/templates/admin/sessions/signin.html:29
-#: app/templates/admin/sessions/signup.html:32
+#: app/templates/admin/sessions/signup.html:31
 #: app/templates/main/layout/header.html:49
 #: app/templates/src/translations.html:80
 msgid "REGISTER_BTN"
@@ -647,7 +647,7 @@ msgstr "Remove user"
 #: app/templates/main/layout/footer.html:8
 #: app/templates/main/layout/header.html:73
 #: app/templates/main/pages/conduct.html:2
-#: app/templates/main/pages/home.html:671
+#: app/templates/main/pages/home.html:678
 #: app/templates/src/translations.html:111
 msgid "CODE_CONDUCT_LBL"
 msgstr "Code of conduct"
@@ -655,7 +655,7 @@ msgstr "Code of conduct"
 #: app/templates/emails/layout/base.html:371
 #: app/templates/main/layout/footer.html:10
 #: app/templates/main/layout/header.html:70
-#: app/templates/main/pages/home.html:673
+#: app/templates/main/pages/home.html:680
 #: app/templates/main/pages/policy.html:2
 #: app/templates/src/translations.html:112
 msgid "TOS_LBL"
@@ -941,8 +941,8 @@ msgstr "(more)"
 #: app/templates/src/translations.html:165
 #: app/views/admin/categories/index.py:39
 #: app/views/admin/categories/index.py:77
-#: app/views/admin/categories/index.py:130 app/views/admin/sessions/index.py:78
-#: app/views/admin/sessions/index.py:141 app/views/admin/sessions/index.py:191
+#: app/views/admin/categories/index.py:130 app/views/admin/sessions/index.py:79
+#: app/views/admin/sessions/index.py:144 app/views/admin/sessions/index.py:194
 #: app/views/admin/users/index.py:55 app/views/admin/users/index.py:88
 #: app/views/main/stories/forms/index.py:25 app/views/main/stories/index.py:79
 msgid "ERROR_INVALID_SUBMISSION"
@@ -1019,52 +1019,52 @@ msgstr "The story was successfully removed"
 msgid "ERROR_POST_DELETE_FAILED"
 msgstr "Error while removing the story, %(error)s"
 
-#: app/templates/src/translations.html:181 app/views/admin/sessions/index.py:21
-#: app/views/admin/sessions/index.py:66 app/views/admin/sessions/index.py:134
-#: app/views/admin/sessions/index.py:176
+#: app/templates/src/translations.html:181 app/views/admin/sessions/index.py:22
+#: app/views/admin/sessions/index.py:67 app/views/admin/sessions/index.py:137
+#: app/views/admin/sessions/index.py:179
 msgid "SESSIONS_MSG_ALREADY_SIGNED_IN"
 msgstr "You are already signed in."
 
-#: app/templates/src/translations.html:182 app/views/admin/sessions/index.py:35
+#: app/templates/src/translations.html:182 app/views/admin/sessions/index.py:36
 msgid "SESSIONS_ERROR_LOGIN"
 msgstr "Invalid email or password."
 
-#: app/templates/src/translations.html:183 app/views/admin/sessions/index.py:53
+#: app/templates/src/translations.html:183 app/views/admin/sessions/index.py:54
 msgid "SESSIONS_MSG_LOGIN_SUCESS"
 msgstr "Signed in successfully"
 
-#: app/templates/src/translations.html:184 app/views/admin/sessions/index.py:82
-#: app/views/admin/sessions/index.py:145 app/views/admin/sessions/index.py:195
+#: app/templates/src/translations.html:184 app/views/admin/sessions/index.py:83
+#: app/views/admin/sessions/index.py:148 app/views/admin/sessions/index.py:198
 msgid "SESSIONS_ERROR_UNFINISHED_CHALLENGE_LBL"
 msgstr "Invalid captcha"
 
 #: app/templates/src/translations.html:185
-#: app/views/admin/sessions/index.py:108
+#: app/views/admin/sessions/index.py:111
 msgid "SESSIONS_MSG_SIGNUP_COMPLETED"
 msgstr "Welcome! You have signed up successfully."
 
 #: app/templates/src/translations.html:186
-#: app/views/admin/sessions/index.py:127
+#: app/views/admin/sessions/index.py:130
 msgid "SESSIONS_MSG_SIGNED_OUT"
 msgstr "Signed out successfully."
 
 #: app/templates/src/translations.html:187
-#: app/views/admin/sessions/index.py:153
+#: app/views/admin/sessions/index.py:156
 msgid "SESSIONS_ERROR_MAIL_NOT_FOUND"
 msgstr "There isn't an account on record for the email address %(email)s."
 
 #: app/templates/src/translations.html:188
-#: app/views/admin/sessions/index.py:157
+#: app/views/admin/sessions/index.py:160
 msgid "SESSIONS_PASSWORD_RESET"
 msgstr "Instructions on how to reset your password were sent to %(email)s."
 
 #: app/templates/src/translations.html:189
-#: app/views/admin/sessions/index.py:184
+#: app/views/admin/sessions/index.py:187
 msgid "ERROR_INVALID_RESET_PASSWORD_CODE"
 msgstr "The email link you clicked is invalid. Please try again."
 
 #: app/templates/src/translations.html:190
-#: app/views/admin/sessions/index.py:205
+#: app/views/admin/sessions/index.py:208
 msgid "SESSIONS_MSG_PASSWORD_RESET_COMPLETED"
 msgstr "Your password has been successfully changed."
 
