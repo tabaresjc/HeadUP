@@ -75,5 +75,8 @@ def urlthis(eval_ctx, value, language, scheme='http://'):
 
     if language == 'en':
         return '%s%s%s' % (scheme, config.MAIN_DOMAIN, value or '')
+    elif '_' in language:
+        territory = language.lower().split('_').pop()
+        return '%s%s%s%s%s' % (scheme, territory, sep, config.MAIN_DOMAIN, value or '')
     else:
         return '%s%s%s%s%s' % (scheme, language, sep, config.MAIN_DOMAIN, value or '')
