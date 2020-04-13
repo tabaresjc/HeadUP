@@ -1,6 +1,6 @@
 {% extends "main/layout/base.html" %}
 {% set title = _('CATEGORY_LIST_TITLE', category=category.name) %}
-{% set description = '' %}
+{% set description = category.description %}
 
 {% block meta_extra %}
 	{% if config.FB_APPID %}
