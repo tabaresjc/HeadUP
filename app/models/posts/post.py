@@ -251,7 +251,7 @@ class Post(Base, sa.Model, ModelHelper):
     @classmethod
     def get_language_list(cls):
         import config
-        return [(value, text) for value, text in config.LANGUAGES.iteritems()]
+        return config.LANGUAGES
 
     @classmethod
     def posts_by_user(cls,

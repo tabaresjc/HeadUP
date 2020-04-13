@@ -23,8 +23,11 @@ def upgrade():
         sa.Column('kind', sa.Integer(), nullable=True),
         sa.Column('created_at', sa.DateTime(), nullable=True),
         sa.Column('modified_at', sa.DateTime(), nullable=True),
-        sa.PrimaryKeyConstraint('user_id', 'target_id')
-    )
+        sa.PrimaryKeyConstraint('user_id', 'target_id'),
+        mysql_collate='utf8mb4_unicode_ci',
+        mysql_default_charset='utf8mb4',
+        mysql_engine='InnoDB')
+
     op.create_index('idx_target_kind', 'votes', ['target_id', 'kind'], unique=False)
     op.create_index('idx_user_kind', 'votes', ['user_id', 'kind'], unique=False)
     # ### end Alembic commands ###

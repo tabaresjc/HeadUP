@@ -1,0 +1,21 @@
+location /static {
+	alias /usr/headup/app/static;
+	expires -1;
+}
+
+location /node_modules {
+	alias /usr/headup/app/node_modules;
+	expires 30d;
+}
+
+location /media/lp/201905/ {
+	proxy_pass https://headup.space/media/lp/201905/;
+	proxy_redirect off;
+	proxy_buffering off;
+	expires 30d;
+}
+
+location /media {
+	alias /usr/headup/data/media;
+	expires 30d;
+}

@@ -13,12 +13,12 @@ def process_image_file(picture, f):
     from app.models import Picture
     filename, extension = get_file_info(f)
     img_uuid = get_file_hash(f)
-    base_dir = os.path.join(config.UPLOAD_MEDIA_PICTURES_PATH, img_uuid)
+    APP_BASE_PATH = os.path.join(config.UPLOAD_MEDIA_PICTURES_PATH, img_uuid)
 
     try:
-        if not os.path.exists(base_dir):
-            os.mkdir(base_dir)
-            app.logger.info(u'folder created %s' % base_dir)
+        if not os.path.exists(APP_BASE_PATH):
+            os.mkdir(APP_BASE_PATH)
+            app.logger.info(u'folder created %s' % APP_BASE_PATH)
 
         picture.extension = extension
 
@@ -60,7 +60,7 @@ def process_image_file(picture, f):
 
     except Exception as e:
         app.logger.error(u'[PictureHelper] error, %s' % e.message)
-        clean_folder(base_dir)
+        clean_folder(APP_BASE_PATH)
         raise e
 
 

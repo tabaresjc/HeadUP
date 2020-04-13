@@ -1,19 +1,20 @@
 # -*- coding: utf8 -*-
-from collections import OrderedDict
 import os
 
 # *************************************************
-# folders
+# Folders
 # *************************************************
-BASE_DIR = os.path.abspath(os.path.dirname(__file__))
-STATIC_DIR = os.path.join(BASE_DIR, 'static')
+APP_BASE_PATH = os.environ.get('APP_BASE_PATH')
+APP_DATA_PATH = os.environ.get('APP_DATA_PATH')
+
+APP_STATIC_PATH = os.path.join(APP_BASE_PATH, 'static')
+APP_STATIC_DATA_PATH = os.path.join(APP_STATIC_PATH, 'data')
 
 # *************************************************
 # Flask Configuration
 # *************************************************
-
-SECRET_KEY = ''
-DEBUG = True
+CSRF_ENABLED = True
+SECRET_KEY = 'INSERT_NEW_SECRET_KEY'
 
 # *************************************************
 # CSRF
@@ -24,7 +25,7 @@ WTF_CSRF_TIME_LIMIT = 3600 * 24
 # *************************************************
 # logger
 # *************************************************
-LOG_PATH = 'logs/daily.log'
+LOG_PATH = os.path.join(APP_DATA_PATH, 'logs/daily.log')
 
 LOG_EMAIL_ENABLED = False
 LOG_EMAIL_HOST = 'localshot'
@@ -44,7 +45,7 @@ DEFAULT_TIMEZONE = 'Asia/Tokyo'
 DEFAULT_LANGUAGE = 'en'
 FORCE_LANG = ''
 DEFAULT_USER_ROLES = [('1', 'Administrator'), ('2', 'Writer')]
-LANGUAGES = OrderedDict([('en', u'English'), ('fr', u'Français'), ('es', u'Español'), ('ja', u'日本語')])
+LANGUAGES = [('en', u'English'), ('fr', u'Français'), ('es', u'Español'), ('ja', u'日本語')]
 LANGUAGES_FORMATS = {
     'en': {
         'DATE': u'EEE, d MMM yyyy',
@@ -63,38 +64,48 @@ LANGUAGES_FORMATS = {
         'LONG_DATETIME': U'y\u5e74M\u6708d\u65e5EEEE H\u6642mm\u5206'
     }
 }
+
+# *************************************************
+# Media
+# *************************************************
 UPLOAD_MEDIA_FOLDER = 'media'
 UPLOAD_MEDIA_PICTURES = 'media/pictures'
-UPLOAD_MEDIA_PICTURES_PATH = os.path.join(BASE_DIR, UPLOAD_MEDIA_PICTURES)
+UPLOAD_MEDIA_PICTURES_PATH = os.path.join(APP_DATA_PATH, 'media/pictures')
 
 # *************************************************
 # Session Configuration
 # *************************************************
 SESSION_TYPE = 'filesystem'
 SESSION_KEY_PREFIX = 'hu'
+SESSION_FILE_DIR = os.path.join(APP_DATA_PATH, 'sessions')
+SESSION_FILE_THRESHOLD = 99999999999
 
 # *************************************************
 # SQLAlchemy Configuration
 # *************************************************
-SQLALCHEMY_DATABASE_URI = os.environ.get('DATABASE_URL', 'mysql://user:pwd@host/database')
+SQLALCHEMY_DATABASE_URI = os.environ.get('DATABASE_URL')
 SQLALCHEMY_TRACK_MODIFICATIONS = True
 SQLALCHEMY_ECHO = True
+
+# *************************************************
+# Rabbit MQ Service
+# *************************************************
+BROKER_URL = os.environ.get('BROKER_URL')
 
 # *************************************************
 # Cache Configuration
 # *************************************************
 CACHE_ENABLED = False
-CACHE_FOLDER_PATH = os.path.join(BASE_DIR, 'cache')
 CACHE_CONFIG = {
     'CACHE_TYPE': 'filesystem',
-    'CACHE_DIR': CACHE_FOLDER_PATH,
+    'CACHE_DIR': os.path.join(APP_BASE_PATH, 'cache'),
     'CACHE_DEFAULT_TIMEOUT': 3600
 }
 
 # *************************************************
-# Facebook APP ID
+# Facebook Pixel ID
 # *************************************************
-FB_APPID = None
+FB_PIXEL_ID = None
 
 # *************************************************
 # Addthis
@@ -104,16 +115,18 @@ ADDTHIS_LINK_STAMP = None
 # *************************************************
 # Domain Replacement
 # *************************************************
-MAIN_DOMAIN = 'headup.space'
-OTHER_DOMAINS = []
+MAIN_DOMAIN = 'local.headup.space'
+OTHER_DOMAINS = ['es.local.headup.space', 'fr.local.headup.space', 'ja.local.headup.space']
 
 # *************************************************
 # Mail Function
 # *************************************************
 MAIL_SERVER = None
 MAIL_PORT = 25
+MAIL_USE_TLS = None
 MAIL_USERNAME = None
 MAIL_PASSWORD = None
+MAIL_DEFAULT_SENDER = None
 
 # *************************************************
 # Google Analytics
@@ -128,17 +141,7 @@ GTAG_ID = None
 GTAG_SIGNUP_CONVERSION_ID = None
 
 # *************************************************
-# MQ Service
-# *************************************************
-BROKER_URL = 'amqp://headupuser:headup123456@localhost:5672/headup'
-
-# *************************************************
-# like btn service
-# *************************************************
-LIKE_BTN_CODE = None
-
-# *************************************************
-# recaptchaV2
+# RecaptchaV2
 # *************************************************
 RC_SITE_KEY = None
 RC_SECRET_KEY = None

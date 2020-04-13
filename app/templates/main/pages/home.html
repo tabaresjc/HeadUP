@@ -33,7 +33,7 @@
 						{{ _('LP_STORY_LANGUAGE_LBL') }}
 					</a>
 					<div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-						{% for key, value in config.LANGUAGES.iteritems() %}
+						{% for key, value in config.LANGUAGES %}
 							<a href="{{ request.path|urlthis(key) }}" class="dropdown-item {{ 'disabled' if key == language else '' }}">
 								<img src="/media/lp/201905/images/{{ key }}.svg" style="width:28px;height:28px;">
 								<span style="text-transform: uppercase;">{{ value }}</span>

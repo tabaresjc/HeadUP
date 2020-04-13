@@ -18,6 +18,7 @@ parts/
 sdist/
 var/
 /.env/
+.env
 *.egg-info/
 .installed.cfg
 *.egg

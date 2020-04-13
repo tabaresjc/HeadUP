@@ -1,0 +1,129 @@
+version: "3.6"
+services:
+  headup_mysql:
+    image: mysql:8.0.19
+    container_name: headup_mysql
+    command:
+      [
+        "mysqld",
+        "--character-set-server=utf8mb4",
+        "--collation-server=utf8mb4_unicode_ci",
+        "--default-authentication-plugin=mysql_native_password",
+      ]
+    environment:
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+      MYSQL_DATABASE: ${MYSQL_DATABASE}
+      MYSQL_USER: ${MYSQL_USER}
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+    volumes:
+      - type: bind
+        source: ${APP_DATA_PATH}/lib/mysql
+        target: /var/lib/mysql
+    networks:
+      headup-network:
+        ipv4_address: 172.10.10.15
+    ports:
+      - "3306:3306"
+    restart: always
+  headup_rabbitmq:
+    build: ./docker/services/rabbitmq/
+    container_name: headup_rabbitmq
+    environment:
+      RABBITMQ_ERLANG_COOKIE: ${RABBITMQ_ERLANG_COOKIE}
+      RABBITMQ_DEFAULT_USER: ${RABBITMQ_DEFAULT_USER}
+      RABBITMQ_DEFAULT_PASS: ${RABBITMQ_DEFAULT_PASS}
+      RABBITMQ_DEFAULT_VHOST: ${RABBITMQ_DEFAULT_VHOST}
+    volumes:
+      - type: bind
+        source: ${APP_DATA_PATH}/lib/rabbitmq
+        target: /var/lib/rabbitmq/mnesia
+      - type: bind
+        source: ${APP_DATA_PATH}/logs/rabbitmq
+        target: /var/log/rabbitmq/
+    networks:
+      headup-network:
+        ipv4_address: 172.10.10.16
+    ports:
+      - "5672:5672"
+      - "15672:15672"
+    restart: always
+  headup_app:
+    build:
+      context: ./
+      dockerfile: ./docker/services/app/Dockerfile
+    container_name: headup_app
+    environment:
+      APP_BASE_PATH: /usr/headup/app
+      APP_DATA_PATH: /usr/headup/data
+      DATABASE_URL: mysql+pymysql://${MYSQL_USER}:${MYSQL_PASSWORD}@headup_mysql/${MYSQL_DATABASE}?charset=utf8mb4
+      BROKER_URL: amqp://${RABBITMQ_DEFAULT_USER}:${RABBITMQ_DEFAULT_PASS}@headup_rabbitmq:5672/${RABBITMQ_DEFAULT_VHOST}
+      WERKZEUG_DEBUG_PIN: "off"
+      PYTHONDONTWRITEBYTECODE: "1"
+      PYTHONUNBUFFERED: "1"
+      C_FORCE_ROOT: 1
+      FLASK_DEBUG: 1
+    depends_on:
+      - headup_mysql
+      - headup_rabbitmq
+    volumes:
+      - type: bind
+        source: ${APP_BASE_PATH}
+        target: /usr/headup/app
+      - type: bind
+        source: ${APP_DATA_PATH}
+        target: /usr/headup/data
+    networks:
+      headup-network:
+        ipv4_address: 172.10.10.17
+    ports:
+      - "5000:5000"
+  headup_celery:
+    build:
+      context: ./
+      dockerfile: ./docker/services/celery/Dockerfile
+    container_name: headup_celery
+    environment:
+      APP_BASE_PATH: /usr/celery/app
+      APP_DATA_PATH: /usr/celery/data
+      DATABASE_URL: mysql+pymysql://${MYSQL_USER}:${MYSQL_PASSWORD}@headup_mysql/${MYSQL_DATABASE}?charset=utf8mb4
+      BROKER_URL: amqp://${RABBITMQ_DEFAULT_USER}:${RABBITMQ_DEFAULT_PASS}@headup_rabbitmq:5672/${RABBITMQ_DEFAULT_VHOST}
+      WERKZEUG_DEBUG_PIN: "off"
+      PYTHONDONTWRITEBYTECODE: "1"
+      PYTHONUNBUFFERED: "1"
+      C_FORCE_ROOT: 1
+    depends_on:
+      - headup_rabbitmq
+      - headup_app
+    volumes:
+      - type: bind
+        source: ${CELERY_BASE_PATH}
+        target: /usr/celery/app
+      - type: bind
+        source: ${CELERY_DATA_PATH}
+        target: /usr/celery/data
+    networks:
+      headup-network:
+        ipv4_address: 172.10.10.18
+  headup_web_server:
+    build: ./docker/services/nginx
+    container_name: headup_web_server
+    depends_on:
+      - headup_app
+    volumes:
+      - type: bind
+        source: ${APP_BASE_PATH}
+        target: /usr/headup/app
+      - type: bind
+        source: ${APP_DATA_PATH}
+        target: /usr/headup/data
+    networks:
+      headup-network:
+        ipv4_address: 172.10.10.10
+    ports:
+      - 80:80
+networks:
+  headup-network:
+    ipam:
+      driver: default
+      config:
+        - subnet: 172.10.10.0/16

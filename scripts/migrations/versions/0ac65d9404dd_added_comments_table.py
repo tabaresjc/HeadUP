@@ -32,9 +32,9 @@ def upgrade():
                     sa.ForeignKeyConstraint(['post_id'], ['posts.id'], onupdate='NO ACTION', ondelete='CASCADE'),
                     sa.ForeignKeyConstraint(['user_id'], ['users.id'], onupdate='NO ACTION', ondelete='CASCADE'),
                     sa.PrimaryKeyConstraint('id'),
-                    mysql_collate=u'utf8_unicode_ci',
-                    mysql_default_charset=u'utf8',
-                    mysql_engine=u'InnoDB')
+                    mysql_collate='utf8mb4_unicode_ci',
+                    mysql_default_charset='utf8mb4',
+                    mysql_engine='InnoDB')
 
     op.alter_column(u'posts', 'lang',
                     existing_type=mysql.VARCHAR(length=4),

@@ -19,7 +19,7 @@ def revision(msg, autogenerate='0'):
     """Generate a revision migration."""
     try:
         os.environ['DATABASE_URL'] = config.SQLALCHEMY_DATABASE_URI
-        os.environ['PYTHONPATH'] = config.BASE_DIR
+        os.environ['PYTHONPATH'] = config.APP_BASE_PATH
         if autogenerate == '1':
             click.echo('autogenerate enabled...')
             os.system('alembic revision --autogenerate -m "%s"' % msg)
@@ -35,7 +35,7 @@ def upgrade(point='head'):
     """Upgrade to head or to the given revision number."""
     try:
         os.environ['DATABASE_URL'] = config.SQLALCHEMY_DATABASE_URI
-        os.environ['PYTHONPATH'] = config.BASE_DIR
+        os.environ['PYTHONPATH'] = config.APP_BASE_PATH
         os.system('alembic upgrade %s' % point)
     except Exception as e:
         click.echo('Error: %s' % e)
@@ -47,7 +47,7 @@ def downgrade(point='-1'):
     """Downgrade to base or to the given revision number."""
     try:
         os.environ['DATABASE_URL'] = config.SQLALCHEMY_DATABASE_URI
-        os.environ['PYTHONPATH'] = config.BASE_DIR
+        os.environ['PYTHONPATH'] = config.APP_BASE_PATH
         os.system('alembic downgrade %s' % point)
     except Exception as e:
         click.echo('Error: %s' % e)

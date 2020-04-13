@@ -2,16 +2,17 @@
 
 from flask import request
 from flask_login import current_user
-import app
+from app import babel, app
 import config
 
 DEFAULT_LANGUAGE = 'en'
 DEFAULT_TIMEZONE = 'Asia/Tokyo'
-LANGUAGES = config.__dict__.get('LANGUAGES')
+LANGUAGES = app.config.get('LANGUAGES') or []
+LANGUAGE_KEYS = [key for key, _ in LANGUAGES]
 
-@app.babel.localeselector
+@babel.localeselector
 def get_locale():
-    cfg = config.__dict__
+    cfg = app.config
 
     if cfg.get('FORCE_LANG'):
         return cfg.get('FORCE_LANG')
@@ -21,22 +22,22 @@ def get_locale():
 
     host = request.headers.get('HOST', '')
 
-    for key, _ in LANGUAGES.iteritems():
-        if host.startswith(key):
-            return key
+    for lang in LANGUAGE_KEYS:
+        if host.startswith(lang):
+            return lang
 
-        if u'_' in key:
-            territory = key.lower().split('_').pop()
+        if u'_' in lang:
+            territory = lang.lower().split('_').pop()
 
             if host.startswith(territory):
                 return key
 
-    return request.accept_languages.best_match(config.LANGUAGES.keys())
+    return request.accept_languages.best_match(LANGUAGE_KEYS)
 
 
-@app.babel.timezoneselector
+@babel.timezoneselector
 def get_timezone():
-    cfg = config.__dict__
+    cfg = app.config
 
     if current_user and current_user.timezone:
         return current_user.timezone
