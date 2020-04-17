@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2020-04-12 04:32+0000\n"
+"POT-Creation-Date: 2020-04-17 05:19+0000\n"
 "PO-Revision-Date: 2020-04-07 10:00+0000\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: en\n"
@@ -80,7 +80,8 @@ msgstr "最后登录"
 
 #: app/templates/admin/index.html:26 app/templates/admin/layout/navbar.html:28
 #: app/templates/main/layout/header.html:30
-#: app/templates/main/pages/home.html:58 app/templates/src/translations.html:13
+#: app/templates/src/translations.html:13
+#: app/templates/widgets/pages/_home.html:53
 msgid "APP_PROFILE"
 msgstr "我的资料"
 
@@ -113,7 +114,8 @@ msgstr "您并未分享您的故事.<br/>通过撰写您的第一个故事来参
 #: app/templates/admin/layout/sidebar.html:28
 #: app/templates/admin/posts/index.html:7
 #: app/templates/admin/posts/partials/_sidebar.html:9
-#: app/templates/main/pages/home.html:54 app/templates/src/translations.html:17
+#: app/templates/src/translations.html:17
+#: app/templates/widgets/pages/_home.html:49
 msgid "POST_LIST"
 msgstr "故事"
 
@@ -262,7 +264,8 @@ msgstr "账户"
 #: app/templates/admin/layout/navbar.html:25
 #: app/templates/admin/layout/sidebar.html:32
 #: app/templates/admin/posts/partials/_sidebar.html:14
-#: app/templates/main/pages/home.html:55 app/templates/src/translations.html:44
+#: app/templates/src/translations.html:44
+#: app/templates/widgets/pages/_home.html:50
 msgid "POST_DRAFT_LIST"
 msgstr "草稿"
 
@@ -271,8 +274,9 @@ msgstr "草稿"
 #: app/templates/admin/posts/edit.html:2
 #: app/templates/admin/posts/partials/_sidebar.html:4
 #: app/templates/main/layout/error-base.html:35
-#: app/templates/main/pages/home.html:56 app/templates/main/stories/edit.html:2
+#: app/templates/main/stories/edit.html:2
 #: app/templates/src/translations.html:45
+#: app/templates/widgets/pages/_home.html:51
 msgid "POST_CREATE"
 msgstr "新故事"
 
@@ -284,8 +288,9 @@ msgstr "返回网页顶部"
 #: app/templates/admin/layout/navbar.html:37
 #: app/templates/admin/layout/sidebar.html:97
 #: app/templates/main/layout/header.html:36
-#: app/templates/main/pages/home.html:59 app/templates/main/pages/home.html:60
 #: app/templates/src/translations.html:47
+#: app/templates/widgets/pages/_home.html:54
+#: app/templates/widgets/pages/_home.html:55
 msgid "APP_SIGN_OUT"
 msgstr "退出"
 
@@ -643,17 +648,17 @@ msgstr "删除用户"
 #: app/templates/main/layout/footer.html:8
 #: app/templates/main/layout/header.html:73
 #: app/templates/main/pages/conduct.html:2
-#: app/templates/main/pages/home.html:678
 #: app/templates/src/translations.html:111
+#: app/templates/widgets/pages/_home.html:679
 msgid "CODE_CONDUCT_LBL"
 msgstr "行为守则"
 
 #: app/templates/emails/layout/base.html:371
 #: app/templates/main/layout/footer.html:10
 #: app/templates/main/layout/header.html:70
-#: app/templates/main/pages/home.html:680
 #: app/templates/main/pages/policy.html:2
 #: app/templates/src/translations.html:112
+#: app/templates/widgets/pages/_home.html:681
 msgid "TOS_LBL"
 msgstr "服务条款"
 
@@ -1182,30 +1187,102 @@ msgstr "通过撰写出色的成功故事来表达您的乐观与积极\n"
 msgid "APP_ERROR_AND_RETRY"
 msgstr ""
 
-#~ msgid "SETTINGS_EDIT"
-#~ msgstr "设定"
+#: app/templates/widgets/pages/_home.html:17
+msgid "LP_HOME_LBL"
+msgstr "HOME"
 
-#~ msgid "USER_EMAIL_NOTIFICATION"
-#~ msgstr "电子邮件与通知"
+#: app/templates/widgets/pages/_home.html:20
+msgid "LP_STORY_CATEGORIES_LBL"
+msgstr "STORY CATEGORIES"
 
-#~ msgid "USER_PASSWORD_EDIT_TITLE"
-#~ msgstr "更改密码"
+#: app/templates/widgets/pages/_home.html:23
+msgid "LP_STORY_CONTACT_US_LBL"
+msgstr "CONTACT US"
 
-#~ msgid "USER_EMAIL_NOTIFICATION_TITLE"
-#~ msgstr "电子邮件与通知"
+#: app/templates/widgets/pages/_home.html:28
+msgid "LP_STORY_LANGUAGE_LBL"
+msgstr "LANGUAGE"
 
-#~ msgid "USER_DIGEST_EDIT_TITLE"
-#~ msgstr "您专属的内容"
+#: app/templates/widgets/pages/_home.html:62
+msgid "LP_STORY_LOGIN_LBL"
+msgstr "LOGIN"
 
-#~ msgid "USER_ALLOW_DIGEST_EMAIL"
-#~ msgstr "HeadUP Digest电子邮件包含您的Feed中的热门故事和其他受欢迎的内容。"
+#: app/templates/widgets/pages/_home.html:66
+msgid "LP_STORY_SIGN_UP_LBL"
+msgstr "SIGN UP"
 
-#~ msgid "USER_COMMENTS_EDIT_TITLE"
-#~ msgstr "评论"
+#: app/templates/widgets/pages/_home.html:82
+msgid "LP_STORY_START_READING_HERE_LBL"
+msgstr "START READING HERE!"
 
-#~ msgid "USER_ALLOW_COMMENT_EMAIL"
-#~ msgstr "当有人评论您的故事和评论时，我们会通过电子邮件发通知您。"
+#: app/templates/widgets/pages/_home.html:97
+msgid "LP_STORY_STORIES_CATEGORIES_LBL"
+msgstr "Stories by Category"
 
-#~ msgid "USER_LAST_SEE"
-#~ msgstr "最后在线"
+#: app/templates/widgets/pages/_home.html:376
+msgid "LP_HOW_IT_WORKS_TITLE"
+msgstr "A STORY TO TELL?"
+
+#: app/templates/widgets/pages/_home.html:390
+msgid "LP_SHARE_STORY_LBL"
+msgstr "You want to share a story"
+
+#: app/templates/widgets/pages/_home.html:403
+msgid "LP_SHARE_SIGN_UP_LBL"
+msgstr "Sign Up"
+
+#: app/templates/widgets/pages/_home.html:405
+msgid "LP_SHARE_SIGN_UP_DESC"
+msgstr "In 30 secs and create a profile"
+
+#: app/templates/widgets/pages/_home.html:418
+msgid "LP_SHARE_WRITE_STORY_DESC"
+msgstr "Write your story"
+
+#: app/templates/widgets/pages/_home.html:436
+msgid "LP_SHARE_SAVE_STORY_DESC"
+msgstr "Stamp it !"
+
+#: app/templates/widgets/pages/_home.html:458
+msgid "LP_PRODUCT_TITLE"
+msgstr "WHAT MAKES IT DIFFERENT?"
+
+#: app/templates/widgets/pages/_home.html:461
+msgid "LP_PRODUCT_ITEM_01_DESC"
+msgstr "<b>Free</b> & <b>Anonymous</b>"
+
+#: app/templates/widgets/pages/_home.html:462
+msgid "LP_PRODUCT_ITEM_02_DESC"
+msgstr "Share your story <b>worldwide"
+
+#: app/templates/widgets/pages/_home.html:463
+msgid "LP_PRODUCT_ITEM_03_DESC"
+msgstr "<b>Encourage</b> and <b>inspire</b> others"
+
+#: app/templates/widgets/pages/_home.html:464
+msgid "LP_PRODUCT_ITEM_04_DESC"
+msgstr "<b>Promote</b> your projects, your business, your talents"
+
+#: app/templates/widgets/pages/_home.html:465
+msgid "LP_PRODUCT_ITEM_05_DESC"
+msgstr "<b>Discover</b> fantastic and fun stories"
+
+#: app/templates/widgets/pages/_home.html:489
+#: app/templates/widgets/pages/_home.html:597
+msgid "LP_LATEST_STORIES_TITLE"
+msgstr "your space to express yourself freely"
+
+#: app/templates/widgets/pages/_home.html:609
+msgid "LP_WORLDWIDE_LBL"
+msgstr "Worldwide"
+
+#: app/templates/widgets/pages/_home.html:633
+msgid "LP_FOLLOW_SHARE_LBL"
+msgstr "Follow us & share on"
+
+#: app/templates/widgets/pages/_home_head.html:52
+msgid "LP_HOME_INTRO_LBL"
+msgstr "“A good vibe a day goes a long way”"
+
+
 

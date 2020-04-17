@@ -1,0 +1,128 @@
+<link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700,900" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Permanent+Marker" rel="stylesheet">
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/js/bootstrap.min.js"></script>
+<script src="/media/lp/201905/js/wow.min.js"></script>
+<script src="/media/lp/201905/js/detectmobilebrowser.js"></script>
+<script src="/media/lp/201905/js/jquery_ujs.js"></script>
+<script src="/media/lp/201905/js/main.js"></script>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/css/bootstrap.min.css" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.min.css" />
+<link href="/media/lp/201905/css/site.css?v=2" rel="stylesheet" />
+
+<script>
+	$(function () {
+		new WOW().init();
+	});
+	$(document).ready(function () {
+		if (jQuery.browser.mobile) {
+			$("#logoImage").show();
+			$("#logoTitle").show();
+			$("#myVideo").hide();
+		}
+		else {
+			$("#logoImage").hide();
+			$("#logoTitle").hide();
+			$("#myVideo").show();
+		}
+	});
+	$(document).ready(function () {
+		var scroll_start = 0;
+		var startchange = $('#myVideo');
+		var offset = startchange.offset();
+		if (startchange.length) {
+			var i = 0;
+			$(document).scroll(function () {
+				scroll_start = $(this).scrollTop();
+
+				if (scroll_start > offset.top) {
+					if (i == 0) {
+						typeWriter();
+						i = 1;
+					}
+				}
+			});
+		}
+	});
+
+	var i = 0;
+	var txt = '{{ _('LP_HOME_INTRO_LBL') }}';
+	var speed = 100;
+
+	function typeWriter() {
+		if (i < txt.length) {
+			document.getElementById("vibes").innerHTML += txt.charAt(i);
+			i++;
+			setTimeout(typeWriter, speed);
+		}
+	}
+</script>
+
+<script>
+	$(document).ready(function () {
+		var scroll_start = 0;
+		var startchange = $('#home');
+		var offset = startchange.offset();
+		if (startchange.length) {
+			$(document).scroll(function () {
+				scroll_start = $(this).scrollTop();
+				if (scroll_start > offset.top) {
+					$("#nav-wrapper").css('background-color', 'rgba(255, 255, 255, 0.9)');
+					$("#nav-wrapper").addClass("box-effect-small");
+					$(".nav-link").addClass("nav-link-dark");
+					$("#logo-1").attr("src", "/media/lp/201905/images/logo-headup.png");
+					$("#logo-2").hide();
+				} else {
+					$('#nav-wrapper').css('background-color', 'transparent');
+					$("#nav-wrapper").removeClass("box-effect-small");
+					$(".nav-link").removeClass("nav-link-dark");
+					$("#logo-1").attr("src", "/media/lp/201905/images/logo.png");
+					$("#logo-2").show();
+				}
+			});
+		}
+
+		// checking if menu button is clicked in mobile mode
+		$(document).on("click", ".navbar-toggler", function () {
+			if (document.getElementById('nav-wrapper').clientHeight < 100) {
+				$("#nav-wrapper").css('background-color', 'rgba(255, 255, 255, 0.9)');
+				$(".nav-link").addClass("nav-link-dark");
+				$("#nav-wrapper").addClass("box-effect-small");
+			}
+			else {
+				$('#nav-wrapper').css('background-color', 'transparent');
+				$("#nav-wrapper").removeClass("box-effect-small");
+				$(".nav-link").removeClass("nav-link-dark");
+			}
+		});
+	});
+</script>
+<script>
+	jQuery(document).ready(function ($) {
+		$('.back-to-top').hide();
+
+		// Header fixed and Back to top button
+		$(window).scroll(function () {
+			if ($(this).scrollTop() > 100) {
+				$('.back-to-top').fadeIn('slow');
+				//$('#header').addClass('header-fixed');
+			} else {
+				$('.back-to-top').fadeOut('slow');
+				//$('#header').removeClass('header-fixed');
+			}
+		});
+
+		if ($(this).scrollTop() > 100) {
+			$('.back-to-top').fadeIn('slow');
+			//$('#header').addClass('header-fixed');
+		}
+
+		$(document).on("click", ".back-to-top", function () {
+			var body = $("html, body");
+			body.stop().animate({ scrollTop: 0 }, 500, 'swing');
+		});
+	});
+</script>
