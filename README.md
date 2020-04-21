@@ -12,6 +12,7 @@ Install the following software on your PC
 
 - Docker CE (19.03.8)
 - Node.js and NPM
+- Clone the repository `$ git clone https://github.com/jctt1983/HeadUP` and `$ cd` into it
 
 ### Setup Environment
 1. Take `.env.txt` as a reference, and create a file name `.env`, make sure to  create and fill in the following folders. Everything else can be seasoned to taste :)
@@ -30,7 +31,7 @@ CELERY_BASE_PATH=/path/to/app/source
 CELERY_DATA_PATH=/path/to/celery/data
 ```
 
-2. Take `config.py.txt` as a reference, and create a file named `config.py`. The config fiels are divided into sections.
+2. Take `config.py.txt` as a reference, and create a file named `config.py`. The config files are divided into sections.
 
 The following sections might depend on one of docker environment variables
 - Folders
@@ -41,7 +42,7 @@ The following sections might depend on one of docker environment variables
 - SQLAlchemy Configuration
 - Rabbit MQ Service
 
-The following sections are not dependent on docker envrionment.
+The following sections are not dependent on docker environment.
 - CSRF
 - Site Configuration
 - Flask Configuration
@@ -50,22 +51,21 @@ The following sections are not dependent on docker envrionment.
 - Domain Replacement
 - Mail Function
 - Google Analytics
-- Google tag managerS
+- Google tag managers
 - Patreon ID
 - HubSpot ID
 - Mailchimp
 
 ### Getting started
 
-1. Clone the repository `$ git clone <path to repository>` and `$ cd` into it
-2. Execute the following docker commands
+1. Execute the following docker commands
 ```bash
-# build docker images of the project
+# build docker images of the project (it will use about 4Gb on your disk and run during ~5 minutes depend on your network connection)
 $ docker-compose build
 # boot up the containers
 $ docker-compose up -d
 ```
-3. Once the containers are up and running, check that all containers are up and running.
+2. Once the containers are up and running, check that all containers are up and running.
 ```bash
 # check status
 $ docker ps --format "table {{.ID}}\t{{.Names}}\t{{.Status}}"
@@ -76,6 +76,7 @@ cfa8d8e22d0d        headup_web_server   Up 17 minutes
 7a77b9aa4b7f        headup_app          Up 17 minutes
 0616ae70023e        headup_rabbitmq     Up 17 minutes
 14edaee93f97        headup_mysql        Up 17 minutes
+# or use your favorite docker manager like https://www.portainer.io/ , https://rancher.com/ etc...
 ```
 
 ### Provision first admin account

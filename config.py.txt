@@ -13,7 +13,6 @@ APP_STATIC_DATA_PATH = os.path.join(APP_STATIC_PATH, 'data')
 # *************************************************
 # Flask Configuration
 # *************************************************
-CSRF_ENABLED = True
 SECRET_KEY = 'INSERT_NEW_SECRET_KEY'
 
 # *************************************************
@@ -70,7 +69,7 @@ LANGUAGES_FORMATS = {
 # *************************************************
 UPLOAD_MEDIA_FOLDER = 'media'
 UPLOAD_MEDIA_PICTURES = 'media/pictures'
-UPLOAD_MEDIA_PICTURES_PATH = os.path.join(APP_DATA_PATH, 'media/pictures')
+UPLOAD_MEDIA_PICTURES_PATH = os.path.join(APP_DATA_PATH, UPLOAD_MEDIA_PICTURES)
 
 # *************************************************
 # Session Configuration
