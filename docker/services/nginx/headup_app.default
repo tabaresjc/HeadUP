@@ -7,3 +7,4 @@ sendfile       on;
 tcp_nopush     on;
 tcp_nodelay    on;
 sendfile_max_chunk 10M;
+
