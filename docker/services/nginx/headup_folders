@@ -1,10 +1,10 @@
 location /static {
-	alias /usr/headup/app/static;
+	alias /usr/headup/static;
 	expires -1;
 }
 
 location /node_modules {
-	alias /usr/headup/app/node_modules;
+	alias /usr/headup/node_modules;
 	expires 30d;
 }
 

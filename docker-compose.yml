@@ -111,8 +111,11 @@ services:
       - headup_app
     volumes:
       - type: bind
-        source: ${APP_BASE_PATH}
-        target: /usr/headup/app
+        source: ${APP_BASE_PATH}/static
+        target: /usr/headup/static
+      - type: bind
+        source: ${APP_BASE_PATH}/node_modules
+        target: /usr/headup/node_modules
       - type: bind
         source: ${APP_DATA_PATH}
         target: /usr/headup/data
