@@ -1234,94 +1234,94 @@ msgstr "HOME"
 
 #: app/templates/widgets/pages/_home.html:20
 msgid "LP_STORY_CATEGORIES_LBL"
-msgstr "STORY CATEGORIES"
+msgstr "CATEGORIAS"
 
 #: app/templates/widgets/pages/_home.html:23
 msgid "LP_STORY_CONTACT_US_LBL"
-msgstr "CONTACT US"
+msgstr "CONTÁCTENOS"
 
 #: app/templates/widgets/pages/_home.html:28
 msgid "LP_STORY_LANGUAGE_LBL"
-msgstr "LANGUAGE"
+msgstr "IDIOMA"
 
 #: app/templates/widgets/pages/_home.html:62
 msgid "LP_STORY_LOGIN_LBL"
-msgstr "LOGIN"
+msgstr "INICIAR SESIÓN"
 
 #: app/templates/widgets/pages/_home.html:66
 msgid "LP_STORY_SIGN_UP_LBL"
-msgstr "SIGN UP"
+msgstr "REGÍSTRATE"
 
 #: app/templates/widgets/pages/_home.html:82
 msgid "LP_STORY_START_READING_HERE_LBL"
-msgstr "START READING HERE!"
+msgstr "¡COMIENCE A LEER AQUÍ!"
 
 #: app/templates/widgets/pages/_home.html:97
 msgid "LP_STORY_STORIES_CATEGORIES_LBL"
-msgstr "Stories by Category"
+msgstr "Historias por categoría"
 
 #: app/templates/widgets/pages/_home.html:376
 msgid "LP_HOW_IT_WORKS_TITLE"
-msgstr "A STORY TO TELL?"
+msgstr "¿UNA HISTORIA QUE CONTAR?"
 
 #: app/templates/widgets/pages/_home.html:390
 msgid "LP_SHARE_STORY_LBL"
-msgstr "You want to share a story"
+msgstr "Quieres compartir una historia"
 
 #: app/templates/widgets/pages/_home.html:403
 msgid "LP_SHARE_SIGN_UP_LBL"
-msgstr "Sign Up"
+msgstr "Regístrate"
 
 #: app/templates/widgets/pages/_home.html:405
 msgid "LP_SHARE_SIGN_UP_DESC"
-msgstr "In 30 secs and create a profile"
+msgstr "En 30 segundos y crea un perfil"
 
 #: app/templates/widgets/pages/_home.html:418
 msgid "LP_SHARE_WRITE_STORY_DESC"
-msgstr "Write your story"
+msgstr "Escribe tu historia"
 
 #: app/templates/widgets/pages/_home.html:436
 msgid "LP_SHARE_SAVE_STORY_DESC"
-msgstr "Stamp it !"
+msgstr "Guardalo!"
 
 #: app/templates/widgets/pages/_home.html:458
 msgid "LP_PRODUCT_TITLE"
-msgstr "WHAT MAKES IT DIFFERENT?"
+msgstr "¿QUÉ LO HACE DIFERENTE?"
 
 #: app/templates/widgets/pages/_home.html:461
 msgid "LP_PRODUCT_ITEM_01_DESC"
-msgstr "<b>Free</b> & <b>Anonymous</b>"
+msgstr "<b>Gratis</b> y <b>Anónimo</b>"
 
 #: app/templates/widgets/pages/_home.html:462
 msgid "LP_PRODUCT_ITEM_02_DESC"
-msgstr "Share your story <b>worldwide"
+msgstr "Comparte tu historia<br/>con todo el mundo"
 
 #: app/templates/widgets/pages/_home.html:463
 msgid "LP_PRODUCT_ITEM_03_DESC"
-msgstr "<b>Encourage</b> and <b>inspire</b> others"
+msgstr "<b>Fomenta</b> e <b>inspira</b>a otros"
 
 #: app/templates/widgets/pages/_home.html:464
 msgid "LP_PRODUCT_ITEM_04_DESC"
-msgstr "<b>Promote</b> your projects, your business, your talents"
+msgstr "<b>Promueve</b> tus proyectos, tus negocios y talentos"
 
 #: app/templates/widgets/pages/_home.html:465
 msgid "LP_PRODUCT_ITEM_05_DESC"
-msgstr "<b>Discover</b> fantastic and fun stories"
+msgstr "<b>Descubre</b> historias fantásticas y divertidas"
 
 #: app/templates/widgets/pages/_home.html:489
 #: app/templates/widgets/pages/_home.html:597
 msgid "LP_LATEST_STORIES_TITLE"
-msgstr "your space to express yourself freely"
+msgstr "tu espacio para expresarte libremente"
 
 #: app/templates/widgets/pages/_home.html:609
 msgid "LP_WORLDWIDE_LBL"
-msgstr "Worldwide"
+msgstr "En todo el mundo"
 
 #: app/templates/widgets/pages/_home.html:633
 msgid "LP_FOLLOW_SHARE_LBL"
-msgstr "Follow us & share on"
+msgstr "Síguenos y comparte en"
 
 #: app/templates/widgets/pages/_home_head.html:52
 msgid "LP_HOME_INTRO_LBL"
-msgstr "“A good vibe a day goes a long way”"
+msgstr "“Una buena acción al día llenara tu alma”"
 

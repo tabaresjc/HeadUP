@@ -8,15 +8,19 @@ msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-04-17 05:19+0000\n"
-"PO-Revision-Date: 2017-07-15 16:34+0900\n"
+"PO-Revision-Date: 2020-04-17 10:31+0000\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: French\n"
 "Language: fr\n"
-"Language-Team: fr <LL@li.org>\n"
-"Plural-Forms: nplurals=2; plural=(n > 1)\n"
+"Plural-Forms: nplurals=2; plural=n > 1;\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"X-Loco-Source-Locale: en_SG\n"
 "Generated-By: Babel 2.6.0\n"
+"\n"
+"X-Loco-Parser: loco_parse_po\n"
+"X-Generator: Loco https://localise.biz/"
 
 #: app/configuration/session.py:10 app/templates/src/translations.html:1
 msgid "APP_LOGIN_WARNING_MESSAGE"
@@ -85,7 +89,8 @@ msgstr "Dernière connexion"
 msgid "APP_PROFILE"
 msgstr "Profil"
 
-#: app/templates/admin/index.html:30 app/templates/admin/layout/sidebar.html:15
+#: app/templates/admin/index.html:30
+#: app/templates/admin/layout/sidebar.html:15
 #: app/templates/admin/users/show.html:47
 #: app/templates/src/translations.html:14
 msgid "USER_EDIT"
@@ -192,7 +197,8 @@ msgstr "Catégorie de mise à jour"
 #: app/templates/admin/categories/partials/_sidebar.html:17
 #: app/templates/src/translations.html:29
 msgid "CATEGORY_DELETE_CONFIRMATION"
-msgstr "Cette action supprimera définitivement [%(name)s], Voulez-vous continuer?"
+msgstr ""
+"Cette action supprimera définitivement [%(name)s], Voulez-vous continuer?"
 
 #: app/templates/admin/categories/index.html:43
 #: app/templates/admin/categories/partials/_sidebar.html:19
@@ -228,7 +234,8 @@ msgstr "Décris la catégorie..."
 #: app/templates/admin/categories/partials/_category_form_edit.html:7
 #: app/templates/admin/posts/partials/_post_edit.html:36
 #: app/templates/admin/posts/partials/_sidebar.html:45
-#: app/templates/admin/users/add.html:28 app/templates/admin/users/edit.html:28
+#: app/templates/admin/users/add.html:28
+#: app/templates/admin/users/edit.html:28
 #: app/templates/main/stories/edit.html:86
 #: app/templates/src/translations.html:35
 msgid "BTN_SAVE_LBL"
@@ -237,7 +244,8 @@ msgstr "Enregistrer"
 #: app/templates/admin/categories/partials/_category_form_add.html:8
 #: app/templates/admin/categories/partials/_category_form_edit.html:8
 #: app/templates/admin/categories/partials/_transfer_post.html:12
-#: app/templates/admin/users/add.html:27 app/templates/admin/users/edit.html:27
+#: app/templates/admin/users/add.html:27
+#: app/templates/admin/users/edit.html:27
 #: app/templates/src/translations.html:36
 msgid "BTN_CLEAR_LBL"
 msgstr "Supprimer"
@@ -413,8 +421,8 @@ msgstr "Réinitialiser votre mot de passe"
 #: app/templates/src/translations.html:68
 msgid "FORGOT_PASSWORD_TEXT"
 msgstr ""
-"Veuillez entrer votre adresse e-mail afin de recevoir les instructions de"
-" réinitialisation de votre mot de passe."
+"Veuillez entrer votre adresse e-mail afin de recevoir les instructions de "
+"réinitialisation de votre mot de passe."
 
 #: app/templates/admin/sessions/forgot_password.html:11
 #: app/templates/admin/sessions/signin.html:11
@@ -511,8 +519,8 @@ msgstr "Surnom / Nom de plûme"
 #: app/templates/src/translations.html:84
 msgid "TOS_CHECK_LBL"
 msgstr ""
-"<span>J'ai lu et accepte les <br/><a href=\"%(link)s\" class=\"custom-"
-"link\" target=\"_blank\">Conditions générales d'utilisation</a></span>"
+"<span>J'ai lu et accepte les <br/><a href=\"%(link)s\" class=\"custom-link\" "
+"target=\"_blank\">Conditions générales d'utilisation</a></span>"
 
 #: app/templates/admin/users/edit.html:2 app/templates/src/translations.html:85
 msgid "USER_PROFILE_EDIT_PAGE_TITLE"
@@ -699,8 +707,8 @@ msgstr "<p>Merci,<br>L'équipe %(name)s</p>"
 #: app/templates/src/translations.html:117
 msgid "EMAIL_REGISTRATION_DESCRIPTION"
 msgstr ""
-"Nous sommes ravis de te compter parmi nous ! Tu peux désormais partager "
-"ton enthousiasme en écrivant ton histoire."
+"Nous sommes ravis de te compter parmi nous ! Tu peux désormais partager ton "
+"enthousiasme en écrivant ton histoire."
 
 #: app/templates/emails/users/registration.html:22
 #: app/templates/src/translations.html:118
@@ -716,9 +724,9 @@ msgstr "%(name)s a répondu à votre commentaire sur \"%(title)s\""
 #: app/templates/src/translations.html:120
 msgid "EMAIL_RESET_PASSWORD_DESCRIPTION"
 msgstr ""
-"Vous avez demandé à réinitialiser le mot de passe pour votre compte "
-"HeadUP avec l'adresse e-mail (%(email)s). Veuillez cliquer sur ce lien "
-"pour réinitialiser votre mot de passe."
+"Vous avez demandé à réinitialiser le mot de passe pour votre compte HeadUP "
+"avec l'adresse e-mail (%(email)s). Veuillez cliquer sur ce lien pour "
+"réinitialiser votre mot de passe."
 
 #: app/templates/errors/401.html:2 app/templates/src/translations.html:121
 msgid "ERROR_401_TITLE"
@@ -751,8 +759,8 @@ msgstr "Erreur serveur"
 #: app/templates/errors/500.html:13 app/templates/src/translations.html:128
 msgid "ERROR_500_DESCRIPTION"
 msgstr ""
-"Désolé... cette fois c'est pour nous. L'administrateur a été notifié. "
-"Désolé pour le désagrément occasionné."
+"Désolé... cette fois c'est pour nous. L'administrateur a été notifié. Désolé "
+"pour le désagrément occasionné."
 
 #: app/templates/main/layout/error-base.html:17
 #: app/templates/main/layout/header-no-menu.html:22
@@ -803,10 +811,10 @@ msgstr ""
 "HeadUP est votre nouveau Réseau Social de Narration, un site internet au "
 "format Problème-Solution au travers duquel vous pouvez transmettre votre "
 "optimisme et raconter comment vous gardez (ou avez gardé) la tête haute. "
-"Partagez vos expériences positives et drôles, écrivez vos succès "
-"personnels ou encore lisez des histoires remarquables. Dites qu monde la "
-"solution que vous avez trouvez pour relever un défi ou une difficulté "
-"auxquels vous avez fait face. Speak up, HeadUP"
+"Partagez vos expériences positives et drôles, écrivez vos succès personnels "
+"ou encore lisez des histoires remarquables. Dites qu monde la solution que "
+"vous avez trouvez pour relever un défi ou une difficulté auxquels vous avez "
+"fait face. Speak up, HeadUP"
 
 #: app/templates/main/pages/latest.html:2
 #: app/templates/src/translations.html:142
@@ -818,12 +826,12 @@ msgstr "Nouveautés | Réseau social de narration pour garder la tête haute"
 msgid "LATEST_DESCRIPTION"
 msgstr ""
 "HeadUP est votre Réseau Social de Narration, un site internet au format "
-"Problème-Solution au travers duquel vous pouvez transmettre votre "
-"optimisme et raconter comment vous gardez (ou avez gardé) la tête haute. "
-"Partagez vos expériences positives et drôles, écrivez vos succès "
-"personnels ou encore lisez des histoires remarquables. Dites qu monde la "
-"solution que vous avez trouvez pour relever un défi ou une difficulté "
-"auxquels vous avez fait face. Speak up, HeadUP"
+"Problème-Solution au travers duquel vous pouvez transmettre votre optimisme "
+"et raconter comment vous gardez (ou avez gardé) la tête haute. Partagez vos "
+"expériences positives et drôles, écrivez vos succès personnels ou encore "
+"lisez des histoires remarquables. Dites qu monde la solution que vous avez "
+"trouvez pour relever un défi ou une difficulté auxquels vous avez fait face. "
+"Speak up, HeadUP"
 
 #: app/templates/main/stories/category.html:2
 #: app/templates/src/translations.html:145
@@ -884,7 +892,7 @@ msgstr "Rejoindre le Club?"
 
 #: app/templates/src/translations.html:130
 msgid "SIDEBAR_STAMP_TITLE"
-msgstr "Commencer ici !"
+msgstr "Commencer ici!"
 
 #: app/templates/src/translations.html:131
 msgid "EDIT_STAMP_LBL"
@@ -952,10 +960,11 @@ msgstr "(plus)"
 #: app/templates/src/translations.html:165
 #: app/views/admin/categories/index.py:39
 #: app/views/admin/categories/index.py:77
-#: app/views/admin/categories/index.py:130 app/views/admin/sessions/index.py:79
-#: app/views/admin/sessions/index.py:144 app/views/admin/sessions/index.py:194
-#: app/views/admin/users/index.py:55 app/views/admin/users/index.py:88
-#: app/views/main/stories/forms/index.py:25 app/views/main/stories/index.py:79
+#: app/views/admin/categories/index.py:130
+#: app/views/admin/sessions/index.py:79 app/views/admin/sessions/index.py:144
+#: app/views/admin/sessions/index.py:194 app/views/admin/users/index.py:55
+#: app/views/admin/users/index.py:88 app/views/main/stories/forms/index.py:25
+#: app/views/main/stories/index.py:79
 msgid "ERROR_INVALID_SUBMISSION"
 msgstr "Requête non valide, veuillez lire le message ci-dessous"
 
@@ -1012,7 +1021,7 @@ msgstr "Veuillez sélectionner une catégorie différente"
 
 #: app/templates/src/translations.html:176 app/views/admin/posts/index.py:66
 msgid "POST_NOT_FOUND"
-msgstr "L'estampille souhaitée n'a pas été trouvée"
+msgstr "L'histoire souhaitée n'a pas été trouvée"
 
 #: app/templates/src/translations.html:177
 msgid "POST_DRAFT_SAVE_SUCESS"
@@ -1020,19 +1029,19 @@ msgstr "Brouillon sauvegardé avec succès"
 
 #: app/templates/src/translations.html:178
 msgid "POST_PUBLIC_SAVE_SUCESS"
-msgstr "Estampille sauvegardée avec succès"
+msgstr "Histoire sauvegardée avec succès"
 
 #: app/templates/src/translations.html:179 app/views/admin/posts/index.py:77
 msgid "POST_DELETE_SUCESS"
-msgstr "L'estampille a été retirée avec succès"
+msgstr "L'histoire a été retirée avec succès"
 
 #: app/templates/src/translations.html:180 app/views/admin/posts/index.py:82
 msgid "ERROR_POST_DELETE_FAILED"
 msgstr "Erreur lors du retrait de l'estampille, %(error)s"
 
-#: app/templates/src/translations.html:181 app/views/admin/sessions/index.py:22
-#: app/views/admin/sessions/index.py:67 app/views/admin/sessions/index.py:137
-#: app/views/admin/sessions/index.py:179
+#: app/templates/src/translations.html:181
+#: app/views/admin/sessions/index.py:22 app/views/admin/sessions/index.py:67
+#: app/views/admin/sessions/index.py:137 app/views/admin/sessions/index.py:179
 msgid "SESSIONS_MSG_ALREADY_SIGNED_IN"
 msgstr "Vous êtes déjà connecté."
 
@@ -1044,8 +1053,9 @@ msgstr "Email ou mot de passe erroné"
 msgid "SESSIONS_MSG_LOGIN_SUCESS"
 msgstr "Connecté avec succès"
 
-#: app/templates/src/translations.html:184 app/views/admin/sessions/index.py:83
-#: app/views/admin/sessions/index.py:148 app/views/admin/sessions/index.py:198
+#: app/templates/src/translations.html:184
+#: app/views/admin/sessions/index.py:83 app/views/admin/sessions/index.py:148
+#: app/views/admin/sessions/index.py:198
 msgid "SESSIONS_ERROR_UNFINISHED_CHALLENGE_LBL"
 msgstr "Le code captcha est invalide"
 
@@ -1144,15 +1154,15 @@ msgstr "Erreur lors de la suppression de l'utilisateur, %(error)s"
 
 #: app/templates/src/translations.html:204 app/views/admin/users/index.py:201
 msgid "USER_POST_HIDE_SUCCESS"
-msgstr "The story is now hidden from public view"
+msgstr "L'histoire est désormais cachée"
 
 #: app/templates/src/translations.html:205 app/views/admin/users/index.py:203
 msgid "USER_POST_RESTORE_SUCCESS"
-msgstr "The story was made public"
+msgstr "L'histoire a été rendue publique"
 
 #: app/templates/src/translations.html:206 app/views/admin/users/index.py:206
 msgid "USER_POST_HIDE_OR_RESTORE_FAIL"
-msgstr "Error while processing the stamp, %(error)s"
+msgstr "Erreur lors de la publication, %(error)s"
 
 #: app/templates/src/translations.html:207
 #: app/views/main/stories/forms/index.py:31 app/views/main/stories/index.py:85
@@ -1183,7 +1193,9 @@ msgstr ""
 
 #: app/templates/src/translations.html:213
 msgid "WELCOME_TITLE_LBL"
-msgstr "%(name)s - Storytelling Club<br/>Ton espace d'expression libre et gratuit"
+msgstr ""
+"%(name)s - Plateforme de Storytelling<br/>Ton espace d'expression libre et "
+"gratuit"
 
 #: app/templates/src/translations.html:214
 msgid "WELCOME_SUBTITLE_LBL"
@@ -1225,94 +1237,94 @@ msgstr "HOME"
 
 #: app/templates/widgets/pages/_home.html:20
 msgid "LP_STORY_CATEGORIES_LBL"
-msgstr "STORY CATEGORIES"
+msgstr "CATEGORIES"
 
 #: app/templates/widgets/pages/_home.html:23
 msgid "LP_STORY_CONTACT_US_LBL"
-msgstr "CONTACT US"
+msgstr "CONTACT"
 
 #: app/templates/widgets/pages/_home.html:28
 msgid "LP_STORY_LANGUAGE_LBL"
-msgstr "LANGUAGE"
+msgstr "LANGAGE"
 
 #: app/templates/widgets/pages/_home.html:62
 msgid "LP_STORY_LOGIN_LBL"
-msgstr "LOGIN"
+msgstr "CONNEXION"
 
 #: app/templates/widgets/pages/_home.html:66
 msgid "LP_STORY_SIGN_UP_LBL"
-msgstr "SIGN UP"
+msgstr "INSCRIPTION"
 
 #: app/templates/widgets/pages/_home.html:82
 msgid "LP_STORY_START_READING_HERE_LBL"
-msgstr "START READING HERE!"
+msgstr "COMMENCER A LIRE!"
 
 #: app/templates/widgets/pages/_home.html:97
 msgid "LP_STORY_STORIES_CATEGORIES_LBL"
-msgstr "Stories by Category"
+msgstr "Histoires par Categories"
 
 #: app/templates/widgets/pages/_home.html:376
 msgid "LP_HOW_IT_WORKS_TITLE"
-msgstr "A STORY TO TELL?"
+msgstr "UNE HISTOIRE A RACONTER?"
 
 #: app/templates/widgets/pages/_home.html:390
 msgid "LP_SHARE_STORY_LBL"
-msgstr "You want to share a story"
+msgstr "Tu souhaites partager une histoire"
 
 #: app/templates/widgets/pages/_home.html:403
 msgid "LP_SHARE_SIGN_UP_LBL"
-msgstr "Sign Up"
+msgstr "Inscription"
 
 #: app/templates/widgets/pages/_home.html:405
 msgid "LP_SHARE_SIGN_UP_DESC"
-msgstr "In 30 secs and create a profile"
+msgstr "En 30 secs et Crée un profil"
 
 #: app/templates/widgets/pages/_home.html:418
 msgid "LP_SHARE_WRITE_STORY_DESC"
-msgstr "Write your story"
+msgstr "Ecris ton histoire"
 
 #: app/templates/widgets/pages/_home.html:436
 msgid "LP_SHARE_SAVE_STORY_DESC"
-msgstr "Stamp it !"
+msgstr "Poster maintenant!"
 
 #: app/templates/widgets/pages/_home.html:458
 msgid "LP_PRODUCT_TITLE"
-msgstr "WHAT MAKES IT DIFFERENT?"
+msgstr "CE QUI FAIT LA DIFFERENCE?"
 
 #: app/templates/widgets/pages/_home.html:461
 msgid "LP_PRODUCT_ITEM_01_DESC"
-msgstr "<b>Free</b> & <b>Anonymous</b>"
+msgstr "<b>Gratuit</b> & <b>Anonyme</b>"
 
 #: app/templates/widgets/pages/_home.html:462
 msgid "LP_PRODUCT_ITEM_02_DESC"
-msgstr "Share your story <b>worldwide"
+msgstr "Partage ton histoire <b> sur toute la planète"
 
 #: app/templates/widgets/pages/_home.html:463
 msgid "LP_PRODUCT_ITEM_03_DESC"
-msgstr "<b>Encourage</b> and <b>inspire</b> others"
+msgstr "<b>Encourage</b> et <b>inspire</b> les autres"
 
 #: app/templates/widgets/pages/_home.html:464
 msgid "LP_PRODUCT_ITEM_04_DESC"
-msgstr "<b>Promote</b> your projects, your business, your talents"
+msgstr ""
+"<b>Fais la promotion</b> de tes projets, de ton business et de tes talents"
 
 #: app/templates/widgets/pages/_home.html:465
 msgid "LP_PRODUCT_ITEM_05_DESC"
-msgstr "<b>Discover</b> fantastic and fun stories"
+msgstr "<b>Découvre</b> de drôles et fantastiques histoires"
 
 #: app/templates/widgets/pages/_home.html:489
 #: app/templates/widgets/pages/_home.html:597
 msgid "LP_LATEST_STORIES_TITLE"
-msgstr "your space to express yourself freely"
+msgstr "Votre espace de libre expression en ligne"
 
 #: app/templates/widgets/pages/_home.html:609
 msgid "LP_WORLDWIDE_LBL"
-msgstr "Worldwide"
+msgstr "Monde"
 
 #: app/templates/widgets/pages/_home.html:633
 msgid "LP_FOLLOW_SHARE_LBL"
-msgstr "Follow us & share on"
+msgstr "Follow & Partage sur"
 
 #: app/templates/widgets/pages/_home_head.html:52
 msgid "LP_HOME_INTRO_LBL"
-msgstr "“A good vibe a day goes a long way”"
-
+msgstr "“Une bonne action par jour, servira toujours”"
