@@ -53,7 +53,7 @@
 
 					<li role="separator" class="visible-xs-block visible-sm-block divider"></li>
 
-					{% for key, value in config.LANGUAGES.iteritems() %}
+					{% for key, value in config.LANGUAGES %}
 					{% if language != key %}
 					<li class="visible-xs-block visible-sm-block nav-item--image">
 						<a href="{{ request.path|urlthis(key) }}">
@@ -109,7 +109,7 @@
 					<i class="glyphicon glyphicon-globe"></i>
 				</a>
 				<ul class="custom_menu__dropdown {{ language }}">
-					{% for key, value in config.LANGUAGES.iteritems() %}
+					{% for key, value in config.LANGUAGES %}
 					<li>
 						<a href="{{ request.path|urlthis(key) }}" class="custom_menu__btn {{ 'active' if key == language else '' }}">
 							<img src="/static/images/flags/{{ key }}.svg" width="28" height="28">

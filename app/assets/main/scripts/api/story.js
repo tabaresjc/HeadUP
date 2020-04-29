@@ -10,7 +10,7 @@ export class StoryApiService extends ApiBase {
 	}
 
 	getItems(page, params) {
-		const endpoint = '';
+		const endpoint = '/';
 		params = {...params, page: page};
 
 		return this.request({

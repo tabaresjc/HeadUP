@@ -56,12 +56,12 @@ def update():
 
 
 def po2json():
-    directory = os.path.join(config.DATA_DIR, 'languages')
+    directory = os.path.join(config.APP_STATIC_DATA_PATH, 'languages')
 
     if not os.path.exists(directory):
         os.makedirs(directory)
 
-    for key, item in config.LANGUAGES.iteritems():
+    for key, item in config.LANGUAGES:
         file_name = os.path.join(directory, '%s.json' % key)
         cmd = 'pojson -e utf-8 app/translations/%s/LC_MESSAGES/messages.po' % (
             key)

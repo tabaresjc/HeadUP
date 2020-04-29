@@ -5,7 +5,7 @@ import axios from 'axios';
 export class ApiBase {
 
 	constructor(baseUrl) {
-		this.baseUrl = baseUrl;
+		this.baseUrl = location.origin + baseUrl;
 		this.init();
 	}
 

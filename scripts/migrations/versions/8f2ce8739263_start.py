@@ -27,9 +27,9 @@ def upgrade():
                     sa.Column('created_at', sa.DateTime(), nullable=True),
                     sa.Column('modified_at', sa.DateTime(), nullable=True),
                     sa.PrimaryKeyConstraint('id'),
-                    mysql_collate=u'utf8_unicode_ci',
-                    mysql_default_charset=u'utf8',
-                    mysql_engine=u'InnoDB')
+                    mysql_collate='utf8mb4_unicode_ci',
+                    mysql_default_charset='utf8mb4',
+                    mysql_engine='InnoDB')
     op.create_index(op.f('ix_categories_name'), 'categories', ['name'], unique=True)
     op.create_index(op.f('ix_categories_slug'), 'categories', ['slug'], unique=True)
     op.create_table('users',
@@ -41,9 +41,9 @@ def upgrade():
                     sa.Column('created_at', sa.DateTime(), nullable=True),
                     sa.Column('modified_at', sa.DateTime(), nullable=True),
                     sa.PrimaryKeyConstraint('id'),
-                    mysql_collate=u'utf8_unicode_ci',
-                    mysql_default_charset=u'utf8',
-                    mysql_engine=u'InnoDB')
+                    mysql_collate='utf8mb4_unicode_ci',
+                    mysql_default_charset='utf8mb4',
+                    mysql_engine='InnoDB')
     op.create_index(op.f('ix_users_email'), 'users', ['email'], unique=True)
     op.create_table('pictures',
                     sa.Column('id', sa.Integer(), nullable=False),
@@ -53,9 +53,9 @@ def upgrade():
                     sa.Column('modified_at', sa.DateTime(), nullable=True),
                     sa.ForeignKeyConstraint(['user_id'], ['users.id'], onupdate='NO ACTION', ondelete='CASCADE'),
                     sa.PrimaryKeyConstraint('id'),
-                    mysql_collate=u'utf8_unicode_ci',
-                    mysql_default_charset=u'utf8',
-                    mysql_engine=u'InnoDB')
+                    mysql_collate='utf8mb4_unicode_ci',
+                    mysql_default_charset='utf8mb4',
+                    mysql_engine='InnoDB')
     op.create_table('posts',
                     sa.Column('id', sa.Integer(), nullable=False),
                     sa.Column('title', sa.String(length=255), nullable=True),
@@ -71,9 +71,9 @@ def upgrade():
                     sa.ForeignKeyConstraint(['category_id'], ['categories.id'], onupdate='NO ACTION', ondelete='CASCADE'),
                     sa.ForeignKeyConstraint(['user_id'], ['users.id'], onupdate='NO ACTION', ondelete='CASCADE'),
                     sa.PrimaryKeyConstraint('id'),
-                    mysql_collate=u'utf8_unicode_ci',
-                    mysql_default_charset=u'utf8',
-                    mysql_engine=u'InnoDB')
+                    mysql_collate='utf8mb4_unicode_ci',
+                    mysql_default_charset='utf8mb4',
+                    mysql_engine='InnoDB')
     op.create_index(op.f('ix_posts_lang'), 'posts', ['lang'], unique=False)
     op.create_index(op.f('ix_posts_status'), 'posts', ['status'], unique=False)
     # ### end Alembic commands ###

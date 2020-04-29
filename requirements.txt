@@ -1,3 +1,4 @@
+PyMySQL==0.9.3
 Werkzeug==0.15.3
 SQLAlchemy==1.2.6
 alembic==0.9.9
@@ -16,11 +17,8 @@ Flask-SocketIO==4.1.0
 Flask-SQLAlchemy==2.3.2
 Flask-Widgets==0.4
 Flask-WTF==0.14.2
-gevent==1.4.0
-gevent-websocket==0.10.1
 micawber==0.5.0
-MySQL-python==1.2.5
-celery==4.1.0
+celery==4.1.1
 pojson==0.7
 pyOpenSSL==17.5.0
 python-dateutil==2.7.2
@@ -31,3 +29,4 @@ bleach==3.1.4
 ConcurrentLogHandler==0.9.1
 Pillow==6.2.0
 mailchimp3==3.0.13
+email-validator==1.0.4

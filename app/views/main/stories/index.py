@@ -144,4 +144,4 @@ class StoriesView(FlaskView):
             Post.rollback_transaction()
             raise e
 
-        return send_file(config.BASE_DIR + '/static/images/counter.gif', mimetype='image/gif')
+        return send_file(config.APP_BASE_PATH + '/static/images/counter.gif', mimetype='image/gif')
