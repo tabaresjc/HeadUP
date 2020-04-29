@@ -87,7 +87,7 @@
 			</a>
 			<a href="javascript:;"
 				v-on:click="hideStoryFromFeed()"
-				v-if="user.is_authenticated && user.is_admin"
+				v-if="storyEditUrl && user.is_authenticated && user.is_admin"
 				class="btn btn-danger btn-danger--transparent btn-lg btn-block"
 				rel="nofollow">
 				Hide Story
