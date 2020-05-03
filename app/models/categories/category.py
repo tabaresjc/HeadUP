@@ -12,7 +12,16 @@ class Category(Base, sa.Model, ModelHelper):
 
     __tablename__ = 'categories'
 
-    __json_meta__ = ['id', 'name', 'slug', 'url']
+    __json_meta__ = [
+        'id',
+        'name',
+        'name_es',
+        'name_fr',
+        'name_ja',
+        'name_cn',
+        'slug',
+        'url'
+    ]
 
     id = sa.Column(sa.Integer, primary_key=True)
     name = sa.Column(sa.String(128), index=True, unique=True)
@@ -26,6 +35,18 @@ class Category(Base, sa.Model, ModelHelper):
     def __repr__(self):
         return '<Category %s>' % (self.id)
 
+    def get_lang_name_or_default(self, lang):
+        if lang == 'en':
+            return self.name
+
+        return self.get_attribute('name_%s' % lang, self.name)
+
+    def get_lang_description_or_default(self, lang):
+        if lang == 'en':
+            return self.description
+
+        return self.get_attribute('description_%s' % lang, self.description)
+
     @property
     def description(self):
         return self.get_attribute('description', u'')
@@ -35,6 +56,70 @@ class Category(Base, sa.Model, ModelHelper):
         return self.set_attribute('description', value)
 
     @property
+    def name_es(self):
+        return self.get_attribute('name_es', u'')
+
+    @name_es.setter
+    def name_es(self, value):
+        return self.set_attribute('name_es', value)
+
+    @property
+    def description_es(self):
+        return self.get_attribute('description_es', u'')
+
+    @description_es.setter
+    def description_es(self, value):
+        return self.set_attribute('description_es', value)
+
+    @property
+    def name_fr(self):
+        return self.get_attribute('name_fr', u'')
+
+    @name_fr.setter
+    def name_fr(self, value):
+        return self.set_attribute('name_fr', value)
+
+    @property
+    def description_fr(self):
+        return self.get_attribute('description_fr', u'')
+
+    @description_fr.setter
+    def description_fr(self, value):
+        return self.set_attribute('description_fr', value)
+
+    @property
+    def name_ja(self):
+        return self.get_attribute('name_ja', u'')
+
+    @name_ja.setter
+    def name_ja(self, value):
+        return self.set_attribute('name_ja', value)
+
+    @property
+    def description_ja(self):
+        return self.get_attribute('description_ja', u'')
+
+    @description_ja.setter
+    def description_ja(self, value):
+        return self.set_attribute('description_ja', value)
+
+    @property
+    def name_cn(self):
+        return self.get_attribute('name_cn', u'')
+
+    @name_cn.setter
+    def name_cn(self, value):
+        return self.set_attribute('name_cn', value)
+
+    @property
+    def description_cn(self):
+        return self.get_attribute('description_cn', u'')
+
+    @description_cn.setter
+    def description_cn(self, value):
+        return self.set_attribute('description_cn', value)
+
+    @property
     def url(self):
         if not hasattr(self, '_url'):
             self._url = url_for('story.category', slug=self.slug)
@@ -42,6 +127,20 @@ class Category(Base, sa.Model, ModelHelper):
 
     def can_edit(self):
         return current_user and current_user.is_admin
+
+    @classmethod
+    def search(cls, limit=10, page=1, keyword=None, order_by='id', desc=True):
+        keyword_fields = [
+            cls.name,
+            cls.slug
+        ]
+
+        return super(Category, cls).search(limit=limit,
+                                           page=page,
+                                           order_by=order_by,
+                                           keyword=keyword,
+                                           keyword_fields=keyword_fields,
+                                           desc=desc)
 
     @classmethod
     def items(cls, orderby='id', desc=True):

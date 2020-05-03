@@ -24,7 +24,6 @@ services:
         ipv4_address: 172.10.10.15
     ports:
       - "3306:3306"
-    restart: always
   headup_rabbitmq:
     build: ./docker/services/rabbitmq/
     container_name: headup_rabbitmq
@@ -46,7 +45,6 @@ services:
     ports:
       - "5672:5672"
       - "15672:15672"
-    restart: always
   headup_app:
     build:
       context: ./

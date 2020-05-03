@@ -42,7 +42,18 @@ export default {
 	},
 	computed: {
 		...mapState({
-			stories: state => state.stories.items
+			stories: function(state) {
+				let language = this.language;
+				return state.stories.items.map(item => {
+					let name_language = item.category['name_' + language];
+
+					if (name_language) {
+						item.category.name = name_language;
+					}
+
+					return item ;
+				});
+			}
 		})
     },
 	methods: {
@@ -53,7 +64,7 @@ export default {
 			const params = {
 				category: this.category || '',
 				limit: this.limit || 20,
-				lang: this.lang || ''
+				lang: this.language || ''
 			};
 
 			this.fetchItems(params)

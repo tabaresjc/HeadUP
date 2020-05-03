@@ -5,7 +5,7 @@ from flask_login import login_required
 from flask_classy import FlaskView, route
 from flask_babel import gettext as _
 from app.helpers import render_view
-from app.models import Category
+from app.models import Category, Feed
 from forms import CategoryForm, TranferForm
 
 
@@ -15,19 +15,21 @@ class CategoriesView(FlaskView):
 
     def index(self):
         page = request.args.get('page', 1, int)
+        limit = request.args.get('limit', 5, int)
+        keyword = request.args.get('keyword', '')
 
-        limit = 5
-        categories, total = Category.pagination(
-            page=page, limit=limit, desc=False)
-
-        categoryForm = CategoryForm()
+        categories, total = Category.search(
+            page=page,
+            limit=limit,
+            keyword=keyword,
+            desc=False)
 
         return render_view('admin/categories/index.html',
                            page=page,
                            limit=limit,
                            total=total,
-                           categories=categories,
-                           categoryForm=categoryForm)
+                           keyword=keyword,
+                           categories=categories)
 
     @route('/new', methods=['GET', 'POST'])
     def post(self):
@@ -85,6 +87,9 @@ class CategoriesView(FlaskView):
                 form.populate_obj(category)
                 category.save()
 
+                # clear related cache objects
+                Feed.clear_cached_posts()
+
                 return render_view(url_for('CategoriesView:put', id=category.id),
                                    message=_('CATEGORY_SAVE_SUCCESS'),
                                    redirect=True)
@@ -140,6 +145,9 @@ class CategoriesView(FlaskView):
                 message = _('CATEGORY_TRANSFER_POSTS_SUCCESS',
                             from_name=cat_from.name,
                             to_name=cat_to.name)
+
+                # clear related cache objects
+                Feed.clear_cached_posts()
 
                 return render_view(url_for('CategoriesView:index'),
                                    message=message,

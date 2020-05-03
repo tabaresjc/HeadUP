@@ -1175,7 +1175,7 @@ msgstr "あなたの解決策を世界にシェアしよう…<br/>Speak up, Hea
 
 #: app/templates/src/translations.html:215
 msgid "GO_TO_STORIES_BTN"
-msgstr "ストーリー"
+msgstr "ストーリーへ"
 
 #: app/templates/src/translations.html:216
 msgid "WELCOME_SUBTITLE_EXTRA_LBL"
@@ -1296,4 +1296,4 @@ msgstr "フォロー＆シェアしてください。"
 
 #: app/templates/widgets/pages/_home_head.html:52
 msgid "LP_HOME_INTRO_LBL"
-msgstr ""
+msgstr "“A good vibe a day goes a long way”"

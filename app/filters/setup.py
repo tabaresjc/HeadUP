@@ -15,11 +15,19 @@ app.app.jinja_env.lstrip_blocks = True
 def utility_processor():
     # Send the current date & time
     today = datetime.date.today()
-    language = get_locale()
 
     return dict(
         pag=PaginationHelper.pag,
         today=today,
         config=config,
-        language=str(language),
+        language=read_and_parse_locale(),
         site_name=config.SITE_NAME)
+
+
+def read_and_parse_locale():
+    lang = str(get_locale())
+
+    if u'_' in lang:
+        lang = lang.lower().split('_').pop()
+
+    return lang.lower()

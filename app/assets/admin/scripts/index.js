@@ -18,3 +18,4 @@ import 'Assets/lib/scripts/loader.js';
 import './theme';
 import './upload';
 import './editor';
+import './utils';

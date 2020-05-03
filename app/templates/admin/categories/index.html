@@ -9,8 +9,21 @@
     </div>
     <div class="row">
         <div class="col-md-9 col-sm-12 col-xs-12">
-			{{ pag('CategoriesView:index', page, limit, total, _('CATEGORY_PAG_LBL'), kind='info')|safe }}
-			{{ pag('CategoriesView:index', page, limit, total, _('CATEGORY_PAG_LBL'), kind='links')|safe }}
+			<form class="form-inline md-mb-10 clearfix pull-right" action="{{ url_for('CategoriesView:index')  }}" method="GET">
+				<div class="input-group">
+					<div class="input-group-btn">
+						<button type="button" class="btn btn-default" value="Reset" data-form-action="clearAndSubmitForm">
+							<i class="glyphicon glyphicon-remove"></i>
+						</button>
+					</div>
+					<input type="keyword" class="form-control" id="keyword" name="keyword" placeholder="Search" value="{{ keyword }}">
+					<div class="input-group-btn">
+						<button type="submit" class="btn btn-success" title="Search">
+							<i class="glyphicon glyphicon-search"></i>
+						</button>
+					</div>
+				</div>
+			</form>
             <table class="table table-bordered">
                 <thead>
                     <tr>
@@ -49,8 +62,9 @@
                 </tr>
                 {% endfor %}
                 </tbody>
-            </table>
-            {{ pag('CategoriesView:index', page, limit, total, _('CATEGORY_PAG_LBL'), kind='links')|safe }}
+			</table>
+			{{ pag('CategoriesView:index', page, limit, total, _('CATEGORY_PAG_LBL'), kind='info')|safe }}
+			{{ pag('CategoriesView:index', page, limit, total, _('CATEGORY_PAG_LBL'), kind='links')|safe }}
         </div>
         <div class="col-md-3 col-sm-12 col-xs-12">
 			{% include 'admin/categories/partials/_sidebar.html' %}

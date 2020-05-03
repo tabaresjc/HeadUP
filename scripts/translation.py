@@ -62,9 +62,8 @@ def po2json():
         os.makedirs(directory)
 
     for key, item in config.LANGUAGES:
-        file_name = os.path.join(directory, '%s.json' % key)
-        cmd = 'pojson -e utf-8 app/translations/%s/LC_MESSAGES/messages.po' % (
-            key)
+        file_name = os.path.join(directory, '%s.json' % parse_locale(key))
+        cmd = 'pojson -e utf-8 app/translations/%s/LC_MESSAGES/messages.po' % (key)
         r = os.popen(cmd).read()
 
         obj = json.loads(r)
@@ -97,3 +96,12 @@ def remove_file(file_name):
         os.unlink(file_name)
     except:
         pass
+
+
+def parse_locale(locale):
+    lang = str(locale).lower()
+
+    if u'_' in lang:
+        return lang.split('_').pop()
+
+    return lang

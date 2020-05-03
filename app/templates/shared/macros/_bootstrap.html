@@ -7,8 +7,8 @@
 </div>
 {% endmacro %}
 
-{% macro render_normal_field(field, field_width=10, label_width=2, wrap_class='') %}
-<div class="form-group">
+{% macro render_normal_field(field, field_width=10, label_width=2, form_group_class='', wrap_class='') %}
+<div class="form-group {{ form_group_class }} clearfix">
 	<label class="col-lg-{{ label_width}} control-label">{{ field.label }}</label>
 	<div class="col-lg-{{ field_width }}">
 		{% if wrap_class!='' %}

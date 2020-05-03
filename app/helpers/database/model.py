@@ -1,5 +1,6 @@
 # -*- coding: utf8 -*-
 
+from sqlalchemy import literal, text, or_
 import app
 import datetime
 
@@ -103,6 +104,29 @@ class ModelHelper(object):
         records = []
         if count:
             sort_by = '%s %s' % (orderby, 'DESC' if desc else 'ASC')
-            records = query.order_by(app.sa.text(sort_by)).limit(
+            records = query.order_by(text(sort_by)).limit(
                 limit).offset((page - 1) * limit)
+        return records, count
+
+    @classmethod
+    def search(cls, limit=10, page=1,
+               keyword=None,
+               keyword_fields=None,
+               order_by='id',
+               desc=True):
+
+        if keyword and keyword_fields:
+            keyword_lower = keyword.lower()
+            keyword_filters = [f.ilike('%%%s%%' % keyword_lower) for f in keyword_fields]
+            query = cls.query.filter(or_(*keyword_filters))
+        else:
+            query = cls.query
+
+        sort_by = '%s %s' % (order_by, 'DESC' if desc else 'ASC')
+        records = query.order_by(text(sort_by)) \
+            .limit(limit) \
+            .offset((page - 1) * limit)
+
+        count = query.count()
+
         return records, count

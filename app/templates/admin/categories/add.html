@@ -1,5 +1,6 @@
 {% extends "admin/layout/base.html" %}
 {% set title = _('CATEGORY_CREATE') %}
+{% set url = url_for('CategoriesView:post') %}
 
 {% block main %}
     <div id="page-title" class="row">
@@ -11,7 +12,7 @@
     <div class="row">
        <div class="col-md-9 col-sm-12 col-xs-12">
             <div class="well">
-                {% include 'admin/categories/partials/_category_form_add.html' %}
+                {% include 'admin/categories/partials/_category_form_edit.html' %}
             </div>
         </div>
         <div class="col-md-3 col-sm-12 col-xs-12">

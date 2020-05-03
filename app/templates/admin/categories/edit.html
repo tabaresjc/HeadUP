@@ -1,5 +1,6 @@
 {% extends "admin/layout/base.html" %}
 {% set title = _('CATEGORY_EDIT_PAGE_TITLE', name=category.name) %}
+{% set url = url_for('CategoriesView:put', id=category.id) %}
 
 {% block main %}
 <div id="page-title" class="row">

@@ -6,15 +6,17 @@ class PaginationHelper(object):
 
     @classmethod
     def pag(cls, name, page, limit, total, record_name,
-            alignment='right', bs_version=3, kind=None, **kwargs):
+            keyword=None, alignment='right', bs_version=3, kind=None, **kwargs):
 
-        name = u'%s.%s.%s.%s.%s.%s.%s' % (
-            name, page, limit, total, record_name, alignment, bs_version)
+        name = u'%s.%s.%s.%s.%s.%s.%s.%s' % (
+            name, page, limit, total, record_name, alignment, bs_version, keyword)
 
         pagination = cls.get_pagination_by_name(name)
 
         if not pagination:
             pagination = Pagination(page=page, per_page=limit, total=total,
+                                    search=True if keyword else False,
+                                    search_msg=keyword if keyword else None,
                                     record_name=record_name,
                                     alignment=alignment,
                                     bs_version=bs_version,
