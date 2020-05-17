@@ -160,3 +160,8 @@ HUBSPOT_ID = None
 # *************************************************
 MAILCHIMP_API_KEY = None
 MAILCHIMP_USER_NAME = None
+
+# *************************************************
+# Show Trust logo from the SSL Certificate store
+# *************************************************
+DISPLAY_TRUST_LOGO = False

@@ -41,6 +41,7 @@
 
 			{% block container %}
 			<div class="container">
+				{% block lead_in %}{% endblock %}
 				{% block wide_container %}
 				<div class="row">
 					<div id="main-content" class="col-md-8 col-sm-12 col-xs-12">
@@ -77,5 +78,9 @@
 		{% include 'shared/assets/scripts/main.html' %}
 	{% endblock %}
 	{% block after_script %}{% endblock %}
+
+	{% block end_body %}
+		{% include 'shared/footer/_end_body.html' %}
+	{% endblock %}
 </body>
 </html>

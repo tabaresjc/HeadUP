@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2020-04-17 05:19+0000\n"
+"POT-Creation-Date: 2020-05-15 05:40+0000\n"
 "PO-Revision-Date: 2017-07-15 16:34+0900\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: es\n"
@@ -16,7 +16,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Generated-By: Babel 2.6.0\n"
+"Generated-By: Babel 2.8.0\n"
 
 #: app/configuration/session.py:10 app/templates/src/translations.html:1
 msgid "APP_LOGIN_WARNING_MESSAGE"
@@ -80,8 +80,7 @@ msgstr "Último acceso "
 
 #: app/templates/admin/index.html:26 app/templates/admin/layout/navbar.html:28
 #: app/templates/main/layout/header.html:30
-#: app/templates/src/translations.html:13
-#: app/templates/widgets/pages/_home.html:53
+#: app/templates/main/pages/home.html:58 app/templates/src/translations.html:13
 msgid "APP_PROFILE"
 msgstr "Perfil"
 
@@ -116,8 +115,7 @@ msgstr ""
 #: app/templates/admin/layout/sidebar.html:28
 #: app/templates/admin/posts/index.html:7
 #: app/templates/admin/posts/partials/_sidebar.html:9
-#: app/templates/src/translations.html:17
-#: app/templates/widgets/pages/_home.html:49
+#: app/templates/main/pages/home.html:54 app/templates/src/translations.html:17
 msgid "POST_LIST"
 msgstr "Historias"
 
@@ -144,32 +142,25 @@ msgstr "Categorías | %(page)s"
 msgid "CATEGORY_LIST"
 msgstr "Categorías"
 
-#: app/templates/admin/categories/index.html:12
-#: app/templates/admin/categories/index.html:13
-#: app/templates/admin/categories/index.html:53
-#: app/templates/src/translations.html:22
-msgid "CATEGORY_PAG_LBL"
-msgstr "categorías"
-
-#: app/templates/admin/categories/index.html:17
+#: app/templates/admin/categories/index.html:30
 #: app/templates/src/translations.html:23
-#: app/views/admin/categories/forms/category.py:9
+#: app/views/admin/categories/forms/category.py:10
 msgid "CATEGORY_NAME"
 msgstr "Nombre"
 
-#: app/templates/admin/categories/index.html:18
+#: app/templates/admin/categories/index.html:31
 #: app/templates/src/translations.html:24
-#: app/views/admin/categories/forms/category.py:10
+#: app/views/admin/categories/forms/category.py:9
 msgid "CATEGORY_SLUG"
 msgstr "Alias"
 
-#: app/templates/admin/categories/index.html:19
+#: app/templates/admin/categories/index.html:32
 #: app/templates/src/translations.html:25
 #: app/views/admin/categories/forms/category.py:11
 msgid "CATEGORY_DESC"
 msgstr "Descripción"
 
-#: app/templates/admin/categories/index.html:20
+#: app/templates/admin/categories/index.html:33
 #: app/templates/admin/layout/sidebar.html:49
 #: app/templates/admin/layout/sidebar.html:56
 #: app/templates/admin/users/index.html:9
@@ -178,54 +169,64 @@ msgstr "Descripción"
 msgid "USER_LIST"
 msgstr "Usuarios"
 
-#: app/templates/admin/categories/index.html:21
+#: app/templates/admin/categories/index.html:34
 #: app/templates/src/translations.html:27
 msgid "CATEGORY_ACTIONS"
 msgstr "Acciones"
 
-#: app/templates/admin/categories/index.html:36
+#: app/templates/admin/categories/index.html:49
 #: app/templates/src/translations.html:28
 msgid "CATEGORY_EDIT"
 msgstr "Editar categoría"
 
-#: app/templates/admin/categories/index.html:41
+#: app/templates/admin/categories/index.html:54
 #: app/templates/admin/categories/partials/_sidebar.html:17
 #: app/templates/src/translations.html:29
 msgid "CATEGORY_DELETE_CONFIRMATION"
 msgstr "Esta acción va a eliminar [%(name)s] de forma permanente, Desea continuar?"
 
-#: app/templates/admin/categories/index.html:43
+#: app/templates/admin/categories/index.html:56
 #: app/templates/admin/categories/partials/_sidebar.html:19
 #: app/templates/admin/categories/partials/_sidebar.html:21
 #: app/templates/src/translations.html:30
 msgid "CATEGORY_DELETE"
 msgstr "Eliminar categoría"
 
+#: app/templates/admin/categories/index.html:66
+#: app/templates/admin/categories/index.html:67
+#: app/templates/src/translations.html:22
+msgid "CATEGORY_PAG_LBL"
+msgstr "categorías"
+
 #: app/templates/admin/categories/transfer.html:2
 #: app/templates/src/translations.html:31
 msgid "CATEGORY_TRANSFER_TITLE"
 msgstr "Transferir categorías"
 
-#: app/templates/admin/categories/partials/_category_form_add.html:3
 #: app/templates/admin/categories/partials/_category_form_edit.html:3
-#: app/templates/src/translations.html:32
-msgid "CATEGORY_NAME_PLACEHOLDER"
-msgstr "Inserte nombre"
-
-#: app/templates/admin/categories/partials/_category_form_add.html:4
-#: app/templates/admin/categories/partials/_category_form_edit.html:4
 #: app/templates/src/translations.html:33
 msgid "CATEGORY_SLUG_PLACEHOLDER"
 msgstr "Inserte Alias"
 
-#: app/templates/admin/categories/partials/_category_form_add.html:5
 #: app/templates/admin/categories/partials/_category_form_edit.html:5
+#: app/templates/src/translations.html:32
+msgid "CATEGORY_NAME_PLACEHOLDER"
+msgstr "Inserte nombre"
+
+#: app/templates/admin/categories/partials/_category_form_edit.html:6
+#: app/templates/admin/categories/partials/_category_form_edit.html:8
+#: app/templates/admin/categories/partials/_category_form_edit.html:9
+#: app/templates/admin/categories/partials/_category_form_edit.html:12
+#: app/templates/admin/categories/partials/_category_form_edit.html:13
+#: app/templates/admin/categories/partials/_category_form_edit.html:16
+#: app/templates/admin/categories/partials/_category_form_edit.html:17
+#: app/templates/admin/categories/partials/_category_form_edit.html:20
+#: app/templates/admin/categories/partials/_category_form_edit.html:21
 #: app/templates/src/translations.html:34
 msgid "CATEGORY_DESC_PLACEHOLDER"
 msgstr "Decriba la categoría..."
 
-#: app/templates/admin/categories/partials/_category_form_add.html:7
-#: app/templates/admin/categories/partials/_category_form_edit.html:7
+#: app/templates/admin/categories/partials/_category_form_edit.html:24
 #: app/templates/admin/posts/partials/_post_edit.html:36
 #: app/templates/admin/posts/partials/_sidebar.html:45
 #: app/templates/admin/users/add.html:28 app/templates/admin/users/edit.html:28
@@ -234,8 +235,7 @@ msgstr "Decriba la categoría..."
 msgid "BTN_SAVE_LBL"
 msgstr "Guardar"
 
-#: app/templates/admin/categories/partials/_category_form_add.html:8
-#: app/templates/admin/categories/partials/_category_form_edit.html:8
+#: app/templates/admin/categories/partials/_category_form_edit.html:25
 #: app/templates/admin/categories/partials/_transfer_post.html:12
 #: app/templates/admin/users/add.html:27 app/templates/admin/users/edit.html:27
 #: app/templates/src/translations.html:36
@@ -266,8 +266,7 @@ msgstr "Tu cuenta"
 #: app/templates/admin/layout/navbar.html:25
 #: app/templates/admin/layout/sidebar.html:32
 #: app/templates/admin/posts/partials/_sidebar.html:14
-#: app/templates/src/translations.html:44
-#: app/templates/widgets/pages/_home.html:50
+#: app/templates/main/pages/home.html:55 app/templates/src/translations.html:44
 msgid "POST_DRAFT_LIST"
 msgstr "Borradores"
 
@@ -276,9 +275,8 @@ msgstr "Borradores"
 #: app/templates/admin/posts/edit.html:2
 #: app/templates/admin/posts/partials/_sidebar.html:4
 #: app/templates/main/layout/error-base.html:35
-#: app/templates/main/stories/edit.html:2
+#: app/templates/main/pages/home.html:56 app/templates/main/stories/edit.html:2
 #: app/templates/src/translations.html:45
-#: app/templates/widgets/pages/_home.html:51
 msgid "POST_CREATE"
 msgstr "Nueva historia"
 
@@ -290,9 +288,8 @@ msgstr "Top"
 #: app/templates/admin/layout/navbar.html:37
 #: app/templates/admin/layout/sidebar.html:97
 #: app/templates/main/layout/header.html:36
+#: app/templates/main/pages/home.html:59 app/templates/main/pages/home.html:60
 #: app/templates/src/translations.html:47
-#: app/templates/widgets/pages/_home.html:54
-#: app/templates/widgets/pages/_home.html:55
 msgid "APP_SIGN_OUT"
 msgstr "Salir"
 
@@ -655,7 +652,7 @@ msgstr "Borrar usuario"
 #: app/templates/main/layout/header.html:73
 #: app/templates/main/pages/conduct.html:2
 #: app/templates/src/translations.html:111
-#: app/templates/widgets/pages/_home.html:679
+#: app/templates/widgets/pages/_lp_home.html:601
 msgid "CODE_CONDUCT_LBL"
 msgstr "Codigo de conducta"
 
@@ -664,7 +661,7 @@ msgstr "Codigo de conducta"
 #: app/templates/main/layout/header.html:70
 #: app/templates/main/pages/policy.html:2
 #: app/templates/src/translations.html:112
-#: app/templates/widgets/pages/_home.html:681
+#: app/templates/widgets/pages/_lp_home.html:603
 msgid "TOS_LBL"
 msgstr "Terminos del servicio"
 
@@ -806,6 +803,34 @@ msgstr ""
 " personales o historias que resaltan un logro inigualable. Cuentale al "
 "mundo acerca de tus desafios y la manera que enfrentastes las situaciones"
 " mas inesperadas."
+
+#: app/templates/main/pages/home.html:22
+msgid "LP_HOME_LBL"
+msgstr "HOME"
+
+#: app/templates/main/pages/home.html:25
+msgid "LP_STORY_CATEGORIES_LBL"
+msgstr "CATEGORIAS"
+
+#: app/templates/main/pages/home.html:28
+msgid "LP_STORY_CONTACT_US_LBL"
+msgstr "CONTÁCTENOS"
+
+#: app/templates/main/pages/home.html:33
+msgid "LP_STORY_LANGUAGE_LBL"
+msgstr "IDIOMA"
+
+#: app/templates/main/pages/home.html:51
+msgid "LP_ACCOUNT"
+msgstr "CUENTA"
+
+#: app/templates/main/pages/home.html:67
+msgid "LP_STORY_LOGIN_LBL"
+msgstr "INICIAR SESIÓN"
+
+#: app/templates/main/pages/home.html:71
+msgid "LP_STORY_SIGN_UP_LBL"
+msgstr "REGÍSTRATE"
 
 #: app/templates/main/pages/latest.html:2
 #: app/templates/src/translations.html:142
@@ -949,9 +974,9 @@ msgid "READ_MORE_LBL"
 msgstr "(más)"
 
 #: app/templates/src/translations.html:165
-#: app/views/admin/categories/index.py:39
-#: app/views/admin/categories/index.py:77
-#: app/views/admin/categories/index.py:130 app/views/admin/sessions/index.py:79
+#: app/views/admin/categories/index.py:41
+#: app/views/admin/categories/index.py:79
+#: app/views/admin/categories/index.py:135 app/views/admin/sessions/index.py:79
 #: app/views/admin/sessions/index.py:144 app/views/admin/sessions/index.py:194
 #: app/views/admin/users/index.py:55 app/views/admin/users/index.py:88
 #: app/views/main/stories/forms/index.py:25 app/views/main/stories/index.py:79
@@ -961,38 +986,38 @@ msgstr ""
 "continuación"
 
 #: app/templates/src/translations.html:166
-#: app/views/admin/categories/index.py:52
+#: app/views/admin/categories/index.py:54
 msgid "CATEGORY_CREATE_SUCESS"
 msgstr "Categoría fue creada exitosamente"
 
 #: app/templates/src/translations.html:167
-#: app/views/admin/categories/index.py:67
-#: app/views/admin/categories/index.py:104
+#: app/views/admin/categories/index.py:69
+#: app/views/admin/categories/index.py:109
 msgid "CATEGORY_NOT_FOUND"
 msgstr "La categoría seleccionada no fue encontrada"
 
 #: app/templates/src/translations.html:168
-#: app/views/admin/categories/index.py:89
+#: app/views/admin/categories/index.py:94
 msgid "CATEGORY_SAVE_SUCCESS"
 msgstr "La categoría fue creada exitosamente"
 
 #: app/templates/src/translations.html:169
-#: app/views/admin/categories/index.py:110
+#: app/views/admin/categories/index.py:115
 msgid "CATEGORY_TRANSFER_POSTS_FAILED"
 msgstr "Lo siento, la categoría seleccionada no pudo ser eliminada"
 
 #: app/templates/src/translations.html:170
-#: app/views/admin/categories/index.py:115
+#: app/views/admin/categories/index.py:120
 msgid "CATEGORY_REMOVE_SUCCESS"
 msgstr "La categoría \"%(name)s\" fue removida"
 
 #: app/templates/src/translations.html:171
-#: app/views/admin/categories/index.py:136
+#: app/views/admin/categories/index.py:141
 msgid "CATEGORY_TRANSFER_POSTS_CHECK_FAILED"
 msgstr "La categoría seleccopmada no fue encontrada"
 
 #: app/templates/src/translations.html:172
-#: app/views/admin/categories/index.py:140
+#: app/views/admin/categories/index.py:145
 msgid "CATEGORY_TRANSFER_POSTS_SUCCESS"
 msgstr ""
 "Las publicaciones fueron transferidas desde %(from_name)s hacia "
@@ -1228,100 +1253,76 @@ msgstr "Transmite tu optimismo y tu fuerza de voluntad a traves de tus historias
 msgid "APP_ERROR_AND_RETRY"
 msgstr "Vaya! Tenemos un error inesperado. Por favor intente de nuevo."
 
-#: app/templates/widgets/pages/_home.html:17
-msgid "LP_HOME_LBL"
-msgstr "HOME"
+#: app/templates/widgets/pages/_lp_head.html:52
+msgid "LP_HOME_INTRO_LBL"
+msgstr "“Una buena acción al día llenara tu alma”"
 
-#: app/templates/widgets/pages/_home.html:20
-msgid "LP_STORY_CATEGORIES_LBL"
-msgstr "CATEGORIAS"
-
-#: app/templates/widgets/pages/_home.html:23
-msgid "LP_STORY_CONTACT_US_LBL"
-msgstr "CONTÁCTENOS"
-
-#: app/templates/widgets/pages/_home.html:28
-msgid "LP_STORY_LANGUAGE_LBL"
-msgstr "IDIOMA"
-
-#: app/templates/widgets/pages/_home.html:62
-msgid "LP_STORY_LOGIN_LBL"
-msgstr "INICIAR SESIÓN"
-
-#: app/templates/widgets/pages/_home.html:66
-msgid "LP_STORY_SIGN_UP_LBL"
-msgstr "REGÍSTRATE"
-
-#: app/templates/widgets/pages/_home.html:82
+#: app/templates/widgets/pages/_lp_home.html:10
 msgid "LP_STORY_START_READING_HERE_LBL"
 msgstr "¡COMIENCE A LEER AQUÍ!"
 
-#: app/templates/widgets/pages/_home.html:97
+#: app/templates/widgets/pages/_lp_home.html:25
 msgid "LP_STORY_STORIES_CATEGORIES_LBL"
 msgstr "Historias por categoría"
 
-#: app/templates/widgets/pages/_home.html:376
+#: app/templates/widgets/pages/_lp_home.html:304
 msgid "LP_HOW_IT_WORKS_TITLE"
 msgstr "¿UNA HISTORIA QUE CONTAR?"
 
-#: app/templates/widgets/pages/_home.html:390
+#: app/templates/widgets/pages/_lp_home.html:318
 msgid "LP_SHARE_STORY_LBL"
 msgstr "Quieres compartir una historia"
 
-#: app/templates/widgets/pages/_home.html:403
+#: app/templates/widgets/pages/_lp_home.html:331
 msgid "LP_SHARE_SIGN_UP_LBL"
 msgstr "Regístrate"
 
-#: app/templates/widgets/pages/_home.html:405
+#: app/templates/widgets/pages/_lp_home.html:333
 msgid "LP_SHARE_SIGN_UP_DESC"
 msgstr "En 30 segundos y crea un perfil"
 
-#: app/templates/widgets/pages/_home.html:418
+#: app/templates/widgets/pages/_lp_home.html:346
 msgid "LP_SHARE_WRITE_STORY_DESC"
 msgstr "Escribe tu historia"
 
-#: app/templates/widgets/pages/_home.html:436
+#: app/templates/widgets/pages/_lp_home.html:364
 msgid "LP_SHARE_SAVE_STORY_DESC"
 msgstr "Guardalo!"
 
-#: app/templates/widgets/pages/_home.html:458
+#: app/templates/widgets/pages/_lp_home.html:386
 msgid "LP_PRODUCT_TITLE"
 msgstr "¿QUÉ LO HACE DIFERENTE?"
 
-#: app/templates/widgets/pages/_home.html:461
+#: app/templates/widgets/pages/_lp_home.html:389
 msgid "LP_PRODUCT_ITEM_01_DESC"
 msgstr "<b>Gratis</b> y <b>Anónimo</b>"
 
-#: app/templates/widgets/pages/_home.html:462
+#: app/templates/widgets/pages/_lp_home.html:390
 msgid "LP_PRODUCT_ITEM_02_DESC"
 msgstr "Comparte tu historia<br/>con todo el mundo"
 
-#: app/templates/widgets/pages/_home.html:463
+#: app/templates/widgets/pages/_lp_home.html:391
 msgid "LP_PRODUCT_ITEM_03_DESC"
 msgstr "<b>Fomenta</b> e <b>inspira</b>a otros"
 
-#: app/templates/widgets/pages/_home.html:464
+#: app/templates/widgets/pages/_lp_home.html:392
 msgid "LP_PRODUCT_ITEM_04_DESC"
 msgstr "<b>Promueve</b> tus proyectos, tus negocios y talentos"
 
-#: app/templates/widgets/pages/_home.html:465
+#: app/templates/widgets/pages/_lp_home.html:393
 msgid "LP_PRODUCT_ITEM_05_DESC"
 msgstr "<b>Descubre</b> historias fantásticas y divertidas"
 
-#: app/templates/widgets/pages/_home.html:489
-#: app/templates/widgets/pages/_home.html:597
+#: app/templates/widgets/pages/_lp_home.html:411
+#: app/templates/widgets/pages/_lp_home.html:519
 msgid "LP_LATEST_STORIES_TITLE"
 msgstr "tu espacio para expresarte libremente"
 
-#: app/templates/widgets/pages/_home.html:609
+#: app/templates/widgets/pages/_lp_home.html:531
 msgid "LP_WORLDWIDE_LBL"
 msgstr "En todo el mundo"
 
-#: app/templates/widgets/pages/_home.html:633
+#: app/templates/widgets/pages/_lp_home.html:555
 msgid "LP_FOLLOW_SHARE_LBL"
 msgstr "Síguenos y comparte en"
-
-#: app/templates/widgets/pages/_home_head.html:52
-msgid "LP_HOME_INTRO_LBL"
-msgstr "“Una buena acción al día llenara tu alma”"
 

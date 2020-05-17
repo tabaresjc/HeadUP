@@ -6,6 +6,24 @@
 	border: 1px solid #e4e4e4;
 	border-radius: 0px;
 
+	&.lead-in {
+		padding: 20px;
+
+		.title {
+			margin: 0 0 20px 0;
+			font-size: 3.5rem;
+		}
+
+		.description {
+			width: 100%;
+			display: block;
+			font-size: 1.3rem;
+			line-height: 1.5;
+			white-space: pre-wrap;
+			overflow-wrap: break-word;
+		}
+	}
+
 	@media (min-width: $screen-sm-min) {
 		border-radius: 6px;
 	}

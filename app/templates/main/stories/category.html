@@ -12,6 +12,21 @@
 	<meta property="og:description" content="{{ description }}">
 {% endblock %}
 
+{% block lead_in %}
+<div class="row">
+	<div class="col-md-12 col-sm-12 col-xs-12">
+		<div id="lead-in-wrapper">
+			<div class="boxed lead-in push-down-20">
+				<h1 class="title">
+					{{ category.get_lang_name_or_default(language) }}
+				</h1>
+				<div class="description">{{ category.get_lang_description_or_default(language) }}</div>
+			</div>
+		</div>
+	</div>
+</div>
+{% endblock %}
+
 {% block content %}
 	{{ widget('story_list', category_id=category.id) }}
 {% endblock %}

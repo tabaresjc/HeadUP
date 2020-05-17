@@ -7,20 +7,16 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2020-04-17 05:19+0000\n"
+"POT-Creation-Date: 2020-05-15 05:40+0000\n"
 "PO-Revision-Date: 2020-04-28 16:19+0000\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
-"Language-Team: Chinese\n"
 "Language: en\n"
-"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"Language-Team: Chinese\n"
+"Plural-Forms: nplurals=2; plural=n != 1\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Loco-Source-Locale: en_SG\n"
-"Generated-By: Babel 2.6.0\n"
-"\n"
-"X-Loco-Parser: loco_parse_po\n"
-"X-Generator: Loco https://localise.biz/"
+"Generated-By: Babel 2.8.0\n"
 
 #: app/configuration/session.py:10 app/templates/src/translations.html:1
 msgid "APP_LOGIN_WARNING_MESSAGE"
@@ -84,13 +80,11 @@ msgstr "最后登录"
 
 #: app/templates/admin/index.html:26 app/templates/admin/layout/navbar.html:28
 #: app/templates/main/layout/header.html:30
-#: app/templates/src/translations.html:13
-#: app/templates/widgets/pages/_home.html:53
+#: app/templates/main/pages/home.html:58 app/templates/src/translations.html:13
 msgid "APP_PROFILE"
 msgstr "我的资料"
 
-#: app/templates/admin/index.html:30
-#: app/templates/admin/layout/sidebar.html:15
+#: app/templates/admin/index.html:30 app/templates/admin/layout/sidebar.html:15
 #: app/templates/admin/users/show.html:47
 #: app/templates/src/translations.html:14
 msgid "USER_EDIT"
@@ -119,8 +113,7 @@ msgstr "您并未分享您的故事.<br/>通过撰写您的第一个故事来参
 #: app/templates/admin/layout/sidebar.html:28
 #: app/templates/admin/posts/index.html:7
 #: app/templates/admin/posts/partials/_sidebar.html:9
-#: app/templates/src/translations.html:17
-#: app/templates/widgets/pages/_home.html:49
+#: app/templates/main/pages/home.html:54 app/templates/src/translations.html:17
 msgid "POST_LIST"
 msgstr "故事"
 
@@ -147,32 +140,25 @@ msgstr "类别 | %(page)s"
 msgid "CATEGORY_LIST"
 msgstr "类别目录"
 
-#: app/templates/admin/categories/index.html:12
-#: app/templates/admin/categories/index.html:13
-#: app/templates/admin/categories/index.html:53
-#: app/templates/src/translations.html:22
-msgid "CATEGORY_PAG_LBL"
-msgstr "类别"
-
-#: app/templates/admin/categories/index.html:17
+#: app/templates/admin/categories/index.html:30
 #: app/templates/src/translations.html:23
-#: app/views/admin/categories/forms/category.py:9
+#: app/views/admin/categories/forms/category.py:10
 msgid "CATEGORY_NAME"
 msgstr "姓名"
 
-#: app/templates/admin/categories/index.html:18
+#: app/templates/admin/categories/index.html:31
 #: app/templates/src/translations.html:24
-#: app/views/admin/categories/forms/category.py:10
+#: app/views/admin/categories/forms/category.py:9
 msgid "CATEGORY_SLUG"
 msgstr "Slug"
 
-#: app/templates/admin/categories/index.html:19
+#: app/templates/admin/categories/index.html:32
 #: app/templates/src/translations.html:25
 #: app/views/admin/categories/forms/category.py:11
 msgid "CATEGORY_DESC"
 msgstr "描述"
 
-#: app/templates/admin/categories/index.html:20
+#: app/templates/admin/categories/index.html:33
 #: app/templates/admin/layout/sidebar.html:49
 #: app/templates/admin/layout/sidebar.html:56
 #: app/templates/admin/users/index.html:9
@@ -181,68 +167,75 @@ msgstr "描述"
 msgid "USER_LIST"
 msgstr "用户名单"
 
-#: app/templates/admin/categories/index.html:21
+#: app/templates/admin/categories/index.html:34
 #: app/templates/src/translations.html:27
 msgid "CATEGORY_ACTIONS"
 msgstr "功能"
 
-#: app/templates/admin/categories/index.html:36
+#: app/templates/admin/categories/index.html:49
 #: app/templates/src/translations.html:28
 msgid "CATEGORY_EDIT"
 msgstr "编辑"
 
-#: app/templates/admin/categories/index.html:41
+#: app/templates/admin/categories/index.html:54
 #: app/templates/admin/categories/partials/_sidebar.html:17
 #: app/templates/src/translations.html:29
 msgid "CATEGORY_DELETE_CONFIRMATION"
 msgstr "[%(name)s] 将被永久删除, 是否要继续?"
 
-#: app/templates/admin/categories/index.html:43
+#: app/templates/admin/categories/index.html:56
 #: app/templates/admin/categories/partials/_sidebar.html:19
 #: app/templates/admin/categories/partials/_sidebar.html:21
 #: app/templates/src/translations.html:30
 msgid "CATEGORY_DELETE"
 msgstr "删除类别"
 
+#: app/templates/admin/categories/index.html:66
+#: app/templates/admin/categories/index.html:67
+#: app/templates/src/translations.html:22
+msgid "CATEGORY_PAG_LBL"
+msgstr "类别"
+
 #: app/templates/admin/categories/transfer.html:2
 #: app/templates/src/translations.html:31
 msgid "CATEGORY_TRANSFER_TITLE"
 msgstr "转移类别"
 
-#: app/templates/admin/categories/partials/_category_form_add.html:3
 #: app/templates/admin/categories/partials/_category_form_edit.html:3
-#: app/templates/src/translations.html:32
-msgid "CATEGORY_NAME_PLACEHOLDER"
-msgstr "输入姓名"
-
-#: app/templates/admin/categories/partials/_category_form_add.html:4
-#: app/templates/admin/categories/partials/_category_form_edit.html:4
 #: app/templates/src/translations.html:33
 msgid "CATEGORY_SLUG_PLACEHOLDER"
 msgstr "Insert Alias"
 
-#: app/templates/admin/categories/partials/_category_form_add.html:5
 #: app/templates/admin/categories/partials/_category_form_edit.html:5
+#: app/templates/src/translations.html:32
+msgid "CATEGORY_NAME_PLACEHOLDER"
+msgstr "输入姓名"
+
+#: app/templates/admin/categories/partials/_category_form_edit.html:6
+#: app/templates/admin/categories/partials/_category_form_edit.html:8
+#: app/templates/admin/categories/partials/_category_form_edit.html:9
+#: app/templates/admin/categories/partials/_category_form_edit.html:12
+#: app/templates/admin/categories/partials/_category_form_edit.html:13
+#: app/templates/admin/categories/partials/_category_form_edit.html:16
+#: app/templates/admin/categories/partials/_category_form_edit.html:17
+#: app/templates/admin/categories/partials/_category_form_edit.html:20
+#: app/templates/admin/categories/partials/_category_form_edit.html:21
 #: app/templates/src/translations.html:34
 msgid "CATEGORY_DESC_PLACEHOLDER"
 msgstr "类别描述"
 
-#: app/templates/admin/categories/partials/_category_form_add.html:7
-#: app/templates/admin/categories/partials/_category_form_edit.html:7
+#: app/templates/admin/categories/partials/_category_form_edit.html:24
 #: app/templates/admin/posts/partials/_post_edit.html:36
 #: app/templates/admin/posts/partials/_sidebar.html:45
-#: app/templates/admin/users/add.html:28
-#: app/templates/admin/users/edit.html:28
+#: app/templates/admin/users/add.html:28 app/templates/admin/users/edit.html:28
 #: app/templates/main/stories/edit.html:86
 #: app/templates/src/translations.html:35
 msgid "BTN_SAVE_LBL"
 msgstr "保存"
 
-#: app/templates/admin/categories/partials/_category_form_add.html:8
-#: app/templates/admin/categories/partials/_category_form_edit.html:8
+#: app/templates/admin/categories/partials/_category_form_edit.html:25
 #: app/templates/admin/categories/partials/_transfer_post.html:12
-#: app/templates/admin/users/add.html:27
-#: app/templates/admin/users/edit.html:27
+#: app/templates/admin/users/add.html:27 app/templates/admin/users/edit.html:27
 #: app/templates/src/translations.html:36
 msgid "BTN_CLEAR_LBL"
 msgstr "清楚"
@@ -271,8 +264,7 @@ msgstr "账户"
 #: app/templates/admin/layout/navbar.html:25
 #: app/templates/admin/layout/sidebar.html:32
 #: app/templates/admin/posts/partials/_sidebar.html:14
-#: app/templates/src/translations.html:44
-#: app/templates/widgets/pages/_home.html:50
+#: app/templates/main/pages/home.html:55 app/templates/src/translations.html:44
 msgid "POST_DRAFT_LIST"
 msgstr "草稿"
 
@@ -281,9 +273,8 @@ msgstr "草稿"
 #: app/templates/admin/posts/edit.html:2
 #: app/templates/admin/posts/partials/_sidebar.html:4
 #: app/templates/main/layout/error-base.html:35
-#: app/templates/main/stories/edit.html:2
+#: app/templates/main/pages/home.html:56 app/templates/main/stories/edit.html:2
 #: app/templates/src/translations.html:45
-#: app/templates/widgets/pages/_home.html:51
 msgid "POST_CREATE"
 msgstr "新故事"
 
@@ -295,9 +286,8 @@ msgstr "返回网页顶部"
 #: app/templates/admin/layout/navbar.html:37
 #: app/templates/admin/layout/sidebar.html:97
 #: app/templates/main/layout/header.html:36
+#: app/templates/main/pages/home.html:59 app/templates/main/pages/home.html:60
 #: app/templates/src/translations.html:47
-#: app/templates/widgets/pages/_home.html:54
-#: app/templates/widgets/pages/_home.html:55
 msgid "APP_SIGN_OUT"
 msgstr "退出"
 
@@ -656,7 +646,7 @@ msgstr "删除用户"
 #: app/templates/main/layout/header.html:73
 #: app/templates/main/pages/conduct.html:2
 #: app/templates/src/translations.html:111
-#: app/templates/widgets/pages/_home.html:679
+#: app/templates/widgets/pages/_lp_home.html:601
 msgid "CODE_CONDUCT_LBL"
 msgstr "行为守则"
 
@@ -665,7 +655,7 @@ msgstr "行为守则"
 #: app/templates/main/layout/header.html:70
 #: app/templates/main/pages/policy.html:2
 #: app/templates/src/translations.html:112
-#: app/templates/widgets/pages/_home.html:681
+#: app/templates/widgets/pages/_lp_home.html:603
 msgid "TOS_LBL"
 msgstr "服务条款"
 
@@ -793,8 +783,35 @@ msgstr "社会故事网路让你保持乐观的心情"
 
 #: app/templates/main/pages/home.html:3 app/templates/src/translations.html:141
 msgid "HOME_DESCRIPTION"
-msgstr ""
-"HeadUP，是你的社会叙事网络，也是一个发表问题与解决方案的网站，在这里，您可以以故事的形式或你独特的经历传达正面或乐观的情绪和价值观。在这里，您可以尽情分享任何积极有趣的​​经历，写下个人成就也能阅读非凡的成功故事。您也可以向世界分享您所遇到具有挑战性的状况或曾经遇到的困难的和决方案。大声说出来吧，HeadUP。"
+msgstr "HeadUP，是你的社会叙事网络，也是一个发表问题与解决方案的网站，在这里，您可以以故事的形式或你独特的经历传达正面或乐观的情绪和价值观。在这里，您可以尽情分享任何积极有趣的​​经历，写下个人成就也能阅读非凡的成功故事。您也可以向世界分享您所遇到具有挑战性的状况或曾经遇到的困难的和决方案。大声说出来吧，HeadUP。"
+
+#: app/templates/main/pages/home.html:22
+msgid "LP_HOME_LBL"
+msgstr "HOME"
+
+#: app/templates/main/pages/home.html:25
+msgid "LP_STORY_CATEGORIES_LBL"
+msgstr "STORY CATEGORIES"
+
+#: app/templates/main/pages/home.html:28
+msgid "LP_STORY_CONTACT_US_LBL"
+msgstr "CONTACT US"
+
+#: app/templates/main/pages/home.html:33
+msgid "LP_STORY_LANGUAGE_LBL"
+msgstr "LANGUAGE"
+
+#: app/templates/main/pages/home.html:51
+msgid "LP_ACCOUNT"
+msgstr "帳戶"
+
+#: app/templates/main/pages/home.html:67
+msgid "LP_STORY_LOGIN_LBL"
+msgstr "LOGIN"
+
+#: app/templates/main/pages/home.html:71
+msgid "LP_STORY_SIGN_UP_LBL"
+msgstr "SIGN UP"
 
 #: app/templates/main/pages/latest.html:2
 #: app/templates/src/translations.html:142
@@ -804,8 +821,7 @@ msgstr "最新动态 | 社会故事网路让你保持乐观的心情"
 #: app/templates/main/pages/latest.html:3
 #: app/templates/src/translations.html:143
 msgid "LATEST_DESCRIPTION"
-msgstr ""
-"HeadUP，是你的社会叙事网络，也是一个发表问题与解决方案的网站，在这里，您可以以故事的形式或你独特的经历传达正面或乐观的情绪和价值观。在这里，您可以尽情分享任何积极有趣的​​经历，写下个人成就也能阅读非凡的成功故事。您也可以向世界分享您所遇到具有挑战性的状况或曾经遇到的困难的和决方案。大声说出来吧，HeadUP。"
+msgstr "HeadUP，是你的社会叙事网络，也是一个发表问题与解决方案的网站，在这里，您可以以故事的形式或你独特的经历传达正面或乐观的情绪和价值观。在这里，您可以尽情分享任何积极有趣的​​经历，写下个人成就也能阅读非凡的成功故事。您也可以向世界分享您所遇到具有挑战性的状况或曾经遇到的困难的和决方案。大声说出来吧，HeadUP。"
 
 #: app/templates/main/stories/category.html:2
 #: app/templates/src/translations.html:145
@@ -931,49 +947,48 @@ msgid "READ_MORE_LBL"
 msgstr "继续阅读。。。"
 
 #: app/templates/src/translations.html:165
-#: app/views/admin/categories/index.py:39
-#: app/views/admin/categories/index.py:77
-#: app/views/admin/categories/index.py:130
-#: app/views/admin/sessions/index.py:79 app/views/admin/sessions/index.py:144
-#: app/views/admin/sessions/index.py:194 app/views/admin/users/index.py:55
-#: app/views/admin/users/index.py:88 app/views/main/stories/forms/index.py:25
-#: app/views/main/stories/index.py:79
+#: app/views/admin/categories/index.py:41
+#: app/views/admin/categories/index.py:79
+#: app/views/admin/categories/index.py:135 app/views/admin/sessions/index.py:79
+#: app/views/admin/sessions/index.py:144 app/views/admin/sessions/index.py:194
+#: app/views/admin/users/index.py:55 app/views/admin/users/index.py:88
+#: app/views/main/stories/forms/index.py:25 app/views/main/stories/index.py:79
 msgid "ERROR_INVALID_SUBMISSION"
 msgstr "提交无效，请检查以下消息"
 
 #: app/templates/src/translations.html:166
-#: app/views/admin/categories/index.py:52
+#: app/views/admin/categories/index.py:54
 msgid "CATEGORY_CREATE_SUCESS"
 msgstr "类别已成功创建"
 
 #: app/templates/src/translations.html:167
-#: app/views/admin/categories/index.py:67
-#: app/views/admin/categories/index.py:104
+#: app/views/admin/categories/index.py:69
+#: app/views/admin/categories/index.py:109
 msgid "CATEGORY_NOT_FOUND"
 msgstr "类别不存在"
 
 #: app/templates/src/translations.html:168
-#: app/views/admin/categories/index.py:89
+#: app/views/admin/categories/index.py:94
 msgid "CATEGORY_SAVE_SUCCESS"
 msgstr "储存成功"
 
 #: app/templates/src/translations.html:169
-#: app/views/admin/categories/index.py:110
+#: app/views/admin/categories/index.py:115
 msgid "CATEGORY_TRANSFER_POSTS_FAILED"
 msgstr "抱歉, 此类别不能被删除"
 
 #: app/templates/src/translations.html:170
-#: app/views/admin/categories/index.py:115
+#: app/views/admin/categories/index.py:120
 msgid "CATEGORY_REMOVE_SUCCESS"
 msgstr "类别： \"%(name)s\" 已被删除"
 
 #: app/templates/src/translations.html:171
-#: app/views/admin/categories/index.py:136
+#: app/views/admin/categories/index.py:141
 msgid "CATEGORY_TRANSFER_POSTS_CHECK_FAILED"
 msgstr "此选项不存在"
 
 #: app/templates/src/translations.html:172
-#: app/views/admin/categories/index.py:140
+#: app/views/admin/categories/index.py:145
 msgid "CATEGORY_TRANSFER_POSTS_SUCCESS"
 msgstr "此贴已从 %(from_name)s 转移至 %(to_name)s"
 
@@ -1012,9 +1027,9 @@ msgstr "\"%(title)s\" 已被删除"
 msgid "ERROR_POST_DELETE_FAILED"
 msgstr "删除 %(error)s 时，出现错误"
 
-#: app/templates/src/translations.html:181
-#: app/views/admin/sessions/index.py:22 app/views/admin/sessions/index.py:67
-#: app/views/admin/sessions/index.py:137 app/views/admin/sessions/index.py:179
+#: app/templates/src/translations.html:181 app/views/admin/sessions/index.py:22
+#: app/views/admin/sessions/index.py:67 app/views/admin/sessions/index.py:137
+#: app/views/admin/sessions/index.py:179
 msgid "SESSIONS_MSG_ALREADY_SIGNED_IN"
 msgstr "您已经登录。"
 
@@ -1026,9 +1041,8 @@ msgstr "电子邮件或密码无效"
 msgid "SESSIONS_MSG_LOGIN_SUCESS"
 msgstr "成功登录"
 
-#: app/templates/src/translations.html:184
-#: app/views/admin/sessions/index.py:83 app/views/admin/sessions/index.py:148
-#: app/views/admin/sessions/index.py:198
+#: app/templates/src/translations.html:184 app/views/admin/sessions/index.py:83
+#: app/views/admin/sessions/index.py:148 app/views/admin/sessions/index.py:198
 msgid "SESSIONS_ERROR_UNFINISHED_CHALLENGE_LBL"
 msgstr "输入无效"
 
@@ -1192,106 +1206,82 @@ msgstr "请与我们分享您如何激励自己"
 
 #: app/templates/src/translations.html:220
 msgid "INTRO4_LBL"
-msgstr ""
-"通过撰写出色的成功故事来表达您的乐观与积极\n"
+msgstr "通过撰写出色的成功故事来表达您的乐观与积极\n"
 
 #: app/templates/src/translations.html:221
 msgid "APP_ERROR_AND_RETRY"
 msgstr "错误，请重试"
 
-#: app/templates/widgets/pages/_home.html:17
-msgid "LP_HOME_LBL"
-msgstr "HOME"
+#: app/templates/widgets/pages/_lp_head.html:52
+msgid "LP_HOME_INTRO_LBL"
+msgstr "“A good vibe a day goes a long way”"
 
-#: app/templates/widgets/pages/_home.html:20
-msgid "LP_STORY_CATEGORIES_LBL"
-msgstr "STORY CATEGORIES"
-
-#: app/templates/widgets/pages/_home.html:23
-msgid "LP_STORY_CONTACT_US_LBL"
-msgstr "CONTACT US"
-
-#: app/templates/widgets/pages/_home.html:28
-msgid "LP_STORY_LANGUAGE_LBL"
-msgstr "LANGUAGE"
-
-#: app/templates/widgets/pages/_home.html:62
-msgid "LP_STORY_LOGIN_LBL"
-msgstr "LOGIN"
-
-#: app/templates/widgets/pages/_home.html:66
-msgid "LP_STORY_SIGN_UP_LBL"
-msgstr "SIGN UP"
-
-#: app/templates/widgets/pages/_home.html:82
+#: app/templates/widgets/pages/_lp_home.html:10
 msgid "LP_STORY_START_READING_HERE_LBL"
 msgstr "START READING HERE!"
 
-#: app/templates/widgets/pages/_home.html:97
+#: app/templates/widgets/pages/_lp_home.html:25
 msgid "LP_STORY_STORIES_CATEGORIES_LBL"
 msgstr "Stories by Category"
 
-#: app/templates/widgets/pages/_home.html:376
+#: app/templates/widgets/pages/_lp_home.html:304
 msgid "LP_HOW_IT_WORKS_TITLE"
 msgstr "A STORY TO TELL?"
 
-#: app/templates/widgets/pages/_home.html:390
+#: app/templates/widgets/pages/_lp_home.html:318
 msgid "LP_SHARE_STORY_LBL"
 msgstr "You want to share a story"
 
-#: app/templates/widgets/pages/_home.html:403
+#: app/templates/widgets/pages/_lp_home.html:331
 msgid "LP_SHARE_SIGN_UP_LBL"
 msgstr "Sign Up"
 
-#: app/templates/widgets/pages/_home.html:405
+#: app/templates/widgets/pages/_lp_home.html:333
 msgid "LP_SHARE_SIGN_UP_DESC"
 msgstr "In 30 secs and create a profile"
 
-#: app/templates/widgets/pages/_home.html:418
+#: app/templates/widgets/pages/_lp_home.html:346
 msgid "LP_SHARE_WRITE_STORY_DESC"
 msgstr "Write your story"
 
-#: app/templates/widgets/pages/_home.html:436
+#: app/templates/widgets/pages/_lp_home.html:364
 msgid "LP_SHARE_SAVE_STORY_DESC"
 msgstr "Stamp it !"
 
-#: app/templates/widgets/pages/_home.html:458
+#: app/templates/widgets/pages/_lp_home.html:386
 msgid "LP_PRODUCT_TITLE"
 msgstr "WHAT MAKES IT DIFFERENT?"
 
-#: app/templates/widgets/pages/_home.html:461
+#: app/templates/widgets/pages/_lp_home.html:389
 msgid "LP_PRODUCT_ITEM_01_DESC"
 msgstr "<b>Free</b> & <b>Anonymous</b>"
 
-#: app/templates/widgets/pages/_home.html:462
+#: app/templates/widgets/pages/_lp_home.html:390
 msgid "LP_PRODUCT_ITEM_02_DESC"
 msgstr "Share your story <b>worldwide"
 
-#: app/templates/widgets/pages/_home.html:463
+#: app/templates/widgets/pages/_lp_home.html:391
 msgid "LP_PRODUCT_ITEM_03_DESC"
 msgstr "<b>Encourage</b> and <b>inspire</b> others"
 
-#: app/templates/widgets/pages/_home.html:464
+#: app/templates/widgets/pages/_lp_home.html:392
 msgid "LP_PRODUCT_ITEM_04_DESC"
 msgstr "<b>Promote</b> your projects, your business, your talents"
 
-#: app/templates/widgets/pages/_home.html:465
+#: app/templates/widgets/pages/_lp_home.html:393
 msgid "LP_PRODUCT_ITEM_05_DESC"
 msgstr "<b>Discover</b> fantastic and fun stories"
 
-#: app/templates/widgets/pages/_home.html:489
-#: app/templates/widgets/pages/_home.html:597
+#: app/templates/widgets/pages/_lp_home.html:411
+#: app/templates/widgets/pages/_lp_home.html:519
 msgid "LP_LATEST_STORIES_TITLE"
 msgstr "your space to express yourself freely"
 
-#: app/templates/widgets/pages/_home.html:609
+#: app/templates/widgets/pages/_lp_home.html:531
 msgid "LP_WORLDWIDE_LBL"
 msgstr "Worldwide"
 
-#: app/templates/widgets/pages/_home.html:633
+#: app/templates/widgets/pages/_lp_home.html:555
 msgid "LP_FOLLOW_SHARE_LBL"
 msgstr "Follow us & share on"
 
-#: app/templates/widgets/pages/_home_head.html:52
-msgid "LP_HOME_INTRO_LBL"
-msgstr "“A good vibe a day goes a long way”"
