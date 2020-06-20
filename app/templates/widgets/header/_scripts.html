@@ -1,19 +1,19 @@
 <!-- Cookie Consent by https://www.TermsFeed.com -->
-<script type="text/javascript" src="//www.termsfeed.com/cookie-consent/releases/3.0.0/cookie-consent.js"></script>
+<script type="text/javascript" src="//www.termsfeed.com/public/cookie-consent/3.1.0/cookie-consent.js"></script>
 <script type="text/javascript">
-	document.addEventListener('DOMContentLoaded', function () {
-		cookieconsent.run({
-			'notice_banner_type': 'interstitial',
-			'consent_type': 'implied',
-			'palette': 'dark',
-			'change_preferences_selector': '#changePreferences',
-			'language': '{{ language }}',
-			'website_name': 'HeadUP',
-			'cookies_policy_url': '{{ url_for('privacy_policy', _external=True) }}'
-		});
+document.addEventListener('DOMContentLoaded', function () {
+cookieconsent.run({
+		'notice_banner_type':'interstitial',
+		'consent_type':'implied',
+		'palette':'light',
+		'language': '{{ language }}',
+		'website_name': 'HeadUP',
+		'cookies_policy_url': '{{ url_for('privacy_policy', _external=True) }}'
 	});
+});
 </script>
-<noscript>Cookie Consent by <a href="https://www.termsfeed.com/">TermsFeed</a></noscript>
+
+<noscript>Cookie Consent by <a href="https://www.TermsFeed.com/" rel="nofollow">TermsFeed</a></noscript>
 <!-- End Cookie Consent -->
 
 {% set domains = config.GA_TRACKINGS | ga_autolinks  %}
