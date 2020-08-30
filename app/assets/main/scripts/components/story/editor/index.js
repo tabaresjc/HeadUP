@@ -56,6 +56,7 @@ export class StoryEditorComponent {
 		this._bodyTxt = document.getElementById(this._options.bodyId);
 		this._categorySel = document.getElementById(this._options.categorySelectId);
 		this._anonymousCheckbox = document.getElementById(this._options.anonymousCheckboxId);
+		this._urlParams = new URLSearchParams(window.location.search);
 
 		if (!this._storyContainer || !this._titleTxt || !this._bodyTxt) {
 			console.warn(`[HUP] editor can't be initialized`);
@@ -280,6 +281,8 @@ export class StoryEditorComponent {
 
 		if (story.category && typeof story.category === 'object') {
 			choices.setChoiceByValue(story.category.id);
+		} else if (this._urlParams.has('category_id')) {
+			choices.setChoiceByValue(parseInt(this._urlParams.get('category_id')));
 		}
 
 		if (story.anonymous) {
