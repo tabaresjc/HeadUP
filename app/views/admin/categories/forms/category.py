@@ -8,19 +8,19 @@ from flask_babel import lazy_gettext as _lg
 class CategoryForm(FlaskForm):
     slug = TextField(_lg('CATEGORY_SLUG'), [validators.Length(min=2, max=200)])
     name = TextField(_lg('CATEGORY_NAME'), [validators.Length(min=2, max=100), validators.InputRequired()])
-    description = TextAreaField(_lg('CATEGORY_DESC'), [validators.Length(min=2, max=1024), validators.InputRequired()])
+    description = TextAreaField(_lg('CATEGORY_DESC'), [validators.Length(min=2, max=4096), validators.InputRequired()])
 
     name_es = TextField('Name (Spanish)', [validators.Length(max=100)])
-    description_es = TextAreaField('Descripcion (Spanish)', [validators.Length(max=1024)])
+    description_es = TextAreaField('Descripcion (Spanish)', [validators.Length(max=4096)])
 
     name_fr = TextField('Name (French)', [validators.Length(max=100)])
-    description_fr = TextAreaField('Descripcion (French)', [validators.Length(max=1024)])
+    description_fr = TextAreaField('Descripcion (French)', [validators.Length(max=4096)])
 
     name_ja = TextField('Name (Japanese)', [validators.Length(max=100)])
-    description_ja = TextAreaField('Descripcion (Japanese)', [validators.Length(max=1024)])
+    description_ja = TextAreaField('Descripcion (Japanese)', [validators.Length(max=4096)])
 
     name_cn = TextField('Name (Chinese)', [validators.Length(max=100)])
-    description_cn = TextAreaField('Descripcion (Chinese)', [validators.Length(max=1024)])
+    description_cn = TextAreaField('Descripcion (Chinese)', [validators.Length(max=4096)])
 
     def __init__(self, category=None, *args, **kwargs):
         super(CategoryForm, self).__init__(*args, **kwargs)
