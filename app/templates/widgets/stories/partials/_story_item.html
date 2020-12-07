@@ -1,0 +1,24 @@
+<div class="col-md-4 story-item">
+	<div class="panel panel-primary">
+		<div class="panel-body">
+			{% if post.cover_picture %}
+			<div class="img-post" style="background-image:url({{ post.cover_picture.image_url }})"></div>
+			{% endif %}
+			<div class="row">
+				<div class="col-md-12 col-sm-12 col-xs-12">
+					<h6 class="title-post">
+						<a href="{{ url_for('PostsView:get', id=post.id) }}">
+							{{ post.title | truncate(80) }}
+						</a>
+					</h6>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-12 col-sm-12 col-xs-12">
+					{% if post.body %}<p><strong>{{ post.body|safe }}</strong></p>{% endif %}
+					{{ post.extra_body|striptags|limit(500)|safe }}
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

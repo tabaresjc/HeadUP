@@ -78,6 +78,20 @@
 		</div>
 	</nav>
 	<!--END OF NAV-->
+	<section id="home">
+		<div class="row splash-jumbo" style="padding-top:15%;">
+			<div class="container">
+				<div class="row">
+					<div class="col-12 col-md-12 text-center">
+						<a href="{{ url_for('latest') }}"
+							class="btn btn-warning text-white rounded-pill box-effect-small wow fadeInDown btnRead"
+							style="padding:20px;">{{ _('LP_STORY_START_READING_HERE_LBL') }} <i class="fa fa-arrow-circle-right"></i></a>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+	{{ widget('story_list_by_category', language=language, category_slug='letters-to-mozart') }}
 	{{ widget('lp_home', language=language) }}
 {% endblock %}
 

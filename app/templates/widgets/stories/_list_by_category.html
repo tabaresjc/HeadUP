@@ -1,0 +1,20 @@
+{% if stories %}
+<style>
+
+</style>
+
+<section id="stickers" class="section-pad">
+	<div class="container">
+		<div class="row text-center">
+			<div class="col-12 col-md-12 underline">
+				<h1 class="section-title">{{category.get_lang_name_or_default(language)}}</h1>
+			</div>
+		</div>
+		<div class="row margin-top-20">
+			{% for post in stories %}
+				{% include 'widgets/stories/partials/_story_item.html' %}
+			{% endfor %}
+		</div>
+	</div>
+</section>
+{% endif %}
