@@ -22,10 +22,13 @@
 					<a class="nav-link" id="nav-home" href="#home">{{ _('LP_HOME_LBL') }}</a>
 				</li>
 				<li class="nav-item" style="padding:0 20px;">
-					<a class="nav-link" id="nav-aboutUs" href="#stickers">STICKERS</a>
+					<a class="nav-link" id="nav-aboutUs" href="#category">{{ _('LP_STORY_CATEGORIES_LBL') }}</a>
 				</li>
 				<li class="nav-item" style="padding:0 20px;">
-					<a class="nav-link" id="nav-aboutUs" href="#category">{{ _('LP_STORY_CATEGORIES_LBL') }}</a>
+					<a class="nav-link" id="nav-aboutUs" href="#events">{{ _('LP_STORY_EVENTS_LBL') }}</a>
+				</li>
+				<li class="nav-item" style="padding:0 20px;">
+					<a class="nav-link" id="nav-aboutUs" href="#stickers">STICKERS</a>
 				</li>
 				<li class="nav-item" style="padding:0 20px;">
 					<a class="nav-link" id="nav-aboutUs" href="#contact">{{ _('LP_STORY_CONTACT_US_LBL') }}</a>
@@ -91,8 +94,9 @@
 			</div>
 		</div>
 	</section>
-	{{ widget('story_list_by_category', language=language, category_slug='letters-to-mozart') }}
+	
 	{{ widget('lp_home', language=language) }}
+	
 {% endblock %}
 
 

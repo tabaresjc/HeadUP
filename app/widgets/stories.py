@@ -1,7 +1,7 @@
 # -*- coding: utf8 -*-
 
 from flask import render_template
-from app.models import Category
+from app.models import Category, Post
 import app
 
 
@@ -14,23 +14,22 @@ def story_list(category_id=0, limit=20):
 
 
 @app.wg.widget('story_list_by_category')
-def story_list_by_category(language='en', category_slug=None):
-    if not category_slug:
+def story_list_by_category(language='en', category_slugs=None):
+    if not category_slugs:
         return ''
 
-    key = u'story_list_by_category.%s.%s' % (language, category_slug)
+    category_ids = []
 
-    fragment = app.cache.get(key)
+    for slug in category_slugs:
+        category = Category.get_by_cat(slug)
+        if category:
+            category_ids.append(category.id)
 
-    if not fragment:
-        stories, category = Category.get_posts_by_cat(category_slug, limit=3)
-        fragment = render_template('widgets/stories/_list_by_category.html',
-                                   category=category,
-                                   stories=stories,
-                                   language=language)
-        app.cache.set(key, fragment, 3600)
-
-    return fragment
+    stories, count = Post.posts_by_categories(category_ids, limit=3)
+    return render_template('widgets/stories/_list_by_category.html',
+                           stories=stories,
+                           count=count,
+                           language=language)
 
 
 @app.wg.widget('header_scripts')

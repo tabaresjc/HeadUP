@@ -172,7 +172,7 @@ class Category(Base, sa.Model, ModelHelper):
         return True
 
     @classmethod
-    def get_by_cat_slug(cls, cat, slug):
+    def get_by_cat_slug(cls, cat):
         category = cls.query.filter_by(slug=cat).one_or_none()
         if not category:
             return None

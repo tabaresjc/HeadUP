@@ -283,6 +283,27 @@ class Post(Base, sa.Model, ModelHelper):
             .first()
 
     @classmethod
+    def posts_by_categories(cls,
+                            category_ids,
+                            limit=10,
+                            page=1,
+                            status=POST_PUBLIC,
+                            orderby='created_at',
+                            desc=True):
+        if not category_ids:
+            return [], 0
+
+        query = cls.query.filter(cls.category_id.in_(category_ids), cls.status == status)
+        count = query.count()
+        records = []
+        if count:
+            sort_by = '%s %s' % (orderby, 'DESC' if desc else 'ASC')
+            records = query.order_by(sa.text(sort_by)) \
+                .offset((page - 1) * limit) \
+                .limit(limit)
+        return records, count
+
+    @classmethod
     def init(cls, user, status=POST_DRAFT):
         p = cls.create()
         p.user = current_user

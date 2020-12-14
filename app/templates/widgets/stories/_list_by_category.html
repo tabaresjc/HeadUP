@@ -1,13 +1,10 @@
 {% if stories %}
-<style>
-
-</style>
-
-<section id="stickers" class="section-pad">
+<!--Stories by Events -->
+<section id="events" class="section-pad">
 	<div class="container">
 		<div class="row text-center">
 			<div class="col-12 col-md-12 underline">
-				<h1 class="section-title">{{category.get_lang_name_or_default(language)}}</h1>
+				<h1 class="section-title">{{ _('LP_STORY_STORIES_EVENT_LBL') }}</h1>
 			</div>
 		</div>
 		<div class="row margin-top-20">
@@ -17,4 +14,5 @@
 		</div>
 	</div>
 </section>
+<!--End of Stories by Events -->
 {% endif %}
