@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2020-05-15 05:40+0000\n"
+"POT-Creation-Date: 2020-12-14 08:14+0000\n"
 "PO-Revision-Date: 2020-04-23 06:13+0000\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: fr\n"
@@ -16,7 +16,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Generated-By: Babel 2.8.0\n"
+"Generated-By: Babel 2.9.0\n"
 
 #: app/configuration/session.py:10 app/templates/src/translations.html:1
 msgid "APP_LOGIN_WARNING_MESSAGE"
@@ -80,7 +80,7 @@ msgstr "最後のログイン"
 
 #: app/templates/admin/index.html:26 app/templates/admin/layout/navbar.html:28
 #: app/templates/main/layout/header.html:30
-#: app/templates/main/pages/home.html:58 app/templates/src/translations.html:13
+#: app/templates/main/pages/home.html:64 app/templates/src/translations.html:13
 msgid "APP_PROFILE"
 msgstr "プロフィール"
 
@@ -113,7 +113,7 @@ msgstr "シェアしたストーリーはまだありません。<br/>ストー�
 #: app/templates/admin/layout/sidebar.html:28
 #: app/templates/admin/posts/index.html:7
 #: app/templates/admin/posts/partials/_sidebar.html:9
-#: app/templates/main/pages/home.html:54 app/templates/src/translations.html:17
+#: app/templates/main/pages/home.html:60 app/templates/src/translations.html:17
 msgid "POST_LIST"
 msgstr "ストーリー"
 
@@ -264,7 +264,7 @@ msgstr "あなたのアカウント"
 #: app/templates/admin/layout/navbar.html:25
 #: app/templates/admin/layout/sidebar.html:32
 #: app/templates/admin/posts/partials/_sidebar.html:14
-#: app/templates/main/pages/home.html:55 app/templates/src/translations.html:44
+#: app/templates/main/pages/home.html:61 app/templates/src/translations.html:44
 msgid "POST_DRAFT_LIST"
 msgstr "下書き"
 
@@ -273,7 +273,7 @@ msgstr "下書き"
 #: app/templates/admin/posts/edit.html:2
 #: app/templates/admin/posts/partials/_sidebar.html:4
 #: app/templates/main/layout/error-base.html:35
-#: app/templates/main/pages/home.html:56 app/templates/main/stories/edit.html:2
+#: app/templates/main/pages/home.html:62 app/templates/main/stories/edit.html:2
 #: app/templates/src/translations.html:45
 msgid "POST_CREATE"
 msgstr "新しいストーリー"
@@ -286,7 +286,7 @@ msgstr "トップ"
 #: app/templates/admin/layout/navbar.html:37
 #: app/templates/admin/layout/sidebar.html:97
 #: app/templates/main/layout/header.html:36
-#: app/templates/main/pages/home.html:59 app/templates/main/pages/home.html:60
+#: app/templates/main/pages/home.html:65 app/templates/main/pages/home.html:66
 #: app/templates/src/translations.html:47
 msgid "APP_SIGN_OUT"
 msgstr "サインアウト"
@@ -646,7 +646,7 @@ msgstr "ユーザーを削除する"
 #: app/templates/main/layout/header.html:73
 #: app/templates/main/pages/conduct.html:2
 #: app/templates/src/translations.html:111
-#: app/templates/widgets/pages/_lp_home.html:601
+#: app/templates/widgets/pages/_lp_home.html:646
 msgid "CODE_CONDUCT_LBL"
 msgstr "ポリシー"
 
@@ -655,7 +655,7 @@ msgstr "ポリシー"
 #: app/templates/main/layout/header.html:70
 #: app/templates/main/pages/policy.html:2
 #: app/templates/src/translations.html:112
-#: app/templates/widgets/pages/_lp_home.html:603
+#: app/templates/widgets/pages/_lp_home.html:648
 msgid "TOS_LBL"
 msgstr "利用規約"
 
@@ -797,24 +797,32 @@ msgid "LP_STORY_CATEGORIES_LBL"
 msgstr "ストーリーカテゴリー"
 
 #: app/templates/main/pages/home.html:28
+msgid "LP_STORY_EVENTS_LBL"
+msgstr "イベント"
+
+#: app/templates/main/pages/home.html:34
 msgid "LP_STORY_CONTACT_US_LBL"
 msgstr "コンタクト"
 
-#: app/templates/main/pages/home.html:33
+#: app/templates/main/pages/home.html:39
 msgid "LP_STORY_LANGUAGE_LBL"
 msgstr "言語"
 
-#: app/templates/main/pages/home.html:51
+#: app/templates/main/pages/home.html:57
 msgid "LP_ACCOUNT"
 msgstr "アカウント"
 
-#: app/templates/main/pages/home.html:67
+#: app/templates/main/pages/home.html:73
 msgid "LP_STORY_LOGIN_LBL"
 msgstr "ログイン"
 
-#: app/templates/main/pages/home.html:71
+#: app/templates/main/pages/home.html:77
 msgid "LP_STORY_SIGN_UP_LBL"
 msgstr "サインアップ"
+
+#: app/templates/main/pages/home.html:91
+msgid "LP_STORY_START_READING_HERE_LBL"
+msgstr "さっそくストーリーを読む"
 
 #: app/templates/main/pages/latest.html:2
 #: app/templates/src/translations.html:142
@@ -1220,72 +1228,72 @@ msgstr "何かがおかしかった。 後でもう一度お試しください�
 msgid "LP_HOME_INTRO_LBL"
 msgstr "“A good vibe a day goes a long way”"
 
-#: app/templates/widgets/pages/_lp_home.html:10
-msgid "LP_STORY_START_READING_HERE_LBL"
-msgstr "さっそくストーリーを読む"
-
-#: app/templates/widgets/pages/_lp_home.html:25
+#: app/templates/widgets/pages/_lp_home.html:7
 msgid "LP_STORY_STORIES_CATEGORIES_LBL"
 msgstr "カテゴリー毎のストーリー"
 
-#: app/templates/widgets/pages/_lp_home.html:304
+#: app/templates/widgets/pages/_lp_home.html:349
 msgid "LP_HOW_IT_WORKS_TITLE"
 msgstr "シェアするストーリーがありますか？"
 
-#: app/templates/widgets/pages/_lp_home.html:318
+#: app/templates/widgets/pages/_lp_home.html:363
 msgid "LP_SHARE_STORY_LBL"
 msgstr "ストーリーをシェアする。"
 
-#: app/templates/widgets/pages/_lp_home.html:331
+#: app/templates/widgets/pages/_lp_home.html:376
 msgid "LP_SHARE_SIGN_UP_LBL"
 msgstr "サインアップ"
 
-#: app/templates/widgets/pages/_lp_home.html:333
+#: app/templates/widgets/pages/_lp_home.html:378
 msgid "LP_SHARE_SIGN_UP_DESC"
 msgstr "たった30秒でプロフィールを作ろう。"
 
-#: app/templates/widgets/pages/_lp_home.html:346
+#: app/templates/widgets/pages/_lp_home.html:391
 msgid "LP_SHARE_WRITE_STORY_DESC"
 msgstr "あなたのストーリーを書きましょう。"
 
-#: app/templates/widgets/pages/_lp_home.html:364
+#: app/templates/widgets/pages/_lp_home.html:409
 msgid "LP_SHARE_SAVE_STORY_DESC"
 msgstr "スタンプしよう！"
 
-#: app/templates/widgets/pages/_lp_home.html:386
+#: app/templates/widgets/pages/_lp_home.html:431
 msgid "LP_PRODUCT_TITLE"
 msgstr "何が違いを生むでしょう？"
 
-#: app/templates/widgets/pages/_lp_home.html:389
+#: app/templates/widgets/pages/_lp_home.html:434
 msgid "LP_PRODUCT_ITEM_01_DESC"
 msgstr "<b>フリー</b> & <b>匿名</b>"
 
-#: app/templates/widgets/pages/_lp_home.html:390
+#: app/templates/widgets/pages/_lp_home.html:435
 msgid "LP_PRODUCT_ITEM_02_DESC"
 msgstr "あなたのストーリーを世界中にシェアしましょう。"
 
-#: app/templates/widgets/pages/_lp_home.html:391
+#: app/templates/widgets/pages/_lp_home.html:436
 msgid "LP_PRODUCT_ITEM_03_DESC"
 msgstr "<b>励まし</b> と<b>刺激を与え</b> ほかのだれかへ"
 
-#: app/templates/widgets/pages/_lp_home.html:392
+#: app/templates/widgets/pages/_lp_home.html:437
 msgid "LP_PRODUCT_ITEM_04_DESC"
 msgstr "あなたのプロジェクトやビジネス、才能を紹介してください。"
 
-#: app/templates/widgets/pages/_lp_home.html:393
+#: app/templates/widgets/pages/_lp_home.html:438
 msgid "LP_PRODUCT_ITEM_05_DESC"
 msgstr "素晴らしく、楽しいストーリーを見つけよう。"
 
-#: app/templates/widgets/pages/_lp_home.html:411
-#: app/templates/widgets/pages/_lp_home.html:519
+#: app/templates/widgets/pages/_lp_home.html:456
+#: app/templates/widgets/pages/_lp_home.html:564
 msgid "LP_LATEST_STORIES_TITLE"
 msgstr "あなたを自由に表現する場です。"
 
-#: app/templates/widgets/pages/_lp_home.html:531
+#: app/templates/widgets/pages/_lp_home.html:576
 msgid "LP_WORLDWIDE_LBL"
 msgstr "世界中"
 
-#: app/templates/widgets/pages/_lp_home.html:555
+#: app/templates/widgets/pages/_lp_home.html:600
 msgid "LP_FOLLOW_SHARE_LBL"
 msgstr "フォロー＆シェアしてください。"
+
+#: app/templates/widgets/stories/_list_by_category.html:7
+msgid "LP_STORY_STORIES_EVENT_LBL"
+msgstr "イベント別のストーリー"
 
