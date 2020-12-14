@@ -1,0 +1,1309 @@
+# Portuguese translations for HeadUP.
+# Copyright (C) 2019 HeadUP
+# This file is distributed under the same license as the PROJECT HeadUP.
+# Juan Tabares <juan.tabares@headup.space>, 2019.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: PROJECT VERSION\n"
+"Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
+"POT-Creation-Date: 2020-05-15 05:40+0000\n"
+"PO-Revision-Date: 2017-07-15 18:02+0900\n"
+"Last-Translator: FELIPE AUGUSTO FERREIRA FERRAZ <felipe.ferraz18@gmail.com>\n"
+"Language: en\n"
+"Language-Team: en <LL@li.org>\n"
+"Plural-Forms: nplurals=2; plural=(n != 1)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.8.0\n"
+
+#: app/configuration/session.py:10 app/templates/src/translations.html:1
+msgid "APP_LOGIN_WARNING_MESSAGE"
+msgstr "Por favor, faça o login para acessar esta página."
+
+#: app/configuration/session.py:22 app/templates/src/translations.html:2
+msgid "APP_SIGNIN_WARNING_MESSAGE"
+msgstr "Você precisa entrar ou inscrever-se antes de continuar."
+
+#: app/filters/formats.py:39 app/templates/src/translations.html:3
+msgid "APP_PUBLISHED_AGO"
+msgstr "Postado %(ago)s atrás"
+
+#: app/helpers/email/actions/comment.py:16
+#: app/templates/src/translations.html:4
+msgid "EMAIL_COMMENT_TITLE"
+msgstr "%(name)s comentou na sua história \"%(title)s\""
+
+#: app/helpers/email/actions/comment.py:39
+#: app/templates/src/translations.html:5
+msgid "EMAIL_REPLY_COMMENT_TITLE"
+msgstr "%(name)s respondeu ao seu comentário \"%(title)s\""
+
+#: app/helpers/email/actions/registration.py:13
+#: app/templates/src/translations.html:6
+msgid "EMAIL_REGISTRATION_TITLE"
+msgstr "Bem-vindo ao %(name)s!"
+
+#: app/helpers/email/actions/reset_password.py:13
+#: app/templates/src/translations.html:7
+msgid "EMAIL_RESET_PASSWORD_TITLE"
+msgstr "Redefina sua senha - %(email)s"
+
+#: app/models/users/role.py:9 app/models/users/role.py:14
+#: app/templates/admin/layout/navbar.html:11
+#: app/templates/src/translations.html:8
+msgid "APP_WRITER"
+msgstr "Escritor"
+
+#: app/models/users/role.py:10 app/models/users/role.py:13
+#: app/templates/admin/layout/navbar.html:11
+#: app/templates/src/translations.html:9
+msgid "APP_ADMIN"
+msgstr "Admin"
+
+#: app/templates/admin/index.html:2 app/templates/src/translations.html:10
+msgid "DASHBOARD_TITLE"
+msgstr "Painel de Controle"
+
+#: app/templates/admin/index.html:14 app/templates/src/translations.html:11
+#: app/views/admin/sessions/forms/forgot_password.py:9
+#: app/views/admin/sessions/forms/login.py:9
+#: app/views/admin/sessions/forms/signup.py:10
+#: app/views/admin/users/forms.py:12
+msgid "USER_EMAIL"
+msgstr "E-mail"
+
+#: app/templates/admin/index.html:18 app/templates/src/translations.html:12
+msgid "USER_LAST_ACCESS"
+msgstr "Último Login"
+
+#: app/templates/admin/index.html:26 app/templates/admin/layout/navbar.html:28
+#: app/templates/main/layout/header.html:30
+#: app/templates/main/pages/home.html:58 app/templates/src/translations.html:13
+msgid "APP_PROFILE"
+msgstr "Perfil"
+
+#: app/templates/admin/index.html:30 app/templates/admin/layout/sidebar.html:15
+#: app/templates/admin/users/show.html:47
+#: app/templates/src/translations.html:14
+msgid "USER_EDIT"
+msgstr "Configurações"
+
+#: app/templates/admin/index.html:38 app/templates/admin/index.html:39
+#: app/templates/admin/index.html:43 app/templates/admin/posts/drafts.html:10
+#: app/templates/admin/posts/drafts.html:19
+#: app/templates/admin/posts/index.html:10
+#: app/templates/admin/posts/index.html:19
+#: app/templates/admin/users/user_posts.html:8
+#: app/templates/admin/users/user_posts.html:9
+#: app/templates/admin/users/user_posts.html:14
+#: app/templates/src/translations.html:15
+msgid "POSTS_PAG_LBL"
+msgstr "histórias"
+
+#: app/templates/admin/index.html:47 app/templates/admin/posts/drafts.html:23
+#: app/templates/admin/posts/index.html:23
+#: app/templates/src/translations.html:16
+msgid "WELCOME_MESSAGE_LBL"
+msgstr ""
+"Você ainda não compartilhou nenhuma história.<br/>Participe desta comunidade "
+"escrevendo sua primeira história!"
+
+#: app/templates/admin/index.html:60 app/templates/admin/layout/navbar.html:24
+#: app/templates/admin/layout/sidebar.html:22
+#: app/templates/admin/layout/sidebar.html:28
+#: app/templates/admin/posts/index.html:7
+#: app/templates/admin/posts/partials/_sidebar.html:9
+#: app/templates/main/pages/home.html:54 app/templates/src/translations.html:17
+msgid "POST_LIST"
+msgstr "Histórias"
+
+#: app/templates/admin/categories/add.html:2
+#: app/templates/admin/categories/partials/_sidebar.html:11
+#: app/templates/src/translations.html:18
+msgid "CATEGORY_CREATE"
+msgstr "Criar categoria"
+
+#: app/templates/admin/categories/edit.html:2
+#: app/templates/src/translations.html:19
+msgid "CATEGORY_EDIT_PAGE_TITLE"
+msgstr "Editar categoria: %(name)s"
+
+#: app/templates/admin/categories/index.html:2
+#: app/templates/src/translations.html:20
+msgid "CATEGORY_PAGE_TITLE"
+msgstr "Categorias | %(page)s"
+
+#: app/templates/admin/categories/index.html:7
+#: app/templates/admin/categories/partials/_sidebar.html:5
+#: app/templates/admin/layout/sidebar.html:42
+#: app/templates/src/translations.html:21
+msgid "CATEGORY_LIST"
+msgstr "Categorias"
+
+#: app/templates/admin/categories/index.html:30
+#: app/templates/src/translations.html:23
+#: app/views/admin/categories/forms/category.py:10
+msgid "CATEGORY_NAME"
+msgstr "Nome"
+
+#: app/templates/admin/categories/index.html:31
+#: app/templates/src/translations.html:24
+#: app/views/admin/categories/forms/category.py:9
+msgid "CATEGORY_SLUG"
+msgstr "Slug"
+
+#: app/templates/admin/categories/index.html:32
+#: app/templates/src/translations.html:25
+#: app/views/admin/categories/forms/category.py:11
+msgid "CATEGORY_DESC"
+msgstr "Descrição"
+
+#: app/templates/admin/categories/index.html:33
+#: app/templates/admin/layout/sidebar.html:49
+#: app/templates/admin/layout/sidebar.html:56
+#: app/templates/admin/users/index.html:9
+#: app/templates/admin/users/partials/_sidebar.html:29
+#: app/templates/src/translations.html:26
+msgid "USER_LIST"
+msgstr "Usuários"
+
+#: app/templates/admin/categories/index.html:34
+#: app/templates/src/translations.html:27
+msgid "CATEGORY_ACTIONS"
+msgstr "Ações"
+
+#: app/templates/admin/categories/index.html:49
+#: app/templates/src/translations.html:28
+msgid "CATEGORY_EDIT"
+msgstr "Editar categoria"
+
+#: app/templates/admin/categories/index.html:54
+#: app/templates/admin/categories/partials/_sidebar.html:17
+#: app/templates/src/translations.html:29
+msgid "CATEGORY_DELETE_CONFIRMATION"
+msgstr "Isso removerá [%(name)s] permanentemente, Você deseja continuar?"
+
+#: app/templates/admin/categories/index.html:56
+#: app/templates/admin/categories/partials/_sidebar.html:19
+#: app/templates/admin/categories/partials/_sidebar.html:21
+#: app/templates/src/translations.html:30
+msgid "CATEGORY_DELETE"
+msgstr "Excluir categoria"
+
+#: app/templates/admin/categories/index.html:66
+#: app/templates/admin/categories/index.html:67
+#: app/templates/src/translations.html:22
+msgid "CATEGORY_PAG_LBL"
+msgstr "categorias"
+
+#: app/templates/admin/categories/transfer.html:2
+#: app/templates/src/translations.html:31
+msgid "CATEGORY_TRANSFER_TITLE"
+msgstr "Categorias de transferência"
+
+#: app/templates/admin/categories/partials/_category_form_edit.html:3
+#: app/templates/src/translations.html:33
+msgid "CATEGORY_SLUG_PLACEHOLDER"
+msgstr "Inserir Alias"
+
+#: app/templates/admin/categories/partials/_category_form_edit.html:5
+#: app/templates/src/translations.html:32
+msgid "CATEGORY_NAME_PLACEHOLDER"
+msgstr "Insira o nome"
+
+#: app/templates/admin/categories/partials/_category_form_edit.html:6
+#: app/templates/admin/categories/partials/_category_form_edit.html:8
+#: app/templates/admin/categories/partials/_category_form_edit.html:9
+#: app/templates/admin/categories/partials/_category_form_edit.html:12
+#: app/templates/admin/categories/partials/_category_form_edit.html:13
+#: app/templates/admin/categories/partials/_category_form_edit.html:16
+#: app/templates/admin/categories/partials/_category_form_edit.html:17
+#: app/templates/admin/categories/partials/_category_form_edit.html:20
+#: app/templates/admin/categories/partials/_category_form_edit.html:21
+#: app/templates/src/translations.html:34
+msgid "CATEGORY_DESC_PLACEHOLDER"
+msgstr "Descreva a categoria..."
+
+#: app/templates/admin/categories/partials/_category_form_edit.html:24
+#: app/templates/admin/posts/partials/_post_edit.html:36
+#: app/templates/admin/posts/partials/_sidebar.html:45
+#: app/templates/admin/users/add.html:28 app/templates/admin/users/edit.html:28
+#: app/templates/main/stories/edit.html:86
+#: app/templates/src/translations.html:35
+msgid "BTN_SAVE_LBL"
+msgstr "Salvar"
+
+#: app/templates/admin/categories/partials/_category_form_edit.html:25
+#: app/templates/admin/categories/partials/_transfer_post.html:12
+#: app/templates/admin/users/add.html:27 app/templates/admin/users/edit.html:27
+#: app/templates/src/translations.html:36
+msgid "BTN_CLEAR_LBL"
+msgstr "Limpar"
+
+#: app/templates/admin/categories/partials/_sidebar.html:27
+#: app/templates/admin/categories/partials/_transfer_post.html:4
+#: app/templates/src/translations.html:40
+msgid "CATEGORY_TRANSFER_POSTS"
+msgstr "Transferir Postagens"
+
+#: app/templates/admin/categories/partials/_transfer_post.html:13
+#: app/templates/src/translations.html:41
+msgid "BTN_TRANSFER_LBL"
+msgstr "Transferir"
+
+#: app/templates/admin/layout/navbar.html:16
+#: app/templates/src/translations.html:42
+msgid "APP_WELCOME_LBL"
+msgstr "Bem-vindo(a), %(name)s"
+
+#: app/templates/admin/layout/navbar.html:20
+#: app/templates/src/translations.html:43
+msgid "APP_YOUR_ACCOUNT"
+msgstr "Sua conta"
+
+#: app/templates/admin/layout/navbar.html:25
+#: app/templates/admin/layout/sidebar.html:32
+#: app/templates/admin/posts/partials/_sidebar.html:14
+#: app/templates/main/pages/home.html:55 app/templates/src/translations.html:44
+msgid "POST_DRAFT_LIST"
+msgstr "Rascunhos"
+
+#: app/templates/admin/layout/navbar.html:26
+#: app/templates/admin/layout/sidebar.html:36
+#: app/templates/admin/posts/edit.html:2
+#: app/templates/admin/posts/partials/_sidebar.html:4
+#: app/templates/main/layout/error-base.html:35
+#: app/templates/main/pages/home.html:56 app/templates/main/stories/edit.html:2
+#: app/templates/src/translations.html:45
+msgid "POST_CREATE"
+msgstr "Nova história"
+
+#: app/templates/admin/layout/navbar.html:32
+#: app/templates/src/translations.html:46
+msgid "APP_TOP"
+msgstr "Topo"
+
+#: app/templates/admin/layout/navbar.html:37
+#: app/templates/admin/layout/sidebar.html:97
+#: app/templates/main/layout/header.html:36
+#: app/templates/main/pages/home.html:59 app/templates/main/pages/home.html:60
+#: app/templates/src/translations.html:47
+msgid "APP_SIGN_OUT"
+msgstr "Sair"
+
+#: app/templates/admin/layout/sidebar.html:3
+#: app/templates/src/translations.html:48
+msgid "APP_HOME_LBL"
+msgstr "Home"
+
+#: app/templates/admin/layout/sidebar.html:9
+#: app/templates/main/layout/error-base.html:30
+#: app/templates/main/layout/header-no-menu.html:25
+#: app/templates/main/layout/header.html:21
+#: app/templates/src/translations.html:49
+msgid "APP_MYPAGE"
+msgstr "Minha página"
+
+#: app/templates/admin/layout/sidebar.html:60
+#: app/templates/admin/users/add.html:2 app/templates/admin/users/add.html:11
+#: app/templates/admin/users/partials/_sidebar.html:55
+#: app/templates/src/translations.html:50
+msgid "USER_CREATE"
+msgstr "Novo usuário"
+
+#: app/templates/admin/posts/drafts.html:2
+#: app/templates/src/translations.html:51
+msgid "POSTS_DRAFT_PAGE_TITLE"
+msgstr "Rascunhos | %(page)s"
+
+#: app/templates/admin/posts/drafts.html:7
+#: app/templates/src/translations.html:52
+msgid "POSTS_DRAFT_LIST"
+msgstr "Rascunhos"
+
+#: app/templates/admin/posts/edit.html:15
+#: app/templates/admin/posts/partials/_post_item.html:14
+#: app/templates/admin/posts/show.html:15
+#: app/templates/src/translations.html:53
+msgid "POST_STATUS_DRAFT_LABEL"
+msgstr "Privado: só você pode ver este documento"
+
+#: app/templates/admin/posts/index.html:2
+#: app/templates/src/translations.html:54
+msgid "POSTS_PAGE_TITLE"
+msgstr "Histórias | %(page)s"
+
+#: app/templates/admin/posts/partials/_post_edit.html:13
+#: app/templates/src/translations.html:55
+msgid "BTN_UPLOAD_COVER_PICTURE_LBL"
+msgstr "Clique aqui para enviar uma nova foto de capa"
+
+#: app/templates/admin/posts/partials/_post_edit.html:22
+#: app/templates/main/stories/edit.html:51
+#: app/templates/src/translations.html:56
+msgid "FRM_INPUT_TITLE_DESCRIPTION"
+msgstr "Título"
+
+#: app/templates/admin/posts/partials/_post_edit.html:23
+#: app/templates/src/translations.html:57
+msgid "FRM_INPUT_CHALLENGE_DESCRIPTION"
+msgstr "O desafio - pequena introdução à história"
+
+#: app/templates/admin/posts/partials/_post_edit.html:24
+#: app/templates/main/stories/edit.html:52
+#: app/templates/src/translations.html:58
+msgid "FRM_INPUT_SOLUTION_DESCRIPTION"
+msgstr "Conte sua historia"
+
+#: app/templates/admin/posts/partials/_post_edit.html:30
+#: app/templates/main/stories/edit.html:78
+#: app/templates/src/translations.html:59
+msgid "CB_ANONYMOUS_LBL"
+msgstr "Publicar como anônimo"
+
+#: app/templates/admin/posts/partials/_post_edit.html:43
+#: app/templates/src/translations.html:60
+msgid "ERROR_STAMP_TITLE_EMPTY"
+msgstr "Por favor insira um título."
+
+#: app/templates/admin/posts/partials/_post_edit.html:44
+#: app/templates/src/translations.html:61
+msgid "ERROR_STAMP_CHALLENGE_EMPTY"
+msgstr "Por favor, entre no desafio."
+
+#: app/templates/admin/posts/partials/_post_edit.html:45
+#: app/templates/src/translations.html:62
+msgid "ERROR_STAMP_SOLUTION_EMPTY"
+msgstr "Por favor, insira a solução."
+
+#: app/templates/admin/posts/partials/_post_item.html:51
+#: app/templates/admin/posts/partials/_sidebar.html:34
+#: app/templates/src/translations.html:63
+msgid "POST_DELETE_CONFIRMATION"
+msgstr "Isso removerá '%(title)s', Tem certeza?"
+
+#: app/templates/admin/posts/partials/_sidebar.html:20
+#: app/templates/src/translations.html:64
+msgid "POST_SHOW"
+msgstr "Mostrar"
+
+#: app/templates/admin/posts/partials/_sidebar.html:27
+#: app/templates/src/translations.html:65
+msgid "POST_EDIT"
+msgstr "Editar"
+
+#: app/templates/admin/posts/partials/_sidebar.html:36
+#: app/templates/src/translations.html:66
+msgid "POST_DELETE"
+msgstr "Remover sua história"
+
+#: app/templates/admin/sessions/forgot_password.html:2
+#: app/templates/src/translations.html:67
+msgid "FORGOT_PASSWORD_TITLE"
+msgstr "Restaurar sua senha"
+
+#: app/templates/admin/sessions/forgot_password.html:10
+#: app/templates/src/translations.html:68
+msgid "FORGOT_PASSWORD_TEXT"
+msgstr ""
+"Por favor, digite seu e-mail para receber instruções sobre como redefinir "
+"sua senha."
+
+#: app/templates/admin/sessions/forgot_password.html:11
+#: app/templates/admin/sessions/signin.html:11
+#: app/templates/admin/sessions/signup.html:12
+#: app/templates/src/translations.html:69
+msgid "MAIL_LBL"
+msgstr "E-mail"
+
+#: app/templates/admin/sessions/forgot_password.html:20
+#: app/templates/src/translations.html:70
+msgid "SEND_RESET_INSTRUCTION_BTN"
+msgstr "Enviar e-mail de redefinição"
+
+#: app/templates/admin/sessions/forgot_password.html:26
+#: app/templates/admin/sessions/reset_password.html:27
+#: app/templates/admin/sessions/signup.html:37
+#: app/templates/src/translations.html:71
+msgid "SIGNIN_ACTION_LBL"
+msgstr "Já possui uma conta?"
+
+#: app/templates/admin/sessions/forgot_password.html:27
+#: app/templates/admin/sessions/reset_password.html:28
+#: app/templates/admin/sessions/signin.html:22
+#: app/templates/admin/sessions/signup.html:38
+#: app/templates/main/layout/header.html:43
+#: app/templates/src/translations.html:72
+msgid "LOGIN_BTN"
+msgstr "Login"
+
+#: app/templates/admin/sessions/reset_password.html:2
+#: app/templates/src/translations.html:73
+msgid "RESET_PASSWORD_TITLE"
+msgstr "Redefinir senha"
+
+#: app/templates/admin/sessions/reset_password.html:10
+#: app/templates/src/translations.html:74
+msgid "RESET_PASSWORD_TEXT"
+msgstr "Por favor, insira e confirme sua nova senha abaixo."
+
+#: app/templates/admin/sessions/reset_password.html:21
+#: app/templates/src/translations.html:75
+msgid "RESET_PASSWORD_BTN"
+msgstr "Redefinir senha"
+
+#: app/templates/admin/sessions/signin.html:2
+#: app/templates/admin/sessions/signin.html:10
+#: app/templates/src/translations.html:76
+msgid "LOGIN_TITLE"
+msgstr "Login"
+
+#: app/templates/admin/sessions/signin.html:12
+#: app/templates/admin/sessions/signup.html:13
+#: app/templates/src/translations.html:77
+#: app/views/admin/sessions/forms/login.py:11
+#: app/views/admin/sessions/forms/signup.py:13
+#: app/views/admin/users/forms.py:24
+msgid "USER_PASSWORD"
+msgstr "Senha"
+
+#: app/templates/admin/sessions/signin.html:16
+#: app/templates/src/translations.html:78
+msgid "REMEMBER_ME_BTN"
+msgstr "Lembrar de mim"
+
+#: app/templates/admin/sessions/signin.html:28
+#: app/templates/src/translations.html:79
+msgid "SIGNUP_ACTION_LBL"
+msgstr "Não tem uma conta?"
+
+#: app/templates/admin/sessions/signin.html:29
+#: app/templates/admin/sessions/signup.html:31
+#: app/templates/main/layout/header.html:49
+#: app/templates/src/translations.html:80
+msgid "REGISTER_BTN"
+msgstr "Registrar-se"
+
+#: app/templates/admin/sessions/signin.html:32
+#: app/templates/src/translations.html:81
+msgid "FORGOT_PASWWORD_BTN"
+msgstr "Esqueceu a senha?"
+
+#: app/templates/admin/sessions/signup.html:2
+#: app/templates/admin/sessions/signup.html:10
+#: app/templates/src/translations.html:82
+msgid "REGISTER_TITLE"
+msgstr "Registrar-se"
+
+#: app/templates/admin/sessions/signup.html:11
+#: app/templates/src/translations.html:83
+msgid "NICKNAME_LBL"
+msgstr "Apelido"
+
+#: app/templates/admin/sessions/signup.html:24
+#: app/templates/src/translations.html:84
+msgid "TOS_CHECK_LBL"
+msgstr ""
+"<span>Eu li e concordo com os <br/><a href=\"%(link)s\" class"
+"=\"custom-link\" target=\"_blank\">Termos de serviço</a></span>"
+
+#: app/templates/admin/users/edit.html:2 app/templates/src/translations.html:85
+msgid "USER_PROFILE_EDIT_PAGE_TITLE"
+msgstr "Editar o perfil do usuário | %(name)s"
+
+#: app/templates/admin/users/edit.html:11
+#: app/templates/src/translations.html:86
+msgid "USER_PROFILE_EDIT_TITLE"
+msgstr "Editar informações do usuário"
+
+#: app/templates/admin/users/index.html:2
+#: app/templates/src/translations.html:87
+msgid "USER_PAGE_TITLE"
+msgstr "Usuários | Page %(page)s"
+
+#: app/templates/admin/users/index.html:13
+#: app/templates/admin/users/index.html:14
+#: app/templates/admin/users/index.html:65
+#: app/templates/src/translations.html:88
+msgid "USER_PAG_LBL"
+msgstr "usuários"
+
+#: app/templates/admin/users/index.html:20
+#: app/templates/admin/users/show.html:69
+#: app/templates/src/translations.html:89
+msgid "USER_NAME"
+msgstr "Nome"
+
+#: app/templates/admin/users/index.html:21
+#: app/templates/src/translations.html:90
+msgid "USER_SIGNED_UP"
+msgstr "Registrado"
+
+#: app/templates/admin/users/index.html:22
+#: app/templates/src/translations.html:91
+msgid "USER_POSTS_COUNT"
+msgstr "Histórias"
+
+#: app/templates/admin/users/index.html:23
+#: app/templates/admin/users/show.html:85
+#: app/templates/src/translations.html:92 app/views/admin/users/forms.py:21
+msgid "USER_ROLE"
+msgstr "Função"
+
+#: app/templates/admin/users/index.html:47
+#: app/templates/admin/users/partials/_sidebar.html:45
+#: app/templates/admin/users/show.html:38
+#: app/templates/src/translations.html:93
+msgid "USER_DELETE_CONFIRMATION"
+msgstr "Isso removerá '%(name)s', Você tem certeza?"
+
+#: app/templates/admin/users/show.html:2 app/templates/src/translations.html:94
+msgid "USER_PROFILE_SHOW_PAGE_TITLE"
+msgstr "Perfil do usuário | %(name)s"
+
+#: app/templates/admin/users/show.html:40
+#: app/templates/src/translations.html:95
+msgid "USER_REMOVE"
+msgstr "Remover"
+
+#: app/templates/admin/users/show.html:57
+#: app/templates/src/translations.html:96
+msgid "USER_INFO_TITLE"
+msgstr "Informações do usuário"
+
+#: app/templates/admin/users/show.html:61
+#: app/templates/src/translations.html:97
+msgid "USER_ID"
+msgstr "Id"
+
+#: app/templates/admin/users/show.html:65
+#: app/templates/src/translations.html:98
+msgid "USER_LAST_SEEN"
+msgstr "Visto pela última vez"
+
+#: app/templates/admin/users/show.html:73
+#: app/templates/src/translations.html:99
+#: app/views/admin/sessions/forms/signup.py:12
+#: app/views/admin/users/forms.py:17
+msgid "USER_NICKNAME"
+msgstr "Apelido"
+
+#: app/templates/admin/users/show.html:77
+#: app/templates/src/translations.html:100
+msgid "USER_ADDRESS"
+msgstr "Endereço"
+
+#: app/templates/admin/users/show.html:81
+#: app/templates/src/translations.html:101
+msgid "USER_PHONE"
+msgstr "Telefone"
+
+#: app/templates/admin/users/show.html:89
+#: app/templates/src/translations.html:102
+msgid "USER_CREATED_AT"
+msgstr "Criado em"
+
+#: app/templates/admin/users/show.html:105
+#: app/templates/src/translations.html:103
+msgid "USER_POST_RECENT_TITLE"
+msgstr "Postagens recentes"
+
+#: app/templates/admin/users/show.html:112
+#: app/templates/src/translations.html:104
+msgid "USER_POST_PUBLISHED_AT"
+msgstr "Postado em"
+
+#: app/templates/admin/users/show.html:113
+#: app/templates/src/translations.html:105
+msgid "USER_POST_UPDATED_AT"
+msgstr "Atualizado em"
+
+#: app/templates/admin/users/show.html:114
+#: app/templates/src/translations.html:106
+msgid "USER_POST_TITLE"
+msgstr "Histórias"
+
+#: app/templates/admin/users/user_posts.html:3
+#: app/templates/src/translations.html:107
+msgid "USER_POST_PAGE_TITLE"
+msgstr "Postagens do usuário | %(name)s"
+
+#: app/templates/admin/users/partials/_sidebar.html:17
+#: app/templates/src/translations.html:108
+msgid "USER_PROFILE_PICTURE_UPDATE"
+msgstr "Atualizar foto do perfil"
+
+#: app/templates/admin/users/partials/_sidebar.html:37
+#: app/templates/src/translations.html:109
+msgid "USER_SHOW"
+msgstr "Mostrar usuário"
+
+#: app/templates/admin/users/partials/_sidebar.html:47
+#: app/templates/src/translations.html:110
+msgid "USER_DELETE"
+msgstr "Remover usuário"
+
+#: app/templates/emails/layout/base.html:369
+#: app/templates/main/layout/footer.html:8
+#: app/templates/main/layout/header.html:73
+#: app/templates/main/pages/conduct.html:2
+#: app/templates/src/translations.html:111
+#: app/templates/widgets/pages/_lp_home.html:601
+msgid "CODE_CONDUCT_LBL"
+msgstr "Código de conduta"
+
+#: app/templates/emails/layout/base.html:371
+#: app/templates/main/layout/footer.html:10
+#: app/templates/main/layout/header.html:70
+#: app/templates/main/pages/policy.html:2
+#: app/templates/src/translations.html:112
+#: app/templates/widgets/pages/_lp_home.html:603
+msgid "TOS_LBL"
+msgstr "Termos de serviço"
+
+#: app/templates/emails/users/comment.html:11
+#: app/templates/emails/users/registration.html:9
+#: app/templates/emails/users/reply_comment.html:11
+#: app/templates/emails/users/reset_password.html:9
+#: app/templates/src/translations.html:113
+msgid "EMAIL_GREETING"
+msgstr "Oi %(name)s,"
+
+#: app/templates/emails/users/comment.html:13
+#: app/templates/src/translations.html:114
+msgid "EMAIL_COMMENT_DESCRIPTION"
+msgstr "%(name)s comentou na sua história \"%(title)s\""
+
+#: app/templates/emails/users/comment.html:24
+#: app/templates/emails/users/reply_comment.html:24
+#: app/templates/src/translations.html:115
+msgid "EMAIL_COMMENT_ACTION_BTN"
+msgstr "Ver comentário"
+
+#: app/templates/emails/users/comment.html:35
+#: app/templates/emails/users/registration.html:33
+#: app/templates/emails/users/reply_comment.html:35
+#: app/templates/emails/users/reset_password.html:16
+#: app/templates/src/translations.html:116
+msgid "EMAIL_END_BODY"
+msgstr "<p>Obrigado,<br>%(name)s Equipe</p>"
+
+#: app/templates/emails/users/registration.html:11
+#: app/templates/src/translations.html:117
+msgid "EMAIL_REGISTRATION_DESCRIPTION"
+msgstr "Estamos felizes por você estar aqui! Você pode começar a escrever suas histórias"
+
+#: app/templates/emails/users/registration.html:22
+#: app/templates/src/translations.html:118
+msgid "EMAIL_REGISTRATION_ACTION_BTN"
+msgstr "Escreva sua primeira história"
+
+#: app/templates/emails/users/reply_comment.html:13
+#: app/templates/src/translations.html:119
+msgid "EMAIL_REPLY_COMMENT_DESCRIPTION"
+msgstr "%(name)s respondeu ao seu comentário \"%(title)s\""
+
+#: app/templates/emails/users/reset_password.html:10
+#: app/templates/src/translations.html:120
+msgid "EMAIL_RESET_PASSWORD_DESCRIPTION"
+msgstr ""
+"Você solicitou a redefinição da senha de sua conta Head UP para o "
+"endereço de e-mail (%(email)s). Clique neste link para redefinir sua"
+"senha."
+
+#: app/templates/errors/401.html:2 app/templates/src/translations.html:121
+msgid "ERROR_401_TITLE"
+msgstr "Não autorizado"
+
+#: app/templates/errors/401.html:13 app/templates/src/translations.html:122
+msgid "ERROR_401_DESCRIPTION"
+msgstr "Estranho... Aparentemente, você não está autorizado a realizar esta ação."
+
+#: app/templates/errors/403.html:2 app/templates/src/translations.html:123
+msgid "ERROR_403_TITLE"
+msgstr "Proibido"
+
+#: app/templates/errors/403.html:13 app/templates/src/translations.html:124
+msgid "ERROR_403_DESCRIPTION"
+msgstr "Estranho... Aparentemente, você não tem permissão para acessar este recurso."
+
+#: app/templates/errors/404.html:2 app/templates/src/translations.html:125
+msgid "ERROR_404_TITLE"
+msgstr "Não encontrado"
+
+#: app/templates/errors/404.html:13 app/templates/src/translations.html:126
+msgid "ERROR_404_DESCRIPTION"
+msgstr "Bem... A página que você está procurando não foi encontrada!"
+
+#: app/templates/errors/500.html:2 app/templates/src/translations.html:127
+msgid "ERROR_500_TITLE"
+msgstr "Erro de servidor"
+
+#: app/templates/errors/500.html:13 app/templates/src/translations.html:128
+msgid "ERROR_500_DESCRIPTION"
+msgstr ""
+"Desculpe ... essa é culpa nossa. O administrador foi notificado. Desculpe "
+"pela inconveniencia!"
+
+#: app/templates/main/layout/error-base.html:17
+#: app/templates/main/layout/header-no-menu.html:22
+#: app/templates/main/layout/header.html:18
+#: app/templates/src/translations.html:132
+msgid "LATEST_LBL"
+msgstr "Mais recentes"
+
+#: app/templates/main/layout/error-base.html:32
+#: app/templates/src/translations.html:133
+msgid "DASHBOARD_BTN"
+msgstr "Painel de Controle"
+
+#: app/templates/main/layout/error-base.html:33
+#: app/templates/src/translations.html:134
+msgid "POSTS_BTN"
+msgstr "Histórias"
+
+#: app/templates/main/layout/error-base.html:34
+#: app/templates/src/translations.html:135
+msgid "DRAFT_BTN"
+msgstr "Rascunho"
+
+#: app/templates/main/layout/error-base.html:36
+#: app/templates/src/translations.html:136
+msgid "PROFILE_BTN"
+msgstr "Perfil"
+
+#: app/templates/main/layout/header-no-menu.html:5
+#: app/templates/main/layout/header.html:4
+#: app/templates/src/translations.html:137
+msgid "Logo"
+msgstr "Logotipo"
+
+#: app/templates/main/layout/header-no-menu.html:11
+#: app/templates/main/layout/header.html:8
+#: app/templates/src/translations.html:138
+msgid "TOGGLE_NAVIGATION_LBL"
+msgstr "Alternar navegação"
+
+#: app/templates/main/pages/home.html:2 app/templates/src/translations.html:140
+msgid "HOME_TITLE"
+msgstr "Rede social de narrativas para te estimular a seguir em frente"
+
+#: app/templates/main/pages/home.html:3 app/templates/src/translations.html:141
+msgid "HOME_DESCRIPTION"
+msgstr ""
+"HeadUP é a sua rede social de narração de histórias, um problema e solução "
+"um site onde você pode transmitir seu otimismo, dizer como você mantém ou manteve "
+"sua cabeça erguida. Compartilhe experiências positivas e divertidas, escreva sobre "
+"realizações pessoais ou leia histórias de sucesso notáveis. Conte ao mundo sobre uma "
+"solução que você encontrou para uma situação desafiadora ou uma dificuldade que você uma vez "
+"enfrentou. Fale, HeadUP."
+
+#: app/templates/main/pages/home.html:22
+msgid "LP_HOME_LBL"
+msgstr "HOME"
+
+#: app/templates/main/pages/home.html:25
+msgid "LP_STORY_CATEGORIES_LBL"
+msgstr "CATEGORIAS"
+
+#: app/templates/main/pages/home.html:28
+msgid "LP_STORY_CONTACT_US_LBL"
+msgstr "CONTATE-NOS"
+
+#: app/templates/main/pages/home.html:33
+msgid "LP_STORY_LANGUAGE_LBL"
+msgstr "IDIOMA"
+
+#: app/templates/main/pages/home.html:51
+msgid "LP_ACCOUNT"
+msgstr "CONTA"
+
+#: app/templates/main/pages/home.html:67
+msgid "LP_STORY_LOGIN_LBL"
+msgstr "LOGIN"
+
+#: app/templates/main/pages/home.html:71
+msgid "LP_STORY_SIGN_UP_LBL"
+msgstr "REGISTRAR-SE"
+
+#: app/templates/main/pages/latest.html:2
+#: app/templates/src/translations.html:142
+msgid "LATEST_TITLE"
+msgstr "Mais recentes | Rede social de narrativas para te estimular a seguir em frente"
+
+#: app/templates/main/pages/latest.html:3
+#: app/templates/src/translations.html:143
+msgid "LATEST_DESCRIPTION"
+msgstr ""
+"HeadUP é a sua rede social de narração de histórias, um problema e solução "
+"um site onde você pode transmitir seu otimismo, dizer como você mantém ou manteve "
+"sua cabeça erguida. Compartilhe experiências positivas e divertidas, escreva sobre "
+"realizações pessoais ou leia histórias de sucesso notáveis. Conte ao mundo sobre uma "
+"solução que você encontrou para uma situação desafiadora ou uma dificuldade que você uma vez "
+"enfrentou. Fale, HeadUP."
+
+#: app/templates/main/stories/category.html:2
+#: app/templates/src/translations.html:145
+msgid "CATEGORY_LIST_TITLE"
+msgstr "Histórias para %(category)s"
+
+#: app/templates/main/stories/edit.html:16
+#: app/templates/src/translations.html:146
+msgid "BTN_CANCEL_LBL"
+msgstr "Cancelar"
+
+#: app/templates/main/stories/edit.html:21
+#: app/templates/src/translations.html:147
+msgid "BTN_UNPUBLISH_LBL"
+msgstr "Salvar como rascunho"
+
+#: app/templates/main/stories/edit.html:21
+#: app/templates/src/translations.html:148
+msgid "BTN_DRAFT_LBL"
+msgstr "Salvar como rascunho"
+
+#: app/templates/main/stories/edit.html:24
+#: app/templates/main/stories/edit.html:66
+#: app/templates/src/translations.html:149
+msgid "PUBLISH_LBL"
+msgstr "Publicar"
+
+#: app/templates/main/stories/edit.html:71
+#: app/templates/src/translations.html:150
+msgid "SELECT_CATEGORY_LBL"
+msgstr "Selecione a Categoria"
+
+#: app/templates/main/stories/edit.html:85
+#: app/templates/src/translations.html:151
+msgid "BTN_CLOSE_LBL"
+msgstr "Fechar"
+
+#: app/templates/main/stories/partials/_post_story.html:21
+#: app/templates/src/translations.html:159
+msgid "ANONYMOUS_LBL"
+msgstr "Anônimo"
+
+#: app/templates/src/translations.html:37
+msgid "BTN_LIKE"
+msgstr "Curtir"
+
+#: app/templates/src/translations.html:38
+msgid "BTN_COMMENTS"
+msgstr "Comentários"
+
+#: app/templates/src/translations.html:39
+msgid "BTN_SHARE"
+msgstr "Compartilhar"
+
+#: app/templates/src/translations.html:129
+msgid "SIDEBAR_USER_TITLE"
+msgstr "Entrar na rede?"
+
+#: app/templates/src/translations.html:130
+msgid "SIDEBAR_STAMP_TITLE"
+msgstr "Comece aqui!"
+
+#: app/templates/src/translations.html:131
+msgid "EDIT_STAMP_LBL"
+msgstr "Editar história"
+
+#: app/templates/src/translations.html:139
+msgid "RANKING_LBL"
+msgstr "H'UP"
+
+#: app/templates/src/translations.html:144
+msgid "RANKING_TITLE"
+msgstr "Histórias mais populares"
+
+#: app/templates/src/translations.html:152
+msgid "COMMENT_TEXT_PLACEHOLDER"
+msgstr "Adicione um comentário..."
+
+#: app/templates/src/translations.html:153
+msgid "COMMENT_SUBMIT_BTN"
+msgstr "Comentar"
+
+#: app/templates/src/translations.html:154
+msgid "COMMENT_DELETE_CONFIRMATION"
+msgstr ""
+"Isso removerá permanentemente o comentário:\n"
+"\"%(text)s\"\n"
+"Você deseja continuar?"
+
+#: app/templates/src/translations.html:155
+msgid "COMMENT_REPLY_LBL"
+msgstr "Responder"
+
+#: app/templates/src/translations.html:156
+msgid "COMMENT_REPLY_TEXT_PLACEHOLDER"
+msgstr "Adicionar uma resposta..."
+
+#: app/templates/src/translations.html:157
+msgid "COMMENT_REPLY_CANCEL_BTN"
+msgstr "Cancelar"
+
+#: app/templates/src/translations.html:158
+msgid "COMMENT_REPLY_SUBMIT_BTN"
+msgstr "Responder"
+
+#: app/templates/src/translations.html:160
+msgid "POSTED_BY_USER_CATEGORY_LBL"
+msgstr "Postado por %(user)s na %(category)s"
+
+#: app/templates/src/translations.html:161
+msgid "POSTED_BY_USER_LBL"
+msgstr "Postado por %(user)s"
+
+#: app/templates/src/translations.html:162
+msgid "LBL_SCRLL_LAST_PAGE"
+msgstr "Fim do conteúdo"
+
+#: app/templates/src/translations.html:163
+msgid "LBL_SCRLL_ERROR"
+msgstr "Não há mais páginas para carregar"
+
+#: app/templates/src/translations.html:164
+msgid "READ_MORE_LBL"
+msgstr "(mais)"
+
+#: app/templates/src/translations.html:165
+#: app/views/admin/categories/index.py:41
+#: app/views/admin/categories/index.py:79
+#: app/views/admin/categories/index.py:135 app/views/admin/sessions/index.py:79
+#: app/views/admin/sessions/index.py:144 app/views/admin/sessions/index.py:194
+#: app/views/admin/users/index.py:55 app/views/admin/users/index.py:88
+#: app/views/main/stories/forms/index.py:25 app/views/main/stories/index.py:79
+msgid "ERROR_INVALID_SUBMISSION"
+msgstr "Envio inválido, por favor, verifique a mensagem abaixo"
+
+#: app/templates/src/translations.html:166
+#: app/views/admin/categories/index.py:54
+msgid "CATEGORY_CREATE_SUCESS"
+msgstr "Categoria criada com sucesso"
+
+#: app/templates/src/translations.html:167
+#: app/views/admin/categories/index.py:69
+#: app/views/admin/categories/index.py:109
+msgid "CATEGORY_NOT_FOUND"
+msgstr "Categoria não encontrada"
+
+#: app/templates/src/translations.html:168
+#: app/views/admin/categories/index.py:94
+msgid "CATEGORY_SAVE_SUCCESS"
+msgstr "Categoria salva com sucesso"
+
+#: app/templates/src/translations.html:169
+#: app/views/admin/categories/index.py:115
+msgid "CATEGORY_TRANSFER_POSTS_FAILED"
+msgstr "Desculpe, esta categoria não pode ser removida"
+
+#: app/templates/src/translations.html:170
+#: app/views/admin/categories/index.py:120
+msgid "CATEGORY_REMOVE_SUCCESS"
+msgstr "A categoria com o nome \"%(name)s\" foi removida"
+
+#: app/templates/src/translations.html:171
+#: app/views/admin/categories/index.py:141
+msgid "CATEGORY_TRANSFER_POSTS_CHECK_FAILED"
+msgstr "Nenhuma das categorias foi encontrada"
+
+#: app/templates/src/translations.html:172
+#: app/views/admin/categories/index.py:145
+msgid "CATEGORY_TRANSFER_POSTS_SUCCESS"
+msgstr "As postagens foram transferidas de %(from_name)s para %(to_name)s"
+
+#: app/templates/src/translations.html:173
+#: app/views/admin/categories/forms/transfer.py:10
+msgid "CATEGORY_FROM"
+msgstr "De"
+
+#: app/templates/src/translations.html:174
+#: app/views/admin/categories/forms/transfer.py:11
+msgid "CATEGORY_TO"
+msgstr "Para"
+
+#: app/templates/src/translations.html:175
+#: app/views/admin/categories/forms/transfer.py:23
+msgid "CATEGORY_TRANFER_POSTS_SAME_ERROR"
+msgstr "Por favor selecione uma categoria diferente"
+
+#: app/templates/src/translations.html:176 app/views/admin/posts/index.py:66
+msgid "POST_NOT_FOUND"
+msgstr "História não encontrada"
+
+#: app/templates/src/translations.html:177
+msgid "POST_DRAFT_SAVE_SUCESS"
+msgstr "O rascunho foi salvo com sucesso"
+
+#: app/templates/src/translations.html:178
+msgid "POST_PUBLIC_SAVE_SUCESS"
+msgstr "A história foi salva com sucesso"
+
+#: app/templates/src/translations.html:179 app/views/admin/posts/index.py:77
+msgid "POST_DELETE_SUCESS"
+msgstr "A história foi removida com sucesso"
+
+#: app/templates/src/translations.html:180 app/views/admin/posts/index.py:82
+msgid "ERROR_POST_DELETE_FAILED"
+msgstr "Erro ao remover a história, %(error)s"
+
+#: app/templates/src/translations.html:181 app/views/admin/sessions/index.py:22
+#: app/views/admin/sessions/index.py:67 app/views/admin/sessions/index.py:137
+#: app/views/admin/sessions/index.py:179
+msgid "SESSIONS_MSG_ALREADY_SIGNED_IN"
+msgstr "Você já está logado."
+
+#: app/templates/src/translations.html:182 app/views/admin/sessions/index.py:36
+msgid "SESSIONS_ERROR_LOGIN"
+msgstr "Email ou senha inválida."
+
+#: app/templates/src/translations.html:183 app/views/admin/sessions/index.py:54
+msgid "SESSIONS_MSG_LOGIN_SUCESS"
+msgstr "Sessão iniciada com sucesso"
+
+#: app/templates/src/translations.html:184 app/views/admin/sessions/index.py:83
+#: app/views/admin/sessions/index.py:148 app/views/admin/sessions/index.py:198
+msgid "SESSIONS_ERROR_UNFINISHED_CHALLENGE_LBL"
+msgstr "Captcha inválido"
+
+#: app/templates/src/translations.html:185
+#: app/views/admin/sessions/index.py:111
+msgid "SESSIONS_MSG_SIGNUP_COMPLETED"
+msgstr "Bem-vindo(a)! Registro realizado com sucesso."
+
+#: app/templates/src/translations.html:186
+#: app/views/admin/sessions/index.py:130
+msgid "SESSIONS_MSG_SIGNED_OUT"
+msgstr "Sessão finalizada com sucesso."
+
+#: app/templates/src/translations.html:187
+#: app/views/admin/sessions/index.py:156
+msgid "SESSIONS_ERROR_MAIL_NOT_FOUND"
+msgstr "Não há uma conta registrada para o endereço de e-mail %(email)s."
+
+#: app/templates/src/translations.html:188
+#: app/views/admin/sessions/index.py:160
+msgid "SESSIONS_PASSWORD_RESET"
+msgstr "As instruções sobre como redefinir sua senha foram enviadas para %(email)s."
+
+#: app/templates/src/translations.html:189
+#: app/views/admin/sessions/index.py:187
+msgid "ERROR_INVALID_RESET_PASSWORD_CODE"
+msgstr "O link de e-mail em que você clicou é inválido. Por favor, tente novamente."
+
+#: app/templates/src/translations.html:190
+#: app/views/admin/sessions/index.py:208
+msgid "SESSIONS_MSG_PASSWORD_RESET_COMPLETED"
+msgstr "Sua senha foi alterada com sucesso."
+
+#: app/templates/src/translations.html:191
+#: app/views/admin/sessions/forms/reset_password.py:9
+msgid "USER_RESET_PASSWORD"
+msgstr "Nova senha"
+
+#: app/templates/src/translations.html:192
+#: app/views/admin/sessions/forms/reset_password.py:11
+#: app/views/admin/users/forms.py:26
+msgid "USER_CONFIRM_PASSWORD_INVALID"
+msgstr "Senhas não conferem"
+
+#: app/templates/src/translations.html:193
+#: app/views/admin/sessions/forms/reset_password.py:16
+msgid "USER_RESET_PASSWORD_CONFIRM"
+msgstr "Confirme a Senha"
+
+#: app/templates/src/translations.html:194
+#: app/views/admin/sessions/forms/signup.py:27
+msgid "USER_NICKNAME_INVALID"
+msgstr "Este apelido contém caracteres inválidos"
+
+#: app/templates/src/translations.html:195
+#: app/views/admin/sessions/forms/signup.py:31
+msgid "USER_EMAIL_TAKEN_ERROR"
+msgstr "Esse email já está em uso. Por favor escolha outro."
+
+#: app/templates/src/translations.html:196
+#: app/views/admin/sessions/forms/signup.py:35
+msgid "USER_NICKNAME_TAKEN_ERROR"
+msgstr "Este apelido já está em uso. Por favor escolha outro."
+
+#: app/templates/src/translations.html:197 app/views/admin/users/forms.py:31
+msgid "USER_CONFIRM"
+msgstr "confirmar"
+
+#: app/templates/src/translations.html:198
+msgid "USER_TIMEZONE"
+msgstr "Fuso horário"
+
+#: app/templates/src/translations.html:199 app/views/admin/users/index.py:39
+#: app/views/admin/users/index.py:78 app/views/admin/users/index.py:117
+#: app/views/admin/users/index.py:158
+msgid "USER_NOT_FOUND"
+msgstr "Usuário não encontrado"
+
+#: app/templates/src/translations.html:200 app/views/admin/users/index.py:64
+msgid "USER_CREATE_SUCCESS"
+msgstr "O usuário foi criado com sucesso"
+
+#: app/templates/src/translations.html:201 app/views/admin/users/index.py:100
+msgid "USER_SAVE_SUCCESS"
+msgstr "O usuário foi atualizado com sucesso"
+
+#: app/templates/src/translations.html:202 app/views/admin/users/index.py:129
+msgid "USER_DELETE_SUCCESS"
+msgstr "O usuário \"%(name)s\" foi removido"
+
+#: app/templates/src/translations.html:203 app/views/admin/users/index.py:132
+msgid "USER_DELETE_FAIL"
+msgstr "Erro ao remover o usuário, %(error)s"
+
+#: app/templates/src/translations.html:204 app/views/admin/users/index.py:201
+msgid "USER_POST_HIDE_SUCCESS"
+msgstr "A história agora está escondida da visão do público"
+
+#: app/templates/src/translations.html:205 app/views/admin/users/index.py:203
+msgid "USER_POST_RESTORE_SUCCESS"
+msgstr "A história foi tornada pública"
+
+#: app/templates/src/translations.html:206 app/views/admin/users/index.py:206
+msgid "USER_POST_HIDE_OR_RESTORE_FAIL"
+msgstr "Erro ao processar o carimbo, %(error)s"
+
+#: app/templates/src/translations.html:207
+#: app/views/main/stories/forms/index.py:31 app/views/main/stories/index.py:85
+msgid "COMMENT_SAVE_SUCESS"
+msgstr "Obrigado! seu comentário foi adicionado à história."
+
+#: app/templates/src/translations.html:208
+#: app/views/main/stories/forms/index.py:62 app/views/main/stories/index.py:115
+msgid "COMMENT_DELETE_SUCCESS"
+msgstr "O comentário foi removido."
+
+#: app/templates/src/translations.html:209
+#: app/views/main/stories/forms/index.py:64 app/views/main/stories/index.py:117
+msgid "ERROR_COMMENT_DELETE_FAILED"
+msgstr "Erro ao remover o comentário, %(error)s"
+
+#: app/templates/src/translations.html:210
+msgid "NAME_LBL"
+msgstr "Nome"
+
+#: app/templates/src/translations.html:211
+msgid "USER_NAME_INVALID"
+msgstr "Este nome possui caracteres inválidos"
+
+#: app/templates/src/translations.html:212
+msgid "COMMENT_DESC"
+msgstr ""
+
+#: app/templates/src/translations.html:213
+msgid "WELCOME_TITLE_LBL"
+msgstr "%(name)s - Rede de Narrativas<br/>seu espaço para se expressar livremente"
+
+#: app/templates/src/translations.html:214
+msgid "WELCOME_SUBTITLE_LBL"
+msgstr "Conte ao mundo e além qual foi a sua solução…<br/>Fale, HeadUp!"
+
+#: app/templates/src/translations.html:215
+msgid "GO_TO_STORIES_BTN"
+msgstr "Histórias"
+
+#: app/templates/src/translations.html:216
+msgid "WELCOME_SUBTITLE_EXTRA_LBL"
+msgstr "Você gostaria de fazer parte disso?"
+
+#: app/templates/src/translations.html:217
+msgid "INTRO1_LBL"
+msgstr "Compartilhe uma experiência positiva"
+
+#: app/templates/src/translations.html:218
+msgid "INTRO2_LBL"
+msgstr "Inspire as pessoas com uma realização pessoal da qual você se orgulha"
+
+#: app/templates/src/translations.html:219
+msgid "INTRO3_LBL"
+msgstr "Expresse-se e diga-nos como você está mantendo sua cabeça erguida"
+
+#: app/templates/src/translations.html:220
+msgid "INTRO4_LBL"
+msgstr "Transmita seu otimismo escrevendo histórias de sucesso inscríveis"
+
+#: app/templates/src/translations.html:221
+msgid "APP_ERROR_AND_RETRY"
+msgstr "Ops! Algo deu errado. Por favor, tente novamente."
+
+#: app/templates/widgets/pages/_lp_head.html:52
+msgid "LP_HOME_INTRO_LBL"
+msgstr "“Uma boa vibe por dia vai longe”"
+
+#: app/templates/widgets/pages/_lp_home.html:10
+msgid "LP_STORY_START_READING_HERE_LBL"
+msgstr "COMECE A LER AQUI!"
+
+#: app/templates/widgets/pages/_lp_home.html:25
+msgid "LP_STORY_STORIES_CATEGORIES_LBL"
+msgstr "Histórias por categoria"
+
+#: app/templates/widgets/pages/_lp_home.html:304
+msgid "LP_HOW_IT_WORKS_TITLE"
+msgstr "UMA HISTÓRIA PARA CONTAR?"
+
+#: app/templates/widgets/pages/_lp_home.html:318
+msgid "LP_SHARE_STORY_LBL"
+msgstr "Você quer compartilhar uma história"
+
+#: app/templates/widgets/pages/_lp_home.html:331
+msgid "LP_SHARE_SIGN_UP_LBL"
+msgstr "Inscrever-se"
+
+#: app/templates/widgets/pages/_lp_home.html:333
+msgid "LP_SHARE_SIGN_UP_DESC"
+msgstr "Crie seu perfil em 30 segundos"
+
+#: app/templates/widgets/pages/_lp_home.html:346
+msgid "LP_SHARE_WRITE_STORY_DESC"
+msgstr "Escreva sua história"
+
+#: app/templates/widgets/pages/_lp_home.html:364
+msgid "LP_SHARE_SAVE_STORY_DESC"
+msgstr "Carimbe !"
+
+#: app/templates/widgets/pages/_lp_home.html:386
+msgid "LP_PRODUCT_TITLE"
+msgstr "O QUE NOS TORNA DIFERENTES?"
+
+#: app/templates/widgets/pages/_lp_home.html:389
+msgid "LP_PRODUCT_ITEM_01_DESC"
+msgstr "<b>Grátis</b> & <b>Anônimo</b>"
+
+#: app/templates/widgets/pages/_lp_home.html:390
+msgid "LP_PRODUCT_ITEM_02_DESC"
+msgstr "Compartilhe sua história<b>No mundo todo"
+
+#: app/templates/widgets/pages/_lp_home.html:391
+msgid "LP_PRODUCT_ITEM_03_DESC"
+msgstr "<b>Incentive</b> e <b>inspire</b> outras pessoas"
+
+#: app/templates/widgets/pages/_lp_home.html:392
+msgid "LP_PRODUCT_ITEM_04_DESC"
+msgstr "<b>Promova</b> seus projetos, seu negócio, seus talentos"
+
+#: app/templates/widgets/pages/_lp_home.html:393
+msgid "LP_PRODUCT_ITEM_05_DESC"
+msgstr "<b>Descubra</b> histórias fantásticas e divertidas"
+
+#: app/templates/widgets/pages/_lp_home.html:411
+#: app/templates/widgets/pages/_lp_home.html:519
+msgid "LP_LATEST_STORIES_TITLE"
+msgstr "Seu espaço para se expressar livremente"
+
+#: app/templates/widgets/pages/_lp_home.html:531
+msgid "LP_WORLDWIDE_LBL"
+msgstr "No mundo todo"
+
+#: app/templates/widgets/pages/_lp_home.html:555
+msgid "LP_FOLLOW_SHARE_LBL"
+msgstr "Nos siga e compartilhe"
+
