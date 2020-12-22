@@ -795,7 +795,7 @@ msgstr "STORY CATEGORIES"
 
 #: app/templates/main/pages/home.html:28
 msgid "LP_STORY_EVENTS_LBL"
-msgstr "大事記"
+msgstr "EVENTS"
 
 #: app/templates/main/pages/home.html:34
 msgid "LP_STORY_CONTACT_US_LBL"
@@ -807,7 +807,7 @@ msgstr "LANGUAGE"
 
 #: app/templates/main/pages/home.html:57
 msgid "LP_ACCOUNT"
-msgstr "帳戶"
+msgstr "ACCOUNT"
 
 #: app/templates/main/pages/home.html:73
 msgid "LP_STORY_LOGIN_LBL"
