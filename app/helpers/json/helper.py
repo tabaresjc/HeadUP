@@ -1,6 +1,6 @@
 # -*- coding: utf8 -*-
 
-from flask import request, jsonify
+from flask import request, jsonify, render_template, make_response
 from flask_wtf import Form
 from werkzeug.exceptions import HTTPException, NotFound
 import datetime
@@ -45,6 +45,12 @@ def render_json(message=None, status=None, error=None, **kwargs):
     response = jsonify(**data)
     response.status_code = status_code
     return response
+
+
+def render_json_template(template):
+    r = make_response(render_template(template))
+    r.headers.set('Content-Type', 'application/json')
+    return r
 
 
 def is_json_request():

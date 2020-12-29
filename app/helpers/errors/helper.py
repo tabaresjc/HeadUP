@@ -79,7 +79,7 @@ class ErrorHelper(object):
             'path: %s' % request.path,
             'query string: %s' % request.query_string,
             'referrer: %s' % request.referrer,
-            'json: %s' % request.json,
+            'json: %s' % self._request_json(),
             'user_agent: %s' % request.user_agent,
             'args: %s' % str(request.args),
             'form: %s' % str(request.form),
@@ -87,3 +87,9 @@ class ErrorHelper(object):
             'headers: %s' % str(request.headers)
         ]
         return '\n'.join(lines)
+
+    def _request_json(self):
+        try:
+            return request.get_json()
+        except:
+            return ""

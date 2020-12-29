@@ -5,7 +5,9 @@ from flask_login import current_user, login_required
 from flask_classy import FlaskView, route
 from app.helpers import render_json
 from app.models import Post, Feed, Vote
+from models import StoryView
 from app import cache
+from flask_socketio import emit
 
 
 class StoriesApiView(FlaskView):
@@ -34,6 +36,23 @@ class StoriesApiView(FlaskView):
                            page=page,
                            limit=limit)
 
+    @route('/drafts', methods=['GET'])
+    @login_required
+    def drafts(self):
+        data = request.values
+        page = data.get('page', 1, int)
+        limit = data.get('limit', 20, int)
+
+        posts, total = Post.posts_by_user(current_user.id,
+                                          limit=limit,
+                                          page=page,
+                                          status=Post.POST_DRAFT_2)
+
+        return render_json(stories=posts,
+                           total=total,
+                           page=page,
+                           limit=limit)
+
     def get(self, id):
         story = Post.get_by_id(id)
 
@@ -49,7 +68,7 @@ class StoriesApiView(FlaskView):
             abort(404, 'API_ERROR_POST_NOT_FOUND')
 
         if not story.can_edit():
-            abort(401, 'API_ERROR_POST_NOT_FOUND')
+            abort(404, 'API_ERROR_POST_NOT_FOUND')
 
         Post.delete(id)
 
@@ -68,6 +87,17 @@ class StoriesApiView(FlaskView):
             draft.save()
 
         return render_json(draft=draft)
+
+    @route('/save-draft', methods=['POST'])
+    @login_required
+    def new_draft(self):
+        # data = request.json
+        # draft = Post.init(current_user, status=Post.POST_DRAFT_2)
+        # self.update_story(draft, data, Post.POST_DRAFT_2)
+        # draft.save()
+
+        # return render_json(draft=draft)
+        abort(404)
 
     @route('/save-draft/<int:id>', methods=['POST'])
     @login_required
@@ -150,6 +180,4 @@ class StoriesApiView(FlaskView):
         story.anonymous = data.get('anonymous', 0)
 
     def clean_story(self, story):
-        if story.anonymous:
-            story.user = None
-        return story
+        return StoryView(story)

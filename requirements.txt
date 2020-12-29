@@ -10,7 +10,7 @@ Flask-Babel==0.11.2
 Flask-Bcrypt==0.7.1
 Flask-Caching==1.7.1
 Flask-Classy==0.6.10
-Flask-Login==0.4.0
+Flask-Login==0.4.1
 Flask-Mail==0.9.1
 flask-paginate==0.5.1
 Flask-Principal==0.4.0
@@ -32,3 +32,4 @@ ConcurrentLogHandler==0.9.1
 Pillow==6.2.2
 mailchimp3==3.0.13
 email-validator==1.0.4
+WTForms-JSON==0.3.3

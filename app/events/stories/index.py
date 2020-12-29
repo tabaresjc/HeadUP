@@ -6,7 +6,7 @@ from app.models import Vote, Feed
 from flask_socketio import emit
 
 
-@socketio.on('vote_story')
+@socketio.on('vote_story', namespace='/')
 def vote_post(message):
     target_id = int(message.get('target_id', 0))
     user_id = int(current_user.get_id() or 0)

@@ -31,3 +31,6 @@ OEmbedApiView.register(app.app)
 # register the comment module
 from comments import CommentsApiView  # noqa
 CommentsApiView.register(app.app)
+
+from votes import VotesApiView  # noqa
+VotesApiView.register(app.app)

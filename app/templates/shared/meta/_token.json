@@ -1,0 +1,7 @@
+{
+    "status": true,
+    "datetime": {{utc_now | timestampformat}},
+    "data": {
+        "token": "{{ csrf_token() }}"
+    }    
+}
