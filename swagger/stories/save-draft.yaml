@@ -1,0 +1,32 @@
+post:
+  summary: Save draft story by ID.
+  tags:
+    - Stories
+  security:
+    - "XAuthToken": []
+  parameters:
+    - $ref: "../api.yaml#/components/parameters/ApiContentType"
+    - $ref: "../api.yaml#/components/parameters/XAuthToken"
+    - name: id
+      in: path
+      description: Story ID.
+      required: true
+      schema:
+        type: integer
+  requestBody:
+    required: true
+    content:
+      application/json:
+        schema:
+          $ref: "schemas.yaml#/schemas/StoryRequest"        
+  responses:
+    200:
+      description: OK
+      content:
+        application/json:
+          schema:
+            $ref: "schemas.yaml#/schemas/SaveLastDraftResponse"
+    400:
+      description: Bad Request
+    409:
+      description: Conflict

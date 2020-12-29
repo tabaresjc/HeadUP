@@ -1,0 +1,50 @@
+schemas:
+  SignupUserRequest:
+    type: object
+    properties:
+      email:
+        type: string
+      password:
+        type: string
+      nickname:
+        type: string
+    required:
+      - email
+      - password
+      - nickname
+  SignupUserResponse:
+    allOf:
+      - $ref: "../api.yaml#/components/schemas/BaseResponse"
+      - type: object
+        properties:
+          data:
+            type: object
+            properties:
+              token:
+                type: string
+                description: "Auth Token for successive requests"
+        required:
+          - data
+  SigninUserRequest:
+    type: object
+    properties:
+      email:
+        type: string
+      password:
+        type: string
+    required:
+      - email
+      - password
+  SigninUserResponse:
+    allOf:
+      - $ref: "../api.yaml#/components/schemas/BaseResponse"
+      - type: object
+        properties:
+          data:
+            type: object
+            properties:
+              token:
+                type: string
+                description: "Auth Token for successive requests"
+        required:
+          - data

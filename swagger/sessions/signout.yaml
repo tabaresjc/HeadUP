@@ -1,0 +1,14 @@
+post:
+  summary: End session of current user
+  tags:
+    - Sessions
+  security:
+    - "XAuthToken": []
+  parameters:
+    - $ref: "../api.yaml#/components/parameters/ApiContentType"
+    - $ref: "../api.yaml#/components/parameters/XAuthToken"
+  responses:
+    204:
+      description: OK
+    400:
+      description: Bad Request

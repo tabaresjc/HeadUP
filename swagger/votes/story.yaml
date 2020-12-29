@@ -1,0 +1,26 @@
+post:
+  summary: Submit vote for any given resource (Story, Picture, Comment)
+  tags:
+    - Votes
+  security:
+    - "XAuthToken": []
+  parameters:
+    - $ref: "../api.yaml#/components/parameters/ApiContentType"
+    - $ref: "../api.yaml#/components/parameters/XAuthToken"
+  requestBody:
+    required: true
+    content:
+      application/json:
+        schema:
+          $ref: "schemas.yaml#/schemas/VoteRequest"
+  responses:
+    200:
+      description: OK
+      content:
+        application/json:
+          schema:
+            $ref: "schemas.yaml#/schemas/VoteResponse"
+    400:
+      description: Bad Request
+    409:
+      description: Conflict

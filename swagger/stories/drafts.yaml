@@ -1,0 +1,32 @@
+get:
+  summary: Get draft stories of current user
+  tags:
+    - Stories
+  security:
+    - "XAuthToken": []
+  parameters:
+    - $ref: "../api.yaml#/components/parameters/ApiContentType"
+    - $ref: "../api.yaml#/components/parameters/XAuthToken"
+    - name: page
+      in: query
+      required: false
+      schema:
+        type: integer
+      description: Page number
+    - name: limit
+      in: query
+      required: false
+      schema:
+        type: integer
+      description: Number of items per page
+  responses:
+    200:
+      description: OK
+      content:
+        application/json:
+          schema:
+            $ref: "schemas.yaml#/schemas/DraftsResponse"
+    400:
+      description: Bad Request
+    409:
+      description: Conflict

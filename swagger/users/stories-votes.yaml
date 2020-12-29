@@ -1,0 +1,18 @@
+get:
+  summary: Get user's votes made by story
+  tags:
+    - Users
+  security:
+    - 'XAuthToken': []
+  parameters:
+    - $ref: "../api.yaml#/components/parameters/ApiContentType"
+    - $ref: '../api.yaml#/components/parameters/XAuthToken'
+  responses:
+    200:
+      description: OK
+      content:
+        application/json:
+          schema:
+            $ref: 'schemas.yaml#/schemas/UserStoriesVotesResponse'
+    400:
+      description: Bad Request

@@ -1,0 +1,39 @@
+schemas:
+  VoteRequest:
+    type: object
+    properties:
+      target:
+        type: string
+        enum: ["story"]
+      target_id:
+        type: integer
+  VoteView:
+    type: object
+    properties:
+      user:
+        type: object
+        properties:
+          target:
+            type: string
+          target_id:
+            type: integer
+          user_id:
+            type: integer
+          count:
+            type: integer
+          is_upvote:
+            type: boolean
+    required:
+      - user
+  VoteResponse:
+    allOf:
+      - $ref: "../api.yaml#/components/schemas/BaseResponse"
+      - type: object
+        properties:
+          data:
+            type: object
+            properties:
+              draft:
+                $ref: "#/schemas/VoteView"
+        required:
+          - data

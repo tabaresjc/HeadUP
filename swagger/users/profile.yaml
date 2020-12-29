@@ -1,0 +1,20 @@
+get:
+  summary: Get user's profile
+  tags:
+    - Users
+  security:
+    - "XAuthToken": []
+  parameters:
+    - $ref: "../api.yaml#/components/parameters/ApiContentType"
+    - $ref: "../api.yaml#/components/parameters/XAuthToken"
+  responses:
+    200:
+      description: OK
+      content:
+        application/json:
+          schema:
+            $ref: "schemas.yaml#/schemas/UserProfileResponse"
+    400:
+      description: Bad Request
+    409:
+      description: Conflict

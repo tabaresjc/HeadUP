@@ -1,0 +1,58 @@
+schemas:
+  ProfileView:
+    type: object
+    properties:
+      user:
+        type: object
+        properties:
+          id:
+            type: integer
+          nickname:
+            type: string
+          profile_picture_url:
+            type: string
+    required:
+      - user
+  UserView:
+    type: object
+    properties:
+      user:
+        type: object
+        properties:
+          id:
+            type: integer
+          is_admin:
+            type: boolean
+          is_authenticated:
+            type: boolean
+          nickname:
+            type: string
+          profile_picture_url:
+            type: string
+    required:
+      - user
+  UserProfileResponse:
+    allOf:
+      - $ref: "../api.yaml#/components/schemas/BaseResponse"
+      - type: object
+        properties:
+          data:
+            $ref: "schemas.yaml#/schemas/UserView"
+        required:
+          - data
+  UserStoriesVotesResponse:
+    allOf:
+      - $ref: "../api.yaml#/components/schemas/BaseResponse"
+      - type: object
+        properties:
+          data:
+            type: object
+            properties:
+              votes:
+                type: array
+                items:
+                  type: integer
+            required:
+              - user
+        required:
+          - data

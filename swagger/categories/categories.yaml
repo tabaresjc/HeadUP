@@ -1,0 +1,32 @@
+get:
+  summary: Get categories
+  tags:
+    - Categories
+  security:
+    - "XAuthToken": []
+  parameters:
+    - $ref: "../api.yaml#/components/parameters/ApiContentType"
+    - $ref: "../api.yaml#/components/parameters/XAuthToken"
+    - name: orderby
+      in: query
+      required: false
+      schema:
+        type: string
+        enum: ['id', 'name']
+    - name: desc
+      in: query
+      required: false
+      schema:
+        type: integer
+        enum: ['1', '0']
+      description: '1 for Descending order, else it defaults to ascending order'
+  responses:
+    200:
+      description: OK
+      content:
+        application/json:
+          schema:
+            $ref: "schemas.yaml#/schemas/CategoriesResponse"
+    400:
+      description: Bad Request
+
