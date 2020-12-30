@@ -19,3 +19,13 @@ location /media {
 	alias /usr/headup/data/media;
 	expires 30d;
 }
+
+location /swagger {
+	alias /usr/headup/apps/swagger;
+	expires -1;
+}
+
+location /swagger/data {
+	alias /usr/headup/swagger;
+	expires -1;
+}

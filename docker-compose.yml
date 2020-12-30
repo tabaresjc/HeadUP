@@ -117,6 +117,12 @@ services:
       - type: bind
         source: ${APP_DATA_PATH}
         target: /usr/headup/data
+      - type: bind
+        source: ${APP_BASE_PATH}/swagger
+        target: /usr/headup/swagger
+      - type: bind
+        source: ${APPS_PATH}
+        target: /usr/headup/apps        
     networks:
       headup-network:
         ipv4_address: 172.10.10.10
