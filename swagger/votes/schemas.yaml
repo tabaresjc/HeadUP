@@ -13,16 +13,16 @@ schemas:
       user:
         type: object
         properties:
-          target:
-            type: string
-          target_id:
+          id:
             type: integer
-          user_id:
-            type: integer
-          count:
-            type: integer
-          is_upvote:
+          is_admin:
             type: boolean
+          is_authenticated:
+            type: boolean
+          nickname:
+            type: string
+          profile_picture_url:
+            type: string
     required:
       - user
   VoteResponse:
