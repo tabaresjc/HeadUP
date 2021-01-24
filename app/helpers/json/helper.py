@@ -47,8 +47,8 @@ def render_json(message=None, status=None, error=None, **kwargs):
     return response
 
 
-def render_json_template(template):
-    r = make_response(render_template(template))
+def render_json_template(template, *args, **kwargs):
+    r = make_response(render_template(template, *args, **kwargs))
     r.headers.set('Content-Type', 'application/json')
     return r
 

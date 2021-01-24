@@ -5,9 +5,8 @@ from flask_login import current_user, login_required, login_user, logout_user
 from flask_classy import FlaskView, route
 from flask_babel import gettext as _
 from app.helpers import render_json, render_json_template, send_email
-from app.models import User
-from app import csrf
-from app import campaign
+from app.models import User, UserSession
+from app import csrf, login_manager, campaign, logger
 import datetime
 
 
@@ -20,16 +19,15 @@ class SessionsApiView(FlaskView):
         if current_user.is_authenticated:
             logout_user()
 
-        return render_json_template('shared/meta/_token.json')
+        session = UserSession(None)
+        session.save()
+
+        return render_json(token=session.auth_token)
 
     @csrf.exempt
     @route('/signin', methods=['POST'])
     def signin(self):
         data = request.json
-
-        if current_user.is_authenticated:
-            logout_user()
-
         email = data.get('email', None)
         password = data.get('password', None)
 
@@ -40,22 +38,22 @@ class SessionsApiView(FlaskView):
 
         if not user or not user.check_password(password):
             abort(409, 'API_ERROR_SESSION_LOGIN')
-
+        
+        logout_user()
+        
         # Update the User's info
         user.last_login = user.last_seen
         user.last_seen = datetime.datetime.utcnow()
         user.save()
 
-        login_user(user, remember=True)
+        session = UserSession(user.id)
+        session.save()
 
-        return render_json_template('shared/meta/_token.json')
+        return render_json(token=session.auth_token)
 
     @route('/login', methods=['POST'])
     def login(self):
         data = request.json
-
-        if current_user.is_authenticated:
-            logout_user()
 
         email = data.get('email', None)
         password = data.get('password', None)
@@ -68,6 +66,8 @@ class SessionsApiView(FlaskView):
 
         if not user or not user.check_password(password):
             abort(409, 'API_ERROR_SESSION_LOGIN')
+        
+        logout_user()
 
         # Update the User's info
         user.last_login = user.last_seen
@@ -78,16 +78,23 @@ class SessionsApiView(FlaskView):
 
         return render_json(user=user)
 
-    @route('/logout', methods=['POST'])
-    @login_required
-    def logout(self):
-        logout_user()
-
-        return render_json(status=204)
-
     @route('/signout', methods=['POST'])
     @login_required
     def signout(self):
+        if not login_manager.is_api_request:
+            abort(400)
+
+        logout_user()
+        session = UserSession.find_by_auth_token(login_manager.auth_token)
+
+        if session:
+            session.remove()
+
+        return render_json(status=204)
+
+    @route('/logout', methods=['POST'])
+    @login_required
+    def logout(self):
         logout_user()
 
         return render_json(status=204)
@@ -112,6 +119,8 @@ class SessionsApiView(FlaskView):
         if User.is_nickname_taken(nickname):
             abort(409, 'USER_NICKNAME_TAKEN_ERROR')
 
+        logout_user()
+
         user = User.create(email=email,
                            nickname=nickname,
                            last_seen=datetime.datetime.utcnow(),
@@ -122,12 +131,22 @@ class SessionsApiView(FlaskView):
         # store the user
         user.save()
 
-        campaign.add_suscriber(user.email, user.nickname, '')
+        session = UserSession(user.id)
+        session.save()
 
-        # login user
-        login_user(user, remember=True)
+        self.post_user_registration(user)
 
-        # send registration email
-        send_email('registration', user)
+        return render_json(token=session.auth_token)
 
-        return render_json_template('shared/meta/_token.json')
+    def post_user_registration(self, user):
+        try:
+            campaign.add_suscriber(user.email, user.nickname, '')
+
+            # login user
+            if not login_manager.is_api_request:
+                login_user(user, remember=True)
+
+            # send registration email
+            send_email('registration', user)
+        except Exception as e:
+            logger.debug(e)

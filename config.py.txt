@@ -78,6 +78,7 @@ SESSION_TYPE = 'filesystem'
 SESSION_KEY_PREFIX = 'hu'
 SESSION_FILE_DIR = os.path.join(APP_DATA_PATH, 'sessions')
 SESSION_FILE_THRESHOLD = 99999999999
+SESSION_AUTH_TOKEN_NAME = 'X-Auth-Token'
 
 # *************************************************
 # SQLAlchemy Configuration

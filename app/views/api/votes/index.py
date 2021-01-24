@@ -15,20 +15,20 @@ class VotesApiView(FlaskView):
     @login_required
     def post(self):
         data = request.json
-
-        target = data.get('target')
-
-        if target == 'story':
-            return self._story_vote(data)
-
-        abort(409, 'API_ERROR_INVALID_REQUEST_TYPE')
-
-    def _story_vote(self, data):
-        target_id = int(data.get('target_id', 0))
         user_id = int(current_user.get_id() or 0)
 
         if not user_id:
             abort(409, 'API_ERROR_INVALID_USER')
+
+        target = data.get('target')
+
+        if target == 'story':
+            return self._story_vote(user_id, data)
+
+        abort(409, 'API_ERROR_INVALID_REQUEST_TYPE')
+
+    def _story_vote(self, user_id, data):
+        target_id = int(data.get('target_id', 0))
 
         if not target_id:
             abort(409, 'API_ERROR_INVALID_STORY_ID')
@@ -38,7 +38,7 @@ class VotesApiView(FlaskView):
         if story is None or story.is_hidden:
             abort(404, 'API_ERROR_POST_NOT_FOUND')
 
-        is_upvote, count = Vote.cast_vote(current_user.id,
+        is_upvote, count = Vote.cast_vote(user_id,
                                           target_id,
                                           Vote.KIND_STORY)
 

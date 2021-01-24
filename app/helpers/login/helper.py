@@ -1,8 +1,9 @@
 # -*- coding: utf8 -*-
 
-from flask import current_app, abort
+from flask import current_app, abort, request
 from flask_login import LoginManager, user_unauthorized, user_needs_refresh
 from app.helpers.json import is_json_request
+import config
 
 
 class LoginManagerHelper(LoginManager):
@@ -18,13 +19,31 @@ class LoginManagerHelper(LoginManager):
     def unauthorized(self, *args, **kwargs):
         if is_json_request():
             user_unauthorized.send(current_app._get_current_object())
-            abort(401, 'Unathorized access')
+            if self.is_api_request:
+                abort(403, 'API_ERROR_INVALID_USER')
+            else:
+                abort(401, 'Unathorized access')
 
         return super(LoginManagerHelper, self).unauthorized(*args, **kwargs)
 
     def needs_refresh(self, *args, **kwargs):
         if is_json_request():
             user_needs_refresh.send(current_app._get_current_object())
-            abort(401, 'Unathorized access')
+            if self.is_api_request:
+                abort(403, 'API_ERROR_INVALID_USER')
+            else:
+                abort(401, 'Unathorized access')
 
         return super(LoginManagerHelper, self).needs_refresh(*args, **kwargs)
+
+    @property
+    def auth_token(self):
+        return request.headers.get(config.SESSION_AUTH_TOKEN_NAME)
+
+    @property
+    def is_api_request(self):
+        if self.auth_token is None:
+            return request.path.startswith('/api')
+        return True
+
+

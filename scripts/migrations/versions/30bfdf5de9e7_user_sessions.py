@@ -18,8 +18,8 @@ depends_on = None
 def upgrade():
     op.create_table('user_sessions',
         sa.Column('id', sa.Integer(), nullable=False),
-        sa.Column('user_id', sa.Integer(), nullable=False),
-        sa.Column('auth_token', sa.Integer(), nullable=False),
+        sa.Column('user_id', sa.Integer(), nullable=True),
+        sa.Column('auth_token', sa.String(length=255), nullable=True),
         sa.Column('refreshed_at', sa.DateTime(), nullable=True),
         sa.Column('created_at', sa.DateTime(), nullable=True),
         sa.ForeignKeyConstraint(['user_id'], ['users.id'], onupdate='NO ACTION', ondelete='CASCADE'),
@@ -33,6 +33,4 @@ def upgrade():
 
 
 def downgrade():
-    op.drop_index('idx_auth_token', table_name='user_sessions')
-    op.drop_index('idx_user_id', table_name='user_sessions')
     op.drop_table('user_sessions')
