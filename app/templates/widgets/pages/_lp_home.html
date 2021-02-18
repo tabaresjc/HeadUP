@@ -1,4 +1,5 @@
 <!--Categories-->
+
 <section id="category" class="section-pad">
 	<div class="container">
 		<!--Category title-->
@@ -12,27 +13,6 @@
 		<br />
 
 		<div class="row text-center">
-
-			<div class="col-6 col-md-3" style="margin-top:10px;">
-				<div class="card box-effect-small wow jackInTheBox" style="visibility: visible;">
-					<a href="{{ url_for('story.category', slug='letters-to-mozart') }}">
-						<img src="/media/lp/201905/images/category-images/{{ language }}/letters-to-mozart.png"
-							class="card-img-top story-cat-box"
-							style="display: block;max-width: 100%;height: auto;">
-					</a>
-				</div>
-			</div>
-
-			<div class="col-6 col-md-3" style="margin-top:10px;">
-				<div class="card box-effect-small wow jackInTheBox" style="visibility: visible;">
-					<a href="{{ url_for('story.category', slug='lyme-advocacy') }}">
-						<img src="/media/lp/201905/images/category-images/{{ language }}/lyme-advocacy.png"
-							class="card-img-top story-cat-box"
-							style="display: block;max-width: 100%;height: auto;">
-					</a>
-				</div>
-			</div>
-
 
 			<div class="col-6 col-md-3" style="margin-top:10px;">
 				<div class="card box-effect-small wow jackInTheBox" style="visibility: visible;">
@@ -278,7 +258,36 @@
 </section>
 <!--End of Categories-->
 
-{{ widget('story_list_by_category', language=language, category_slugs=['letters-to-mozart', 'lyme-advocacy']) }}
+<section id="category" class="section-pad">
+	<div class="container">
+		<div class="row text-center">
+			<div class="col-12 col-md-12 underline">
+				<h1 class="section-title">{{ _('LP_STORY_STORIES_EVENT_LBL') }}</h1>
+			</div>
+		</div>
+		<div class="row text-center">
+			<div class="col-6 col-md-6" style="margin-top:10px;">
+				<div class="card box-effect-small wow jackInTheBox" style="visibility: visible;">
+					<a href="{{ url_for('story.category', slug='letters-to-mozart') }}">
+						<img src="/media/lp/201905/images/category-images/{{ language }}/letters-to-mozart.png"
+							class="card-img-top story-cat-box"
+							style="display: block;max-width: 100%;height: auto;">
+					</a>
+				</div>
+			</div>
+
+			<div class="col-6 col-md-6" style="margin-top:10px;">
+				<div class="card box-effect-small wow jackInTheBox" style="visibility: visible;">
+					<a href="{{ url_for('story.category', slug='lyme-advocacy') }}">
+						<img src="/media/lp/201905/images/category-images/{{ language }}/lyme-advocacy.png"
+							class="card-img-top story-cat-box"
+							style="display: block;max-width: 100%;height: auto;">
+					</a>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
 
 <!-- banners  -->
 <section id="stickers" class="section-pad">
