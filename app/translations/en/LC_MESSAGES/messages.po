@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2020-12-14 08:14+0000\n"
+"POT-Creation-Date: 2021-06-29 23:28-0700\n"
 "PO-Revision-Date: 2017-07-15 18:02+0900\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: en\n"
@@ -16,7 +16,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Generated-By: Babel 2.9.0\n"
+"Generated-By: Babel 2.9.1\n"
 
 #: app/configuration/session.py:10 app/templates/src/translations.html:1
 msgid "APP_LOGIN_WARNING_MESSAGE"
@@ -650,7 +650,7 @@ msgstr "Remove user"
 #: app/templates/main/layout/header.html:73
 #: app/templates/main/pages/conduct.html:2
 #: app/templates/src/translations.html:111
-#: app/templates/widgets/pages/_lp_home.html:646
+#: app/templates/widgets/pages/_lp_home.html:626
 msgid "CODE_CONDUCT_LBL"
 msgstr "Code of conduct"
 
@@ -659,7 +659,7 @@ msgstr "Code of conduct"
 #: app/templates/main/layout/header.html:70
 #: app/templates/main/pages/policy.html:2
 #: app/templates/src/translations.html:112
-#: app/templates/widgets/pages/_lp_home.html:648
+#: app/templates/widgets/pages/_lp_home.html:628
 msgid "TOS_LBL"
 msgstr "Terms of Service"
 
@@ -788,17 +788,17 @@ msgstr "Toggle navigation"
 
 #: app/templates/main/pages/home.html:2 app/templates/src/translations.html:140
 msgid "HOME_TITLE"
-msgstr "Social Storytelling Network to keep it up"
+msgstr "Social Storytelling Network to share and read stories"
 
 #: app/templates/main/pages/home.html:3 app/templates/src/translations.html:141
 msgid "HOME_DESCRIPTION"
 msgstr ""
-"HeadUP is your Social Storytelling Network, a problem-and-solution "
-"website where you can transmit your optimism, tell how you keep or kept "
-"your head up. Share positive and fun experiences, write personal "
-"achievements or read remarkable success stories. Tell the world about a "
-"solution you found to a challenging situation or a difficulty you once "
-"faced. Speak up, HeadUP."
+"HeadUP is a Social Storytelling Network, where you can write and read "
+"stories from all over the world, talk about your projects, your events, "
+"your content, your business, transmit your optimism and tell how you keep"
+" your head up. Share personal experiences and achievements, read "
+"remarkable success stories, discover interesting content, add visibility "
+"to your work, display your creativity, etc"
 
 #: app/templates/main/pages/home.html:22
 msgid "LP_HOME_LBL"
@@ -1246,72 +1246,73 @@ msgstr "Oops! Something went wrong. Please try again."
 msgid "LP_HOME_INTRO_LBL"
 msgstr "“A good vibe a day goes a long way”"
 
-#: app/templates/widgets/pages/_lp_home.html:7
+#: app/templates/widgets/pages/_lp_home.html:8
 msgid "LP_STORY_STORIES_CATEGORIES_LBL"
 msgstr "Stories by Category"
 
-#: app/templates/widgets/pages/_lp_home.html:349
-msgid "LP_HOW_IT_WORKS_TITLE"
-msgstr "A STORY TO TELL?"
-
-#: app/templates/widgets/pages/_lp_home.html:363
-msgid "LP_SHARE_STORY_LBL"
-msgstr "You want to share a story"
-
-#: app/templates/widgets/pages/_lp_home.html:376
-msgid "LP_SHARE_SIGN_UP_LBL"
-msgstr "Sign Up"
-
-#: app/templates/widgets/pages/_lp_home.html:378
-msgid "LP_SHARE_SIGN_UP_DESC"
-msgstr "In 30 secs and create a profile"
-
-#: app/templates/widgets/pages/_lp_home.html:391
-msgid "LP_SHARE_WRITE_STORY_DESC"
-msgstr "Write your story"
-
-#: app/templates/widgets/pages/_lp_home.html:409
-msgid "LP_SHARE_SAVE_STORY_DESC"
-msgstr "Stamp it !"
-
-#: app/templates/widgets/pages/_lp_home.html:431
-msgid "LP_PRODUCT_TITLE"
-msgstr "WHAT MAKES IT DIFFERENT?"
-
-#: app/templates/widgets/pages/_lp_home.html:434
-msgid "LP_PRODUCT_ITEM_01_DESC"
-msgstr "<b>Free</b> & <b>Anonymous</b>"
-
-#: app/templates/widgets/pages/_lp_home.html:435
-msgid "LP_PRODUCT_ITEM_02_DESC"
-msgstr "Share your story <b>worldwide"
-
-#: app/templates/widgets/pages/_lp_home.html:436
-msgid "LP_PRODUCT_ITEM_03_DESC"
-msgstr "<b>Encourage</b> and <b>inspire</b> others"
-
-#: app/templates/widgets/pages/_lp_home.html:437
-msgid "LP_PRODUCT_ITEM_04_DESC"
-msgstr "<b>Promote</b> your projects, your business, your talents"
-
-#: app/templates/widgets/pages/_lp_home.html:438
-msgid "LP_PRODUCT_ITEM_05_DESC"
-msgstr "<b>Discover</b> fantastic and fun stories"
-
-#: app/templates/widgets/pages/_lp_home.html:456
-#: app/templates/widgets/pages/_lp_home.html:564
-msgid "LP_LATEST_STORIES_TITLE"
-msgstr "your space to express yourself freely"
-
-#: app/templates/widgets/pages/_lp_home.html:576
-msgid "LP_WORLDWIDE_LBL"
-msgstr "Worldwide"
-
-#: app/templates/widgets/pages/_lp_home.html:600
-msgid "LP_FOLLOW_SHARE_LBL"
-msgstr "Follow us & share on"
-
+#: app/templates/widgets/pages/_lp_home.html:265
 #: app/templates/widgets/stories/_list_by_category.html:7
 msgid "LP_STORY_STORIES_EVENT_LBL"
 msgstr "Stories by Events"
+
+#: app/templates/widgets/pages/_lp_home.html:329
+msgid "LP_HOW_IT_WORKS_TITLE"
+msgstr "A STORY TO TELL?"
+
+#: app/templates/widgets/pages/_lp_home.html:343
+msgid "LP_SHARE_STORY_LBL"
+msgstr "You want to share a story"
+
+#: app/templates/widgets/pages/_lp_home.html:356
+msgid "LP_SHARE_SIGN_UP_LBL"
+msgstr "Sign Up"
+
+#: app/templates/widgets/pages/_lp_home.html:358
+msgid "LP_SHARE_SIGN_UP_DESC"
+msgstr "In 30 secs and create a profile"
+
+#: app/templates/widgets/pages/_lp_home.html:371
+msgid "LP_SHARE_WRITE_STORY_DESC"
+msgstr "Write your story"
+
+#: app/templates/widgets/pages/_lp_home.html:389
+msgid "LP_SHARE_SAVE_STORY_DESC"
+msgstr "Stamp it !"
+
+#: app/templates/widgets/pages/_lp_home.html:411
+msgid "LP_PRODUCT_TITLE"
+msgstr "WHAT MAKES IT DIFFERENT?"
+
+#: app/templates/widgets/pages/_lp_home.html:414
+msgid "LP_PRODUCT_ITEM_01_DESC"
+msgstr "<b>Free</b> & <b>Anonymous</b>"
+
+#: app/templates/widgets/pages/_lp_home.html:415
+msgid "LP_PRODUCT_ITEM_02_DESC"
+msgstr "Share your story <b>worldwide"
+
+#: app/templates/widgets/pages/_lp_home.html:416
+msgid "LP_PRODUCT_ITEM_03_DESC"
+msgstr "<b>Encourage</b> and <b>inspire</b> others"
+
+#: app/templates/widgets/pages/_lp_home.html:417
+msgid "LP_PRODUCT_ITEM_04_DESC"
+msgstr "<b>Promote</b> your projects, your business, your talents"
+
+#: app/templates/widgets/pages/_lp_home.html:418
+msgid "LP_PRODUCT_ITEM_05_DESC"
+msgstr "<b>Discover</b> fantastic and fun stories"
+
+#: app/templates/widgets/pages/_lp_home.html:436
+#: app/templates/widgets/pages/_lp_home.html:544
+msgid "LP_LATEST_STORIES_TITLE"
+msgstr "your space to express yourself freely"
+
+#: app/templates/widgets/pages/_lp_home.html:556
+msgid "LP_WORLDWIDE_LBL"
+msgstr "Worldwide"
+
+#: app/templates/widgets/pages/_lp_home.html:580
+msgid "LP_FOLLOW_SHARE_LBL"
+msgstr "Follow us & share on"
 
