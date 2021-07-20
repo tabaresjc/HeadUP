@@ -33,3 +33,4 @@ Pillow==6.2.2
 mailchimp3==3.0.13
 email-validator==1.0.4
 WTForms-JSON==0.3.3
+requests==2.26.0
