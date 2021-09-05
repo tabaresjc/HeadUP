@@ -64,7 +64,7 @@ class Post(Base, sa.Model, ModelHelper):
     comments = sa.relationship('Comment', backref='post', lazy='dynamic')
 
     def __repr__(self):  # pragma: no cover
-        return '<Post %r>' % (self.title)
+        return '<Post %r>' % (self.id)
 
     @property
     def body(self):
@@ -167,7 +167,7 @@ class Post(Base, sa.Model, ModelHelper):
 
     @property
     def is_hidden(self):
-        return self.status != self.POST_PUBLIC
+        return self.status == self.POST_HIDDEN
 
     @property
     def is_draft(self):
