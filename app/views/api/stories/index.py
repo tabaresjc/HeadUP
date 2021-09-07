@@ -61,6 +61,7 @@ class StoriesApiView(FlaskView):
 
         return render_json(story=story)
 
+    @login_required
     def delete(self, id):
         story = Post.get_by_id(id)
 

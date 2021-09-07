@@ -1,11 +1,12 @@
 # -*- coding: utf8 -*-
 
+from werkzeug.exceptions import Unauthorized
 from flask import request, abort
 from flask_login import current_user, login_required, login_user, logout_user
 from flask_classy import FlaskView, route
 from flask_babel import gettext as _
-from app.helpers import render_json, render_json_template, send_email
-from app.models import User, UserSession
+from app.helpers import render_json, send_email
+from app.models import User, JwtAuth
 from app import csrf, login_manager, campaign, logger
 import datetime
 
@@ -13,19 +14,16 @@ import datetime
 class SessionsApiView(FlaskView):
     route_base = '/api/sessions'
 
-    @csrf.exempt
     @route('/anonymous', methods=['POST'])
+    @csrf.exempt
     def anonymous(self):
-        if current_user.is_authenticated:
-            logout_user()
-
-        session = UserSession(None)
+        session = JwtAuth(None)
         session.save()
 
-        return render_json(token=session.auth_token)
+        return render_json(token=session.sign_access_token())
 
-    @csrf.exempt
     @route('/signin', methods=['POST'])
+    @csrf.exempt
     def signin(self):
         data = request.json
         email = data.get('email', None)
@@ -38,18 +36,36 @@ class SessionsApiView(FlaskView):
 
         if not user or not user.check_password(password):
             abort(409, 'API_ERROR_SESSION_LOGIN')
-        
+
         logout_user()
-        
+
         # Update the User's info
         user.last_login = user.last_seen
         user.last_seen = datetime.datetime.utcnow()
         user.save()
 
-        session = UserSession(user.id)
-        session.save()
+        long_session = JwtAuth(user.id)
+        long_session.save()
 
-        return render_json(token=session.auth_token)
+        return render_json(token=long_session.sign_access_token())
+
+    @route('/refresh-token', methods=['POST'])
+    @csrf.exempt
+    def refresh_token(self):
+        data = request.json
+        token = data.get('token', None)
+
+        try:
+            long_session = JwtAuth.find_by_token(token)
+
+            if not long_session:
+                raise Exception('Token is invalid or expired')
+
+            session = JwtAuth(long_session.user_id, long_session.access_token)
+            session.save()
+            return render_json(token=session.sign_user_token())
+        except Exception as e:
+            abort(401, e.message)
 
     @route('/login', methods=['POST'])
     def login(self):
@@ -66,7 +82,7 @@ class SessionsApiView(FlaskView):
 
         if not user or not user.check_password(password):
             abort(409, 'API_ERROR_SESSION_LOGIN')
-        
+
         logout_user()
 
         # Update the User's info
@@ -81,16 +97,15 @@ class SessionsApiView(FlaskView):
     @route('/signout', methods=['POST'])
     @login_required
     def signout(self):
-        if not login_manager.is_api_request:
-            abort(400)
+        try:
+            session = JwtAuth.find_by_token(login_manager.jwt_token)
 
-        logout_user()
-        session = UserSession.find_by_auth_token(login_manager.auth_token)
+            if session:
+                JwtAuth.revoke_access_token(session.access_token)
 
-        if session:
-            session.remove()
-
-        return render_json(status=204)
+            return render_json(status=204)
+        except Exception as e:
+            abort(401, e.message)
 
     @route('/logout', methods=['POST'])
     @login_required
@@ -99,8 +114,8 @@ class SessionsApiView(FlaskView):
 
         return render_json(status=204)
 
-    @csrf.exempt
     @route('/signup', methods=['POST'])
+    @csrf.exempt
     def signup(self):
         data = request.json
         email = data.get('email', None)
@@ -131,12 +146,12 @@ class SessionsApiView(FlaskView):
         # store the user
         user.save()
 
-        session = UserSession(user.id)
+        session = JwtAuth(user.id)
         session.save()
 
         self.post_user_registration(user)
 
-        return render_json(token=session.auth_token)
+        return render_json(token=session.sign_access_token())
 
     def post_user_registration(self, user):
         try:

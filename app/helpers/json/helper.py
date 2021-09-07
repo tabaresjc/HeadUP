@@ -6,8 +6,6 @@ from werkzeug.exceptions import HTTPException, NotFound
 import datetime
 
 
-_sucess_status_codes = [200, 204]
-
 
 def render_json(message=None, status=None, error=None, **kwargs):
     """Renders the incoming data in json format."""
@@ -28,12 +26,12 @@ def render_json(message=None, status=None, error=None, **kwargs):
         status_code = 200 if status else 500
 
     data = {
-        'status': True if status_code in _sucess_status_codes else False,
+        'status': True if status_code < 400 else False,
         'datetime': datetime.datetime.utcnow(),
     }
 
     if message:
-        data['message'] = message
+        data['message'] = str(message)
 
     if kwargs:
         data['data'] = {}
