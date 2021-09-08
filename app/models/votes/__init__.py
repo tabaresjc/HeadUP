@@ -1,3 +1,3 @@
 # -*- coding: utf8 -*-
 
-from vote import Vote
+from .vote import Vote

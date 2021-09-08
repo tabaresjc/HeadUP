@@ -1,2 +1,2 @@
 # -*- coding: utf8 -*-
-from comment import Comment
+from .comment import Comment
