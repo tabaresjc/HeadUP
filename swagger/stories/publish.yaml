@@ -3,7 +3,7 @@ post:
   tags:
     - Stories
   security:
-    - "XAuthToken": []
+    - "BearerAuth": []
   parameters:
     - $ref: "../api.yaml#/components/parameters/ApiContentType"
     - $ref: "../api.yaml#/components/parameters/XAuthToken"

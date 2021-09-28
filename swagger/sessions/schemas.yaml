@@ -23,6 +23,11 @@ schemas:
               token:
                 type: string
                 description: "Auth Token for successive requests"
+              expired_at:
+                type: number
+                description: "UNIX timestamp"
+              access_code:
+                type: string
         required:
           - data
   SigninUserRequest:
@@ -46,5 +51,37 @@ schemas:
               token:
                 type: string
                 description: "Auth Token for successive requests"
+              expired_at:
+                type: number
+                description: "UNIX timestamp"
+              access_code:
+                type: string
+        required:
+          - data
+  RefreshTokenUserRequest:
+    type: object
+    properties:
+      token:
+        type: string
+      access_code:
+        type: string
+    required:
+      - token
+  RefreshTokenUserResponse:
+    allOf:
+      - $ref: "../api.yaml#/components/schemas/BaseResponse"
+      - type: object
+        properties:
+          data:
+            type: object
+            properties:
+              token:
+                type: string
+                description: "Auth Token for successive requests"
+              expired_at:
+                type: number
+                description: "UNIX timestamp"
+              access_code:
+                type: string
         required:
           - data

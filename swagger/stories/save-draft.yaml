@@ -3,7 +3,7 @@ post:
   tags:
     - Stories
   security:
-    - "XAuthToken": []
+    - "BearerAuth": []
   parameters:
     - $ref: "../api.yaml#/components/parameters/ApiContentType"
     - $ref: "../api.yaml#/components/parameters/XAuthToken"
@@ -18,7 +18,7 @@ post:
     content:
       application/json:
         schema:
-          $ref: "schemas.yaml#/schemas/StoryRequest"        
+          $ref: "schemas.yaml#/schemas/StoryRequest"
   responses:
     200:
       description: OK

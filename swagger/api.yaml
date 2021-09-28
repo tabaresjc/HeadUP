@@ -19,12 +19,14 @@ servers:
 paths:
   /sessions/anonymous:
     $ref: sessions/anonymous.yaml
-  /sessions/signup:
-    $ref: sessions/signup.yaml
   /sessions/signin:
     $ref: sessions/signin.yaml
   /sessions/signout:
     $ref: sessions/signout.yaml
+  /sessions/refresh-token:
+    $ref: sessions/refresh_token.yaml
+  /sessions/signup:
+    $ref: sessions/signup.yaml
   /users/profile:
     $ref: users/profile.yaml
   /users/stories/votes:
@@ -78,7 +80,7 @@ components:
         type: string
         default: application/json
   securitySchemes:
-    XAuthToken:
-      type: apiKey
-      in: header
-      name: X-Auth-Token
+    BearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
