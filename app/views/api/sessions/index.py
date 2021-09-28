@@ -6,7 +6,7 @@ from flask_login import current_user, login_required, login_user, logout_user
 from flask_classy import FlaskView, route
 from flask_babel import gettext as _
 from app.helpers import render_json, send_email
-from app.models import User, JwtAuth
+from app.models import User, AuthTokens
 from app import csrf, login_manager, campaign, logger
 import datetime
 
@@ -17,10 +17,12 @@ class SessionsApiView(FlaskView):
     @route('/anonymous', methods=['POST'])
     @csrf.exempt
     def anonymous(self):
-        session = JwtAuth(None)
-        session.save()
+        auth_token = AuthTokens(None)
+        auth_token.save()
 
-        return render_json(token=session.sign_access_token())
+        return render_json(token=auth_token.sign_access_token(),
+                           expired_at=auth_token.expired_at,
+                           access_code=auth_token.access_code)
 
     @route('/signin', methods=['POST'])
     @csrf.exempt
@@ -44,26 +46,40 @@ class SessionsApiView(FlaskView):
         user.last_seen = datetime.datetime.utcnow()
         user.save()
 
-        long_session = JwtAuth(user.id)
-        long_session.save()
+        auth_token = AuthTokens(user.id)
+        auth_token.save()
 
-        return render_json(token=long_session.sign_access_token())
+        return render_json(token=auth_token.sign_access_token(),
+                           expired_at=auth_token.expired_at,
+                           access_code=auth_token.access_code)
 
     @route('/refresh-token', methods=['POST'])
     @csrf.exempt
     def refresh_token(self):
         data = request.json
         token = data.get('token', None)
+        access_code = data.get('access_code', None)
 
         try:
-            long_session = JwtAuth.find_by_token(token)
+            if not access_code:
+                raise Exception('Missing access code')
 
-            if not long_session:
+            auth_token = AuthTokens.find_by_token(token)
+
+            if not auth_token:
                 raise Exception('Token is invalid or expired')
 
-            session = JwtAuth(long_session.user_id, long_session.access_token)
-            session.save()
-            return render_json(token=session.sign_user_token())
+            if auth_token.access_code != access_code:
+                raise Exception('Token not found')
+
+            AuthTokens.revoke_access_token(auth_token.access_token)
+
+            new_auth_token = AuthTokens(auth_token.user_id)
+            new_auth_token.save()
+
+            return render_json(token=new_auth_token.sign_access_token(),
+                               expired_at=new_auth_token.expired_at,
+                               access_code=new_auth_token.access_code)
         except Exception as e:
             abort(401, e.message)
 
@@ -98,10 +114,10 @@ class SessionsApiView(FlaskView):
     @login_required
     def signout(self):
         try:
-            session = JwtAuth.find_by_token(login_manager.jwt_token)
+            auth_token = AuthTokens.find_by_token(login_manager.jwt_token)
 
-            if session:
-                JwtAuth.revoke_access_token(session.access_token)
+            if auth_token:
+                AuthTokens.revoke_access_token(auth_token.access_token)
 
             return render_json(status=204)
         except Exception as e:
@@ -146,12 +162,14 @@ class SessionsApiView(FlaskView):
         # store the user
         user.save()
 
-        session = JwtAuth(user.id)
-        session.save()
+        auth_token = AuthTokens(user.id)
+        auth_token.save()
 
         self.post_user_registration(user)
 
-        return render_json(token=session.sign_access_token())
+        return render_json(token=auth_token.sign_access_token(),
+                           expired_at=auth_token.expired_at,
+                           access_code=auth_token.access_code)
 
     def post_user_registration(self, user):
         try:

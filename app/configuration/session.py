@@ -3,13 +3,12 @@
 import datetime
 from flask import request, session, flash, redirect, url_for, jsonify
 from flask_babel import lazy_gettext as _lg
-import jwt
 from werkzeug.exceptions import abort
-
-from app.models import User, GuestUser, JwtAuth
+from app.models import User, GuestUser, AuthTokens
 from app.helpers import render_json
 from app import login_manager
 import app
+import jwt
 import config
 
 # add our view as the login view to finish configuring the LoginManager
@@ -26,28 +25,24 @@ def load_user(user_id):
 @login_manager.request_loader
 def load_user_from_request(request):
     try:
-        if not login_manager.is_api_request:
+        token = login_manager.jwt_token
+
+        if not token:
             return None
 
-        authorization = request.headers.get(config.AUTH_HEADER_NAME) or ''
+        auth_token = AuthTokens.find_by_token(token)
 
-        if not authorization.startswith('Bearer '):
+        if not auth_token:
             return None
 
-        token = authorization.split(' ').pop()
-        session = JwtAuth.find_by_token(token)
-
-        if not session.user_id:
-            return None
-
-        return session.user
+        return auth_token.get_user()
     except jwt.exceptions.PyJWTError as e:
         return None
 
 
 @login_manager.unauthorized_handler
 def unauthorized():
-    if request.headers.get(config.AUTH_HEADER_NAME):
+    if login_manager.is_api_request:
         return render_json(_lg('ACCESS_DENIED'), 403)
     session['redirect_to'] = request.url
     flash(_lg('APP_SIGNIN_WARNING_MESSAGE'), 'error')
@@ -58,4 +53,3 @@ def unauthorized():
 def check_csrf():
     if not login_manager.is_api_request:
         app.csrf.protect()
-

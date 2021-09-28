@@ -42,18 +42,16 @@ class LoginManagerHelper(LoginManager):
 
     @property
     def jwt_token(self):
-        token = request.headers.get(config.AUTH_HEADER_NAME) or ''
+        authorization = request.headers.get(config.AUTH_HEADER_NAME) or ''
 
-        if not token.startswith('Bearer'):
+        if not authorization.startswith('Bearer '):
             return None
 
-        jwt_token = token.split(' ').pop()
-
-        return jwt_token
+        return authorization.split(' ').pop()
 
     @property
     def is_api_request(self):
-        if self.auth_token is None:
+        if self.jwt_token is None:
             return request.path.startswith('/api')
         return True
 
