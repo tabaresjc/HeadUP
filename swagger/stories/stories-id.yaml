@@ -6,7 +6,6 @@ get:
     - "BearerAuth": []
   parameters:
     - $ref: "../api.yaml#/components/parameters/ApiContentType"
-    - $ref: "../api.yaml#/components/parameters/XAuthToken"
     - name: id
       in: path
       description: Story ID.
@@ -33,7 +32,6 @@ delete:
     - "BearerAuth": []
   parameters:
     - $ref: "../api.yaml#/components/parameters/ApiContentType"
-    - $ref: "../api.yaml#/components/parameters/XAuthToken"
     - name: id
       in: path
       description: Story ID.

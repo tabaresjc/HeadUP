@@ -6,7 +6,6 @@ get:
     - 'XAuthToken': []
   parameters:
     - $ref: "../api.yaml#/components/parameters/ApiContentType"
-    - $ref: '../api.yaml#/components/parameters/XAuthToken'
   responses:
     200:
       description: OK

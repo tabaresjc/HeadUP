@@ -6,7 +6,6 @@ get:
     - "BearerAuth": []
   parameters:
     - $ref: "../api.yaml#/components/parameters/ApiContentType"
-    - $ref: "../api.yaml#/components/parameters/XAuthToken"
     - name: orderby
       in: query
       required: false

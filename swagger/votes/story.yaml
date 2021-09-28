@@ -6,7 +6,6 @@ post:
     - "BearerAuth": []
   parameters:
     - $ref: "../api.yaml#/components/parameters/ApiContentType"
-    - $ref: "../api.yaml#/components/parameters/XAuthToken"
   requestBody:
     required: true
     content:
