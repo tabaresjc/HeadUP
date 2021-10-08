@@ -1,0 +1,47 @@
+get:
+  summary: Get story by ID
+  tags:
+    - Stories
+  security:
+    - "BearerAuth": []
+  parameters:
+    - $ref: "../api.yaml#/components/parameters/ApiContentType"
+    - name: id
+      in: path
+      description: Story ID.
+      required: true
+      schema:
+        type: integer
+  responses:
+    200:
+      description: OK
+      content:
+        application/json:
+          schema:
+            $ref: "schemas.yaml#/schemas/StoryResponse"
+    400:
+      description: Bad Request
+    404:
+      description: Not Found
+
+delete:
+  summary: Delete story by ID
+  tags:
+    - Stories
+  security:
+    - "BearerAuth": []
+  parameters:
+    - $ref: "../api.yaml#/components/parameters/ApiContentType"
+    - name: id
+      in: path
+      description: Story ID.
+      required: true
+      schema:
+        type: integer
+  responses:
+    204:
+      description: OK
+    400:
+      description: Bad Request
+    404:
+      description: Not Found

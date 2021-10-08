@@ -55,7 +55,7 @@ export class ApiBase {
 	_createHttpClient(options) {
 		const config = Object.assign({
 			baseURL: this.baseUrl,
-			withCredentials: false,
+			withCredentials: true,
 			headers: {
 				'Accept': 'application/json',
 				'Content-Type': 'application/json'

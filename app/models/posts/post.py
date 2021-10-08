@@ -28,7 +28,9 @@ class Post(Base, sa.Model, ModelHelper):
                      'category',
                      'anonymous',
                      'likes',
-                     'is_hidden']
+                     'is_hidden',
+                     'is_editable',
+                     'is_owner']
 
     POST_PUBLIC = 0x001
     POST_DRAFT = 0x100
@@ -62,7 +64,7 @@ class Post(Base, sa.Model, ModelHelper):
     comments = sa.relationship('Comment', backref='post', lazy='dynamic')
 
     def __repr__(self):  # pragma: no cover
-        return '<Post %r>' % (self.title)
+        return '<Post %r>' % (self.id)
 
     @property
     def body(self):
@@ -201,7 +203,19 @@ class Post(Base, sa.Model, ModelHelper):
         return (current_user.is_authenticated and
                 self.user.id == current_user.id)
 
+
+
     def can_edit(self):
+        return (current_user.is_authenticated and
+                (self.user.id == current_user.id or current_user.is_admin))
+
+    @property
+    def is_owner(self):
+        return (current_user.is_authenticated and
+                self.user.id == current_user.id)
+
+    @property
+    def is_editable(self):
         return (current_user.is_authenticated and
                 (self.user.id == current_user.id or current_user.is_admin))
 
@@ -293,7 +307,8 @@ class Post(Base, sa.Model, ModelHelper):
         if not category_ids:
             return [], 0
 
-        query = cls.query.filter(cls.category_id.in_(category_ids), cls.status == status)
+        query = cls.query.filter(cls.category_id.in_(
+            category_ids), cls.status == status)
         count = query.count()
         records = []
         if count:

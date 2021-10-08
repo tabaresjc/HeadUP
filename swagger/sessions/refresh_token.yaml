@@ -1,0 +1,23 @@
+post:
+  summary: Request a new token from a previously issued token
+  tags:
+    - Sessions
+  parameters:
+    - $ref: "../api.yaml#/components/parameters/ApiContentType"
+  security:
+    - "BearerAuth": []
+  requestBody:
+    required: true
+    content:
+      application/json:
+        schema:
+          $ref: "schemas.yaml#/schemas/RefreshTokenUserRequest"
+  responses:
+    200:
+      description: OK
+      content:
+        application/json:
+          schema:
+            $ref: "schemas.yaml#/schemas/RefreshTokenUserResponse"
+    401:
+      description: Unathorized

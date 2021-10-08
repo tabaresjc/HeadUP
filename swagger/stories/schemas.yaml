@@ -1,0 +1,161 @@
+schemas:
+  StoryRequest:
+    type: object
+    properties:
+      title:
+        type: string
+      body:
+        type: string
+      extra_body:
+        type: string
+      category_id:
+        type: integer
+      anonymous:
+        type: integer
+        description: "1: for anonymous, else ignore it"
+  StoryItemView:
+    type: object
+    properties:
+      id:
+        type: integer
+      title:
+        type: string
+      body:
+        type: string
+      extra_body:
+        type: string
+      user:
+        $ref: "../users/schemas.yaml#/schemas/UserView"
+      status:
+        type: integer
+        description: "1: Public | 256: Draft | 257: Last Draft | 2048: Hidden"
+      lang:
+        type: string
+      url:
+        type: string
+      cover_picture:
+        type: object
+        properties:
+          id:
+            type: integer
+          user_id:
+            type: string
+          image_url:
+            type: string
+          image_url_org:
+            type: string
+          image_url_sd:
+            type: string
+          image_url_md:
+            type: string
+          image_url_sm:
+            type: string
+      cover_picture_id:
+        type: integer
+      created_at:
+        type: integer
+      modified_at:
+        type: integer
+      category:
+        $ref: "../categories/schemas.yaml#/schemas/CategoryItemView"
+      anonymous:
+        type: integer
+        description: "1: Anonymous"
+      likes:
+        type: integer
+      is_hidden:
+        type: boolean
+      is_editable:
+        type: boolean
+      is_owner:
+        type: boolean
+  StoriesResponse:
+    allOf:
+      - $ref: "../api.yaml#/components/schemas/BaseResponse"
+      - type: object
+        properties:
+          data:
+            type: object
+            properties:
+              page:
+                type: integer
+              limit:
+                type: integer
+              total:
+                type: integer
+              stories:
+                type: array
+                items:
+                  $ref: "schemas.yaml#/schemas/StoryItemView"
+        required:
+          - data
+  DraftsResponse:
+    allOf:
+      - $ref: "../api.yaml#/components/schemas/BaseResponse"
+      - type: object
+        properties:
+          data:
+            type: object
+            properties:
+              page:
+                type: integer
+              limit:
+                type: integer
+              total:
+                type: integer
+              stories:
+                type: array
+                items:
+                  $ref: "schemas.yaml#/schemas/StoryItemView"
+        required:
+          - data
+  StoryResponse:
+    allOf:
+      - $ref: "../api.yaml#/components/schemas/BaseResponse"
+      - type: object
+        properties:
+          data:
+            type: object
+            properties:
+              story:
+                $ref: "#/schemas/StoryItemView"
+        required:
+          - data
+  GetLastDraftResponse:
+    allOf:
+      - $ref: "../api.yaml#/components/schemas/BaseResponse"
+      - type: object
+        properties:
+          data:
+            type: object
+            properties:
+              draft:
+                $ref: "#/schemas/StoryItemView"
+        required:
+          - data
+  SaveLastDraftResponse:
+    allOf:
+      - $ref: "../api.yaml#/components/schemas/BaseResponse"
+      - type: object
+        properties:
+          data:
+            type: object
+            properties:
+              story:
+                $ref: "#/schemas/StoryItemView"
+        required:
+          - data
+  PublishStoryResponse:
+    allOf:
+      - $ref: "../api.yaml#/components/schemas/BaseResponse"
+      - type: object
+        properties:
+          data:
+            type: object
+            properties:
+              story:
+                $ref: "#/schemas/StoryItemView"
+              redirect_to:
+                type: string
+        required:
+          - data

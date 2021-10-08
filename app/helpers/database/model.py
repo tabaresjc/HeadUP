@@ -62,6 +62,10 @@ class ModelHelper(object):
         app.sa.session.begin(subtransactions=True)
 
     @classmethod
+    def session_execute(cls, clause):
+        app.sa.session.execute(clause)
+
+    @classmethod
     def commit_transaction(cls):
         app.sa.session.commit()
 
@@ -71,6 +75,8 @@ class ModelHelper(object):
 
     @classmethod
     def get_by_id(cls, id):
+        if id is None:
+            return None
         return cls.query.get(id)
 
     @classmethod

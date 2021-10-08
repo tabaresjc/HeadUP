@@ -1,0 +1,19 @@
+get:
+  summary: Get last draft saved by user OR create new draft.
+  tags:
+    - Stories
+  security:
+    - "BearerAuth": []
+  parameters:
+    - $ref: "../api.yaml#/components/parameters/ApiContentType"
+  responses:
+    200:
+      description: OK
+      content:
+        application/json:
+          schema:
+            $ref: "schemas.yaml#/schemas/GetLastDraftResponse"
+    400:
+      description: Bad Request
+    409:
+      description: Conflict

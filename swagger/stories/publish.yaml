@@ -1,0 +1,31 @@
+post:
+  summary: Publish story by ID.
+  tags:
+    - Stories
+  security:
+    - "BearerAuth": []
+  parameters:
+    - $ref: "../api.yaml#/components/parameters/ApiContentType"
+    - name: id
+      in: path
+      description: Story ID.
+      required: true
+      schema:
+        type: integer
+  requestBody:
+    required: true
+    content:
+      application/json:
+        schema:
+          $ref: "schemas.yaml#/schemas/StoryRequest"
+  responses:
+    200:
+      description: OK
+      content:
+        application/json:
+          schema:
+            $ref: "schemas.yaml#/schemas/PublishStoryResponse"
+    400:
+      description: Bad Request
+    409:
+      description: Conflict

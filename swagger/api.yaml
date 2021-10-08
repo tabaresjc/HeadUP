@@ -1,0 +1,86 @@
+openapi: 3.0.3
+
+info:
+  title: HeadUP API definition
+  description: List of endpoints available in HeadUP API.
+  version: "1.0"
+  contact:
+    name: Juan Tabares
+    email: juan.tabares@headup.space
+
+servers:
+  - url: https://stg.headup.space/api
+    description: Stage Environment
+  - url: https://headup.space/api
+    description: Production Environment
+  - url: http://local.headup.com/api
+    description: Local Environment
+
+paths:
+  /sessions/anonymous:
+    $ref: sessions/anonymous.yaml
+  /sessions/signin:
+    $ref: sessions/signin.yaml
+  /sessions/signout:
+    $ref: sessions/signout.yaml
+  /sessions/refresh-token:
+    $ref: sessions/refresh_token.yaml
+  /sessions/signup:
+    $ref: sessions/signup.yaml
+  /users/profile:
+    $ref: users/profile.yaml
+  /users/stories/votes:
+    $ref: users/stories-votes.yaml
+  /stories:
+    $ref: stories/stories.yaml
+  /stories/{id}:
+    $ref: stories/stories-id.yaml
+  # /drafts:
+  #   $ref: stories/drafts.yaml
+  /stories/last-draft:
+    $ref: stories/last-draft.yaml
+  # /stories/save-draft:
+  #   $ref: stories/new-draft.yaml
+  /stories/save-draft/{id}:
+    $ref: stories/save-draft.yaml
+  /stories/publish/{id}:
+    $ref: stories/publish.yaml
+
+  /categories:
+    $ref: categories/categories.yaml
+
+  /votes/story:
+    $ref: votes/story.yaml
+
+components:
+  schemas:
+    BaseResponse:
+      type: object
+      properties:
+        datetime:
+          type: number
+        status:
+          type: boolean
+      required:
+        - datetime
+        - status
+  parameters:
+    XAuthToken:
+      name: X-Auth-Token
+      in: header
+      required: true
+      description: request new token from signin/signup/anonymous endpoints from sessions.
+      schema:
+        type: string
+    ApiContentType:
+      name: Content-Type
+      in: header
+      required: true
+      schema:
+        type: string
+        default: application/json
+  securitySchemes:
+    BearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT

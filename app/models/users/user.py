@@ -193,6 +193,14 @@ class User(Base, sa.Model, ModelHelper, UserMixin):
         return re.sub('[!#\[\]\(\)\.]', '', nickname)
 
     @classmethod
+    def is_valid_nickname(cls, nickname):
+        return nickname == cls.make_valid_nickname(nickname)
+
+    @classmethod
+    def is_valid_email(cls, email):
+        return re.search('^[a-z0-9]+[\._]?[a-z0-9]+[@]\w+[.]\w{2,5}$', email) is not None
+
+    @classmethod
     def is_email_taken(cls, email):
         if cls.query.filter_by(email=email).count() > 0:
             return True

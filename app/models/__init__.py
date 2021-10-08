@@ -9,3 +9,4 @@ from .users import User, Role, GuestUser  # noqa
 from .pictures import Picture  # noqa
 from .feed import Feed  # noqa
 from .votes import Vote  # noqa
+from .auth import AuthTokens  # noqa

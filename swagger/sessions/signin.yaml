@@ -1,0 +1,23 @@
+post:
+  summary: Start session with email and password
+  tags:
+    - Sessions
+  parameters:
+    - $ref: "../api.yaml#/components/parameters/ApiContentType"    
+  requestBody:
+    required: true
+    content:
+      application/json:
+        schema:
+          $ref: "schemas.yaml#/schemas/SigninUserRequest"
+  responses:
+    200:
+      description: OK
+      content:
+        application/json:
+          schema:
+            $ref: "schemas.yaml#/schemas/SigninUserResponse"
+    400:
+      description: Bad Request
+    409:
+      description: Conflict

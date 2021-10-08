@@ -1,0 +1,39 @@
+schemas:
+  CategoryItemView:
+    type: object
+    properties:
+      id:
+        type: integer
+      name:
+        type: string
+      name_es:
+        type: string
+      name_fr:
+        type: string
+      name_ja:
+        type: string
+      name_cn:
+        type: string
+      name_pt:
+        type: string        
+      slug:
+        type: string
+      url:
+        type: string
+  CategoriesResponse:
+    allOf:
+      - $ref: "../api.yaml#/components/schemas/BaseResponse"
+      - type: object
+        properties:
+          data:
+            type: object
+            properties:
+              count:
+                type: integer
+              items:
+                type: array
+                items:
+                  $ref: "schemas.yaml#/schemas/CategoryItemView"
+        required:
+          - data
+  

@@ -15,10 +15,12 @@ app.app.jinja_env.lstrip_blocks = True
 def utility_processor():
     # Send the current date & time
     today = datetime.date.today()
+    utc_now = datetime.datetime.utcnow()
 
     return dict(
         pag=PaginationHelper.pag,
         today=today,
+        utc_now=utc_now,
         config=config,
         language=read_and_parse_locale(),
         site_name=config.SITE_NAME)

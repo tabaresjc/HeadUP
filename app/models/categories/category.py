@@ -19,6 +19,7 @@ class Category(Base, sa.Model, ModelHelper):
         'name_fr',
         'name_ja',
         'name_cn',
+        'name_pt',
         'slug',
         'url'
     ]
@@ -118,6 +119,22 @@ class Category(Base, sa.Model, ModelHelper):
     @description_cn.setter
     def description_cn(self, value):
         return self.set_attribute('description_cn', value)
+
+    @property
+    def name_pt(self):
+        return self.get_attribute('name_pt', u'')
+
+    @name_pt.setter
+    def name_pt(self, value):
+        return self.set_attribute('name_pt', value)
+
+    @property
+    def description_pt(self):
+        return self.get_attribute('description_pt', u'')
+
+    @description_pt.setter
+    def description_pt(self, value):
+        return self.set_attribute('description_pt', value)
 
     @property
     def url(self):

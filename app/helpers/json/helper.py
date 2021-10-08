@@ -1,12 +1,10 @@
 # -*- coding: utf8 -*-
 
-from flask import request, jsonify
+from flask import request, jsonify, render_template, make_response
 from flask_wtf import Form
 from werkzeug.exceptions import HTTPException, NotFound
 import datetime
 
-
-_sucess_status_codes = [200, 204]
 
 
 def render_json(message=None, status=None, error=None, **kwargs):
@@ -28,12 +26,12 @@ def render_json(message=None, status=None, error=None, **kwargs):
         status_code = 200 if status else 500
 
     data = {
-        'status': True if status_code in _sucess_status_codes else False,
+        'status': True if status_code < 400 else False,
         'datetime': datetime.datetime.utcnow(),
     }
 
     if message:
-        data['message'] = message
+        data['message'] = str(message)
 
     if kwargs:
         data['data'] = {}
@@ -45,6 +43,12 @@ def render_json(message=None, status=None, error=None, **kwargs):
     response = jsonify(**data)
     response.status_code = status_code
     return response
+
+
+def render_json_template(template, *args, **kwargs):
+    r = make_response(render_template(template, *args, **kwargs))
+    r.headers.set('Content-Type', 'application/json')
+    return r
 
 
 def is_json_request():

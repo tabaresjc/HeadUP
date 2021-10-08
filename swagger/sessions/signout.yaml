@@ -1,0 +1,13 @@
+post:
+  summary: End session of current user
+  tags:
+    - Sessions
+  security:
+    - "BearerAuth": []
+  parameters:
+    - $ref: "../api.yaml#/components/parameters/ApiContentType"
+  responses:
+    204:
+      description: OK
+    400:
+      description: Bad Request

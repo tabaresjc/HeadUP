@@ -1,3 +1,3 @@
 # -*- coding: utf8 -*-
 
-from helper import get_timezones
+from .helper import get_timezones
