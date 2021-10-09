@@ -47,6 +47,4 @@ class LogHelper(object):
 
         log_handler.setFormatter(self.format)
         log_handler.setLevel(self.level)
-        # log_handler.suffix = self.file_suffix
-
         self.app.logger.addHandler(log_handler)
