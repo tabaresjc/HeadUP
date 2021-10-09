@@ -12,6 +12,7 @@ class ErrorHelper(object):
 
     http_codes = [400, 401, 403, 404, 409, 500]
     template_http_codes = [401, 403, 404, 409, 500]
+    error_codes = [400, 401, 403, 409, 500]
 
     def __init__(self, app, **kwargs):
 
@@ -45,10 +46,18 @@ class ErrorHelper(object):
                                             self._internal_server_error)
 
     def _internal_http_error(self, error):
-        self.app.logger.error('Internal HTTP Exception\n\n%s\n\n%s',
-                              self._request_info(error),
-                              error,
-                              exc_info=True)
+        if error.code in self.error_codes:
+            self.app.logger.error('Important error (%s)\n\n%s\n\n%s',
+                                  error.code,
+                                  self._request_info(error),
+                                  error,
+                                  exc_info=True)
+        else:
+            self.app.logger.info('Status code (%s)\n\n%s\n\n%s',
+                                 error.code,
+                                 self._request_info(error),
+                                 error,
+                                 exc_info=True)
 
         if is_json_request():
             return render_json(error=error)
