@@ -46,18 +46,13 @@ class ErrorHelper(object):
                                             self._internal_server_error)
 
     def _internal_http_error(self, error):
+        self.app.logger.info(self._request_info(error))
         if error.code in self.error_codes:
-            self.app.logger.error('Important error (%s)\n\n%s\n\n%s',
+            self.app.logger.error('HTTP Exception (%s)\n\n%s\n\n%s',
                                   error.code,
-                                  self._request_info(error),
+                                  self._full_request_info(error),
                                   error,
                                   exc_info=True)
-        else:
-            self.app.logger.info('Status code (%s)\n\n%s\n\n%s',
-                                 error.code,
-                                 self._request_info(error),
-                                 error,
-                                 exc_info=True)
 
         if is_json_request():
             return render_json(error=error)
@@ -79,7 +74,7 @@ class ErrorHelper(object):
 
         return render_template('errors/500.html', title=error), 500
 
-    def _request_info(self, error):
+    def _full_request_info(self, error):
         lines = [
             'code: %s' % error.code,
             'endpoint: %s' % request.endpoint,
@@ -96,6 +91,16 @@ class ErrorHelper(object):
             'headers: %s' % str(request.headers)
         ]
         return '\n'.join(lines)
+
+
+    def _request_info(self, error):
+        lines = [
+            str(request.method),
+            str(request.path),
+            u' -> ',
+            str(error.code)
+        ]
+        return u' '.join(lines)
 
     def _request_json(self):
         try:
