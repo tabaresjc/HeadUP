@@ -24,7 +24,8 @@ class LogHelper(object):
     @property
     def level(self):
         if not hasattr(self, '_level'):
-            self._level = logging.DEBUG if self.app.config.get('DEBUG') else logging.INFO
+            lvl = self.app.config.get('LOG_LEVEL') or 'INFO'
+            self._level = logging.getLevelName(lvl.upper())
         return self._level
 
     @property
