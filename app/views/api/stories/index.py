@@ -54,7 +54,7 @@ class StoriesApiView(FlaskView):
                            limit=limit)
 
     def get(self, id):
-        story = Post.get_by_id(id)
+        story = Post.get_by_id(int(id))
 
         if story is None or story.is_hidden:
             abort(404, 'API_ERROR_POST_NOT_FOUND')
@@ -63,7 +63,7 @@ class StoriesApiView(FlaskView):
 
     @login_required
     def delete(self, id):
-        story = Post.get_by_id(id)
+        story = Post.get_by_id(int(id))
 
         if story is None or story.is_hidden:
             abort(404, 'API_ERROR_POST_NOT_FOUND')
