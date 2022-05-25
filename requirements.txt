@@ -24,7 +24,7 @@ celery==4.1.1
 pojson==0.7
 pyOpenSSL==17.5.0
 python-dateutil==2.7.2
-PyJWT==1.7.1
+PyJWT==2.4.0
 PyYAML==5.4
 speaklater==1.3
 urllib3==1.26.5
