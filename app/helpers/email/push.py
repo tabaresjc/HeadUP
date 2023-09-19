@@ -1,8 +1,12 @@
 # -*- coding: utf8 -*-
 
+import logging
 from flask_mail import Message
 from app.helpers.tasks import task_handler
 import app
+
+
+logger = logging.getLogger(__name__)
 
 
 @task_handler
@@ -20,8 +24,8 @@ def push_email(subject, recipients, body, is_html=True):
             msg.html = body
         else:
             msg.body = body
-        app.app.logger.info('Sending email')
+        logger.info('Sending email')
         app.mail.send(msg)
-        app.app.logger.info('Email sent')
+        logger.info('Email sent')
     except Exception:
-        app.app.logger.exception('Failed to push_email')
+        logger.exception('Failed to push_email')
