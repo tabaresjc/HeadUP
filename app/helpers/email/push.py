@@ -21,7 +21,9 @@ def push_email(subject, recipients, body, is_html=True):
         else:
             msg.body = body
 
+        app.app.logger.info('Sending email to [%]' % (','.join(recipients)))
         app.mail.send(msg)
         app.app.logger.info('Sent email to [%]' % (','.join(recipients)))
     except Exception as e:
+        app.app.logger.exception('Failed to send')
         app.app.logger.error(e.message)
