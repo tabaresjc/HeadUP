@@ -3,7 +3,6 @@
 from flask_mail import Message
 from app.helpers.tasks import task_handler
 import app
-import config
 
 
 @task_handler
@@ -23,5 +22,6 @@ def push_email(subject, recipients, body, is_html=True):
             msg.body = body
 
         app.mail.send(msg)
+        app.app.logger.info('Sent email to [%]' % (','.join(recipients)))
     except Exception as e:
-        app.logger.error(e.message)
+        app.app.logger.error(e.message)
