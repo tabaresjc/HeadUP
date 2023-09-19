@@ -3,15 +3,13 @@
 import logging
 from flask_mail import Message
 from app.helpers.tasks import task_handler
-from celery.utils.log import get_task_logger
 import app
-
-
-logger = get_task_logger(__name__)
 
 
 @task_handler
 def push_email(subject, recipients, body, is_html=True):
+    from celery.utils.log import get_task_logger
+    logger = get_task_logger(__name__)
     try:
         if not body or not subject or not recipients:
             return
