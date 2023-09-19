@@ -11,9 +11,6 @@ def push_email(subject, recipients, body, is_html=True):
         if not body or not subject or not recipients:
             return
 
-        print(recipients)
-        print(body)
-
         if isinstance(recipients, basestring):
             recipients = [recipients]
 
