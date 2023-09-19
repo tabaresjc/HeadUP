@@ -3,10 +3,11 @@
 import logging
 from flask_mail import Message
 from app.helpers.tasks import task_handler
+from celery.utils.log import get_task_logger
 import app
 
 
-logger = logging.getLogger(__name__)
+logger = get_task_logger(__name__)
 
 
 @task_handler
