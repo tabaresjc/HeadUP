@@ -16,7 +16,10 @@ app.config.from_object('config')
 # Socket IO Configuration
 # -------------------------------------------------------------------------
 from flask_socketio import SocketIO  # noqa
-socketio = SocketIO(app, logger=True, engineio_logger=True, cors_allowed_origins='https://headup.space')
+socketio = SocketIO(app,
+                    logger=config.SOCKET_IO_LOGGER_ENABLED,
+                    engineio_logger=config.SOCKET_IO_ENGINEIO_LOGGER_ENABLED,
+                    cors_allowed_origins=config.SOCKET_IO_CORS_ALLOWED_ORIGINS)
 
 # -------------------------------------------------------------------------
 # Session Configuration

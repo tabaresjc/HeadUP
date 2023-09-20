@@ -42,6 +42,13 @@ LOG_EMAIL_DEFAULT_SENDER = 'sender@headup.com'
 LOG_EMAIL_DEFAULT_RECIPIENTS = 'recipients@headup.com'
 
 # *************************************************
+# SocketIO
+# *************************************************
+SOCKET_IO_CORS_ALLOWED_ORIGINS = []
+SOCKET_IO_LOGGER_ENABLED = True
+SOCKET_IO_ENGINEIO_LOGGER_ENABLED = True
+
+# *************************************************
 # Site Configuration
 # *************************************************
 SITE_NAME = 'HeadUP'
