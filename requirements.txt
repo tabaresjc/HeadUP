@@ -20,7 +20,7 @@ Flask-SQLAlchemy==2.5.1
 Flask-Widgets==0.4
 Flask-WTF==0.14.2
 micawber==0.5.2
-celery==4.1.1
+celery==5.2.2
 pojson==0.7
 pyOpenSSL==17.5.0
 python-dateutil==2.7.2
