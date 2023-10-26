@@ -1,5 +1,5 @@
 PyMySQL==0.10.1
-Werkzeug==0.16.1
+Werkzeug==3.0.1
 SQLAlchemy==1.4.23
 alembic==1.4.2
 python-engineio==3.12.1
