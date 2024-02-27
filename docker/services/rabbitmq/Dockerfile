@@ -1,4 +1,4 @@
-FROM rabbitmq:3.8.3-management-alpine
+FROM rabbitmq:3.9.29-management-alpine
 
 RUN rabbitmq-plugins enable rabbitmq_management
 
